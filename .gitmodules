@@ -2,3 +2,7 @@
 	path = Dependencies/macdown
 	url = https://github.com/phildow/macdown.git
 	branch = dependency-mods
+[submodule "Dependencies/BRFullTextSearch"]
+	path = Dependencies/BRFullTextSearch
+	url = https://github.com/phildow/BRFullTextSearch
+	branch = macos-framework
