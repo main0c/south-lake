@@ -18,4 +18,14 @@
 #import "MPMathJaxListener.h"
 #import "MPUtilities.h"
 
+// BRFullTextSearch
+
+#import <BRFullTextSearch/BRFullTextSearch.h>
+#import <BRFullTextSearch/BRSearchService.h>
+#import <BRFullTextSearch/CLuceneSearchService.h>
+
+// Couchbase
+
+#import <CouchbaseLite/CouchbaseLite.h>
+
 #endif /* BridgingHeader_h */

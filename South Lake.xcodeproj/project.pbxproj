@@ -45,6 +45,11 @@
 		E3803F151C728E950048AD46 /* MPEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3803BB21C728DA80048AD46 /* MPEditorView.m */; };
 		E3803F231C7292420048AD46 /* BRFullTextSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F221C7292420048AD46 /* BRFullTextSearch.framework */; };
 		E3803F241C7292420048AD46 /* BRFullTextSearch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F221C7292420048AD46 /* BRFullTextSearch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E3803F401C72969E0048AD46 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F3F1C72969E0048AD46 /* CouchbaseLite.framework */; };
+		E3803F411C72969E0048AD46 /* CouchbaseLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F3F1C72969E0048AD46 /* CouchbaseLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E3803F431C7297720048AD46 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F421C7297720048AD46 /* Security.framework */; };
+		E3803F451C7297780048AD46 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F441C7297780048AD46 /* CFNetwork.framework */; };
+		E3803F471C72977D0048AD46 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F461C72977D0048AD46 /* SystemConfiguration.framework */; };
 		EFE09CFA27C8FA78A424511C /* libPods-South Lake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FCBDC9A158BD5332E2FC09 /* libPods-South Lake.a */; };
 /* End PBXBuildFile section */
 
@@ -170,6 +175,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E3803F411C72969E0048AD46 /* CouchbaseLite.framework in Embed Frameworks */,
 				E3803F241C7292420048AD46 /* BRFullTextSearch.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -2268,6 +2274,10 @@
 		E3803ED41C728DA90048AD46 /* update_build_number.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_build_number.sh; sourceTree = "<group>"; };
 		E3803ED51C728DA90048AD46 /* utils.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = utils.sh; sourceTree = "<group>"; };
 		E3803F221C7292420048AD46 /* BRFullTextSearch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BRFullTextSearch.framework; path = "Dependencies/BRFullTextSearch/Framework-MacOS/Release/BRFullTextSearch.framework"; sourceTree = "<group>"; };
+		E3803F3F1C72969E0048AD46 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = Frameworks/CouchbaseLite.framework; sourceTree = "<group>"; };
+		E3803F421C7297720048AD46 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		E3803F441C7297780048AD46 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		E3803F461C72977D0048AD46 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2275,6 +2285,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3803F471C72977D0048AD46 /* SystemConfiguration.framework in Frameworks */,
+				E3803F451C7297780048AD46 /* CFNetwork.framework in Frameworks */,
+				E3803F431C7297720048AD46 /* Security.framework in Frameworks */,
+				E3803F401C72969E0048AD46 /* CouchbaseLite.framework in Frameworks */,
 				E3803F231C7292420048AD46 /* BRFullTextSearch.framework in Frameworks */,
 				E37D96401C724081000A9F90 /* JavaScriptCore.framework in Frameworks */,
 				E37D963E1C72407D000A9F90 /* WebKit.framework in Frameworks */,
@@ -2302,6 +2316,9 @@
 		7262FBE22EB6B82E7CC1DF59 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E3803F461C72977D0048AD46 /* SystemConfiguration.framework */,
+				E3803F441C7297780048AD46 /* CFNetwork.framework */,
+				E3803F421C7297720048AD46 /* Security.framework */,
 				E37D963F1C724081000A9F90 /* JavaScriptCore.framework */,
 				E37D963D1C72407D000A9F90 /* WebKit.framework */,
 				13FCBDC9A158BD5332E2FC09 /* libPods-South Lake.a */,
@@ -2312,6 +2329,7 @@
 		E37D96031C723B8A000A9F90 = {
 			isa = PBXGroup;
 			children = (
+				E3803F3F1C72969E0048AD46 /* CouchbaseLite.framework */,
 				E3803F221C7292420048AD46 /* BRFullTextSearch.framework */,
 				E38035961C728DA50048AD46 /* macdown */,
 				E38035951C728D800048AD46 /* MacDown Resources */,
@@ -7080,7 +7098,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "WORKSPACE=$PROJECT_DIR/Dependencies/BRFullTextSearch/BRFullTextSearch.xcworkspace\nSCHEME=\"BRFullTextSearch Mac OS\"\n\nrm ./build_brfulltextsearch.log\nxcodebuild -workspace $WORKSPACE -scheme \"$SCHEME\" > ./build_brfulltextsearch.log";
+			shellScript = "WORKSPACE=$PROJECT_DIR/Dependencies/BRFullTextSearch/BRFullTextSearch.xcworkspace\nSCHEME=\"BRFullTextSearch Mac OS\"\n\nxcodebuild -workspace $WORKSPACE -scheme \"$SCHEME\"";
 		};
 		EF315C65DB33724E077B35F8 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -7350,6 +7368,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Dependencies/BRFullTextSearch/Framework-MacOS/Release",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -7373,6 +7392,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Dependencies/BRFullTextSearch/Framework-MacOS/Release",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"SOUTHLAKE=1",
