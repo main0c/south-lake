@@ -9,5 +9,13 @@
 #ifndef BridgingHeader_h
 #define BridgingHeader_h
 
+// MacDown
+
+#import "MPDocumentSplitView.h"
+#import "MPEditorView.h"
+#import "MPPreferences.h"
+#import "MPRenderer.h"
+#import "MPMathJaxListener.h"
+#import "MPUtilities.h"
 
 #endif /* BridgingHeader_h */
