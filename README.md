@@ -6,13 +6,42 @@ Secret project for new Journler like application. Shhhh.
 
 Ensure you have [Cocoapods](https://cocoapods.org/) installed.
 
-```
+Pull the repository and its submodules:
 
 ```
+git clone https://github.com/phildow/south-lake.git
+cd south-lake
+git submodule update --init --recursive
+```
+
+CD into the MacDown dependency directory and install the required pods
+
+```
+cd Dependencies/macdown
+pod install
+```
+
+CD back into the project directory and pod install:
+
+```
+cd ../..
+pod install
+```
+
+Check that cocoapods didn't bork the preprocessor macros in build settings:
+
+```
+Debug:   DEBUG=1 COCOAPODS=1 SOUTHLAKE=1
+Release: COCOAPODS=1 SOUTHLAKE=1
+```
+
+You may need to build BRFullTextSearch manually. If so open up its workspace in the Dependencies folder and Archive it. That will produce Framework-MacOS/Release/BRFullTextSearch in the BRFullTextSearch directory, which is where South Lake looks for it.
+
+Open up the South Lake workspace, build and go!
 
 ### Create Project
 
-Instructions used to create the project from scratch. If not automated then at least documented. Xcode 7.3, MacDown 0.5.5.1 (717).
+Instructions used to create the project from scratch. If not automated then at least documented. Xcode 7.3, MacDown 0.5.5.1 (717), CouchBase-Lite 1.2. You probably don't need to worry about this.
 
 **Create Xcode project**
 
