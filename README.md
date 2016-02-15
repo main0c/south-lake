@@ -2,6 +2,14 @@
 
 Secret project for new Journler like application. Shhhh.
 
+### Build
+
+Ensure you have [Cocoapods](https://cocoapods.org/) installed.
+
+```
+
+```
+
 ### Create Project
 
 Instructions used to create the project from scratch. If not automated then at least documented. Xcode 7.3, MacDown 0.5.5.1 (717).
