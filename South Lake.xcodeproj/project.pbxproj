@@ -1,0 +1,502 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E37D96101C723B8A000A9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D960F1C723B8A000A9F90 /* AppDelegate.swift */; };
+		E37D96121C723B8A000A9F90 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D96111C723B8A000A9F90 /* ViewController.swift */; };
+		E37D96141C723B8A000A9F90 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D96131C723B8A000A9F90 /* Document.swift */; };
+		E37D96161C723B8A000A9F90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E37D96151C723B8A000A9F90 /* Assets.xcassets */; };
+		E37D96191C723B8A000A9F90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E37D96171C723B8A000A9F90 /* Main.storyboard */; };
+		E37D96241C723B8A000A9F90 /* South_LakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D96231C723B8A000A9F90 /* South_LakeTests.swift */; };
+		E37D962F1C723B8A000A9F90 /* South_LakeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D962E1C723B8A000A9F90 /* South_LakeUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E37D96201C723B8A000A9F90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E37D96041C723B8A000A9F90 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E37D960B1C723B8A000A9F90;
+			remoteInfo = "South Lake";
+		};
+		E37D962B1C723B8A000A9F90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E37D96041C723B8A000A9F90 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E37D960B1C723B8A000A9F90;
+			remoteInfo = "South Lake";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E37D960C1C723B8A000A9F90 /* South Lake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "South Lake.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E37D960F1C723B8A000A9F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E37D96111C723B8A000A9F90 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E37D96131C723B8A000A9F90 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		E37D96151C723B8A000A9F90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E37D96181C723B8A000A9F90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E37D961A1C723B8A000A9F90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E37D961F1C723B8A000A9F90 /* South LakeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "South LakeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E37D96231C723B8A000A9F90 /* South_LakeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = South_LakeTests.swift; sourceTree = "<group>"; };
+		E37D96251C723B8A000A9F90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E37D962A1C723B8A000A9F90 /* South LakeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "South LakeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E37D962E1C723B8A000A9F90 /* South_LakeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = South_LakeUITests.swift; sourceTree = "<group>"; };
+		E37D96301C723B8A000A9F90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E37D96091C723B8A000A9F90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E37D961C1C723B8A000A9F90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E37D96271C723B8A000A9F90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E37D96031C723B8A000A9F90 = {
+			isa = PBXGroup;
+			children = (
+				E37D960E1C723B8A000A9F90 /* South Lake */,
+				E37D96221C723B8A000A9F90 /* South LakeTests */,
+				E37D962D1C723B8A000A9F90 /* South LakeUITests */,
+				E37D960D1C723B8A000A9F90 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E37D960D1C723B8A000A9F90 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E37D960C1C723B8A000A9F90 /* South Lake.app */,
+				E37D961F1C723B8A000A9F90 /* South LakeTests.xctest */,
+				E37D962A1C723B8A000A9F90 /* South LakeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E37D960E1C723B8A000A9F90 /* South Lake */ = {
+			isa = PBXGroup;
+			children = (
+				E37D960F1C723B8A000A9F90 /* AppDelegate.swift */,
+				E37D96111C723B8A000A9F90 /* ViewController.swift */,
+				E37D96131C723B8A000A9F90 /* Document.swift */,
+				E37D96151C723B8A000A9F90 /* Assets.xcassets */,
+				E37D96171C723B8A000A9F90 /* Main.storyboard */,
+				E37D961A1C723B8A000A9F90 /* Info.plist */,
+			);
+			path = "South Lake";
+			sourceTree = "<group>";
+		};
+		E37D96221C723B8A000A9F90 /* South LakeTests */ = {
+			isa = PBXGroup;
+			children = (
+				E37D96231C723B8A000A9F90 /* South_LakeTests.swift */,
+				E37D96251C723B8A000A9F90 /* Info.plist */,
+			);
+			path = "South LakeTests";
+			sourceTree = "<group>";
+		};
+		E37D962D1C723B8A000A9F90 /* South LakeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E37D962E1C723B8A000A9F90 /* South_LakeUITests.swift */,
+				E37D96301C723B8A000A9F90 /* Info.plist */,
+			);
+			path = "South LakeUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E37D960B1C723B8A000A9F90 /* South Lake */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E37D96331C723B8A000A9F90 /* Build configuration list for PBXNativeTarget "South Lake" */;
+			buildPhases = (
+				E37D96081C723B8A000A9F90 /* Sources */,
+				E37D96091C723B8A000A9F90 /* Frameworks */,
+				E37D960A1C723B8A000A9F90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "South Lake";
+			productName = "South Lake";
+			productReference = E37D960C1C723B8A000A9F90 /* South Lake.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E37D961E1C723B8A000A9F90 /* South LakeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E37D96361C723B8A000A9F90 /* Build configuration list for PBXNativeTarget "South LakeTests" */;
+			buildPhases = (
+				E37D961B1C723B8A000A9F90 /* Sources */,
+				E37D961C1C723B8A000A9F90 /* Frameworks */,
+				E37D961D1C723B8A000A9F90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E37D96211C723B8A000A9F90 /* PBXTargetDependency */,
+			);
+			name = "South LakeTests";
+			productName = "South LakeTests";
+			productReference = E37D961F1C723B8A000A9F90 /* South LakeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E37D96291C723B8A000A9F90 /* South LakeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E37D96391C723B8A000A9F90 /* Build configuration list for PBXNativeTarget "South LakeUITests" */;
+			buildPhases = (
+				E37D96261C723B8A000A9F90 /* Sources */,
+				E37D96271C723B8A000A9F90 /* Frameworks */,
+				E37D96281C723B8A000A9F90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E37D962C1C723B8A000A9F90 /* PBXTargetDependency */,
+			);
+			name = "South LakeUITests";
+			productName = "South LakeUITests";
+			productReference = E37D962A1C723B8A000A9F90 /* South LakeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E37D96041C723B8A000A9F90 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Phil Dow";
+				TargetAttributes = {
+					E37D960B1C723B8A000A9F90 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					E37D961E1C723B8A000A9F90 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = E37D960B1C723B8A000A9F90;
+					};
+					E37D96291C723B8A000A9F90 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = E37D960B1C723B8A000A9F90;
+					};
+				};
+			};
+			buildConfigurationList = E37D96071C723B8A000A9F90 /* Build configuration list for PBXProject "South Lake" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E37D96031C723B8A000A9F90;
+			productRefGroup = E37D960D1C723B8A000A9F90 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E37D960B1C723B8A000A9F90 /* South Lake */,
+				E37D961E1C723B8A000A9F90 /* South LakeTests */,
+				E37D96291C723B8A000A9F90 /* South LakeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E37D960A1C723B8A000A9F90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E37D96161C723B8A000A9F90 /* Assets.xcassets in Resources */,
+				E37D96191C723B8A000A9F90 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E37D961D1C723B8A000A9F90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E37D96281C723B8A000A9F90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E37D96081C723B8A000A9F90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E37D96121C723B8A000A9F90 /* ViewController.swift in Sources */,
+				E37D96101C723B8A000A9F90 /* AppDelegate.swift in Sources */,
+				E37D96141C723B8A000A9F90 /* Document.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E37D961B1C723B8A000A9F90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E37D96241C723B8A000A9F90 /* South_LakeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E37D96261C723B8A000A9F90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E37D962F1C723B8A000A9F90 /* South_LakeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E37D96211C723B8A000A9F90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E37D960B1C723B8A000A9F90 /* South Lake */;
+			targetProxy = E37D96201C723B8A000A9F90 /* PBXContainerItemProxy */;
+		};
+		E37D962C1C723B8A000A9F90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E37D960B1C723B8A000A9F90 /* South Lake */;
+			targetProxy = E37D962B1C723B8A000A9F90 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E37D96171C723B8A000A9F90 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E37D96181C723B8A000A9F90 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E37D96311C723B8A000A9F90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E37D96321C723B8A000A9F90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E37D96341C723B8A000A9F90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "South Lake/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.phildow.South-Lake";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E37D96351C723B8A000A9F90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "South Lake/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.phildow.South-Lake";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E37D96371C723B8A000A9F90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "South LakeTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.phildow.South-LakeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/South Lake.app/Contents/MacOS/South Lake";
+			};
+			name = Debug;
+		};
+		E37D96381C723B8A000A9F90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "South LakeTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.phildow.South-LakeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/South Lake.app/Contents/MacOS/South Lake";
+			};
+			name = Release;
+		};
+		E37D963A1C723B8A000A9F90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "South LakeUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.phildow.South-LakeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "South Lake";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		E37D963B1C723B8A000A9F90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "South LakeUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.phildow.South-LakeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "South Lake";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E37D96071C723B8A000A9F90 /* Build configuration list for PBXProject "South Lake" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E37D96311C723B8A000A9F90 /* Debug */,
+				E37D96321C723B8A000A9F90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E37D96331C723B8A000A9F90 /* Build configuration list for PBXNativeTarget "South Lake" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E37D96341C723B8A000A9F90 /* Debug */,
+				E37D96351C723B8A000A9F90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E37D96361C723B8A000A9F90 /* Build configuration list for PBXNativeTarget "South LakeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E37D96371C723B8A000A9F90 /* Debug */,
+				E37D96381C723B8A000A9F90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E37D96391C723B8A000A9F90 /* Build configuration list for PBXNativeTarget "South LakeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E37D963A1C723B8A000A9F90 /* Debug */,
+				E37D963B1C723B8A000A9F90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E37D96041C723B8A000A9F90 /* Project object */;
+}
