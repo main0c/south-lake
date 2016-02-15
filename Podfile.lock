@@ -1,0 +1,24 @@
+PODS:
+  - handlebars-objc (1.4.4)
+  - hoedown (3.0.3):
+    - hoedown/standard (= 3.0.3)
+  - hoedown/standard (3.0.3)
+  - LibYAML (0.1.4)
+  - M13OrderedDictionary (1.1.0)
+  - PAPreferences (0.5)
+
+DEPENDENCIES:
+  - handlebars-objc (~> 1.4)
+  - hoedown (~> 3.0)
+  - LibYAML (~> 0.1)
+  - M13OrderedDictionary (~> 1.1)
+  - PAPreferences (~> 0.4)
+
+SPEC CHECKSUMS:
+  handlebars-objc: ffad49df7e6dd17630ecccb2ef5e91cbaf12ad70
+  hoedown: c1327bbbc96d269595ed86bf97f1d09867ec7529
+  LibYAML: 3af2c5adf3a40dff936d087aa6a77edc10036bc5
+  M13OrderedDictionary: 6e157fe9c82aa6b3cd7198f5c5c30c7a6834c4a6
+  PAPreferences: 9f0ffb1e67174a0df001af9d3320166ceb9ee6f5
+
+COCOAPODS: 0.39.0

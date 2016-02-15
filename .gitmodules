@@ -1,0 +1,4 @@
+[submodule "Dependencies/macdown"]
+	path = Dependencies/macdown
+	url = https://github.com/phildow/macdown.git
+	branch = dependency-mods
