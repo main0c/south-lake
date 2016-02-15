@@ -47,6 +47,7 @@
 		E37D962A1C723B8A000A9F90 /* South LakeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "South LakeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E37D962E1C723B8A000A9F90 /* South_LakeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = South_LakeUITests.swift; sourceTree = "<group>"; };
 		E37D96301C723B8A000A9F90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E37D963C1C723C76000A9F90 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BridgingHeader.h; path = "South Lake/BridgingHeader.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +78,7 @@
 		E37D96031C723B8A000A9F90 = {
 			isa = PBXGroup;
 			children = (
+				E37D963C1C723C76000A9F90 /* BridgingHeader.h */,
 				E37D960E1C723B8A000A9F90 /* South Lake */,
 				E37D96221C723B8A000A9F90 /* South LakeTests */,
 				E37D962D1C723B8A000A9F90 /* South LakeUITests */,
@@ -389,10 +391,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"SOUTHLAKE=1",
+				);
 				INFOPLIST_FILE = "South Lake/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.phildow.South-Lake";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "South Lake/BridgingHeader.h";
 			};
 			name = Debug;
 		};
@@ -401,10 +409,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "SOUTHLAKE=1";
 				INFOPLIST_FILE = "South Lake/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.phildow.South-Lake";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "South Lake/BridgingHeader.h";
 			};
 			name = Release;
 		};
@@ -479,6 +489,7 @@
 				E37D96351C723B8A000A9F90 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E37D96361C723B8A000A9F90 /* Build configuration list for PBXNativeTarget "South LakeTests" */ = {
 			isa = XCConfigurationList;
@@ -487,6 +498,7 @@
 				E37D96381C723B8A000A9F90 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E37D96391C723B8A000A9F90 /* Build configuration list for PBXNativeTarget "South LakeUITests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +507,7 @@
 				E37D963B1C723B8A000A9F90 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
