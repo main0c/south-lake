@@ -2,7 +2,7 @@
 
 Secret project for new Journler like application. Shhhh.
 
-### Build
+## Build
 
 Ensure you have [Cocoapods](https://cocoapods.org/) installed.
 
@@ -39,7 +39,7 @@ You may need to build BRFullTextSearch manually. If so open up its workspace in 
 
 Open up the South Lake workspace, build and go!
 
-### Create Project
+## Create Project
 
 Instructions used to create the project from scratch. If not automated then at least documented. Xcode 7.3, MacDown 0.5.5.1 (717), CouchBase-Lite 1.2. You probably don't need to worry about this.
 
