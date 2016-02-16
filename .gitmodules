@@ -6,3 +6,7 @@
 	path = Dependencies/BRFullTextSearch
 	url = https://github.com/phildow/BRFullTextSearch
 	branch = macos-framework
+[submodule "Dependencies/MMTabBarView"]
+	path = Dependencies/MMTabBarView
+	url = https://github.com/phildow/MMTabBarView.git
+	branch = south-lake

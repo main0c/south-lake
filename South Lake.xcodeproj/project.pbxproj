@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E336440D1C73DDF1000FFC9C /* MMTabBarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E33643FF1C73DDE2000FFC9C /* MMTabBarView.framework */; };
+		E336440E1C73DDF1000FFC9C /* MMTabBarView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E33643FF1C73DDE2000FFC9C /* MMTabBarView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E37D96101C723B8A000A9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D960F1C723B8A000A9F90 /* AppDelegate.swift */; };
 		E37D96121C723B8A000A9F90 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D96111C723B8A000A9F90 /* ViewController.swift */; };
 		E37D96141C723B8A000A9F90 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D96131C723B8A000A9F90 /* Document.swift */; };
@@ -54,6 +56,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E33643FE1C73DDE2000FFC9C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E33643F71C73DDE1000FFC9C /* MMTabBarView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06DB23A61609F5830071BDA0;
+			remoteInfo = MMTabBarView;
+		};
+		E336440F1C73DDF1000FFC9C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E33643F71C73DDE1000FFC9C /* MMTabBarView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 06DB23A51609F5820071BDA0;
+			remoteInfo = MMTabBarView;
+		};
 		E37D96201C723B8A000A9F90 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E37D96041C723B8A000A9F90 /* Project object */;
@@ -176,6 +192,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E3803F411C72969E0048AD46 /* CouchbaseLite.framework in Embed Frameworks */,
+				E336440E1C73DDF1000FFC9C /* MMTabBarView.framework in Embed Frameworks */,
 				E3803F241C7292420048AD46 /* BRFullTextSearch.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -187,6 +204,7 @@
 		0225C54B45D02DF2435FEFF7 /* Pods-South Lake.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-South Lake.debug.xcconfig"; path = "Pods/Target Support Files/Pods-South Lake/Pods-South Lake.debug.xcconfig"; sourceTree = "<group>"; };
 		13FCBDC9A158BD5332E2FC09 /* libPods-South Lake.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-South Lake.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		654657607D7E3F52002B88CB /* Pods-South Lake.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-South Lake.release.xcconfig"; path = "Pods/Target Support Files/Pods-South Lake/Pods-South Lake.release.xcconfig"; sourceTree = "<group>"; };
+		E33643F71C73DDE1000FFC9C /* MMTabBarView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MMTabBarView.xcodeproj; path = Dependencies/MMTabBarView/MMTabBarView/MMTabBarView.xcodeproj; sourceTree = "<group>"; };
 		E37D960C1C723B8A000A9F90 /* South Lake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "South Lake.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E37D960F1C723B8A000A9F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E37D96111C723B8A000A9F90 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -2289,6 +2307,7 @@
 				E3803F451C7297780048AD46 /* CFNetwork.framework in Frameworks */,
 				E3803F431C7297720048AD46 /* Security.framework in Frameworks */,
 				E3803F401C72969E0048AD46 /* CouchbaseLite.framework in Frameworks */,
+				E336440D1C73DDF1000FFC9C /* MMTabBarView.framework in Frameworks */,
 				E3803F231C7292420048AD46 /* BRFullTextSearch.framework in Frameworks */,
 				E37D96401C724081000A9F90 /* JavaScriptCore.framework in Frameworks */,
 				E37D963E1C72407D000A9F90 /* WebKit.framework in Frameworks */,
@@ -2326,9 +2345,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E33643F81C73DDE1000FFC9C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E33643FF1C73DDE2000FFC9C /* MMTabBarView.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E37D96031C723B8A000A9F90 = {
 			isa = PBXGroup;
 			children = (
+				E33643F71C73DDE1000FFC9C /* MMTabBarView.xcodeproj */,
 				E3803F3F1C72969E0048AD46 /* CouchbaseLite.framework */,
 				E3803F221C7292420048AD46 /* BRFullTextSearch.framework */,
 				E38035961C728DA50048AD46 /* macdown */,
@@ -6804,6 +6832,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E33644101C73DDF1000FFC9C /* PBXTargetDependency */,
 			);
 			name = "South Lake";
 			productName = "South Lake";
@@ -6886,6 +6915,10 @@
 					ProjectRef = E3803D401C728DA90048AD46 /* MacDown.xcodeproj */;
 				},
 				{
+					ProductGroup = E33643F81C73DDE1000FFC9C /* Products */;
+					ProjectRef = E33643F71C73DDE1000FFC9C /* MMTabBarView.xcodeproj */;
+				},
+				{
 					ProductGroup = E38035AE1C728DA50048AD46 /* Products */;
 					ProjectRef = E38035AD1C728DA50048AD46 /* peg-markdown-highlight.xcodeproj */;
 				},
@@ -6908,6 +6941,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		E33643FF1C73DDE2000FFC9C /* MMTabBarView.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MMTabBarView.framework;
+			remoteRef = E33643FE1C73DDE2000FFC9C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E3803EDA1C728DAA0048AD46 /* MacDown.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
@@ -7167,6 +7207,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E33644101C73DDF1000FFC9C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MMTabBarView;
+			targetProxy = E336440F1C73DDF1000FFC9C /* PBXContainerItemProxy */;
+		};
 		E37D96211C723B8A000A9F90 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E37D960B1C723B8A000A9F90 /* South Lake */;

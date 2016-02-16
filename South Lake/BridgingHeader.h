@@ -28,4 +28,9 @@
 
 #import <CouchbaseLite/CouchbaseLite.h>
 
+// MMTabBarView
+
+#import <MMTabBarView/MMTabBarView.h>
+#import <MMTabBarView/MMTabBarItem.h>
+
 #endif /* BridgingHeader_h */

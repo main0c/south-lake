@@ -258,3 +258,20 @@ Update BridgingHeader:
 
 Does it still run!?
 
+**Integrate MMTabBarView**
+
+Add MMTabBarView as submodule:
+
+```
+git submodule add -b south-lake https://github.com/phildow/MMTabBarView.git Dependencies/MMTabBarView
+```
+
+Add MMTabBarView/MMTabBarView.xcodeproj as subproject. This is what we really want to do with all our dependencies. Add MMTabBarView framework to embedded binaries.
+
+Update BridgingHeader:
+
+```c
+// MMTabBarView
+#import <MMTabBarView/MMTabBarView.h>
+#import <MMTabBarView/MMTabBarItem.h>
+```
