@@ -241,7 +241,7 @@ Couchbase Lite doesn't seem to want to build from Carthage or from source so jus
 
 [http://www.couchbase.com/dl/releases/couchbase-lite/macosx/1.2.0/couchbase-lite-macosx-enterprise_1.2.0-112.zip](http://www.couchbase.com/dl/releases/couchbase-lite/macosx/1.2.0/couchbase-lite-macosx-enterprise_1.2.0-112.zip)
 
-Add requires MacOS frameworks to project:
+Add required MacOS frameworks to project:
 
 ```
 Security
@@ -256,7 +256,7 @@ Update BridgingHeader:
 #import <CouchbaseLite/CouchbaseLite.h>
 ```
 
-Does it still run!?
+Does it still run? You betcha.
 
 **Integrate MMTabBarView**
 
@@ -275,3 +275,5 @@ Update BridgingHeader:
 #import <MMTabBarView/MMTabBarView.h>
 #import <MMTabBarView/MMTabBarItem.h>
 ```
+
+Dude. Tabs.
