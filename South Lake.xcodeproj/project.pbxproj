@@ -18,6 +18,8 @@
 		E37D962F1C723B8A000A9F90 /* South_LakeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D962E1C723B8A000A9F90 /* South_LakeUITests.swift */; };
 		E37D963E1C72407D000A9F90 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E37D963D1C72407D000A9F90 /* WebKit.framework */; };
 		E37D96401C724081000A9F90 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E37D963F1C724081000A9F90 /* JavaScriptCore.framework */; };
+		E37E47B81C73F0F90077ECD7 /* DocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E47B71C73F0F90077ECD7 /* DocumentController.swift */; };
+		E37E47CA1C73F2710077ECD7 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E47C91C73F2710077ECD7 /* DatabaseManager.swift */; };
 		E380358E1C728D780048AD46 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = E38035871C728D780048AD46 /* Data */; };
 		E380358F1C728D780048AD46 /* Extensions in Resources */ = {isa = PBXBuildFile; fileRef = E38035881C728D780048AD46 /* Extensions */; };
 		E38035901C728D780048AD46 /* MathJax in Resources */ = {isa = PBXBuildFile; fileRef = E38035891C728D780048AD46 /* MathJax */; };
@@ -221,6 +223,8 @@
 		E37D963C1C723C76000A9F90 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BridgingHeader.h; path = "South Lake/BridgingHeader.h"; sourceTree = "<group>"; };
 		E37D963D1C72407D000A9F90 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		E37D963F1C724081000A9F90 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		E37E47B71C73F0F90077ECD7 /* DocumentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentController.swift; sourceTree = "<group>"; };
+		E37E47C91C73F2710077ECD7 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		E38035871C728D780048AD46 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Data; path = Dependencies/macdown/MacDown/Resources/Data; sourceTree = "<group>"; };
 		E38035881C728D780048AD46 /* Extensions */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Extensions; path = Dependencies/macdown/MacDown/Resources/Extensions; sourceTree = "<group>"; };
 		E38035891C728D780048AD46 /* MathJax */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MathJax; path = Dependencies/macdown/MacDown/Resources/MathJax; sourceTree = "<group>"; };
@@ -2356,11 +2360,7 @@
 		E37D96031C723B8A000A9F90 = {
 			isa = PBXGroup;
 			children = (
-				E33643F71C73DDE1000FFC9C /* MMTabBarView.xcodeproj */,
-				E3803F3F1C72969E0048AD46 /* CouchbaseLite.framework */,
-				E3803F221C7292420048AD46 /* BRFullTextSearch.framework */,
-				E38035961C728DA50048AD46 /* macdown */,
-				E38035951C728D800048AD46 /* MacDown Resources */,
+				E37E47CB1C73F76B0077ECD7 /* Dependencies */,
 				E37D963C1C723C76000A9F90 /* BridgingHeader.h */,
 				E37D960E1C723B8A000A9F90 /* South Lake */,
 				E37D96221C723B8A000A9F90 /* South LakeTests */,
@@ -2385,8 +2385,10 @@
 			isa = PBXGroup;
 			children = (
 				E37D960F1C723B8A000A9F90 /* AppDelegate.swift */,
-				E37D96111C723B8A000A9F90 /* ViewController.swift */,
+				E37E47B71C73F0F90077ECD7 /* DocumentController.swift */,
 				E37D96131C723B8A000A9F90 /* Document.swift */,
+				E37E47C91C73F2710077ECD7 /* DatabaseManager.swift */,
+				E37D96111C723B8A000A9F90 /* ViewController.swift */,
 				E37D96151C723B8A000A9F90 /* Assets.xcassets */,
 				E37D96171C723B8A000A9F90 /* Main.storyboard */,
 				E37D961A1C723B8A000A9F90 /* Info.plist */,
@@ -2410,6 +2412,18 @@
 				E37D96301C723B8A000A9F90 /* Info.plist */,
 			);
 			path = "South LakeUITests";
+			sourceTree = "<group>";
+		};
+		E37E47CB1C73F76B0077ECD7 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				E33643F71C73DDE1000FFC9C /* MMTabBarView.xcodeproj */,
+				E3803F3F1C72969E0048AD46 /* CouchbaseLite.framework */,
+				E3803F221C7292420048AD46 /* BRFullTextSearch.framework */,
+				E38035961C728DA50048AD46 /* macdown */,
+				E38035951C728D800048AD46 /* MacDown Resources */,
+			);
+			name = Dependencies;
 			sourceTree = "<group>";
 		};
 		E38035951C728D800048AD46 /* MacDown Resources */ = {
@@ -7169,6 +7183,7 @@
 				E3803F0B1C728E790048AD46 /* NSColor+HTML.m in Sources */,
 				E37D96141C723B8A000A9F90 /* Document.swift in Sources */,
 				E3803F031C728E140048AD46 /* HGMarkdownHighlightingStyle.m in Sources */,
+				E37E47CA1C73F2710077ECD7 /* DatabaseManager.swift in Sources */,
 				E3803F041C728E140048AD46 /* pmh_parser.c in Sources */,
 				E3803F021C728E140048AD46 /* HGMarkdownHighlighter.m in Sources */,
 				E3803F101C728E790048AD46 /* NSTextView+Autocomplete.m in Sources */,
@@ -7176,6 +7191,7 @@
 				E3803F0F1C728E790048AD46 /* NSString+Lookup.m in Sources */,
 				E3803F071C728E600048AD46 /* MPAsset.m in Sources */,
 				E3803F0A1C728E790048AD46 /* hoedown_html_patch.c in Sources */,
+				E37E47B81C73F0F90077ECD7 /* DocumentController.swift in Sources */,
 				E3803F141C728E950048AD46 /* MPDocumentSplitView.m in Sources */,
 				E3803F0D1C728E790048AD46 /* NSJSONSerialization+File.m in Sources */,
 				E3803F131C728E910048AD46 /* MPUtilities.m in Sources */,
