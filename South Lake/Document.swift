@@ -134,7 +134,6 @@ class Document: NSDocument {
             do {
                 let packageJson = try NSJSONSerialization.dataWithJSONObject(self.packageInfo(), options: .PrettyPrinted)
                 packageJson.writeToURL(packageURL, atomically: true)
-                
             } catch {
                 completionHandler(error as NSError)
             }
@@ -225,8 +224,8 @@ class Document: NSDocument {
     }
     
     func packageInfo() -> Dictionary<String, AnyObject> {
-        let release = NSBundle.mainBundle().releaseVersionNumber ?? String(0)
-        let build = NSBundle.mainBundle().buildVersionNumber ?? String(0)
+        let release = NSBundle.mainBundle().releaseVersionNumber ?? String(0.0)
+        let build = NSBundle.mainBundle().buildVersionNumber ?? String(1)
         
         let url = "https://github.com/phildow/south-lake"
         let author = "Philip Dow"
