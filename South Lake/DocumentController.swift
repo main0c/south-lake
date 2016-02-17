@@ -41,10 +41,14 @@ class DocumentController: NSDocumentController {
             
             // Make and show windows, normally handled by displayDocument = true
             
-            document.makeWindowControllers()
-            document.showWindows()
+            self.displayDocument(document)
         }
 
         return document
+    }
+    
+    func displayDocument(document: NSDocument) {
+        document.makeWindowControllers()
+        document.showWindows()
     }
 }

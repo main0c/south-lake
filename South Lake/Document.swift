@@ -8,11 +8,16 @@
 
 import Cocoa
 
-enum AppDocumentError: ErrorType {
+enum DocumentError: ErrorType {
     case ShouldNotSaveFileWrapper
     case ShouldNotReadFileWrapper
     
-    case CouldNotInitializeSearchService
+    case InvalidDocumentURL
+    case InvalidDatabaseURL
+    case InvalidLuceneURL
+    
+    case CouldNotInitializeDatabase
+    case CouldNotInitializeSearch
 }
 
 class Document: NSDocument {
@@ -56,14 +61,14 @@ class Document: NSDocument {
     override func fileWrapperOfType(typeName: String) throws -> NSFileWrapper {
         guard fileURL == nil else {
             print("Document already initialized, don't save")
-            throw AppDocumentError.ShouldNotSaveFileWrapper
+            throw DocumentError.ShouldNotSaveFileWrapper
         }
         
         return  NSFileWrapper(directoryWithFileWrappers: [:])
     }
     
     override func readFromFileWrapper(fileWrapper: NSFileWrapper, ofType typeName: String) throws {
-        throw AppDocumentError.ShouldNotReadFileWrapper
+        throw DocumentError.ShouldNotReadFileWrapper
     }
 
     override func writeToURL(url: NSURL, ofType typeName: String, forSaveOperation saveOperation: NSSaveOperationType, originalContentsURL absoluteOriginalContentsURL: NSURL?) throws {
@@ -71,21 +76,22 @@ class Document: NSDocument {
     }
     
     override func readFromURL(url: NSURL, ofType typeName: String) throws {
-        try databaseManager = DatabaseManager(url: url)
-        
-        let searchPath = (url.path! as NSString).stringByAppendingPathComponent("lucene")
-        searchService = CLuceneSearchService(indexPath: searchPath)
-        
-        if (searchService as BRSearchService?) == nil {
-            throw AppDocumentError.CouldNotInitializeSearchService
+        guard let _ = url.path else {
+            throw DocumentError.InvalidDocumentURL
         }
-    }
-    
-    override func saveDocument(sender: AnyObject?) {
-        // Disable saving or use for sync
-        do { try databaseManager.database.saveAllModels() } catch {
-            print(error)
+        
+        guard let luceneURL = self.luceneURL(url) else {
+            throw DocumentError.InvalidLuceneURL
         }
+        
+        guard let databaseURL = self.databaseURL(url) else {
+            throw DocumentError.InvalidDatabaseURL
+        }
+        
+        // Initialize database and search
+            
+        try self.initializeDatabase(databaseURL)
+        try self.initializeLucene(luceneURL)
     }
     
     override func saveToURL(url: NSURL, ofType typeName: String, forSaveOperation saveOperation: NSSaveOperationType, completionHandler: (NSError?) -> Void) {
@@ -96,27 +102,50 @@ class Document: NSDocument {
         }
         
         super.saveToURL(url, ofType: typeName, forSaveOperation: saveOperation) { (error) -> Void in
-            do { try NSFileManager().setAttributes([NSFileExtensionHidden: true], ofItemAtPath: url.path!) } catch {
+            guard let path = url.path else {
+                completionHandler(DocumentError.InvalidDocumentURL as NSError)
+                return
+            }
+            
+            guard let luceneURL = self.luceneURL(url) else {
+                completionHandler(DocumentError.InvalidLuceneURL as NSError)
+                return
+            }
+            
+            guard let databaseURL = self.databaseURL(url) else {
+                completionHandler(DocumentError.InvalidDatabaseURL as NSError)
+                return
+            }
+            
+            // Hide extension: should be unnecessary
+            
+            do { try NSFileManager().setAttributes([NSFileExtensionHidden: true], ofItemAtPath: path) } catch {
                 print(error)
             }
             
-            do { try self.databaseManager = DatabaseManager(url: url) } catch {
+            // Initialize database and search
+            
+            do { try self.initializeDatabase(databaseURL) } catch {
                 completionHandler(error as NSError)
             }
             
-            let searchPath = (url.path! as NSString).stringByAppendingPathComponent("lucene")
-            self.searchService = CLuceneSearchService(indexPath: searchPath)
-            
-            if (self.searchService as BRSearchService?) == nil {
-                completionHandler(NSError(domain: "App", code: 0, userInfo: nil))
+            do { try self.initializeLucene(luceneURL) } catch {
+                completionHandler(error as NSError)
             }
             
             // TODO: document.json
             
             self.bootstrapDatabase()
-            self.bootstrapSearch()
+            self.bootstrapLucene()
             
             completionHandler(nil)
+        }
+    }
+    
+    override func saveDocument(sender: AnyObject?) {
+        // Disable saving or use for sync
+        do { try databaseManager.database.saveAllModels() } catch {
+            print(error)
         }
     }
     
@@ -128,11 +157,42 @@ class Document: NSDocument {
     
     // Initialize and bootstrap database and search
     
+    func databaseURL(documentURL: NSURL) -> NSURL? {
+        return documentURL
+    }
+    
+    func luceneURL(documentURL: NSURL) -> NSURL? {
+        guard let documentPath = documentURL.path else {
+            return nil
+        }
+        
+        let path = (documentPath as NSString).stringByAppendingPathComponent("lucene")
+        return NSURL(fileURLWithPath:path)
+    }
+    
+    func initializeDatabase(url: NSURL) throws {
+        do { self.databaseManager = try DatabaseManager(url: url) } catch {
+            throw DocumentError.CouldNotInitializeDatabase
+        }
+    }
+    
+    func initializeLucene(url: NSURL) throws {
+        guard let path = url.path else {
+            throw DocumentError.InvalidLuceneURL
+        }
+        
+        self.searchService = CLuceneSearchService(indexPath: path)
+            
+        if (self.searchService as BRSearchService?) == nil {
+            throw DocumentError.CouldNotInitializeSearch
+        }
+    }
+    
     func bootstrapDatabase() {
     
     }
     
-    func bootstrapSearch() {
+    func bootstrapLucene() {
     
     }
 }
