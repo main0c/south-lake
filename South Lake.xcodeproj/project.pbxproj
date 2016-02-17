@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E32EC0A21C74494A00E47B3F /* NSBundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32EC0A11C74494A00E47B3F /* NSBundle+Version.swift */; };
 		E336440D1C73DDF1000FFC9C /* MMTabBarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E33643FF1C73DDE2000FFC9C /* MMTabBarView.framework */; };
 		E336440E1C73DDF1000FFC9C /* MMTabBarView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E33643FF1C73DDE2000FFC9C /* MMTabBarView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E37D96101C723B8A000A9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D960F1C723B8A000A9F90 /* AppDelegate.swift */; };
@@ -206,6 +207,7 @@
 		0225C54B45D02DF2435FEFF7 /* Pods-South Lake.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-South Lake.debug.xcconfig"; path = "Pods/Target Support Files/Pods-South Lake/Pods-South Lake.debug.xcconfig"; sourceTree = "<group>"; };
 		13FCBDC9A158BD5332E2FC09 /* libPods-South Lake.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-South Lake.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		654657607D7E3F52002B88CB /* Pods-South Lake.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-South Lake.release.xcconfig"; path = "Pods/Target Support Files/Pods-South Lake/Pods-South Lake.release.xcconfig"; sourceTree = "<group>"; };
+		E32EC0A11C74494A00E47B3F /* NSBundle+Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+Version.swift"; sourceTree = "<group>"; };
 		E33643F71C73DDE1000FFC9C /* MMTabBarView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MMTabBarView.xcodeproj; path = Dependencies/MMTabBarView/MMTabBarView/MMTabBarView.xcodeproj; sourceTree = "<group>"; };
 		E37D960C1C723B8A000A9F90 /* South Lake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "South Lake.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E37D960F1C723B8A000A9F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -2349,6 +2351,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E32EC0901C74493900E47B3F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E32EC0A11C74494A00E47B3F /* NSBundle+Version.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		E33643F81C73DDE1000FFC9C /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -2389,6 +2399,7 @@
 				E37D96131C723B8A000A9F90 /* Document.swift */,
 				E37E47C91C73F2710077ECD7 /* DatabaseManager.swift */,
 				E37D96111C723B8A000A9F90 /* ViewController.swift */,
+				E32EC0901C74493900E47B3F /* Extensions */,
 				E37D96151C723B8A000A9F90 /* Assets.xcassets */,
 				E37D96171C723B8A000A9F90 /* Main.storyboard */,
 				E37D961A1C723B8A000A9F90 /* Info.plist */,
@@ -7199,6 +7210,7 @@
 				E3803F111C728E800048AD46 /* MPPreferences.m in Sources */,
 				E3803F091C728E790048AD46 /* DOMNode+Text.m in Sources */,
 				E3803F081C728E600048AD46 /* MPRenderer.m in Sources */,
+				E32EC0A21C74494A00E47B3F /* NSBundle+Version.swift in Sources */,
 				E3803F121C728E910048AD46 /* MPMathJaxListener.m in Sources */,
 				E3803F0E1C728E790048AD46 /* NSObject+HTMLTabularize.m in Sources */,
 			);

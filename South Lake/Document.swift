@@ -13,6 +13,7 @@ enum DocumentError: ErrorType {
     case ShouldNotReadFileWrapper
     
     case InvalidDocumentURL
+    case InvalidPackageInfoURL
     case InvalidDatabaseURL
     case InvalidLuceneURL
     
@@ -117,10 +118,25 @@ class Document: NSDocument {
                 return
             }
             
+            guard let packageURL = self.packageURL(url) else {
+                completionHandler(DocumentError.InvalidPackageInfoURL as NSError)
+                return
+            }
+            
             // Hide extension: should be unnecessary
             
             do { try NSFileManager().setAttributes([NSFileExtensionHidden: true], ofItemAtPath: path) } catch {
                 print(error)
+            }
+            
+            // Package info
+            
+            do {
+                let packageJson = try NSJSONSerialization.dataWithJSONObject(self.packageInfo(), options: .PrettyPrinted)
+                packageJson.writeToURL(packageURL, atomically: true)
+                
+            } catch {
+                completionHandler(error as NSError)
             }
             
             // Initialize database and search
@@ -133,17 +149,18 @@ class Document: NSDocument {
                 completionHandler(error as NSError)
             }
             
-            // TODO: document.json
-            
             self.bootstrapDatabase()
             self.bootstrapLucene()
+            
+            // Done
             
             completionHandler(nil)
         }
     }
     
+    // Disable saving or use for sync
+    
     override func saveDocument(sender: AnyObject?) {
-        // Disable saving or use for sync
         do { try databaseManager.database.saveAllModels() } catch {
             print(error)
         }
@@ -194,6 +211,35 @@ class Document: NSDocument {
     
     func bootstrapLucene() {
     
+    }
+    
+    // Package.json
+    
+    func packageURL(documentURL: NSURL) -> NSURL? {
+        guard let documentPath = documentURL.path else {
+            return nil
+        }
+        
+        let path = (documentPath as NSString).stringByAppendingPathComponent("package.json")
+        return NSURL(fileURLWithPath:path)
+    }
+    
+    func packageInfo() -> Dictionary<String, AnyObject> {
+        let release = NSBundle.mainBundle().releaseVersionNumber ?? String(0)
+        let build = NSBundle.mainBundle().buildVersionNumber ?? String(0)
+        
+        let url = "https://github.com/phildow/south-lake"
+        let author = "Philip Dow"
+        let name = "South Lake"
+        
+        return [
+            "CFBundleShortVersionString": release,
+            "CFBundleVersion": build,
+            "version": release,
+            "author": author,
+            "name": name,
+            "url": url
+        ]
     }
 }
 
