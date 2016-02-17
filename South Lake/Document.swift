@@ -24,6 +24,8 @@ enum DocumentError: ErrorType {
     
     case CouldNotInitializeDatabase
     case CouldNotInitializeSearch
+    case CouldNotInitializeState
+    
     case CouldNotSaveState
 }
 
@@ -54,6 +56,10 @@ class Document: NSDocument {
     }
 
     override func makeWindowControllers() {
+        guard windowControllers.count == 0 else {
+            return
+        }
+        
         // Returns the Storyboard that contains your Document window.
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
         let windowController = storyboard.instantiateControllerWithIdentifier("Document Window Controller") as! DocumentWindowController
@@ -64,7 +70,7 @@ class Document: NSDocument {
         self.addWindowController(windowController)
     }
 
-    // File handling
+    // MARK: - File handling
     
     // Allow the document package to be saved once as an empty wrapper
     // Prevent all later saving, manually manage document package contents
@@ -99,10 +105,20 @@ class Document: NSDocument {
             throw DocumentError.InvalidDatabaseURL
         }
         
+        guard let stateURL = self.stateURL(url) else {
+            throw DocumentError.InvalidStateURL
+        }
+        
         // Initialize database and search
             
-        try self.initializeDatabase(databaseURL)
-        try self.initializeLucene(luceneURL)
+        try initializeDatabase(databaseURL)
+        try initializeLucene(luceneURL)
+        
+        // Window controller are normally created by NSDocumentController open methods
+        // We do it here so that we can restore the state immediately
+        
+        makeWindowControllers()
+        try initializeState(stateURL)
     }
     
     override func saveToURL(url: NSURL, ofType typeName: String, forSaveOperation saveOperation: NSSaveOperationType, completionHandler: (NSError?) -> Void) {
@@ -185,7 +201,7 @@ class Document: NSDocument {
         return
     }
     
-    // Database
+    // MARK: - Database
     
     func databaseURL(documentURL: NSURL) -> NSURL? {
         return documentURL
@@ -201,7 +217,7 @@ class Document: NSDocument {
     
     }
     
-    // Lucene search
+    // MARK: - Lucene search
     
     func luceneURL(documentURL: NSURL) -> NSURL? {
         guard let documentPath = documentURL.path else {
@@ -228,7 +244,7 @@ class Document: NSDocument {
     
     }
     
-    // Package.json
+    // MARK: - Package Info
     // Identifies package version and includes source metadata
     
     func packageURL(documentURL: NSURL) -> NSURL? {
@@ -258,7 +274,7 @@ class Document: NSDocument {
         ]
     }
     
-    // State.plist
+    // MARK: - State
     // Manage document state, primarily user interface state
     
     func stateURL(documentURL: NSURL) -> NSURL? {
@@ -281,6 +297,16 @@ class Document: NSDocument {
         
         if !(state() as NSDictionary).writeToURL(stateURL, atomically: true) {
             throw DocumentError.CouldNotSaveState
+        }
+    }
+    
+    func initializeState(url: NSURL) throws {
+        guard let state = NSDictionary(contentsOfURL: url) as? Dictionary<String, AnyObject> else {
+            throw DocumentError.CouldNotInitializeState
+        }
+        
+        if let windowState = state["WindowController"] as? Dictionary<String,AnyObject> {
+            (windowControllers[0] as! DocumentWindowController).initializeState(windowState)
         }
     }
 }

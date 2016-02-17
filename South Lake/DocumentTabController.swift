@@ -106,7 +106,7 @@ class DocumentTabController: NSViewController {
         tabView.selectTabViewItem(tabViewItem)
     }
     
-    // Manage document state, primarily user interface state
+    // MARK: - Document State
     
     func state() -> Dictionary<String,AnyObject> {
         var tabStates: [AnyObject] = []
@@ -117,7 +117,23 @@ class DocumentTabController: NSViewController {
         
         return ["Tabs": tabStates]
     }
+    
+    func initializeState(state: Dictionary<String,AnyObject>) {
+        if let tabStates = state["Tabs"] as? [Dictionary<String,AnyObject>] {
+            for (item) in tabView.tabViewItems {
+                tabView.removeTabViewItem(item)
+            }
+            for tabState in tabStates {
+                let title = (tabState["Title"] ?? NSLocalizedString("Untitled", comment: "Untitled tab")) as! String
+                do { try createNewTabWithTitle(title) } catch {
+                    print("initializeState: unable to restore a tab")
+                }
+            }
+        }
+    }
 }
+
+// MARK: - MMTabBarViewDelegate
 
 extension DocumentTabController: MMTabBarViewDelegate {
     
@@ -126,16 +142,18 @@ extension DocumentTabController: MMTabBarViewDelegate {
     }
     
     func tabView(aTabView: NSTabView!, didCloseTabViewItem tabViewItem: NSTabViewItem!) {
-        print("didCloseTabViewItem: \(tabViewItem!.label)")
+        // print("didCloseTabViewItem: \(tabViewItem!.label)")
     }
     
     func tabView(tabView: NSTabView, didSelectTabViewItem tabViewItem: NSTabViewItem?) {
-        print("didSelectTabViewItem: \(tabViewItem!.label)")
+        // print("didSelectTabViewItem: \(tabViewItem!.label)")
     }
 }
 
+// MARK: - DocumentTabBarItem
+
 class DocumentTabBarItem: NSObject, MMTabBarItem {
-    var title: String = "Untitled"
+    var title: String = NSLocalizedString("Untitled", comment: "Untitled tab")
     var hasCloseButton: Bool = true
     var icon: NSImage?
     

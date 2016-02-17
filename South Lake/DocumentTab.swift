@@ -26,9 +26,13 @@ class DocumentTab: NSViewController {
         // Do view setup here.
     }
     
-    // Manage document state, primarily user interface state
+    // MARK: - Document State
     
     func state() -> Dictionary<String,AnyObject> {
         return ["Title": (title ?? "")]
+    }
+    
+    func initializeState(state: Dictionary<String,AnyObject>) {
+        
     }
 }
