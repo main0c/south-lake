@@ -6,6 +6,10 @@
 //  Copyright © 2016 Phil Dow. All rights reserved.
 //
 
+//  Document model. Responsible for persisting and restoring document data
+//  Primarily that means initializing the database and lucene search service 
+//  and maintaining ui state. Keep this class small.
+
 import Cocoa
 
 enum DocumentError: ErrorType {
@@ -50,7 +54,11 @@ class Document: NSDocument {
     override func makeWindowControllers() {
         // Returns the Storyboard that contains your Document window.
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
-        let windowController = storyboard.instantiateControllerWithIdentifier("Document Window Controller") as! NSWindowController
+        let windowController = storyboard.instantiateControllerWithIdentifier("Document Window Controller") as! DocumentWindowController
+        
+        windowController.databaseManager = databaseManager
+        windowController.searchService = searchService
+        
         self.addWindowController(windowController)
     }
 

@@ -6,6 +6,8 @@
 //  Copyright © 2016 Phil Dow. All rights reserved.
 //
 
+//  Access to the CFBundleShortVersionString and CFBundleVersion from the main bundle
+
 import Foundation
 
 extension NSBundle {

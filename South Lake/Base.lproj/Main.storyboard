@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6172" systemVersion="14A261f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6172"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -58,11 +58,30 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="File" id="bib-Uj-vzu">
                                     <items>
-                                        <menuItem title="New" keyEquivalent="n" id="Was-JA-tGl">
-                                            <connections>
-                                                <action selector="newDocument:" target="Ady-hI-5gd" id="4Si-XN-c54"/>
-                                            </connections>
+                                        <menuItem title="New" id="54n-2N-vIx">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="New" id="vP9-N3-75D">
+                                                <items>
+                                                    <menuItem title="New Tab" keyEquivalent="t" id="QS3-O5-7dI">
+                                                        <connections>
+                                                            <action selector="createNewTab:" target="Ady-hI-5gd" id="F60-PJ-npA"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="Mh7-WW-C7m"/>
+                                                    <menuItem title="New Markdown Document" keyEquivalent="n" id="JHr-7O-2u8"/>
+                                                    <menuItem title="New Journal" keyEquivalent="N" id="4Fe-vT-CWi">
+                                                        <connections>
+                                                            <action selector="newDocument:" target="Ady-hI-5gd" id="P1w-5H-dPC"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="AbW-6F-Kla"/>
+                                        <menuItem title="Add Files to Journal" keyEquivalent="a" id="En2-8q-V2R">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="CjW-TN-2qF"/>
                                         <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
                                             <connections>
                                                 <action selector="openDocument:" target="Ady-hI-5gd" id="bVn-NM-KNZ"/>
@@ -614,6 +633,26 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="eu3-7i-yIM"/>
+                                        <menuItem title="Enter Full Screen" keyEquivalent="f" id="ggN-nf-MIU">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="toggleFullScreen:" target="Ady-hI-5gd" id="Ivx-La-fUA"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Amr-4g-XAJ"/>
+                                        <menuItem title="Select Next Tab" keyEquivalent="]" id="dBD-dF-1Hj">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="selectNextTab:" target="Ady-hI-5gd" id="P6i-jQ-FQJ"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Select Previous Tab" keyEquivalent="[" id="r8s-5D-pSu">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="selectPrevousTab:" target="Ady-hI-5gd" id="kpz-fu-gY1"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="xjI-1O-hE9"/>
                                         <menuItem title="Bring All to Front" id="LE2-aR-0XJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -641,55 +680,89 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="South_Lake" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="146.5" y="-104"/>
         </scene>
-        <!--Window Controller - Window-->
+        <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="jGA-0Y-lOj" storyboardIdentifier="Document Window Controller" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="Document Window Controller" id="jGA-0Y-lOj" customClass="DocumentWindowController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="Ckk-yw-fiv">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                     </window>
                     <connections>
-                        <segue destination="5gI-5U-AMq" kind="relationship" relationship="window.shadowedContentViewController" id="nsd-lR-9xd"/>
+                        <segue destination="ds0-GC-FGZ" kind="relationship" relationship="window.shadowedContentViewController" id="iLL-Iz-3X4"/>
                     </connections>
                 </windowController>
                 <customObject id="6f7-a7-6o1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="hIz-AP-VOD">
+        <!--Delegate-->
+        <scene sceneID="qfi-F5-4pt">
             <objects>
-                <viewController id="5gI-5U-AMq" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="ERx-hH-rdd">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <viewController id="ds0-GC-FGZ" customClass="DocumentTabController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="qnX-P2-6Yd">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="TyV-c9-G0C">
-                                <rect key="frame" x="115" y="124" width="250" height="22"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Your document contents here" id="Cc7-nU-5Mv">
-                                    <font key="font" metaFont="system" size="18"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Dec-LW-mAs" customClass="MMTabBarView">
+                                <rect key="frame" x="0.0" y="276" width="450" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="wsp-mo-YxM"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="ds0-GC-FGZ" id="ARB-Ma-iOC"/>
+                                    <outlet property="partnerView" destination="w3Y-KK-DSh" id="SfZ-MK-4vj"/>
+                                    <outlet property="tabView" destination="w3Y-KK-DSh" id="PJN-b1-aPL"/>
+                                </connections>
+                            </customView>
+                            <tabView type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="w3Y-KK-DSh">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="276"/>
+                                <font key="font" metaFont="system"/>
+                                <tabViewItems>
+                                    <tabViewItem label="Tab" identifier="1" id="qnr-rN-08k">
+                                        <view key="view" id="QFg-Vn-yKs">
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="276"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                    </tabViewItem>
+                                    <tabViewItem label="View" identifier="2" id="rHi-jg-JaK">
+                                        <view key="view" id="hj9-C5-VSJ">
+                                            <rect key="frame" x="10" y="33" width="445" height="240"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </tabViewItem>
+                                </tabViewItems>
+                                <connections>
+                                    <outlet property="delegate" destination="Dec-LW-mAs" id="CHM-ta-9qk"/>
+                                </connections>
+                            </tabView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="TyV-c9-G0C" secondAttribute="centerY" id="Rxv-Yd-F43"/>
-                            <constraint firstAttribute="centerX" secondItem="TyV-c9-G0C" secondAttribute="centerX" id="Zn4-Y4-lbg"/>
+                            <constraint firstAttribute="bottom" secondItem="w3Y-KK-DSh" secondAttribute="bottom" id="IfY-SE-0HV"/>
+                            <constraint firstItem="Dec-LW-mAs" firstAttribute="top" secondItem="qnX-P2-6Yd" secondAttribute="top" constant="-1" id="OGT-Hq-jSH"/>
+                            <constraint firstAttribute="trailing" secondItem="Dec-LW-mAs" secondAttribute="trailing" id="Qif-9e-f30"/>
+                            <constraint firstItem="Dec-LW-mAs" firstAttribute="leading" secondItem="qnX-P2-6Yd" secondAttribute="leading" id="fx7-x2-Uy0"/>
+                            <constraint firstAttribute="trailing" secondItem="w3Y-KK-DSh" secondAttribute="trailing" id="lR5-aC-lFD"/>
+                            <constraint firstItem="w3Y-KK-DSh" firstAttribute="leading" secondItem="qnX-P2-6Yd" secondAttribute="leading" id="lSF-qe-QLU"/>
+                            <constraint firstItem="w3Y-KK-DSh" firstAttribute="top" secondItem="Dec-LW-mAs" secondAttribute="bottom" id="vsm-72-aYj"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tabBarView" destination="Dec-LW-mAs" id="G5y-Qq-h9J"/>
+                        <outlet property="tabView" destination="w3Y-KK-DSh" id="CmX-2u-Vu0"/>
+                    </connections>
                 </viewController>
-                <customObject id="2Tp-Fl-jBw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="EOB-88-eDj" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="75" y="688"/>
         </scene>
     </scenes>
 </document>
