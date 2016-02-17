@@ -33,6 +33,6 @@ class DocumentTab: NSViewController {
     }
     
     func initializeState(state: Dictionary<String,AnyObject>) {
-        
+        title = (state["Title"] ?? NSLocalizedString("Untitled", comment: "Untitled tab")) as? String
     }
 }

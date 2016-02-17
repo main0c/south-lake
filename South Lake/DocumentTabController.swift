@@ -20,8 +20,7 @@ class DocumentTabController: NSViewController {
     
     var databaseManager: DatabaseManager! {
         didSet {
-            // TODO: refactor into forEachTab method that takes a closure
-            for vc in tabView.tabViewItems.map({($0.vc as! DocumentTab)}) {
+            for vc in tabs {
                 vc.databaseManager = databaseManager
             }
         }
@@ -29,10 +28,14 @@ class DocumentTabController: NSViewController {
     
     var searchService: BRSearchService! {
         didSet {
-            for vc in tabView.tabViewItems.map({($0.vc as! DocumentTab)}) {
+            for vc in tabs {
                 vc.searchService = searchService
             }
         }
+    }
+    
+    var tabs: [DocumentTab] {
+        return tabView.tabViewItems.map {($0.vc as! DocumentTab)}
     }
     
     override func viewDidLoad() {
@@ -85,7 +88,7 @@ class DocumentTabController: NSViewController {
         }
     }
     
-    func createNewTabWithTitle(title: String) throws {
+    func createNewTabWithTitle(title: String) throws -> DocumentTab {
         guard let viewController = NSStoryboard(name: "Tab", bundle: nil).instantiateInitialController() as? DocumentTab else {
             throw DocumentTabControllerError.CouldNotInstantiateTabViewController
         }
@@ -104,6 +107,8 @@ class DocumentTabController: NSViewController {
         
         tabView.addTabViewItem(tabViewItem)
         tabView.selectTabViewItem(tabViewItem)
+        
+        return viewController
     }
     
     // MARK: - Document State
@@ -111,7 +116,7 @@ class DocumentTabController: NSViewController {
     func state() -> Dictionary<String,AnyObject> {
         var tabStates: [AnyObject] = []
         
-        for vc in tabView.tabViewItems.map({($0.vc as! DocumentTab)}) {
+        for vc in tabs {
             tabStates.append(vc.state())
         }
         
@@ -125,7 +130,10 @@ class DocumentTabController: NSViewController {
             }
             for tabState in tabStates {
                 let title = (tabState["Title"] ?? NSLocalizedString("Untitled", comment: "Untitled tab")) as! String
-                do { try createNewTabWithTitle(title) } catch {
+                do {
+                    let tab = try createNewTabWithTitle(title)
+                    tab.initializeState(tabState)
+                } catch {
                     print("initializeState: unable to restore a tab")
                 }
             }
