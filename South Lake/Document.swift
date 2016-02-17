@@ -165,11 +165,17 @@ class Document: NSDocument {
         }
     }
     
-    // Disable saving or use for sync
+    // Disable document saving: save db, update search, sync, save state
     
     override func saveDocument(sender: AnyObject?) {
         do { try databaseManager.database.saveAllModels() } catch {
             print(error)
+        }
+        
+        if let stateURL = stateURL(fileURL!) {
+            if !(state() as NSDictionary).writeToURL(stateURL, atomically: true) {
+                print("saveDocument: unable to save state")
+            }
         }
     }
     
@@ -221,6 +227,7 @@ class Document: NSDocument {
     }
     
     // Package.json
+    // Identifies package version and includes source metadata
     
     func packageURL(documentURL: NSURL) -> NSURL? {
         guard let documentPath = documentURL.path else {
@@ -247,6 +254,22 @@ class Document: NSDocument {
             "name": name,
             "url": url
         ]
+    }
+    
+    // State.plist
+    // Manage document state, primarily user interface state
+    
+    func stateURL(documentURL: NSURL) -> NSURL? {
+        guard let documentPath = documentURL.path else {
+            return nil
+        }
+        
+        let path = (documentPath as NSString).stringByAppendingPathComponent("state.plist")
+        return NSURL(fileURLWithPath:path)
+    }
+    
+    func state() -> Dictionary<String,AnyObject> {
+        return ["WindowController": (windowControllers[0] as! DocumentWindowController).state()]
     }
 }
 

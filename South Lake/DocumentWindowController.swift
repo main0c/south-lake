@@ -12,19 +12,19 @@
 import Cocoa
 
 class DocumentWindowController: NSWindowController {
+    var tabController: DocumentTabController! {
+        return self.window?.contentViewController as! DocumentTabController
+    }
+    
     var databaseManager: DatabaseManager! {
         didSet {
-            if let contentController = self.window?.contentViewController as? DocumentTabController {
-                contentController.databaseManager = databaseManager
-            }
+            tabController.databaseManager = databaseManager
         }
     }
     
     var searchService: BRSearchService! {
         didSet {
-            if let contentController = self.window?.contentViewController as? DocumentTabController {
-                contentController.searchService = searchService
-            }
+            tabController.searchService = searchService
         }
     }
     
@@ -61,6 +61,13 @@ class DocumentWindowController: NSWindowController {
         }
         
         tabController.selectPreviousTab(sender)
+    }
+    
+    // Manage document state, primarily user interface state
+    
+    func state() -> Dictionary<String,AnyObject> {
+        let tabState = tabController.state()
+        return ["TabController": tabState]
     }
     
 }

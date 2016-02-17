@@ -20,16 +20,17 @@ class DocumentTabController: NSViewController {
     
     var databaseManager: DatabaseManager! {
         didSet {
-            if let vcs = tabView.tabViewItems.map({$0.vc}) as? [DocumentTab] {
-                for vc in vcs { vc.databaseManager = databaseManager }
+            // TODO: refactor into forEachTab method that takes a closure
+            for vc in tabView.tabViewItems.map({($0.vc as! DocumentTab)}) {
+                vc.databaseManager = databaseManager
             }
         }
     }
     
     var searchService: BRSearchService! {
         didSet {
-            if let vcs = tabView.tabViewItems.map({$0.vc}) as? [DocumentTab] {
-                for vc in vcs { vc.searchService = searchService }
+            for vc in tabView.tabViewItems.map({($0.vc as! DocumentTab)}) {
+                vc.searchService = searchService
             }
         }
     }
@@ -103,6 +104,18 @@ class DocumentTabController: NSViewController {
         
         tabView.addTabViewItem(tabViewItem)
         tabView.selectTabViewItem(tabViewItem)
+    }
+    
+    // Manage document state, primarily user interface state
+    
+    func state() -> Dictionary<String,AnyObject> {
+        var tabStates: [AnyObject] = []
+        
+        for vc in tabView.tabViewItems.map({($0.vc as! DocumentTab)}) {
+            tabStates.append(vc.state())
+        }
+        
+        return ["Tabs": tabStates]
     }
 }
 
