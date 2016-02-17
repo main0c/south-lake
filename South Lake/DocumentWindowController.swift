@@ -28,6 +28,8 @@ class DocumentWindowController: NSWindowController {
         }
     }
     
+    // MARK: - Initialization
+    
     override func windowDidLoad() {
         super.windowDidLoad()
     

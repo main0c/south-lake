@@ -44,6 +44,8 @@ class Document: NSDocument {
     override class func autosavesInPlace() -> Bool {
         return false
     }
+    
+    // MARK: - Initialization
 
     override init() {
         super.init()

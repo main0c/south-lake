@@ -38,6 +38,8 @@ class DocumentTabController: NSViewController {
         return tabView.tabViewItems.map {($0.vc as! DocumentTab)}
     }
     
+    // MARK: - Initialization
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,6 +63,8 @@ class DocumentTabController: NSViewController {
             print("viewDidLoad: could not create new tab")
         }
     }
+    
+    // MARK: - User Actions
     
     @IBAction func createNewTab(sender: AnyObject) {
         do { try createNewTabWithTitle(NSLocalizedString("Untitled", comment: "Untitled tab")) } catch {

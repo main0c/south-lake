@@ -20,6 +20,8 @@ class DocumentTab: NSViewController {
         
         }
     }
+    
+    // MARK: - Initialization
 
     override func viewDidLoad() {
         super.viewDidLoad()
