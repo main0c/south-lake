@@ -20,9 +20,11 @@ enum DocumentError: ErrorType {
     case InvalidPackageInfoURL
     case InvalidDatabaseURL
     case InvalidLuceneURL
+    case InvalidStateURL
     
     case CouldNotInitializeDatabase
     case CouldNotInitializeSearch
+    case CouldNotSaveState
 }
 
 class Document: NSDocument {
@@ -172,10 +174,8 @@ class Document: NSDocument {
             print(error)
         }
         
-        if let stateURL = stateURL(fileURL!) {
-            if !(state() as NSDictionary).writeToURL(stateURL, atomically: true) {
-                print("saveDocument: unable to save state")
-            }
+        do { try saveState() } catch {
+            print(error)
         }
     }
     
@@ -185,11 +185,23 @@ class Document: NSDocument {
         return
     }
     
-    // Initialize and bootstrap database and search
+    // Database
     
     func databaseURL(documentURL: NSURL) -> NSURL? {
         return documentURL
     }
+    
+    func initializeDatabase(url: NSURL) throws {
+        do { self.databaseManager = try DatabaseManager(url: url) } catch {
+            throw DocumentError.CouldNotInitializeDatabase
+        }
+    }
+    
+    func bootstrapDatabase() {
+    
+    }
+    
+    // Lucene search
     
     func luceneURL(documentURL: NSURL) -> NSURL? {
         guard let documentPath = documentURL.path else {
@@ -198,12 +210,6 @@ class Document: NSDocument {
         
         let path = (documentPath as NSString).stringByAppendingPathComponent("lucene")
         return NSURL(fileURLWithPath:path)
-    }
-    
-    func initializeDatabase(url: NSURL) throws {
-        do { self.databaseManager = try DatabaseManager(url: url) } catch {
-            throw DocumentError.CouldNotInitializeDatabase
-        }
     }
     
     func initializeLucene(url: NSURL) throws {
@@ -216,10 +222,6 @@ class Document: NSDocument {
         if (self.searchService as BRSearchService?) == nil {
             throw DocumentError.CouldNotInitializeSearch
         }
-    }
-    
-    func bootstrapDatabase() {
-    
     }
     
     func bootstrapLucene() {
@@ -270,6 +272,16 @@ class Document: NSDocument {
     
     func state() -> Dictionary<String,AnyObject> {
         return ["WindowController": (windowControllers[0] as! DocumentWindowController).state()]
+    }
+    
+    func saveState() throws {
+        guard let stateURL = stateURL(fileURL!) else {
+            throw DocumentError.InvalidStateURL
+        }
+        
+        if !(state() as NSDictionary).writeToURL(stateURL, atomically: true) {
+            throw DocumentError.CouldNotSaveState
+        }
     }
 }
 
