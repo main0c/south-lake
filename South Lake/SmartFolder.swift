@@ -8,6 +8,10 @@
 
 import Cocoa
 
+@objc(SmartFolder)
 class SmartFolder: Folder {
-
+    override class var model_mime_type: NSString { return "private/smart-folder" }
+    override class var model_uti: NSString { return "private.smart-folder" }
+    
+    @NSManaged var predicates: [String]
 }

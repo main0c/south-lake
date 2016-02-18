@@ -9,7 +9,7 @@
 
 import Cocoa
 
-protocol DocumentTab: class {
+protocol DocumentTab: class, Databasable {
     var databaseManager: DatabaseManager! { get set }
     var searchService: BRSearchService! { get set }
     

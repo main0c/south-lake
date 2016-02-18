@@ -29,7 +29,7 @@ enum DocumentError: ErrorType {
     case CouldNotSaveState
 }
 
-class Document: NSDocument {
+class Document: NSDocument, Databasable {
 
     // Couchbase database and search
     
@@ -216,7 +216,93 @@ class Document: NSDocument {
     }
     
     func bootstrapDatabase() {
-    
+        do {
+            let sectionQuery = databaseManager.sectionsQuery()
+            let results = try sectionQuery.run()
+            
+            guard results.count == 0 else {
+                return
+            }
+            
+            print("bootstraping database")
+            
+            // Shortcuts section
+            
+                var children: [CBLModel] = []
+            
+                let doc1 = File(forNewDocumentInDatabase: databaseManager.database)
+                doc1.title = "Welcome to Journler"
+                doc1.icon_name = "markdown-document-icon"
+            
+                let doc2 = File(forNewDocumentInDatabase: databaseManager.database)
+                doc2.title = "Second Document"
+                doc2.icon_name = "markdown-document-icon"
+
+                // We must have ids before we can store the children
+            
+                try databaseManager.database.saveAllModels()
+            
+            let shortcutsSection = Section(forNewDocumentInDatabase: databaseManager.database)
+            shortcutsSection.title = "Shortcuts"
+            shortcutsSection.index = 0
+            
+                children.append(doc1)
+                children.append(doc2)
+                shortcutsSection.children = children
+            
+            // Folders
+            
+                var folders: [CBLModel] = []
+            
+                let folder1 = Folder(forNewDocumentInDatabase: databaseManager.database)
+                folder1.title = "Important Folder"
+                folder1.icon_name = "folder-icon"
+            
+                let folder2 = Folder(forNewDocumentInDatabase: databaseManager.database)
+                folder2.title = "Another Folder"
+                folder2.icon_name = "folder-icon"
+
+                // We must have ids before we can store the children
+            
+                try databaseManager.database.saveAllModels()
+            
+            let foldersSection = Section(forNewDocumentInDatabase: databaseManager.database)
+            foldersSection.title = "Folders"
+            foldersSection.index = 1
+            
+                folders.append(folder1)
+                folders.append(folder2)
+                foldersSection.children = folders
+            
+            // Smart folders
+            
+                var smarts: [CBLModel] = []
+            
+                let smart1 = SmartFolder(forNewDocumentInDatabase: databaseManager.database)
+                smart1.title = "A Smart Folder"
+                smart1.icon_name = "smart-folder-icon"
+            
+                let smart2 = SmartFolder(forNewDocumentInDatabase: databaseManager.database)
+                smart2.title = "Folders Knows Best"
+                smart2.icon_name = "smart-folder-icon"
+
+                // We must have ids before we can store the children
+            
+                try databaseManager.database.saveAllModels()
+            
+            let smartFoldersSection = Section(forNewDocumentInDatabase: databaseManager.database)
+            smartFoldersSection.title = "Smart Folders"
+            smartFoldersSection.index = 2
+            
+                smarts.append(smart1)
+                smarts.append(smart2)
+                smartFoldersSection.children = smarts
+            
+            try databaseManager.database.saveAllModels()
+
+        } catch {
+            print(error)
+        }
     }
     
     // MARK: - Lucene search

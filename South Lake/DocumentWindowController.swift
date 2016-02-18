@@ -11,7 +11,7 @@
 
 import Cocoa
 
-class DocumentWindowController: NSWindowController {
+class DocumentWindowController: NSWindowController, Databasable {
     var tabController: DocumentTabController! {
         return self.window?.contentViewController as! DocumentTabController
     }

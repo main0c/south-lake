@@ -14,7 +14,7 @@ enum DocumentTabControllerError: ErrorType {
     case CouldNotInstantiateTabViewController
 }
 
-class DocumentTabController: NSViewController {
+class DocumentTabController: NSViewController, Databasable {
     @IBOutlet var tabBarView: MMTabBarView!
     @IBOutlet var tabView: NSTabView!
     

@@ -11,13 +11,19 @@ import Cocoa
 class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     var databaseManager: DatabaseManager! {
         didSet {
-        
+            for vc in childViewControllers where vc is Databasable {
+                var databasable = vc as! Databasable
+                databasable.databaseManager = databaseManager
+            }
         }
     }
     
     var searchService: BRSearchService! {
         didSet {
-        
+            for vc in childViewControllers where vc is Databasable {
+                var databasable = vc as! Databasable
+                databasable.searchService = searchService
+            }
         }
     }
     

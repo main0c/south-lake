@@ -15,6 +15,8 @@
 		E3274FC91C75A151000B6A84 /* SmartFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3274FC81C75A151000B6A84 /* SmartFolder.swift */; };
 		E3274FCB1C75A1BF000B6A84 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3274FCA1C75A1BF000B6A84 /* File.swift */; };
 		E3274FD01C75A594000B6A84 /* MarkdownEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3274FD21C75A594000B6A84 /* MarkdownEditor.storyboard */; };
+		E32AD25E1C76827400648BFD /* NSURL+FileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32AD25D1C76827400648BFD /* NSURL+FileType.swift */; };
+		E32AD2711C76843500648BFD /* Databasable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32AD2701C76843500648BFD /* Databasable.swift */; };
 		E32EC0A21C74494A00E47B3F /* NSBundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32EC0A11C74494A00E47B3F /* NSBundle+Version.swift */; };
 		E336440D1C73DDF1000FFC9C /* MMTabBarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E33643FF1C73DDE2000FFC9C /* MMTabBarView.framework */; };
 		E336440E1C73DDF1000FFC9C /* MMTabBarView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E33643FF1C73DDE2000FFC9C /* MMTabBarView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -232,6 +234,8 @@
 		E3274FC81C75A151000B6A84 /* SmartFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartFolder.swift; sourceTree = "<group>"; };
 		E3274FCA1C75A1BF000B6A84 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		E3274FD11C75A594000B6A84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MarkdownEditor.storyboard; sourceTree = "<group>"; };
+		E32AD25D1C76827400648BFD /* NSURL+FileType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+FileType.swift"; sourceTree = "<group>"; };
+		E32AD2701C76843500648BFD /* Databasable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Databasable.swift; sourceTree = "<group>"; };
 		E32EC0A11C74494A00E47B3F /* NSBundle+Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+Version.swift"; sourceTree = "<group>"; };
 		E33643F71C73DDE1000FFC9C /* MMTabBarView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MMTabBarView.xcodeproj; path = Dependencies/MMTabBarView/MMTabBarView/MMTabBarView.xcodeproj; sourceTree = "<group>"; };
 		E360725B1C74E32E00914C2C /* DocumentWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
@@ -2421,11 +2425,21 @@
 			name = "Tab Storyboards";
 			sourceTree = "<group>";
 		};
+		E32AD26F1C76838E00648BFD /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E32AD2701C76843500648BFD /* Databasable.swift */,
+				E360727B1C74FEEC00914C2C /* DocumentTab.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		E32EC0901C74493900E47B3F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				E32EC0A11C74494A00E47B3F /* NSBundle+Version.swift */,
 				E36072721C74E64200914C2C /* NSTabViewItem+ViewController.swift */,
+				E32AD25D1C76827400648BFD /* NSURL+FileType.swift */,
 				E3C436251C7641E900DD685D /* MPRenderer+TOC.h */,
 				E3C436261C7641E900DD685D /* MPRenderer+TOC.m */,
 			);
@@ -2485,6 +2499,7 @@
 				E37D96131C723B8A000A9F90 /* Document.swift */,
 				E360725B1C74E32E00914C2C /* DocumentWindowController.swift */,
 				E360726E1C74E40500914C2C /* DocumentTabController.swift */,
+				E32AD26F1C76838E00648BFD /* Protocols */,
 				E3C821111C75979100CBAE92 /* Tabs */,
 				E3274FBD1C75A065000B6A84 /* Editors */,
 				E360726D1C74E3C800914C2C /* Model */,
@@ -6933,7 +6948,6 @@
 		E3C821111C75979100CBAE92 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				E360727B1C74FEEC00914C2C /* DocumentTab.swift */,
 				E3274FAC1C75A04C000B6A84 /* Source List */,
 			);
 			name = Tabs;
@@ -7318,6 +7332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E32AD25E1C76827400648BFD /* NSURL+FileType.swift in Sources */,
 				E37D96101C723B8A000A9F90 /* AppDelegate.swift in Sources */,
 				E3274FC51C75A13D000B6A84 /* Folder.swift in Sources */,
 				E3803F051C728E140048AD46 /* pmh_styleparser.c in Sources */,
@@ -7328,6 +7343,7 @@
 				E3C4362B1C7642BA00DD685D /* MacDownCopyFiles.m in Sources */,
 				E3274FC91C75A151000B6A84 /* SmartFolder.swift in Sources */,
 				E3C436271C7641E900DD685D /* MPRenderer+TOC.m in Sources */,
+				E32AD2711C76843500648BFD /* Databasable.swift in Sources */,
 				E3803F031C728E140048AD46 /* HGMarkdownHighlightingStyle.m in Sources */,
 				E37E47CA1C73F2710077ECD7 /* DatabaseManager.swift in Sources */,
 				E36072701C74E40500914C2C /* DocumentTabController.swift in Sources */,
