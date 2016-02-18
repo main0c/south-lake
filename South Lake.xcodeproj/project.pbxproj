@@ -59,6 +59,8 @@
 		E3803F431C7297720048AD46 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F421C7297720048AD46 /* Security.framework */; };
 		E3803F451C7297780048AD46 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F441C7297780048AD46 /* CFNetwork.framework */; };
 		E3803F471C72977D0048AD46 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F461C72977D0048AD46 /* SystemConfiguration.framework */; };
+		E3C821231C7597B600CBAE92 /* SourceListDocumentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C821221C7597B600CBAE92 /* SourceListDocumentTab.swift */; };
+		E3C821261C75984B00CBAE92 /* SourceListTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C821281C75984B00CBAE92 /* SourceListTab.storyboard */; };
 		EFE09CFA27C8FA78A424511C /* libPods-South Lake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FCBDC9A158BD5332E2FC09 /* libPods-South Lake.a */; };
 /* End PBXBuildFile section */
 
@@ -2310,6 +2312,8 @@
 		E3803F421C7297720048AD46 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E3803F441C7297780048AD46 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E3803F461C72977D0048AD46 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E3C821221C7597B600CBAE92 /* SourceListDocumentTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceListDocumentTab.swift; sourceTree = "<group>"; };
+		E3C821271C75984B00CBAE92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SourceListTab.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2416,12 +2420,13 @@
 				E37D96131C723B8A000A9F90 /* Document.swift */,
 				E360725B1C74E32E00914C2C /* DocumentWindowController.swift */,
 				E360726E1C74E40500914C2C /* DocumentTabController.swift */,
-				E360727B1C74FEEC00914C2C /* DocumentTab.swift */,
+				E3C821111C75979100CBAE92 /* Tabs */,
 				E360726D1C74E3C800914C2C /* Model */,
 				E32EC0901C74493900E47B3F /* Extensions */,
 				E37D96151C723B8A000A9F90 /* Assets.xcassets */,
 				E37D96171C723B8A000A9F90 /* Main.storyboard */,
 				E360727A1C74FD8C00914C2C /* Tab.storyboard */,
+				E3C821281C75984B00CBAE92 /* SourceListTab.storyboard */,
 				E37D961A1C723B8A000A9F90 /* Info.plist */,
 			);
 			path = "South Lake";
@@ -6848,6 +6853,15 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
+		E3C821111C75979100CBAE92 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				E360727B1C74FEEC00914C2C /* DocumentTab.swift */,
+				E3C821221C7597B600CBAE92 /* SourceListDocumentTab.swift */,
+			);
+			name = Tabs;
+			sourceTree = "<group>";
+		};
 		FDC36B62EFEF8F979C24FAC8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -7109,6 +7123,7 @@
 				E38035921C728D780048AD46 /* Styles in Resources */,
 				E38035931C728D780048AD46 /* syntax_highlighting.json in Resources */,
 				E38035941C728D780048AD46 /* Themes in Resources */,
+				E3C821261C75984B00CBAE92 /* SourceListTab.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7233,6 +7248,7 @@
 				E37E47CA1C73F2710077ECD7 /* DatabaseManager.swift in Sources */,
 				E36072701C74E40500914C2C /* DocumentTabController.swift in Sources */,
 				E360727C1C74FEEC00914C2C /* DocumentTab.swift in Sources */,
+				E3C821231C7597B600CBAE92 /* SourceListDocumentTab.swift in Sources */,
 				E360725C1C74E32E00914C2C /* DocumentWindowController.swift in Sources */,
 				E3803F041C728E140048AD46 /* pmh_parser.c in Sources */,
 				E3803F021C728E140048AD46 /* HGMarkdownHighlighter.m in Sources */,
@@ -7395,6 +7411,14 @@
 				E3803D481C728DA90048AD46 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E3C821281C75984B00CBAE92 /* SourceListTab.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E3C821271C75984B00CBAE92 /* Base */,
+			);
+			name = SourceListTab.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

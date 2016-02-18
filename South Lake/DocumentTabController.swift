@@ -47,6 +47,8 @@ class DocumentTabController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        clearTabs()
+        
         tabBarView.setStyleNamed("Yosemite")
         tabBarView.setShowAddTabButton(true)
         tabBarView.setOrientation(MMTabBarHorizontalOrientation)
@@ -58,10 +60,6 @@ class DocumentTabController: NSViewController {
         tabBarView.setButtonMinWidth(100)
         tabBarView.setButtonMaxWidth(280)
         tabBarView.setButtonOptimumWidth(130)
-        
-        for (item) in tabView.tabViewItems {
-            tabView.removeTabViewItem(item)
-        }
         
         do { try createNewTabWithTitle("Tab One") } catch {
             print("viewDidLoad: could not create new tab")
@@ -115,6 +113,8 @@ class DocumentTabController: NSViewController {
         }
     }
     
+    // MARK: - Tab Utiltiies
+    
     func createNewTab() throws -> NSTabViewItem? {
         guard let viewController = NSStoryboard(name: "Tab", bundle: nil).instantiateInitialController() as? DocumentTab else {
             throw DocumentTabControllerError.CouldNotInstantiateTabViewController
@@ -137,6 +137,12 @@ class DocumentTabController: NSViewController {
         return tabViewItem
     }
     
+    func clearTabs() {
+        for (item) in tabView.tabViewItems {
+            tabView.removeTabViewItem(item)
+        }
+    }
+    
     // MARK: - Document State
     
     func state() -> Dictionary<String,AnyObject> {
@@ -151,9 +157,8 @@ class DocumentTabController: NSViewController {
     
     func initializeState(state: Dictionary<String,AnyObject>) {
         if let tabStates = state["Tabs"] as? [Dictionary<String,AnyObject>] {
-            for (item) in tabView.tabViewItems {
-                tabView.removeTabViewItem(item)
-            }
+            clearTabs()
+            
             for tabState in tabStates {
                 do {
                     if  let tab = try createNewTab(),
