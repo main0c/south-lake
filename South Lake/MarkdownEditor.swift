@@ -74,6 +74,8 @@ class MarkdownEditor: NSViewController {
         }
     }
     
+    // MARK: - Initialization
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -381,51 +383,37 @@ class MarkdownEditor: NSViewController {
 extension MarkdownEditor: WebFrameLoadDelegate {
     
     var previewLoadingCompletionHandler: (() -> Void) {
-        get {
-            func handler() {
-                print("previewLoadingCompletionHandler")
-                
-                // FIXME: causes intermittent problems?, but needed to prevent flickering?
-                
-                if let window = preview.window {
-                    objc_sync_enter(window)
-                    if window.flushWindowDisabled {
-                        print("enabling flush")
-                        window.enableFlushWindow()
-                    }
-                    objc_sync_exit(window)
+        return { () -> Void in
+            if let window = self.preview.window {
+                objc_sync_enter(window)
+                if window.flushWindowDisabled {
+                    window.enableFlushWindow()
                 }
-                
-                scaleWebview()
-                
-                if preferences.editorSyncScrolling {
-                    syncScrollers()
-                } else {
-                    let contentView = preview.mainFrameEnclosingScrollView!.contentView
-                    var bounds = contentView.bounds
-                    
-                    bounds.origin.y = lastPreviewScrollTop
-                    contentView.bounds = bounds
-                }
+                objc_sync_exit(window)
             }
-            return handler
+            
+            self.scaleWebview()
+            
+            if self.preferences.editorSyncScrolling {
+                self.syncScrollers()
+            } else {
+                let contentView = self.preview.mainFrameEnclosingScrollView!.contentView
+                var bounds = contentView.bounds
+                
+                bounds.origin.y = self.lastPreviewScrollTop
+                contentView.bounds = bounds
+            }
         }
     }
     
     func webView(sender: WebView!, didCommitLoadForFrame frame: WebFrame!) {
-        print("didCommitLoadForFrame")
-        
         guard sender.windowScriptObject as WebScriptObject? != nil else {
-            print("window script object is nil")
             return
         }
-        
-        // FIXME: causes intermittent problems?, but needed to prevent flickering?
         
         if let window = sender.window {
             objc_sync_enter(window)
             if !window.flushWindowDisabled {
-                print("disabling flush")
                 window.disableFlushWindow()
             }
             objc_sync_exit(window)
@@ -442,8 +430,6 @@ extension MarkdownEditor: WebFrameLoadDelegate {
     }
     
     func webView(sender: WebView!, didFinishLoadForFrame frame: WebFrame!) {
-        print("didFinishLoadForFrame")
-        
         // If MathJax is on, the on-completion callback will be invoked by the JavaScript handler injected in -webView:didCommitLoadForFrame:.
         
         if !preferences.htmlMathJax {
@@ -460,7 +446,6 @@ extension MarkdownEditor: WebFrameLoadDelegate {
     }
     
     func webView(sender: WebView!, didFailLoadWithError error: NSError!, forFrame frame: WebFrame!) {
-        
         webView(sender, didFinishLoadForFrame: frame)
     }
 }
