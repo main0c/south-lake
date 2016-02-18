@@ -135,8 +135,7 @@ class MarkdownEditor: NSViewController {
 //        center.addObserver(self, selector: Selector("didRequestPreviewReload"), name: MPDidRequestPreviewRenderNotification, object: nil)
      
         
-        if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber10_9)
-        {
+        if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber10_9) {
             center.addObserver(self, selector: Selector("previewDidLiveScroll:"), name: NSScrollViewDidEndLiveScrollNotification, object: preview.mainFrameEnclosingScrollView)
         }
         
@@ -373,6 +372,118 @@ class MarkdownEditor: NSViewController {
             redrawDivider()
         default:
             break
+        }
+    }
+    
+    // MARK: - IBAction Editing
+    
+    @IBAction func convertToH1(sender: AnyObject?) {
+        editor.makeHeaderForSelectedLinesWithLevel(1)
+    }
+    
+    @IBAction func convertToH2(sender: AnyObject?) {
+        editor.makeHeaderForSelectedLinesWithLevel(2)
+    }
+    
+    @IBAction func convertToH3(sender: AnyObject?) {
+        editor.makeHeaderForSelectedLinesWithLevel(3)
+    }
+    
+    @IBAction func convertToH4(sender: AnyObject?) {
+        editor.makeHeaderForSelectedLinesWithLevel(4)
+    }
+    
+    @IBAction func convertToH5(sender: AnyObject?) {
+        editor.makeHeaderForSelectedLinesWithLevel(5)
+    }
+    
+    @IBAction func convertToH6(sender: AnyObject?) {
+        editor.makeHeaderForSelectedLinesWithLevel(6)
+    }
+    
+    @IBAction func convertToParagraph(sender: AnyObject?) {
+        editor.makeHeaderForSelectedLinesWithLevel(0)
+    }
+    
+    @IBAction func toggleStrong(sender: AnyObject?) {
+        editor.toggleForMarkupPrefix("**", suffix: "**")
+    }
+    
+    @IBAction func toggleEmphasis(sender: AnyObject?) {
+        editor.toggleForMarkupPrefix("*", suffix: "*")
+    }
+    
+    @IBAction func toggleInlineCode(sender: AnyObject?) {
+        editor.toggleForMarkupPrefix("`", suffix: "`")
+    }
+    
+    @IBAction func toggleStrikethrough(sender: AnyObject?) {
+        editor.toggleForMarkupPrefix("~~", suffix: "~~")
+    }
+    
+    @IBAction func toggleUnderline(sender: AnyObject?) {
+        editor.toggleForMarkupPrefix("_", suffix: "_")
+    }
+    
+    @IBAction func toggleHighlight(sender: AnyObject?) {
+        editor.toggleForMarkupPrefix("==", suffix: "==")
+    }
+    
+    @IBAction func toggleComment(sender: AnyObject?) {
+        editor.toggleForMarkupPrefix("<!--", suffix: "-->")
+    }
+    
+    @IBAction func toggleLink(sender: AnyObject?) {
+        if editor.toggleForMarkupPrefix("[", suffix: "]()") {
+            let range = editor.selectedRange()
+            let location = range.location + range.length + 2
+            editor.setSelectedRange(NSMakeRange(location, 0))
+        }
+    }
+    
+    @IBAction func toggleImage(sender: AnyObject?) {
+        if editor.toggleForMarkupPrefix("![", suffix: "]()") {
+            let range = editor.selectedRange()
+            let location = range.location + range.length + 2
+            editor.setSelectedRange(NSMakeRange(location, 0))
+        }
+    }
+    
+    @IBAction func toggleUnorderedList(sender: AnyObject?) {
+        editor.toggleBlockWithPattern("^[\\*\\+-] \\S", prefix: "* ")
+    }
+    
+    @IBAction func toggleBlockquote(sender: AnyObject?) {
+        editor.toggleBlockWithPattern("^> \\S", prefix: "> ")
+    }
+    
+    @IBAction override func indent(sender: AnyObject?) {
+        let padding = preferences.editorConvertTabs ? "    " : "\t"
+        editor.indentSelectedLinesWithPadding(padding)
+    }
+    
+    @IBAction func unindent(sender: AnyObject?) {
+        editor.unindentSelectedLines()
+    }
+    
+    @IBAction func insertNewParagraph(sender: AnyObject?) {
+        guard let content = editor.string else {
+            return
+        }
+        
+        let range = editor.selectedRange()
+        let location = range.location
+        let length = range.length
+        
+        let newlineBefore = (content as NSString).locationOfFirstNewlineBefore(UInt(location))
+        let newlineAfter = (content as NSString).locationOfFirstNewlineAfter(UInt(location+length-1))
+        
+        // If we are on an empty line, treat as normal return key; otherwise insert two newlines
+        
+        if location == newlineBefore + 1 && UInt(location) == newlineAfter {
+            editor.insertNewline(self)
+        } else {
+            editor.insertText("\n\n")
         }
     }
     

@@ -595,6 +595,50 @@
                                                 </items>
                                             </menu>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="pbh-3B-aQO"/>
+                                        <menuItem title="Heading" id="1sH-2w-3mC">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Heading" id="Z1b-Ot-rXQ">
+                                                <items>
+                                                    <menuItem title="Header 1" keyEquivalent="1" id="dZf-65-jis">
+                                                        <connections>
+                                                            <action selector="convertToH1:" target="Ady-hI-5gd" id="fij-cM-xT7"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Header 2" keyEquivalent="2" id="pcV-ry-sjU">
+                                                        <connections>
+                                                            <action selector="convertToH2:" target="Ady-hI-5gd" id="un0-Sv-0Wx"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Header 3" keyEquivalent="3" id="mGk-yr-98c">
+                                                        <connections>
+                                                            <action selector="convertToH3:" target="Ady-hI-5gd" id="Vub-3g-bpT"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Header 4" keyEquivalent="4" id="TkA-7y-zrR">
+                                                        <connections>
+                                                            <action selector="convertToH4:" target="Ady-hI-5gd" id="6MD-Sz-nbd"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Header 5" keyEquivalent="5" id="2x0-RI-aOH">
+                                                        <connections>
+                                                            <action selector="convertToH5:" target="Ady-hI-5gd" id="FSA-w3-dJg"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Header 6" keyEquivalent="6" id="AEe-Qo-3Wx">
+                                                        <connections>
+                                                            <action selector="convertToH6:" target="Ady-hI-5gd" id="Y58-oo-1hL"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="Ref-ug-hwJ"/>
+                                                    <menuItem title="No Heading" keyEquivalent="0" id="U7M-fi-hdF">
+                                                        <connections>
+                                                            <action selector="convertToParagraph:" target="Ady-hI-5gd" id="jkP-Lh-ruf"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -683,7 +727,7 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="South_Lake" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="123.5" y="-123"/>
+            <point key="canvasLocation" x="-92.5" y="-231"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">

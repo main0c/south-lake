@@ -17,7 +17,10 @@
 #import "MPRenderer.h"
 #import "MPMathJaxListener.h"
 #import "MPUtilities.h"
+
 #import "HGMarkdownHighlighter.h"
+#import "NSTextView+Autocomplete.h"
+#import "NSString+Lookup.h"
 
 // BRFullTextSearch
 
