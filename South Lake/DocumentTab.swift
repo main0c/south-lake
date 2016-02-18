@@ -9,33 +9,10 @@
 
 import Cocoa
 
-class DocumentTab: NSViewController {
-    var databaseManager: DatabaseManager! {
-        didSet {
-        
-        }
-    }
+protocol DocumentTab: class {
+    var databaseManager: DatabaseManager! { get set }
+    var searchService: BRSearchService! { get set }
     
-    var searchService: BRSearchService! {
-        didSet {
-        
-        }
-    }
-    
-    // MARK: - Initialization
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do view setup here.
-    }
-    
-    // MARK: - Document State
-    
-    func state() -> Dictionary<String,AnyObject> {
-        return ["Title": (title ?? "")]
-    }
-    
-    func initializeState(state: Dictionary<String,AnyObject>) {
-        title = (state["Title"] ?? NSLocalizedString("Untitled", comment: "Untitled tab")) as? String
-    }
+    func state() -> Dictionary<String,AnyObject>
+    func initializeState(state: Dictionary<String,AnyObject>)
 }

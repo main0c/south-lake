@@ -1,93 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="P7i-y0-Gmj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="9532"/>
     </dependencies>
     <scenes>
+        <!--Source List Document Tab-->
+        <scene sceneID="eT3-3X-d2l">
+            <objects>
+                <splitViewController id="P7i-y0-Gmj" customClass="SourceListDocumentTab" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                    <splitViewItems>
+                        <splitViewItem id="jaa-bu-Pik"/>
+                        <splitViewItem id="r3S-wC-o5K"/>
+                        <splitViewItem id="f42-Mv-dee"/>
+                    </splitViewItems>
+                    <splitView key="splitView" dividerStyle="thin" vertical="YES" id="MZl-Ad-cPP">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </splitView>
+                    <connections>
+                        <segue destination="BCA-UI-RVa" kind="relationship" relationship="splitItems" id="O45-ns-Mwn"/>
+                        <segue destination="gSK-tU-OTL" kind="relationship" relationship="splitItems" id="Ren-hD-726"/>
+                        <segue destination="Oek-qD-h4p" kind="relationship" relationship="splitItems" id="Nzl-ia-sTB"/>
+                    </connections>
+                </splitViewController>
+                <customObject id="TK0-L5-kqH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="44" y="747"/>
+        </scene>
         <!--Content View Controller-->
         <scene sceneID="lUj-dP-CsN">
             <objects>
-                <viewController id="gSK-tU-OTL" userLabel="Content View Controller" customClass="MarkdownEditor" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gSK-tU-OTL" userLabel="Content View Controller" sceneMemberID="viewController">
                     <view key="view" id="b62-9X-aZ2">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="578"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <splitView focusRingType="none" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S9a-CM-iyU" customClass="MPDocumentSplitView">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="578"/>
-                                <subviews>
-                                    <customView wantsLayer="YES" id="fz2-6M-CCr">
-                                        <rect key="frame" x="0.0" y="0.0" width="509" height="578"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <subviews>
-                                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZG-e4-d2C">
-                                                <rect key="frame" x="0.0" y="0.0" width="509" height="578"/>
-                                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="BID-SJ-Cfy">
-                                                    <rect key="frame" x="0.0" y="0.0" width="509" height="578"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <subviews>
-                                                        <textView importsGraphics="NO" richText="NO" findStyle="bar" allowsDocumentBackgroundColorChange="YES" allowsUndo="YES" verticallyResizable="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="DUf-9t-2Za" customClass="MPEditorView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="509" height="578"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <size key="minSize" width="509" height="578"/>
-                                                            <size key="maxSize" width="771" height="10000000"/>
-                                                            <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <size key="minSize" width="509" height="578"/>
-                                                            <size key="maxSize" width="771" height="10000000"/>
-                                                            <connections>
-                                                                <outlet property="delegate" destination="gSK-tU-OTL" id="9jI-4l-j7t"/>
-                                                            </connections>
-                                                        </textView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </clipView>
-                                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="FD4-el-Ui7">
-                                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </scroller>
-                                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="2NU-0j-diJ">
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </scroller>
-                                            </scrollView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="fZG-e4-d2C" secondAttribute="bottom" id="81K-Vi-m6w"/>
-                                            <constraint firstItem="fZG-e4-d2C" firstAttribute="leading" secondItem="fz2-6M-CCr" secondAttribute="leading" id="Fvr-7n-t2v"/>
-                                            <constraint firstAttribute="trailing" secondItem="fZG-e4-d2C" secondAttribute="trailing" id="cb1-q9-Vf5"/>
-                                            <constraint firstItem="fZG-e4-d2C" firstAttribute="top" secondItem="fz2-6M-CCr" secondAttribute="top" id="iNI-aA-WvC"/>
-                                        </constraints>
-                                    </customView>
-                                    <webView fixedFrame="YES" id="YcO-ED-hS9">
-                                        <rect key="frame" x="510" y="0.0" width="514" height="578"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12">
-                                            <nil key="identifier"/>
-                                        </webPreferences>
-                                        <connections>
-                                            <outlet property="UIDelegate" destination="gSK-tU-OTL" id="Zje-Rd-Bjr"/>
-                                        </connections>
-                                    </webView>
-                                </subviews>
-                                <holdingPriorities>
-                                    <real value="250"/>
-                                    <real value="250"/>
-                                </holdingPriorities>
-                            </splitView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="S9a-CM-iyU" firstAttribute="top" secondItem="b62-9X-aZ2" secondAttribute="top" id="UdY-oh-UwQ"/>
-                            <constraint firstAttribute="bottom" secondItem="S9a-CM-iyU" secondAttribute="bottom" id="pS2-cV-Wb4"/>
-                            <constraint firstAttribute="trailing" secondItem="S9a-CM-iyU" secondAttribute="trailing" id="wij-Ce-EQT"/>
-                            <constraint firstItem="S9a-CM-iyU" firstAttribute="leading" secondItem="b62-9X-aZ2" secondAttribute="leading" id="ya9-Fx-RUV"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="editor" destination="DUf-9t-2Za" id="n4h-GS-fbf"/>
-                        <outlet property="editorContainer" destination="fz2-6M-CCr" id="wQ2-ch-Isb"/>
-                        <outlet property="preview" destination="YcO-ED-hS9" id="z08-sd-BgA"/>
-                        <outlet property="splitView" destination="S9a-CM-iyU" id="W5Z-Vj-ikE"/>
-                    </connections>
                 </viewController>
                 <customObject id="PHC-lk-EKd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -120,39 +67,10 @@
             </objects>
             <point key="canvasLocation" x="718" y="1321"/>
         </scene>
-        <!--Document Tab Split View Controller-->
-        <scene sceneID="L47-M0-c4J">
-            <objects>
-                <splitViewController id="vHH-hZ-647" customClass="DocumentTabSplitViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
-                    <splitViewItems>
-                        <splitViewItem holdingPriority="255" id="0gb-ie-TWC"/>
-                        <splitViewItem id="ulB-I8-IxS"/>
-                        <splitViewItem id="VS7-yA-k3H"/>
-                        <splitViewItem id="WdD-np-JrE"/>
-                        <splitViewItem id="bS0-kg-oZO"/>
-                        <splitViewItem id="RGB-97-Zu5"/>
-                    </splitViewItems>
-                    <splitView key="splitView" dividerStyle="thin" vertical="YES" id="mTN-Ha-gPU">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <connections>
-                            <outlet property="delegate" destination="vHH-hZ-647" id="DFp-Xk-ZAS"/>
-                        </connections>
-                    </splitView>
-                    <connections>
-                        <segue destination="BCA-UI-RVa" kind="relationship" relationship="splitItems" id="rdZ-66-5T0"/>
-                        <segue destination="gSK-tU-OTL" kind="relationship" relationship="splitItems" id="AFZ-UV-gQn"/>
-                        <segue destination="Oek-qD-h4p" kind="relationship" relationship="splitItems" id="CtR-Og-Tcy"/>
-                    </connections>
-                </splitViewController>
-                <customObject id="u2t-OU-AdJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="44" y="748"/>
-        </scene>
         <!--Master View Controller-->
         <scene sceneID="gsY-rn-MuH">
             <objects>
-                <viewController id="BCA-UI-RVa" userLabel="Master View Controller" customClass="FoldersSourceListController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BCA-UI-RVa" userLabel="Master View Controller" customClass="SourceListViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="WFb-qx-mSZ">
                         <rect key="frame" x="0.0" y="0.0" width="234" height="400"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -245,8 +163,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
-                                    <popUpButton misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ltL-1g-Gj1">
-                                        <rect key="frame" x="0.0" y="2" width="33" height="21"/>
+                                    <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="ltL-1g-Gj1">
+                                        <rect key="frame" x="0.0" y="2" width="36" height="21"/>
                                         <popUpButtonCell key="cell" type="bevel" title="+" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="noArrow" selectedItem="Wbd-N1-En2" id="e7Q-9c-lIz">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -255,20 +173,17 @@
                                                     <menuItem title="+" state="on" hidden="YES" id="Wbd-N1-En2"/>
                                                     <menuItem title="New Folder" id="Z8h-pN-PQv">
                                                         <connections>
-                                                            <action selector="actionCreateNewFolder:" target="BCA-UI-RVa" id="448-c4-fWY"/>
+                                                            <action selector="createNewFolder:" target="BCA-UI-RVa" id="yXc-8t-TYR"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="New Smart Folder" id="cYF-EG-Pth">
                                                         <connections>
-                                                            <action selector="actionCreateNewSmartFolder:" target="BCA-UI-RVa" id="kbM-ld-3xz"/>
+                                                            <action selector="createNewSmartFolder:" target="BCA-UI-RVa" id="Vcx-e3-v3b"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="g82-1b-len"/>
                                                     <menuItem title="New Markdown Document" id="vaH-gV-cqz">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="actionCreateNewMarkdownDocument:" target="BCA-UI-RVa" id="09O-vD-gcu"/>
-                                                        </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="egR-kE-mYQ"/>
                                                 </items>

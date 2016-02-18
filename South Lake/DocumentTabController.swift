@@ -116,7 +116,10 @@ class DocumentTabController: NSViewController {
     // MARK: - Tab Utiltiies
     
     func createNewTab() throws -> NSTabViewItem? {
-        guard let viewController = NSStoryboard(name: "Tab", bundle: nil).instantiateInitialController() as? DocumentTab else {
+        guard let viewController = NSStoryboard(name: "SourceListTab", bundle: nil).instantiateInitialController() as? NSViewController else {
+            throw DocumentTabControllerError.CouldNotInstantiateTabViewController
+        }
+        guard viewController is DocumentTab else {
             throw DocumentTabControllerError.CouldNotInstantiateTabViewController
         }
         
@@ -128,8 +131,8 @@ class DocumentTabController: NSViewController {
         
         tabBarItem.bind("title", toObject: viewController, withKeyPath: "title", options: [:])
         
-        viewController.databaseManager = databaseManager
-        viewController.searchService = searchService
+        (viewController as! DocumentTab).databaseManager = databaseManager
+        (viewController as! DocumentTab).searchService = searchService
         
         tabView.addTabViewItem(tabViewItem)
         tabView.selectTabViewItem(tabViewItem)

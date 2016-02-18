@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="9No-O6-nOD">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="9532"/>
+    </dependencies>
+    <scenes>
+        <!--Content View Controller-->
+        <scene sceneID="DqW-Qj-1RR">
+            <objects>
+                <viewController id="9No-O6-nOD" userLabel="Content View Controller" customClass="MarkdownEditor" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="7yw-mh-rxu">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="578"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <splitView focusRingType="none" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zSN-M5-giF" customClass="MPDocumentSplitView">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="578"/>
+                                <subviews>
+                                    <customView wantsLayer="YES" id="rez-in-j1l">
+                                        <rect key="frame" x="0.0" y="0.0" width="509" height="578"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <subviews>
+                                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xb-Jw-d1U">
+                                                <rect key="frame" x="0.0" y="0.0" width="509" height="578"/>
+                                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="pyu-43-EpX">
+                                                    <rect key="frame" x="0.0" y="0.0" width="509" height="578"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <textView importsGraphics="NO" richText="NO" findStyle="bar" allowsDocumentBackgroundColorChange="YES" allowsUndo="YES" verticallyResizable="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="lr3-qz-ZIA" customClass="MPEditorView">
+                                                            <rect key="frame" x="0.0" y="0.0" width="509" height="578"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <size key="minSize" width="509" height="578"/>
+                                                            <size key="maxSize" width="771" height="10000000"/>
+                                                            <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <size key="minSize" width="509" height="578"/>
+                                                            <size key="maxSize" width="771" height="10000000"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="9No-O6-nOD" id="kou-zR-bXw"/>
+                                                            </connections>
+                                                        </textView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </clipView>
+                                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="FXX-3n-ojB">
+                                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </scroller>
+                                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="ejd-cH-3EH">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </scroller>
+                                            </scrollView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="9xb-Jw-d1U" secondAttribute="bottom" id="4ti-gm-O2P"/>
+                                            <constraint firstItem="9xb-Jw-d1U" firstAttribute="leading" secondItem="rez-in-j1l" secondAttribute="leading" id="6SP-ux-OfP"/>
+                                            <constraint firstAttribute="trailing" secondItem="9xb-Jw-d1U" secondAttribute="trailing" id="NWg-6a-oBs"/>
+                                            <constraint firstItem="9xb-Jw-d1U" firstAttribute="top" secondItem="rez-in-j1l" secondAttribute="top" id="QCa-kl-2RA"/>
+                                        </constraints>
+                                    </customView>
+                                    <webView fixedFrame="YES" id="nyj-NZ-ZQ2">
+                                        <rect key="frame" x="510" y="0.0" width="514" height="578"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12">
+                                            <nil key="identifier"/>
+                                        </webPreferences>
+                                        <connections>
+                                            <outlet property="UIDelegate" destination="9No-O6-nOD" id="Pd7-rJ-oXy"/>
+                                        </connections>
+                                    </webView>
+                                </subviews>
+                                <holdingPriorities>
+                                    <real value="250"/>
+                                    <real value="250"/>
+                                </holdingPriorities>
+                            </splitView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="zSN-M5-giF" secondAttribute="bottom" id="ZdZ-GW-oV2"/>
+                            <constraint firstItem="zSN-M5-giF" firstAttribute="top" secondItem="7yw-mh-rxu" secondAttribute="top" id="sMR-QG-KOa"/>
+                            <constraint firstItem="zSN-M5-giF" firstAttribute="leading" secondItem="7yw-mh-rxu" secondAttribute="leading" id="u3v-VF-p1M"/>
+                            <constraint firstAttribute="trailing" secondItem="zSN-M5-giF" secondAttribute="trailing" id="yov-gg-p0D"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="editor" destination="lr3-qz-ZIA" id="wVT-o8-ikP"/>
+                        <outlet property="editorContainer" destination="rez-in-j1l" id="7pp-Qe-DOD"/>
+                        <outlet property="preview" destination="nyj-NZ-ZQ2" id="yXG-19-sIF"/>
+                        <outlet property="splitView" destination="zSN-M5-giF" id="JZF-d5-7Cd"/>
+                    </connections>
+                </viewController>
+                <customObject id="Q7U-my-55i" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="44" y="1371"/>
+        </scene>
+    </scenes>
+</document>
