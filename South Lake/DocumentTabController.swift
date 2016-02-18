@@ -92,27 +92,32 @@ class DocumentTabController: NSViewController {
         }
     }
     
-    func createNewTabWithTitle(title: String) throws -> DocumentTab {
+    func createNewTabWithTitle(title: String) throws {
+        if let tab = try createNewTab() {
+            tab.vc!.title = title
+        }
+    }
+    
+    func createNewTab() throws -> NSTabViewItem? {
         guard let viewController = NSStoryboard(name: "Tab", bundle: nil).instantiateInitialController() as? DocumentTab else {
             throw DocumentTabControllerError.CouldNotInstantiateTabViewController
         }
         
-        let tabBarItem = DocumentTabBarItem(title: title)
+        let tabBarItem = DocumentTabBarItem()
         let tabViewItem = NSTabViewItem(identifier: tabBarItem)
         
         tabViewItem.view = viewController.view
         tabViewItem.vc = viewController
         
+        tabBarItem.bind("title", toObject: viewController, withKeyPath: "title", options: [:])
+        
         viewController.databaseManager = databaseManager
         viewController.searchService = searchService
-        
-        tabBarItem.bind("title", toObject: viewController, withKeyPath: "title", options: [:])
-        viewController.title = title
         
         tabView.addTabViewItem(tabViewItem)
         tabView.selectTabViewItem(tabViewItem)
         
-        return viewController
+        return tabViewItem
     }
     
     // MARK: - Document State
@@ -133,15 +138,18 @@ class DocumentTabController: NSViewController {
                 tabView.removeTabViewItem(item)
             }
             for tabState in tabStates {
-                let title = (tabState["Title"] ?? NSLocalizedString("Untitled", comment: "Untitled tab")) as! String
                 do {
-                    let tab = try createNewTabWithTitle(title)
-                    tab.initializeState(tabState)
+                    if  let tab = try createNewTab(),
+                        let vc = tab.vc as? DocumentTab {
+                        vc.initializeState(tabState)
+                    }
                 } catch {
                     print("initializeState: unable to restore a tab")
                 }
             }
         }
+        
+        // TODO: error checking. In case of corrupion, provide default state
     }
 }
 
@@ -168,6 +176,10 @@ class DocumentTabBarItem: NSObject, MMTabBarItem {
     var title: String = NSLocalizedString("Untitled", comment: "Untitled tab")
     var hasCloseButton: Bool = true
     var icon: NSImage?
+    
+    override init() {
+    
+    }
     
     init(title: String) {
         self.title = title
