@@ -15,7 +15,7 @@ struct SourceListDragTypes {
 class SourceListViewController: NSViewController, Databasable {
     @IBOutlet var outlineView: NSOutlineView!
 
-    let root: NSTreeNode = NSTreeNode(representedObject: nil)
+    var root: NSTreeNode = NSTreeNode(representedObject: nil)
     private var draggedNodes : [NSTreeNode]?
     
      var databaseManager: DatabaseManager! {
@@ -57,6 +57,8 @@ class SourceListViewController: NSViewController, Databasable {
         guard (databaseManager as DatabaseManager?) != nil else {
             return
         }
+        
+        root = NSTreeNode(representedObject: nil)
         
         do {
             let sectionQuery = databaseManager.sectionsQuery()
