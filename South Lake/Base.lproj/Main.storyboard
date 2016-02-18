@@ -695,6 +695,21 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <toolbar key="toolbar" implicitIdentifier="B2B612DB-F4CA-4D59-A815-15B8481E17DE" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="small" id="Ke5-2d-O2b">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="xkE-Pb-DCO"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="wls-9i-bNn"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="643-Q1-p4L"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="yla-wU-knF"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="hWu-DY-Aqg"/>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="xkE-Pb-DCO"/>
+                                <toolbarItem reference="wls-9i-bNn"/>
+                                <toolbarItem reference="hWu-DY-Aqg"/>
+                                <toolbarItem reference="643-Q1-p4L"/>
+                            </defaultToolbarItems>
+                        </toolbar>
                     </window>
                     <connections>
                         <segue destination="ds0-GC-FGZ" kind="relationship" relationship="window.shadowedContentViewController" id="iLL-Iz-3X4"/>
@@ -702,7 +717,7 @@
                 </windowController>
                 <customObject id="6f7-a7-6o1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="250"/>
+            <point key="canvasLocation" x="35" y="250"/>
         </scene>
         <!--Delegate-->
         <scene sceneID="qfi-F5-4pt">
