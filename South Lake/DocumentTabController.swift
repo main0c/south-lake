@@ -158,7 +158,7 @@ class DocumentTabController: NSViewController {
         return ["Tabs": tabStates]
     }
     
-    func initializeState(state: Dictionary<String,AnyObject>) {
+    func restoreState(state: Dictionary<String,AnyObject>) {
         if let tabStates = state["Tabs"] as? [Dictionary<String,AnyObject>] {
             clearTabs()
             
@@ -166,10 +166,10 @@ class DocumentTabController: NSViewController {
                 do {
                     if  let tab = try createNewTab(),
                         let vc = tab.vc as? DocumentTab {
-                        vc.initializeState(tabState)
+                        vc.restoreState(tabState)
                     }
                 } catch {
-                    print("initializeState: unable to restore a tab")
+                    print("restoreState: unable to restore a tab")
                 }
             }
         }

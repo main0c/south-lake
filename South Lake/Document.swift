@@ -24,7 +24,7 @@ enum DocumentError: ErrorType {
     
     case CouldNotInitializeDatabase
     case CouldNotInitializeSearch
-    case CouldNotInitializeState
+    case CouldNotRestoreState
     
     case CouldNotSaveState
 }
@@ -120,7 +120,7 @@ class Document: NSDocument {
         // We do it here so that we can restore the state immediately
         
         makeWindowControllers()
-        try initializeState(stateURL)
+        try restoreState(stateURL)
     }
     
     override func saveToURL(url: NSURL, ofType typeName: String, forSaveOperation saveOperation: NSSaveOperationType, completionHandler: (NSError?) -> Void) {
@@ -302,13 +302,13 @@ class Document: NSDocument {
         }
     }
     
-    func initializeState(url: NSURL) throws {
+    func restoreState(url: NSURL) throws {
         guard let restored = NSDictionary(contentsOfURL: url) as? Dictionary<String, AnyObject> else {
-            throw DocumentError.CouldNotInitializeState
+            throw DocumentError.CouldNotRestoreState
         }
         
         if let windowState = restored["WindowController"] as? Dictionary<String,AnyObject> {
-            (windowControllers[0] as! DocumentWindowController).initializeState(windowState)
+            (windowControllers[0] as! DocumentWindowController).restoreState(windowState)
         }
     }
 }

@@ -14,5 +14,5 @@ protocol DocumentTab: class {
     var searchService: BRSearchService! { get set }
     
     func state() -> Dictionary<String,AnyObject>
-    func initializeState(state: Dictionary<String,AnyObject>)
+    func restoreState(state: Dictionary<String,AnyObject>)
 }

@@ -97,9 +97,9 @@ class DocumentWindowController: NSWindowController {
         return ["TabController": tabState]
     }
     
-    func initializeState(state: Dictionary<String,AnyObject>) {
+    func restoreState(state: Dictionary<String,AnyObject>) {
         if let tabState = state["TabController"] as? Dictionary<String,AnyObject> {
-            tabController.initializeState(tabState)
+            tabController.restoreState(tabState)
         }
     }
     
