@@ -17,6 +17,7 @@
 #import "MPRenderer.h"
 #import "MPMathJaxListener.h"
 #import "MPUtilities.h"
+#import "HGMarkdownHighlighter.h"
 
 // BRFullTextSearch
 
@@ -32,5 +33,10 @@
 
 #import <MMTabBarView/MMTabBarView.h>
 #import <MMTabBarView/MMTabBarItem.h>
+
+// South Lake
+
+#import "MPRenderer+TOC.h"
+#import "MacDownCopyFiles.h"
 
 #endif /* BridgingHeader_h */

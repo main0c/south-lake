@@ -67,6 +67,9 @@
 		E3803F431C7297720048AD46 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F421C7297720048AD46 /* Security.framework */; };
 		E3803F451C7297780048AD46 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F441C7297780048AD46 /* CFNetwork.framework */; };
 		E3803F471C72977D0048AD46 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F461C72977D0048AD46 /* SystemConfiguration.framework */; };
+		E3C436231C7640B000DD685D /* Test.md in Resources */ = {isa = PBXBuildFile; fileRef = E3C436211C7640A400DD685D /* Test.md */; };
+		E3C436271C7641E900DD685D /* MPRenderer+TOC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C436261C7641E900DD685D /* MPRenderer+TOC.m */; };
+		E3C4362B1C7642BA00DD685D /* MacDownCopyFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C4362A1C7642BA00DD685D /* MacDownCopyFiles.m */; };
 		E3C821231C7597B600CBAE92 /* SourceListDocumentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C821221C7597B600CBAE92 /* SourceListDocumentTab.swift */; };
 		E3C821261C75984B00CBAE92 /* SourceListTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C821281C75984B00CBAE92 /* SourceListTab.storyboard */; };
 		EFE09CFA27C8FA78A424511C /* libPods-South Lake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FCBDC9A158BD5332E2FC09 /* libPods-South Lake.a */; };
@@ -2328,6 +2331,11 @@
 		E3803F421C7297720048AD46 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E3803F441C7297780048AD46 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E3803F461C72977D0048AD46 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E3C436211C7640A400DD685D /* Test.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Test.md; sourceTree = "<group>"; };
+		E3C436251C7641E900DD685D /* MPRenderer+TOC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPRenderer+TOC.h"; sourceTree = "<group>"; };
+		E3C436261C7641E900DD685D /* MPRenderer+TOC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPRenderer+TOC.m"; sourceTree = "<group>"; };
+		E3C436291C7642BA00DD685D /* MacDownCopyFiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacDownCopyFiles.h; sourceTree = "<group>"; };
+		E3C4362A1C7642BA00DD685D /* MacDownCopyFiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacDownCopyFiles.m; sourceTree = "<group>"; };
 		E3C821221C7597B600CBAE92 /* SourceListDocumentTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceListDocumentTab.swift; sourceTree = "<group>"; };
 		E3C821271C75984B00CBAE92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SourceListTab.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2418,6 +2426,8 @@
 			children = (
 				E32EC0A11C74494A00E47B3F /* NSBundle+Version.swift */,
 				E36072721C74E64200914C2C /* NSTabViewItem+ViewController.swift */,
+				E3C436251C7641E900DD685D /* MPRenderer+TOC.h */,
+				E3C436261C7641E900DD685D /* MPRenderer+TOC.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2479,8 +2489,10 @@
 				E3274FBD1C75A065000B6A84 /* Editors */,
 				E360726D1C74E3C800914C2C /* Model */,
 				E32EC0901C74493900E47B3F /* Extensions */,
+				E3C436281C7642A500DD685D /* Utilities */,
 				E37D96151C723B8A000A9F90 /* Assets.xcassets */,
 				E37D96171C723B8A000A9F90 /* Main.storyboard */,
+				E3C436211C7640A400DD685D /* Test.md */,
 				E3274FCF1C75A2CF000B6A84 /* Tab Storyboards */,
 				E3274FCE1C75A2BC000B6A84 /* Editor Storyboards */,
 				E37D961A1C723B8A000A9F90 /* Info.plist */,
@@ -6909,6 +6921,15 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
+		E3C436281C7642A500DD685D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E3C436291C7642BA00DD685D /* MacDownCopyFiles.h */,
+				E3C4362A1C7642BA00DD685D /* MacDownCopyFiles.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		E3C821111C75979100CBAE92 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
@@ -7181,6 +7202,7 @@
 				E38035931C728D780048AD46 /* syntax_highlighting.json in Resources */,
 				E38035941C728D780048AD46 /* Themes in Resources */,
 				E3C821261C75984B00CBAE92 /* SourceListTab.storyboard in Resources */,
+				E3C436231C7640B000DD685D /* Test.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7303,7 +7325,9 @@
 				E3803F0B1C728E790048AD46 /* NSColor+HTML.m in Sources */,
 				E37D96141C723B8A000A9F90 /* Document.swift in Sources */,
 				E3274FC11C75A0B7000B6A84 /* SourceListViewController.swift in Sources */,
+				E3C4362B1C7642BA00DD685D /* MacDownCopyFiles.m in Sources */,
 				E3274FC91C75A151000B6A84 /* SmartFolder.swift in Sources */,
+				E3C436271C7641E900DD685D /* MPRenderer+TOC.m in Sources */,
 				E3803F031C728E140048AD46 /* HGMarkdownHighlightingStyle.m in Sources */,
 				E37E47CA1C73F2710077ECD7 /* DatabaseManager.swift in Sources */,
 				E36072701C74E40500914C2C /* DocumentTabController.swift in Sources */,
