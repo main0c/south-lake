@@ -20,22 +20,22 @@ class DatabaseManager: NSObject {
         
         // register model types
         
-//        let factory = database!.modelFactory
-//        
-//        factory?.registerClass(Folder.self, forDocumentType: "folder")
-//        factory?.registerClass(SmartFolder.self, forDocumentType: "smart_folder")
-//        factory?.registerClass(Section.self, forDocumentType: "section")
-//        factory?.registerClass(Document.self, forDocumentType: "document")
+        let factory = database!.modelFactory
+        
+        factory?.registerClass(Folder.self, forDocumentType: "folder")
+        factory?.registerClass(SmartFolder.self, forDocumentType: "smart_folder")
+        factory?.registerClass(Section.self, forDocumentType: "section")
+        factory?.registerClass(File.self, forDocumentType: "file")
     }
     
-//    func sectionsQuery() -> CBLQuery {
-//        let view = database!.viewNamed("sections")
-//        view.setMapBlock({ (doc, emit) -> Void in
-//            if doc["type"] as? String == "section" {
-//                emit(doc["_id"]!, doc)
-//            }
-//        }, version: "1")
-//        let query = view.createQuery()
-//        return query
-//    }
+    func sectionsQuery() -> CBLQuery {
+        let view = database!.viewNamed("sections")
+        view.setMapBlock({ (doc, emit) -> Void in
+            if doc["type"] as? String == "section" {
+                emit(doc["_id"]!, doc)
+            }
+        }, version: "1")
+        let query = view.createQuery()
+        return query
+    }
 }
