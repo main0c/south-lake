@@ -38,6 +38,10 @@ class DocumentTabController: NSViewController {
         return tabView.tabViewItems.map {($0.vc as! DocumentTab)}
     }
     
+    var count: Int {
+        return tabs.count
+    }
+    
     // MARK: - Initialization
     
     override func viewDidLoad() {
@@ -72,8 +76,21 @@ class DocumentTabController: NSViewController {
         }
     }
     
+    @IBAction func performClose(sender: AnyObject) {
+        closeTab(sender)
+    }
+    
     @IBAction func closeTab(sender: AnyObject) {
-        print("close tab")
+        guard tabView.tabViewItems.count > 1 else {
+            return
+        }
+        guard let tabViewItem = tabView.selectedTabViewItem else {
+            return
+        }
+        
+        tabViewItem.identifier.unbind("title")
+        
+        tabView.removeTabViewItem(tabViewItem)
     }
     
     @IBAction func selectNextTab(sender: AnyObject) {

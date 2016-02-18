@@ -39,6 +39,19 @@ class DocumentWindowController: NSWindowController {
     // MARK: - Tab Actions
     // Pass them onto the window's content view controller
 
+    @IBAction func performTabbedClose(sender: AnyObject) {
+        guard let window = self.window else {
+            return
+        }
+        
+        if tabController.count == 1 {
+            window.performClose(sender)
+        } else {
+            tabController.performClose(sender)
+            //TODO: validate menu item
+        }
+    }
+
     @IBAction func createNewTab(sender: AnyObject) {
         guard let tabController = self.window?.contentViewController as? DocumentTabController else {
             print("createNewTab expected DocumentTabController")
@@ -64,6 +77,16 @@ class DocumentWindowController: NSWindowController {
         }
         
         tabController.selectPreviousTab(sender)
+    }
+    
+    override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
+        if menuItem.action == Selector("performTabbedClose:") {
+            menuItem.title = tabController.count == 1
+                ? NSLocalizedString("Close", comment: "Close window")
+                : NSLocalizedString("Close Tab", comment: "Close tab")
+        }
+        
+        return true
     }
     
     // MARK: - Document State

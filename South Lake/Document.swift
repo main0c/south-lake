@@ -303,11 +303,11 @@ class Document: NSDocument {
     }
     
     func initializeState(url: NSURL) throws {
-        guard let state = NSDictionary(contentsOfURL: url) as? Dictionary<String, AnyObject> else {
+        guard let restored = NSDictionary(contentsOfURL: url) as? Dictionary<String, AnyObject> else {
             throw DocumentError.CouldNotInitializeState
         }
         
-        if let windowState = state["WindowController"] as? Dictionary<String,AnyObject> {
+        if let windowState = restored["WindowController"] as? Dictionary<String,AnyObject> {
             (windowControllers[0] as! DocumentWindowController).initializeState(windowState)
         }
     }
