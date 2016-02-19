@@ -63,8 +63,8 @@ class SourceListViewController: NSViewController, Databasable {
         root = NSTreeNode(representedObject: nil)
         
         do {
-            let sectionQuery = databaseManager.sectionsQuery()
-            let results = try sectionQuery.run()
+            let query = databaseManager.sectionQuery
+            let results = try query.run()
             var sections: [Section] = []
             
             while let row = results.nextRow() {

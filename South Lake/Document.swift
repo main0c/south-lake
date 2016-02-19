@@ -217,8 +217,8 @@ class Document: NSDocument, Databasable {
     
     func bootstrapDatabase() {
         do {
-            let sectionQuery = databaseManager.sectionsQuery()
-            let results = try sectionQuery.run()
+            let query = databaseManager.sectionQuery
+            let results = try query.run()
             
             guard results.count == 0 else {
                 return

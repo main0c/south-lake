@@ -12,6 +12,8 @@ class DatabaseManager: NSObject {
     var manager: CBLManager!
     var database: CBLDatabase!
     
+    private var _sectionQuery: CBLQuery?
+    
     init(url: NSURL) throws {
         super.init()
         
@@ -28,14 +30,19 @@ class DatabaseManager: NSObject {
         factory?.registerClass(File.self, forDocumentType: "file")
     }
     
-    func sectionsQuery() -> CBLQuery {
+    var sectionQuery: CBLQuery {
+        guard _sectionQuery == nil else {
+            return _sectionQuery!
+        }
+        
         let view = database!.viewNamed("sections")
         view.setMapBlock({ (doc, emit) -> Void in
             if doc["type"] as? String == "section" {
                 emit(doc["_id"]!, doc)
             }
         }, version: "1")
-        let query = view.createQuery()
-        return query
+        
+        _sectionQuery = view.createQuery()
+        return _sectionQuery!
     }
 }
