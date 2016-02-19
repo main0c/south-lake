@@ -13,6 +13,9 @@ protocol DocumentTab: class, Databasable {
     var databaseManager: DatabaseManager! { get set }
     var searchService: BRSearchService! { get set }
     
+    var title: String? { get set }
+    var icon: NSImage? { get set }
+    
     func state() -> Dictionary<String,AnyObject>
     func restoreState(state: Dictionary<String,AnyObject>)
 }

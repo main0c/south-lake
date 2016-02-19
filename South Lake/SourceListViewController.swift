@@ -18,7 +18,9 @@ class SourceListViewController: NSViewController, Databasable {
     var root: NSTreeNode = NSTreeNode(representedObject: nil)
     private var draggedNodes : [NSTreeNode]?
     
-     var databaseManager: DatabaseManager! {
+    dynamic var selectedObjects: [DataSource] = []
+        
+    var databaseManager: DatabaseManager! {
         didSet {
             loadData()
         }
@@ -276,6 +278,10 @@ extension SourceListViewController : NSOutlineViewDelegate {
         }
         
         return true
+    }
+    
+    func outlineViewSelectionDidChange(notification: NSNotification) {
+        selectedObjects = outlineView.selectedObjects as! [DataSource]
     }
 }
 

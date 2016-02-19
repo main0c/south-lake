@@ -87,6 +87,7 @@ class DocumentTabController: NSViewController, Databasable {
         }
         
         tabViewItem.identifier.unbind("title")
+        tabViewItem.identifier.unbind("icon")
         
         tabView.removeTabViewItem(tabViewItem)
     }
@@ -130,6 +131,7 @@ class DocumentTabController: NSViewController, Databasable {
         tabViewItem.vc = viewController
         
         tabBarItem.bind("title", toObject: viewController, withKeyPath: "title", options: [:])
+        tabBarItem.bind("icon", toObject: viewController, withKeyPath: "icon", options: [:])
         
         (viewController as! DocumentTab).databaseManager = databaseManager
         (viewController as! DocumentTab).searchService = searchService

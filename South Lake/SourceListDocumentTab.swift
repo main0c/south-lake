@@ -9,6 +9,9 @@
 import Cocoa
 
 class SourceListDocumentTab: NSSplitViewController, DocumentTab {
+    var sourceListController: SourceListViewController!
+    dynamic var icon: NSImage?
+    
     var databaseManager: DatabaseManager! {
         didSet {
             for vc in childViewControllers where vc is Databasable {
@@ -27,11 +30,31 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         }
     }
     
+    dynamic var selectedObjects: [DataSource] = [] {
+        didSet {
+            title = titleForSelection(selectedObjects)
+            icon = iconForSelection(selectedObjects)
+        }
+    }
+    
     // MARK: - Initialization
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        
+        for vc in childViewControllers {
+            switch vc {
+            case let controller as SourceListViewController:
+                sourceListController = controller
+            default:
+                break
+            }
+        }
+        
+        bind("selectedObjects", toObject: sourceListController, withKeyPath: "selectedObjects", options: [:])
+        
+        // Set up the editor
         
         let mainViewController = NSStoryboard(name: "MarkdownEditor", bundle: nil).instantiateInitialController() as! NSViewController
         let mainItem = NSSplitViewItem(viewController: mainViewController)
@@ -40,6 +63,10 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         
         removeSplitViewItem(splitViewItems[1])
         insertSplitViewItem(mainItem, atIndex: 1)
+    }
+    
+    deinit {
+        unbind("selectedObjects")
     }
     
     // MARK: - Document State
@@ -71,5 +98,29 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         sidepanel.hidden = false
         sidepanel.frame.size = NSMakeSize(viewFrame.size.width, 200)
         splitView.display()
+    }
+    
+    // MARK: - Utilities
+    
+    func titleForSelection(selection: [DataSource]) -> String? {
+        switch selection.count {
+        case 0:
+            return NSLocalizedString("No Selection", comment: "")
+        case 1:
+            return selectedObjects[0].title
+        default:
+            return NSLocalizedString("Multiple Selection", comment: "")
+        }
+    }
+    
+    func iconForSelection(selection: [DataSource]) -> NSImage? {
+        switch selection.count {
+        case 0:
+            return nil
+        case 1:
+            return selectedObjects[0].icon ?? NSImage(named: selectedObjects[0].icon_name)
+        default:
+            return nil
+        }
     }
 }

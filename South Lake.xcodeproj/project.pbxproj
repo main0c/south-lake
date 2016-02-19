@@ -74,6 +74,7 @@
 		E3C4362B1C7642BA00DD685D /* MacDownCopyFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C4362A1C7642BA00DD685D /* MacDownCopyFiles.m */; };
 		E3C821231C7597B600CBAE92 /* SourceListDocumentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C821221C7597B600CBAE92 /* SourceListDocumentTab.swift */; };
 		E3C821261C75984B00CBAE92 /* SourceListTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C821281C75984B00CBAE92 /* SourceListTab.storyboard */; };
+		E3E12A651C76E3E7000C4F16 /* NSOutlineView+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E12A641C76E3E7000C4F16 /* NSOutlineView+Selection.swift */; };
 		EFE09CFA27C8FA78A424511C /* libPods-South Lake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FCBDC9A158BD5332E2FC09 /* libPods-South Lake.a */; };
 /* End PBXBuildFile section */
 
@@ -2342,6 +2343,7 @@
 		E3C4362A1C7642BA00DD685D /* MacDownCopyFiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacDownCopyFiles.m; sourceTree = "<group>"; };
 		E3C821221C7597B600CBAE92 /* SourceListDocumentTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceListDocumentTab.swift; sourceTree = "<group>"; };
 		E3C821271C75984B00CBAE92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SourceListTab.storyboard; sourceTree = "<group>"; };
+		E3E12A641C76E3E7000C4F16 /* NSOutlineView+Selection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSOutlineView+Selection.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2440,6 +2442,7 @@
 				E32EC0A11C74494A00E47B3F /* NSBundle+Version.swift */,
 				E36072721C74E64200914C2C /* NSTabViewItem+ViewController.swift */,
 				E32AD25D1C76827400648BFD /* NSURL+FileType.swift */,
+				E3E12A641C76E3E7000C4F16 /* NSOutlineView+Selection.swift */,
 				E3C436251C7641E900DD685D /* MPRenderer+TOC.h */,
 				E3C436261C7641E900DD685D /* MPRenderer+TOC.m */,
 			);
@@ -7345,6 +7348,7 @@
 				E3C436271C7641E900DD685D /* MPRenderer+TOC.m in Sources */,
 				E32AD2711C76843500648BFD /* Databasable.swift in Sources */,
 				E3803F031C728E140048AD46 /* HGMarkdownHighlightingStyle.m in Sources */,
+				E3E12A651C76E3E7000C4F16 /* NSOutlineView+Selection.swift in Sources */,
 				E37E47CA1C73F2710077ECD7 /* DatabaseManager.swift in Sources */,
 				E36072701C74E40500914C2C /* DocumentTabController.swift in Sources */,
 				E3274FCB1C75A1BF000B6A84 /* File.swift in Sources */,
