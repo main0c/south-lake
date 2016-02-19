@@ -32,8 +32,8 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     
     dynamic var selectedObjects: [DataSource] = [] {
         didSet {
-            bindTitleForSelection(selectedObjects)
-            bindIconForSelection(selectedObjects)
+            bindTitle(selectedObjects)
+            bindIcon(selectedObjects)
         }
     }
     
@@ -102,7 +102,7 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     
     // MARK: - Utilities
     
-    func bindTitleForSelection(selection: [DataSource]) {
+    func bindTitle(selection: [DataSource]) {
         unbind("title")
         
         switch selection.count {
@@ -115,7 +115,7 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         }
     }
     
-    func bindIconForSelection(selection: [DataSource]) {
+    func bindIcon(selection: [DataSource]) {
         unbind("icon") // icons don't really change
         
         switch selection.count {
