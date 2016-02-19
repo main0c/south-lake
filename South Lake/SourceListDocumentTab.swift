@@ -59,7 +59,7 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         let mainViewController = NSStoryboard(name: "MarkdownEditor", bundle: nil).instantiateInitialController() as! NSViewController
         let mainItem = NSSplitViewItem(viewController: mainViewController)
         
-        closeInspector()
+        closeInspector() // FIX: why close inspector first?
         
         removeSplitViewItem(splitViewItems[1])
         insertSplitViewItem(mainItem, atIndex: 1)

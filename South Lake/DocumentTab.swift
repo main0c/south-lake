@@ -13,6 +13,8 @@ protocol DocumentTab: class, Databasable {
     var databaseManager: DatabaseManager! { get set }
     var searchService: BRSearchService! { get set }
     
+    var selectedObjects: [DataSource] { get set }
+    
     var title: String? { get set }
     var icon: NSImage? { get set }
     
