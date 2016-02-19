@@ -19,7 +19,7 @@ class SourceListViewController: NSViewController, Databasable {
     private var draggedNodes : [NSTreeNode]?
     
     dynamic var selectedObjects: [DataSource] = []
-        
+    
     var databaseManager: DatabaseManager! {
         didSet {
             loadData()
@@ -160,22 +160,181 @@ class SourceListViewController: NSViewController, Databasable {
         }
     }
     
-    // MARK: - IBAction
+    // MARK: - IBAction: Refactor
     
     @IBAction func createNewFolder(sender: AnyObject) {
         // Create an untitled folder
+        
+        let folder = Folder(forNewDocumentInDatabase: databaseManager.database)
+        folder.title = NSLocalizedString("Untitled", comment: "Name for new untitled folder")
+        folder.icon_name = "folder-icon"
+        
+        do { try folder.save() } catch {
+            print(error)
+            return
+        }
+        
+        // Create a node representing that folder
+        
+        let folderNode = folder.treeNode()
+        
+        // Either add the folder to the Folders section or the selected folder
+        
+        var parent: DataSource!
+        
+        let row = outlineView.selectedRow
+        var node = outlineView.itemAtRow(row) as? NSTreeNode
+        
+        if  let node = node,
+            let item = node.representedObject as? DataSource where (item is Folder && !(item is SmartFolder)) {
+            parent = item
+        } else {
+            parent = root.childNodes![1].representedObject as! DataSource
+            node = nil
+        }
+        
+        // Update the parent
+        
+        parent.children.append(folder)
+        
+        do { try parent.save() } catch {
+            print(error)
+            return
+        }
+        
+        // Update the node representation
+        
+        if (node == nil) {
+            node = root.childNodes![1]
+        }
+        
+        node!.mutableChildNodes.addObject(folderNode)
+        
+        // Refresh the interface and select/edit the item
+        
+        outlineView.reloadItem(node, reloadChildren: true)
+        outlineView.expandItem(node)
+        
+        outlineView.selectRowIndexes(NSIndexSet(index: outlineView.rowForItem(folderNode)), byExtendingSelection: false)
+        outlineView.editColumn(0, row: outlineView.rowForItem(folderNode), withEvent: nil, select: true)
     }
     
     @IBAction func createNewSmartFolder(sender: AnyObject) {
         // Create an untitled smart folder
+        
+        let folder = SmartFolder(forNewDocumentInDatabase: databaseManager.database)
+        folder.title = NSLocalizedString("Untitled", comment: "Name for new untitled smart folder")
+        folder.icon_name = "smart-folder-icon"
+        
+        do { try folder.save() } catch {
+            print(error)
+            return
+        }
+        
+        // Create a node representing that folder
+        
+        let folderNode = folder.treeNode()
+        
+        // Add the folder to the Smart Folders section
+        
+        let parent = root.childNodes![2].representedObject as! DataSource
+        parent.children.append(folder)
+        
+        do { try parent.save() } catch {
+            print(error)
+            return
+        }
+        
+        // Update the node representation
+        
+        let node = root.childNodes![2]
+        node.mutableChildNodes.addObject(folderNode)
+        
+        // Refresh the interface and select/edit the item
+        
+        outlineView.reloadItem(node, reloadChildren: true)
+        outlineView.expandItem(node)
+        
+        outlineView.selectRowIndexes(NSIndexSet(index: outlineView.rowForItem(folderNode)), byExtendingSelection: false)
+        outlineView.editColumn(0, row: outlineView.rowForItem(folderNode), withEvent: nil, select: true)
     }
     
     @IBAction func createNewMarkdownDocument(sender: AnyObject) {
-        // Create an untitled document
+        // Create an untitled markdown document
+        
+        let document = File(forNewDocumentInDatabase: databaseManager.database)
+        document.title = NSLocalizedString("Untitled", comment: "Name for new untitled document")
+        document.icon_name = "markdown-document-icon"
+        
+        do { try document.save() } catch {
+            print(error)
+            return
+        }
+        
+        // Create a node representing that folder
+        
+        let documentNode = document.treeNode()
+        
+        // Either add the document to the Shortcuts section or the selected folder
+        
+        var parent: DataSource!
+        
+        let row = outlineView.selectedRow
+        var node = outlineView.itemAtRow(row) as? NSTreeNode
+        
+        if  let node = node,
+            let item = node.representedObject as? DataSource where item is Folder {
+            parent = item
+            print("folder selected: %@", item)
+        } else {
+            parent = root.childNodes![0].representedObject as! DataSource
+            node = nil
+        }
+        
+        // Update the parent
+        
+        parent.children.append(document)
+        
+        do { try parent.save() } catch {
+            print(error)
+            return
+        }
+        
+        // Update the node representation
+        
+        if (node == nil) {
+            node = root.childNodes![0]
+        }
+        
+        node!.mutableChildNodes.addObject(documentNode)
+        
+        // Refresh the interface and select/edit the item
+        
+        outlineView.reloadItem(node, reloadChildren: true)
+        outlineView.expandItem(node)
+        
+        outlineView.selectRowIndexes(NSIndexSet(index: outlineView.rowForItem(documentNode)), byExtendingSelection: false)
+        outlineView.editColumn(0, row: outlineView.rowForItem(documentNode), withEvent: nil, select: true)
     }
     
     @IBAction func userDidEndEditingCell(sender: NSTextField) {
         // Update data source title
+        
+        let row = outlineView.rowForView(sender)
+        guard row != -1 else {
+            return
+        }
+            
+        if  let node = outlineView.itemAtRow(row) as? NSTreeNode,
+            let item = node.representedObject as? DataSource   {
+            
+            item.title = sender.stringValue
+            
+            do { try item.save() } catch {
+                print(error)
+                return
+            }
+        }
     }
 }
 

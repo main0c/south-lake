@@ -32,8 +32,8 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     
     dynamic var selectedObjects: [DataSource] = [] {
         didSet {
-            title = titleForSelection(selectedObjects)
-            icon = iconForSelection(selectedObjects)
+            bindTitleForSelection(selectedObjects)
+            bindIconForSelection(selectedObjects)
         }
     }
     
@@ -102,25 +102,29 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     
     // MARK: - Utilities
     
-    func titleForSelection(selection: [DataSource]) -> String? {
+    func bindTitleForSelection(selection: [DataSource]) {
+        unbind("title")
+        
         switch selection.count {
         case 0:
-            return NSLocalizedString("No Selection", comment: "")
+            title = NSLocalizedString("No Selection", comment: "")
         case 1:
-            return selectedObjects[0].title
+            bind("title", toObject: selectedObjects[0], withKeyPath: "title", options: [:])
         default:
-            return NSLocalizedString("Multiple Selection", comment: "")
+            title = NSLocalizedString("Multiple Selection", comment: "")
         }
     }
     
-    func iconForSelection(selection: [DataSource]) -> NSImage? {
+    func bindIconForSelection(selection: [DataSource]) {
+        unbind("icon") // icons don't really change
+        
         switch selection.count {
         case 0:
-            return nil
+            icon = nil
         case 1:
-            return selectedObjects[0].icon ?? NSImage(named: selectedObjects[0].icon_name)
+            icon = selectedObjects[0].icon ?? NSImage(named: selectedObjects[0].icon_name)
         default:
-            return nil
+            icon = nil
         }
     }
 }
