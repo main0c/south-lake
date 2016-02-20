@@ -34,6 +34,7 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         didSet {
             bindTitle(selectedObjects)
             bindIcon(selectedObjects)
+            bindEditor(selectedObjects)
         }
     }
     
@@ -102,6 +103,30 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     }
     
     // MARK: - Utilities
+    
+    func loadEditor(file: File) {
+        // Set up the editor
+        
+        let mainViewController = NSStoryboard(name: "MarkdownEditor", bundle: nil).instantiateInitialController() as! NSViewController
+        let mainItem = NSSplitViewItem(viewController: mainViewController)
+        
+        removeSplitViewItem(splitViewItems[1])
+        insertSplitViewItem(mainItem, atIndex: 1)
+    }
+    
+    func clearEditor() {
+    
+    }
+    
+    func bindEditor(selection: [DataSource]) {
+        if selection.count == 0 {
+            clearEditor()
+        } else if selection.count == 1 && selection[0] is File {
+            loadEditor(selection[0] as! File)
+        } else {
+            // Leave editor alone if multiple selection or folder
+        }
+    }
     
     func bindTitle(selection: [DataSource]) {
         unbind("title")

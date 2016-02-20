@@ -151,6 +151,11 @@ class Document: NSDocument, Databasable {
                 return
             }
             
+            guard let stateURL = self.stateURL(url) else {
+                completionHandler(DocumentError.InvalidStateURL as NSError)
+                return
+            }
+            
             // Hide extension: should be unnecessary
             
             do { try NSFileManager().setAttributes([NSFileExtensionHidden: true], ofItemAtPath: path) } catch {
@@ -166,7 +171,7 @@ class Document: NSDocument, Databasable {
                 completionHandler(error as NSError)
             }
             
-            // Initialize database and search
+            // Initialize database, search, state
             
             do { try self.initializeDatabase(databaseURL) } catch {
                 completionHandler(error as NSError)
@@ -176,8 +181,13 @@ class Document: NSDocument, Databasable {
                 completionHandler(error as NSError)
             }
             
+            do { try self.initializeState(stateURL) } catch {
+                completionHandler(error as NSError)
+            }
+            
             self.bootstrapDatabase()
             self.bootstrapLucene()
+            self.bootstrapState()
             
             // Done
             
@@ -223,8 +233,6 @@ class Document: NSDocument, Databasable {
             guard results.count == 0 else {
                 return
             }
-            
-            print("bootstraping database")
             
             // Shortcuts section
             
@@ -374,7 +382,19 @@ class Document: NSDocument, Databasable {
         return NSURL(fileURLWithPath:path)
     }
     
+    func initializeState(url: NSURL) throws {
+        try saveState()
+    }
+    
+    func bootstrapState() {
+    
+    }
+    
     func state() -> Dictionary<String,AnyObject> {
+        guard windowControllers.count != 0 else {
+            return [:]
+        }
+        
         return ["WindowController": (windowControllers[0] as! DocumentWindowController).state()]
     }
     
