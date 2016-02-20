@@ -66,9 +66,9 @@ class SourceListViewController: NSViewController, Databasable {
         outlineView.sizeLastColumnToFit()
     }
     
-    deinit {
+    func willClose() {
         treeController.unbind("content")
-        self.unbind("selectedObjects")
+        unbind("selectedObjects")
     }
     
     func loadData() {
@@ -157,7 +157,7 @@ class SourceListViewController: NSViewController, Databasable {
         
         let folder = Folder(forNewDocumentInDatabase: databaseManager.database)
         folder.title = NSLocalizedString("Untitled", comment: "Name for new untitled folder")
-        folder.icon = NSImage(named: "folder_icon")
+        folder.icon = NSImage(named: "folder-icon")
         
         do { try folder.save() } catch {
             print(error)
@@ -192,7 +192,7 @@ class SourceListViewController: NSViewController, Databasable {
         
         let folder = SmartFolder(forNewDocumentInDatabase: databaseManager.database)
         folder.title = NSLocalizedString("Untitled", comment: "Name for new untitled smart folder")
-        folder.icon = NSImage(named:"smart_folder_icon")
+        folder.icon = NSImage(named:"smart-folder-icon")
         
         do { try folder.save() } catch {
             print(error)
@@ -219,7 +219,7 @@ class SourceListViewController: NSViewController, Databasable {
         
         let file = File(forNewDocumentInDatabase: databaseManager.database)
         file.title = NSLocalizedString("Untitled", comment: "Name for new untitled document")
-        file.icon = NSImage(named:"markdown_document_icon")
+        file.icon = NSImage(named:"markdown-document-icon")
         
         do { try file.save() } catch {
             print(error)

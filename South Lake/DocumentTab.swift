@@ -20,4 +20,6 @@ protocol DocumentTab: class, Databasable {
     
     func state() -> Dictionary<String,AnyObject>
     func restoreState(state: Dictionary<String,AnyObject>)
+    
+    func willClose()
 }

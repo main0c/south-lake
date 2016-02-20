@@ -65,8 +65,9 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         insertSplitViewItem(mainItem, atIndex: 1)
     }
     
-    deinit {
+    func willClose() {
         unbind("selectedObjects")
+        sourceListController.willClose()
     }
     
     // MARK: - Document State
