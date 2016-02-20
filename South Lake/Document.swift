@@ -228,7 +228,7 @@ class Document: NSDocument, Databasable {
             
             // Shortcuts section
             
-                var children: [CBLModel] = []
+                var children: [DataSource] = []
             
                 let doc1 = File(forNewDocumentInDatabase: databaseManager.database)
                 doc1.title = "Welcome to Journler"
@@ -252,7 +252,7 @@ class Document: NSDocument, Databasable {
             
             // Folders
             
-                var folders: [CBLModel] = []
+                var folders: [DataSource] = []
             
                 let folder1 = Folder(forNewDocumentInDatabase: databaseManager.database)
                 folder1.title = "Important Folder"
@@ -276,7 +276,7 @@ class Document: NSDocument, Databasable {
             
             // Smart folders
             
-                var smarts: [CBLModel] = []
+                var smarts: [DataSource] = []
             
                 let smart1 = SmartFolder(forNewDocumentInDatabase: databaseManager.database)
                 smart1.title = "A Smart Folder"

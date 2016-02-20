@@ -9,16 +9,21 @@
 import Cocoa
 
 struct SourceListDragTypes {
-    static var sourceItemPasteboardType = "SourceItemPasteboardType"
+    static var dataSourcePasteboardType = "DataSourcePasteboardType"
 }
 
 class SourceListViewController: NSViewController, Databasable {
+    @IBOutlet var treeController: NSTreeController!
     @IBOutlet var outlineView: NSOutlineView!
-
-    var root: NSTreeNode = NSTreeNode(representedObject: nil)
-    private var draggedNodes : [NSTreeNode]?
     
     dynamic var selectedObjects: [DataSource] = []
+    dynamic var content: [DataSource] = []
+    
+    private var draggedNodes : [NSTreeNode]?
+    
+    var selectedObject: DataSource? {
+        return ( selectedObjects.count == 1 ) ? selectedObjects[0] : nil
+    }
     
     var databaseManager: DatabaseManager! {
         didSet {
@@ -36,10 +41,16 @@ class SourceListViewController: NSViewController, Databasable {
         super.viewDidLoad()
         // Do view setup here.
         
+        // Bindings: memory consequences?
+        
+        self.bind("selectedObjects", toObject: treeController, withKeyPath: "selectedObjects", options: [:])
+        treeController.bind("content", toObject: self, withKeyPath: "content", options: [:])
+        
         // Load data: defer so that the application can bootstrap the database
         
         NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
             self.loadData()
+            self.outlineView.expandItem(nil, expandChildren: true)
         }
         
         // Set up outline view
@@ -48,19 +59,22 @@ class SourceListViewController: NSViewController, Databasable {
         outlineView.setDraggingSourceOperationMask(.Every, forLocal: false)
         
         outlineView.registerForDraggedTypes([
-            SourceListDragTypes.sourceItemPasteboardType,
+            SourceListDragTypes.dataSourcePasteboardType,
             kUTTypeFileURL as String
         ])
         
         outlineView.sizeLastColumnToFit()
     }
     
+    deinit {
+        treeController.unbind("content")
+        self.unbind("selectedObjects")
+    }
+    
     func loadData() {
         guard (databaseManager as DatabaseManager?) != nil else {
             return
         }
-        
-        root = NSTreeNode(representedObject: nil)
         
         do {
             let query = databaseManager.sectionQuery
@@ -78,61 +92,37 @@ class SourceListViewController: NSViewController, Databasable {
                 return x.index < y.index
             })
             
-            // Build the tree: see SourceItem extension at bottom
-            
-            for section in sections {
-                let node = section.treeNode()
-                root.mutableChildNodes.addObject(node)
-            }
-            
-            outlineView.reloadItem(nil)
-            outlineView.expandItem(nil, expandChildren: true)
-            
+            self.content = sections
         } catch {
             print(error)
         }
+
     }
     
     override func keyDown(theEvent: NSEvent) {
         if theEvent.charactersIgnoringModifiers == String(Character(UnicodeScalar(NSDeleteCharacter))) {
-            for row in outlineView.selectedRowIndexes.reverse() {
-                if let node = outlineView.itemAtRow(row) as? NSTreeNode {
-                    outlineView.deselectRow(row)
-                    deleteItem(node)
-                } else {
-                    NSBeep()
-                }
+            for item in treeController.selectedObjects as! [DataSource] {
+                deleteItem(item)
             }
         }
     }
     
-    func deleteItem(node: NSTreeNode) {
-        let item = node.representedObject as! DataSource
-        
+    func deleteItem(item: DataSource) {
         guard !(item is Section) else {
-            return
+            NSBeep() ; return
         }
         
-        // Remove the item from the parent, every item has a parent
+        guard item.parent != nil else {
+            NSBeep() ; return
+        }
         
-        if  let parentNode = node.parentNode,
-            let parent = parentNode.representedObject as? DataSource {
-            let index = parent.children.indexOf(item)!
-            
-            parentNode.mutableChildNodes.removeObjectAtIndex(index)
-            parent.children.removeAtIndex(index)
-            
-            do { try parent.save() } catch {
-                print(error)
-                return
-            }
-            
-            do { try item.deleteDocumentAndChildren() } catch {
-                print(error)
-                return
-            }
-            
-            outlineView.reloadItem(parentNode, reloadChildren: true)
+        item.parent.mutableArrayValueForKey("children").removeObject(item)
+        
+        do {
+            try item.parent.save()
+            try item.deleteWithChildren()
+        } catch {
+            print(error)
         }
     }
     
@@ -154,7 +144,7 @@ class SourceListViewController: NSViewController, Databasable {
             let source = info.draggingSource() as! NSOutlineView
             return source == outlineView
                 && draggedNodes != nil
-                && info.draggingPasteboard().availableTypeFromArray([SourceListDragTypes.sourceItemPasteboardType]) != nil
+                && info.draggingPasteboard().availableTypeFromArray([SourceListDragTypes.dataSourcePasteboardType]) != nil
         } else {
             return false
         }
@@ -167,56 +157,34 @@ class SourceListViewController: NSViewController, Databasable {
         
         let folder = Folder(forNewDocumentInDatabase: databaseManager.database)
         folder.title = NSLocalizedString("Untitled", comment: "Name for new untitled folder")
-        folder.icon_name = "folder-icon"
+        folder.icon = NSImage(named: "folder_icon")
         
         do { try folder.save() } catch {
             print(error)
             return
         }
         
-        // Create a node representing that folder
-        
-        let folderNode = folder.treeNode()
-        
         // Either add the folder to the Folders section or the selected folder
         
-        var parent: DataSource!
+        var parent: DataSource
+        var indexPath: NSIndexPath
         
-        let row = outlineView.selectedRow
-        var node = outlineView.itemAtRow(row) as? NSTreeNode
-        
-        if  let node = node,
-            let item = node.representedObject as? DataSource where (item is Folder && !(item is SmartFolder)) {
+        if let item = selectedObject where (item is Folder && !(item is SmartFolder)) {
             parent = item
+            indexPath = treeController.selectionIndexPath!.indexPathByAddingIndex(parent.children.count)
         } else {
-            parent = root.childNodes![1].representedObject as! DataSource
-            node = nil
+            parent = content[1]
+            indexPath = NSIndexPath(index: 1).indexPathByAddingIndex(parent.children.count)
         }
         
-        // Update the parent
-        
-        parent.children.append(folder)
+        parent.mutableArrayValueForKey("children").addObject(folder)
         
         do { try parent.save() } catch {
             print(error)
             return
         }
         
-        // Update the node representation
-        
-        if (node == nil) {
-            node = root.childNodes![1]
-        }
-        
-        node!.mutableChildNodes.addObject(folderNode)
-        
-        // Refresh the interface and select/edit the item
-        
-        outlineView.reloadItem(node, reloadChildren: true)
-        outlineView.expandItem(node)
-        
-        outlineView.selectRowIndexes(NSIndexSet(index: outlineView.rowForItem(folderNode)), byExtendingSelection: false)
-        outlineView.editColumn(0, row: outlineView.rowForItem(folderNode), withEvent: nil, select: true)
+        editItem(indexPath)
     }
     
     @IBAction func createNewSmartFolder(sender: AnyObject) {
@@ -224,97 +192,61 @@ class SourceListViewController: NSViewController, Databasable {
         
         let folder = SmartFolder(forNewDocumentInDatabase: databaseManager.database)
         folder.title = NSLocalizedString("Untitled", comment: "Name for new untitled smart folder")
-        folder.icon_name = "smart-folder-icon"
+        folder.icon = NSImage(named:"smart_folder_icon")
         
         do { try folder.save() } catch {
             print(error)
             return
         }
         
-        // Create a node representing that folder
+        // Either add the folder to the Smart Folders section or the selected folder
         
-        let folderNode = folder.treeNode()
+        let parent = content[2]
+        let indexPath = NSIndexPath(index: 2).indexPathByAddingIndex(parent.children.count)
         
-        // Add the folder to the Smart Folders section
-        
-        let parent = root.childNodes![2].representedObject as! DataSource
-        parent.children.append(folder)
+        parent.mutableArrayValueForKey("children").addObject(folder)
         
         do { try parent.save() } catch {
             print(error)
             return
         }
         
-        // Update the node representation
-        
-        let node = root.childNodes![2]
-        node.mutableChildNodes.addObject(folderNode)
-        
-        // Refresh the interface and select/edit the item
-        
-        outlineView.reloadItem(node, reloadChildren: true)
-        outlineView.expandItem(node)
-        
-        outlineView.selectRowIndexes(NSIndexSet(index: outlineView.rowForItem(folderNode)), byExtendingSelection: false)
-        outlineView.editColumn(0, row: outlineView.rowForItem(folderNode), withEvent: nil, select: true)
+        editItem(indexPath)
     }
     
     @IBAction func createNewMarkdownDocument(sender: AnyObject) {
         // Create an untitled markdown document
         
-        let document = File(forNewDocumentInDatabase: databaseManager.database)
-        document.title = NSLocalizedString("Untitled", comment: "Name for new untitled document")
-        document.icon_name = "markdown-document-icon"
+        let file = File(forNewDocumentInDatabase: databaseManager.database)
+        file.title = NSLocalizedString("Untitled", comment: "Name for new untitled document")
+        file.icon = NSImage(named:"markdown_document_icon")
         
-        do { try document.save() } catch {
+        do { try file.save() } catch {
             print(error)
             return
         }
         
-        // Create a node representing that folder
+        // Either add the file to the Shortcuts section or the selected folder
         
-        let documentNode = document.treeNode()
+        var parent: DataSource
+        var indexPath: NSIndexPath
         
-        // Either add the document to the Shortcuts section or the selected folder
-        
-        var parent: DataSource!
-        
-        let row = outlineView.selectedRow
-        var node = outlineView.itemAtRow(row) as? NSTreeNode
-        
-        if  let node = node,
-            let item = node.representedObject as? DataSource where item is Folder {
+        if let item = selectedObject where item is Folder {
             parent = item
-            print("folder selected: %@", item)
+            indexPath = treeController.selectionIndexPath!.indexPathByAddingIndex(parent.children.count)
         } else {
-            parent = root.childNodes![0].representedObject as! DataSource
-            node = nil
+            parent = content[0]
+            indexPath = NSIndexPath(index: 0).indexPathByAddingIndex(parent.children.count)
         }
         
-        // Update the parent
-        
-        parent.children.append(document)
+        parent.mutableArrayValueForKey("children").addObject(file)
         
         do { try parent.save() } catch {
             print(error)
             return
         }
         
-        // Update the node representation
-        
-        if (node == nil) {
-            node = root.childNodes![0]
-        }
-        
-        node!.mutableChildNodes.addObject(documentNode)
-        
-        // Refresh the interface and select/edit the item
-        
-        outlineView.reloadItem(node, reloadChildren: true)
-        outlineView.expandItem(node)
-        
-        outlineView.selectRowIndexes(NSIndexSet(index: outlineView.rowForItem(documentNode)), byExtendingSelection: false)
-        outlineView.editColumn(0, row: outlineView.rowForItem(documentNode), withEvent: nil, select: true)
+        editItem(indexPath)
     }
     
     @IBAction func userDidEndEditingCell(sender: NSTextField) {
@@ -328,13 +260,16 @@ class SourceListViewController: NSViewController, Databasable {
         if  let node = outlineView.itemAtRow(row) as? NSTreeNode,
             let item = node.representedObject as? DataSource   {
             
-            item.title = sender.stringValue
-            
             do { try item.save() } catch {
                 print(error)
                 return
             }
         }
+    }
+    
+    func editItem(indexPath: NSIndexPath) {
+        treeController.setSelectionIndexPaths([indexPath])
+        outlineView.editColumn(0, row: outlineView.selectedRow, withEvent: nil, select: true)
     }
 }
 
@@ -342,76 +277,186 @@ class SourceListViewController: NSViewController, Databasable {
 
 extension SourceListViewController : NSOutlineViewDataSource {
     
-    func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {
-        if let node = item as? NSTreeNode {
-            if let children = node.childNodes {
-                return children.count
-            } else {
-                return 0
+    // Handled by Tree Controller
+    
+    // func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int
+    // func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject
+    // func outlineView(outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool
+    
+    // MARK: - Drag and Drop
+    
+    func outlineView(outlineView: NSOutlineView, validateDrop info: NSDraggingInfo, proposedItem item: AnyObject?, proposedChildIndex index: Int) -> NSDragOperation {
+        var operation = NSDragOperation.Generic
+        
+        // Depends on what we are dragging and where we are dragging it to
+        
+        if  let item = item as? NSTreeNode,
+            let object = item.representedObject as? DataSource {
+        
+            switch object {
+            case _ as File:
+                operation = .None
+            case _ as Section:
+                operation = .Move
+                if index == NSOutlineViewDropOnItemIndex {
+                    outlineView.setDropItem(item, dropChildIndex: 0)
+                }
+            case _ as Folder:
+                if dragIsLocalReorder(info) {
+                    operation = itemIsDescendant(item, parents: draggedNodes!)
+                        ? .None
+                        : .Move
+                } else {
+                    operation = .Generic
+                }
+            default:
+                operation = dragIsLocalReorder(info)
+                    ? .None
+                    : .Generic
             }
+        }
+        
+        return operation
+    }
+    
+    func outlineView(outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo, item: AnyObject?, childIndex index: Int) -> Bool {
+        let targetIndex = (index == NSOutlineViewDropOnItemIndex) ? 0 : index
+        
+        if dragIsLocalReorder(info) {
+            return performLocalReorderDrag(info, parent: item as? NSTreeNode, index: targetIndex)
         } else {
-            if let children = root.childNodes {
-                return children.count
-            } else {
-                return 0
-            }
+            return performExternalDrag(info, parent: item as? NSTreeNode, index: targetIndex)
         }
     }
     
-    func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject {
-        if let node = item as? NSTreeNode {
-            return node.childNodes![index]
-        } else {
-            return root.childNodes![index]
-        }
-    }
+    // Local Reordering Drag Source
     
-    func outlineView(outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool {
+    func outlineView(outlineView: NSOutlineView, pasteboardWriterForItem item: AnyObject) -> NSPasteboardWriting? {
         let object = item.representedObject
-        switch object {
-        case let section as Section:
-            return section.children.count != 0
-        case let folder as Folder:
-            return folder.children.count != 0
-        default:
+        return object as? NSPasteboardWriting
+    }
+    
+    func outlineView(outlineView: NSOutlineView, draggingSession session: NSDraggingSession, willBeginAtPoint screenPoint: NSPoint, forItems draggedItems: [AnyObject]) {
+        session.draggingPasteboard.setData(NSData(), forType: SourceListDragTypes.dataSourcePasteboardType)
+        self.draggedNodes = draggedItems as? [NSTreeNode]
+    }
+    
+    func outlineView(outlineView: NSOutlineView, draggingSession session: NSDraggingSession, endedAtPoint screenPoint: NSPoint, operation: NSDragOperation) {
+        self.draggedNodes = nil
+    }
+    
+    // Actually Perform Drag
+    // TODO: sporadic drag bug still - duplication
+    
+    func performLocalReorderDrag(info: NSDraggingInfo, parent: NSTreeNode?, index: Int) -> Bool {
+        guard parent != nil else {
             return false
         }
+        guard draggedNodes != nil else {
+            return false
+        }
+        
+        // For each dragged item, remove it from its parent, add it to the new target
+        
+        let parentItem = parent?.representedObject as! DataSource
+        var targetIndex = index
+        
+        for draggedNode in draggedNodes! {
+            let draggedNodeParent = draggedNode.parentNode!
+            
+            let draggedItem = draggedNode.representedObject as! DataSource
+            let draggedItemParent = draggedNodeParent.representedObject as! DataSource
+            
+            let indexInParent = draggedItemParent.children.indexOf(draggedItem)!
+            
+            draggedItemParent.mutableArrayValueForKey("children").removeObjectAtIndex(indexInParent)
+            
+            // If moving within same parent, adjust target index accordingly
+            
+            if draggedItemParent == parentItem && targetIndex > indexInParent {
+                targetIndex--
+            }
+            
+            parentItem.mutableArrayValueForKey("children").insertObject(draggedItem, atIndex: targetIndex)
+            
+            targetIndex++
+        }
+        
+        // Save all changes
+        
+        do { try databaseManager.database?.saveAllModels() } catch {
+            print(error)
+        }
+        
+        // Reload the whole thing, expand target
+        
+        outlineView.reloadItem(nil, reloadChildren: true)
+        outlineView.expandItem(parent)
+        
+        return true
     }
     
-    func outlineView(outlineView: NSOutlineView, viewForTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
-        let object = item.representedObject
-        switch object {
-        case let section as Section:
-            let view = outlineView.makeViewWithIdentifier("HeaderCell", owner: self) as! NSTableCellView
-            view.textField?.stringValue = section.title
-            return view
-        case let folder as Folder:
-            let view = outlineView.makeViewWithIdentifier("DataCell", owner: self) as! NSTableCellView
-            view.textField?.stringValue = folder.title
-            if let icon = folder.icon {
-                view.imageView?.image = icon
-            } else {
-                view.imageView?.image = NSImage(named: folder.icon_name)
-            }
-            return view
-        case let file as File:
-            let view = outlineView.makeViewWithIdentifier("DataCell", owner: self) as! NSTableCellView
-            view.textField?.stringValue = file.title
-            if let icon = file.icon {
-                view.imageView?.image = icon
-            } else {
-                view.imageView?.image = NSImage(named: file.icon_name)
-            }
-            return view
-        default:
-            return nil
-        }
+    func performExternalDrag(info: NSDraggingInfo, var parent: NSTreeNode?, var index: Int) -> Bool {
+        return true
+//        var targetIndex = index
+//        
+//        // if parent is nil, retarget to shortcuts section
+//        
+//        if parent == nil {
+//            parent = treeController.arrangedObjects.childNodes!![0] // not really want i want to do
+//            index = 0
+//        }
+//        
+//        // build source item and tree node for each dragged item
+//        
+//        info.enumerateDraggingItemsWithOptions(NSDraggingItemEnumerationOptions(), forView: outlineView, classes: [DataSourcePasteboardReader.self], searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey:true]) { (draggingItem, index, stop) -> Void in
+//            
+//            let itemReader = draggingItem.item as! DataSourcePasteboardReader
+//            guard itemReader.item != nil else {
+//                print("unable to produce source item for pboard item")
+//                return
+//            }
+//            
+//            let parentItem = parent!.representedObject as! DataSource
+//            let item = itemReader.item!
+//            
+//            parentItem.mutableArrayValueForKey("children").insertObject(item, atIndex: targetIndex)
+//            
+//            targetIndex++
+//        }
+//        
+//        // Save all changes
+//        
+//        do { try databaseManager.database?.saveAllModels() } catch {
+//            print(error)
+//        }
+//        
+//        // Reload the parent and expand it
+//        
+//        outlineView.reloadItem(parent, reloadChildren: true)
+//        outlineView.expandItem(parent)
+//        
+//        return true
     }
 }
 
 // MARK: - NSOutlineViewDelegate
 
 extension SourceListViewController : NSOutlineViewDelegate {
+    
+    func outlineView(outlineView: NSOutlineView, viewForTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
+        let object = item.representedObject
+        
+        switch object {
+        case _ as Section:
+            return outlineView.makeViewWithIdentifier("HeaderCell", owner: self) as! NSTableCellView
+        case _ as Folder,
+             _ as File:
+            return outlineView.makeViewWithIdentifier("DataCell", owner: self) as! NSTableCellView
+        default:
+            return nil
+        }
+    }
     
     func outlineView(outlineView: NSOutlineView, isGroupItem item: AnyObject) -> Bool {
         guard item is NSTreeNode else {
@@ -441,20 +486,5 @@ extension SourceListViewController : NSOutlineViewDelegate {
     
     func outlineViewSelectionDidChange(notification: NSNotification) {
         selectedObjects = outlineView.selectedObjects as! [DataSource]
-    }
-}
-
-// MARK: - DataSource TreeNode Extension
-
-extension DataSource {
-    func treeNode() -> NSTreeNode {
-        let node = NSTreeNode(representedObject: self)
-        if children != nil {
-            for child in children as! [DataSource] {
-                let childNode = child.treeNode()
-                node.mutableChildNodes.addObject(childNode)
-            }
-        }
-        return node
     }
 }

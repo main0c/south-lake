@@ -15,3 +15,7 @@ class Section: DataSource {
     
     @NSManaged var index: Int
 }
+
+extension Section {
+    var leaf: Bool { return false }
+}

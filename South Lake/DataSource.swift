@@ -12,6 +12,8 @@ import Cocoa
 @objc(DataSource)
 class DataSource: CBLModel {
     
+    // TODO: remove references to icon
+    
     class var model_file_extension: NSString { return model_uti as String }
     class var model_mime_type: NSString { return "private/source-item" }
     class var model_uti: NSString { return "private.source-item" }
@@ -27,13 +29,15 @@ class DataSource: CBLModel {
     @NSManaged var mime_type: String
     @NSManaged var uti: String
     
+    weak var parent: DataSource!
+    
     // A source item can in general contain children of any type
     // children <-> children_ids
     
     @NSManaged var children_ids: [String]
-    private var _children: [CBLModel] = []
+    private var _children: [DataSource] = []
     
-    var children: [CBLModel]! {
+    var children: [DataSource]! {
         get {
             return _children
         }
@@ -44,23 +48,35 @@ class DataSource: CBLModel {
             for child in _children {
                 let id = child.getValueOfProperty("_id") as? String
                 assert(id != nil, "child must have a document id, you must save it first")
+                
                 theChildrenIds.append(id!)
+                child.parent = self
             }
             
             children_ids = theChildrenIds
         }
     }
     
-    // The icon is saved as an attachment
+    // The icon is saved as an attachment, but cache it
+    
+    private var _icon: NSImage?
     
     var icon: NSImage? {
         get {
+            guard _icon == nil else {
+                return _icon
+            }
+            
             if  let attachment = attachmentNamed("icon"),
                 let content = attachment.content,
                 let image = NSImage(data: content) {
+                _icon = image
                 return image
             } else {
-                return nil
+                
+                // TODO: don't do it this way
+                return NSImage(named: icon_name)
+                // return nil
             }
         }
         set (value) {
@@ -69,8 +85,10 @@ class DataSource: CBLModel {
                 let bitmap = NSBitmapImageRep(data: rep),
                 let data = bitmap.representationUsingType(.NSPNGFileType, properties: [:]) {
                 setAttachmentNamed("icon", withContentType: "image/png", content: data)
+                _icon = value
             } else {
                 removeAttachmentNamed("icon")
+                _icon = nil
             }
         }
     }
@@ -110,7 +128,7 @@ class DataSource: CBLModel {
             tags = []
         }
         
-        if children as [CBLModel]? == nil {
+        if children as [DataSource]? == nil {
             children = []
         }
     }
@@ -120,12 +138,12 @@ class DataSource: CBLModel {
         
         // convert children_ids to children model objects
         
-        var theChildren: [CBLModel] = []
+        var theChildren: [DataSource] = []
         
         for id in children_ids {
             let doc = database?.documentWithID(id)
             let child = CBLModel(forDocument: doc!)
-            theChildren.append(child)
+            theChildren.append(child as! DataSource)
         }
         
         children = theChildren
@@ -137,7 +155,7 @@ class DataSource: CBLModel {
         updated_at = NSDate()
     }
     
-    func deleteDocumentAndChildren() throws {
+    func deleteWithChildren() throws {
         if let children = children {
             for child in children {
                 try child.document?.deleteDocument()
@@ -146,3 +164,89 @@ class DataSource: CBLModel {
         try document?.deleteDocument()
     }
 }
+
+// MARK: - NSPasteboardWriting
+
+extension DataSource: NSPasteboardWriting {
+    
+    @objc func writableTypesForPasteboard(pasteboard: NSPasteboard) -> [String] {
+        let itemTypes = [NSPasteboardTypeString]
+        return itemTypes
+    }
+    
+    @objc func writingOptionsForType(type: String, pasteboard: NSPasteboard) -> NSPasteboardWritingOptions {
+        if type == NSPasteboardTypeString {
+            return NSPasteboardWritingOptions()
+        } else {
+            return NSPasteboardWritingOptions()
+        }
+    }
+    
+    @objc func pasteboardPropertyListForType(type: String) -> AnyObject? {
+        if type == NSPasteboardTypeString {
+            return title
+        } else {
+            return ""
+        }
+    }
+}
+
+// MARK: - NSPasteboardReading
+
+//class DataSourcePasteboardReader: NSObject, NSPasteboardReading {
+//    
+//    var item: DataSource?
+//    
+//    static func readableTypesForPasteboard(pasteboard: NSPasteboard) -> [String] {
+//        return [kUTTypeFileURL as String]
+//    }
+//    
+//    static func readingOptionsForType(type: String, pasteboard: NSPasteboard) -> NSPasteboardReadingOptions {
+//        if UTTypeConformsTo(type, kUTTypeFileURL) {
+//            return .AsString
+//        } else {
+//            return .AsData
+//        }
+//    }
+//    
+//    required init?(pasteboardPropertyList propertyList: AnyObject, ofType type: String) {
+//        if UTTypeConformsTo(type, kUTTypeFileURL as String) {
+//            if  let URL = NSURL(pasteboardPropertyList: propertyList, ofType: type),
+//                let filepath = URL.path {
+//                
+//                // Are we a directory? if so make a folder, otherwise make a document
+//                // Eventually we'll recursively do this
+//                
+//                let fm = NSFileManager()
+//                var dir = ObjCBool(false)
+//                
+//                fm.fileExistsAtPath(URL.path!, isDirectory: &dir)
+//                
+//                if dir.boolValue {
+//                    item = Folder(forNewDocumentInDatabase: DatabaseManager.sharedInstance.database!)
+//                    item!.icon_name = "folder_icon"
+//                    item!.children = []
+//                } else {
+//                    item = File(forNewDocumentInDatabase: DatabaseManager.sharedInstance.database!)
+//                    item!.icon = NSWorkspace.sharedWorkspace().iconForFile(filepath)
+//                    item!.file_extension = URL.fileExtension ?? "unknown"
+//                    item!.mime_type = URL.mimeType ?? "unknown"
+//                    item!.uti = URL.UTI ?? "unknown"
+//                }
+//                
+//                // Set other metadata
+//                
+//                item!.title = (URL.lastPathComponent! as NSString).stringByDeletingPathExtension
+//                
+//                // Save
+//                
+//                do { try item?.save() } catch {
+//                    print(error)
+//                    item = nil
+//                }
+//            }
+//        } else {
+//        
+//        }
+//    }
+//}

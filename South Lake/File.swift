@@ -13,3 +13,7 @@ class File: DataSource {
     override class var model_mime_type: NSString { return "private/private" }
     override class var model_uti: NSString { return "private.private" }
 }
+
+extension File {
+    var leaf: Bool { return true }
+}

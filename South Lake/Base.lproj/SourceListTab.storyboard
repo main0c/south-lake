@@ -115,6 +115,9 @@
                                                                                 <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
+                                                                            <connections>
+                                                                                <binding destination="LL0-25-QwG" name="value" keyPath="objectValue.title" id="K99-pU-PN8"/>
+                                                                            </connections>
                                                                         </textField>
                                                                     </subviews>
                                                                     <connections>
@@ -128,6 +131,9 @@
                                                                         <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mia-KF-hed">
                                                                             <rect key="frame" x="3" y="0.0" width="17" height="17"/>
                                                                             <imageCell key="cell" refusesFirstResponder="YES" imageScaling="proportionallyDown" image="NSActionTemplate" id="JmS-A5-Q61"/>
+                                                                            <connections>
+                                                                                <binding destination="wZO-PC-lzU" name="value" keyPath="objectValue.icon" id="s8M-Jr-PyF"/>
+                                                                            </connections>
                                                                         </imageView>
                                                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SSR-hI-ohl">
                                                                             <rect key="frame" x="25" y="0.0" width="120" height="17"/>
@@ -138,6 +144,7 @@
                                                                             </textFieldCell>
                                                                             <connections>
                                                                                 <action selector="userDidEndEditingCell:" target="BCA-UI-RVa" id="PdW-m9-37y"/>
+                                                                                <binding destination="wZO-PC-lzU" name="value" keyPath="objectValue.title" id="2Hm-0M-XhH"/>
                                                                             </connections>
                                                                         </textField>
                                                                     </subviews>
@@ -150,6 +157,8 @@
                                                         </tableColumn>
                                                     </tableColumns>
                                                     <connections>
+                                                        <binding destination="K28-ay-sKC" name="content" keyPath="arrangedObjects" id="lGx-oB-ssn"/>
+                                                        <binding destination="K28-ay-sKC" name="selectionIndexPaths" keyPath="selectionIndexPaths" previousBinding="lGx-oB-ssn" id="mt1-lF-ErO"/>
                                                         <outlet property="dataSource" destination="BCA-UI-RVa" id="gNN-hb-Hya"/>
                                                         <outlet property="delegate" destination="BCA-UI-RVa" id="Rho-WP-vbn"/>
                                                     </connections>
@@ -230,9 +239,16 @@
                     </view>
                     <connections>
                         <outlet property="outlineView" destination="db9-k2-GDY" id="jYy-sY-GMf"/>
+                        <outlet property="treeController" destination="K28-ay-sKC" id="VEP-Hl-ddE"/>
                     </connections>
                 </viewController>
                 <customObject id="DYj-5V-w3J" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <treeController objectClassName="DataSource" childrenKeyPath="children" leafKeyPath="leaf" avoidsEmptySelection="NO" id="K28-ay-sKC">
+                    <declaredKeys>
+                        <string>title</string>
+                        <string>icon</string>
+                    </declaredKeys>
+                </treeController>
             </objects>
             <point key="canvasLocation" x="-618" y="1282"/>
         </scene>
