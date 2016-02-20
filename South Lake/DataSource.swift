@@ -23,7 +23,6 @@ class DataSource: CBLModel {
     @NSManaged var updated_at: NSDate
     @NSManaged var color_labels: [Int]
     @NSManaged var tags: [String]
-    @NSManaged var icon_name: String
     
     @NSManaged var file_extension: String
     @NSManaged var mime_type: String
@@ -73,10 +72,7 @@ class DataSource: CBLModel {
                 _icon = image
                 return image
             } else {
-                
-                // TODO: don't do it this way
-                return NSImage(named: icon_name)
-                // return nil
+                return nil
             }
         }
         set (value) {

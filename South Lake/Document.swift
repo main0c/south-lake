@@ -232,11 +232,11 @@ class Document: NSDocument, Databasable {
             
                 let doc1 = File(forNewDocumentInDatabase: databaseManager.database)
                 doc1.title = "Welcome to Journler"
-                doc1.icon_name = "markdown-document-icon"
+                doc1.icon = NSImage(named:"markdown-document-icon")
             
                 let doc2 = File(forNewDocumentInDatabase: databaseManager.database)
                 doc2.title = "Second Document"
-                doc2.icon_name = "markdown-document-icon"
+                doc2.icon = NSImage(named:"markdown-document-icon")
 
                 // We must have ids before we can store the children
             
@@ -256,11 +256,11 @@ class Document: NSDocument, Databasable {
             
                 let folder1 = Folder(forNewDocumentInDatabase: databaseManager.database)
                 folder1.title = "Important Folder"
-                folder1.icon_name = "folder-icon"
+                folder1.icon = NSImage(named:"folder-icon")
             
                 let folder2 = Folder(forNewDocumentInDatabase: databaseManager.database)
                 folder2.title = "Another Folder"
-                folder2.icon_name = "folder-icon"
+                folder2.icon = NSImage(named:"folder-icon")
 
                 // We must have ids before we can store the children
             
@@ -280,11 +280,11 @@ class Document: NSDocument, Databasable {
             
                 let smart1 = SmartFolder(forNewDocumentInDatabase: databaseManager.database)
                 smart1.title = "A Smart Folder"
-                smart1.icon_name = "smart-folder-icon"
+                smart1.icon = NSImage(named:"smart-folder-icon")
             
                 let smart2 = SmartFolder(forNewDocumentInDatabase: databaseManager.database)
                 smart2.title = "Folders Knows Best"
-                smart2.icon_name = "smart-folder-icon"
+                smart2.icon = NSImage(named:"smart-folder-icon")
 
                 // We must have ids before we can store the children
             

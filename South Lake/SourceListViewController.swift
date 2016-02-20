@@ -221,6 +221,10 @@ class SourceListViewController: NSViewController, Databasable {
         file.title = NSLocalizedString("Untitled", comment: "Name for new untitled document")
         file.icon = NSImage(named:"markdown-document-icon")
         
+        file.uti = "net.daringfireball.markdown"
+        file.file_extension = "markdown"
+        file.mime_type = "text/markdown"
+        
         do { try file.save() } catch {
             print(error)
             return

@@ -123,7 +123,7 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         case 0:
             icon = nil
         case 1:
-            icon = selectedObjects[0].icon ?? NSImage(named: selectedObjects[0].icon_name)
+            icon = selectedObjects[0].icon
         default:
             icon = nil
         }
