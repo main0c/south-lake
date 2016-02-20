@@ -102,21 +102,7 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         splitView.display()
     }
     
-    // MARK: - Utilities
-    
-    func loadEditor(file: File) {
-        // Set up the editor
-        
-        let mainViewController = NSStoryboard(name: "MarkdownEditor", bundle: nil).instantiateInitialController() as! NSViewController
-        let mainItem = NSSplitViewItem(viewController: mainViewController)
-        
-        removeSplitViewItem(splitViewItems[1])
-        insertSplitViewItem(mainItem, atIndex: 1)
-    }
-    
-    func clearEditor() {
-    
-    }
+    // MARK: - Bindings
     
     func bindEditor(selection: [DataSource]) {
         if selection.count == 0 {
@@ -152,5 +138,27 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         default:
             icon = nil
         }
+    }
+    
+    // MARK: - Editor
+    
+    func loadEditor(file: File) {
+        var editor = splitViewItems[1].viewController
+        
+        // Load editor if editor has changed
+        
+        if !(editor is MarkdownEditor) {
+            editor = NSStoryboard(name: "MarkdownEditor", bundle: nil).instantiateInitialController() as! NSViewController
+            let mainItem = NSSplitViewItem(viewController: editor)
+        
+            removeSplitViewItem(splitViewItems[1])
+            insertSplitViewItem(mainItem, atIndex: 1)
+        }
+        
+        // Pass selection to editor
+    }
+    
+    func clearEditor() {
+    
     }
 }
