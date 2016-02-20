@@ -219,6 +219,7 @@
                                     <constraint firstItem="EpO-yU-go6" firstAttribute="leading" secondItem="uwr-DL-gki" secondAttribute="leading" id="B48-7R-Cdr"/>
                                     <constraint firstAttribute="trailing" secondItem="EpO-yU-go6" secondAttribute="trailing" id="ExC-3z-gX3"/>
                                     <constraint firstAttribute="bottom" secondItem="nPz-S0-aRU" secondAttribute="bottom" constant="20" id="Jeg-nU-SoX"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="260" id="NS6-jS-5Cz"/>
                                     <constraint firstAttribute="trailing" secondItem="EpO-yU-go6" secondAttribute="trailing" id="QsD-TC-4y4"/>
                                     <constraint firstItem="EpO-yU-go6" firstAttribute="top" secondItem="uwr-DL-gki" secondAttribute="top" id="Tf0-7T-XGc"/>
                                     <constraint firstAttribute="trailing" secondItem="nPz-S0-aRU" secondAttribute="trailing" id="ZTR-1k-chm"/>
