@@ -18,7 +18,7 @@ extension WebView {
 
 private var MarkdownEditorContext = 0
 
-class MarkdownEditor: NSViewController {
+class MarkdownEditor: NSViewController, FileEditor {
     @IBOutlet var splitView: MPDocumentSplitView!
     @IBOutlet var editorContainer: NSView!
     @IBOutlet var editor: MPEditorView!
@@ -71,6 +71,38 @@ class MarkdownEditor: NSViewController {
             print("\(tocRef) : \(eval)")
 //            let URL = NSURL(string: "#" + tocRef)
 //            preview.mainFrame.loadRequest(NSURLRequest(URL: URL!))
+        }
+    }
+    
+    //
+    
+    dynamic var data: NSData? {
+        get {
+            return editor.string?.dataUsingEncoding(NSUTF8StringEncoding)
+        }
+        set(value) {
+            var string = ""
+            if  let data = value,
+                let contents = NSString(data: data, encoding: NSUTF8StringEncoding) as? String {
+                string = contents
+            } else {
+                string = "No data!"
+            }
+            
+//            if initialContents == nil {
+//                initialContents = string
+//            } else {
+            
+                // TODO: refactor
+                // TODO: don't use initial contents
+                editor.string = string
+                initialContents = nil
+                
+                renderer.parseAndRenderNow()
+                highlighter.parseAndHighlightNow()
+                
+                toc = self.renderer.tableOfContents()
+//            }
         }
     }
     
@@ -156,13 +188,13 @@ class MarkdownEditor: NSViewController {
         
         // Load test.md
         
-        do {
-            let path = NSBundle.mainBundle().pathForResource("Test", ofType: "md")!
-            let testMD = try NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding) as String
-            initialContents = testMD
-        } catch {
-            NSLog("Unable to read Test.md")
-        }
+//        do {
+//            let path = NSBundle.mainBundle().pathForResource("Test", ofType: "md")!
+//            let testMD = try NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding) as String
+//            initialContents = testMD
+//        } catch {
+//            NSLog("Unable to read Test.md")
+//        }
     }
     
     deinit {

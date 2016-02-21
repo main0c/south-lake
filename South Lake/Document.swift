@@ -12,6 +12,8 @@
 
 import Cocoa
 
+let DocumentWillSaveNotification = "com.phildow.southlake.documentwillsave"
+
 enum DocumentError: ErrorType {
     case ShouldNotSaveFileWrapper
     case ShouldNotReadFileWrapper
@@ -198,6 +200,8 @@ class Document: NSDocument, Databasable {
     // Disable document saving: save db, update search, sync, save state
     
     override func saveDocument(sender: AnyObject?) {
+        NSNotificationCenter.defaultCenter().postNotificationName(DocumentWillSaveNotification, object: self)
+        
         do { try databaseManager.database.saveAllModels() } catch {
             print(error)
         }

@@ -34,6 +34,9 @@ class File: DataSource {
         }
         set (value) {
             if let value = value {
+                // TODO: does removeAttachment not do anything? keeping versions?
+                // removeAttachmentNamed("data")
+                // do { try save() } catch { print(error) }
                 setAttachmentNamed("data", withContentType: mime_type, content: value)
                 _data = value
             } else {

@@ -38,6 +38,10 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         }
     }
     
+    var selectedObject: DataSource? {
+        return ( selectedObjects.count == 1 ) ? selectedObjects[0] : nil
+    }
+    
     // MARK: - Initialization
 
     override func viewDidLoad() {
@@ -53,6 +57,8 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
             }
         }
         
+        // TODO: can't use notification center
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("documentWillSave:"), name: DocumentWillSaveNotification, object: nil)
         bind("selectedObjects", toObject: sourceListController, withKeyPath: "selectedObjects", options: [:])
         
         // Set up the editor
@@ -64,6 +70,25 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         
         removeSplitViewItem(splitViewItems[1])
         insertSplitViewItem(mainItem, atIndex: 1)
+    }
+
+    // TODO: track editor
+    // TOOD: save when changing selection
+    
+    func documentWillSave(notification: NSNotification) {
+        guard selectedObjects.count == 1 else {
+            return
+        }
+        guard let file = selectedObject as? File where selectedObject is File else {
+            return
+        }
+        guard let data = (splitViewItems[1].viewController as! FileEditor).data else {
+            return
+        }
+        
+        // And if data is nil? do we still set it?
+        
+        file.data = data
     }
     
     func willClose() {
@@ -155,7 +180,10 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
             insertSplitViewItem(mainItem, atIndex: 1)
         }
         
-        // Pass selection to editor
+        // Pass selection to editor: why is var needed here for mutablily? editor is var
+        
+        var x = editor as! FileEditor
+        x.data = file.data
     }
     
     func clearEditor() {

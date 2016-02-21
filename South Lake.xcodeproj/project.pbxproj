@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E3148F121C79353B006BCE53 /* FileEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3148F111C79353B006BCE53 /* FileEditor.swift */; };
 		E3274FBF1C75A088000B6A84 /* MarkdownEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3274FBE1C75A088000B6A84 /* MarkdownEditor.swift */; };
 		E3274FC11C75A0B7000B6A84 /* SourceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3274FC01C75A0B7000B6A84 /* SourceListViewController.swift */; };
 		E3274FC31C75A134000B6A84 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3274FC21C75A134000B6A84 /* DataSource.swift */; };
@@ -227,6 +228,7 @@
 		0225C54B45D02DF2435FEFF7 /* Pods-South Lake.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-South Lake.debug.xcconfig"; path = "Pods/Target Support Files/Pods-South Lake/Pods-South Lake.debug.xcconfig"; sourceTree = "<group>"; };
 		13FCBDC9A158BD5332E2FC09 /* libPods-South Lake.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-South Lake.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		654657607D7E3F52002B88CB /* Pods-South Lake.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-South Lake.release.xcconfig"; path = "Pods/Target Support Files/Pods-South Lake/Pods-South Lake.release.xcconfig"; sourceTree = "<group>"; };
+		E3148F111C79353B006BCE53 /* FileEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileEditor.swift; sourceTree = "<group>"; };
 		E3274FBE1C75A088000B6A84 /* MarkdownEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownEditor.swift; sourceTree = "<group>"; };
 		E3274FC01C75A0B7000B6A84 /* SourceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceListViewController.swift; sourceTree = "<group>"; };
 		E3274FC21C75A134000B6A84 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
@@ -2432,6 +2434,7 @@
 			children = (
 				E32AD2701C76843500648BFD /* Databasable.swift */,
 				E360727B1C74FEEC00914C2C /* DocumentTab.swift */,
+				E3148F111C79353B006BCE53 /* FileEditor.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -7344,6 +7347,7 @@
 				E37D96141C723B8A000A9F90 /* Document.swift in Sources */,
 				E3274FC11C75A0B7000B6A84 /* SourceListViewController.swift in Sources */,
 				E3C4362B1C7642BA00DD685D /* MacDownCopyFiles.m in Sources */,
+				E3148F121C79353B006BCE53 /* FileEditor.swift in Sources */,
 				E3274FC91C75A151000B6A84 /* SmartFolder.swift in Sources */,
 				E3C436271C7641E900DD685D /* MPRenderer+TOC.m in Sources */,
 				E32AD2711C76843500648BFD /* Databasable.swift in Sources */,

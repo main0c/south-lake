@@ -21,5 +21,7 @@ protocol DocumentTab: class, Databasable {
     func state() -> Dictionary<String,AnyObject>
     func restoreState(state: Dictionary<String,AnyObject>)
     
+    // make necessary modifications to the database before it's saved
+    func documentWillSave(notification: NSNotification) // would be awesome to register this here
     func willClose()
 }
