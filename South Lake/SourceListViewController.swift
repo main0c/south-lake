@@ -402,6 +402,10 @@ extension SourceListViewController : NSOutlineViewDataSource {
     
     func performExternalDrag(info: NSDraggingInfo, var parent: NSTreeNode?, var index: Int) -> Bool {
         return true
+        
+        parent = nil
+        index = 0
+        
 //        var targetIndex = index
 //        
 //        // if parent is nil, retarget to shortcuts section

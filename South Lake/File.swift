@@ -6,6 +6,8 @@
 //  Copyright © 2016 Phil Dow. All rights reserved.
 //
 
+//  TODO: data continuous bindings - cache data until saved then create attachment?
+
 import Cocoa
 
 @objc(File)
@@ -18,7 +20,7 @@ class File: DataSource {
     
     private var _data: NSData?
     
-    var data: NSData? {
+    dynamic var data: NSData? {
         get {
             guard _data == nil else {
                 return _data
@@ -33,6 +35,8 @@ class File: DataSource {
             }
         }
         set (value) {
+            print("file set data")
+            
             if let value = value {
                 // TODO: does removeAttachment not do anything? keeping versions?
                 // removeAttachmentNamed("data")

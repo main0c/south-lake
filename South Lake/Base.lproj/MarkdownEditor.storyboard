@@ -36,6 +36,12 @@
                                                             <size key="minSize" width="509" height="578"/>
                                                             <size key="maxSize" width="771" height="10000000"/>
                                                             <connections>
+                                                                <binding destination="9No-O6-nOD" name="value" keyPath="data" id="GxL-2r-Xie">
+                                                                    <dictionary key="options">
+                                                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                                        <string key="NSValueTransformerName">NSDataNSStringValueTransformer</string>
+                                                                    </dictionary>
+                                                                </binding>
                                                                 <outlet property="delegate" destination="9No-O6-nOD" id="kou-zR-bXw"/>
                                                             </connections>
                                                         </textView>

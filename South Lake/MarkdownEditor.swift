@@ -74,40 +74,33 @@ class MarkdownEditor: NSViewController, FileEditor {
         }
     }
     
-    //
-    
     dynamic var data: NSData? {
-        get {
-            return editor.string?.dataUsingEncoding(NSUTF8StringEncoding)
-        }
-        set(value) {
-            var string = ""
-            if  let data = value,
-                let contents = NSString(data: data, encoding: NSUTF8StringEncoding) as? String {
-                string = contents
-            } else {
-                string = "No data!"
+        didSet {
+            print("editor data.didSet")
+            
+            guard viewLoaded else {
+                return
+            }
+            guard needsHTML else {
+                return
             }
             
-//            if initialContents == nil {
-//                initialContents = string
-//            } else {
-            
-                // TODO: refactor
-                // TODO: don't use initial contents
-                editor.string = string
-                initialContents = nil
-                
-                renderer.parseAndRenderNow()
-                highlighter.parseAndHighlightNow()
-                
-                toc = self.renderer.tableOfContents()
-//            }
+            renderer.parseAndRenderNow()
+            highlighter.parseAndHighlightNow()
+            toc = renderer.tableOfContents()
         }
     }
     
     // MARK: - Initialization
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        
+        for (key, _) in  MPEditorKeysToObserve {
+            editor.removeObserver(self, forKeyPath: key)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -171,19 +164,23 @@ class MarkdownEditor: NSViewController, FileEditor {
             center.addObserver(self, selector: Selector("previewDidLiveScroll:"), name: NSScrollViewDidEndLiveScrollNotification, object: preview.mainFrameEnclosingScrollView)
         }
         
+        // TODO: this whole thing may not be necessary
+        
         NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
             self.setupEditor(nil)
             self.redrawDivider()
 
-            if let loadedString = self.initialContents {
-                self.editor.string = loadedString
-                self.initialContents = nil
-                
-                self.renderer.parseAndRenderNow()
-                self.highlighter.parseAndHighlightNow()
-                
-                self.toc = self.renderer.tableOfContents()
-            }
+            // Taken care of in var data
+    
+//            if let loadedString = self.initialContents {
+//                self.editor.string = loadedString
+//                self.initialContents = nil
+//                
+//                self.renderer.parseAndRenderNow()
+//                self.highlighter.parseAndHighlightNow()
+//                
+//                self.toc = self.renderer.tableOfContents()
+//            }
         }
         
         // Load test.md
@@ -195,10 +192,6 @@ class MarkdownEditor: NSViewController, FileEditor {
 //        } catch {
 //            NSLog("Unable to read Test.md")
 //        }
-    }
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     // MARK: - Functions
@@ -340,11 +333,8 @@ class MarkdownEditor: NSViewController, FileEditor {
     // MARK: - Notification handler
 
     func editorTextDidChange(notification: NSNotification) {
-        if needsHTML {
-            renderer.parseAndRenderLater() // why not render()
-            
-            toc = self.renderer.tableOfContents()
-        }
+        // Rendering is no longer necessary,
+        // handled in text.didSet
     }
 
     func userDefaultsDidChange(notification: NSNotification) {

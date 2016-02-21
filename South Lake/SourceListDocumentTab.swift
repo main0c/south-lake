@@ -31,16 +31,26 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     }
     
     dynamic var selectedObjects: [DataSource] = [] {
+        willSet {
+            unbindEditor(selectedObjects)
+            unbindTitle(selectedObjects)
+            unbindIcon(selectedObjects)
+            
+        }
+        
         didSet {
+            bindEditor(selectedObjects)
             bindTitle(selectedObjects)
             bindIcon(selectedObjects)
-            bindEditor(selectedObjects)
+            
         }
     }
     
     var selectedObject: DataSource? {
         return ( selectedObjects.count == 1 ) ? selectedObjects[0] : nil
     }
+    
+    var editor: FileEditor?
     
     // MARK: - Initialization
 
@@ -129,10 +139,38 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     
     // MARK: - Bindings
     
-    // TODO: editor data bindings, that's what I want. two-way
-    // http://stackoverflow.com/questions/14775326/bindtoobjectwithkeypathoptions-is-one-way-binding
-    
     func bindEditor(selection: [DataSource]) {
+        let file = selectedObject
+        
+        switch selection.count {
+        case 0:
+           clearEditor()
+        case 1: // where file is File:
+            if file is File {
+                loadEditor(file as! File)
+                
+                // Two way continuous data binding between the file and the editor
+                
+                let bindingOptions = [
+                    NSContinuouslyUpdatesValueBindingOption: true,
+                    NSConditionallySetsEditableBindingOption: true,
+                    NSRaisesForNotApplicableKeysBindingOption: true
+                ]
+                
+                (editor as! NSViewController).bind("data", toObject:file as! File, withKeyPath: "data", options: bindingOptions)
+                
+                (file as! File).bind("data", toObject:(editor as! NSViewController), withKeyPath: "data", options: bindingOptions)
+                
+            } else {
+            // Leave editor alone if multiple selection or folder
+            // Unbind? no... Xcode does not
+            }
+        default:
+            // Leave editor alone if multiple selection or folder
+            // Unbind? no... Xcode does not
+            break
+        }
+        
         if selection.count == 0 {
             clearEditor()
         } else if selection.count == 1 && selection[0] is File {
@@ -143,8 +181,6 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     }
     
     func bindTitle(selection: [DataSource]) {
-        unbind("title")
-        
         switch selection.count {
         case 0:
             title = NSLocalizedString("No Selection", comment: "")
@@ -156,8 +192,6 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     }
     
     func bindIcon(selection: [DataSource]) {
-        unbind("icon") // icons don't really change
-        
         switch selection.count {
         case 0:
             icon = nil
@@ -168,25 +202,44 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         }
     }
     
+    func unbindTitle(selection: [DataSource]) {
+        unbind("title")
+    }
+    
+    func unbindIcon(selection: [DataSource]) {
+        unbind("icon")
+    }
+    
+    func unbindEditor(selection: [DataSource]) {
+        if let editor = editor {
+            (editor as! NSViewController).unbind("data")
+        }
+        
+        // TODO: the file might have its data bound in another tab, in which case we just unbound it
+        // might have to use KVO on the file data here rather than bindings
+        // observer:self will have a different self for each tab
+        
+        if let file = selectedObject where file is File {
+            (file as! File).unbind("data")
+        }
+    }
+    
     // MARK: - Editor
     
     func loadEditor(file: File) {
-        var editor = splitViewItems[1].viewController
-        
         // Load editor if editor has changed
         
         if !(editor is MarkdownEditor) {
-            editor = NSStoryboard(name: "MarkdownEditor", bundle: nil).instantiateInitialController() as! NSViewController
-            let mainItem = NSSplitViewItem(viewController: editor)
+            editor = NSStoryboard(name: "MarkdownEditor", bundle: nil).instantiateInitialController() as? FileEditor
+            let mainItem = NSSplitViewItem(viewController: (editor as! NSViewController))
         
             removeSplitViewItem(splitViewItems[1])
             insertSplitViewItem(mainItem, atIndex: 1)
         }
         
         // Pass selection to editor: why is var needed here for mutablily? editor is var
-        
-        var x = editor as! FileEditor
-        x.data = file.data
+    
+        editor!.data = file.data
     }
     
     func clearEditor() {
