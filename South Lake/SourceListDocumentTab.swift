@@ -8,6 +8,8 @@
 
 import Cocoa
 
+private var SourceListDocumentTabContext = 0
+
 class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     var sourceListController: SourceListViewController!
     dynamic var icon: NSImage?
@@ -35,9 +37,7 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
             unbindEditor(selectedObjects)
             unbindTitle(selectedObjects)
             unbindIcon(selectedObjects)
-            
         }
-        
         didSet {
             bindEditor(selectedObjects)
             bindTitle(selectedObjects)
@@ -81,6 +81,11 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         removeSplitViewItem(splitViewItems[1])
         insertSplitViewItem(mainItem, atIndex: 1)
     }
+    
+    deinit {
+        // TODO: may need to unbind editor
+        
+    }
 
     // TODO: track editor
     // TOOD: save when changing selection
@@ -104,6 +109,8 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     func willClose() {
         unbind("selectedObjects")
         sourceListController.willClose()
+        
+        // TODO: data-bindings or kvo
     }
     
     // MARK: - Document State
@@ -139,6 +146,14 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     
     // MARK: - Bindings
     
+    // A single file may be handled by more than one editor at a time
+    // But a single editor will only handle a single file at a time
+    
+    // An editor makes a change, it propogates to the file, and from there
+    // it must propogate to every other editor working with that file
+    
+    // Use KVO to manage these changes
+    
     func bindEditor(selection: [DataSource]) {
         let file = selectedObject
         
@@ -149,17 +164,13 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
             if file is File {
                 loadEditor(file as! File)
                 
-                // Two way continuous data binding between the file and the editor
+                // KVO:
+                // bind editor to file's data (one editor binding at a time)
+                // but watch for changes to editor to propogate back to data?
                 
-                let bindingOptions = [
-                    NSContinuouslyUpdatesValueBindingOption: true,
-                    NSConditionallySetsEditableBindingOption: true,
-                    NSRaisesForNotApplicableKeysBindingOption: true
-                ]
+                (editor as! NSViewController).addObserver(self, forKeyPath: "data", options: [.New, .Old], context: &SourceListDocumentTabContext)
                 
-                (editor as! NSViewController).bind("data", toObject:file as! File, withKeyPath: "data", options: bindingOptions)
-                
-                (file as! File).bind("data", toObject:(editor as! NSViewController), withKeyPath: "data", options: bindingOptions)
+                (file as! File).addObserver(self, forKeyPath: "data", options: [.New, .Old], context:&SourceListDocumentTabContext)
                 
             } else {
             // Leave editor alone if multiple selection or folder
@@ -212,16 +223,44 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     
     func unbindEditor(selection: [DataSource]) {
         if let editor = editor {
-            (editor as! NSViewController).unbind("data")
+            (editor as! NSViewController).removeObserver(self, forKeyPath: "data")
         }
-        
-        // TODO: the file might have its data bound in another tab, in which case we just unbound it
-        // might have to use KVO on the file data here rather than bindings
-        // observer:self will have a different self for each tab
-        
         if let file = selectedObject where file is File {
-            (file as! File).unbind("data")
+            (file as! File).removeObserver(self, forKeyPath: "data")
         }
+    }
+    
+    // MARK: -
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        guard context == &SourceListDocumentTabContext else {
+            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+            return
+        }
+        
+        guard keyPath == "data" else {
+            return
+        }
+        guard editor != nil else {
+            return
+        }
+        guard let file = selectedObject where file is File else {
+            return
+        }
+        guard let change = change,
+              let oldValue = change[NSKeyValueChangeOldKey] as? NSData,
+              let newValue = change[NSKeyValueChangeNewKey] as? NSData
+              where !oldValue.isEqualToData(newValue) else {
+            return
+        }
+        
+        if object is FileEditor {
+            (file as! File).data = editor!.data
+        } else if object is File {
+            editor!.data = (file as! File).data
+        }
+        
+        print("data kvo")
     }
     
     // MARK: - Editor
