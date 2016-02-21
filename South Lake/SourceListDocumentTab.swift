@@ -129,6 +129,9 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     
     // MARK: - Bindings
     
+    // TODO: editor data bindings, that's what I want. two-way
+    // http://stackoverflow.com/questions/14775326/bindtoobjectwithkeypathoptions-is-one-way-binding
+    
     func bindEditor(selection: [DataSource]) {
         if selection.count == 0 {
             clearEditor()

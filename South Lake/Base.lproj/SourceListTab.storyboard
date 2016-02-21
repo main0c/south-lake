@@ -177,7 +177,7 @@
                                     </scrollView>
                                     <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="ltL-1g-Gj1">
                                         <rect key="frame" x="0.0" y="2" width="36" height="21"/>
-                                        <popUpButtonCell key="cell" type="bevel" title="+" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="noArrow" selectedItem="Wbd-N1-En2" id="e7Q-9c-lIz">
+                                        <popUpButtonCell key="cell" type="bevel" title="+" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="noArrow" id="e7Q-9c-lIz">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="gS6-Wf-DjR">
@@ -196,6 +196,9 @@
                                                     <menuItem isSeparatorItem="YES" id="g82-1b-len"/>
                                                     <menuItem title="New Markdown Document" id="vaH-gV-cqz">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="createNewMarkdownDocument:" target="BCA-UI-RVa" id="Fnb-Ik-kml"/>
+                                                        </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="egR-kE-mYQ"/>
                                                 </items>
