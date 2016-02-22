@@ -6,6 +6,8 @@
 //  Copyright © 2016 Phil Dow. All rights reserved.
 //
 
+//  TODO: still getting crashes on selection, watch that shit on bindings
+
 import Cocoa
 
 @NSApplicationMain

@@ -25,3 +25,7 @@ protocol DocumentTab: class, Databasable {
     func documentWillSave(notification: NSNotification) // would be awesome to register this here
     func willClose()
 }
+
+extension DocumentTab where Self: NSViewController {
+
+}

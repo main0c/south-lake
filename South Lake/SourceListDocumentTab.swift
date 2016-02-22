@@ -8,8 +8,6 @@
 
 import Cocoa
 
-private var SourceListDocumentTabContext = 0
-
 class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     var sourceListController: SourceListViewController!
     dynamic var icon: NSImage?
@@ -68,7 +66,9 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         }
         
         // TODO: can't use notification center
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("documentWillSave:"), name: DocumentWillSaveNotification, object: nil)
+        
         bind("selectedObjects", toObject: sourceListController, withKeyPath: "selectedObjects", options: [:])
         
         // Set up the editor
@@ -82,35 +82,33 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         insertSplitViewItem(mainItem, atIndex: 1)
     }
     
-    deinit {
-        // TODO: may need to unbind editor
-        
-    }
-
-    // TODO: track editor
     // TOOD: save when changing selection
     
     func documentWillSave(notification: NSNotification) {
-        guard selectedObjects.count == 1 else {
-            return
-        }
-        guard let file = selectedObject as? File where selectedObject is File else {
-            return
-        }
-        guard let data = (splitViewItems[1].viewController as! FileEditor).data else {
-            return
-        }
-        
-        // And if data is nil? do we still set it?
-        
-        file.data = data
+        // Shouldn't be necessary
+    
+//        guard selectedObjects.count == 1 else {
+//            return
+//        }
+//        guard let file = selectedObject as? File where selectedObject is File else {
+//            return
+//        }
+//        guard let data = (splitViewItems[1].viewController as! FileEditor).data else {
+//            return
+//        }
+//        
+//        // And if data is nil? do we still set it?
+//        
+//        file.data = data
     }
     
     func willClose() {
+        unbindEditor(selectedObjects)
+        unbindTitle(selectedObjects)
+        unbindIcon(selectedObjects)
+        
         unbind("selectedObjects")
         sourceListController.willClose()
-        
-        // TODO: data-bindings or kvo
     }
     
     // MARK: - Document State
@@ -146,8 +144,10 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     
     // MARK: - Bindings
     
-    // A single file may be handled by more than one editor at a time
-    // But a single editor will only handle a single file at a time
+    // File.data <-> Editor one-to-many two-way bindings
+    
+    // A single file may be handled by more than one editor
+    // A single editor handles a single file
     
     // An editor makes a change, it propogates to the file, and from there
     // it must propogate to every other editor working with that file
@@ -163,15 +163,7 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         case 1: // where file is File:
             if file is File {
                 loadEditor(file as! File)
-                
-                // KVO:
-                // bind editor to file's data (one editor binding at a time)
-                // but watch for changes to editor to propogate back to data?
-                
-                (editor as! NSViewController).addObserver(self, forKeyPath: "data", options: [.New, .Old], context: &SourceListDocumentTabContext)
-                
-                (file as! File).addObserver(self, forKeyPath: "data", options: [.New, .Old], context:&SourceListDocumentTabContext)
-                
+                (editor as! NSObject).bindUs("data", toObject: (file as! AnyObject), withKeyPath: "data", options: [:])
             } else {
             // Leave editor alone if multiple selection or folder
             // Unbind? no... Xcode does not
@@ -180,14 +172,6 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
             // Leave editor alone if multiple selection or folder
             // Unbind? no... Xcode does not
             break
-        }
-        
-        if selection.count == 0 {
-            clearEditor()
-        } else if selection.count == 1 && selection[0] is File {
-            loadEditor(selection[0] as! File)
-        } else {
-            // Leave editor alone if multiple selection or folder
         }
     }
     
@@ -222,45 +206,11 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     }
     
     func unbindEditor(selection: [DataSource]) {
-        if let editor = editor {
-            (editor as! NSViewController).removeObserver(self, forKeyPath: "data")
-        }
-        if let file = selectedObject where file is File {
-            (file as! File).removeObserver(self, forKeyPath: "data")
-        }
-    }
-    
-    // MARK: -
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        guard context == &SourceListDocumentTabContext else {
-            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+        guard let editor = editor, let file = selectedObject where file is File else {
             return
         }
         
-        guard keyPath == "data" else {
-            return
-        }
-        guard editor != nil else {
-            return
-        }
-        guard let file = selectedObject where file is File else {
-            return
-        }
-        guard let change = change,
-              let oldValue = change[NSKeyValueChangeOldKey] as? NSData,
-              let newValue = change[NSKeyValueChangeNewKey] as? NSData
-              where !oldValue.isEqualToData(newValue) else {
-            return
-        }
-        
-        if object is FileEditor {
-            (file as! File).data = editor!.data
-        } else if object is File {
-            editor!.data = (file as! File).data
-        }
-        
-        print("data kvo")
+        (editor as! NSObject).unbindUs("data", toObject: file, withKeyPath: "data")
     }
     
     // MARK: - Editor
@@ -278,6 +228,7 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         
         // Pass selection to editor: why is var needed here for mutablily? editor is var
     
+        // TODO: passed on binding?
         editor!.data = file.data
     }
     
