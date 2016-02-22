@@ -114,7 +114,7 @@ class KeyValueObservingProxy: NSObject {
     // Updating is simple state to prevent a KVO loop, but it won't work if a
     // setter internally transforms its value and then re-sets it.
     
-    // How does those OS do this with two-way XIB bindings?
+    // How does the OS do this with two-way XIB bindings?
     
     private var updating: Bool = false
     
