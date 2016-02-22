@@ -8,17 +8,17 @@
 
 import Foundation
 
-private var KeyValueObservingProxyContext = 0
-
-protocol TwoWayKeyValueObserving {
-    func bindUs(binding: String, toObject: AnyObject, withKeyPath: String, options: [String : AnyObject]?)
-    func unbindUs(binding: String, toObject: AnyObject, withKeyPath: String)
-    func areBound(binding: String, toObject: AnyObject, withKeyPath: String) -> Bool
-}
+//protocol TwoWayKeyValueObserving {
+//    func bindUs(binding: String, toObject: AnyObject, withKeyPath: String, options: [String : AnyObject]?)
+//    func unbindUs(binding: String, toObject: AnyObject, withKeyPath: String)
+//    func areBound(binding: String, toObject: AnyObject, withKeyPath: String) -> Bool
+//}
 
 // Default implementation
 
-extension NSObject: TwoWayKeyValueObserving {
+private var KeyValueObservingProxyContext = 0
+
+extension NSObject /*: TwoWayKeyValueObserving*/ {
     private struct AssociatedKeys {
         static var kvo = "kvoProxies"
     }

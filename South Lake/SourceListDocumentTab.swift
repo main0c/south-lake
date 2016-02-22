@@ -85,21 +85,7 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     // TOOD: save when changing selection
     
     func documentWillSave(notification: NSNotification) {
-        // Shouldn't be necessary
     
-//        guard selectedObjects.count == 1 else {
-//            return
-//        }
-//        guard let file = selectedObject as? File where selectedObject is File else {
-//            return
-//        }
-//        guard let data = (splitViewItems[1].viewController as! FileEditor).data else {
-//            return
-//        }
-//        
-//        // And if data is nil? do we still set it?
-//        
-//        file.data = data
     }
     
     func willClose() {
@@ -163,7 +149,8 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         case 1: // where file is File:
             if file is File {
                 loadEditor(file as! File)
-                (editor as! NSObject).bindUs("data", toObject: (file as! AnyObject), withKeyPath: "data", options: [:])
+                editor!.data = (file as! File).data
+                (editor as! NSObject).bindUs("data", toObject: (file as! File), withKeyPath: "data", options: [:])
             } else {
             // Leave editor alone if multiple selection or folder
             // Unbind? no... Xcode does not
@@ -227,9 +214,6 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         }
         
         // Pass selection to editor: why is var needed here for mutablily? editor is var
-    
-        // TODO: passed on binding?
-        editor!.data = file.data
     }
     
     func clearEditor() {
