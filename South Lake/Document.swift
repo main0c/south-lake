@@ -57,6 +57,14 @@ class Document: NSDocument, Databasable {
     override func windowControllerDidLoadNib(aController: NSWindowController) {
         super.windowControllerDidLoadNib(aController)
         // Add any code here that needs to be executed once the windowController has loaded the document's window.
+        
+        NSNotificationCenter.defaultCenter().addObserverForName(NSApplicationWillTerminateNotification, object: nil, queue: nil) { (notification: NSNotification) -> Void in
+            
+            print("saving before terminate")
+            do { try self.databaseManager.database.saveAllModels() } catch {
+                print(error)
+            }
+        }
     }
 
     override func makeWindowControllers() {
@@ -243,18 +251,27 @@ class Document: NSDocument, Databasable {
                 var children: [DataSource] = []
             
                 let doc1 = File(forNewDocumentInDatabase: databaseManager.database)
-                doc1.title = "Welcome to Journler"
+            
+                doc1.title = NSLocalizedString("Welcome to South Lake", comment: "")
                 doc1.icon = NSImage(named:"markdown-document-icon")
+                doc1.uti = "net.daringfireball.markdown"
+                doc1.file_extension = "markdown"
+                doc1.mime_type = "text/markdown"
             
                 let doc2 = File(forNewDocumentInDatabase: databaseManager.database)
-                doc2.title = "Second Document"
+            
+                doc2.title = NSLocalizedString("About Markdown", comment: "")
                 doc2.icon = NSImage(named:"markdown-document-icon")
+                doc2.uti = "net.daringfireball.markdown"
+                doc2.file_extension = "markdown"
+                doc2.mime_type = "text/markdown"
 
                 // We must have ids before we can store the children
             
                 try databaseManager.database.saveAllModels()
             
             let shortcutsSection = Section(forNewDocumentInDatabase: databaseManager.database)
+            
             shortcutsSection.title = "Shortcuts"
             shortcutsSection.index = 0
             
@@ -267,10 +284,12 @@ class Document: NSDocument, Databasable {
                 var folders: [DataSource] = []
             
                 let folder1 = Folder(forNewDocumentInDatabase: databaseManager.database)
+            
                 folder1.title = "Important Folder"
                 folder1.icon = NSImage(named:"folder-icon")
             
                 let folder2 = Folder(forNewDocumentInDatabase: databaseManager.database)
+            
                 folder2.title = "Another Folder"
                 folder2.icon = NSImage(named:"folder-icon")
 
@@ -279,6 +298,7 @@ class Document: NSDocument, Databasable {
                 try databaseManager.database.saveAllModels()
             
             let foldersSection = Section(forNewDocumentInDatabase: databaseManager.database)
+            
             foldersSection.title = "Folders"
             foldersSection.index = 1
             
@@ -291,10 +311,12 @@ class Document: NSDocument, Databasable {
                 var smarts: [DataSource] = []
             
                 let smart1 = SmartFolder(forNewDocumentInDatabase: databaseManager.database)
+            
                 smart1.title = "A Smart Folder"
                 smart1.icon = NSImage(named:"smart-folder-icon")
             
                 let smart2 = SmartFolder(forNewDocumentInDatabase: databaseManager.database)
+            
                 smart2.title = "Folders Knows Best"
                 smart2.icon = NSImage(named:"smart-folder-icon")
 
@@ -303,6 +325,7 @@ class Document: NSDocument, Databasable {
                 try databaseManager.database.saveAllModels()
             
             let smartFoldersSection = Section(forNewDocumentInDatabase: databaseManager.database)
+            
             smartFoldersSection.title = "Smart Folders"
             smartFoldersSection.index = 2
             

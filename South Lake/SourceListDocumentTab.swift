@@ -6,6 +6,8 @@
 //  Copyright © 2016 Phil Dow. All rights reserved.
 //
 
+//  TODO: move selected object and editor loading code to default protocol implemntation
+
 import Cocoa
 
 class SourceListDocumentTab: NSSplitViewController, DocumentTab {
@@ -207,9 +209,14 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         
         if !(editor is MarkdownEditor) {
             
-            // TODO: guard this
+            // TODO: guard this, raise exception -- what?
             
-            editor = EditorExtensions.sharedInstance.editorForFiletype(file.file_extension)
+            guard let editorExtension = EditorExtensions.sharedInstance.editorForFiletype(file.file_extension) else {
+                print("unable to find editor for file with type \(file.file_extension)")
+                return
+            }
+            
+            editor = editorExtension
             let mainItem = NSSplitViewItem(viewController: (editor as! NSViewController))
         
             removeSplitViewItem(splitViewItems[1])

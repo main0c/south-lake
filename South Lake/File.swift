@@ -15,11 +15,12 @@ class File: DataSource {
     override class var model_mime_type: NSString { return "private/private" }
     override class var model_uti: NSString { return "private.private" }
     
+    @NSManaged var plain_text: String
+    
     // The data is saved as an attachment, but cache it
     // An attachment is available as NSData or a read only file NSURL
     
     private var _data: NSData?
-    
     dynamic var data: NSData? {
         get {
             guard _data == nil else {

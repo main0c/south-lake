@@ -24,6 +24,19 @@
                     </connections>
                 </splitViewController>
                 <customObject id="TK0-L5-kqH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <menu id="dM9-GD-YSW">
+                    <items>
+                        <menuItem title="Item 1" id="QZt-Nb-hno">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem title="Item 2" id="Lgn-uT-6Ao">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem title="Item 3" id="vLS-5g-IXg">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                    </items>
+                </menu>
             </objects>
             <point key="canvasLocation" x="44" y="747"/>
         </scene>

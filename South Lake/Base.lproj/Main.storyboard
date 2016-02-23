@@ -78,6 +78,19 @@
                                                             <action selector="newDocument:" target="Ady-hI-5gd" id="P1w-5H-dPC"/>
                                                         </connections>
                                                     </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="5rb-Bs-8e4"/>
+                                                    <menuItem title="New Folder" keyEquivalent="n" id="bTo-U9-PIW">
+                                                        <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                                        <connections>
+                                                            <action selector="createNewFolder:" target="Ady-hI-5gd" id="wZv-0o-hGZ"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="New Smart Folder" keyEquivalent="N" id="XcQ-C2-kh0">
+                                                        <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                                        <connections>
+                                                            <action selector="createNewSmartFolder:" target="Ady-hI-5gd" id="1sa-7C-tpz"/>
+                                                        </connections>
+                                                    </menuItem>
                                                 </items>
                                             </menu>
                                         </menuItem>
@@ -650,6 +663,10 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="View" id="HyV-fh-RgO">
                                     <items>
+                                        <menuItem title="Files and Folders" keyEquivalent="1" id="iSp-6d-8KT"/>
+                                        <menuItem title="Editor" keyEquivalent="2" id="jd8-hL-xBI"/>
+                                        <menuItem title="File Info" keyEquivalent="3" id="gZw-xF-v0A"/>
+                                        <menuItem isSeparatorItem="YES" id="66U-Q0-rjl"/>
                                         <menuItem title="Show Toolbar" keyEquivalent="t" id="snW-S8-Cw5">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
