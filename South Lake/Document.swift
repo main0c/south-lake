@@ -77,6 +77,8 @@ class Document: NSDocument, Databasable {
         
         self.addWindowController(windowController)
         
+        // TODO: refactor
+        
         // Save before terminate
         
         NSNotificationCenter.defaultCenter().addObserverForName(NSApplicationWillTerminateNotification, object: nil, queue: nil) { (notification) -> Void in

@@ -6,14 +6,17 @@
 //  Copyright © 2016 Phil Dow. All rights reserved.
 //
 
-//  TODO: data continuous bindings - cache data until saved then create attachment?
-
 import Cocoa
 
 @objc(File)
 class File: DataSource {
     override class var model_mime_type: NSString { return "private/private" }
     override class var model_uti: NSString { return "private.private" }
+    
+    // TODO: Architecture: who is responsible for creating plain text representation?
+    //       Because at some point we might have plugins for handling model types
+    //       The editor doesn't know anything about the file, so it can't be the editor
+    //       That leaves the model object itself, but then it has to be a subclass
     
     @NSManaged var plain_text: String
     
