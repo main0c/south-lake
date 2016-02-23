@@ -68,8 +68,12 @@
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="Mh7-WW-C7m"/>
-                                                    <menuItem title="New Markdown Document" keyEquivalent="n" id="JHr-7O-2u8"/>
-                                                    <menuItem title="New Journal" keyEquivalent="N" id="4Fe-vT-CWi">
+                                                    <menuItem title="New Markdown Document" keyEquivalent="n" id="JHr-7O-2u8">
+                                                        <connections>
+                                                            <action selector="createNewMarkdownDocument:" target="Ady-hI-5gd" id="ynQ-jJ-iip"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="New Notebook" keyEquivalent="N" id="4Fe-vT-CWi">
                                                         <connections>
                                                             <action selector="newDocument:" target="Ady-hI-5gd" id="P1w-5H-dPC"/>
                                                         </connections>
@@ -78,7 +82,7 @@
                                             </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="AbW-6F-Kla"/>
-                                        <menuItem title="Add Files to Journal" keyEquivalent="a" id="En2-8q-V2R">
+                                        <menuItem title="Add Files to Notebook" keyEquivalent="a" id="En2-8q-V2R">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="CjW-TN-2qF"/>

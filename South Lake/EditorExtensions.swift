@@ -33,13 +33,14 @@ class EditorExtensions {
         
         for editor in editors {
             guard let filetypes = editor["filetypes"] as? [String],
-                  let sb = editor["storyboard"] as? String
-                  where !filetypes.contains(filetype) else {
+                  let sb = editor["storyboard"] as? String else {
                   continue
             }
             
-            storyboard = sb
-            break
+            if filetypes.contains(filetype) {
+                storyboard = sb
+                break
+            }
         }
         
         guard storyboard != nil else {
