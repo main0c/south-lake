@@ -83,9 +83,11 @@ class MarkdownEditor: NSViewController, FileEditor {
                 return
             }
             
-            renderer.parseAndRenderNow()
-            highlighter.parseAndHighlightNow()
-            toc = renderer.tableOfContents()
+            NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+                self.renderer.parseAndRenderNow()
+                self.highlighter.parseAndHighlightNow()
+                self.toc = self.renderer.tableOfContents()
+            }
         }
     }
     
