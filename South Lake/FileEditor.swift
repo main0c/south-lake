@@ -19,4 +19,7 @@ protocol FileEditor {
     // File.data and FileEditor.data
     
     var data: NSData? { get set }
+    
+    static var storyboard: String { get }
+    static var filetypes: [String] { get }
 }

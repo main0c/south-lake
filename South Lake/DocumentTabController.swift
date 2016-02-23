@@ -208,7 +208,7 @@ class DocumentTabBarItem: NSObject, MMTabBarItem {
     var icon: NSImage?
     
     override init() {
-    
+        super.init()
     }
     
     init(title: String) {

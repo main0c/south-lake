@@ -19,6 +19,9 @@ extension WebView {
 private var MarkdownEditorContext = 0
 
 class MarkdownEditor: NSViewController, FileEditor {
+    static var filetypes: [String] = ["net.daringfireball.markdown", "markdown", "text/markdown"]
+    static var storyboard: String = "MarkdownEditor"
+    
     @IBOutlet var splitView: MPDocumentSplitView!
     @IBOutlet var editorContainer: NSView!
     @IBOutlet var editor: MPEditorView!

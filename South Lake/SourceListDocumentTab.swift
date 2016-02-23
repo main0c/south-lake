@@ -206,7 +206,10 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         // Load editor if editor has changed
         
         if !(editor is MarkdownEditor) {
-            editor = NSStoryboard(name: "MarkdownEditor", bundle: nil).instantiateInitialController() as? FileEditor
+            
+            // TODO: guard this
+            
+            editor = EditorExtensions.sharedInstance.editorForFiletype(file.file_extension)
             let mainItem = NSSplitViewItem(viewController: (editor as! NSViewController))
         
             removeSplitViewItem(splitViewItems[1])
