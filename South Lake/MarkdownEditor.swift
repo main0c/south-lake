@@ -79,12 +79,7 @@ class MarkdownEditor: NSViewController, FileEditor {
     
     dynamic var data: NSData? {
         didSet {
-            print("editor data.didSet")
-            
-            guard viewLoaded else {
-                return
-            }
-            guard needsHTML else {
+            guard viewLoaded && needsHTML else {
                 return
             }
             

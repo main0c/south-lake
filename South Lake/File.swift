@@ -36,8 +36,6 @@ class File: DataSource {
             }
         }
         set (value) {
-            print("file set data")
-            
             if let value = value {
                 // TODO: does removeAttachment not do anything? keeping versions?
                 // removeAttachmentNamed("data")

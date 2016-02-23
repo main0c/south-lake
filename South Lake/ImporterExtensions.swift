@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ImporterExtensions: NSObject {
+class ImporterExtensions {
     private var importers: [String] = []
     
     func registerExtensions() {
