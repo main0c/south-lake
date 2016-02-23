@@ -76,6 +76,44 @@ class Document: NSDocument, Databasable {
         windowController.searchService = searchService
         
         self.addWindowController(windowController)
+        
+        // Save before terminate
+        
+        NSNotificationCenter.defaultCenter().addObserverForName(NSApplicationWillTerminateNotification, object: nil, queue: nil) { (notification) -> Void in
+            self.saveDocument(nil)
+        }
+        
+        // Update search whenever a document is changed in the database (saved)
+        
+        NSNotificationCenter.defaultCenter().addObserverForName(kCBLDatabaseChangeNotification, object: databaseManager.database, queue: nil) { (notification) -> Void in
+            if let changes = notification.userInfo!["changes"] as? [CBLDatabaseChange] {
+                for change in changes {
+                    NSLog("Document '%@' changed", change.documentID)
+                    guard let doc = self.databaseManager.database.documentWithID(change.documentID) else {
+                        continue
+                    }
+                
+                    let model = CBLModel(forDocument: doc)
+                
+                    guard let file = model as? File else {
+                        continue
+                    }
+                    
+                    let indexable = BRSimpleIndexable(identifier: file.document!.documentID, data:[
+                        kBRSearchFieldNameTitle: file.title,
+                        kBRSearchFieldNameValue: file.plain_text
+                    ])
+                    
+                    var error: NSError?
+                    self.searchService.addObjectToIndexAndWait(indexable, error: &error)
+                    if error != nil {
+                        print("unable to index \(file.title)")
+                    } else {
+                        print("index \(file.title)")
+                    }
+                }
+            }
+        }
     }
 
     // MARK: - File handling
