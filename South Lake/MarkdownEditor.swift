@@ -42,6 +42,8 @@ class MarkdownEditor: NSViewController, FileEditor {
     var highlighter: HGMarkdownHighlighter!
     var renderer: MPRenderer!
     
+    // TODO: not using initialContents
+    
     var initialContents: String?
     var lastPreviewScrollTop: CGFloat = 0.0
     var shouldHandleBoundsChange: Bool = true

@@ -17,6 +17,7 @@ class File: DataSource {
     //       Because at some point we might have plugins for handling model types
     //       The editor doesn't know anything about the file, so it can't be the editor
     //       That leaves the model object itself, but then it has to be a subclass
+    //       Template method!
     
     @NSManaged var plain_text: String
     
@@ -49,8 +50,12 @@ class File: DataSource {
                 removeAttachmentNamed("data")
                 _data = nil
             }
+        
+            updatePlainText(_data)
         }
     }
+    
+    func updatePlainText(data: NSData?) { } // Subclasses override to set plain_text
 }
 
 extension File {
