@@ -211,7 +211,7 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
             
             // TODO: guard this, raise exception -- what?
             
-            guard let editorExtension = EditorExtensions.sharedInstance.editorForFiletype(file.file_extension) else {
+            guard let editorExtension = EditorPlugIns.sharedInstance.plugInForFiletype(file.file_extension) else {
                 print("unable to find editor for file with type \(file.file_extension)")
                 return
             }

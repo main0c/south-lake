@@ -6,6 +6,15 @@
 //  Copyright © 2016 Phil Dow. All rights reserved.
 //
 
+//  Moving the MarkdownEditor to a plugin bundle is a major re-architecting
+//  It means moving all the MacDown dependencies to a plugin, including frameworks,
+//  storyboards, build steps, additional classes and especially the MacDown 
+//  application code.
+
+//  Do I want to do that right now or move forward on releasing an MVP?
+
+//  TODO: blows up when I make available to @objc(MarkdownEditor)
+
 import Cocoa
 import WebKit
 

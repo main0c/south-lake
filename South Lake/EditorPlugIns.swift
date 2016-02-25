@@ -1,5 +1,5 @@
 //
-//  EditorExtensions.swift
+//  EditorPlugIns.swift
 //  South Lake
 //
 //  Created by Philip Dow on 2/22/16.
@@ -8,19 +8,19 @@
 
 import Cocoa
 
-class EditorExtensions {
-    static let sharedInstance = EditorExtensions()
-    private var editors: [ [String:AnyObject] ] = []
+class EditorPlugIns {
+    static let sharedInstance = EditorPlugIns()
+    private var plugins: [ [String:AnyObject] ] = []
     
     private init() {
-        self.registerExtensions()
+        self.registerPlugIns()
     }
     
-    func registerExtensions() {
+    func registerPlugIns() {
         // Store this information in a bundle plist
         // Just need the bundle, storyboard name and filetypes
         
-        editors = [
+        plugins = [
             [
                 "filetypes": ["net.daringfireball.markdown", "markdown", "text/markdown"],
                 "storyboard": "MarkdownEditor"
@@ -28,12 +28,12 @@ class EditorExtensions {
         ]
     }
     
-    func editorForFiletype(filetype: String) -> FileEditor? {
+    func plugInForFiletype(filetype: String) -> FileEditor? {
         var storyboard: String?
         
-        for editor in editors {
-            guard let filetypes = editor["filetypes"] as? [String],
-                  let sb = editor["storyboard"] as? String else {
+        for plugin in plugins {
+            guard let filetypes = plugin["filetypes"] as? [String],
+                  let sb = plugin["storyboard"] as? String else {
                   continue
             }
             

@@ -8,18 +8,23 @@
 
 import Foundation
 
-// TODO: mark FileEditor protocol as always belonging to class NSViewController
+//  TODO: mark FileEditor protocol as always belonging to class NSViewController
+
+//  Architecture
+//  Should we share the File or just the data?
+//  Sharing the data shares less and makes the class more resilient to change
+//  Sharing the File may allow us to have more complex editor views
+
+//  TODO: blows up when I make available to @objc(FileEditor)
 
 protocol FileEditor {
-    // Should we share the File or just the data? 
-    // Sharing the data shares less and makes the class more resilient to change
-    // Sharing the File may allow us to have more complex editor views
+    
+    static var filetypes: [String] { get }
+    static var storyboard: String { get }
     
     // Expect a tab to establish a continuous two-way binding between 
     // File.data and FileEditor.data
     
     var data: NSData? { get set }
     
-    static var storyboard: String { get }
-    static var filetypes: [String] { get }
 }
