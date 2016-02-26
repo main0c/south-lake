@@ -118,9 +118,9 @@ class DocumentTabController: NSViewController, Databasable {
     
     // MARK: -
     
-    @IBAction func createNewMarkdownDocument(sender: AnyObject?) {
-    
-    }
+//    @IBAction func createNewMarkdownDocument(sender: AnyObject?) {
+//    
+//    }
     
     func createNewTabWithTitle(title: String) throws {
         if let tab = try createNewTab() {

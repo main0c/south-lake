@@ -83,14 +83,14 @@ class DocumentWindowController: NSWindowController, Databasable {
     
     // MARK: User Actions
     
-    @IBAction func createNewMarkdownDocument(sender: AnyObject?) {
-        guard let tabController = self.window?.contentViewController as? DocumentTabController else {
-            print("selectPrevousTab expected DocumentTabController")
-            return
-        }
-        
-        tabController.createNewMarkdownDocument(sender)
-    }
+//    @IBAction func createNewMarkdownDocument(sender: AnyObject?) {
+//        guard let tabController = self.window?.contentViewController as? DocumentTabController else {
+//            print("selectPrevousTab expected DocumentTabController")
+//            return
+//        }
+//        
+//        tabController.createNewMarkdownDocument(sender)
+//    }
     
     @IBAction func findInNotebook(sender: AnyObject?) {
         guard let item = window?.toolbar?.itemWithIdentifier("search"),
