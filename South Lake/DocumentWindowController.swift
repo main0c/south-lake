@@ -106,7 +106,8 @@ class DocumentWindowController: NSWindowController, Databasable {
     //       Search replaces search tab if selected, new tab if not
     
     @IBAction func executeFindInNotebook(sender: AnyObject?) {
-        guard let sender = sender as? NSSearchField else {
+        guard let sender = sender as? NSSearchField
+              where sender.stringValue.characters.count > 0 else {
             return
         }
         

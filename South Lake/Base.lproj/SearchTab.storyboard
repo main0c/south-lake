@@ -18,9 +18,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="5XC-rO-eWj">
+                                        <textView editable="NO" importsGraphics="NO" richText="NO" findStyle="panel" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="5XC-rO-eWj">
                                             <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" white="0.94589251893939397" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="backgroundColor" red="0.1764705882352941" green="0.1764705882352941" blue="0.1764705882352941" alpha="1" colorSpace="calibratedRGB"/>
                                             <size key="minSize" width="450" height="300"/>
                                             <size key="maxSize" width="463" height="10000000"/>
@@ -48,6 +49,9 @@
                             <constraint firstItem="cCe-tT-yB1" firstAttribute="leading" secondItem="Nf6-7l-uxO" secondAttribute="leading" id="hW2-dR-U4P"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="5XC-rO-eWj" id="tsb-DZ-qCN"/>
+                    </connections>
                 </viewController>
                 <customObject id="LcA-Oh-Xt6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
