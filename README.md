@@ -3,6 +3,10 @@
 
 Secret project for new Journler like application. Shhhh.
 
+## Builder Beware
+
+The document format and data model may change at any point at this stage of development, rendering your saved data unreadable. Use at your own risk.
+
 ## Road Map
 
 - v0.0 [Current] : Initial develompent
