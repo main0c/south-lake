@@ -221,6 +221,8 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         
             removeSplitViewItem(splitViewItems[1])
             insertSplitViewItem(mainItem, atIndex: 1)
+            
+            // addChildViewController(editor as! NSViewController)
         }
         
         // Pass selection to editor: why is var needed here for mutablily? editor is var
@@ -228,5 +230,12 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     
     func clearEditor() {
     
+    }
+    
+    //MARK: = User Actions
+    
+    @IBAction func createNewMarkdownDocument(sender: AnyObject?) {
+        // TODO: Template document and select it in editor
+        sourceListController.createNewMarkdownDocument(sender)
     }
 }

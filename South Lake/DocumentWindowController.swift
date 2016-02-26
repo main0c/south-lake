@@ -38,8 +38,10 @@ class DocumentWindowController: NSWindowController, Databasable {
     
     // MARK: - Tab Actions
     // Pass them onto the window's content view controller
+    
+    // TODO: - Maybe I just need to set up the view hierarchy correctly
 
-    @IBAction func performTabbedClose(sender: AnyObject) {
+    @IBAction func performTabbedClose(sender: AnyObject?) {
         guard let window = self.window else {
             return
         }
@@ -52,7 +54,7 @@ class DocumentWindowController: NSWindowController, Databasable {
         }
     }
 
-    @IBAction func createNewTab(sender: AnyObject) {
+    @IBAction func createNewTab(sender: AnyObject?) {
         guard let tabController = self.window?.contentViewController as? DocumentTabController else {
             print("createNewTab expected DocumentTabController")
             return
@@ -61,7 +63,7 @@ class DocumentWindowController: NSWindowController, Databasable {
         tabController.createNewTab(sender)
     }
     
-    @IBAction func selectNextTab(sender: AnyObject) {
+    @IBAction func selectNextTab(sender: AnyObject?) {
         guard let tabController = self.window?.contentViewController as? DocumentTabController else {
             print("selectNextTab expected DocumentTabController")
             return
@@ -70,7 +72,7 @@ class DocumentWindowController: NSWindowController, Databasable {
         tabController.selectNextTab(sender)
     }
     
-    @IBAction func selectPrevousTab(sender: AnyObject) {
+    @IBAction func selectPrevousTab(sender: AnyObject?) {
         guard let tabController = self.window?.contentViewController as? DocumentTabController else {
             print("selectPrevousTab expected DocumentTabController")
             return
@@ -78,6 +80,19 @@ class DocumentWindowController: NSWindowController, Databasable {
         
         tabController.selectPreviousTab(sender)
     }
+    
+    // MARK: User Actions
+    
+    @IBAction func createNewMarkdownDocument(sender: AnyObject?) {
+        guard let tabController = self.window?.contentViewController as? DocumentTabController else {
+            print("selectPrevousTab expected DocumentTabController")
+            return
+        }
+        
+        tabController.createNewMarkdownDocument(sender)
+    }
+    
+    // MARK: - UI Validation
     
     override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
         if menuItem.action == Selector("performTabbedClose:") {

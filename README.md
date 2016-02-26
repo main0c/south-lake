@@ -14,6 +14,8 @@ Secret project for new Journler like application. Shhhh.
 - v0.4 : Sync
 - v0.5 : Cross platform development
 
+More: improved markdown (images), interdocument linking, table of contents, calendar view
+
 ## Build
 
 Ensure you have [Cocoapods](https://cocoapods.org/) installed.

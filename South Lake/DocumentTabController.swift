@@ -68,17 +68,17 @@ class DocumentTabController: NSViewController, Databasable {
     
     // MARK: - User Actions
     
-    @IBAction func createNewTab(sender: AnyObject) {
+    @IBAction func createNewTab(sender: AnyObject?) {
         do { try createNewTabWithTitle(NSLocalizedString("Untitled", comment: "Untitled tab")) } catch {
             print("createNewTab: could not create new tab")
         }
     }
     
-    @IBAction func performClose(sender: AnyObject) {
+    @IBAction func performClose(sender: AnyObject?) {
         closeTab(sender)
     }
     
-    @IBAction func closeTab(sender: AnyObject) {
+    @IBAction func closeTab(sender: AnyObject?) {
         guard tabView.tabViewItems.count > 1 else {
             return
         }
@@ -92,7 +92,7 @@ class DocumentTabController: NSViewController, Databasable {
         tabView.removeTabViewItem(tabViewItem)
     }
     
-    @IBAction func selectNextTab(sender: AnyObject) {
+    @IBAction func selectNextTab(sender: AnyObject?) {
         if tabView.indexOfTabViewItem(tabView.selectedTabViewItem!) == tabView.numberOfTabViewItems-1 {
             tabView.selectFirstTabViewItem(sender)
         } else {
@@ -100,12 +100,18 @@ class DocumentTabController: NSViewController, Databasable {
         }
     }
     
-    @IBAction func selectPreviousTab(sender: AnyObject) {
+    @IBAction func selectPreviousTab(sender: AnyObject?) {
         if tabView.indexOfTabViewItem(tabView.selectedTabViewItem!) == 0 {
             tabView.selectLastTabViewItem(sender)
         } else {
             tabView.selectPreviousTabViewItem(sender)
         }
+    }
+    
+    // MARK: -
+    
+    @IBAction func createNewMarkdownDocument(sender: AnyObject?) {
+    
     }
     
     func createNewTabWithTitle(title: String) throws {

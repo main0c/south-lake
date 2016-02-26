@@ -152,7 +152,7 @@ class SourceListViewController: NSViewController, Databasable {
     
     // MARK: - IBAction: Refactor
     
-    @IBAction func createNewFolder(sender: AnyObject) {
+    @IBAction func createNewFolder(sender: AnyObject?) {
         // Create an untitled folder
         
         let folder = Folder(forNewDocumentInDatabase: databaseManager.database)
@@ -187,7 +187,7 @@ class SourceListViewController: NSViewController, Databasable {
         editItem(indexPath)
     }
     
-    @IBAction func createNewSmartFolder(sender: AnyObject) {
+    @IBAction func createNewSmartFolder(sender: AnyObject?) {
         // Create an untitled smart folder
         
         let folder = SmartFolder(forNewDocumentInDatabase: databaseManager.database)
@@ -214,7 +214,7 @@ class SourceListViewController: NSViewController, Databasable {
         editItem(indexPath)
     }
     
-    @IBAction func createNewMarkdownDocument(sender: AnyObject) {
+    @IBAction func createNewMarkdownDocument(sender: AnyObject?) {
         // Create an untitled markdown document
         
         let file = File(forNewDocumentInDatabase: databaseManager.database)
