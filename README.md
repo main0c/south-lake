@@ -1,6 +1,18 @@
+
 ## South Lake
 
 Secret project for new Journler like application. Shhhh.
+
+[TOC]
+
+## Road Map
+
+- v0.0 [Current] : Initial develompent
+- v0.1 : MVP release: basic markdown, folders, search
+- v0.2 : Markdown import, plugin architecture
+- v0.3 : Metadata, smart folders, import
+- v0.4 : Sync
+- v0.5 : Cross platform development
 
 ## Build
 
