@@ -3,8 +3,6 @@
 
 Secret project for new Journler like application. Shhhh.
 
-[TOC]
-
 ## Road Map
 
 - v0.0 [Current] : Initial develompent
@@ -14,7 +12,7 @@ Secret project for new Journler like application. Shhhh.
 - v0.4 : Sync
 - v0.5 : Cross platform development
 
-More: improved markdown (images), interdocument linking, table of contents, calendar view
+More: improved markdown (images), interdocument linking, table of contents, calendar view, ...
 
 ## Build
 
