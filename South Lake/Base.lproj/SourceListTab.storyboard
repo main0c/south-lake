@@ -179,7 +179,7 @@
                                             </subviews>
                                             <nil key="backgroundColor"/>
                                         </clipView>
-                                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="hwF-r1-ZHQ">
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="hwF-r1-ZHQ">
                                             <rect key="frame" x="0.0" y="360" width="234" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>

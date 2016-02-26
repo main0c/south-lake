@@ -373,6 +373,21 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Find" id="fYL-7k-gEJ">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Find" id="pki-nX-gxS">
+                                    <items>
+                                        <menuItem title="Find in Notebook" keyEquivalent="F" id="jXf-ZJ-Pkd">
+                                            <connections>
+                                                <action selector="findInNotebook:" target="Ady-hI-5gd" id="Pud-mz-UEQ"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Find Selected Text in Notebook" keyEquivalent="f" id="akG-Rf-Cw9">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Format" id="jxT-CU-nIS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Format" id="GEO-Iw-cKr">
@@ -767,12 +782,28 @@
                                 <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="643-Q1-p4L"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="yla-wU-knF"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="hWu-DY-Aqg"/>
+                                <toolbarItem implicitItemIdentifier="75BB1A9B-ECDE-4353-AC84-D0CB9BF1850D" explicitItemIdentifier="search" label="Search" paletteLabel="Search" id="sKr-Yj-KFT">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="96" height="22"/>
+                                    <size key="maxSize" width="302" height="22"/>
+                                    <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" id="zec-xR-igb">
+                                        <rect key="frame" x="0.0" y="14" width="300" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsWholeSearchString="YES" id="aKt-IO-sQ8">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <connections>
+                                                <action selector="executeFindInNotebook:" target="6f7-a7-6o1" id="QTJ-bo-EOk"/>
+                                            </connections>
+                                        </searchFieldCell>
+                                    </searchField>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
-                                <toolbarItem reference="xkE-Pb-DCO"/>
-                                <toolbarItem reference="wls-9i-bNn"/>
                                 <toolbarItem reference="hWu-DY-Aqg"/>
-                                <toolbarItem reference="643-Q1-p4L"/>
+                                <toolbarItem reference="sKr-Yj-KFT"/>
+                                <toolbarItem reference="hWu-DY-Aqg"/>
                             </defaultToolbarItems>
                         </toolbar>
                     </window>
@@ -782,7 +813,7 @@
                 </windowController>
                 <customObject id="6f7-a7-6o1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35" y="250"/>
+            <point key="canvasLocation" x="-181" y="-6"/>
         </scene>
         <!--Delegate-->
         <scene sceneID="qfi-F5-4pt">

@@ -8,6 +8,10 @@
 
 //  Create and destroy tabs, persist and restore them.
 
+//  TODO: Generic ethods for creating tabs from storyboards or classes
+//        to suppport plugin architecture rather than for creating
+//        specific kinds of tabs
+
 import Cocoa
 
 enum DocumentTabControllerError: ErrorType {
@@ -32,6 +36,10 @@ class DocumentTabController: NSViewController, Databasable {
                 vc.searchService = searchService
             }
         }
+    }
+    
+    var selectedTab: DocumentTab? {
+        return tabView.selectedTabViewItem?.vc as? DocumentTab
     }
     
     var tabs: [DocumentTab] {
@@ -124,6 +132,34 @@ class DocumentTabController: NSViewController, Databasable {
     
     func createNewTab() throws -> NSTabViewItem? {
         guard let viewController = NSStoryboard(name: "SourceListTab", bundle: nil).instantiateInitialController() as? NSViewController else {
+            throw DocumentTabControllerError.CouldNotInstantiateTabViewController
+        }
+        guard viewController is DocumentTab else {
+            throw DocumentTabControllerError.CouldNotInstantiateTabViewController
+        }
+        
+        let tabBarItem = DocumentTabBarItem()
+        let tabViewItem = NSTabViewItem(identifier: tabBarItem)
+        
+        tabViewItem.view = viewController.view
+        tabViewItem.vc = viewController
+        
+        tabBarItem.bind("title", toObject: viewController, withKeyPath: "title", options: [:])
+        tabBarItem.bind("icon", toObject: viewController, withKeyPath: "icon", options: [:])
+        
+        (viewController as! DocumentTab).databaseManager = databaseManager
+        (viewController as! DocumentTab).searchService = searchService
+        
+        // For example, we don't have to select
+        
+        tabView.addTabViewItem(tabViewItem)
+        tabView.selectTabViewItem(tabViewItem)
+        
+        return tabViewItem
+    }
+    
+    func createNewSearchTab() throws -> NSTabViewItem? {
+        guard let viewController = NSStoryboard(name: "SearchTab", bundle: nil).instantiateInitialController() as? NSViewController else {
             throw DocumentTabControllerError.CouldNotInstantiateTabViewController
         }
         guard viewController is DocumentTab else {

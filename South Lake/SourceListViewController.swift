@@ -21,10 +21,6 @@ class SourceListViewController: NSViewController, Databasable {
     
     private var draggedNodes : [NSTreeNode]?
     
-    var selectedObject: DataSource? {
-        return ( selectedObjects.count == 1 ) ? selectedObjects[0] : nil
-    }
-    
     var databaseManager: DatabaseManager! {
         didSet {
             loadData()
@@ -35,6 +31,10 @@ class SourceListViewController: NSViewController, Databasable {
         didSet {
         
         }
+    }
+    
+    var selectedObject: DataSource? {
+        return ( selectedObjects.count == 1 ) ? selectedObjects[0] : nil
     }
 
     override func viewDidLoad() {

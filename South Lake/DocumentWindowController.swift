@@ -92,6 +92,46 @@ class DocumentWindowController: NSWindowController, Databasable {
         tabController.createNewMarkdownDocument(sender)
     }
     
+    @IBAction func findInNotebook(sender: AnyObject?) {
+        guard let item = window?.toolbar?.itemWithIdentifier("search"),
+              let field = item.view as? NSSearchField else {
+            return
+        }
+        
+        window?.makeFirstResponder(field)
+    }
+    
+    // TODO: Search behavior? Search always replaces current search (one search tab)
+    //       Search never replaces current search (always new tab)
+    //       Search replaces search tab if selected, new tab if not
+    
+    @IBAction func executeFindInNotebook(sender: AnyObject?) {
+        guard let sender = sender as? NSSearchField else {
+            return
+        }
+        
+        let text = sender.stringValue
+        var searchTab: SearchDocumentTab
+        
+        if tabController.selectedTab is SearchDocumentTab {
+            searchTab = tabController.selectedTab as! SearchDocumentTab
+        } else {
+            do {
+                guard let item = try tabController.createNewSearchTab(),
+                      let tab = item.vc as? SearchDocumentTab else {
+                    print("don't have search tab")
+                    return
+                }
+                searchTab = tab
+            } catch {
+                print(error)
+                return
+            }
+        }
+        
+        searchTab.searchPhrase = text
+    }
+    
     // MARK: - UI Validation
     
     override func validateMenuItem(menuItem: NSMenuItem) -> Bool {

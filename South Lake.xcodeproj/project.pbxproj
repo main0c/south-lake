@@ -27,6 +27,8 @@
 		E36072731C74E64200914C2C /* NSTabViewItem+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36072721C74E64200914C2C /* NSTabViewItem+ViewController.swift */; };
 		E36072781C74FD8C00914C2C /* Tab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E360727A1C74FD8C00914C2C /* Tab.storyboard */; };
 		E360727C1C74FEEC00914C2C /* DocumentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E360727B1C74FEEC00914C2C /* DocumentTab.swift */; };
+		E378E80F1C801F54009539FD /* NSToolbar+Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378E80E1C801F54009539FD /* NSToolbar+Items.swift */; };
+		E378E8151C80216E009539FD /* SearchTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E378E8171C80216E009539FD /* SearchTab.storyboard */; };
 		E37D96101C723B8A000A9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D960F1C723B8A000A9F90 /* AppDelegate.swift */; };
 		E37D96141C723B8A000A9F90 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D96131C723B8A000A9F90 /* Document.swift */; };
 		E37D96161C723B8A000A9F90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E37D96151C723B8A000A9F90 /* Assets.xcassets */; };
@@ -72,6 +74,7 @@
 		E3803F451C7297780048AD46 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F441C7297780048AD46 /* CFNetwork.framework */; };
 		E3803F471C72977D0048AD46 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F461C72977D0048AD46 /* SystemConfiguration.framework */; };
 		E385F8081C796B950072A2CD /* NSDataNSStringValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385F8071C796B950072A2CD /* NSDataNSStringValueTransformer.swift */; };
+		E3898F961C8015E700CA71BE /* SearchDocumentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3898F941C8015E700CA71BE /* SearchDocumentTab.swift */; };
 		E39E9B391C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39E9B381C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift */; };
 		E3AD255A1C7F9CDE006D6536 /* MarkdownImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AD25591C7F9CDE006D6536 /* MarkdownImporter.swift */; };
 		E3AD256C1C7F9D08006D6536 /* FileImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AD256B1C7F9D08006D6536 /* FileImporter.swift */; };
@@ -255,6 +258,8 @@
 		E36072721C74E64200914C2C /* NSTabViewItem+ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTabViewItem+ViewController.swift"; sourceTree = "<group>"; };
 		E36072791C74FD8C00914C2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Tab.storyboard; sourceTree = "<group>"; };
 		E360727B1C74FEEC00914C2C /* DocumentTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentTab.swift; sourceTree = "<group>"; };
+		E378E80E1C801F54009539FD /* NSToolbar+Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSToolbar+Items.swift"; sourceTree = "<group>"; };
+		E378E8161C80216E009539FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SearchTab.storyboard; sourceTree = "<group>"; };
 		E37D960C1C723B8A000A9F90 /* South Lake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "South Lake.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E37D960F1C723B8A000A9F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E37D96131C723B8A000A9F90 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -2348,6 +2353,7 @@
 		E3803F441C7297780048AD46 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E3803F461C72977D0048AD46 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E385F8071C796B950072A2CD /* NSDataNSStringValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataNSStringValueTransformer.swift; sourceTree = "<group>"; };
+		E3898F941C8015E700CA71BE /* SearchDocumentTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDocumentTab.swift; sourceTree = "<group>"; };
 		E39E9B381C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringNSDataValueTransformer.swift; sourceTree = "<group>"; };
 		E3AD25591C7F9CDE006D6536 /* MarkdownImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownImporter.swift; sourceTree = "<group>"; };
 		E3AD256B1C7F9D08006D6536 /* FileImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileImporter.swift; sourceTree = "<group>"; };
@@ -2414,6 +2420,7 @@
 		E3274FAC1C75A04C000B6A84 /* Source List */ = {
 			isa = PBXGroup;
 			children = (
+				E3C821281C75984B00CBAE92 /* SourceListTab.storyboard */,
 				E3C821221C7597B600CBAE92 /* SourceListDocumentTab.swift */,
 				E3274FC01C75A0B7000B6A84 /* SourceListViewController.swift */,
 			);
@@ -2424,24 +2431,15 @@
 			isa = PBXGroup;
 			children = (
 				E3FD678E1C7BE37800D7EBB7 /* EditorPlugIns.swift */,
-				E3274FBE1C75A088000B6A84 /* MarkdownEditor.swift */,
+				E3898F981C80162700CA71BE /* Markdown */,
 			);
 			name = Editors;
-			sourceTree = "<group>";
-		};
-		E3274FCE1C75A2BC000B6A84 /* Editor Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				E3274FD21C75A594000B6A84 /* MarkdownEditor.storyboard */,
-			);
-			name = "Editor Storyboards";
 			sourceTree = "<group>";
 		};
 		E3274FCF1C75A2CF000B6A84 /* Tab Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				E360727A1C74FD8C00914C2C /* Tab.storyboard */,
-				E3C821281C75984B00CBAE92 /* SourceListTab.storyboard */,
 			);
 			name = "Tab Storyboards";
 			sourceTree = "<group>";
@@ -2465,6 +2463,7 @@
 				E36072721C74E64200914C2C /* NSTabViewItem+ViewController.swift */,
 				E32AD25D1C76827400648BFD /* NSURL+FileType.swift */,
 				E3E12A641C76E3E7000C4F16 /* NSOutlineView+Selection.swift */,
+				E378E80E1C801F54009539FD /* NSToolbar+Items.swift */,
 				E3C436251C7641E900DD685D /* MPRenderer+TOC.h */,
 				E3C436261C7641E900DD685D /* MPRenderer+TOC.m */,
 			);
@@ -2519,6 +2518,7 @@
 		E37D960E1C723B8A000A9F90 /* South Lake */ = {
 			isa = PBXGroup;
 			children = (
+				E37D96171C723B8A000A9F90 /* Main.storyboard */,
 				E37D960F1C723B8A000A9F90 /* AppDelegate.swift */,
 				E37E47B71C73F0F90077ECD7 /* DocumentController.swift */,
 				E37D96131C723B8A000A9F90 /* Document.swift */,
@@ -2532,11 +2532,9 @@
 				E32EC0901C74493900E47B3F /* Extensions */,
 				E3C436281C7642A500DD685D /* Utilities */,
 				E37D96151C723B8A000A9F90 /* Assets.xcassets */,
-				E37D96171C723B8A000A9F90 /* Main.storyboard */,
 				E3C436211C7640A400DD685D /* Welcome.md */,
 				E3E65F531C7C1A840085B5B7 /* About Markdown.md */,
 				E3274FCF1C75A2CF000B6A84 /* Tab Storyboards */,
-				E3274FCE1C75A2BC000B6A84 /* Editor Storyboards */,
 				E37D961A1C723B8A000A9F90 /* Info.plist */,
 			);
 			path = "South Lake";
@@ -6963,6 +6961,24 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
+		E3898F831C80153900CA71BE /* Search Tab */ = {
+			isa = PBXGroup;
+			children = (
+				E378E8171C80216E009539FD /* SearchTab.storyboard */,
+				E3898F941C8015E700CA71BE /* SearchDocumentTab.swift */,
+			);
+			name = "Search Tab";
+			sourceTree = "<group>";
+		};
+		E3898F981C80162700CA71BE /* Markdown */ = {
+			isa = PBXGroup;
+			children = (
+				E3274FD21C75A594000B6A84 /* MarkdownEditor.storyboard */,
+				E3274FBE1C75A088000B6A84 /* MarkdownEditor.swift */,
+			);
+			name = Markdown;
+			sourceTree = "<group>";
+		};
 		E3C436281C7642A500DD685D /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -6978,6 +6994,7 @@
 			isa = PBXGroup;
 			children = (
 				E3274FAC1C75A04C000B6A84 /* Source List */,
+				E3898F831C80153900CA71BE /* Search Tab */,
 			);
 			name = Tabs;
 			sourceTree = "<group>";
@@ -7253,6 +7270,7 @@
 				E38035921C728D780048AD46 /* Styles in Resources */,
 				E38035931C728D780048AD46 /* syntax_highlighting.json in Resources */,
 				E38035941C728D780048AD46 /* Themes in Resources */,
+				E378E8151C80216E009539FD /* SearchTab.storyboard in Resources */,
 				E3C821261C75984B00CBAE92 /* SourceListTab.storyboard in Resources */,
 				E3E65F541C7C1A8F0085B5B7 /* About Markdown.md in Resources */,
 				E3C436231C7640B000DD685D /* Welcome.md in Resources */,
@@ -7404,9 +7422,11 @@
 				E3803F101C728E790048AD46 /* NSTextView+Autocomplete.m in Sources */,
 				E3803F0C1C728E790048AD46 /* NSDocumentController+Document.m in Sources */,
 				E36072731C74E64200914C2C /* NSTabViewItem+ViewController.swift in Sources */,
+				E378E80F1C801F54009539FD /* NSToolbar+Items.swift in Sources */,
 				E3803F0F1C728E790048AD46 /* NSString+Lookup.m in Sources */,
 				E3803F071C728E600048AD46 /* MPAsset.m in Sources */,
 				E39E9B391C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift in Sources */,
+				E3898F961C8015E700CA71BE /* SearchDocumentTab.swift in Sources */,
 				E3803F0A1C728E790048AD46 /* hoedown_html_patch.c in Sources */,
 				E3274FBF1C75A088000B6A84 /* MarkdownEditor.swift in Sources */,
 				E37E47B81C73F0F90077ECD7 /* DocumentController.swift in Sources */,
@@ -7475,6 +7495,14 @@
 				E36072791C74FD8C00914C2C /* Base */,
 			);
 			name = Tab.storyboard;
+			sourceTree = "<group>";
+		};
+		E378E8171C80216E009539FD /* SearchTab.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E378E8161C80216E009539FD /* Base */,
+			);
+			name = SearchTab.storyboard;
 			sourceTree = "<group>";
 		};
 		E37D96171C723B8A000A9F90 /* Main.storyboard */ = {

@@ -31,6 +31,12 @@ protocol DocumentTab: class, Databasable {
     func willClose()
 }
 
-extension DocumentTab where Self: NSViewController {
-
-}
+//extension DocumentTab where Self: NSViewController {
+//    func documentWillSave() {
+//    
+//    }
+//    
+//    func willClose() {
+//    
+//    }
+//}
