@@ -80,7 +80,14 @@ class SearchDocumentTab: NSViewController, DocumentTab {
         var presentation = ""
         
         guard let results = searchService.search(text) else {
-            print("no results -- inform the user")
+            print("search service returned nil for results")
+            return
+        }
+        
+        guard results.count() != 0 else {
+            textView.string = String.localizedStringWithFormat(NSLocalizedString("No results found for \"%@\"",
+                comment: "No results message"),
+                searchPhrase)
             return
         }
         
