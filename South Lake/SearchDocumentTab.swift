@@ -62,7 +62,7 @@ class SearchDocumentTab: NSViewController, DocumentTab {
     }
     
     func createNewMarkdownDocument(sender: AnyObject?) {
-    
+        NSBeep()
     }
     
     func documentWillSave(notification: NSNotification) {
