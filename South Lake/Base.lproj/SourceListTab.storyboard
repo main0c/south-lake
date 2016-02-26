@@ -24,19 +24,6 @@
                     </connections>
                 </splitViewController>
                 <customObject id="TK0-L5-kqH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <menu id="dM9-GD-YSW">
-                    <items>
-                        <menuItem title="Item 1" id="QZt-Nb-hno">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                        </menuItem>
-                        <menuItem title="Item 2" id="Lgn-uT-6Ao">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                        </menuItem>
-                        <menuItem title="Item 3" id="vLS-5g-IXg">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                        </menuItem>
-                    </items>
-                </menu>
             </objects>
             <point key="canvasLocation" x="44" y="747"/>
         </scene>
@@ -53,10 +40,10 @@
             </objects>
             <point key="canvasLocation" x="44" y="1371"/>
         </scene>
-        <!--View Controller-->
+        <!--Metadata Controller-->
         <scene sceneID="es3-lF-qMF">
             <objects>
-                <viewController id="Oek-qD-h4p" sceneMemberID="viewController">
+                <viewController id="Oek-qD-h4p" userLabel="Metadata Controller" sceneMemberID="viewController">
                     <view key="view" id="rdU-W6-1rA">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="478"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -80,10 +67,10 @@
             </objects>
             <point key="canvasLocation" x="718" y="1321"/>
         </scene>
-        <!--Master View Controller-->
+        <!--Source List Controller-->
         <scene sceneID="gsY-rn-MuH">
             <objects>
-                <viewController id="BCA-UI-RVa" userLabel="Master View Controller" customClass="SourceListViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BCA-UI-RVa" userLabel="Source List Controller" customClass="SourceListViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="WFb-qx-mSZ">
                         <rect key="frame" x="0.0" y="0.0" width="234" height="400"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -266,6 +253,19 @@
                         <string>icon</string>
                     </declaredKeys>
                 </treeController>
+                <menu id="dM9-GD-YSW">
+                    <items>
+                        <menuItem title="Item 1" id="QZt-Nb-hno">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem title="Item 2" id="Lgn-uT-6Ao">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem title="Item 3" id="vLS-5g-IXg">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                    </items>
+                </menu>
             </objects>
             <point key="canvasLocation" x="-618" y="1282"/>
         </scene>
