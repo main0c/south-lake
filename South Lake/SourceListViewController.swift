@@ -36,6 +36,8 @@ class SourceListViewController: NSViewController, Databasable {
     var selectedObject: DataSource? {
         return ( selectedObjects.count == 1 ) ? selectedObjects[0] : nil
     }
+    
+    // MARK: - Initialization
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,108 +152,7 @@ class SourceListViewController: NSViewController, Databasable {
         }
     }
     
-    // MARK: - IBAction: Refactor
-    
-    @IBAction func createNewFolder(sender: AnyObject?) {
-        // Create an untitled folder
-        
-        let folder = Folder(forNewDocumentInDatabase: databaseManager.database)
-        folder.title = NSLocalizedString("Untitled", comment: "Name for new untitled folder")
-        folder.icon = NSImage(named: "folder-icon")
-        
-        do { try folder.save() } catch {
-            print(error)
-            return
-        }
-        
-        // Either add the folder to the Folders section or the selected folder
-        
-        var parent: DataSource
-        var indexPath: NSIndexPath
-        
-        if let item = selectedObject where (item is Folder && !(item is SmartFolder)) {
-            parent = item
-            indexPath = treeController.selectionIndexPath!.indexPathByAddingIndex(parent.children.count)
-        } else {
-            parent = content[1]
-            indexPath = NSIndexPath(index: 1).indexPathByAddingIndex(parent.children.count)
-        }
-        
-        parent.mutableArrayValueForKey("children").addObject(folder)
-        
-        do { try parent.save() } catch {
-            print(error)
-            return
-        }
-        
-        editItem(indexPath)
-    }
-    
-    @IBAction func createNewSmartFolder(sender: AnyObject?) {
-        // Create an untitled smart folder
-        
-        let folder = SmartFolder(forNewDocumentInDatabase: databaseManager.database)
-        folder.title = NSLocalizedString("Untitled", comment: "Name for new untitled smart folder")
-        folder.icon = NSImage(named:"smart-folder-icon")
-        
-        do { try folder.save() } catch {
-            print(error)
-            return
-        }
-        
-        // Either add the folder to the Smart Folders section or the selected folder
-        
-        let parent = content[2]
-        let indexPath = NSIndexPath(index: 2).indexPathByAddingIndex(parent.children.count)
-        
-        parent.mutableArrayValueForKey("children").addObject(folder)
-        
-        do { try parent.save() } catch {
-            print(error)
-            return
-        }
-        
-        editItem(indexPath)
-    }
-    
-    @IBAction func createNewMarkdownDocument(sender: AnyObject?) {
-        // Create an untitled markdown document
-        
-        let file = File(forNewDocumentInDatabase: databaseManager.database)
-        file.title = NSLocalizedString("Untitled", comment: "Name for new untitled document")
-        file.icon = NSImage(named:"markdown-document-icon")
-        
-        file.uti = "net.daringfireball.markdown"
-        file.file_extension = "markdown"
-        file.mime_type = "text/markdown"
-        
-        do { try file.save() } catch {
-            print(error)
-            return
-        }
-        
-        // Either add the file to the Shortcuts section or the selected folder
-        
-        var parent: DataSource
-        var indexPath: NSIndexPath
-        
-        if let item = selectedObject where item is Folder {
-            parent = item
-            indexPath = treeController.selectionIndexPath!.indexPathByAddingIndex(parent.children.count)
-        } else {
-            parent = content[0]
-            indexPath = NSIndexPath(index: 0).indexPathByAddingIndex(parent.children.count)
-        }
-        
-        parent.mutableArrayValueForKey("children").addObject(file)
-        
-        do { try parent.save() } catch {
-            print(error)
-            return
-        }
-        
-        editItem(indexPath)
-    }
+    // MARK: - IBAction
     
     @IBAction func userDidEndEditingCell(sender: NSTextField) {
         // Update data source title
@@ -280,14 +181,6 @@ class SourceListViewController: NSViewController, Databasable {
 // MARK: - NSOutlineViewDataSource
 
 extension SourceListViewController : NSOutlineViewDataSource {
-    
-    // Handled by Tree Controller
-    
-    // func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int
-    // func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject
-    // func outlineView(outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool
-    
-    // MARK: - Drag and Drop
     
     func outlineView(outlineView: NSOutlineView, validateDrop info: NSDraggingInfo, proposedItem item: AnyObject?, proposedChildIndex index: Int) -> NSDragOperation {
         var operation = NSDragOperation.Generic

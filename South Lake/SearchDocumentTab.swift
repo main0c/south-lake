@@ -61,16 +61,41 @@ class SearchDocumentTab: NSViewController, DocumentTab {
     
     }
     
-    func createNewMarkdownDocument(sender: AnyObject?) {
-        NSBeep()
-    }
-    
     func documentWillSave(notification: NSNotification) {
     
     }
     
     func willClose() {
     
+    }
+    
+    // MARK: - User Actions
+    
+    @IBAction func createNewMarkdownDocument(sender: AnyObject?) {
+        NSBeep()
+    }
+    
+    @IBAction func createNewSmartFolder(sender: AnyObject?) {
+        NSBeep()
+    }
+    
+    @IBAction func createNewFolder(sender: AnyObject?) {
+        NSBeep()
+    }
+    
+    // MARK: - UI Validation
+    
+    override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
+        switch menuItem.action {
+        case Selector("createNewMarkdownDocument:"),
+             Selector("createNewSmartFolder:"),
+             Selector("createNewFolder:"):
+             return false
+        default:
+             break
+        }
+        
+        return super.validateMenuItem(menuItem)
     }
     
     // MARK: -

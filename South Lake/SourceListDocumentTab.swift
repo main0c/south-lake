@@ -232,10 +232,123 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     
     }
     
-    //MARK: = User Actions
+    // MARK: - User Actions
+    
+    // TODO: Refactoring, watch for couping to source list view controller
+    
+    @IBAction func createNewFolder(sender: AnyObject?) {
+        // Create an untitled folder
+        
+        let folder = Folder(forNewDocumentInDatabase: databaseManager.database)
+        folder.title = NSLocalizedString("Untitled", comment: "Name for new untitled folder")
+        folder.icon = NSImage(named: "folder-icon")
+        
+        do { try folder.save() } catch {
+            print(error)
+            return
+        }
+        
+        // Either add the folder to the Folders section or the selected folder
+        
+        var parent: DataSource
+        var indexPath: NSIndexPath
+        
+        if let item = selectedObject where (item is Folder && !(item is SmartFolder)) {
+            parent = item
+            indexPath = sourceListController.treeController.selectionIndexPath!.indexPathByAddingIndex(parent.children.count)
+        } else {
+            parent = sourceListController.content[1] // Section
+            indexPath = NSIndexPath(index: 1).indexPathByAddingIndex(parent.children.count)
+        }
+        
+        parent.mutableArrayValueForKey("children").addObject(folder)
+        
+        do { try parent.save() } catch {
+            print(error)
+            return
+        }
+        
+        sourceListController.editItem(indexPath)
+    }
+    
+    @IBAction func createNewSmartFolder(sender: AnyObject?) {
+        // Create an untitled smart folder
+        
+        let folder = SmartFolder(forNewDocumentInDatabase: databaseManager.database)
+        folder.title = NSLocalizedString("Untitled", comment: "Name for new untitled smart folder")
+        folder.icon = NSImage(named:"smart-folder-icon")
+        
+        do { try folder.save() } catch {
+            print(error)
+            return
+        }
+        
+        // Either add the folder to the Smart Folders section or the selected folder
+        
+        let parent = sourceListController.content[2] // Section
+        let indexPath = NSIndexPath(index: 2).indexPathByAddingIndex(parent.children.count)
+        
+        parent.mutableArrayValueForKey("children").addObject(folder)
+        
+        do { try parent.save() } catch {
+            print(error)
+            return
+        }
+        
+        sourceListController.editItem(indexPath)
+    }
     
     @IBAction func createNewMarkdownDocument(sender: AnyObject?) {
-        // TODO: Template document and select it in editor
-        sourceListController.createNewMarkdownDocument(sender)
+        // Create an untitled markdown document
+        
+        let file = File(forNewDocumentInDatabase: databaseManager.database)
+        file.title = NSLocalizedString("Untitled", comment: "Name for new untitled document")
+        file.icon = NSImage(named:"markdown-document-icon")
+        
+        file.uti = "net.daringfireball.markdown"
+        file.file_extension = "markdown"
+        file.mime_type = "text/markdown"
+        
+        do { try file.save() } catch {
+            print(error)
+            return
+        }
+        
+        // Either add the file to the Shortcuts section or the selected folder
+        
+        var parent: DataSource
+        var indexPath: NSIndexPath
+        
+        if let item = selectedObject where item is Folder {
+            parent = item
+            indexPath = sourceListController.treeController.selectionIndexPath!.indexPathByAddingIndex(parent.children.count)
+        } else {
+            parent = sourceListController.content[0] // Section
+            indexPath = NSIndexPath(index: 0).indexPathByAddingIndex(parent.children.count)
+        }
+        
+        parent.mutableArrayValueForKey("children").addObject(file)
+        
+        do { try parent.save() } catch {
+            print(error)
+            return
+        }
+        
+        sourceListController.editItem(indexPath)
+    }
+    
+    // MARK: - UI Validation
+    
+    override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
+        switch menuItem.action {
+        case Selector("createNewMarkdownDocument:"),
+             Selector("createNewSmartFolder:"),
+             Selector("createNewFolder:"):
+             return true
+        default:
+             break
+        }
+        
+        return super.validateMenuItem(menuItem)
     }
 }

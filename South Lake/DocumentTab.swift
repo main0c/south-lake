@@ -21,14 +21,20 @@ protocol DocumentTab: class, Databasable {
     func state() -> Dictionary<String,AnyObject>
     func restoreState(state: Dictionary<String,AnyObject>)
     
-    // User actions
-    
-    func createNewMarkdownDocument(sender: AnyObject?)
-    
     // Make necessary modifications to the database before it's saved
     
     func documentWillSave(notification: NSNotification) // would be awesome to register this here
     func willClose()
+    
+    // User actions
+    
+    func createNewMarkdownDocument(sender: AnyObject?)
+    func createNewSmartFolder(sender: AnyObject?)
+    func createNewFolder(sender: AnyObject?)
+    
+    // UI validation
+    
+    func validateMenuItem(menuItem: NSMenuItem) -> Bool
 }
 
 //extension DocumentTab where Self: NSViewController {

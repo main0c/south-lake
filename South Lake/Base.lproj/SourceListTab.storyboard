@@ -166,7 +166,7 @@
                                             </subviews>
                                             <nil key="backgroundColor"/>
                                         </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="hwF-r1-ZHQ">
+                                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="hwF-r1-ZHQ">
                                             <rect key="frame" x="0.0" y="360" width="234" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -185,22 +185,21 @@
                                                     <menuItem title="+" state="on" hidden="YES" id="Wbd-N1-En2"/>
                                                     <menuItem title="New Folder" id="Z8h-pN-PQv">
                                                         <connections>
-                                                            <action selector="createNewFolder:" target="BCA-UI-RVa" id="yXc-8t-TYR"/>
+                                                            <action selector="createNewFolder:" target="DYj-5V-w3J" id="1VN-UG-qDr"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="New Smart Folder" id="cYF-EG-Pth">
+                                                    <menuItem title="New Smart Folder" enabled="NO" id="cYF-EG-Pth">
                                                         <connections>
-                                                            <action selector="createNewSmartFolder:" target="BCA-UI-RVa" id="Vcx-e3-v3b"/>
+                                                            <action selector="createNewSmartFolder:" target="DYj-5V-w3J" id="OU6-Dh-atA"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="g82-1b-len"/>
                                                     <menuItem title="New Markdown Document" id="vaH-gV-cqz">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
-                                                            <action selector="createNewMarkdownDocument:" target="BCA-UI-RVa" id="Fnb-Ik-kml"/>
+                                                            <action selector="createNewMarkdownDocument:" target="DYj-5V-w3J" id="4rU-qN-m9E"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem isSeparatorItem="YES" id="egR-kE-mYQ"/>
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>
@@ -255,13 +254,14 @@
                 </treeController>
                 <menu id="dM9-GD-YSW">
                     <items>
-                        <menuItem title="Item 1" id="QZt-Nb-hno">
+                        <menuItem title="New Folder" id="QZt-Nb-hno">
                             <modifierMask key="keyEquivalentModifierMask"/>
                         </menuItem>
-                        <menuItem title="Item 2" id="Lgn-uT-6Ao">
+                        <menuItem title="New Smart Folder" id="Lgn-uT-6Ao">
                             <modifierMask key="keyEquivalentModifierMask"/>
                         </menuItem>
-                        <menuItem title="Item 3" id="vLS-5g-IXg">
+                        <menuItem isSeparatorItem="YES" id="y0F-WF-Q8S"/>
+                        <menuItem title="New Markdown Document" id="vLS-5g-IXg">
                             <modifierMask key="keyEquivalentModifierMask"/>
                         </menuItem>
                     </items>

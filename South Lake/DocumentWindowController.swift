@@ -37,60 +37,56 @@ class DocumentWindowController: NSWindowController, Databasable {
     }
     
     // MARK: - Tab Actions
-    // Pass them onto the window's content view controller
     
-    // TODO: - Maybe I just need to set up the view hierarchy correctly
-
+    /// Close the currently selected tab if more than one tab is visible.
+    /// Otherwise close the window.
+    
     @IBAction func performTabbedClose(sender: AnyObject?) {
+        if tabController.count == 1 {
+            closeWindow(sender)
+        } else {
+            closeTab(sender)
+        }
+    }
+    
+    @IBAction func closeWindow(sender: AnyObject?) {
         guard let window = self.window else {
             return
         }
-        
-        if tabController.count == 1 {
-            window.performClose(sender)
-        } else {
-            tabController.performClose(sender)
-            //TODO: validate menu item
-        }
+        window.performClose(sender)
+    }
+    
+    @IBAction func closeTab(sender: AnyObject?) {
+        tabController.performClose(sender)
     }
 
     @IBAction func createNewTab(sender: AnyObject?) {
-        guard let tabController = self.window?.contentViewController as? DocumentTabController else {
-            print("createNewTab expected DocumentTabController")
-            return
-        }
-        
         tabController.createNewTab(sender)
     }
     
     @IBAction func selectNextTab(sender: AnyObject?) {
-        guard let tabController = self.window?.contentViewController as? DocumentTabController else {
-            print("selectNextTab expected DocumentTabController")
-            return
-        }
-        
         tabController.selectNextTab(sender)
     }
     
     @IBAction func selectPrevousTab(sender: AnyObject?) {
-        guard let tabController = self.window?.contentViewController as? DocumentTabController else {
-            print("selectPrevousTab expected DocumentTabController")
-            return
-        }
-        
         tabController.selectPreviousTab(sender)
     }
     
-    // MARK: User Actions
+    // MARK: - Routable User Actions
     
-//    @IBAction func createNewMarkdownDocument(sender: AnyObject?) {
-//        guard let tabController = self.window?.contentViewController as? DocumentTabController else {
-//            print("selectPrevousTab expected DocumentTabController")
-//            return
-//        }
-//        
-//        tabController.createNewMarkdownDocument(sender)
-//    }
+    @IBAction func createNewMarkdownDocument(sender: AnyObject?) {
+        tabController.createNewMarkdownDocument(sender)
+    }
+    
+    @IBAction func createNewFolder(sender: AnyObject?) {
+        tabController.createNewFolder(sender)
+    }
+    
+    @IBAction func createNewSmartFolder(sender: AnyObject?) {
+        tabController.createNewSmartFolder(sender)
+    }
+    
+    // MARK: - Search Actions
     
     @IBAction func findInNotebook(sender: AnyObject?) {
         guard let item = window?.toolbar?.itemWithIdentifier("search"),
@@ -101,14 +97,13 @@ class DocumentWindowController: NSWindowController, Databasable {
         window?.makeFirstResponder(field)
     }
     
-    // TODO: Search behavior? Search always replaces current search (one search tab)
-    //       Search never replaces current search (always new tab)
-    //       Search replaces search tab if selected, new tab if not
+    /// Replace the current search tab with a new search or create a new search tab and search.
+    /// Called when the search field executes its action.
     
     @IBAction func executeFindInNotebook(sender: AnyObject?) {
         guard let sender = sender as? NSSearchField
               where sender.stringValue.characters.count > 0 else {
-            return
+              return
         }
         
         let text = sender.stringValue
@@ -136,22 +131,38 @@ class DocumentWindowController: NSWindowController, Databasable {
     // MARK: - UI Validation
     
     override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
-        if menuItem.action == Selector("performTabbedClose:") {
-            menuItem.title = tabController.count == 1
-                ? NSLocalizedString("Close", comment: "Close window")
-                : NSLocalizedString("Close Tab", comment: "Close tab")
+        switch menuItem.action {
+        case Selector("performTabbedClose:"):
+             menuItem.title = closeMenuTitle()
+             break
+        case Selector("createNewMarkdownDocument:"),
+             Selector("createNewSmartFolder:"),
+             Selector("createNewFolder:"):
+             return tabController.validateMenuItem(menuItem)
+        default:
+             break
         }
         
-        return true
+        return super.validateMenuItem(menuItem)
+    }
+    
+    func closeMenuTitle() -> String {
+        return tabController.count == 1
+            ? NSLocalizedString("Close", comment: "Close window")
+            : NSLocalizedString("Close Tab", comment: "Close tab")
     }
     
     // MARK: - Document State
-    // Primarily user interface state
+    
+    /// Returns the state of the window, which includes each tab returning its own state,
+    /// e.g. tab class, layout, selection, etc ...
     
     func state() -> Dictionary<String,AnyObject> {
         let tabState = tabController.state()
         return ["TabController": tabState]
     }
+    
+    /// Restore the window state including the state of each tab
     
     func restoreState(state: Dictionary<String,AnyObject>) {
         if let tabState = state["TabController"] as? Dictionary<String,AnyObject> {

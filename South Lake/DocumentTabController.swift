@@ -8,7 +8,7 @@
 
 //  Create and destroy tabs, persist and restore them.
 
-//  TODO: Generic ethods for creating tabs from storyboards or classes
+//  TODO: Generic methods for creating tabs from storyboards or classes
 //        to suppport plugin architecture rather than for creating
 //        specific kinds of tabs
 
@@ -37,6 +37,8 @@ class DocumentTabController: NSViewController, Databasable {
             }
         }
     }
+    
+    // TODO: invariant: always have a selected tab (but not when state is being restored)
     
     var selectedTab: DocumentTab? {
         return tabView.selectedTabViewItem?.vc as? DocumentTab
@@ -74,7 +76,7 @@ class DocumentTabController: NSViewController, Databasable {
         }
     }
     
-    // MARK: - User Actions
+    // MARK: - Tab Actions
     
     @IBAction func createNewTab(sender: AnyObject?) {
         do { try createNewTabWithTitle(NSLocalizedString("Untitled", comment: "Untitled tab")) } catch {
@@ -116,16 +118,45 @@ class DocumentTabController: NSViewController, Databasable {
         }
     }
     
-    // MARK: -
+    // MARK: - Routable User Actions
     
-//    @IBAction func createNewMarkdownDocument(sender: AnyObject?) {
-//    
-//    }
+    @IBAction func createNewMarkdownDocument(sender: AnyObject?) {
+        selectedTab?.createNewMarkdownDocument(sender)
+    }
+    
+    @IBAction func createNewSmartFolder(sender: AnyObject?) {
+        selectedTab?.createNewSmartFolder(sender)
+    }
+    
+    @IBAction func createNewFolder(sender: AnyObject?) {
+        selectedTab?.createNewFolder(sender)
+    }
     
     func createNewTabWithTitle(title: String) throws {
         if let tab = try createNewTab() {
             tab.vc!.title = title
         }
+    }
+    
+    // MARK: - UI Validation
+    
+    override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
+        switch menuItem.action {
+        case Selector("performTabbedClose:"):
+             break
+        case Selector("createNewMarkdownDocument:"),
+             Selector("createNewSmartFolder:"),
+             Selector("createNewFolder:"):
+             if let selectedTab = selectedTab {
+                return selectedTab.validateMenuItem(menuItem)
+             } else {
+                return false
+             }
+        default:
+             break
+        }
+        
+        return super.validateMenuItem(menuItem)
     }
     
     // MARK: - Tab Utiltiies
