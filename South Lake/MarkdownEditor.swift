@@ -88,6 +88,23 @@ class MarkdownEditor: NSViewController, FileEditor {
         }
     }
     
+    // It might be possible to bypass the whole data bit and just bind the editor
+    // directly to the file key from interface builder
+    
+    dynamic var file: File? {
+        willSet {
+            guard let file = file else {
+                return
+            }
+            self.unbindUs("data", toObject: file, withKeyPath: "data")
+        }
+        didSet {
+            if let file = file {
+                self.bindUs("data", toObject: file, withKeyPath: "data", options: [:])
+            }
+        }
+    }
+    
     dynamic var data: NSData? {
         didSet {
             guard viewLoaded && needsHTML else {

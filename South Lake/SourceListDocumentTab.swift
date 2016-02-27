@@ -151,8 +151,9 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         case 1: // where file is File:
             if file is File {
                 loadEditor(file as! File)
-                editor!.data = (file as! File).data
-                (editor as! NSObject).bindUs("data", toObject: (file as! File), withKeyPath: "data", options: [:])
+                if var editor = editor {
+                     editor.file = (file as! File)
+                }
             } else {
             // Leave editor alone if multiple selection or folder
             // Unbind? no... Xcode does not
@@ -195,11 +196,10 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     }
     
     func unbindEditor(selection: [DataSource]) {
-        guard let editor = editor, let file = selectedObject where file is File else {
+        guard var editor = editor, let file = selectedObject where file is File else {
             return
         }
-        
-        (editor as! NSObject).unbindUs("data", toObject: file, withKeyPath: "data")
+        editor.file = nil
     }
     
     // MARK: - Editor

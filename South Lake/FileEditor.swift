@@ -23,10 +23,11 @@ protocol FileEditor {
     static var filetypes: [String] { get }
     static var storyboard: String { get }
     
-    /// A tab establishes a continuous two-way binding between the selected 
-    /// `File.data` and the `FileEditor.data`.
+    /// A tab passes a file to the editor. The file may be nil. The editor may
+    /// many any changes it likes to the file, including metadata changes.
+    /// Editors should use the universal data: NSData interface for file contents
     
-    var data: NSData? { get set }
+    var file: File? { get set }
     
     /// Editors may do something differently when they are working with a newly
     /// created document rather than a previously existing one.
