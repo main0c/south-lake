@@ -22,7 +22,7 @@ class NSDataNSStringValueTransformer: NSValueTransformer {
         if let data = value as? NSData {
             return NSString(data: data, encoding: NSUTF8StringEncoding)
         } else {
-            return nil
+            return "" // nil
         }
     }
     
@@ -30,7 +30,7 @@ class NSDataNSStringValueTransformer: NSValueTransformer {
         if let string = value as? NSString {
             return string.dataUsingEncoding(NSUTF8StringEncoding)
         } else {
-            return nil
+            return NSData() // nil
         }
     }
 }

@@ -88,6 +88,8 @@ class MarkdownEditor: NSViewController, FileEditor {
         }
     }
     
+    var editingTemplate: Bool = false
+    
     // It might be possible to bypass the whole data bit and just bind the editor
     // directly to the file key from interface builder
     
@@ -234,8 +236,8 @@ class MarkdownEditor: NSViewController, FileEditor {
     
     func prepareNewDocument() {
         
-        // Ok, so now the problem here is that I can't change the title
-        // because I don't actually have access to the file
+        // TODO: this should be templatable as it is in Sublime Text, with spots for
+        // tab and insert, and users should be able to create their own templates
         
         let newText = NSLocalizedString("## Untitled", comment: "New markdown document template")
         
@@ -251,7 +253,31 @@ class MarkdownEditor: NSViewController, FileEditor {
         
         self.editor.window?.makeFirstResponder(self.editor)
         
-        print("got a new document")
+        editingTemplate = true
+    }
+    
+    func textViewShouldTabInRange(textView: NSTextView, affectedCharRange: NSRange,  replacementString: String) -> Bool {
+        return true
+    }
+    
+    func textViewShouldNewlineInRange(textView: NSTextView, affectedCharRange: NSRange,  replacementString: String) -> Bool {
+        guard editingTemplate else {
+            return true
+        }
+        guard textView.string?.characters.count > 0 else {
+            return true
+        }
+        
+        // Gross
+        
+        if  let range = editor.string?.rangeFromNSRange(affectedCharRange),
+            let string = editor.string,
+            let text = editor.string?.substringWithRange(Range<String.Index>(start: string.startIndex.advancedBy(3), end: range.startIndex)) {
+            file?.title = text
+            editingTemplate = false
+        }
+        
+        return true
     }
     
     // MARK: - MacDown Functions
@@ -390,11 +416,12 @@ class MarkdownEditor: NSViewController, FileEditor {
         editor.automaticLinkDetectionEnabled = false
     }
     
-    // MARK: - Notification handler
-
+    // MARK: - Notification Handlers
+    
     func editorTextDidChange(notification: NSNotification) {
-        // Rendering is no longer necessary,
-        // handled in text.didSet
+        // Rendering is not necessary, handled in data.didSet
+        
+        
     }
 
     func userDefaultsDidChange(notification: NSNotification) {
@@ -569,6 +596,26 @@ class MarkdownEditor: NSViewController, FileEditor {
         }
     }
     
+}
+
+// MARK: - NSTextViewDelegate
+
+extension MarkdownEditor: NSTextViewDelegate {
+    
+    func textView(textView: NSTextView, shouldChangeTextInRange affectedCharRange: NSRange,  replacementString: String?) -> Bool {
+        guard let text = replacementString where text.characters.count > 0 else {
+            return true
+        }
+        
+        switch text {
+        case "\n", "\r":
+            return textViewShouldNewlineInRange(textView, affectedCharRange: affectedCharRange, replacementString: text)
+        case "\t":
+            return textViewShouldTabInRange(textView, affectedCharRange: affectedCharRange, replacementString: text)
+        default:
+            return true
+        }
+    }
 }
 
 // MARK: - WebFrameLoadDelegate

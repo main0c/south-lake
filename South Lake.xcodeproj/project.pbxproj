@@ -26,6 +26,7 @@
 		E36072701C74E40500914C2C /* DocumentTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E360726E1C74E40500914C2C /* DocumentTabController.swift */; };
 		E36072731C74E64200914C2C /* NSTabViewItem+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36072721C74E64200914C2C /* NSTabViewItem+ViewController.swift */; };
 		E360727C1C74FEEC00914C2C /* DocumentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E360727B1C74FEEC00914C2C /* DocumentTab.swift */; };
+		E378C5341C814F1900CACDFC /* String+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378C5331C814F1900CACDFC /* String+NSRange.swift */; };
 		E378E80F1C801F54009539FD /* NSToolbar+Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378E80E1C801F54009539FD /* NSToolbar+Items.swift */; };
 		E378E8151C80216E009539FD /* SearchTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E378E8171C80216E009539FD /* SearchTab.storyboard */; };
 		E37D96101C723B8A000A9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D960F1C723B8A000A9F90 /* AppDelegate.swift */; };
@@ -256,6 +257,7 @@
 		E360726E1C74E40500914C2C /* DocumentTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentTabController.swift; sourceTree = "<group>"; };
 		E36072721C74E64200914C2C /* NSTabViewItem+ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTabViewItem+ViewController.swift"; sourceTree = "<group>"; };
 		E360727B1C74FEEC00914C2C /* DocumentTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentTab.swift; sourceTree = "<group>"; };
+		E378C5331C814F1900CACDFC /* String+NSRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+NSRange.swift"; sourceTree = "<group>"; };
 		E378E80E1C801F54009539FD /* NSToolbar+Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSToolbar+Items.swift"; sourceTree = "<group>"; };
 		E378E8161C80216E009539FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SearchTab.storyboard; sourceTree = "<group>"; };
 		E37D960C1C723B8A000A9F90 /* South Lake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "South Lake.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2454,6 +2456,7 @@
 				E32AD25D1C76827400648BFD /* NSURL+FileType.swift */,
 				E3E12A641C76E3E7000C4F16 /* NSOutlineView+Selection.swift */,
 				E378E80E1C801F54009539FD /* NSToolbar+Items.swift */,
+				E378C5331C814F1900CACDFC /* String+NSRange.swift */,
 				E3C436251C7641E900DD685D /* MPRenderer+TOC.h */,
 				E3C436261C7641E900DD685D /* MPRenderer+TOC.m */,
 			);
@@ -7417,6 +7420,7 @@
 				E3803F0A1C728E790048AD46 /* hoedown_html_patch.c in Sources */,
 				E3274FBF1C75A088000B6A84 /* MarkdownEditor.swift in Sources */,
 				E37E47B81C73F0F90077ECD7 /* DocumentController.swift in Sources */,
+				E378C5341C814F1900CACDFC /* String+NSRange.swift in Sources */,
 				E3803F141C728E950048AD46 /* MPDocumentSplitView.m in Sources */,
 				E3803F0D1C728E790048AD46 /* NSJSONSerialization+File.m in Sources */,
 				E3803F131C728E910048AD46 /* MPUtilities.m in Sources */,
