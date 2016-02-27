@@ -9,14 +9,11 @@
 import Foundation
 
 //  TODO: mark FileEditor protocol as always belonging to class NSViewController
-
-//  Architecture
-//  Should we share the File or just the data?
-//  Sharing the data shares less and makes the class more resilient to change
-//  Sharing the File may allow us to have more complex editor views
-//  For example, allowing local edits to change the title or metadata
-
 //  TODO: blows up when I make available to @objc(FileEditor)
+
+/// ### Architecture
+/// Sharing full File data model rather than just the file contents so that the
+/// editor has the ability to modify model metadata as file contents are edited
 
 protocol FileEditor {
     
