@@ -40,6 +40,12 @@ extension NSObject /*: TwoWayKeyValueObserving*/ {
         return "\(unsafeAddressOf(self)):\(binding):\(unsafeAddressOf(toObject)):\(withKeyPath)"
     }
     
+    /// Use only with classes that inherit from NSObject
+    /// - parameter binding: the key path on self that should be bound
+    /// - parameter toObject: the object to which self is bound. Must derive from `NSObject`
+    /// - parameter withKeyPath: the key path on `toObject` to which self is bound
+    /// - parameter options: currently ignore
+    
     func bindUs(binding: String, toObject: AnyObject, withKeyPath: String, options: [String : AnyObject]?) {
         
         // Self notifies proxy when "binding" changes
@@ -61,6 +67,8 @@ extension NSObject /*: TwoWayKeyValueObserving*/ {
         }
         
         let proxy = KeyValueObservingProxy(receiver: self, receiverKey: binding, toObject: toObject, toObjectKey: withKeyPath)
+        
+        self.setValue((toObject as! NSObject).valueForKeyPath(withKeyPath), forKeyPath: binding)
         
         self.addObserver(proxy, forKeyPath: binding, options: [.New, .Old], context: &KeyValueObservingProxyContext)
                 
