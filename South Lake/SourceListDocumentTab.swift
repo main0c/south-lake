@@ -268,7 +268,7 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
             return
         }
         
-        sourceListController.editItem(indexPath)
+        sourceListController.editItemAtIndexPath(indexPath)
     }
     
     @IBAction func createNewSmartFolder(sender: AnyObject?) {
@@ -295,7 +295,7 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
             return
         }
         
-        sourceListController.editItem(indexPath)
+        sourceListController.editItemAtIndexPath(indexPath)
     }
     
     @IBAction func createNewMarkdownDocument(sender: AnyObject?) {
@@ -304,6 +304,8 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         let file = File(forNewDocumentInDatabase: databaseManager.database)
         file.title = NSLocalizedString("Untitled", comment: "Name for new untitled document")
         file.icon = NSImage(named:"markdown-document-icon")
+        
+        file.data = NSLocalizedString("## Untitled", comment: "New markdown document template").dataUsingEncoding(NSUTF8StringEncoding)
         
         file.uti = "net.daringfireball.markdown"
         file.file_extension = "markdown"
@@ -334,7 +336,8 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
             return
         }
         
-        sourceListController.editItem(indexPath)
+        sourceListController.selectItemAtIndexPath(indexPath)
+        editor?.newDocument = true
     }
     
     // MARK: - UI Validation

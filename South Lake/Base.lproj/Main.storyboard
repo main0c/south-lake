@@ -73,11 +73,7 @@
                                                             <action selector="createNewMarkdownDocument:" target="Ady-hI-5gd" id="ynQ-jJ-iip"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="New Notebook" keyEquivalent="N" id="4Fe-vT-CWi">
-                                                        <connections>
-                                                            <action selector="newDocument:" target="Ady-hI-5gd" id="P1w-5H-dPC"/>
-                                                        </connections>
-                                                    </menuItem>
+                                                    <menuItem title="New Markdown Document from Template" keyEquivalent="N" id="FKB-7L-RhQ"/>
                                                     <menuItem isSeparatorItem="YES" id="5rb-Bs-8e4"/>
                                                     <menuItem title="New Folder" keyEquivalent="n" id="bTo-U9-PIW">
                                                         <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
@@ -89,6 +85,13 @@
                                                         <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                                         <connections>
                                                             <action selector="createNewSmartFolder:" target="Ady-hI-5gd" id="1sa-7C-tpz"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="OzR-Ve-fAk"/>
+                                                    <menuItem title="New Notebook" keyEquivalent="n" id="4Fe-vT-CWi">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                                        <connections>
+                                                            <action selector="newDocument:" target="Ady-hI-5gd" id="P1w-5H-dPC"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
@@ -678,9 +681,15 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="View" id="HyV-fh-RgO">
                                     <items>
-                                        <menuItem title="Files and Folders" keyEquivalent="1" id="iSp-6d-8KT"/>
-                                        <menuItem title="Editor" keyEquivalent="2" id="jd8-hL-xBI"/>
-                                        <menuItem title="File Info" keyEquivalent="3" id="gZw-xF-v0A"/>
+                                        <menuItem title="Files and Folders" keyEquivalent="1" id="iSp-6d-8KT">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                        </menuItem>
+                                        <menuItem title="Editor" keyEquivalent="2" id="jd8-hL-xBI">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                        </menuItem>
+                                        <menuItem title="File Info" keyEquivalent="3" id="gZw-xF-v0A">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="66U-Q0-rjl"/>
                                         <menuItem title="Show Toolbar" keyEquivalent="t" id="snW-S8-Cw5">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
@@ -763,7 +772,7 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="South_Lake" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-92.5" y="-231"/>
+            <point key="canvasLocation" x="-291.5" y="-386"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">

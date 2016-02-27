@@ -172,9 +172,13 @@ class SourceListViewController: NSViewController, Databasable {
         }
     }
     
-    func editItem(indexPath: NSIndexPath) {
+    func editItemAtIndexPath(indexPath: NSIndexPath) {
         treeController.setSelectionIndexPaths([indexPath])
         outlineView.editColumn(0, row: outlineView.selectedRow, withEvent: nil, select: true)
+    }
+    
+    func selectItemAtIndexPath(indexPath: NSIndexPath) {
+        treeController.setSelectionIndexPaths([indexPath])
     }
 }
 

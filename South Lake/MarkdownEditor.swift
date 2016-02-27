@@ -102,6 +102,14 @@ class MarkdownEditor: NSViewController, FileEditor {
         }
     }
     
+    var newDocument: Bool = false {
+        didSet {
+            if newDocument {
+                prepareNewDocument()
+            }
+        }
+    }
+    
     // MARK: - Initialization
     
     deinit {
@@ -205,7 +213,31 @@ class MarkdownEditor: NSViewController, FileEditor {
 //        }
     }
     
-    // MARK: - Functions
+    // MARK: - South Lake Functions
+    
+    func prepareNewDocument() {
+        
+        // Ok, so now the problem here is that I can't change the title
+        // because I don't actually have access to the file
+        
+        let newText = NSLocalizedString("## Untitled", comment: "New markdown document template")
+        
+        guard let text = editor.string else {
+            return
+        }
+        guard text == newText else {
+            return
+        }
+        
+        let range = NSMakeRange(3, newText.characters.count-3)
+        editor.setSelectedRange(range)
+        
+        self.editor.window?.makeFirstResponder(self.editor)
+        
+        print("got a new document")
+    }
+    
+    // MARK: - MacDown Functions
     
     func adjustEditorInsets() {
         var x = preferences.editorHorizontalInset

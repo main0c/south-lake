@@ -147,11 +147,7 @@ class DocumentTabController: NSViewController, Databasable {
         case Selector("createNewMarkdownDocument:"),
              Selector("createNewSmartFolder:"),
              Selector("createNewFolder:"):
-             if let selectedTab = selectedTab {
-                return selectedTab.validateMenuItem(menuItem)
-             } else {
-                return false
-             }
+             return selectedTab?.validateMenuItem(menuItem) ?? false
         default:
              break
         }
