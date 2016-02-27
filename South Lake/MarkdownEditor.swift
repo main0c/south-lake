@@ -273,6 +273,7 @@ class MarkdownEditor: NSViewController, FileEditor {
         if  let range = editor.string?.rangeFromNSRange(affectedCharRange),
             let string = editor.string,
             let text = editor.string?.substringWithRange(Range<String.Index>(start: string.startIndex.advancedBy(3), end: range.startIndex)) {
+            
             file?.title = text
             editingTemplate = false
         }
