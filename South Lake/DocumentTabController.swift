@@ -142,17 +142,18 @@ class DocumentTabController: NSViewController, Databasable {
     
     override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
         switch menuItem.action {
-        case Selector("performTabbedClose:"):
-             break
         case Selector("createNewMarkdownDocument:"),
              Selector("createNewSmartFolder:"),
              Selector("createNewFolder:"):
-             return selectedTab?.validateMenuItem(menuItem) ?? false
+             if selectedTab != nil {
+                return selectedTab!.validateMenuItem(menuItem)
+             }
+             break
         default:
              break
         }
         
-        return super.validateMenuItem(menuItem)
+        return false
     }
     
     // MARK: - Tab Utiltiies
