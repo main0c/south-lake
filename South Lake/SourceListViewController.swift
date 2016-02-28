@@ -101,6 +101,8 @@ class SourceListViewController: NSViewController, Databasable {
 
     }
     
+    // MARK: -
+    
     override func keyDown(theEvent: NSEvent) {
         if theEvent.charactersIgnoringModifiers == String(Character(UnicodeScalar(NSDeleteCharacter))) {
             for item in treeController.selectedObjects as! [DataSource] {
@@ -150,6 +152,10 @@ class SourceListViewController: NSViewController, Databasable {
         } else {
             return false
         }
+    }
+    
+    var primaryResponder: NSResponder {
+        return outlineView
     }
     
     // MARK: - IBAction

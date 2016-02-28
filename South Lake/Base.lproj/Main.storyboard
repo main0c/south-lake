@@ -682,13 +682,22 @@
                                 <menu key="submenu" title="View" id="HyV-fh-RgO">
                                     <items>
                                         <menuItem title="Files and Folders" keyEquivalent="1" id="iSp-6d-8KT">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="makeFilesAndFoldersFirstResponder:" target="Ady-hI-5gd" id="rBu-rw-DAA"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem title="Editor" keyEquivalent="2" id="jd8-hL-xBI">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="makeEditorFirstResponder:" target="Ady-hI-5gd" id="lX1-eD-gC0"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem title="File Info" keyEquivalent="3" id="gZw-xF-v0A">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="makeFileInfoFirstResponder:" target="Ady-hI-5gd" id="tL5-FG-6eC"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="66U-Q0-rjl"/>
                                         <menuItem title="Show Toolbar" keyEquivalent="t" id="snW-S8-Cw5">
@@ -738,7 +747,7 @@
                                         <menuItem title="Select Previous Tab" keyEquivalent="[" id="r8s-5D-pSu">
                                             <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                             <connections>
-                                                <action selector="selectPrevousTab:" target="Ady-hI-5gd" id="kpz-fu-gY1"/>
+                                                <action selector="selectPreviousTab:" target="Ady-hI-5gd" id="y0O-lj-ErU"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="xjI-1O-hE9"/>

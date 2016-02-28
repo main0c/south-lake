@@ -256,6 +256,10 @@ class MarkdownEditor: NSViewController, FileEditor {
         editingTemplate = true
     }
     
+    var primaryResponder: NSResponder {
+        return editor
+    }
+    
     func textViewShouldTabInRange(textView: NSTextView, affectedCharRange: NSRange,  replacementString: String) -> Bool {
         return true
     }

@@ -340,18 +340,35 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         editor?.newDocument = true
     }
     
+    @IBAction func makeFilesAndFoldersFirstResponder(sender: AnyObject?) {
+        self.view.window?.makeFirstResponder(sourceListController.primaryResponder)
+    }
+    
+    @IBAction func makeEditorFirstResponder(sender: AnyObject?) {
+        guard let editor = editor else {
+            NSBeep()
+            return
+        }
+        self.view.window?.makeFirstResponder(editor.primaryResponder)
+    }
+    
+    @IBAction func makeFileInfoFirstResponder(sender: AnyObject?) {
+        NSBeep()
+    }
+    
     // MARK: - UI Validation
     
     override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
         switch menuItem.action {
         case Selector("createNewMarkdownDocument:"),
              Selector("createNewSmartFolder:"),
-             Selector("createNewFolder:"):
+             Selector("createNewFolder:"),
+             Selector("makeFilesAndFoldersFirstResponder:"),
+             Selector("makeEditorFirstResponder:"),
+             Selector("makeFileInfoFirstResponder:"):
              return true
         default:
-             break
+             return false
         }
-        
-        return super.validateMenuItem(menuItem)
     }
 }

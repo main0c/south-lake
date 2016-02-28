@@ -132,10 +132,16 @@ class DocumentTabController: NSViewController, Databasable {
         selectedTab?.createNewFolder(sender)
     }
     
-    func createNewTabWithTitle(title: String) throws {
-        if let tab = try createNewTab() {
-            tab.vc!.title = title
-        }
+    @IBAction func makeFilesAndFoldersFirstResponder(sender: AnyObject?) {
+        selectedTab?.makeFilesAndFoldersFirstResponder(sender)
+    }
+    
+    @IBAction func makeEditorFirstResponder(sender: AnyObject?) {
+        selectedTab?.makeEditorFirstResponder(sender)
+    }
+    
+    @IBAction func makeFileInfoFirstResponder(sender: AnyObject?) {
+        selectedTab?.makeFileInfoFirstResponder(sender)
     }
     
     // MARK: - UI Validation
@@ -144,19 +150,31 @@ class DocumentTabController: NSViewController, Databasable {
         switch menuItem.action {
         case Selector("createNewMarkdownDocument:"),
              Selector("createNewSmartFolder:"),
-             Selector("createNewFolder:"):
-             if selectedTab != nil {
-                return selectedTab!.validateMenuItem(menuItem)
-             }
-             break
+             Selector("createNewFolder:"),
+             Selector("makeFilesAndFoldersFirstResponder:"),
+             Selector("makeEditorFirstResponder:"),
+             Selector("makeFileInfoFirstResponder:"):
+             return selectedTab != nil
+                ? selectedTab!.validateMenuItem(menuItem)
+                : false
+        case Selector("closeTab:"),
+             Selector("createNewTab:"):
+             return true
+        case Selector("selectNextTab:"),
+             Selector("selectPreviousTab:"):
+             return count > 1
         default:
-             break
+             return false
         }
-        
-        return false
     }
     
     // MARK: - Tab Utiltiies
+    
+    func createNewTabWithTitle(title: String) throws {
+        if let tab = try createNewTab() {
+            tab.vc!.title = title
+        }
+    }
     
     func createNewTab() throws -> NSTabViewItem? {
         guard let viewController = NSStoryboard(name: "SourceListTab", bundle: nil).instantiateInitialController() as? NSViewController else {

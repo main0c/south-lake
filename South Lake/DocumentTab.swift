@@ -32,6 +32,10 @@ protocol DocumentTab: class, Databasable {
     func createNewSmartFolder(sender: AnyObject?)
     func createNewFolder(sender: AnyObject?)
     
+    func makeFilesAndFoldersFirstResponder(sender: AnyObject?)
+    func makeEditorFirstResponder(sender: AnyObject?)
+    func makeFileInfoFirstResponder(sender: AnyObject?)
+    
     // UI validation
     
     func validateMenuItem(menuItem: NSMenuItem) -> Bool

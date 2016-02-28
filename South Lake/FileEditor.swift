@@ -30,4 +30,8 @@ protocol FileEditor {
     /// created document rather than a previously existing one.
     
     var newDocument: Bool { get set }
+    
+    /// The responder that take focus for editing and first responder switching
+    
+    var primaryResponder: NSResponder { get }
 }

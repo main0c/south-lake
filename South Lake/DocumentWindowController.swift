@@ -68,7 +68,7 @@ class DocumentWindowController: NSWindowController, Databasable {
         tabController.selectNextTab(sender)
     }
     
-    @IBAction func selectPrevousTab(sender: AnyObject?) {
+    @IBAction func selectPreviousTab(sender: AnyObject?) {
         tabController.selectPreviousTab(sender)
     }
     
@@ -84,6 +84,18 @@ class DocumentWindowController: NSWindowController, Databasable {
     
     @IBAction func createNewSmartFolder(sender: AnyObject?) {
         tabController.createNewSmartFolder(sender)
+    }
+    
+    @IBAction func makeFilesAndFoldersFirstResponder(sender: AnyObject?) {
+        tabController.makeFilesAndFoldersFirstResponder(sender)
+    }
+    
+    @IBAction func makeEditorFirstResponder(sender: AnyObject?) {
+        tabController.makeEditorFirstResponder(sender)
+    }
+    
+    @IBAction func makeFileInfoFirstResponder(sender: AnyObject?) {
+        tabController.makeFileInfoFirstResponder(sender)
     }
     
     // MARK: - Search Actions
@@ -134,16 +146,25 @@ class DocumentWindowController: NSWindowController, Databasable {
         switch menuItem.action {
         case Selector("performTabbedClose:"):
              menuItem.title = closeMenuTitle()
-             break
+             return true
         case Selector("createNewMarkdownDocument:"),
              Selector("createNewSmartFolder:"),
-             Selector("createNewFolder:"):
+             Selector("createNewFolder:"),
+             Selector("makeFilesAndFoldersFirstResponder:"),
+             Selector("makeEditorFirstResponder:"),
+             Selector("makeFileInfoFirstResponder:"):
              return tabController.validateMenuItem(menuItem)
+        case Selector("closeTab:"),
+             Selector("createNewTab:"),
+             Selector("selectNextTab:"),
+             Selector("selectPreviousTab:"):
+            return tabController.validateMenuItem(menuItem)
+        case Selector("findInNotebook:"),
+             Selector("closeWindow:"):
+             return true
         default:
-             break
+             return false
         }
-        
-        return super.validateMenuItem(menuItem)
     }
     
     func closeMenuTitle() -> String {

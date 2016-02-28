@@ -83,19 +83,32 @@ class SearchDocumentTab: NSViewController, DocumentTab {
         NSBeep()
     }
     
+    @IBAction func makeFilesAndFoldersFirstResponder(sender: AnyObject?) {
+        NSBeep()
+    }
+    
+    @IBAction func makeEditorFirstResponder(sender: AnyObject?) {
+        NSBeep()
+    }
+    
+    @IBAction func makeFileInfoFirstResponder(sender: AnyObject?) {
+        NSBeep()
+    }
+    
     // MARK: - UI Validation
     
     override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
         switch menuItem.action {
         case Selector("createNewMarkdownDocument:"),
              Selector("createNewSmartFolder:"),
-             Selector("createNewFolder:"):
+             Selector("createNewFolder:"),
+             Selector("makeFilesAndFoldersFirstResponder:"),
+             Selector("makeEditorFirstResponder:"),
+             Selector("makeFileInfoFirstResponder:"):
              return false
         default:
-             break
+             return false
         }
-        
-        return super.validateMenuItem(menuItem)
     }
     
     // MARK: -
