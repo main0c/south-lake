@@ -715,6 +715,19 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Tools" id="s9u-Qv-d9X">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Tools" id="pbS-32-yld">
+                                    <items>
+                                        <menuItem title="Snippets…" id="zXk-Dy-2GM">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="New Snippet…" id="lIb-xb-Roq">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Window" id="aUF-d1-5bR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
