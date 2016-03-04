@@ -18,6 +18,29 @@
 import Cocoa
 import WebKit
 
+let LaTeXSnippet = "$$\\sum_{i=0}^{n}$1$$"
+let loremSnippet = "lorem ipsum etc"
+
+let htmlSnippet =
+"<html>\n" +
+"<head>\n" +
+"  <title>$1</title>\n" +
+"</head>\n" +
+"<body>\n" +
+"$2\n" +
+"</body>\n" +
+"</html>"
+
+let htmlReverseSnippet =
+"<html>\n" +
+"<head>\n" +
+"  <title>$2</title>\n" +
+"</head>\n" +
+"<body>\n" +
+"$1\n" +
+"</body>\n" +
+"</html>"
+
 extension WebView {
     var mainFrameEnclosingScrollView: NSScrollView? {
         return mainFrame.frameView.documentView.enclosingScrollView
@@ -129,6 +152,15 @@ class MarkdownEditor: NSViewController, FileEditor {
         }
     }
     
+    let snippets: [Snippet] = [
+        Snippet(content: loremSnippet, tabTrigger: "lorem", scope: nil, description: nil),
+        Snippet(content: htmlSnippet, tabTrigger: "html", scope: nil, description: nil),
+        Snippet(content: htmlReverseSnippet, tabTrigger: "htmlx", scope: nil, description: nil),
+        Snippet(content: LaTeXSnippet, tabTrigger: "sumoveriton", scope: nil, description: nil)
+    ]
+    
+    private var snippetHelper: SnippetTextViewHelper!
+    
     // MARK: - Initialization
     
     deinit {
@@ -158,6 +190,11 @@ class MarkdownEditor: NSViewController, FileEditor {
         
         preferences.editorHorizontalInset = 10
         preferences.editorVerticalInset = 10
+        
+        // Snippets
+        
+        snippetHelper = SnippetTextViewHelper(textView: editor, snippets: snippets)
+        editor.delegate = self // (or in IB)
         
         // MacDown Code
         
@@ -260,9 +297,7 @@ class MarkdownEditor: NSViewController, FileEditor {
         return editor
     }
     
-    func textViewShouldTabInRange(textView: NSTextView, affectedCharRange: NSRange,  replacementString: String) -> Bool {
-        return true
-    }
+    // TODO: get rid of this
     
     func textViewShouldNewlineInRange(textView: NSTextView, affectedCharRange: NSRange,  replacementString: String) -> Bool {
         guard editingTemplate else {
@@ -607,6 +642,22 @@ class MarkdownEditor: NSViewController, FileEditor {
 
 extension MarkdownEditor: NSTextViewDelegate {
     
+    func textView(textView: NSTextView, doCommandBySelector commandSelector: Selector) -> Bool {
+        // Return true to indicate that I handled the command, false otherwise
+        let range = textView.selectedRange()
+        
+        switch commandSelector {
+        case Selector("insertTab:"):
+            return snippetHelper.handleTab(range, forward: true)
+        case Selector("insertBacktab:"):
+            return snippetHelper.handleTab(range, forward: false)
+        default:
+            return false
+        }
+    }
+    
+    // TODO: get rid of this
+    
     func textView(textView: NSTextView, shouldChangeTextInRange affectedCharRange: NSRange,  replacementString: String?) -> Bool {
         guard let text = replacementString where text.characters.count > 0 else {
             return true
@@ -615,8 +666,6 @@ extension MarkdownEditor: NSTextViewDelegate {
         switch text {
         case "\n", "\r":
             return textViewShouldNewlineInRange(textView, affectedCharRange: affectedCharRange, replacementString: text)
-        case "\t":
-            return textViewShouldTabInRange(textView, affectedCharRange: affectedCharRange, replacementString: text)
         default:
             return true
         }
