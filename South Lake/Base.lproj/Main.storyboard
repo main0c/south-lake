@@ -806,7 +806,7 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <toolbar key="toolbar" implicitIdentifier="B2B612DB-F4CA-4D59-A815-15B8481E17DE" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="small" id="Ke5-2d-O2b">
+                        <toolbar key="toolbar" implicitIdentifier="B2B612DB-F4CA-4D59-A815-15B8481E17DE" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="small" id="Ke5-2d-O2b">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="xkE-Pb-DCO"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="wls-9i-bNn"/>
@@ -816,9 +816,9 @@
                                 <toolbarItem implicitItemIdentifier="75BB1A9B-ECDE-4353-AC84-D0CB9BF1850D" explicitItemIdentifier="search" label="Search" paletteLabel="Search" id="sKr-Yj-KFT">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="96" height="22"/>
-                                    <size key="maxSize" width="302" height="22"/>
+                                    <size key="maxSize" width="400" height="22"/>
                                     <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" id="zec-xR-igb">
-                                        <rect key="frame" x="0.0" y="14" width="300" height="22"/>
+                                        <rect key="frame" x="0.0" y="14" width="400" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsWholeSearchString="YES" id="aKt-IO-sQ8">
                                             <font key="font" metaFont="system"/>
@@ -830,9 +830,12 @@
                                         </searchFieldCell>
                                     </searchField>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="8CE906D6-049F-426F-9CD9-DDEF655E3993" label="Back" paletteLabel="Back" tag="-1" image="toolbar-back-icon" id="Xq7-jw-y1G"/>
+                                <toolbarItem implicitItemIdentifier="8A76FC60-B8FC-48CD-86DA-E6B8AAD1E550" label="Forward" paletteLabel="Forward" tag="-1" image="toolbar-forward-icon" id="Pr7-JH-Mbc"/>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
-                                <toolbarItem reference="hWu-DY-Aqg"/>
+                                <toolbarItem reference="Xq7-jw-y1G"/>
+                                <toolbarItem reference="Pr7-JH-Mbc"/>
                                 <toolbarItem reference="sKr-Yj-KFT"/>
                                 <toolbarItem reference="hWu-DY-Aqg"/>
                             </defaultToolbarItems>
@@ -907,4 +910,8 @@
             <point key="canvasLocation" x="75" y="688"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="toolbar-back-icon" width="512" height="512"/>
+        <image name="toolbar-forward-icon" width="512" height="512"/>
+    </resources>
 </document>
