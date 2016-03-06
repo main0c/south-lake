@@ -29,15 +29,6 @@ class SearchDocumentTab: NSViewController, DocumentTab {
         
         }
     }
-    
-    var searchPhrase: String = "" {
-        didSet {
-            performSearch(searchPhrase)
-            title = String.localizedStringWithFormat(NSLocalizedString("Find Results: \"%@\"",
-                comment: "Title of find tab"),
-                searchPhrase)
-        }
-    }
 
     // MARK: - Initialization
 
@@ -113,21 +104,21 @@ class SearchDocumentTab: NSViewController, DocumentTab {
     
     // MARK: -
     
-    func performSearch(text: String) {
+    func performSearch(text: String, results: BRSearchResults?) {
         print("perform search for: \(text)")
+        
+        guard let results = results where results.count() != 0 else {
+            print("search service returned no results")
+            textView.string = String.localizedStringWithFormat(NSLocalizedString("No results found for \"%@\"", comment: "No results message"),
+                text)
+            return
+        }
+        
+        title = String.localizedStringWithFormat(NSLocalizedString("Find Results: \"%@\"",
+                comment: "Title of find tab"),
+                text)
+        
         var presentation = ""
-        
-        guard let results = searchService.search(text) else {
-            print("search service returned nil for results")
-            return
-        }
-        
-        guard results.count() != 0 else {
-            textView.string = String.localizedStringWithFormat(NSLocalizedString("No results found for \"%@\"",
-                comment: "No results message"),
-                searchPhrase)
-            return
-        }
         
         results.iterateWithBlock { (index: UInt, result: BRSearchResult!, stop: UnsafeMutablePointer<ObjCBool>) -> Void in
             guard let _ = result.dictionaryRepresentation(),
