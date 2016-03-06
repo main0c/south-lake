@@ -137,7 +137,7 @@ class DocumentWindowController: NSWindowController, Databasable {
             }
         }
         
-        searchTab.searchPhrase = text
+        searchTab.performSearch(text, results: searchService.search(text))
     }
     
     // MARK: - UI Validation

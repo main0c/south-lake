@@ -177,6 +177,12 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         unbind("icon")
     }
     
+    // MARK: - Search
+    
+    func performSearch(text: String, results: BRSearchResults?) {
+    
+    }
+    
     // MARK: - User Actions
     
     // TODO: Refactoring, watch for couping to source list view controller
