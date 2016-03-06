@@ -16,7 +16,7 @@ The document format and data model may change at any point at this stage of deve
 - v0.4 : Sync
 - v0.5 : Cross platform development
 
-More: improved markdown (images), interdocument linking, table of contents, calendar view, model and ui tests, templates (plugins), autocompletion (plugins), text snippets (Sublime) ...
+More: improved markdown (images), interdocument linking, table of contents, calendar view, model and ui tests, templates (plugins), autocompletion (plugins), text snippets (Sublime), collaboration...
 
 ## Build
 
