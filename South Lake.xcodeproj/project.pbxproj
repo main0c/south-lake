@@ -17,6 +17,7 @@
 		E3274FC91C75A151000B6A84 /* SmartFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3274FC81C75A151000B6A84 /* SmartFolder.swift */; };
 		E3274FCB1C75A1BF000B6A84 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3274FCA1C75A1BF000B6A84 /* File.swift */; };
 		E3274FD01C75A594000B6A84 /* MarkdownEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3274FD21C75A594000B6A84 /* MarkdownEditor.storyboard */; };
+		E32757A71C8C946B004525E2 /* SourceListContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32757A61C8C946B004525E2 /* SourceListContentViewController.swift */; };
 		E32AD25E1C76827400648BFD /* NSURL+FileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32AD25D1C76827400648BFD /* NSURL+FileType.swift */; };
 		E32AD2711C76843500648BFD /* Databasable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32AD2701C76843500648BFD /* Databasable.swift */; };
 		E32EC0A21C74494A00E47B3F /* NSBundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32EC0A11C74494A00E47B3F /* NSBundle+Version.swift */; };
@@ -29,6 +30,7 @@
 		E378C5341C814F1900CACDFC /* String+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378C5331C814F1900CACDFC /* String+Range.swift */; };
 		E378E80F1C801F54009539FD /* NSToolbar+Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378E80E1C801F54009539FD /* NSToolbar+Items.swift */; };
 		E378E8151C80216E009539FD /* SearchTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E378E8171C80216E009539FD /* SearchTab.storyboard */; };
+		E3794C501C8CA345005EA307 /* CustomizableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3794C4F1C8CA345005EA307 /* CustomizableView.swift */; };
 		E37D96101C723B8A000A9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D960F1C723B8A000A9F90 /* AppDelegate.swift */; };
 		E37D96141C723B8A000A9F90 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D96131C723B8A000A9F90 /* Document.swift */; };
 		E37D96161C723B8A000A9F90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E37D96151C723B8A000A9F90 /* Assets.xcassets */; };
@@ -255,6 +257,7 @@
 		E3274FC81C75A151000B6A84 /* SmartFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartFolder.swift; sourceTree = "<group>"; };
 		E3274FCA1C75A1BF000B6A84 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		E3274FD11C75A594000B6A84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MarkdownEditor.storyboard; sourceTree = "<group>"; };
+		E32757A61C8C946B004525E2 /* SourceListContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceListContentViewController.swift; sourceTree = "<group>"; };
 		E32AD25D1C76827400648BFD /* NSURL+FileType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+FileType.swift"; sourceTree = "<group>"; };
 		E32AD2701C76843500648BFD /* Databasable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Databasable.swift; sourceTree = "<group>"; };
 		E32EC0A11C74494A00E47B3F /* NSBundle+Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+Version.swift"; sourceTree = "<group>"; };
@@ -266,6 +269,7 @@
 		E378C5331C814F1900CACDFC /* String+Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Range.swift"; sourceTree = "<group>"; };
 		E378E80E1C801F54009539FD /* NSToolbar+Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSToolbar+Items.swift"; sourceTree = "<group>"; };
 		E378E8161C80216E009539FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SearchTab.storyboard; sourceTree = "<group>"; };
+		E3794C4F1C8CA345005EA307 /* CustomizableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizableView.swift; sourceTree = "<group>"; };
 		E37D960C1C723B8A000A9F90 /* South Lake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "South Lake.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E37D960F1C723B8A000A9F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E37D96131C723B8A000A9F90 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -2434,6 +2438,7 @@
 			children = (
 				E3C821281C75984B00CBAE92 /* SourceListTab.storyboard */,
 				E3C821221C7597B600CBAE92 /* SourceListDocumentTab.swift */,
+				E32757A61C8C946B004525E2 /* SourceListContentViewController.swift */,
 				E3274FC01C75A0B7000B6A84 /* SourceListViewController.swift */,
 			);
 			name = "Source List";
@@ -6992,6 +6997,7 @@
 			children = (
 				E385F8071C796B950072A2CD /* NSDataNSStringValueTransformer.swift */,
 				E39E9B381C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift */,
+				E3794C4F1C8CA345005EA307 /* CustomizableView.swift */,
 				E3C436291C7642BA00DD685D /* MacDownCopyFiles.h */,
 				E3C4362A1C7642BA00DD685D /* MacDownCopyFiles.m */,
 			);
@@ -7428,6 +7434,7 @@
 				E3E7C9DF1C89078100BD73A9 /* NSMutableAttributedString+Replacement.swift in Sources */,
 				E36072701C74E40500914C2C /* DocumentTabController.swift in Sources */,
 				E3E7C9E31C89078C00BD73A9 /* Snippet.swift in Sources */,
+				E3794C501C8CA345005EA307 /* CustomizableView.swift in Sources */,
 				E3274FCB1C75A1BF000B6A84 /* File.swift in Sources */,
 				E3274FC71C75A148000B6A84 /* Section.swift in Sources */,
 				E3E7C9DE1C89078100BD73A9 /* NSString+RegExEscape.swift in Sources */,
@@ -7449,6 +7456,7 @@
 				E3803F0A1C728E790048AD46 /* hoedown_html_patch.c in Sources */,
 				E3274FBF1C75A088000B6A84 /* MarkdownEditor.swift in Sources */,
 				E37E47B81C73F0F90077ECD7 /* DocumentController.swift in Sources */,
+				E32757A71C8C946B004525E2 /* SourceListContentViewController.swift in Sources */,
 				E378C5341C814F1900CACDFC /* String+Range.swift in Sources */,
 				E3E7C9E21C89078C00BD73A9 /* SnippetTextViewHelper.swift in Sources */,
 				E3803F141C728E950048AD46 /* MPDocumentSplitView.m in Sources */,

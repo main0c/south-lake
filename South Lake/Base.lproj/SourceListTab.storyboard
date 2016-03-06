@@ -30,11 +30,103 @@
         <!--Content View Controller-->
         <scene sceneID="lUj-dP-CsN">
             <objects>
-                <viewController id="gSK-tU-OTL" userLabel="Content View Controller" sceneMemberID="viewController">
-                    <view key="view" id="b62-9X-aZ2">
+                <viewController id="gSK-tU-OTL" userLabel="Content View Controller" customClass="SourceListContentViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="b62-9X-aZ2" customClass="CustomizableView" customModule="South_Lake" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="578"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="7dt-gj-s5Z">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="578"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fZv-v6-V1V">
+                                        <rect key="frame" x="60" y="554" width="77" height="14"/>
+                                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mar 4, 2016" id="Cha-si-ba4">
+                                            <dateFormatter key="formatter" dateStyle="medium" id="jBA-5Q-Hur"/>
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField toolTip="Change the title" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ta4-Sb-0Zt">
+                                        <rect key="frame" x="10" y="522" width="418" height="24"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" title="This is some kind of title for the entry" id="GXH-rR-TRL">
+                                            <font key="font" metaFont="systemLight" size="19"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VfX-Xx-HaJ">
+                                        <rect key="frame" x="193" y="554" width="77" height="14"/>
+                                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mar 4, 2016" id="8jD-1A-4hE">
+                                            <dateFormatter key="formatter" dateStyle="medium" id="EPV-Cz-hwx"/>
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <tokenField toolTip="Add or remove tags" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BnV-7u-f7F">
+                                        <rect key="frame" x="295" y="554" width="293" height="14"/>
+                                        <tokenFieldCell key="cell" controlSize="small" selectable="YES" editable="YES" focusRingType="none" alignment="left" title="journler,software,swift" allowsEditingTextAttributes="YES" id="d8e-rw-vbq">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </tokenFieldCell>
+                                    </tokenField>
+                                    <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="MDW-GH-UFT">
+                                        <rect key="frame" x="0.0" y="512" width="1024" height="5"/>
+                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <font key="titleFont" metaFont="system"/>
+                                    </box>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Szc-uv-AS3">
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="514"/>
+                                    </customView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ogW-GX-2PL">
+                                        <rect key="frame" x="10" y="554" width="51" height="14"/>
+                                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Created:" id="EWN-qr-ZeP">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a9c-2h-fze">
+                                        <rect key="frame" x="141" y="554" width="53" height="14"/>
+                                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Updated:" id="Wdz-mV-bTL">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B0c-4d-UbV">
+                                        <rect key="frame" x="276" y="554" width="13" height="13"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="tags-icon" id="91F-JS-e7U"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Szc-uv-AS3" firstAttribute="leading" secondItem="7dt-gj-s5Z" secondAttribute="leading" id="79d-dn-yPc"/>
+                                    <constraint firstItem="Szc-uv-AS3" firstAttribute="top" secondItem="7dt-gj-s5Z" secondAttribute="top" constant="64" id="7aU-dA-fOt"/>
+                                    <constraint firstItem="MDW-GH-UFT" firstAttribute="leading" secondItem="7dt-gj-s5Z" secondAttribute="leading" id="Bsp-7B-bb7"/>
+                                    <constraint firstAttribute="trailing" secondItem="MDW-GH-UFT" secondAttribute="trailing" id="M13-2U-rgd"/>
+                                    <constraint firstAttribute="trailing" secondItem="Szc-uv-AS3" secondAttribute="trailing" id="QQk-Er-rlH"/>
+                                    <constraint firstAttribute="bottom" secondItem="Szc-uv-AS3" secondAttribute="bottom" id="k6s-Jd-J9U"/>
+                                    <constraint firstItem="Szc-uv-AS3" firstAttribute="top" secondItem="MDW-GH-UFT" secondAttribute="bottom" id="x6V-BG-DxR"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="7dt-gj-s5Z" firstAttribute="top" secondItem="b62-9X-aZ2" secondAttribute="top" id="0Vg-FC-dHC"/>
+                            <constraint firstAttribute="bottom" secondItem="7dt-gj-s5Z" secondAttribute="bottom" id="545-rH-YX7"/>
+                            <constraint firstItem="7dt-gj-s5Z" firstAttribute="leading" secondItem="b62-9X-aZ2" secondAttribute="leading" id="iH4-mo-i9N"/>
+                            <constraint firstAttribute="trailing" secondItem="7dt-gj-s5Z" secondAttribute="trailing" id="uL3-oe-hH6"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="createdField" destination="fZv-v6-V1V" id="qbm-Se-CHS"/>
+                        <outlet property="editorContainer" destination="Szc-uv-AS3" id="nrR-mR-nWg"/>
+                        <outlet property="tagsField" destination="BnV-7u-f7F" id="5Wl-8n-QsT"/>
+                        <outlet property="titleField" destination="ta4-Sb-0Zt" id="gjd-Po-vnP"/>
+                        <outlet property="updatedField" destination="VfX-Xx-HaJ" id="O3d-ck-x8K"/>
+                    </connections>
                 </viewController>
                 <customObject id="PHC-lk-EKd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -272,5 +364,6 @@
     </scenes>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
+        <image name="tags-icon" width="28" height="28"/>
     </resources>
 </document>

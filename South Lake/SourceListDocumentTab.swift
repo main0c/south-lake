@@ -11,7 +11,9 @@
 import Cocoa
 
 class SourceListDocumentTab: NSSplitViewController, DocumentTab {
+    var contentController: SourceListContentViewController!
     var sourceListController: SourceListViewController!
+    
     dynamic var icon: NSImage?
     
     var databaseManager: DatabaseManager! {
@@ -34,15 +36,12 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     
     dynamic var selectedObjects: [DataSource] = [] {
         willSet {
-            unbindEditor(selectedObjects)
             unbindTitle(selectedObjects)
             unbindIcon(selectedObjects)
         }
         didSet {
-            bindEditor(selectedObjects)
             bindTitle(selectedObjects)
             bindIcon(selectedObjects)
-            
         }
     }
     
@@ -50,18 +49,21 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         return ( selectedObjects.count == 1 ) ? selectedObjects[0] : nil
     }
     
-    var editor: FileEditor?
-    
     // MARK: - Initialization
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        
+        // Acquire child view controllers
         
         for vc in childViewControllers {
             switch vc {
             case let controller as SourceListViewController:
                 sourceListController = controller
+                break
+            case let controller as SourceListContentViewController:
+                contentController = controller
+                break
             default:
                 break
             }
@@ -73,15 +75,17 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         
         bind("selectedObjects", toObject: sourceListController, withKeyPath: "selectedObjects", options: [:])
         
+        contentController.bind("selectedObjects", toObject: self, withKeyPath: "selectedObjects", options: [:])
+        
         // Set up the editor
         
-        let mainViewController = NSStoryboard(name: "MarkdownEditor", bundle: nil).instantiateInitialController() as! NSViewController
-        let mainItem = NSSplitViewItem(viewController: mainViewController)
-        
-        closeInspector() // FIX: why close inspector first?
-        
-        removeSplitViewItem(splitViewItems[1])
-        insertSplitViewItem(mainItem, atIndex: 1)
+//        let mainViewController = NSStoryboard(name: "MarkdownEditor", bundle: nil).instantiateInitialController() as! NSViewController
+//        let mainItem = NSSplitViewItem(viewController: mainViewController)
+//        
+        // closeInspector() // FIX: why close inspector first?
+//
+//        removeSplitViewItem(splitViewItems[1])
+//        insertSplitViewItem(mainItem, atIndex: 1)
     }
     
     // TOOD: save when changing selection
@@ -91,11 +95,12 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     }
     
     func willClose() {
-        unbindEditor(selectedObjects)
         unbindTitle(selectedObjects)
         unbindIcon(selectedObjects)
         
+        contentController.unbind("selectedObjects")
         unbind("selectedObjects")
+        
         sourceListController.willClose()
     }
     
@@ -142,29 +147,6 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     
     // Use KVO to manage these changes
     
-    func bindEditor(selection: [DataSource]) {
-        let file = selectedObject
-        
-        switch selection.count {
-        case 0:
-           clearEditor()
-        case 1: // where file is File:
-            if file is File {
-                loadEditor(file as! File)
-                if var editor = editor {
-                     editor.file = (file as! File)
-                }
-            } else {
-            // Leave editor alone if multiple selection or folder
-            // Unbind? no... Xcode does not
-            }
-        default:
-            // Leave editor alone if multiple selection or folder
-            // Unbind? no... Xcode does not
-            break
-        }
-    }
-    
     func bindTitle(selection: [DataSource]) {
         switch selection.count {
         case 0:
@@ -193,43 +175,6 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     
     func unbindIcon(selection: [DataSource]) {
         unbind("icon")
-    }
-    
-    func unbindEditor(selection: [DataSource]) {
-        guard var editor = editor, let file = selectedObject where file is File else {
-            return
-        }
-        editor.file = nil
-    }
-    
-    // MARK: - Editor
-    
-    func loadEditor(file: File) {
-        // Load editor if editor has changed
-        
-        if !(editor is MarkdownEditor) {
-            
-            // TODO: guard this, raise exception -- what?
-            
-            guard let editorExtension = EditorPlugIns.sharedInstance.plugInForFiletype(file.file_extension) else {
-                print("unable to find editor for file with type \(file.file_extension)")
-                return
-            }
-            
-            editor = editorExtension
-            let mainItem = NSSplitViewItem(viewController: (editor as! NSViewController))
-        
-            removeSplitViewItem(splitViewItems[1])
-            insertSplitViewItem(mainItem, atIndex: 1)
-            
-            // addChildViewController(editor as! NSViewController)
-        }
-        
-        // Pass selection to editor: why is var needed here for mutablily? editor is var
-    }
-    
-    func clearEditor() {
-    
     }
     
     // MARK: - User Actions
@@ -337,7 +282,8 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         }
         
         sourceListController.selectItemAtIndexPath(indexPath)
-        editor?.newDocument = true
+        
+        // editor?.newDocument = true
     }
     
     @IBAction func makeFilesAndFoldersFirstResponder(sender: AnyObject?) {
@@ -345,11 +291,7 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     }
     
     @IBAction func makeEditorFirstResponder(sender: AnyObject?) {
-        guard let editor = editor else {
-            NSBeep()
-            return
-        }
-        self.view.window?.makeFirstResponder(editor.primaryResponder)
+        contentController.makeEditorFirstResponder(sender)
     }
     
     @IBAction func makeFileInfoFirstResponder(sender: AnyObject?) {

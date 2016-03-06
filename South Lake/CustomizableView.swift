@@ -9,11 +9,12 @@
 import Cocoa
 
 class CustomizableView: NSView {
+    var backgroundColor: NSColor = NSColor(white: 1.0, alpha: 1.0)
 
     override func drawRect(dirtyRect: NSRect) {
+        backgroundColor.setFill()
+        NSRectFill(dirtyRect)
         super.drawRect(dirtyRect)
-
-        // Drawing code here.
     }
     
 }

@@ -20,6 +20,14 @@ protocol FileEditor {
     static var filetypes: [String] { get }
     static var storyboard: String { get }
     
+    /// A FileEditor is a view controller with a view property
+    
+    var view: NSView { get set }
+    
+    /// A FildEditor is a view controller that can handle child-parent relationships
+    
+    func removeFromParentViewController()
+    
     /// A tab passes a file to the editor. The file may be nil. The editor may
     /// many any changes it likes to the file, including metadata changes.
     /// Editors should use the universal data: NSData interface for file contents
@@ -33,5 +41,5 @@ protocol FileEditor {
     
     /// The responder that take focus for editing and first responder switching
     
-    var primaryResponder: NSResponder { get }
+    var primaryResponder: NSView { get }
 }

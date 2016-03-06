@@ -178,7 +178,7 @@ class MarkdownEditor: NSViewController, FileEditor {
         // Default preferences
         
         preferences.editorBaseFont = NSFont(name: "Helvetica", size: 13.0)
-        preferences.editorStyleName = "Tomorrow+"
+        preferences.editorStyleName = "Mou Fresh Air+" // Tomorrow+
         preferences.editorSyncScrolling = true
         
         preferences.htmlMathJax = true
@@ -293,7 +293,7 @@ class MarkdownEditor: NSViewController, FileEditor {
         editingTemplate = true
     }
     
-    var primaryResponder: NSResponder {
+    var primaryResponder: NSView {
         return editor
     }
     
