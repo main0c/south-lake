@@ -10,7 +10,7 @@ import Cocoa
 
 class LibraryEditor: NSViewController, FileEditor {
     @IBOutlet var arrayController: NSArrayController!
-    @IBOutlet var collectionView: NSCollectionView!
+    @IBOutlet var containerView: NSView!
     
     // MARK: - File Editor
     
@@ -40,11 +40,7 @@ class LibraryEditor: NSViewController, FileEditor {
     
     // MARK: - Custom Properties
     
-    dynamic var content: [DataSource] = [] {
-        didSet {
-            print(content)
-        }
-    }
+    dynamic var content: [DataSource] = []
     
     var liveQuery: CBLLiveQuery! {
         willSet {
@@ -53,6 +49,8 @@ class LibraryEditor: NSViewController, FileEditor {
             }
         }
     }
+    
+    var scene: LibraryScene!
 
     // MARK: - Initialization
     
@@ -62,9 +60,11 @@ class LibraryEditor: NSViewController, FileEditor {
         
         (view as! CustomizableView).backgroundColor = NSColor(white: 0.94, alpha: 1.0)
         
-        collectionView.itemPrototype = storyboard!.instantiateControllerWithIdentifier("collectionViewItem") as? NSCollectionViewItem
-        
         arrayController.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: Selector("compare:"))]
+        
+        // TODO: Save and restore scene preference
+        
+        loadScene("libraryCollectionScene")
         
         loadLibrary()
     }
@@ -73,6 +73,8 @@ class LibraryEditor: NSViewController, FileEditor {
         liveQuery.removeObserver(self, forKeyPath: "rows")
         liveQuery.stop()
     }
+    
+    // MARK: - Library Data
     
     func loadLibrary() {
         guard (databaseManager as DatabaseManager?) != nil else {
@@ -88,7 +90,6 @@ class LibraryEditor: NSViewController, FileEditor {
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if object as? NSObject == liveQuery {
-            print("files changed: \(liveQuery.rows)")
             displayRows(liveQuery.rows)
         }
     }
@@ -140,19 +141,13 @@ class LibraryEditor: NSViewController, FileEditor {
         
         switch sender.tag {
         case 1001: // by title
-            descriptors = [NSSortDescriptor(key: "title",
-                ascending: key != "title",
-                selector: Selector("caseInsensitiveCompare:"))]
+            descriptors = [NSSortDescriptor(key: "title", ascending: key != "title", selector: Selector("caseInsensitiveCompare:"))]
             break
         case 1002: // by date created
-            descriptors = [NSSortDescriptor(key: "created_at",
-                ascending: !(key != "created_at"),
-                selector: Selector("compare:"))]
+            descriptors = [NSSortDescriptor(key: "created_at", ascending: !(key != "created_at"), selector: Selector("compare:"))]
             break
         case 1003: // by date updated
-            descriptors = [NSSortDescriptor(key: "updated_at",
-                ascending: !(key != "updated_at"),
-                selector: Selector("compare:"))]
+            descriptors = [NSSortDescriptor(key: "updated_at", ascending: !(key != "updated_at"), selector: Selector("compare:"))]
             break
         default:
             break
@@ -161,5 +156,57 @@ class LibraryEditor: NSViewController, FileEditor {
         arrayController.sortDescriptors = descriptors
     }
     
+    @IBAction func changeScene(sender: AnyObject?) {
+        guard let sender = sender as? NSSegmentedControl,
+              let cell = sender.cell as? NSSegmentedCell else {
+              return
+        }
+        
+        let segment = sender.selectedSegment
+        let tag = cell.tagForSegment(segment)
+        
+        switch tag {
+        case 0: // icon collection
+            unloadScene()
+            loadScene("libraryCollectionScene")
+        case 1: // table view
+            unloadScene()
+            loadScene("libraryTableScene")
+        case _:
+            break
+        }
+    }
+    
+    // MARK: - Utilities
+    
+    func loadScene(identifier: String) {
+        scene = storyboard!.instantiateControllerWithIdentifier(identifier) as! LibraryScene
+        
+        // Set up frame and view constraints
+        
+        scene.view.translatesAutoresizingMaskIntoConstraints = false
+        scene.view.frame = containerView.bounds
+        containerView.addSubview(scene.view)
+        
+        containerView.addConstraints(
+            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": scene.view])
+        )
+        containerView.addConstraints(
+            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": scene.view])
+        )
+        
+        // Bind the array controller to ours
+        
+        scene.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
+    }
+    
+    func unloadScene() {
+        guard (scene as LibraryScene?) != nil else {
+            return
+        }
+        
+        scene.arrayController.unbind("contentArray")
+        scene.view.removeFromSuperview()
+    }
 }
 
