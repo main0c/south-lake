@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h0C-0L-1d6">
-                                <rect key="frame" x="146" y="261" width="158" height="20"/>
+                                <rect key="frame" x="146" y="274" width="158" height="20"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="roundRect" trackingMode="selectOne" id="YcY-Pv-fS2">
                                     <font key="font" metaFont="cellTitle"/>
                                     <segments>
@@ -24,7 +24,7 @@
                             </segmentedControl>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="h0C-0L-1d6" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="20" id="5Qu-VX-C8r"/>
+                            <constraint firstItem="h0C-0L-1d6" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="7" id="5Qu-VX-C8r"/>
                             <constraint firstItem="h0C-0L-1d6" firstAttribute="centerX" secondItem="yGH-dJ-Tg1" secondAttribute="centerX" id="xFL-F1-xmp"/>
                         </constraints>
                     </view>

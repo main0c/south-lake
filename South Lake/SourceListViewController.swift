@@ -98,7 +98,6 @@ class SourceListViewController: NSViewController, Databasable {
         } catch {
             print(error)
         }
-
     }
     
     // MARK: -

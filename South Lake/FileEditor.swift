@@ -15,17 +15,21 @@ import Foundation
 /// Sharing full File data model rather than just the file contents so that the
 /// editor has the ability to modify model metadata as file contents are edited
 
-protocol FileEditor {
+protocol FileEditor: class, Databasable {
     
     static var filetypes: [String] { get }
     static var storyboard: String { get }
     
-    /// A FileEditor is a view controller with a view property
+    /// The default behavior of a file editor should be to ignore the databaseManager
+    var databaseManager: DatabaseManager! { get set }
     
+    /// The default behavior of a file editor should be to ignore the searchService
+    var searchService: BRSearchService! { get set }
+    
+    /// A FileEditor is a view controller with a view property
     var view: NSView { get set }
     
     /// A FildEditor is a view controller that can handle child-parent relationships
-    
     func removeFromParentViewController()
     
     /// A tab passes a file to the editor. The file may be nil. The editor may
@@ -35,6 +39,5 @@ protocol FileEditor {
     var file: DataSource? { get set }
     
     /// The responder that take focus for editing and first responder switching
-    
     var primaryResponder: NSView { get }
 }

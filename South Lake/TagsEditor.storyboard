@@ -55,13 +55,28 @@
             <objects>
                 <collectionViewItem storyboardIdentifier="collectionViewItem" id="hAE-oY-KQE" sceneMemberID="viewController">
                     <view key="view" id="n0P-Cu-BwC">
-                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="189" height="33"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <tokenField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7lo-q4-F8q">
+                                <rect key="frame" x="6" y="6" width="177" height="21"/>
+                                <tokenFieldCell key="cell" selectable="YES" editable="YES" borderStyle="bezel" alignment="center" title="Token Thing" drawsBackground="YES" allowsEditingTextAttributes="YES" id="pGo-87-g8n">
+                                    <font key="font" metaFont="cellTitle"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </tokenFieldCell>
+                            </tokenField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="7lo-q4-F8q" secondAttribute="bottom" constant="6" id="CGd-9H-u4P"/>
+                            <constraint firstAttribute="trailing" secondItem="7lo-q4-F8q" secondAttribute="trailing" constant="6" id="CRm-bc-3Qe"/>
+                            <constraint firstItem="7lo-q4-F8q" firstAttribute="leading" secondItem="n0P-Cu-BwC" secondAttribute="leading" constant="6" id="gxs-Qb-lhR"/>
+                        </constraints>
                     </view>
                 </collectionViewItem>
                 <customObject id="t66-fp-bQ0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="612" y="193"/>
+            <point key="canvasLocation" x="656.5" y="160"/>
         </scene>
     </scenes>
 </document>

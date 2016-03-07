@@ -92,6 +92,7 @@
 		E3DDBEF31C8D314D00136BAE /* TagsEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DDBEF21C8D314D00136BAE /* TagsEditor.swift */; };
 		E3DDBEF61C8D451E00136BAE /* CalendarEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DDBEF51C8D451E00136BAE /* CalendarEditor.swift */; };
 		E3DDBEF81C8D455000136BAE /* CalendarEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3DDBEF71C8D455000136BAE /* CalendarEditor.storyboard */; };
+		E3DDBEFA1C8D5AF300136BAE /* LibraryCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DDBEF91C8D5AF300136BAE /* LibraryCollectionViewItem.swift */; };
 		E3E12A651C76E3E7000C4F16 /* NSOutlineView+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E12A641C76E3E7000C4F16 /* NSOutlineView+Selection.swift */; };
 		E3E65F541C7C1A8F0085B5B7 /* About Markdown.md in Resources */ = {isa = PBXBuildFile; fileRef = E3E65F531C7C1A840085B5B7 /* About Markdown.md */; };
 		E3E7C9DD1C89078100BD73A9 /* Array+SafeIndexing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E7C9DA1C89078100BD73A9 /* Array+SafeIndexing.swift */; };
@@ -2390,6 +2391,7 @@
 		E3DDBEF21C8D314D00136BAE /* TagsEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsEditor.swift; sourceTree = "<group>"; };
 		E3DDBEF51C8D451E00136BAE /* CalendarEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEditor.swift; sourceTree = "<group>"; };
 		E3DDBEF71C8D455000136BAE /* CalendarEditor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CalendarEditor.storyboard; sourceTree = "<group>"; };
+		E3DDBEF91C8D5AF300136BAE /* LibraryCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewItem.swift; sourceTree = "<group>"; };
 		E3E12A641C76E3E7000C4F16 /* NSOutlineView+Selection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSOutlineView+Selection.swift"; sourceTree = "<group>"; };
 		E3E65F531C7C1A840085B5B7 /* About Markdown.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "About Markdown.md"; sourceTree = "<group>"; };
 		E3E7C9DA1C89078100BD73A9 /* Array+SafeIndexing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+SafeIndexing.swift"; sourceTree = "<group>"; };
@@ -7040,6 +7042,7 @@
 			children = (
 				E3DDBEEC1C8D311700136BAE /* LibraryEditor.storyboard */,
 				E3DDBEF01C8D313A00136BAE /* LibraryEditor.swift */,
+				E3DDBEF91C8D5AF300136BAE /* LibraryCollectionViewItem.swift */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -7467,6 +7470,7 @@
 				E32AD25E1C76827400648BFD /* NSURL+FileType.swift in Sources */,
 				E37D96101C723B8A000A9F90 /* AppDelegate.swift in Sources */,
 				E3AD255A1C7F9CDE006D6536 /* MarkdownImporter.swift in Sources */,
+				E3DDBEFA1C8D5AF300136BAE /* LibraryCollectionViewItem.swift in Sources */,
 				E3274FC51C75A13D000B6A84 /* Folder.swift in Sources */,
 				E3803F051C728E140048AD46 /* pmh_styleparser.c in Sources */,
 				E3803F151C728E950048AD46 /* MPEditorView.m in Sources */,

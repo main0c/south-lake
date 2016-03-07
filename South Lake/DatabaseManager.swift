@@ -13,6 +13,7 @@ class DatabaseManager: NSObject {
     var database: CBLDatabase!
     
     private var _sectionQuery: CBLQuery?
+    private var _fileQuery: CBLQuery?
     
     init(url: NSURL) throws {
         super.init()
@@ -30,6 +31,8 @@ class DatabaseManager: NSObject {
         factory?.registerClass(File.self, forDocumentType: "file")
     }
     
+    /// Sections are static, once created in a new document they do not change
+    
     var sectionQuery: CBLQuery {
         guard _sectionQuery == nil else {
             return _sectionQuery!
@@ -44,5 +47,23 @@ class DatabaseManager: NSObject {
         
         _sectionQuery = view.createQuery()
         return _sectionQuery!
+    }
+    
+    /// Files change, a user can create and delete them, maybe we need a live view
+    
+    var fileQuery: CBLQuery {
+        guard _fileQuery == nil else {
+            return _fileQuery!
+        }
+        
+        let view = database!.viewNamed("files")
+        view.setMapBlock({ (doc, emit) -> Void in
+            if doc["type"] as? String == "file" {
+                emit(doc["_id"]!, doc)
+            }
+        }, version: "1")
+        
+        _fileQuery = view.createQuery()
+        return _fileQuery!
     }
 }

@@ -74,7 +74,7 @@ class SourceListContentViewController: NSViewController, Databasable {
     }
       
     func unbindEditor(selection: [DataSource]) {
-        guard var editor = editor, let file = selectedObject
+        guard let editor = editor, let file = selectedObject
         where file is File || file is Folder else {
             return
         }
@@ -101,9 +101,12 @@ class SourceListContentViewController: NSViewController, Databasable {
             editor?.view.removeFromSuperview()
             editor?.removeFromParentViewController()
             
-            // Note the loaded editor
+            // Note and prepare the loaded editor
             
             editor = editorExtension
+            
+            editor!.databaseManager = databaseManager
+            editor!.searchService = searchService
             
             // Add the current editor
             
