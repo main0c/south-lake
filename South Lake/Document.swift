@@ -329,6 +329,11 @@ class Document: NSDocument, Databasable {
 //                    allEntries.children.append(doc1)
 //                    allEntries.children.append(doc2)
             
+                let calendar = Folder(forNewDocumentInDatabase: databaseManager.database)
+                calendar.title = NSLocalizedString("Calendar", comment: "Library calendar title")
+                calendar.icon = NSImage(named: "calendar-icon")
+                calendar.uti = "southlake.notebook.calendar"
+            
                 let tags = Folder(forNewDocumentInDatabase: databaseManager.database)
             
                 tags.title = NSLocalizedString("Tags", comment: "Tags folder title")
@@ -342,6 +347,7 @@ class Document: NSDocument, Databasable {
                 trash.uti = "southlake.notebook.trash"
             
                 try allEntries.save()
+                try calendar.save()
                 try trash.save()
                 try tags.save()
             
@@ -351,6 +357,7 @@ class Document: NSDocument, Databasable {
             notebookSection.index = 1
             
                 books.append(allEntries)
+                books.append(calendar)
                 books.append(tags)
                 books.append(trash)
                 
