@@ -11,7 +11,7 @@ import Cocoa
 class LibraryEditor: NSViewController, FileEditor {
     @IBOutlet var collectionView: NSCollectionView!
 
-    static var filetypes: [String] { return ["southlake.notebook.library"] }
+    static var filetypes: [String] { return ["southlake.notebook.library", "southlake/x-notebook-library", "southlake-notebook-library"] }
     static var storyboard: String { return "LibraryEditor" }
     
     dynamic var file: DataSource? {

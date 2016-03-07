@@ -324,7 +324,10 @@ class Document: NSDocument, Databasable {
             
                 allEntries.title = NSLocalizedString("Library", comment: "Library folder title")
                 allEntries.icon = NSImage(named: "notebook-icon")
+                allEntries.file_extension = "southlake-notebook-library"
+                allEntries.mime_type = "southlake/x-notebook-library"
                 allEntries.uti = "southlake.notebook.library"
+
             
 //                    allEntries.children.append(doc1)
 //                    allEntries.children.append(doc2)
@@ -332,18 +335,24 @@ class Document: NSDocument, Databasable {
                 let calendar = Folder(forNewDocumentInDatabase: databaseManager.database)
                 calendar.title = NSLocalizedString("Calendar", comment: "Library calendar title")
                 calendar.icon = NSImage(named: "calendar-icon")
+                calendar.file_extension = "southlake-notebook-calendar"
+                calendar.mime_type = "southlake/x-notebook-calendar"
                 calendar.uti = "southlake.notebook.calendar"
             
                 let tags = Folder(forNewDocumentInDatabase: databaseManager.database)
             
                 tags.title = NSLocalizedString("Tags", comment: "Tags folder title")
                 tags.icon = NSImage(named: "tags-folder-icon")
+                tags.file_extension = "southlake-notebook-tags"
+                tags.mime_type = "southlake/x-notebook-tags"
                 tags.uti = "southlake.notebook.tags"
             
                 let trash = Folder(forNewDocumentInDatabase: databaseManager.database)
             
                 trash.title = NSLocalizedString("Trash", comment: "Trash folder title")
                 trash.icon = NSImage(named: "trash-icon")
+                trash.file_extension = "southlake-notebook-trash"
+                trash.mime_type = "southlake/x-notebook-trash"
                 trash.uti = "southlake.notebook.trash"
             
                 try allEntries.save()

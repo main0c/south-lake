@@ -6,7 +6,9 @@
 //  Copyright © 2016 Phil Dow. All rights reserved.
 //
 //  Contains the editor but also basic metadata info such as the title, etc
+
 //  TODO: factor title view
+//  TOOD: factor: it doesn't need to be associated with a source list, usable anywhere
 
 import Cocoa
 
@@ -61,30 +63,19 @@ class SourceListContentViewController: NSViewController, Databasable {
     // MARK: - Editor
     
     func bindEditor(selection: [DataSource]) {
-        let file = selectedObject
+        let item = selectedObject
         
-        switch selection.count {
-        case 0:
-           clearEditor()
-        case 1: // where file is File:
-            if file is File {
-                loadEditor(file as! File)
-                if var editor = editor {
-                     editor.file = (file as! File)
-                }
-            } else {
-            // Leave editor alone if multiple selection or folder
-            // Unbind? no... Xcode does not
-            }
-        default:
-            // Leave editor alone if multiple selection or folder
-            // Unbind? no... Xcode does not
-            break
+        switch (selection.count, item) {
+        case (0, _): clearEditor()
+        case (1, is File): loadEditor(item!)
+        case (1, is Folder): loadEditor(item!)
+        case (_,_): break
         }
     }
       
     func unbindEditor(selection: [DataSource]) {
-        guard var editor = editor, let file = selectedObject where file is File else {
+        guard var editor = editor, let file = selectedObject
+        where file is File || file is Folder else {
             return
         }
         editor.file = nil
@@ -92,10 +83,11 @@ class SourceListContentViewController: NSViewController, Databasable {
     
     // MARK: - Editor
     
-    func loadEditor(file: File) {
+    func loadEditor(file: DataSource) {
         // Load editor if editor has changed
         
-        if !(editor is MarkdownEditor) {
+        if editor == nil || !editor!.dynamicType.filetypes.contains(file.uti) {
+        // if !(editor is MarkdownEditor) {
             
             // TODO: guard this, raise exception -- what?
             
@@ -120,24 +112,24 @@ class SourceListContentViewController: NSViewController, Databasable {
             editor!.view.translatesAutoresizingMaskIntoConstraints = false
             addChildViewController(editor as! NSViewController)
             
-            // Constraints
-            
-            let bindings: [String: AnyObject] = ["subview": editor!.view]
+            // Layout Constraints
             
             editorContainer.addConstraints(
-                NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: bindings)
+                NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": editor!.view])
             )
             editorContainer.addConstraints(
-                NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: bindings)
+                NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": editor!.view])
             )
             
             // Next responder: tab from title to editor
             
             titleField.nextKeyView = editor?.primaryResponder
-            
-        }
+        // }
+         }
         
-        // Pass selection to editor: why is var needed here for mutablily? editor is var
+        // Always pass selection to the editor
+        
+        editor?.file = file
     }
     
     func clearEditor() {

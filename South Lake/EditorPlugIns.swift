@@ -26,12 +26,16 @@ class EditorPlugIns {
                 "storyboard": "MarkdownEditor"
             ],
             [
-                "filetypes": ["southlake.notebook.library"],
+                "filetypes": ["southlake.notebook.library", "southlake/x-notebook-library", "southlake-notebook-library"],
                 "storyboard": "LibraryEditor"
             ],
             [
-                "filetypes": ["southlake.notebook.tags"],
+                "filetypes": ["southlake.notebook.tags", "southlake/x-notebook-tags", "southlake-notebook-tags"],
                 "storyboard": "TagsEditor"
+            ],
+            [
+                "filetypes": ["southlake.notebook.calendar", "southlake/x-notebook-calendar", "southlake-notebook-calendar"],
+                "storyboard": "CalendarEditor"
             ]
         ]
     }

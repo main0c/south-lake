@@ -11,7 +11,7 @@ import Cocoa
 class TagsEditor: NSViewController, FileEditor {
     @IBOutlet var collectionView: NSCollectionView!
 
-    static var filetypes: [String] { return ["southlake.notebook.tags"] }
+    static var filetypes: [String] { return ["southlake.notebook.tags", "southlake/x-notebook-tags", "southlake-notebook-tags"] }
     static var storyboard: String { return "TagsEditor" }
     
     dynamic var file: DataSource? {

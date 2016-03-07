@@ -90,6 +90,8 @@
 		E3DDBEEF1C8D312200136BAE /* TagsEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3DDBEEE1C8D312200136BAE /* TagsEditor.storyboard */; };
 		E3DDBEF11C8D313A00136BAE /* LibraryEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DDBEF01C8D313A00136BAE /* LibraryEditor.swift */; };
 		E3DDBEF31C8D314D00136BAE /* TagsEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DDBEF21C8D314D00136BAE /* TagsEditor.swift */; };
+		E3DDBEF61C8D451E00136BAE /* CalendarEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DDBEF51C8D451E00136BAE /* CalendarEditor.swift */; };
+		E3DDBEF81C8D455000136BAE /* CalendarEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3DDBEF71C8D455000136BAE /* CalendarEditor.storyboard */; };
 		E3E12A651C76E3E7000C4F16 /* NSOutlineView+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E12A641C76E3E7000C4F16 /* NSOutlineView+Selection.swift */; };
 		E3E65F541C7C1A8F0085B5B7 /* About Markdown.md in Resources */ = {isa = PBXBuildFile; fileRef = E3E65F531C7C1A840085B5B7 /* About Markdown.md */; };
 		E3E7C9DD1C89078100BD73A9 /* Array+SafeIndexing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E7C9DA1C89078100BD73A9 /* Array+SafeIndexing.swift */; };
@@ -2386,6 +2388,8 @@
 		E3DDBEEE1C8D312200136BAE /* TagsEditor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TagsEditor.storyboard; sourceTree = "<group>"; };
 		E3DDBEF01C8D313A00136BAE /* LibraryEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryEditor.swift; sourceTree = "<group>"; };
 		E3DDBEF21C8D314D00136BAE /* TagsEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsEditor.swift; sourceTree = "<group>"; };
+		E3DDBEF51C8D451E00136BAE /* CalendarEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEditor.swift; sourceTree = "<group>"; };
+		E3DDBEF71C8D455000136BAE /* CalendarEditor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CalendarEditor.storyboard; sourceTree = "<group>"; };
 		E3E12A641C76E3E7000C4F16 /* NSOutlineView+Selection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSOutlineView+Selection.swift"; sourceTree = "<group>"; };
 		E3E65F531C7C1A840085B5B7 /* About Markdown.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "About Markdown.md"; sourceTree = "<group>"; };
 		E3E7C9DA1C89078100BD73A9 /* Array+SafeIndexing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+SafeIndexing.swift"; sourceTree = "<group>"; };
@@ -2463,6 +2467,7 @@
 				E3898F981C80162700CA71BE /* Markdown */,
 				E3DDBEEA1C8D30FF00136BAE /* Library */,
 				E3DDBEEB1C8D310A00136BAE /* Tags */,
+				E3DDBEF41C8D450F00136BAE /* Calendar */,
 			);
 			name = Editors;
 			sourceTree = "<group>";
@@ -7048,6 +7053,15 @@
 			name = Tags;
 			sourceTree = "<group>";
 		};
+		E3DDBEF41C8D450F00136BAE /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				E3DDBEF71C8D455000136BAE /* CalendarEditor.storyboard */,
+				E3DDBEF51C8D451E00136BAE /* CalendarEditor.swift */,
+			);
+			name = Calendar;
+			sourceTree = "<group>";
+		};
 		E3E7C9E41C89079000BD73A9 /* Snippets */ = {
 			isa = PBXGroup;
 			children = (
@@ -7321,6 +7335,7 @@
 				E37D96161C723B8A000A9F90 /* Assets.xcassets in Resources */,
 				E3274FD01C75A594000B6A84 /* MarkdownEditor.storyboard in Resources */,
 				E3DDBEEF1C8D312200136BAE /* TagsEditor.storyboard in Resources */,
+				E3DDBEF81C8D455000136BAE /* CalendarEditor.storyboard in Resources */,
 				E37D96191C723B8A000A9F90 /* Main.storyboard in Resources */,
 				E380358E1C728D780048AD46 /* Data in Resources */,
 				E380358F1C728D780048AD46 /* Extensions in Resources */,
@@ -7510,6 +7525,7 @@
 				E3AD256C1C7F9D08006D6536 /* FileImporter.swift in Sources */,
 				E32EC0A21C74494A00E47B3F /* NSBundle+Version.swift in Sources */,
 				E3A8A0DE1C80C1DB009E96C1 /* NSDataNSStringValueTransformer.swift in Sources */,
+				E3DDBEF61C8D451E00136BAE /* CalendarEditor.swift in Sources */,
 				E3803F121C728E910048AD46 /* MPMathJaxListener.m in Sources */,
 				E3E7C9E61C89079C00BD73A9 /* String+Snippet.swift in Sources */,
 				E3803F0E1C728E790048AD46 /* NSObject+HTMLTabularize.m in Sources */,
