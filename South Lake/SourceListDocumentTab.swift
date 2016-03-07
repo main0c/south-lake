@@ -54,6 +54,8 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // self.view.translatesAutoresizingMaskIntoConstraints = false
+        
         // Acquire child view controllers
         
         for vc in childViewControllers {

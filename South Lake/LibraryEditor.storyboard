@@ -30,7 +30,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="174" id="4hG-p2-k8c"/>
                                 </constraints>
-                                <searchFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" focusRingType="none" placeholderString="Filter by title" usesSingleLineMode="YES" bezelStyle="round" id="u74-oK-J4C">
+                                <searchFieldCell key="cell" controlSize="small" selectable="YES" editable="YES" borderStyle="bezel" focusRingType="none" placeholderString="Filter by title" usesSingleLineMode="YES" bezelStyle="round" id="u74-oK-J4C">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -404,12 +404,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="162" height="177"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView identifier="background" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DEB-Hq-dec" customClass="CustomizableView" customModule="South_Lake" customModuleProvider="target">
+                            <customView identifier="background" translatesAutoresizingMaskIntoConstraints="NO" id="DEB-Hq-dec" customClass="CustomizableView" customModule="South_Lake" customModuleProvider="target">
                                 <rect key="frame" x="10" y="10" width="142" height="157"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lRQ-i1-hMo">
-                                        <rect key="frame" x="9" y="110" width="125" height="35"/>
-                                        <textFieldCell key="cell" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" title="Note title might take up two lines or more" id="Zsz-aN-E5u">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lRQ-i1-hMo">
+                                        <rect key="frame" x="8" y="109" width="126" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="38" id="Go8-ni-h04"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" title="Note title might take up two lines ore more" id="Zsz-aN-E5u">
                                             <font key="font" metaFont="systemMedium" size="13"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -418,8 +421,8 @@
                                             <binding destination="oMn-Pa-lPO" name="value" keyPath="representedObject.title" id="WhK-Ta-2Ic"/>
                                         </connections>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Nm-fe-yhA">
-                                        <rect key="frame" x="9" y="10" width="125" height="92"/>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Nm-fe-yhA">
+                                        <rect key="frame" x="8" y="10" width="126" height="92"/>
                                         <textFieldCell key="cell" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" title="Label" id="pWZ-uH-pG3">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -430,8 +433,23 @@
                                         </connections>
                                     </textField>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="142" id="4Ob-Bz-0Bs"/>
+                                    <constraint firstItem="lRQ-i1-hMo" firstAttribute="leading" secondItem="DEB-Hq-dec" secondAttribute="leading" constant="10" id="BbZ-NI-T30"/>
+                                    <constraint firstItem="1Nm-fe-yhA" firstAttribute="top" secondItem="lRQ-i1-hMo" secondAttribute="bottom" constant="7" id="DPU-B5-n3s"/>
+                                    <constraint firstAttribute="trailing" secondItem="1Nm-fe-yhA" secondAttribute="trailing" constant="10" id="OJN-vV-Vpw"/>
+                                    <constraint firstItem="lRQ-i1-hMo" firstAttribute="top" secondItem="DEB-Hq-dec" secondAttribute="top" constant="10" id="bXK-8y-QuX"/>
+                                    <constraint firstAttribute="trailing" secondItem="lRQ-i1-hMo" secondAttribute="trailing" constant="10" id="mUa-iG-Ldh"/>
+                                    <constraint firstAttribute="bottom" secondItem="1Nm-fe-yhA" secondAttribute="bottom" constant="10" id="pOE-Tp-0So"/>
+                                    <constraint firstAttribute="height" constant="157" id="q4C-Of-SAd"/>
+                                    <constraint firstItem="1Nm-fe-yhA" firstAttribute="leading" secondItem="DEB-Hq-dec" secondAttribute="leading" constant="10" id="yrl-Ju-5MI"/>
+                                </constraints>
                             </customView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="DEB-Hq-dec" firstAttribute="centerY" secondItem="dIb-eP-RFd" secondAttribute="centerY" id="JVH-yE-2se"/>
+                            <constraint firstItem="DEB-Hq-dec" firstAttribute="centerX" secondItem="dIb-eP-RFd" secondAttribute="centerX" id="MEP-B7-npV"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="backgroundView" destination="DEB-Hq-dec" id="LxM-at-Wmf"/>
