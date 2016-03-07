@@ -14,7 +14,7 @@ class TagsEditor: NSViewController, FileEditor {
     static var filetypes: [String] { return ["southlake.notebook.tags"] }
     static var storyboard: String { return "TagsEditor" }
     
-    dynamic var file: File? {
+    dynamic var file: DataSource? {
         willSet {
         
         }

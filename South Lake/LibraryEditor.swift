@@ -14,7 +14,7 @@ class LibraryEditor: NSViewController, FileEditor {
     static var filetypes: [String] { return ["southlake.notebook.library"] }
     static var storyboard: String { return "LibraryEditor" }
     
-    dynamic var file: File? {
+    dynamic var file: DataSource? {
         willSet {
         
         }

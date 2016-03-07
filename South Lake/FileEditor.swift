@@ -32,7 +32,7 @@ protocol FileEditor {
     /// many any changes it likes to the file, including metadata changes.
     /// Editors should use the universal data: NSData interface for file contents
     
-    var file: File? { get set }
+    var file: DataSource? { get set }
     
     /// The responder that take focus for editing and first responder switching
     
