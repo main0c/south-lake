@@ -9,6 +9,7 @@
 import Cocoa
 
 class LibraryEditor: NSViewController, FileEditor {
+    @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var collectionView: NSCollectionView!
     
     // MARK: - File Editor
@@ -82,6 +83,23 @@ class LibraryEditor: NSViewController, FileEditor {
             self.content = files
         } catch {
             print(error)
+        }
+    }
+    
+    // MARK: - User Actions
+    
+    @IBAction func filterByTitle(sender: AnyObject?) {
+        guard let sender = sender as? NSSearchField else {
+            return
+        }
+        
+        let text = sender.stringValue
+        
+        if text == "" {
+            arrayController.filterPredicate = nil
+        } else {
+            let predicate = NSPredicate(format: "title contains[cd] %@", text)
+            arrayController.filterPredicate = predicate
         }
     }
     
