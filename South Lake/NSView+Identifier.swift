@@ -10,7 +10,7 @@ import Foundation
 
 extension NSView {
 
-    // Similar to viewWithTag, finds views with the given identifier.
+    /// Similar to viewWithTag, viewWithIdentifier finds views with the given identifier.
 
     func viewWithIdentifier(identifier: String) -> NSView? {
         for subview in self.subviews {

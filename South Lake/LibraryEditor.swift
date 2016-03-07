@@ -45,6 +45,14 @@ class LibraryEditor: NSViewController, FileEditor {
             print(content)
         }
     }
+    
+    var liveQuery: CBLLiveQuery! {
+        willSet {
+            if let query = liveQuery {
+                query.removeObserver(self, forKeyPath: "rows")
+            }
+        }
+    }
 
     // MARK: - Initialization
     
@@ -56,7 +64,14 @@ class LibraryEditor: NSViewController, FileEditor {
         
         collectionView.itemPrototype = storyboard!.instantiateControllerWithIdentifier("collectionViewItem") as? NSCollectionViewItem
         
+        arrayController.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: Selector("compare:"))]
+        
         loadLibrary()
+    }
+    
+    deinit {
+        liveQuery.removeObserver(self, forKeyPath: "rows")
+        liveQuery.stop()
     }
     
     func loadLibrary() {
@@ -64,26 +79,35 @@ class LibraryEditor: NSViewController, FileEditor {
             return
         }
         
-        do {
-            let query = databaseManager.fileQuery
-            let results = try query.run()
-            var files: [File] = []
-            
-            while let row = results.nextRow() {
-                if let document = row.document {
-                    let file = CBLModel(forDocument: document) as! File
-                    files.append(file)
-                }
-            }
-            
-//            sections.sortInPlace({ (x, y) -> Bool in
-//                return x.index < y.index
-//            })
-            
-            self.content = files
-        } catch {
-            print(error)
+        let query = databaseManager.fileQuery
+
+        liveQuery = query.asLiveQuery()
+        liveQuery.addObserver(self, forKeyPath: "rows", options: [], context: nil)
+        liveQuery.start()
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if object as? NSObject == liveQuery {
+            print("files changed: \(liveQuery.rows)")
+            displayRows(liveQuery.rows)
         }
+    }
+    
+    func displayRows(results: CBLQueryEnumerator?) {
+        guard let results = results else {
+            return
+        }
+        
+        var files: [File] = []
+            
+        while let row = results.nextRow() {
+            if let document = row.document {
+                let file = CBLModel(forDocument: document) as! File
+                files.append(file)
+            }
+        }
+        
+        content = files
     }
     
     // MARK: - User Actions
@@ -101,6 +125,40 @@ class LibraryEditor: NSViewController, FileEditor {
             let predicate = NSPredicate(format: "title contains[cd] %@", text)
             arrayController.filterPredicate = predicate
         }
+    }
+    
+    @IBAction func sortByProperty(sender: AnyObject?) {
+        guard let sender = sender as? NSMenuItem else {
+            return
+        }
+        
+        var descriptors = arrayController.sortDescriptors
+        let key = descriptors.count != 0 ? descriptors[0].key : nil
+        
+        // Selecting the same item twice reverses the sort
+        // But by default show most recent files first
+        
+        switch sender.tag {
+        case 1001: // by title
+            descriptors = [NSSortDescriptor(key: "title",
+                ascending: key != "title",
+                selector: Selector("caseInsensitiveCompare:"))]
+            break
+        case 1002: // by date created
+            descriptors = [NSSortDescriptor(key: "created_at",
+                ascending: !(key != "created_at"),
+                selector: Selector("compare:"))]
+            break
+        case 1003: // by date updated
+            descriptors = [NSSortDescriptor(key: "updated_at",
+                ascending: !(key != "updated_at"),
+                selector: Selector("compare:"))]
+            break
+        default:
+            break
+        }
+        
+        arrayController.sortDescriptors = descriptors
     }
     
 }
