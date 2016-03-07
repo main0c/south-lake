@@ -47,19 +47,3 @@ class LibraryCollectionViewItem: NSCollectionViewItem {
         }
     }
 }
-
-extension NSView {
-
-    // Similar to viewWithTag, finds views with the given identifier.
-
-    func viewWithIdentifier(identifier: String) -> NSView? {
-        for subview in self.subviews {
-            if subview.identifier == identifier {
-                return subview
-            } else if subview.subviews.count > 0, let subview: NSView = subview.viewWithIdentifier(identifier) {
-                return subview
-            }
-        }
-        return nil
-    }
-}
