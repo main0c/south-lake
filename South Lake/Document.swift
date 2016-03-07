@@ -308,12 +308,53 @@ class Document: NSDocument, Databasable {
             
             let shortcutsSection = Section(forNewDocumentInDatabase: databaseManager.database)
             
-            shortcutsSection.title = "Shortcuts"
+            shortcutsSection.title = NSLocalizedString("Shortcuts", comment: "Shortcts section title")
+            
             shortcutsSection.index = 0
             
                 children.append(doc1)
                 children.append(doc2)
                 shortcutsSection.children = children
+            
+            // Notebook
+            
+                var books: [DataSource] = []
+            
+                let allEntries = Folder(forNewDocumentInDatabase: databaseManager.database)
+            
+                allEntries.title = NSLocalizedString("Library", comment: "Library folder title")
+                allEntries.icon = NSImage(named: "notebook-icon")
+                allEntries.uti = "southlake.notebook.library"
+            
+//                    allEntries.children.append(doc1)
+//                    allEntries.children.append(doc2)
+            
+                let tags = Folder(forNewDocumentInDatabase: databaseManager.database)
+            
+                tags.title = NSLocalizedString("Tags", comment: "Tags folder title")
+                tags.icon = NSImage(named: "tags-folder-icon")
+                tags.uti = "southlake.notebook.tags"
+            
+                let trash = Folder(forNewDocumentInDatabase: databaseManager.database)
+            
+                trash.title = NSLocalizedString("Trash", comment: "Trash folder title")
+                trash.icon = NSImage(named: "trash-icon")
+                trash.uti = "southlake.notebook.trash"
+            
+                try allEntries.save()
+                try trash.save()
+                try tags.save()
+            
+            let notebookSection = Section(forNewDocumentInDatabase: databaseManager.database)
+            
+            notebookSection.title = NSLocalizedString("Notebook", comment: "Notebook section title")
+            notebookSection.index = 1
+            
+                books.append(allEntries)
+                books.append(tags)
+                books.append(trash)
+                
+                notebookSection.children = books
             
             // Folders
             
@@ -322,29 +363,32 @@ class Document: NSDocument, Databasable {
                 let folder1 = Folder(forNewDocumentInDatabase: databaseManager.database)
             
                 folder1.title = "Important Folder"
-                folder1.icon = NSImage(named:"folder-icon")
+                folder1.icon = NSImage(named: "folder-icon")
             
                 let folder2 = Folder(forNewDocumentInDatabase: databaseManager.database)
             
                 folder2.title = "Another Folder"
-                folder2.icon = NSImage(named:"folder-icon")
+                folder2.icon = NSImage(named: "folder-icon")
 
                 // We must have ids before we can store the children
             
-                try databaseManager.database.saveAllModels()
+                // try databaseManager.database.saveAllModels()
             
-            let foldersSection = Section(forNewDocumentInDatabase: databaseManager.database)
+                try folder1.save()
+                try folder2.save()
             
-            foldersSection.title = "Folders"
-            foldersSection.index = 1
-            
-                folders.append(folder1)
-                folders.append(folder2)
-                foldersSection.children = folders
+//            let foldersSection = Section(forNewDocumentInDatabase: databaseManager.database)
+//            
+//            foldersSection.title = NSLocalizedString("Folders", comment: "Folders section title")
+//            foldersSection.index = 2
+//            
+//                folders.append(folder1)
+//                folders.append(folder2)
+//                foldersSection.children = folders
             
             // Smart folders
             
-                var smarts: [DataSource] = []
+                // var smarts: [DataSource] = []
             
                 let smart1 = SmartFolder(forNewDocumentInDatabase: databaseManager.database)
             
@@ -358,16 +402,30 @@ class Document: NSDocument, Databasable {
 
                 // We must have ids before we can store the children
             
-                try databaseManager.database.saveAllModels()
+//                try databaseManager.database.saveAllModels()
+
+                try smart1.save()
+                try smart2.save()
             
-            let smartFoldersSection = Section(forNewDocumentInDatabase: databaseManager.database)
+//            let smartFoldersSection = Section(forNewDocumentInDatabase: databaseManager.database)
+//            
+//            smartFoldersSection.title = NSLocalizedString("Smart Folders", comment: "Smart folders section title")
+//            smartFoldersSection.index = 3
+//            
+//                smarts.append(smart1)
+//                smarts.append(smart2)
+//                smartFoldersSection.children = smarts
+
+            let foldersSection = Section(forNewDocumentInDatabase: databaseManager.database)
             
-            smartFoldersSection.title = "Smart Folders"
-            smartFoldersSection.index = 2
+            foldersSection.title = NSLocalizedString("Folders", comment: "Folders section title")
+            foldersSection.index = 2
             
-                smarts.append(smart1)
-                smarts.append(smart2)
-                smartFoldersSection.children = smarts
+                folders.append(folder1)
+                folders.append(folder2)
+                folders.append(smart1)
+                folders.append(smart2)
+                foldersSection.children = folders
             
             try databaseManager.database.saveAllModels()
 

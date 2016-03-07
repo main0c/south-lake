@@ -42,8 +42,8 @@ import Cocoa
 
 @objc(File)
 class File: DataSource {
-    override class var model_mime_type: NSString { return "private/private" }
-    override class var model_uti: NSString { return "private.private" }
+    override class var model_mime_type: NSString { return "southlake/file" }
+    override class var model_uti: NSString { return "southlake.file" }
     
     @NSManaged var plain_text: String
     

@@ -41,5 +41,6 @@
 
 #import "MPRenderer+TOC.h"
 #import "MacDownCopyFiles.h"
+#import "RSVerticallyCenteredTextFieldCell.h"
 
 #endif /* BridgingHeader_h */

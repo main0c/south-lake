@@ -24,6 +24,14 @@ class EditorPlugIns {
             [
                 "filetypes": ["net.daringfireball.markdown", "markdown", "text/markdown"],
                 "storyboard": "MarkdownEditor"
+            ],
+            [
+                "filetypes": ["southlake.notebook.library"],
+                "storyboard": "LibraryEditor"
+            ],
+            [
+                "filetypes": ["southlake.notebook.tags"],
+                "storyboard": "TagsEditor"
             ]
         ]
     }

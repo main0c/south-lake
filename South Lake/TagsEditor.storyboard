@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="1hg-0a-15P">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
+    </dependencies>
+    <scenes>
+        <!--Tags Editor-->
+        <scene sceneID="8iE-Yc-RQA">
+            <objects>
+                <viewController id="1hg-0a-15P" customClass="TagsEditor" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="r9v-bw-nhh">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9IE-Zv-qbi">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                <clipView key="contentView" id="69e-Ok-LPk">
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView id="ddi-Op-tAr">
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </collectionView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="8eT-CN-Iud">
+                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="77S-F0-CR2">
+                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9IE-Zv-qbi" secondAttribute="trailing" id="Azv-D2-cbP"/>
+                            <constraint firstAttribute="bottom" secondItem="9IE-Zv-qbi" secondAttribute="bottom" id="PdL-QN-KAJ"/>
+                            <constraint firstItem="9IE-Zv-qbi" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" id="h1E-Wf-AaV"/>
+                            <constraint firstItem="9IE-Zv-qbi" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" id="itw-6M-IxY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="ddi-Op-tAr" id="HcV-CP-3kq"/>
+                    </connections>
+                </viewController>
+                <customObject id="6A6-dB-eVB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="247" y="193"/>
+        </scene>
+        <!--Collection View Item-->
+        <scene sceneID="9ng-3T-PSy">
+            <objects>
+                <collectionViewItem storyboardIdentifier="collectionViewItem" id="hAE-oY-KQE" sceneMemberID="viewController">
+                    <view key="view" id="n0P-Cu-BwC">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </collectionViewItem>
+                <customObject id="t66-fp-bQ0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="612" y="193"/>
+        </scene>
+    </scenes>
+</document>

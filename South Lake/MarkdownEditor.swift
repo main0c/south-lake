@@ -144,14 +144,6 @@ class MarkdownEditor: NSViewController, FileEditor {
         }
     }
     
-    var newDocument: Bool = false {
-        didSet {
-            if newDocument {
-                prepareNewDocument()
-            }
-        }
-    }
-    
     let snippets: [Snippet] = [
         Snippet(content: loremSnippet, tabTrigger: "lorem", scope: nil, description: nil),
         Snippet(content: htmlSnippet, tabTrigger: "html", scope: nil, description: nil),
@@ -271,53 +263,8 @@ class MarkdownEditor: NSViewController, FileEditor {
     
     // MARK: - South Lake Functions
     
-    func prepareNewDocument() {
-        
-        // TODO: this should be templatable as it is in Sublime Text, with spots for
-        // tab and insert, and users should be able to create their own templates
-        
-        let newText = NSLocalizedString("## Untitled", comment: "New markdown document template")
-        
-        guard let text = editor.string else {
-            return
-        }
-        guard text == newText else {
-            return
-        }
-        
-        let range = NSMakeRange(3, newText.characters.count-3)
-        editor.setSelectedRange(range)
-        
-        self.editor.window?.makeFirstResponder(self.editor)
-        
-        editingTemplate = true
-    }
-    
     var primaryResponder: NSView {
         return editor
-    }
-    
-    // TODO: get rid of this
-    
-    func textViewShouldNewlineInRange(textView: NSTextView, affectedCharRange: NSRange,  replacementString: String) -> Bool {
-        guard editingTemplate else {
-            return true
-        }
-        guard textView.string?.characters.count > 0 else {
-            return true
-        }
-        
-        // Gross
-        
-        if  let range = editor.string?.rangeFromNSRange(affectedCharRange),
-            let string = editor.string,
-            let text = editor.string?.substringWithRange(Range<String.Index>(start: string.startIndex.advancedBy(3), end: range.startIndex)) {
-            
-            file?.title = text
-            editingTemplate = false
-        }
-        
-        return true
     }
     
     // MARK: - MacDown Functions
@@ -656,20 +603,6 @@ extension MarkdownEditor: NSTextViewDelegate {
         }
     }
     
-    // TODO: get rid of this
-    
-    func textView(textView: NSTextView, shouldChangeTextInRange affectedCharRange: NSRange,  replacementString: String?) -> Bool {
-        guard let text = replacementString where text.characters.count > 0 else {
-            return true
-        }
-        
-        switch text {
-        case "\n", "\r":
-            return textViewShouldNewlineInRange(textView, affectedCharRange: affectedCharRange, replacementString: text)
-        default:
-            return true
-        }
-    }
 }
 
 // MARK: - WebFrameLoadDelegate

@@ -111,14 +111,20 @@ class SourceListViewController: NSViewController, Databasable {
         }
     }
     
+    // TODO: we have to delete it from this folder and maybe move it to the trash?
+    
     func deleteItem(item: DataSource) {
         guard !(item is Section) else {
             NSBeep() ; return
         }
         
-        guard item.parent != nil else {
+        guard item.parents.count != 0 else {
             NSBeep() ; return
         }
+        
+//        guard item.parent != nil else {
+//            NSBeep() ; return
+//        }
         
         item.parent.mutableArrayValueForKey("children").removeObject(item)
         

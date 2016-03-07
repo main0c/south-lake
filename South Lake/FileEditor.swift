@@ -34,11 +34,6 @@ protocol FileEditor {
     
     var file: File? { get set }
     
-    /// Editors may do something differently when they are working with a newly
-    /// created document rather than a previously existing one.
-    
-    var newDocument: Bool { get set }
-    
     /// The responder that take focus for editing and first responder switching
     
     var primaryResponder: NSView { get }

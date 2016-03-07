@@ -15,8 +15,8 @@ class DataSource: CBLModel {
     // TODO: remove references to icon
     
     class var model_file_extension: NSString { return model_uti as String }
-    class var model_mime_type: NSString { return "private/source-item" }
-    class var model_uti: NSString { return "private.source-item" }
+    class var model_mime_type: NSString { return "southlake/source-item" }
+    class var model_uti: NSString { return "southlake.source-item" }
     
     @NSManaged var title: String
     @NSManaged var created_at: NSDate
@@ -28,6 +28,7 @@ class DataSource: CBLModel {
     @NSManaged var mime_type: String
     @NSManaged var uti: String
     
+    var parents: [DataSource]! = []
     weak var parent: DataSource!
     
     // A source item can in general contain children of any type
@@ -49,7 +50,8 @@ class DataSource: CBLModel {
                 assert(id != nil, "child must have a document id, you must save it first")
                 
                 theChildrenIds.append(id!)
-                child.parent = self
+                child.parents.append(self)
+                // child.parent = self
             }
             
             children_ids = theChildrenIds
@@ -127,6 +129,10 @@ class DataSource: CBLModel {
         if children as [DataSource]? == nil {
             children = []
         }
+        
+        if parents as [DataSource]? == nil {
+            parents = []
+        }
     }
     
     override func didLoadFromDocument() {
@@ -150,6 +156,8 @@ class DataSource: CBLModel {
         
         updated_at = NSDate()
     }
+    
+    // TODO: a child may belong to more than one parent, then I don't want to delete it
     
     func deleteWithChildren() throws {
         if let children = children {
