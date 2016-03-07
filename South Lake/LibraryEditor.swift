@@ -163,6 +163,3 @@ class LibraryEditor: NSViewController, FileEditor {
     
 }
 
-extension LibraryEditor: NSCollectionViewDelegate {
-
-}
