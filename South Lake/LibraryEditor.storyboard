@@ -208,7 +208,7 @@
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PAH-zG-jaO">
                                                                     <rect key="frame" x="25" y="1" width="232" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="ktP-jf-LfH">
-                                                                        <font key="font" metaFont="system" size="12"/>
+                                                                        <font key="font" metaFont="cellTitle"/>
                                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -252,7 +252,7 @@
                                                                     <rect key="frame" x="0.0" y="1" width="100" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="jvM-me-Pve">
                                                                         <dateFormatter key="formatter" dateStyle="medium" id="Pd4-Y9-alU"/>
-                                                                        <font key="font" metaFont="system" size="12"/>
+                                                                        <font key="font" metaFont="cellTitle"/>
                                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -293,7 +293,7 @@
                                                                     <rect key="frame" x="0.0" y="1" width="100" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Fkk-jZ-p62">
                                                                         <dateFormatter key="formatter" dateStyle="medium" id="20b-Ff-Bfa"/>
-                                                                        <font key="font" metaFont="system" size="12"/>
+                                                                        <font key="font" metaFont="cellTitle"/>
                                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -333,7 +333,7 @@
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="GPL-wA-1EJ">
                                                                     <rect key="frame" x="0.0" y="1" width="201" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="eul-u4-wmM">
-                                                                        <font key="font" metaFont="system" size="12"/>
+                                                                        <font key="font" metaFont="cellTitle"/>
                                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>

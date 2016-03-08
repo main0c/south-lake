@@ -34,11 +34,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9WK-CS-1oM">
+                                <rect key="frame" x="170" y="142" width="110" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Tag View Coming" id="llJ-ii-K5H">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="9WK-CS-1oM" firstAttribute="centerY" secondItem="r9v-bw-nhh" secondAttribute="centerY" id="3mC-oV-fem"/>
                             <constraint firstAttribute="trailing" secondItem="9IE-Zv-qbi" secondAttribute="trailing" id="Azv-D2-cbP"/>
                             <constraint firstAttribute="bottom" secondItem="9IE-Zv-qbi" secondAttribute="bottom" id="PdL-QN-KAJ"/>
                             <constraint firstItem="9IE-Zv-qbi" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" id="h1E-Wf-AaV"/>
+                            <constraint firstItem="9WK-CS-1oM" firstAttribute="centerX" secondItem="r9v-bw-nhh" secondAttribute="centerX" id="iGf-qI-9En"/>
                             <constraint firstItem="9IE-Zv-qbi" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" id="itw-6M-IxY"/>
                         </constraints>
                     </view>

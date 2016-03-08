@@ -176,16 +176,16 @@ class SourceListContentViewController: NSViewController, Databasable {
             createdField.bind("value", toObject: selectedObjects[0], withKeyPath: "created_at", options: [NSNullPlaceholderBindingOption:NSLocalizedString("Date Created", comment: "")])
             updatedField.bind("value", toObject: selectedObjects[0], withKeyPath: "updated_at", options: [NSNullPlaceholderBindingOption:NSLocalizedString("Last Updated", comment: "")])
         default:
-            titleField.placeholderString = NSLocalizedString("Multiple Selection", comment: "")
+            titleField.placeholderString = NSLocalizedString("Multiple", comment: "")
             titleField.stringValue = ""
             
-            tagsField.placeholderString = NSLocalizedString("Multiple Selection", comment: "")
+            tagsField.placeholderString = NSLocalizedString("Multiple", comment: "")
             tagsField.stringValue = ""
             
-            createdField.placeholderString = NSLocalizedString("Multiple Selection", comment: "")
+            createdField.placeholderString = NSLocalizedString("Multiple", comment: "")
             createdField.stringValue = ""
             
-            updatedField.placeholderString = NSLocalizedString("Multiple Selection", comment: "")
+            updatedField.placeholderString = NSLocalizedString("Multiple", comment: "")
             updatedField.stringValue = ""
         }
     }

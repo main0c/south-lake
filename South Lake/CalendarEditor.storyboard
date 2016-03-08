@@ -22,10 +22,20 @@
                                     </segments>
                                 </segmentedCell>
                             </segmentedControl>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sa3-Kv-Cax">
+                                <rect key="frame" x="153" y="142" width="146" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Calendar View Coming" id="3Kc-yR-1SO">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="h0C-0L-1d6" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="7" id="5Qu-VX-C8r"/>
+                            <constraint firstItem="Sa3-Kv-Cax" firstAttribute="centerY" secondItem="yGH-dJ-Tg1" secondAttribute="centerY" id="eMf-T6-MJ1"/>
                             <constraint firstItem="h0C-0L-1d6" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" constant="7" id="rmN-Kc-C2r"/>
+                            <constraint firstItem="Sa3-Kv-Cax" firstAttribute="centerX" secondItem="yGH-dJ-Tg1" secondAttribute="centerX" id="yAX-f9-LC6"/>
                         </constraints>
                     </view>
                 </viewController>
