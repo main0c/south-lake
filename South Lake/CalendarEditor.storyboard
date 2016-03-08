@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h0C-0L-1d6">
-                                <rect key="frame" x="6" y="274" width="158" height="20"/>
+                                <rect key="frame" x="9" y="244" width="158" height="20"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="roundRect" trackingMode="selectOne" id="YcY-Pv-fS2">
                                     <font key="font" metaFont="cellTitle"/>
                                     <segments>
@@ -22,8 +22,19 @@
                                     </segments>
                                 </segmentedCell>
                             </segmentedControl>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sa3-Kv-Cax">
-                                <rect key="frame" x="153" y="142" width="146" height="17"/>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9ne-im-T5M">
+                                <rect key="frame" x="8" y="269" width="434" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="etr-NF-T8A"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" title="Calendar" id="ap1-Rg-EPn">
+                                    <font key="font" metaFont="systemLight" size="19"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Sa3-Kv-Cax">
+                                <rect key="frame" x="152" y="142" width="146" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Calendar View Coming" id="3Kc-yR-1SO">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -32,9 +43,12 @@
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="h0C-0L-1d6" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="7" id="5Qu-VX-C8r"/>
+                            <constraint firstAttribute="trailing" secondItem="9ne-im-T5M" secondAttribute="trailing" constant="10" id="6tQ-ke-l1a"/>
+                            <constraint firstItem="h0C-0L-1d6" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" constant="10" id="EZt-oU-HoO"/>
+                            <constraint firstItem="9ne-im-T5M" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" constant="10" id="TUj-Js-r8Y"/>
+                            <constraint firstItem="9ne-im-T5M" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="7" id="cRf-wB-1DJ"/>
                             <constraint firstItem="Sa3-Kv-Cax" firstAttribute="centerY" secondItem="yGH-dJ-Tg1" secondAttribute="centerY" id="eMf-T6-MJ1"/>
-                            <constraint firstItem="h0C-0L-1d6" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" constant="7" id="rmN-Kc-C2r"/>
+                            <constraint firstItem="h0C-0L-1d6" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="37" id="g73-vj-H9H"/>
                             <constraint firstItem="Sa3-Kv-Cax" firstAttribute="centerX" secondItem="yGH-dJ-Tg1" secondAttribute="centerX" id="yAX-f9-LC6"/>
                         </constraints>
                     </view>

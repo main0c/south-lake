@@ -13,25 +13,19 @@
 import Cocoa
 
 class SourceListContentViewController: NSViewController, Databasable {
+    @IBOutlet var viewContainer: NSView!
     @IBOutlet var editorContainer: NSView!
+    @IBOutlet var editorContainerTopContraint: NSLayoutConstraint!
     
-    // Title View
-    
-    @IBOutlet var titleField: NSTextField!
-    @IBOutlet var tagsField: NSTokenField!
-    @IBOutlet var createdField: NSTextField!
-    @IBOutlet var updatedField: NSTextField!
-    
+    var header: FileHeaderViewController?
     var editor: FileEditor?
     
     dynamic var selectedObjects: [DataSource] = [] {
         willSet {
             unbindEditor(selectedObjects)
-            unbindMetadata(selectedObjects)
         }
         didSet {
             bindEditor(selectedObjects)
-            bindMetadata(selectedObjects)
         }
     }
     
@@ -117,6 +111,10 @@ class SourceListContentViewController: NSViewController, Databasable {
             
             // Layout Constraints
             
+            editorContainerTopContraint.constant = editor!.isFileEditor
+                ? 64
+                : 0
+            
             editorContainer.addConstraints(
                 NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": editor!.view])
             )
@@ -124,18 +122,61 @@ class SourceListContentViewController: NSViewController, Databasable {
                 NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": editor!.view])
             )
             
+            // TODO: tab from title to editor
             // Next responder: tab from title to editor
             
-            titleField.nextKeyView = editor?.primaryResponder
+//            titleField.nextKeyView = editor?.primaryResponder
         // }
          }
         
         // Always pass selection to the editor
         
         editor?.file = file
+        
+        // Load header if needed
+        
+        // If the editor is a file editor, add the file info header
+        // Mixture of hardcoded 64 height and file header height
+        // Does this belong here?
+        
+        if editor!.isFileEditor {
+            if ( header == nil ) {
+                header = NSStoryboard(name: "FileHeader", bundle: nil).instantiateInitialController() as? FileHeaderViewController
+                
+                let height = CGFloat(64) // header!.view.frame.size.height
+                let width = viewContainer.bounds.size.width
+                
+                header!.view.frame = NSMakeRect(0, 0, width, height)
+                header!.view.translatesAutoresizingMaskIntoConstraints = false
+                viewContainer.addSubview(header!.view)
+                
+                viewContainer.addConstraints(
+                    NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": header!.view])
+                )
+                viewContainer.addConstraints(
+                    NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview(64)]", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": header!.view])
+                )
+                
+                // Next responder: tab from title to editor
+                header?.primaryResponder.nextKeyView = editor?.primaryResponder
+            }
+            
+            header!.file = file
+            
+        } else {
+            if header != nil {
+                header!.view.removeFromSuperview()
+                header!.file = nil
+                header = nil
+            }
+        }
     }
     
     func clearEditor() {
+    
+    }
+    
+    func clearHeader() {
     
     }
     
@@ -147,46 +188,4 @@ class SourceListContentViewController: NSViewController, Databasable {
         self.view.window?.makeFirstResponder(editor.primaryResponder)
     }
     
-    // MARK: - Metadata
-    
-    func unbindMetadata(selection: [DataSource]) {
-        titleField.unbind("value")
-        tagsField.unbind("value")
-    }
-    
-    // TODO: could just update a selectedObject property and bind to that
-    
-    func bindMetadata(selection: [DataSource]) {
-        switch selection.count {
-        case 0:
-            titleField.placeholderString = NSLocalizedString("No Selection", comment: "")
-            titleField.stringValue = ""
-            
-            tagsField.placeholderString = NSLocalizedString("No Selection", comment: "")
-            tagsField.stringValue = ""
-            
-            createdField.placeholderString = NSLocalizedString("No Selection", comment: "")
-            createdField.stringValue = ""
-            
-            updatedField.placeholderString = NSLocalizedString("No Selection", comment: "")
-            updatedField.stringValue = ""
-        case 1:
-            titleField.bind("value", toObject: selectedObjects[0], withKeyPath: "title", options: [NSNullPlaceholderBindingOption:NSLocalizedString("Click to change title", comment: "")])
-            tagsField.bind("value", toObject: selectedObjects[0], withKeyPath: "tags", options: [NSNullPlaceholderBindingOption:NSLocalizedString("Click to add tags", comment: "")])
-            createdField.bind("value", toObject: selectedObjects[0], withKeyPath: "created_at", options: [NSNullPlaceholderBindingOption:NSLocalizedString("Date Created", comment: "")])
-            updatedField.bind("value", toObject: selectedObjects[0], withKeyPath: "updated_at", options: [NSNullPlaceholderBindingOption:NSLocalizedString("Last Updated", comment: "")])
-        default:
-            titleField.placeholderString = NSLocalizedString("Multiple", comment: "")
-            titleField.stringValue = ""
-            
-            tagsField.placeholderString = NSLocalizedString("Multiple", comment: "")
-            tagsField.stringValue = ""
-            
-            createdField.placeholderString = NSLocalizedString("Multiple", comment: "")
-            createdField.stringValue = ""
-            
-            updatedField.placeholderString = NSLocalizedString("Multiple", comment: "")
-            updatedField.stringValue = ""
-        }
-    }
 }

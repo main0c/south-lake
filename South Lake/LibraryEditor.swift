@@ -25,6 +25,10 @@ class LibraryEditor: NSViewController, FileEditor {
         didSet { }
     }
     
+    var isFileEditor: Bool {
+        return false
+    }
+    
     dynamic var file: DataSource? {
         willSet {
         

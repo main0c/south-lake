@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BoY-EX-Wlw">
-                                <rect key="frame" x="6" y="274" width="71" height="20"/>
+                                <rect key="frame" x="9" y="244" width="71" height="20"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="roundRect" trackingMode="selectOne" id="CZq-Rr-cND">
                                     <font key="font" metaFont="cellTitle"/>
                                     <segments>
@@ -26,7 +26,7 @@
                                 </connections>
                             </segmentedControl>
                             <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H5b-Nw-NKT">
-                                <rect key="frame" x="239" y="275" width="174" height="19"/>
+                                <rect key="frame" x="242" y="245" width="174" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="174" id="4hG-p2-k8c"/>
                                 </constraints>
@@ -40,7 +40,7 @@
                                 </connections>
                             </searchField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qAA-Xq-1wj">
-                                <rect key="frame" x="83" y="274" width="149" height="19"/>
+                                <rect key="frame" x="86" y="244" width="149" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="149" id="Cxo-bN-Z6I"/>
                                 </constraints>
@@ -71,20 +71,34 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="WzD-xV-wPP">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="267"/>
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="236"/>
                             </customView>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aPH-kg-Gvv">
+                                <rect key="frame" x="8" y="269" width="434" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="1Nc-1e-etB"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" title="Library" id="m8S-Go-kpz">
+                                    <font key="font" metaFont="systemLight" size="19"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="H5b-Nw-NKT" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="6" id="AxH-CJ-tZM"/>
-                            <constraint firstItem="BoY-EX-Wlw" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="7" id="DQK-2s-pz0"/>
-                            <constraint firstItem="WzD-xV-wPP" firstAttribute="top" secondItem="qAA-Xq-1wj" secondAttribute="bottom" constant="8" id="MPP-8n-LtD"/>
+                            <constraint firstItem="H5b-Nw-NKT" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="36" id="AxH-CJ-tZM"/>
+                            <constraint firstItem="BoY-EX-Wlw" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="37" id="DQK-2s-pz0"/>
+                            <constraint firstItem="aPH-kg-Gvv" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="7" id="J83-Ny-ala"/>
+                            <constraint firstItem="WzD-xV-wPP" firstAttribute="top" secondItem="qAA-Xq-1wj" secondAttribute="bottom" constant="9" id="MPP-8n-LtD"/>
                             <constraint firstItem="H5b-Nw-NKT" firstAttribute="leading" secondItem="qAA-Xq-1wj" secondAttribute="trailing" constant="7" id="Mqj-Uk-06A"/>
                             <constraint firstAttribute="bottom" secondItem="WzD-xV-wPP" secondAttribute="bottom" id="RkD-n0-WFI"/>
-                            <constraint firstItem="BoY-EX-Wlw" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" constant="7" id="SK8-mS-NcG"/>
+                            <constraint firstItem="BoY-EX-Wlw" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" constant="10" id="SK8-mS-NcG"/>
+                            <constraint firstAttribute="trailing" secondItem="aPH-kg-Gvv" secondAttribute="trailing" constant="10" id="SmI-z0-VvB"/>
                             <constraint firstItem="WzD-xV-wPP" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" id="VqH-WV-7RY"/>
+                            <constraint firstItem="aPH-kg-Gvv" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" constant="10" id="YFu-hd-bGm"/>
                             <constraint firstItem="qAA-Xq-1wj" firstAttribute="leading" secondItem="BoY-EX-Wlw" secondAttribute="trailing" constant="7" id="hDq-VB-lRJ"/>
-                            <constraint firstItem="BoY-EX-Wlw" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="7" id="qcb-uZ-ACr"/>
-                            <constraint firstItem="qAA-Xq-1wj" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="7" id="yV4-Wl-JFU"/>
+                            <constraint firstItem="BoY-EX-Wlw" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="37" id="qcb-uZ-ACr"/>
+                            <constraint firstItem="qAA-Xq-1wj" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="37" id="yV4-Wl-JFU"/>
                             <constraint firstAttribute="trailing" secondItem="WzD-xV-wPP" secondAttribute="trailing" id="zi8-z6-ZHj"/>
                         </constraints>
                     </view>
@@ -120,7 +134,7 @@
                                         <collectionView selectable="YES" allowsMultipleSelection="YES" id="2yT-h7-Hfa">
                                             <rect key="frame" x="0.0" y="0.0" width="450" height="297"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="primaryBackgroundColor" white="0.93999999999999995" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="primaryBackgroundColor" white="0.93685132575757568" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <binding destination="wcN-JJ-SjE" name="content" keyPath="arrangedObjects" id="iuz-ec-1E9"/>
                                                 <binding destination="wcN-JJ-SjE" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="iuz-ec-1E9" id="MDn-ko-nfT"/>
