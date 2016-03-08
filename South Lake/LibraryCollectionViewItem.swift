@@ -22,7 +22,7 @@ class LibraryCollectionViewItem: NSCollectionViewItem {
 
     }
     
-    /// Prototypes don't connect outlets so we have to manually
+    /// Prototypes don't connect outlets so we do it manually
     
     override func copyWithZone(zone: NSZone) -> AnyObject {
         let copy: LibraryCollectionViewItem = super.copyWithZone(zone) as! LibraryCollectionViewItem
@@ -32,6 +32,9 @@ class LibraryCollectionViewItem: NSCollectionViewItem {
         copy.backgroundView.borderColor = backgroundView.borderColor
         copy.backgroundView.borderRadius = backgroundView.borderRadius
         copy.backgroundView.borderWidth = backgroundView.borderWidth
+        
+        // print(backgroundView.menu)
+        // copy.backgroundView.menu = backgroundView.menu
         
         return copy
     }

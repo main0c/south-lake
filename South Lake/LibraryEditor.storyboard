@@ -511,7 +511,7 @@
                 </collectionViewItem>
                 <customObject id="iIG-FB-7pW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="534" y="526.5"/>
+            <point key="canvasLocation" x="542" y="586.5"/>
         </scene>
     </scenes>
     <resources>
