@@ -38,6 +38,11 @@
 		E37AB74D1C8E281500F44564 /* TagsValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB74C1C8E281500F44564 /* TagsValueTransformer.swift */; };
 		E37AB74F1C8E6F0E00F44564 /* FileHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB74E1C8E6F0E00F44564 /* FileHeaderViewController.swift */; };
 		E37AB7511C8E6F4A00F44564 /* FileHeader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E37AB7501C8E6F4A00F44564 /* FileHeader.storyboard */; };
+		E37AB76C1C8F4A2E00F44564 /* PDFImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB76B1C8F4A2E00F44564 /* PDFImporter.swift */; };
+		E37AB7701C8F4AE600F44564 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E37AB76F1C8F4AE600F44564 /* Quartz.framework */; };
+		E37AB7731C8F4C5900F44564 /* As We May Think - The Atlantic.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E37AB7721C8F4C5900F44564 /* As We May Think - The Atlantic.pdf */; };
+		E37AB7751C8F4D2100F44564 /* PDFEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB7741C8F4D2100F44564 /* PDFEditor.swift */; };
+		E37AB7771C8F4D2B00F44564 /* PDFEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E37AB7761C8F4D2B00F44564 /* PDFEditor.storyboard */; };
 		E37D96101C723B8A000A9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D960F1C723B8A000A9F90 /* AppDelegate.swift */; };
 		E37D96141C723B8A000A9F90 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D96131C723B8A000A9F90 /* Document.swift */; };
 		E37D96161C723B8A000A9F90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E37D96151C723B8A000A9F90 /* Assets.xcassets */; };
@@ -291,6 +296,12 @@
 		E37AB74C1C8E281500F44564 /* TagsValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsValueTransformer.swift; sourceTree = "<group>"; };
 		E37AB74E1C8E6F0E00F44564 /* FileHeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileHeaderViewController.swift; sourceTree = "<group>"; };
 		E37AB7501C8E6F4A00F44564 /* FileHeader.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FileHeader.storyboard; sourceTree = "<group>"; };
+		E37AB76B1C8F4A2E00F44564 /* PDFImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFImporter.swift; sourceTree = "<group>"; };
+		E37AB76D1C8F4AC400F44564 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E37AB76F1C8F4AE600F44564 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		E37AB7721C8F4C5900F44564 /* As We May Think - The Atlantic.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "As We May Think - The Atlantic.pdf"; path = "../../../Voice Assisted Statistical Analysis/As We May Think - The Atlantic.pdf"; sourceTree = "<group>"; };
+		E37AB7741C8F4D2100F44564 /* PDFEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFEditor.swift; sourceTree = "<group>"; };
+		E37AB7761C8F4D2B00F44564 /* PDFEditor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PDFEditor.storyboard; sourceTree = "<group>"; };
 		E37D960C1C723B8A000A9F90 /* South Lake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "South Lake.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E37D960F1C723B8A000A9F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E37D96131C723B8A000A9F90 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -2419,6 +2430,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E37AB7701C8F4AE600F44564 /* Quartz.framework in Frameworks */,
 				E3803F471C72977D0048AD46 /* SystemConfiguration.framework in Frameworks */,
 				E3803F451C7297780048AD46 /* CFNetwork.framework in Frameworks */,
 				E3803F431C7297720048AD46 /* Security.framework in Frameworks */,
@@ -2451,6 +2463,8 @@
 		7262FBE22EB6B82E7CC1DF59 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E37AB76F1C8F4AE600F44564 /* Quartz.framework */,
+				E37AB76D1C8F4AC400F44564 /* QuartzCore.framework */,
 				E3803F461C72977D0048AD46 /* SystemConfiguration.framework */,
 				E3803F441C7297780048AD46 /* CFNetwork.framework */,
 				E3803F421C7297720048AD46 /* Security.framework */,
@@ -2550,6 +2564,8 @@
 		E37AB76A1C8EA45B00F44564 /* PDF */ = {
 			isa = PBXGroup;
 			children = (
+				E37AB7761C8F4D2B00F44564 /* PDFEditor.storyboard */,
+				E37AB7741C8F4D2100F44564 /* PDFEditor.swift */,
 			);
 			name = PDF;
 			sourceTree = "<group>";
@@ -2598,6 +2614,7 @@
 				E37D96151C723B8A000A9F90 /* Assets.xcassets */,
 				E3C436211C7640A400DD685D /* Welcome.md */,
 				E3E65F531C7C1A840085B5B7 /* About Markdown.md */,
+				E37AB7721C8F4C5900F44564 /* As We May Think - The Atlantic.pdf */,
 				E37D961A1C723B8A000A9F90 /* Info.plist */,
 			);
 			path = "South Lake";
@@ -7110,6 +7127,7 @@
 			children = (
 				E3FD67A11C7BE4B500D7EBB7 /* ImporterPlugIns.swift */,
 				E3AD25591C7F9CDE006D6536 /* MarkdownImporter.swift */,
+				E37AB76B1C8F4A2E00F44564 /* PDFImporter.swift */,
 			);
 			name = Importers;
 			sourceTree = "<group>";
@@ -7380,6 +7398,8 @@
 				E38035941C728D780048AD46 /* Themes in Resources */,
 				E378E8151C80216E009539FD /* SearchTab.storyboard in Resources */,
 				E3C821261C75984B00CBAE92 /* SourceListTab.storyboard in Resources */,
+				E37AB7731C8F4C5900F44564 /* As We May Think - The Atlantic.pdf in Resources */,
+				E37AB7771C8F4D2B00F44564 /* PDFEditor.storyboard in Resources */,
 				E3E65F541C7C1A8F0085B5B7 /* About Markdown.md in Resources */,
 				E3C436231C7640B000DD685D /* Welcome.md in Resources */,
 				E3DDBEED1C8D311700136BAE /* LibraryEditor.storyboard in Resources */,
@@ -7506,6 +7526,7 @@
 				E3274FC51C75A13D000B6A84 /* Folder.swift in Sources */,
 				E3803F051C728E140048AD46 /* pmh_styleparser.c in Sources */,
 				E3803F151C728E950048AD46 /* MPEditorView.m in Sources */,
+				E37AB76C1C8F4A2E00F44564 /* PDFImporter.swift in Sources */,
 				E3DDBEF11C8D313A00136BAE /* LibraryEditor.swift in Sources */,
 				E3803F0B1C728E790048AD46 /* NSColor+HTML.m in Sources */,
 				E37AB7481C8E1C0E00F44564 /* LibraryTableViewController.swift in Sources */,
@@ -7569,6 +7590,7 @@
 				E3803F121C728E910048AD46 /* MPMathJaxListener.m in Sources */,
 				E3E7C9E61C89079C00BD73A9 /* String+Snippet.swift in Sources */,
 				E3803F0E1C728E790048AD46 /* NSObject+HTMLTabularize.m in Sources */,
+				E37AB7751C8F4D2100F44564 /* PDFEditor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

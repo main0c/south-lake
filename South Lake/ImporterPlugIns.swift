@@ -26,6 +26,10 @@ class ImporterPlugIns {
             [
                 "filetypes": ["net.daringfireball.markdown", "markdown", "text/markdown"],
                 "classname": "MarkdownImporter"
+            ],
+            [
+                "filetypes": ["com.adobe.pdf", "pdf", "application/pdf"],
+                "classname": "PDFImporter"
             ]
         ]
     }

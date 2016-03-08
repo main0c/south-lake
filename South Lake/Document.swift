@@ -11,6 +11,7 @@
 //  and maintaining ui state. Keep this class small.
 
 import Cocoa
+import Quartz // temporary
 
 let DocumentWillSaveNotification = "com.phildow.southlake.documentwillsave"
 
@@ -302,6 +303,18 @@ class Document: NSDocument, Databasable {
                 doc2.file_extension = "markdown"
                 doc2.mime_type = "text/markdown"
 
+                // PDF Test
+
+                let URL = NSBundle.mainBundle().URLForResource("As We May Think - The Atlantic", withExtension: "pdf")!
+
+                let doc3 = File(forNewDocumentInDatabase: databaseManager.database)
+                doc3.title = NSLocalizedString("As We May Think", comment: "")
+                doc3.icon = NSWorkspace.sharedWorkspace().iconForFile(URL.path!)
+                doc3.file_extension = URL.fileExtension ?? "unknown"
+                doc3.mime_type = URL.mimeType ?? "unknown"
+                doc3.uti = URL.UTI ?? "unknown"
+                doc3.data = PDFDocument(URL: URL).dataRepresentation()
+
                 // We must have ids before we can store the children
             
                 try databaseManager.database.saveAllModels()
@@ -314,6 +327,7 @@ class Document: NSDocument, Databasable {
             
                 children.append(doc1)
                 children.append(doc2)
+                children.append(doc3) // pdf
                 shortcutsSection.children = children
             
             // Notebook

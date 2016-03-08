@@ -26,6 +26,10 @@ class EditorPlugIns {
                 "storyboard": "MarkdownEditor"
             ],
             [
+                "filetypes": ["com.adobe.pdf", "pdf", "application/pdf"],
+                "storyboard": "PDFEditor"
+            ],
+            [
                 "filetypes": ["southlake.notebook.library", "southlake/x-notebook-library", "southlake-notebook-library"],
                 "storyboard": "LibraryEditor"
             ],
