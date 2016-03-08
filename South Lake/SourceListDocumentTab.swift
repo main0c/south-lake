@@ -258,7 +258,7 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         file.title = NSLocalizedString("Untitled", comment: "Name for new untitled document")
         file.icon = NSImage(named:"markdown-document-icon")
         
-        file.data = NSLocalizedString("## Untitled", comment: "New markdown document template").dataUsingEncoding(NSUTF8StringEncoding)
+        // file.data = NSLocalizedString("## Untitled", comment: "New markdown document template").dataUsingEncoding(NSUTF8StringEncoding)
         
         file.uti = "net.daringfireball.markdown"
         file.file_extension = "markdown"

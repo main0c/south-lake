@@ -8,7 +8,7 @@
         <scene sceneID="L7t-Vs-f9p">
             <objects>
                 <viewController id="mRK-Te-Wfz" customClass="CalendarEditor" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="yGH-dJ-Tg1">
+                    <view key="view" id="yGH-dJ-Tg1" userLabel="View" customClass="CustomizableView" customModule="South_Lake" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>

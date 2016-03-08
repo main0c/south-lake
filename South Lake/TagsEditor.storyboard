@@ -8,7 +8,7 @@
         <scene sceneID="8iE-Yc-RQA">
             <objects>
                 <viewController id="1hg-0a-15P" customClass="TagsEditor" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="r9v-bw-nhh">
+                    <view key="view" id="r9v-bw-nhh" userLabel="View" customClass="CustomizableView" customModule="South_Lake" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>

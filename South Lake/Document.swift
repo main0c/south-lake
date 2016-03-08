@@ -310,7 +310,7 @@ class Document: NSDocument, Databasable {
             
             shortcutsSection.title = NSLocalizedString("Shortcuts", comment: "Shortcts section title")
             
-            shortcutsSection.index = 0
+            shortcutsSection.index = 1
             
                 children.append(doc1)
                 children.append(doc2)
@@ -363,7 +363,7 @@ class Document: NSDocument, Databasable {
             let notebookSection = Section(forNewDocumentInDatabase: databaseManager.database)
             
             notebookSection.title = NSLocalizedString("Notebook", comment: "Notebook section title")
-            notebookSection.index = 1
+            notebookSection.index = 0
             
                 books.append(allEntries)
                 books.append(calendar)

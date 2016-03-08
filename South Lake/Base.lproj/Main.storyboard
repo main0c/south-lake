@@ -699,6 +699,19 @@
                                                 <action selector="makeFileInfoFirstResponder:" target="Ady-hI-5gd" id="tL5-FG-6eC"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="M2U-Iy-DkJ"/>
+                                        <menuItem title="Library" id="fFQ-wS-lXx">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Calendar" id="SqH-a0-mHH">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Tags" id="XUu-rY-6A3">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Trash" id="Qs1-2L-FnE">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="66U-Q0-rjl"/>
                                         <menuItem title="Show Toolbar" keyEquivalent="t" id="snW-S8-Cw5">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
@@ -719,6 +732,12 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Tools" id="pbS-32-yld">
                                     <items>
+                                        <menuItem title="Goto…" id="brr-eQ-p5w">
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="02J-jB-o1Y"/>
                                         <menuItem title="Snippets…" id="zXk-Dy-2GM">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>

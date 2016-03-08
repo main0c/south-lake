@@ -62,7 +62,7 @@ class LibraryEditor: NSViewController, FileEditor {
         super.viewDidLoad()
         // Do view setup here.
         
-        (view as! CustomizableView).backgroundColor = NSColor(white: 0.94, alpha: 1.0)
+        (view as! CustomizableView).backgroundColor = NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
         
         arrayController.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: Selector("compare:"))]
         

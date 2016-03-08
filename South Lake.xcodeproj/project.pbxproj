@@ -2479,9 +2479,11 @@
 				E37AB7501C8E6F4A00F44564 /* FileHeader.storyboard */,
 				E37AB74E1C8E6F0E00F44564 /* FileHeaderViewController.swift */,
 				E3898F981C80162700CA71BE /* Markdown */,
+				E37AB76A1C8EA45B00F44564 /* PDF */,
 				E3DDBEEA1C8D30FF00136BAE /* Library */,
 				E3DDBEEB1C8D310A00136BAE /* Tags */,
 				E3DDBEF41C8D450F00136BAE /* Calendar */,
+				E37AB7591C8EA37500F44564 /* Trash */,
 			);
 			name = Editors;
 			sourceTree = "<group>";
@@ -2536,6 +2538,20 @@
 				E3274FCA1C75A1BF000B6A84 /* File.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		E37AB7591C8EA37500F44564 /* Trash */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Trash;
+			sourceTree = "<group>";
+		};
+		E37AB76A1C8EA45B00F44564 /* PDF */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = PDF;
 			sourceTree = "<group>";
 		};
 		E37D96031C723B8A000A9F90 = {

@@ -37,7 +37,8 @@ class FileHeaderViewController: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
         
-        (self.view as! CustomizableView).backgroundColor = NSColor(white:1.0, alpha:1.0)
+        (self.view as! CustomizableView).backgroundColor = NSColor(white:1.0, alpha: 1.0)
+        // NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
     }
     
     // MARK: - Metadata Bindings
