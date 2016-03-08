@@ -17,6 +17,7 @@ class DataSource: CBLModel {
     class var model_file_extension: NSString { return model_uti as String }
     class var model_mime_type: NSString { return "southlake/source-item" }
     class var model_uti: NSString { return "southlake.source-item" }
+    class var model_type: NSString { return "datasource" }
     
     @NSManaged var title: String
     @NSManaged var created_at: NSDate
@@ -114,6 +115,10 @@ class DataSource: CBLModel {
         
         if file_extension as String? == nil || file_extension == "" {
             file_extension = self.dynamicType.model_file_extension as String
+        }
+        
+        if type as String? == nil || type == "" {
+            type = self.dynamicType.model_type as String
         }
         
         // Avoid nil values for arrays

@@ -12,6 +12,7 @@ import Cocoa
 class SmartFolder: Folder {
     override class var model_mime_type: NSString { return "southlake/smart-folder" }
     override class var model_uti: NSString { return "southlake.smart-folder" }
+    override class var model_type: NSString { return "smart_folder" }
     
     @NSManaged var predicates: [String]
 }

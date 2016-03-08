@@ -25,9 +25,9 @@ class DatabaseManager: NSObject {
         
         let factory = database!.modelFactory
         
+        factory?.registerClass(Section.self, forDocumentType: "section")
         factory?.registerClass(Folder.self, forDocumentType: "folder")
         factory?.registerClass(SmartFolder.self, forDocumentType: "smart_folder")
-        factory?.registerClass(Section.self, forDocumentType: "section")
         factory?.registerClass(File.self, forDocumentType: "file")
     }
     

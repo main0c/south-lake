@@ -44,6 +44,7 @@ import Cocoa
 class File: DataSource {
     override class var model_mime_type: NSString { return "southlake/file" }
     override class var model_uti: NSString { return "southlake.file" }
+    override class var model_type: NSString { return "file" }
     
     @NSManaged var plain_text: String
     

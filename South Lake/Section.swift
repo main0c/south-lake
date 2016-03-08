@@ -12,6 +12,7 @@ import Cocoa
 class Section: DataSource {
     override class var model_mime_type: NSString { return "southlake/section" }
     override class var model_uti: NSString { return "southlake.section" }
+    override class var model_type: NSString { return "section" }
     
     @NSManaged var index: Int
 }
