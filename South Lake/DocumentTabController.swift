@@ -177,7 +177,7 @@ class DocumentTabController: NSViewController, Databasable {
     }
     
     func createNewTab() throws -> NSTabViewItem? {
-        guard let viewController = NSStoryboard(name: "SourceListTab", bundle: nil).instantiateInitialController() as? NSViewController else {
+        guard let viewController = NSStoryboard(name: "DefaultTab", bundle: nil).instantiateInitialController() as? NSViewController else {
             throw DocumentTabControllerError.CouldNotInstantiateTabViewController
         }
         guard viewController is DocumentTab else {

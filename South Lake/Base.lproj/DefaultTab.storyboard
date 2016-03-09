@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
     <scenes>
-        <!--Source List Document Tab-->
+        <!--Default Tab-->
         <scene sceneID="eT3-3X-d2l">
             <objects>
-                <splitViewController id="P7i-y0-Gmj" customClass="SourceListDocumentTab" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController id="P7i-y0-Gmj" customClass="DefaultTab" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem canCollapse="YES" holdingPriority="260" id="jaa-bu-Pik"/>
                         <splitViewItem id="r3S-wC-o5K"/>
@@ -30,7 +30,7 @@
         <!--Content View Controller-->
         <scene sceneID="lUj-dP-CsN">
             <objects>
-                <viewController id="gSK-tU-OTL" userLabel="Content View Controller" customClass="SourceListContentViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gSK-tU-OTL" userLabel="Content View Controller" customClass="ContentViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="b62-9X-aZ2">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="578"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -67,10 +67,10 @@
             </objects>
             <point key="canvasLocation" x="44" y="1371"/>
         </scene>
-        <!--Metadata Controller-->
+        <!--Inspector Controller-->
         <scene sceneID="es3-lF-qMF">
             <objects>
-                <viewController id="Oek-qD-h4p" userLabel="Metadata Controller" customClass="SourceListInspectorController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Oek-qD-h4p" userLabel="Inspector Controller" customClass="InspectorViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="rdU-W6-1rA">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="478"/>
                         <autoresizingMask key="autoresizingMask"/>

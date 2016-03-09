@@ -88,7 +88,8 @@ class PDFEditor: NSViewController, FileEditor {
         
         thumbnailViewController = storyboard!.instantiateControllerWithIdentifier("thumbnail") as? PDFThumbnailViewController
         
-        thumbnailViewController?.thumbnailView.setPDFView(editor)
+        let _ = thumbnailViewController!.view
+        thumbnailViewController!.thumbnailView.setPDFView(editor)
     }
     
 }
