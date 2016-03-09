@@ -76,7 +76,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     dynamic var selectedObject: DataSource?
    
-    var inspectors: [(String, NSImage, NSViewController)]?
+    var inspectors: [Inspector]?
     var header: FileHeaderViewController?
     var editor: FileEditor?
     

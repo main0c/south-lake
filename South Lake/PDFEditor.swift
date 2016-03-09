@@ -42,18 +42,17 @@ class PDFEditor: NSViewController, FileEditor {
         return view
     }
     
-    var inspectors: [(String, NSImage, NSViewController)]? {
+    var inspectors: [Inspector]? {
         loadThumbnailView()
-        guard let vc = thumbnailViewController,
-              let icon = NSImage(named:"pdf-thumbnails-icon") else {
-              return []
+        guard let vc = thumbnailViewController else {
+            return nil
         }
-        return [(NSLocalizedString("Thumbnails", comment:""), icon, vc)]
+        return [vc]
     }
     
     // MARK: - My Properties
     
-    var thumbnailViewController: PDFThumbnailViewController?
+    var thumbnailViewController: PDFThumbnailInspector?
     
     // MARK: - Initialization
 
@@ -86,7 +85,7 @@ class PDFEditor: NSViewController, FileEditor {
             return
         }
         
-        thumbnailViewController = storyboard!.instantiateControllerWithIdentifier("thumbnail") as? PDFThumbnailViewController
+        thumbnailViewController = storyboard!.instantiateControllerWithIdentifier("thumbnail") as? PDFThumbnailInspector
         
         let _ = thumbnailViewController!.view
         thumbnailViewController!.thumbnailView.setPDFView(editor)

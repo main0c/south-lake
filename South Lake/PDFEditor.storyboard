@@ -32,10 +32,10 @@
             </objects>
             <point key="canvasLocation" x="254" y="273"/>
         </scene>
-        <!--Thumbnail View Controller-->
+        <!--Thumbnail Inspector-->
         <scene sceneID="JXu-5v-e7g">
             <objects>
-                <viewController storyboardIdentifier="thumbnail" id="SVC-wa-jMT" customClass="PDFThumbnailViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="thumbnail" id="SVC-wa-jMT" customClass="PDFThumbnailInspector" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="OW8-Sp-nnT">
                         <rect key="frame" x="0.0" y="0.0" width="201" height="454"/>
                         <autoresizingMask key="autoresizingMask"/>

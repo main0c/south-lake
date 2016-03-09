@@ -1,5 +1,5 @@
 //
-//  PDFOutlineViewController.swift
+//  PDFOutlineInspector.swift
 //  South Lake
 //
 //  Created by Philip Dow on 3/8/16.
@@ -8,7 +8,11 @@
 
 import Cocoa
 
-class PDFOutlineViewController: NSViewController {
+class PDFOutlineInspector: NSViewController, Inspector {
+
+    var icon: NSImage {
+        return NSImage(named:"pdf-thumbnails-icon")!
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

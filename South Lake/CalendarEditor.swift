@@ -38,7 +38,7 @@ class CalendarEditor: NSViewController, FileEditor {
         return view
     }
     
-    var inspectors: [(String, NSImage, NSViewController)]? {
+    var inspectors: [Inspector]? {
         return nil
     }
     

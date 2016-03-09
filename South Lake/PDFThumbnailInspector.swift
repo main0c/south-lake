@@ -9,8 +9,12 @@
 import Cocoa
 import Quartz
 
-class PDFThumbnailViewController: NSViewController {
+class PDFThumbnailInspector: NSViewController, Inspector {
     @IBOutlet var thumbnailView: PDFThumbnailView!
+
+    var icon: NSImage {
+        return NSImage(named:"pdf-thumbnails-icon")!
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
