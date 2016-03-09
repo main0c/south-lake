@@ -41,5 +41,7 @@
 
 #import "MPRenderer+TOC.h"
 #import "MacDownCopyFiles.h"
+#import "DMTabBar.h"
+#import "DMTabBarItem.h"
 
 #endif /* BridgingHeader_h */

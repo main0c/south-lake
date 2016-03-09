@@ -48,6 +48,9 @@
 		E37AB79E1C8F713900F44564 /* InspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB79C1C8F713900F44564 /* InspectorViewController.swift */; };
 		E37C7B461C8FF2F700A3AB43 /* Inspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C7B451C8FF2F600A3AB43 /* Inspector.swift */; };
 		E37C7B661C8FF85D00A3AB43 /* MarkdownTOCInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C7B651C8FF85D00A3AB43 /* MarkdownTOCInspector.swift */; };
+		E37C7BB31C90BF6A00A3AB43 /* DMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C7BB01C90BF6A00A3AB43 /* DMTabBar.m */; };
+		E37C7BB41C90BF6A00A3AB43 /* DMTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C7BB21C90BF6A00A3AB43 /* DMTabBarItem.m */; };
+		E37C7BB71C90C85800A3AB43 /* NSImage+Tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C7BB61C90C85800A3AB43 /* NSImage+Tint.swift */; };
 		E37D96101C723B8A000A9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D960F1C723B8A000A9F90 /* AppDelegate.swift */; };
 		E37D96141C723B8A000A9F90 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D96131C723B8A000A9F90 /* Document.swift */; };
 		E37D96161C723B8A000A9F90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E37D96151C723B8A000A9F90 /* Assets.xcassets */; };
@@ -312,6 +315,11 @@
 		E37AB79C1C8F713900F44564 /* InspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorViewController.swift; sourceTree = "<group>"; };
 		E37C7B451C8FF2F600A3AB43 /* Inspector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inspector.swift; sourceTree = "<group>"; };
 		E37C7B651C8FF85D00A3AB43 /* MarkdownTOCInspector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownTOCInspector.swift; sourceTree = "<group>"; };
+		E37C7BAF1C90BF6A00A3AB43 /* DMTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTabBar.h; sourceTree = "<group>"; };
+		E37C7BB01C90BF6A00A3AB43 /* DMTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTabBar.m; sourceTree = "<group>"; };
+		E37C7BB11C90BF6A00A3AB43 /* DMTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTabBarItem.h; sourceTree = "<group>"; };
+		E37C7BB21C90BF6A00A3AB43 /* DMTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTabBarItem.m; sourceTree = "<group>"; };
+		E37C7BB61C90C85800A3AB43 /* NSImage+Tint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSImage+Tint.swift"; sourceTree = "<group>"; };
 		E37D960C1C723B8A000A9F90 /* South Lake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "South Lake.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E37D960F1C723B8A000A9F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E37D96131C723B8A000A9F90 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -2536,6 +2544,7 @@
 				E3E7C9DB1C89078100BD73A9 /* NSString+RegExEscape.swift */,
 				E3E7C9DC1C89078100BD73A9 /* NSMutableAttributedString+Replacement.swift */,
 				E37AB7321C8E0C6E00F44564 /* NSView+Identifier.swift */,
+				E37C7BB61C90C85800A3AB43 /* NSImage+Tint.swift */,
 				E3C436251C7641E900DD685D /* MPRenderer+TOC.h */,
 				E3C436261C7641E900DD685D /* MPRenderer+TOC.m */,
 			);
@@ -2581,6 +2590,17 @@
 			name = PDF;
 			sourceTree = "<group>";
 		};
+		E37C7BB51C90BF6F00A3AB43 /* DMTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				E37C7BAF1C90BF6A00A3AB43 /* DMTabBar.h */,
+				E37C7BB01C90BF6A00A3AB43 /* DMTabBar.m */,
+				E37C7BB11C90BF6A00A3AB43 /* DMTabBarItem.h */,
+				E37C7BB21C90BF6A00A3AB43 /* DMTabBarItem.m */,
+			);
+			name = DMTabBar;
+			sourceTree = "<group>";
+		};
 		E37D96031C723B8A000A9F90 = {
 			isa = PBXGroup;
 			children = (
@@ -2622,6 +2642,7 @@
 				E3E7C9E41C89079000BD73A9 /* Snippets */,
 				E32EC0901C74493900E47B3F /* Extensions */,
 				E3C436281C7642A500DD685D /* Utilities */,
+				E37C7BB51C90BF6F00A3AB43 /* DMTabBar */,
 				E37D96151C723B8A000A9F90 /* Assets.xcassets */,
 				E3C436211C7640A400DD685D /* Welcome.md */,
 				E3E65F531C7C1A840085B5B7 /* About Markdown.md */,
@@ -7538,6 +7559,8 @@
 				E37D96101C723B8A000A9F90 /* AppDelegate.swift in Sources */,
 				E3AD255A1C7F9CDE006D6536 /* MarkdownImporter.swift in Sources */,
 				E3DDBEFA1C8D5AF300136BAE /* LibraryCollectionViewItem.swift in Sources */,
+				E37C7BB71C90C85800A3AB43 /* NSImage+Tint.swift in Sources */,
+				E37C7BB41C90BF6A00A3AB43 /* DMTabBarItem.m in Sources */,
 				E3274FC51C75A13D000B6A84 /* Folder.swift in Sources */,
 				E3803F051C728E140048AD46 /* pmh_styleparser.c in Sources */,
 				E3803F151C728E950048AD46 /* MPEditorView.m in Sources */,
@@ -7580,6 +7603,7 @@
 				E3803F021C728E140048AD46 /* HGMarkdownHighlighter.m in Sources */,
 				E3803F101C728E790048AD46 /* NSTextView+Autocomplete.m in Sources */,
 				E3803F0C1C728E790048AD46 /* NSDocumentController+Document.m in Sources */,
+				E37C7BB31C90BF6A00A3AB43 /* DMTabBar.m in Sources */,
 				E36072731C74E64200914C2C /* NSTabViewItem+ViewController.swift in Sources */,
 				E378E80F1C801F54009539FD /* NSToolbar+Items.swift in Sources */,
 				E37AB74B1C8E20A900F44564 /* LibrarySceneProtocol.swift in Sources */,

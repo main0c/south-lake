@@ -77,8 +77,41 @@
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="86m-FJ-wL4">
                                 <rect key="frame" x="0.0" y="0.0" width="200" height="478"/>
+                                <subviews>
+                                    <tabView drawsBackground="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="CDk-Mn-Vb4">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="450"/>
+                                        <font key="font" metaFont="system"/>
+                                        <tabViewItems>
+                                            <tabViewItem label="Tab" identifier="1" id="ODI-KQ-Vu8">
+                                                <view key="view" id="lt9-ph-aZc">
+                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="450"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </view>
+                                            </tabViewItem>
+                                            <tabViewItem label="View" identifier="2" id="UgC-ju-KEQ">
+                                                <view key="view" id="Op0-iT-fpE">
+                                                    <rect key="frame" x="10" y="33" width="157" height="78"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </view>
+                                            </tabViewItem>
+                                        </tabViewItems>
+                                    </tabView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="LoR-WC-Nyj" customClass="DMTabBar">
+                                        <rect key="frame" x="0.0" y="450" width="200" height="28"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="fCF-M3-wzJ"/>
+                                        </constraints>
+                                    </customView>
+                                </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="CDk-Mn-Vb4" secondAttribute="trailing" id="QA1-7v-2xs"/>
+                                    <constraint firstAttribute="bottom" secondItem="CDk-Mn-Vb4" secondAttribute="bottom" id="S9z-fe-WFl"/>
+                                    <constraint firstItem="LoR-WC-Nyj" firstAttribute="leading" secondItem="86m-FJ-wL4" secondAttribute="leading" id="TF9-6A-8tc"/>
                                     <constraint firstAttribute="width" constant="200" id="ZWy-8e-wwz"/>
+                                    <constraint firstItem="CDk-Mn-Vb4" firstAttribute="leading" secondItem="86m-FJ-wL4" secondAttribute="leading" id="gXe-pF-2jv"/>
+                                    <constraint firstAttribute="trailing" secondItem="LoR-WC-Nyj" secondAttribute="trailing" id="gk1-IX-a3w"/>
+                                    <constraint firstItem="CDk-Mn-Vb4" firstAttribute="top" secondItem="86m-FJ-wL4" secondAttribute="top" constant="28" id="l5I-z0-L7i"/>
+                                    <constraint firstItem="LoR-WC-Nyj" firstAttribute="top" secondItem="86m-FJ-wL4" secondAttribute="top" id="yz0-la-DOS"/>
                                 </constraints>
                             </customView>
                         </subviews>
@@ -90,6 +123,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="tabBar" destination="LoR-WC-Nyj" id="fOr-rE-fky"/>
+                        <outlet property="tabView" destination="CDk-Mn-Vb4" id="2Wt-e2-1fJ"/>
                         <outlet property="viewContainer" destination="86m-FJ-wL4" id="9NB-05-Ndp"/>
                     </connections>
                 </viewController>

@@ -14,6 +14,8 @@ import Cocoa
 
 class InspectorViewController: NSViewController {
     @IBOutlet var viewContainer: NSView!
+    @IBOutlet var tabView: NSTabView!
+    @IBOutlet var tabBar: DMTabBar!
 
     // MARK: - Custom Properties
     
@@ -30,7 +32,18 @@ class InspectorViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        
+        // Clear the tab view
+        
+        for (item) in tabView.tabViewItems {
+            tabView.removeTabViewItem(item)
+        }
+        
+        // Customize the tab bar
+        
+        tabBar.gradientColorStart = NSColor(red: 236.0/255.0, green: 236.0/255.0, blue: 236.0/255.0, alpha: 1.0)
+        tabBar.gradientColorEnd = NSColor(red: 236.0/255.0, green: 236.0/255.0, blue: 236.0/255.0, alpha: 1.0)
+        tabBar.borderColor = NSColor(white:0.80, alpha:1.0)
     }
     
     // MARK: - Inspector Interface
@@ -40,8 +53,16 @@ class InspectorViewController: NSViewController {
             return
         }
         
-        let vc = inspectors[0] as! NSViewController
-        vc.view.removeFromSuperview()
+        // Tear down tab bar
+        
+        tabBar.tabBarItems = nil
+        tabBar.handleTabBarItemSelection(nil)
+        
+        // Tear down the tab view
+        
+        for (item) in tabView.tabViewItems {
+            tabView.removeTabViewItem(item)
+        }
     }
     
     func addInspectorsToInterface() {
@@ -49,25 +70,30 @@ class InspectorViewController: NSViewController {
             return
         }
         
-        let vc = inspectors[0] as! NSViewController
+        // Set up tab bar
         
-        // Frame
+        tabBar.tabBarItems = inspectors.map { (inspector) -> DMTabBarItem in
+            let item = DMTabBarItem(icon: inspector.icon, tag: 0)
+            item.toolTip = inspector.title
+            return item
+        }
         
-        vc.view.translatesAutoresizingMaskIntoConstraints = false
-        vc.view.frame = viewContainer.bounds
-        viewContainer.addSubview(vc.view)
+        tabBar.handleTabBarItemSelection { (selectionType, item, index) -> Void in
+            if selectionType == UInt(DMTabBarItemSelectionType_WillSelect) {
+                self.tabView.selectTabViewItem(self.tabView.tabViewItems[Int(index)])
+            }
+        }
         
-        // Layout Constraints
+        // Set up tab view
         
-        viewContainer.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": vc.view])
-        )
-        viewContainer.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": vc.view])
-        )
+        let tabViewItems = inspectors.map { (inspector) -> NSTabViewItem in
+            let item = NSTabViewItem(viewController: inspector as! NSViewController)
+            return item
+        }
         
-        vc.view.frame = viewContainer.bounds
-        viewContainer.addSubview(vc.view)
+        for item in tabViewItems {
+            tabView.addTabViewItem(item)
+        }
     }
 
 }
