@@ -40,8 +40,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="201" height="454"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <pdfThumbnailView misplaced="YES" maximumNumberOfColumns="1" allowsDragging="NO" bezeled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Nv-iW-ZNl">
-                                <rect key="frame" x="-1" y="-1" width="202" height="456"/>
+                            <pdfThumbnailView maximumNumberOfColumns="1" allowsDragging="NO" bezeled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Nv-iW-ZNl">
+                                <rect key="frame" x="-1" y="-1" width="203" height="456"/>
                                 <size key="thumbnailSize" width="128" height="166"/>
                             </pdfThumbnailView>
                         </subviews>

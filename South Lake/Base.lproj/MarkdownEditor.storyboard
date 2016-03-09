@@ -121,6 +121,9 @@
                             <constraint firstAttribute="bottom" secondItem="G1C-zj-0KV" secondAttribute="bottom" id="tO0-eM-cXX"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="webView" destination="G1C-zj-0KV" id="DmU-u5-NYi"/>
+                    </connections>
                 </viewController>
                 <customObject id="hj9-gb-g91" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

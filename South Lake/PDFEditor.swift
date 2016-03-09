@@ -43,8 +43,8 @@ class PDFEditor: NSViewController, FileEditor {
     }
     
     var inspectors: [Inspector]? {
-        loadThumbnailView()
-        guard let vc = thumbnailViewController else {
+        loadThumbnailInspector()
+        guard let vc = thumbnailInspector else {
             return nil
         }
         return [vc]
@@ -52,7 +52,7 @@ class PDFEditor: NSViewController, FileEditor {
     
     // MARK: - My Properties
     
-    var thumbnailViewController: PDFThumbnailInspector?
+    var thumbnailInspector: PDFThumbnailInspector?
     
     // MARK: - Initialization
 
@@ -80,15 +80,15 @@ class PDFEditor: NSViewController, FileEditor {
     
     // TODO: dynamically return individual inspector views as they are needed?
     
-    func loadThumbnailView() {
-        guard thumbnailViewController == nil else {
+    func loadThumbnailInspector() {
+        guard thumbnailInspector == nil else {
             return
         }
         
-        thumbnailViewController = storyboard!.instantiateControllerWithIdentifier("thumbnail") as? PDFThumbnailInspector
+        thumbnailInspector = storyboard!.instantiateControllerWithIdentifier("thumbnail") as? PDFThumbnailInspector
         
-        let _ = thumbnailViewController!.view
-        thumbnailViewController!.thumbnailView.setPDFView(editor)
+        let _ = thumbnailInspector!.view
+        thumbnailInspector!.thumbnailView.setPDFView(editor)
     }
     
 }

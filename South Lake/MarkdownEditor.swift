@@ -100,12 +100,12 @@ class MarkdownEditor: NSViewController, FileEditor {
     
     // TEMPORARY
     
-    dynamic var toc: String = ""
-    dynamic var tocRef: String = "" {
+    dynamic var tableOfContents: String = ""
+    dynamic var tableOfContentsAnchor: String = "" {
         didSet {
-            let script = "window.location.href = \"#" + tocRef + "\""
+            let script = "window.location.href = \"#" + tableOfContentsAnchor + "\""
             let eval = preview.stringByEvaluatingJavaScriptFromString(script)
-            print("\(tocRef) : \(eval)")
+            print("\(tableOfContentsAnchor) : \(eval)")
 //            let URL = NSURL(string: "#" + tocRef)
 //            preview.mainFrame.loadRequest(NSURLRequest(URL: URL!))
         }
@@ -124,8 +124,14 @@ class MarkdownEditor: NSViewController, FileEditor {
     // It might be possible to bypass the whole data bit and just bind the editor
     // directly to the file key from interface builder
     
+    var tableOfContentsInspector: MarkdownTOCInspector?
+    
     var inspectors: [Inspector]? {
-        return nil
+        loadTableOfContentsInspector()
+        guard let vc = tableOfContentsInspector else {
+            return nil
+        }
+        return [vc]
     }
     
     var isFileEditor: Bool {
@@ -155,7 +161,7 @@ class MarkdownEditor: NSViewController, FileEditor {
             NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
                 self.renderer.parseAndRenderNow()
                 self.highlighter.parseAndHighlightNow()
-                self.toc = self.renderer.tableOfContents()
+                self.tableOfContents = self.renderer.tableOfContents()
             }
         }
     }
@@ -281,6 +287,21 @@ class MarkdownEditor: NSViewController, FileEditor {
     
     var primaryResponder: NSView {
         return editor
+    }
+    
+    func loadTableOfContentsInspector() {
+        guard tableOfContentsInspector == nil else {
+            return
+        }
+        
+        tableOfContentsInspector = storyboard!.instantiateControllerWithIdentifier("tableOfContents") as? MarkdownTOCInspector
+        
+        // Bind the inspectors table of contents to ours
+        // Bind our anchor to the inspectors
+        
+        tableOfContentsInspector!.bind("tableOfContents", toObject: self, withKeyPath: "tableOfContents", options: [:])
+        
+        bind("tableOfContentsAnchor", toObject: tableOfContentsInspector!, withKeyPath: "tableOfContentsAnchor", options: [:])
     }
     
     // MARK: - MacDown Functions
