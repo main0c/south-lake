@@ -11,8 +11,9 @@
 import Cocoa
 
 class SourceListDocumentTab: NSSplitViewController, DocumentTab {
-    var contentController: SourceListContentViewController!
-    var sourceListController: SourceListViewController!
+    var sourceListController: SourceListViewController!     // left data source
+    var contentController: SourceListContentViewController! // center content
+    var inspectorController: SourceListInspectorController! // right inspector
     
     dynamic var icon: NSImage?
     
@@ -42,6 +43,13 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         didSet {
             bindTitle(selectedObjects)
             bindIcon(selectedObjects)
+            
+            // Load the editor and its inspectors here but pass them to the
+            // view controller to manage them.
+            
+            // At this point has the content view controller editor been updated? 
+            // If so we could grab the inspectors from it and pass them to 
+            // inspector controller
         }
     }
     
@@ -66,6 +74,8 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
             case let controller as SourceListContentViewController:
                 contentController = controller
                 break
+            case let controller as SourceListInspectorController:
+                inspectorController = controller
             default:
                 break
             }
@@ -79,15 +89,11 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         
         contentController.bind("selectedObjects", toObject: self, withKeyPath: "selectedObjects", options: [:])
         
-        // Set up the editor
+        inspectorController.bind("selectedObjects", toObject: self, withKeyPath: "selectedObjects", options: [:])
         
-//        let mainViewController = NSStoryboard(name: "MarkdownEditor", bundle: nil).instantiateInitialController() as! NSViewController
-//        let mainItem = NSSplitViewItem(viewController: mainViewController)
-//        
-        // closeInspector() // FIX: why close inspector first?
-//
-//        removeSplitViewItem(splitViewItems[1])
-//        insertSplitViewItem(mainItem, atIndex: 1)
+        // TODO: Set up the initial editor?
+        
+        // closeInspector()
     }
     
     // TOOD: save when changing selection
@@ -100,6 +106,7 @@ class SourceListDocumentTab: NSSplitViewController, DocumentTab {
         unbindTitle(selectedObjects)
         unbindIcon(selectedObjects)
         
+        inspectorController.unbind("selectedObjects")
         contentController.unbind("selectedObjects")
         unbind("selectedObjects")
         

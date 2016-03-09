@@ -42,6 +42,19 @@ class PDFEditor: NSViewController, FileEditor {
         return view
     }
     
+    var inspectors: [(String, NSImage, NSViewController)]? {
+        loadThumbnailView()
+        guard let vc = thumbnailViewController,
+              let icon = NSImage(named:"pdf-thumbnails-icon") else {
+              return []
+        }
+        return [(NSLocalizedString("Thumbnails", comment:""), icon, vc)]
+    }
+    
+    // MARK: - My Properties
+    
+    var thumbnailViewController: PDFThumbnailViewController?
+    
     // MARK: - Initialization
 
     override func viewDidLoad() {
@@ -64,7 +77,18 @@ class PDFEditor: NSViewController, FileEditor {
         }
         
         editor.setDocument(document)
+    }
+    
+    // TODO: dynamically return individual inspector views as they are needed?
+    
+    func loadThumbnailView() {
+        guard thumbnailViewController == nil else {
+            return
+        }
         
+        thumbnailViewController = storyboard!.instantiateControllerWithIdentifier("thumbnail") as? PDFThumbnailViewController
+        
+        thumbnailViewController?.thumbnailView.setPDFView(editor)
     }
     
 }

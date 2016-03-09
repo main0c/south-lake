@@ -42,6 +42,10 @@ class LibraryEditor: NSViewController, FileEditor {
         return view
     }
     
+    var inspectors: [(String, NSImage, NSViewController)]? {
+        return nil
+    }
+    
     // MARK: - Custom Properties
     
     dynamic var content: [DataSource] = []

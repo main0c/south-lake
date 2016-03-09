@@ -70,7 +70,7 @@
         <!--Metadata Controller-->
         <scene sceneID="es3-lF-qMF">
             <objects>
-                <viewController id="Oek-qD-h4p" userLabel="Metadata Controller" sceneMemberID="viewController">
+                <viewController id="Oek-qD-h4p" userLabel="Metadata Controller" customClass="SourceListInspectorController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="rdU-W6-1rA">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="478"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -89,6 +89,9 @@
                             <constraint firstItem="86m-FJ-wL4" firstAttribute="leading" secondItem="rdU-W6-1rA" secondAttribute="leading" id="yw6-uG-OBi"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="viewContainer" destination="86m-FJ-wL4" id="9NB-05-Ndp"/>
+                    </connections>
                 </viewController>
                 <customObject id="tEq-ld-TuB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

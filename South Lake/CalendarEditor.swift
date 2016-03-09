@@ -37,6 +37,12 @@ class CalendarEditor: NSViewController, FileEditor {
     var primaryResponder: NSView {
         return view
     }
+    
+    var inspectors: [(String, NSImage, NSViewController)]? {
+        return nil
+    }
+    
+    // MARK: - Initialization
 
     override func viewDidLoad() {
         super.viewDidLoad()

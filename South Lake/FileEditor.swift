@@ -45,4 +45,9 @@ protocol FileEditor: class, Databasable {
     
     /// Return true if we edit files specifically and not some other kind of data source
     var isFileEditor: Bool { get }
+    
+    /// A file editor can return inspectors that it manages which are placed in the inspector area
+    /// An inspector consists of a tile, and icon and a view controller
+    /// A metadata inspector is automatically included in the inspector area
+    var inspectors: [(String, NSImage, NSViewController)]? { get }
 }

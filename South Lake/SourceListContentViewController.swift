@@ -17,6 +17,18 @@ class SourceListContentViewController: NSViewController, Databasable {
     @IBOutlet var editorContainer: NSView!
     @IBOutlet var editorContainerTopContraint: NSLayoutConstraint!
     
+    // MARK: - Databasable Properties
+    
+    var databaseManager: DatabaseManager! {
+        didSet { }
+    }
+    
+    var searchService: BRSearchService! {
+        didSet { }
+    }
+    
+    // MARK: - Custom Properties
+    
     var header: FileHeaderViewController?
     var editor: FileEditor?
     
@@ -27,14 +39,6 @@ class SourceListContentViewController: NSViewController, Databasable {
         didSet {
             bindEditor(selectedObjects)
         }
-    }
-    
-    var databaseManager: DatabaseManager! {
-        didSet { }
-    }
-    
-    var searchService: BRSearchService! {
-        didSet { }
     }
     
     var selectedObject: DataSource? {

@@ -32,5 +32,33 @@
             </objects>
             <point key="canvasLocation" x="254" y="273"/>
         </scene>
+        <!--Thumbnail Controller-->
+        <scene sceneID="JXu-5v-e7g">
+            <objects>
+                <viewController storyboardIdentifier="thumbnail" id="SVC-wa-jMT" customClass="PDFThumbnailController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="OW8-Sp-nnT">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="454"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <pdfThumbnailView translatesAutoresizingMaskIntoConstraints="NO" id="6Nv-iW-ZNl">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="454"/>
+                                <size key="thumbnailSize" width="64" height="64"/>
+                            </pdfThumbnailView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="6Nv-iW-ZNl" firstAttribute="leading" secondItem="OW8-Sp-nnT" secondAttribute="leading" id="V0Y-54-Fol"/>
+                            <constraint firstAttribute="bottom" secondItem="6Nv-iW-ZNl" secondAttribute="bottom" id="d4w-z0-lTq"/>
+                            <constraint firstAttribute="trailing" secondItem="6Nv-iW-ZNl" secondAttribute="trailing" id="dRg-Mc-af0"/>
+                            <constraint firstItem="6Nv-iW-ZNl" firstAttribute="top" secondItem="OW8-Sp-nnT" secondAttribute="top" id="lNY-Ve-hOI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="thumbnailView" destination="6Nv-iW-ZNl" id="e4N-ef-hkc"/>
+                    </connections>
+                </viewController>
+                <customObject id="r3C-GP-mkf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="627" y="350"/>
+        </scene>
     </scenes>
 </document>
