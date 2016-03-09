@@ -113,6 +113,7 @@ class DocumentWindowController: NSWindowController, Databasable {
     /// Called when the search field executes its action.
     
     @IBAction func executeFindInNotebook(sender: AnyObject?) {
+        
         guard let sender = sender as? NSSearchField
               where sender.stringValue.characters.count > 0 else {
               return

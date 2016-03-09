@@ -7050,13 +7050,13 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
-		E3898F831C80153900CA71BE /* Search Tab */ = {
+		E3898F831C80153900CA71BE /* Search Tab (Deprecated) */ = {
 			isa = PBXGroup;
 			children = (
 				E378E8171C80216E009539FD /* SearchTab.storyboard */,
 				E3898F941C8015E700CA71BE /* SearchDocumentTab.swift */,
 			);
-			name = "Search Tab";
+			name = "Search Tab (Deprecated)";
 			sourceTree = "<group>";
 		};
 		E3898F981C80162700CA71BE /* Markdown */ = {
@@ -7085,7 +7085,7 @@
 			isa = PBXGroup;
 			children = (
 				E3274FAC1C75A04C000B6A84 /* Source List */,
-				E3898F831C80153900CA71BE /* Search Tab */,
+				E3898F831C80153900CA71BE /* Search Tab (Deprecated) */,
 			);
 			name = Tabs;
 			sourceTree = "<group>";
