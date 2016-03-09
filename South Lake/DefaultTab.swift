@@ -53,6 +53,9 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
     }
     
+    // TODO: When you select a folder don't unbind and clear the current editor
+    // Whether we unbind depends on on what is being bound
+    
     dynamic var selectedObjects: [DataSource] = [] {
         willSet {
             unbindTitle(selectedObjects)

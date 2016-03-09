@@ -47,6 +47,7 @@
 		E37AB79B1C8F6A6E00F44564 /* PDFOutlineInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB79A1C8F6A6E00F44564 /* PDFOutlineInspector.swift */; };
 		E37AB79E1C8F713900F44564 /* InspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB79C1C8F713900F44564 /* InspectorViewController.swift */; };
 		E37C7B461C8FF2F700A3AB43 /* Inspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C7B451C8FF2F600A3AB43 /* Inspector.swift */; };
+		E37C7B661C8FF85D00A3AB43 /* MarkdownTOCInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C7B651C8FF85D00A3AB43 /* MarkdownTOCInspector.swift */; };
 		E37D96101C723B8A000A9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D960F1C723B8A000A9F90 /* AppDelegate.swift */; };
 		E37D96141C723B8A000A9F90 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D96131C723B8A000A9F90 /* Document.swift */; };
 		E37D96161C723B8A000A9F90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E37D96151C723B8A000A9F90 /* Assets.xcassets */; };
@@ -310,6 +311,7 @@
 		E37AB79A1C8F6A6E00F44564 /* PDFOutlineInspector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFOutlineInspector.swift; sourceTree = "<group>"; };
 		E37AB79C1C8F713900F44564 /* InspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorViewController.swift; sourceTree = "<group>"; };
 		E37C7B451C8FF2F600A3AB43 /* Inspector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inspector.swift; sourceTree = "<group>"; };
+		E37C7B651C8FF85D00A3AB43 /* MarkdownTOCInspector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownTOCInspector.swift; sourceTree = "<group>"; };
 		E37D960C1C723B8A000A9F90 /* South Lake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "South Lake.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E37D960F1C723B8A000A9F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E37D96131C723B8A000A9F90 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -7064,6 +7066,7 @@
 			children = (
 				E3274FD21C75A594000B6A84 /* MarkdownEditor.storyboard */,
 				E3274FBE1C75A088000B6A84 /* MarkdownEditor.swift */,
+				E37C7B651C8FF85D00A3AB43 /* MarkdownTOCInspector.swift */,
 			);
 			name = Markdown;
 			sourceTree = "<group>";
@@ -7583,6 +7586,7 @@
 				E3803F0F1C728E790048AD46 /* NSString+Lookup.m in Sources */,
 				E3803F071C728E600048AD46 /* MPAsset.m in Sources */,
 				E3898F961C8015E700CA71BE /* SearchDocumentTab.swift in Sources */,
+				E37C7B661C8FF85D00A3AB43 /* MarkdownTOCInspector.swift in Sources */,
 				E3803F0A1C728E790048AD46 /* hoedown_html_patch.c in Sources */,
 				E3274FBF1C75A088000B6A84 /* MarkdownEditor.swift in Sources */,
 				E37E47B81C73F0F90077ECD7 /* DocumentController.swift in Sources */,
