@@ -57,11 +57,16 @@ class FileHeaderViewController: NSViewController {
             titleField.bind("value",
                 toObject: selection,
                 withKeyPath: "title",
-                options: [NSNullPlaceholderBindingOption:NSLocalizedString("Click to change title", comment: "")])
+                options:
+                    [NSNullPlaceholderBindingOption:NSLocalizedString("Click to change title", comment: "")
+                ])
             tagsField.bind("value",
                 toObject: selection,
                 withKeyPath: "tags",
-                options: [NSNullPlaceholderBindingOption:NSLocalizedString("Click to add tags", comment: "")])
+                options: [
+                    NSNullPlaceholderBindingOption:NSLocalizedString("Click to add tags", comment: ""),
+                    NSContinuouslyUpdatesValueBindingOption:true
+                ])
             createdField.bind("value",
                 toObject: selection,
                 withKeyPath: "created_at",

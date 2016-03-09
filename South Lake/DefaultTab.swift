@@ -17,8 +17,14 @@ import Cocoa
 ///
 /// Most importantly, the Tab maintains bindings that sync selection across view controlelrs
 /// and which sync the model to the interface
-
-// TODO: header not being removed when viewing a folder, for example
+///
+/// The Tab also watches for changes in file viewer editors (library, etc) so that the metadata
+/// inspectors can be updated. A Tab can also be informed when an editor wants to open a file
+/// and open it in place
+///
+/// The Tab maintains a selection history of that provides enough information to recall the
+/// selection in the source list as well as selection changes in an editor. I guess we'll see
+/// about that.
 
 class DefaultTab: NSSplitViewController, DocumentTab {
     var sourceListController: SourceListViewController!     // left data source
@@ -54,7 +60,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             
             unbindEditor(selectedObjects)
             unbindHeader(selectedObjects)
-            
             unbindInspectors(selectedObjects)
         }
         didSet {
@@ -65,7 +70,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             
             bindEditor(selectedObjects)
             bindHeader(selectedObjects)
-            
             bindInspectors(selectedObjects)
         }
     }
@@ -106,13 +110,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         bind("selectedObjects", toObject: sourceListController, withKeyPath: "selectedObjects", options: [:])
         
-        // contentController.bind("selectedObjects", toObject: self, withKeyPath: "selectedObjects", options: [:])
-        
-        // inspectorController.bind("selectedObjects", toObject: self, withKeyPath: "selectedObjects", options: [:])
-        
         // TODO: Set up the initial editor?
-        
-        // closeInspector()
+
     }
     
     // TOOD: save when changing selection
@@ -125,8 +124,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         unbindTitle(selectedObjects)
         unbindIcon(selectedObjects)
         
-        inspectorController.unbind("selectedObjects")
-        contentController.unbind("selectedObjects")
         unbind("selectedObjects")
         
         sourceListController.willClose()
@@ -165,18 +162,10 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     // MARK: - Bindings
     
-    // File.data <-> Editor one-to-many two-way bindings
-    
-    // A single file may be handled by more than one editor
-    // A single editor handles a single file
-    
-    // An editor makes a change, it propogates to the file, and from there
-    // it must propogate to every other editor working with that file
-    
-    // Use KVO to manage these changes
-    
     func bindTitle(selection: [DataSource]) {
-        switch selection.count {
+        let count = selection.count
+        
+        switch count {
         case 0:
             title = NSLocalizedString("No Selection", comment: "")
         case 1:
@@ -187,11 +176,13 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     }
     
     func bindIcon(selection: [DataSource]) {
-        switch selection.count {
+        let count = selection.count
+        
+        switch count {
         case 0:
             icon = nil
         case 1:
-            icon = selectedObjects[0].icon
+            bind("icon", toObject: selectedObjects[0], withKeyPath: "icon", options: [:])
         default:
             icon = nil
         }
@@ -211,16 +202,15 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         let item = selectedObject
         
         switch (selection.count, item) {
-        case (0, _): break // clearEditor()
+        case (0, _): clearEditor()
         case (1, is File): loadEditor(item!)
-        case (1, is Folder): loadEditor(item!)
+        case (1, is Folder): loadEditor(item!) // in most cases we'll want to clear the editor here
         case (_,_): break
         }
     }
       
     func unbindEditor(selection: [DataSource]) {
-        guard let editor = editor, let file = selectedObject
-        where file is File || file is Folder else {
+        guard let editor = editor else {
             return
         }
         
@@ -231,19 +221,11 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         // Load editor if editor has changed
         
         if editor == nil || !editor!.dynamicType.filetypes.contains(file.uti) {
-            
-            // Remove the previous editor : doesn't happen in unbinding but here
-            
-            editor?.removeFromParentViewController()
-            
-            // Change current editor
-            
-            // TODO: guard this, raise exception -- what?
-            
             editor = EditorPlugIns.sharedInstance.plugInForFiletype(file.file_extension)
             
             guard editor != nil else {
                 print("unable to find editor for file with type \(file.file_extension)")
+                clearEditor()
                 return
             }
 
@@ -257,8 +239,12 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         // Always pass selection to the editor
         
-        editor?.file = file
-        
+        editor!.file = file
+    }
+    
+    func clearEditor() {
+        contentController.editor = nil
+        editor = nil
     }
     
     // MARK: - Header
@@ -267,25 +253,25 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         let item = selectedObject
         
         switch (selection.count, item) {
-        case (0, _): break; // clearHeader()
+        case (0, _): clearHeader()
         case (1, is File): loadHeader(item!)
-        case (1, is Folder): break; // clearHeader()
+        case (1, is Folder): clearHeader()
         case (_,_): break
         }
     }
     
     func unbindHeader(selection:[DataSource]) {
-        // Don't do anything?
-        return
+        guard let header = header else {
+            return
+        }
+        header.file = nil
     }
     
     func loadHeader(file: DataSource) {
+        // It's possible this file does not show a header
+        
         guard editor != nil && editor!.isFileEditor else {
-            if header != nil {
-                contentController.header = nil
-                header!.file = nil
-                header = nil
-            }
+            clearHeader()
             return
         }
         
@@ -303,6 +289,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     func clearHeader() {
         contentController.header = nil
+        header = nil
     }
     
     // MARK: - Inspector
@@ -324,26 +311,26 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     }
     
     func unbindInspectors(selection: [DataSource]) {
-        // Depends ...
+        // For single selection, do nothing. The editor handles inspector bindings
+        // For multiple selection, unbind the inspectors we created
     }
     
     func clearInspector() {
-    
+        inspectorController.inspectors = nil
+        inspectors = nil
     }
     
     func loadInspector(file: DataSource) {
         guard let editor = editor else {
+            clearInspector()
             return
         }
-        guard let fileInspectors = editor.inspectors else {
-            return // or hide?
-        }
         
-        // Do something to previous inspectors?
-        // And we really only want to load inspectors if the file editor has changed
+        // TODO: only reload inspectors if they are different
+        // Don't need to set up bindings or pass files because they are taken care of by the editor
         
-        inspectors = fileInspectors
-        inspectorController.inspectors = inspectors!
+        inspectors = editor.inspectors
+        inspectorController.inspectors = inspectors
     }
     
     func loadInspectorForMultipleSelection(files: [DataSource]) {
@@ -358,7 +345,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     // MARK: - User Actions
     
-    // TODO: Refactoring, watch for couping to source list view controller
+    // TODO: Refactoring, watch for coupling to source list view controller
     
     @IBAction func createNewFolder(sender: AnyObject?) {
         // Create an untitled folder

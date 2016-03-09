@@ -23,8 +23,7 @@ class DataSource: CBLModel {
     @NSManaged var created_at: NSDate
     @NSManaged var updated_at: NSDate
     @NSManaged var color_labels: [Int]
-    @NSManaged var tags: [String]
-    
+    @NSManaged var tags: [String]    
     @NSManaged var file_extension: String
     @NSManaged var mime_type: String
     @NSManaged var uti: String

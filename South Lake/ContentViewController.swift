@@ -50,8 +50,6 @@ class ContentViewController: NSViewController {
     // MARK: - Header and Editor Inteface
     
     func removeHeaderFromInterface() {
-        print("removeHeaderFromInterface")
-        
         guard header != nil else {
             return
         }
@@ -63,7 +61,9 @@ class ContentViewController: NSViewController {
     }
     
     func addHeaderToInterface() {
-        print("addHeaderToInterface")
+        guard header != nil else {
+            return
+        }
         
         editorContainerTopContraint.constant = editor!.isFileEditor ? 64 : 0
         
@@ -85,8 +85,6 @@ class ContentViewController: NSViewController {
     }
 
     func removeEditorFromInterface() {
-        print("removeEditorFromInterface")
-        
         guard editor != nil else {
             return
         }
@@ -96,8 +94,6 @@ class ContentViewController: NSViewController {
     }
     
     func addEditorToInterface() {
-        print("addEditorToInterface")
-        
         guard editor != nil else {
             return
         }

@@ -17,7 +17,7 @@ class InspectorViewController: NSViewController {
 
     // MARK: - Custom Properties
     
-    var inspectors: [(String, NSImage, NSViewController)] = [] {
+    var inspectors: [(String, NSImage, NSViewController)]? {
         willSet {
             removeInspectorsFromInterface()
         }
@@ -36,9 +36,7 @@ class InspectorViewController: NSViewController {
     // MARK: - Inspector Interface
     
     func removeInspectorsFromInterface() {
-        print("removeInspectorsFromInterface")
-        
-        guard inspectors.count > 0 else {
+        guard let inspectors = inspectors where inspectors.count > 0 else {
             return
         }
         
@@ -47,14 +45,11 @@ class InspectorViewController: NSViewController {
     }
     
     func addInspectorsToInterface() {
-        print("addInspectorsToInterface")
-        
-        guard inspectors.count > 0 else {
+        guard let inspectors = inspectors where inspectors.count > 0 else {
             return
         }
         
         let (name, _, vc) = inspectors[0]
-        print(name)
         
         // Frame
         
