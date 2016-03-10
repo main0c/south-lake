@@ -62,8 +62,20 @@ class CommentsInspector: NSViewController, Inspector {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let html = styling.stringByReplacingOccurrencesOfString("{{comments}}", withString: "Commenting not yet available")
-        webView.mainFrame.loadHTMLString(html, baseURL: NSURL(string: "/"))
+//        let html = styling.stringByReplacingOccurrencesOfString("{{comments}}", withString: "Commenting not yet available")
+//        webView.mainFrame.loadHTMLString(html, baseURL: NSURL(string: "/"))
+        
+        // http://www.bypeople.com/css-chat/
+        // http://codepen.io/drehimself/pen/KdXwxR?utm_source=bypeople
+        
+        if let URL = NSBundle.mainBundle().URLForResource("index", withExtension: "html", subdirectory: "chat-widget") {
+            do {
+                let html = try String(contentsOfURL: URL, encoding: NSUTF8StringEncoding)
+                webView.mainFrame.loadHTMLString(html, baseURL: URL)
+            } catch {
+                print(error)
+            }
+        }
     }
     
 }

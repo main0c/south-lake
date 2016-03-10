@@ -14,44 +14,20 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <webView translatesAutoresizingMaskIntoConstraints="NO" id="RdZ-tf-Ynh">
-                                <rect key="frame" x="0.0" y="124" width="220" height="241"/>
+                                <rect key="frame" x="0.0" y="0.0" width="220" height="365"/>
                                 <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12">
                                     <nil key="identifier"/>
                                 </webPreferences>
                             </webView>
-                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SAJ-OH-LPa">
-                                <rect key="frame" x="5" y="5" width="211" height="114"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="114" id="5Tg-zJ-lFX"/>
-                                </constraints>
-                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" placeholderString="Add a comment, markdown is ok" drawsBackground="YES" id="183-88-Pf5">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
-                                </textFieldCell>
-                            </textField>
-                            <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="B68-XJ-zvh">
-                                <rect key="frame" x="0.0" y="119" width="220" height="5"/>
-                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <font key="titleFont" metaFont="system"/>
-                            </box>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="SAJ-OH-LPa" firstAttribute="top" secondItem="RdZ-tf-Ynh" secondAttribute="bottom" constant="5" id="LzI-MC-IAO"/>
-                            <constraint firstItem="B68-XJ-zvh" firstAttribute="leading" secondItem="klL-KC-gll" secondAttribute="leading" id="QRO-n9-OQP"/>
                             <constraint firstAttribute="trailing" secondItem="RdZ-tf-Ynh" secondAttribute="trailing" id="TJU-eg-Zsb"/>
-                            <constraint firstAttribute="trailing" secondItem="B68-XJ-zvh" secondAttribute="trailing" id="dFy-b4-lJw"/>
+                            <constraint firstAttribute="bottom" secondItem="RdZ-tf-Ynh" secondAttribute="bottom" id="UCD-I5-6Bu"/>
                             <constraint firstItem="RdZ-tf-Ynh" firstAttribute="leading" secondItem="klL-KC-gll" secondAttribute="leading" id="i9O-xl-jtS"/>
-                            <constraint firstAttribute="trailing" secondItem="SAJ-OH-LPa" secondAttribute="trailing" constant="4" id="l35-fu-UYB"/>
-                            <constraint firstItem="B68-XJ-zvh" firstAttribute="top" secondItem="RdZ-tf-Ynh" secondAttribute="bottom" constant="2" id="lMA-WB-nug"/>
-                            <constraint firstAttribute="bottom" secondItem="SAJ-OH-LPa" secondAttribute="bottom" constant="5" id="twg-GK-Nfu"/>
                             <constraint firstItem="RdZ-tf-Ynh" firstAttribute="top" secondItem="klL-KC-gll" secondAttribute="top" id="ulz-AV-wLM"/>
-                            <constraint firstItem="SAJ-OH-LPa" firstAttribute="leading" secondItem="klL-KC-gll" secondAttribute="leading" constant="5" id="ycB-il-L89"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="textField" destination="SAJ-OH-LPa" id="1BG-JG-IA2"/>
                         <outlet property="webView" destination="RdZ-tf-Ynh" id="X9z-37-dCT"/>
                     </connections>
                 </viewController>

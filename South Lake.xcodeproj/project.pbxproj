@@ -57,6 +57,7 @@
 		E37C7BDC1C9108D600A3AB43 /* MetadataInspector.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E37C7BDB1C9108D600A3AB43 /* MetadataInspector.storyboard */; };
 		E37C7BDF1C911AFE00A3AB43 /* CommentsInspector.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E37C7BDE1C911AFE00A3AB43 /* CommentsInspector.storyboard */; };
 		E37C7BE21C911F9600A3AB43 /* RelatedInspector.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E37C7BE11C911F9600A3AB43 /* RelatedInspector.storyboard */; };
+		E37C7BEB1C914CE500A3AB43 /* chat-widget in Resources */ = {isa = PBXBuildFile; fileRef = E37C7BEA1C914CE500A3AB43 /* chat-widget */; };
 		E37D96101C723B8A000A9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D960F1C723B8A000A9F90 /* AppDelegate.swift */; };
 		E37D96141C723B8A000A9F90 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D96131C723B8A000A9F90 /* Document.swift */; };
 		E37D96161C723B8A000A9F90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E37D96151C723B8A000A9F90 /* Assets.xcassets */; };
@@ -332,6 +333,7 @@
 		E37C7BDB1C9108D600A3AB43 /* MetadataInspector.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MetadataInspector.storyboard; sourceTree = "<group>"; };
 		E37C7BDE1C911AFE00A3AB43 /* CommentsInspector.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CommentsInspector.storyboard; sourceTree = "<group>"; };
 		E37C7BE11C911F9600A3AB43 /* RelatedInspector.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RelatedInspector.storyboard; sourceTree = "<group>"; };
+		E37C7BEA1C914CE500A3AB43 /* chat-widget */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "chat-widget"; sourceTree = "<group>"; };
 		E37D960C1C723B8A000A9F90 /* South Lake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "South Lake.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E37D960F1C723B8A000A9F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E37D96131C723B8A000A9F90 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -2696,6 +2698,7 @@
 				E37D96151C723B8A000A9F90 /* Assets.xcassets */,
 				E3C436211C7640A400DD685D /* Welcome.md */,
 				E3E65F531C7C1A840085B5B7 /* About Markdown.md */,
+				E37C7BEA1C914CE500A3AB43 /* chat-widget */,
 				E37AB7721C8F4C5900F44564 /* As We May Think - The Atlantic.pdf */,
 				E37D961A1C723B8A000A9F90 /* Info.plist */,
 			);
@@ -7473,6 +7476,7 @@
 				E37D96161C723B8A000A9F90 /* Assets.xcassets in Resources */,
 				E3274FD01C75A594000B6A84 /* MarkdownEditor.storyboard in Resources */,
 				E3DDBEEF1C8D312200136BAE /* TagsEditor.storyboard in Resources */,
+				E37C7BEB1C914CE500A3AB43 /* chat-widget in Resources */,
 				E37AB7511C8E6F4A00F44564 /* FileHeader.storyboard in Resources */,
 				E3DDBEF81C8D455000136BAE /* CalendarEditor.storyboard in Resources */,
 				E37D96191C723B8A000A9F90 /* Main.storyboard in Resources */,
