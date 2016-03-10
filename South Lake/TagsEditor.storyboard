@@ -42,16 +42,6 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pgS-Pe-6BX">
-                                <rect key="frame" x="9" y="244" width="158" height="20"/>
-                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="roundRect" trackingMode="selectOne" id="G0S-6b-9JG">
-                                    <font key="font" metaFont="cellTitle"/>
-                                    <segments>
-                                        <segment label="Created" width="76" selected="YES"/>
-                                        <segment label="Updated" width="75" tag="1"/>
-                                    </segments>
-                                </segmentedCell>
-                            </segmentedControl>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JbV-fW-dKp">
                                 <rect key="frame" x="8" y="269" width="434" height="24"/>
                                 <constraints>
@@ -70,8 +60,6 @@
                             <constraint firstAttribute="trailing" secondItem="9IE-Zv-qbi" secondAttribute="trailing" id="Azv-D2-cbP"/>
                             <constraint firstItem="JbV-fW-dKp" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="7" id="Mnc-6Q-prf"/>
                             <constraint firstAttribute="bottom" secondItem="9IE-Zv-qbi" secondAttribute="bottom" id="PdL-QN-KAJ"/>
-                            <constraint firstItem="pgS-Pe-6BX" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" constant="10" id="PwD-Ih-0E4"/>
-                            <constraint firstItem="pgS-Pe-6BX" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="37" id="YJ1-9O-Ke7"/>
                             <constraint firstItem="9IE-Zv-qbi" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" id="h1E-Wf-AaV"/>
                             <constraint firstAttribute="trailing" secondItem="JbV-fW-dKp" secondAttribute="trailing" constant="10" id="hIX-Xu-ePG"/>
                             <constraint firstItem="9WK-CS-1oM" firstAttribute="centerX" secondItem="r9v-bw-nhh" secondAttribute="centerX" id="iGf-qI-9En"/>
