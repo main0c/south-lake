@@ -1,5 +1,5 @@
 //
-//  ContentViewController.swift
+//  ContentViewPanel.swift
 //  South Lake
 //
 //  Created by Philip Dow on 3/6/16.
@@ -13,7 +13,7 @@ import Cocoa
 /// It does not manage bindings for the editor or header, and it doesn't care what is displayed
 /// in the editor or header.
 
-class ContentViewController: NSViewController {
+class ContentViewPanel: NSViewController {
     @IBOutlet var viewContainer: NSView!
     @IBOutlet var editorContainer: NSView!
     @IBOutlet var editorContainerTopContraint: NSLayoutConstraint!

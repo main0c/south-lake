@@ -1,5 +1,5 @@
 //
-//  SourceListViewController.swift
+//  SourceListPanel.swift
 //  South Lake
 //
 //  Created by Philip Dow on 2/17/16.
@@ -12,7 +12,7 @@ struct SourceListDragTypes {
     static var dataSourcePasteboardType = "DataSourcePasteboardType"
 }
 
-class SourceListViewController: NSViewController, Databasable {
+class SourceListPanel: NSViewController, Databasable {
     @IBOutlet var treeController: NSTreeController!
     @IBOutlet var outlineView: NSOutlineView!
     
@@ -195,7 +195,7 @@ class SourceListViewController: NSViewController, Databasable {
 
 // MARK: - NSOutlineViewDataSource
 
-extension SourceListViewController : NSOutlineViewDataSource {
+extension SourceListPanel : NSOutlineViewDataSource {
     
     func outlineView(outlineView: NSOutlineView, validateDrop info: NSDraggingInfo, proposedItem item: AnyObject?, proposedChildIndex index: Int) -> NSDragOperation {
         var operation = NSDragOperation.Generic
@@ -358,7 +358,7 @@ extension SourceListViewController : NSOutlineViewDataSource {
 
 // MARK: - NSOutlineViewDelegate
 
-extension SourceListViewController : NSOutlineViewDelegate {
+extension SourceListPanel : NSOutlineViewDelegate {
     
     func outlineView(outlineView: NSOutlineView, viewForTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
         let object = item.representedObject

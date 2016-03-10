@@ -27,9 +27,9 @@ import Cocoa
 /// about that.
 
 class DefaultTab: NSSplitViewController, DocumentTab {
-    var sourceListController: SourceListViewController!     // left data source
-    var contentController: ContentViewController! // center content
-    var inspectorController: InspectorViewController! // right inspector
+    var sourceListController: SourceListPanel!     // left data source
+    var contentController: ContentViewPanel! // center content
+    var inspectorController: InspectorPanel! // right inspector
     
     // Default inspectors
     
@@ -98,13 +98,13 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         for vc in childViewControllers {
             switch vc {
-            case let controller as SourceListViewController:
+            case let controller as SourceListPanel:
                 sourceListController = controller
                 break
-            case let controller as ContentViewController:
+            case let controller as ContentViewPanel:
                 contentController = controller
                 break
-            case let controller as InspectorViewController:
+            case let controller as InspectorPanel:
                 inspectorController = controller
             default:
                 break

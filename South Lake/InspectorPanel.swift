@@ -1,5 +1,5 @@
 //
-//  InspectorViewController.swift
+//  InspectorPanel.swift
 //  South Lake
 //
 //  Created by Philip Dow on 3/8/16.
@@ -12,7 +12,7 @@ import Cocoa
 /// It does not manage bindings for the inspectors, and it doesn't care what is displayed
 /// in the inspectors.
 
-class InspectorViewController: NSViewController {
+class InspectorPanel: NSViewController {
     @IBOutlet var viewContainer: NSView!
     @IBOutlet var tabView: NSTabView!
     @IBOutlet var tabBar: DMTabBar!

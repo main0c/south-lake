@@ -30,7 +30,7 @@
         <!--Content View Controller-->
         <scene sceneID="lUj-dP-CsN">
             <objects>
-                <viewController id="gSK-tU-OTL" userLabel="Content View Controller" customClass="ContentViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gSK-tU-OTL" userLabel="Content View Controller" customClass="ContentViewPanel" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="b62-9X-aZ2">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="578"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -70,7 +70,7 @@
         <!--Inspector Controller-->
         <scene sceneID="es3-lF-qMF">
             <objects>
-                <viewController id="Oek-qD-h4p" userLabel="Inspector Controller" customClass="InspectorViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Oek-qD-h4p" userLabel="Inspector Controller" customClass="InspectorPanel" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="rdU-W6-1rA">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="478"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -136,7 +136,7 @@
         <!--Source List Controller-->
         <scene sceneID="gsY-rn-MuH">
             <objects>
-                <viewController id="BCA-UI-RVa" userLabel="Source List Controller" customClass="SourceListViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BCA-UI-RVa" userLabel="Source List Controller" customClass="SourceListPanel" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="WFb-qx-mSZ">
                         <rect key="frame" x="0.0" y="0.0" width="234" height="400"/>
                         <autoresizingMask key="autoresizingMask"/>
