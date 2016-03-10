@@ -23,6 +23,7 @@ class MarkdownTOCInspector: NSViewController, Inspector {
                     "padding: 5px; " +
                     "font-family: 'HelveticaNeue', 'Helvetica Neue', 'Helvetica Neue', Arial, Helvetica, sans-serif;" +
                     "font-size: 11px;" +
+                    "background-color: rgb(243, 243, 243)" +
                 "}" +
                 "a {" +
                     "text-decoration: none;" +
@@ -33,6 +34,11 @@ class MarkdownTOCInspector: NSViewController, Inspector {
                 "}" +
                 "li {" +
                     "margin: 5px 0;" +
+                "}" +
+                "h3 {" +
+                    "margin: 0;" +
+                    "padding: 0;" +
+                    "font-weight: normal;" +
                 "}" +
             "</style>" +
         "</head>" +
@@ -50,9 +56,10 @@ class MarkdownTOCInspector: NSViewController, Inspector {
     
     // MARK: - Custom Properties
     
-    dynamic var tableOfContents: String = "" {
+    dynamic var tableOfContents: String? {
         didSet {
-            let html = styling.stringByReplacingOccurrencesOfString("{{toc}}", withString: tableOfContents)
+            let toc = tableOfContents ?? ""
+            let html = styling.stringByReplacingOccurrencesOfString("{{toc}}", withString: toc)
             webView.mainFrame.loadHTMLString(html, baseURL: NSURL(string: "/"))
         }
     }

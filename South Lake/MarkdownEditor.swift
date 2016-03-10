@@ -100,7 +100,7 @@ class MarkdownEditor: NSViewController, FileEditor {
     
     // TEMPORARY
     
-    dynamic var tableOfContents: String = ""
+    dynamic var tableOfContents: String?
     dynamic var tableOfContentsAnchor: String = "" {
         didSet {
             let script = "window.location.href = \"#" + tableOfContentsAnchor + "\""

@@ -31,6 +31,10 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     var contentController: ContentViewController! // center content
     var inspectorController: InspectorViewController! // right inspector
     
+    // Default inspectors
+    
+    
+    
     dynamic var icon: NSImage?
     
     // Document Tab Properties
@@ -333,6 +337,14 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         // Don't need to set up bindings or pass files because they are taken care of by the editor
         
         inspectors = editor.inspectors
+        
+        // Test
+        
+        inspectors = inspectors ?? []
+        
+        let metadataInspector = NSStoryboard(name: "MetadataInspector", bundle: nil).instantiateInitialController() as! MetadataInspector
+        inspectors!.append(metadataInspector)
+        
         inspectorController.inspectors = inspectors
     }
     

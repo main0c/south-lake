@@ -51,6 +51,10 @@
 		E37C7BB31C90BF6A00A3AB43 /* DMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C7BB01C90BF6A00A3AB43 /* DMTabBar.m */; };
 		E37C7BB41C90BF6A00A3AB43 /* DMTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C7BB21C90BF6A00A3AB43 /* DMTabBarItem.m */; };
 		E37C7BB71C90C85800A3AB43 /* NSImage+Tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C7BB61C90C85800A3AB43 /* NSImage+Tint.swift */; };
+		E37C7BD11C91021C00A3AB43 /* MetadataInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C7BD01C91021C00A3AB43 /* MetadataInspector.swift */; };
+		E37C7BD41C91022700A3AB43 /* CommentsInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C7BD21C91022700A3AB43 /* CommentsInspector.swift */; };
+		E37C7BD81C91024000A3AB43 /* RelatedInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C7BD61C91024000A3AB43 /* RelatedInspector.swift */; };
+		E37C7BDC1C9108D600A3AB43 /* MetadataInspector.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E37C7BDB1C9108D600A3AB43 /* MetadataInspector.storyboard */; };
 		E37D96101C723B8A000A9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D960F1C723B8A000A9F90 /* AppDelegate.swift */; };
 		E37D96141C723B8A000A9F90 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D96131C723B8A000A9F90 /* Document.swift */; };
 		E37D96161C723B8A000A9F90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E37D96151C723B8A000A9F90 /* Assets.xcassets */; };
@@ -320,6 +324,10 @@
 		E37C7BB11C90BF6A00A3AB43 /* DMTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTabBarItem.h; sourceTree = "<group>"; };
 		E37C7BB21C90BF6A00A3AB43 /* DMTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTabBarItem.m; sourceTree = "<group>"; };
 		E37C7BB61C90C85800A3AB43 /* NSImage+Tint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSImage+Tint.swift"; sourceTree = "<group>"; };
+		E37C7BD01C91021C00A3AB43 /* MetadataInspector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetadataInspector.swift; sourceTree = "<group>"; };
+		E37C7BD21C91022700A3AB43 /* CommentsInspector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsInspector.swift; sourceTree = "<group>"; };
+		E37C7BD61C91024000A3AB43 /* RelatedInspector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelatedInspector.swift; sourceTree = "<group>"; };
+		E37C7BDB1C9108D600A3AB43 /* MetadataInspector.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MetadataInspector.storyboard; sourceTree = "<group>"; };
 		E37D960C1C723B8A000A9F90 /* South Lake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "South Lake.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E37D960F1C723B8A000A9F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E37D96131C723B8A000A9F90 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -2601,6 +2609,25 @@
 			name = DMTabBar;
 			sourceTree = "<group>";
 		};
+		E37C7BBF1C91020400A3AB43 /* Inspectors */ = {
+			isa = PBXGroup;
+			children = (
+				E37C7BDA1C9107B300A3AB43 /* Metadata */,
+				E37C7BD21C91022700A3AB43 /* CommentsInspector.swift */,
+				E37C7BD61C91024000A3AB43 /* RelatedInspector.swift */,
+			);
+			name = Inspectors;
+			sourceTree = "<group>";
+		};
+		E37C7BDA1C9107B300A3AB43 /* Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				E37C7BDB1C9108D600A3AB43 /* MetadataInspector.storyboard */,
+				E37C7BD01C91021C00A3AB43 /* MetadataInspector.swift */,
+			);
+			name = Metadata;
+			sourceTree = "<group>";
+		};
 		E37D96031C723B8A000A9F90 = {
 			isa = PBXGroup;
 			children = (
@@ -2635,10 +2662,11 @@
 				E360725B1C74E32E00914C2C /* DocumentWindowController.swift */,
 				E360726E1C74E40500914C2C /* DocumentTabController.swift */,
 				E32AD26F1C76838E00648BFD /* Protocols */,
+				E360726D1C74E3C800914C2C /* Model */,
 				E3C821111C75979100CBAE92 /* Tabs */,
+				E37C7BBF1C91020400A3AB43 /* Inspectors */,
 				E3274FBD1C75A065000B6A84 /* Editors */,
 				E3FD67A01C7BE4A200D7EBB7 /* Importers */,
-				E360726D1C74E3C800914C2C /* Model */,
 				E3E7C9E41C89079000BD73A9 /* Snippets */,
 				E32EC0901C74493900E47B3F /* Extensions */,
 				E3C436281C7642A500DD685D /* Utilities */,
@@ -7437,6 +7465,7 @@
 				E37AB7731C8F4C5900F44564 /* As We May Think - The Atlantic.pdf in Resources */,
 				E37AB7771C8F4D2B00F44564 /* PDFEditor.storyboard in Resources */,
 				E3E65F541C7C1A8F0085B5B7 /* About Markdown.md in Resources */,
+				E37C7BDC1C9108D600A3AB43 /* MetadataInspector.storyboard in Resources */,
 				E3C436231C7640B000DD685D /* Welcome.md in Resources */,
 				E3DDBEED1C8D311700136BAE /* LibraryEditor.storyboard in Resources */,
 			);
@@ -7563,6 +7592,7 @@
 				E37C7BB41C90BF6A00A3AB43 /* DMTabBarItem.m in Sources */,
 				E3274FC51C75A13D000B6A84 /* Folder.swift in Sources */,
 				E3803F051C728E140048AD46 /* pmh_styleparser.c in Sources */,
+				E37C7BD81C91024000A3AB43 /* RelatedInspector.swift in Sources */,
 				E3803F151C728E950048AD46 /* MPEditorView.m in Sources */,
 				E37AB76C1C8F4A2E00F44564 /* PDFImporter.swift in Sources */,
 				E3DDBEF11C8D313A00136BAE /* LibraryEditor.swift in Sources */,
@@ -7624,6 +7654,7 @@
 				E3803F111C728E800048AD46 /* MPPreferences.m in Sources */,
 				E3E7C9DD1C89078100BD73A9 /* Array+SafeIndexing.swift in Sources */,
 				E37C7B461C8FF2F700A3AB43 /* Inspector.swift in Sources */,
+				E37C7BD11C91021C00A3AB43 /* MetadataInspector.swift in Sources */,
 				E3803F091C728E790048AD46 /* DOMNode+Text.m in Sources */,
 				E3803F081C728E600048AD46 /* MPRenderer.m in Sources */,
 				E3AD256C1C7F9D08006D6536 /* FileImporter.swift in Sources */,
@@ -7633,6 +7664,7 @@
 				E3DDBEF61C8D451E00136BAE /* CalendarEditor.swift in Sources */,
 				E3803F121C728E910048AD46 /* MPMathJaxListener.m in Sources */,
 				E3E7C9E61C89079C00BD73A9 /* String+Snippet.swift in Sources */,
+				E37C7BD41C91022700A3AB43 /* CommentsInspector.swift in Sources */,
 				E3803F0E1C728E790048AD46 /* NSObject+HTMLTabularize.m in Sources */,
 				E37AB7751C8F4D2100F44564 /* PDFEditor.swift in Sources */,
 			);
