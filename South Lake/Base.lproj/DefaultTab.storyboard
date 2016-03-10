@@ -11,7 +11,7 @@
                     <splitViewItems>
                         <splitViewItem canCollapse="YES" holdingPriority="260" id="jaa-bu-Pik"/>
                         <splitViewItem id="r3S-wC-o5K"/>
-                        <splitViewItem canCollapse="YES" id="f42-Mv-dee"/>
+                        <splitViewItem canCollapse="YES" holdingPriority="260" id="f42-Mv-dee"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" vertical="YES" id="MZl-Ad-cPP">
                         <rect key="frame" x="-107" y="0.0" width="1325" height="394"/>
@@ -84,7 +84,7 @@
                                         <tabViewItems>
                                             <tabViewItem label="Tab" identifier="1" id="ODI-KQ-Vu8">
                                                 <view key="view" id="lt9-ph-aZc">
-                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="450"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="280" height="450"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </view>
                                             </tabViewItem>
@@ -105,9 +105,10 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="CDk-Mn-Vb4" secondAttribute="trailing" id="QA1-7v-2xs"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="280" id="QWW-gB-7VC"/>
                                     <constraint firstAttribute="bottom" secondItem="CDk-Mn-Vb4" secondAttribute="bottom" id="S9z-fe-WFl"/>
                                     <constraint firstItem="LoR-WC-Nyj" firstAttribute="leading" secondItem="86m-FJ-wL4" secondAttribute="leading" id="TF9-6A-8tc"/>
-                                    <constraint firstAttribute="width" constant="200" id="ZWy-8e-wwz"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="ZWy-8e-wwz"/>
                                     <constraint firstItem="CDk-Mn-Vb4" firstAttribute="leading" secondItem="86m-FJ-wL4" secondAttribute="leading" id="gXe-pF-2jv"/>
                                     <constraint firstAttribute="trailing" secondItem="LoR-WC-Nyj" secondAttribute="trailing" id="gk1-IX-a3w"/>
                                     <constraint firstItem="CDk-Mn-Vb4" firstAttribute="top" secondItem="86m-FJ-wL4" secondAttribute="top" constant="28" id="l5I-z0-L7i"/>
