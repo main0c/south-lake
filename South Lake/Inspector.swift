@@ -32,4 +32,7 @@ protocol Inspector {
     /// An icon is required and indicates to the user what this inspector does
     var icon: NSImage { get }
     
+    /// A selected icon is required. It should be a bolder or filled in version of the icon
+    var selectedIcon: NSImage { get }
+    
 }

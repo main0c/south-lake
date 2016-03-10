@@ -29,4 +29,7 @@
 + (DMTabBarItem *) tabBarItemWithIcon:(NSImage *) iconImage tag:(NSUInteger) itemTag;
 - (id)initWithIcon:(NSImage *) iconImage tag:(NSUInteger) itemTag;
 
+// pdow
+- (id)initWithIcon:(NSImage *) iconImage selectedIcon:(NSImage *)selectedIconImage tag:(NSUInteger) itemTag;
+
 @end

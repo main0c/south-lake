@@ -10,9 +10,17 @@ import Cocoa
 
 class PDFOutlineInspector: NSViewController, Inspector {
 
+    // MARK: - Inspector
+
     var icon: NSImage {
-        return NSImage(named:"pdf-thumbnails-icon")!
+        return NSImage(named:"pdf-table-of-contents-icon")!
     }
+    
+    var selectedIcon: NSImage {
+        return NSImage(named:"pdf-table-of-contents-selected-icon")!
+    }
+    
+    // MARK: - Initialization
 
     override func viewDidLoad() {
         super.viewDidLoad()

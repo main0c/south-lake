@@ -343,7 +343,12 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         inspectors = inspectors ?? []
         
         let metadataInspector = NSStoryboard(name: "MetadataInspector", bundle: nil).instantiateInitialController() as! MetadataInspector
+        let commentsInspector = NSStoryboard(name: "CommentsInspector", bundle: nil).instantiateInitialController() as! CommentsInspector
+        let relatedInspector = NSStoryboard(name: "RelatedInspector", bundle: nil).instantiateInitialController() as! RelatedInspector
+        
         inspectors!.append(metadataInspector)
+        inspectors!.append(commentsInspector)
+        inspectors!.append(relatedInspector)
         
         inspectorController.inspectors = inspectors
     }

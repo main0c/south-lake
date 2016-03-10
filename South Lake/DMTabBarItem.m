@@ -58,8 +58,14 @@ static CGFloat kDMTabBarItemGradientColor_Locations[] =     {0.0f, 0.5f, 1.0f};
         ((NSButtonCell*)self.tabBarItemButton.cell).imageScaling = NSImageScaleProportionallyDown;
         ((NSButtonCell*)self.tabBarItemButton.cell).imagePosition = NSImageOnly;
         ((NSButtonCell*)self.tabBarItemButton.cell).buttonType = NSToggleButton;
-        
-        self.tabBarItemButton.alternateImage = [DMTabBarButtonCell tintedImage:iconImage withColor:[NSColor colorWithCalibratedRed:48.0/255.0 green:127.0/255.0 blue:247.0/255.0 alpha:1.0]];
+    }
+    return self;
+}
+
+- (id)initWithIcon:(NSImage *) iconImage selectedIcon:(NSImage *)selectedIconImage tag:(NSUInteger) itemTag {
+    self = [self initWithIcon:iconImage tag:itemTag];
+    if (self) {
+        self.tabBarItemButton.alternateImage = [DMTabBarButtonCell tintedImage:selectedIconImage withColor:[NSColor colorWithCalibratedRed:48.0/255.0 green:127.0/255.0 blue:247.0/255.0 alpha:1.0]];
     }
     return self;
 }

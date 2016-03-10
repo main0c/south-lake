@@ -73,7 +73,7 @@ class InspectorViewController: NSViewController {
         // Set up tab bar
         
         tabBar.tabBarItems = inspectors.map { (inspector) -> DMTabBarItem in
-            let item = DMTabBarItem(icon: inspector.icon, tag: 0)
+            let item = DMTabBarItem(icon: inspector.icon, selectedIcon: inspector.selectedIcon, tag: 0)
             item.toolTip = inspector.title
             return item
         }

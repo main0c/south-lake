@@ -12,9 +12,17 @@ import Quartz
 class PDFThumbnailInspector: NSViewController, Inspector {
     @IBOutlet var thumbnailView: PDFThumbnailView!
 
+    // MARK: - Inspector
+
     var icon: NSImage {
         return NSImage(named:"pdf-thumbnails-icon")!
     }
+    
+    var selectedIcon: NSImage {
+        return NSImage(named:"pdf-thumbnails-selected-icon")!
+    }
+    
+    // MARK: - Initialization
 
     override func viewDidLoad() {
         super.viewDidLoad()

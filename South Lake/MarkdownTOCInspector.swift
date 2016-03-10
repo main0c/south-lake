@@ -51,7 +51,11 @@ class MarkdownTOCInspector: NSViewController, Inspector {
     // MARK: - Inspector
 
     var icon: NSImage {
-        return NSImage(named: "table-of-contents-icon")!
+        return NSImage(named: "md-table-of-contents-icon")!
+    }
+    
+    var selectedIcon: NSImage {
+        return NSImage(named: "md-table-of-contents-selected-icon")!
     }
     
     // MARK: - Custom Properties

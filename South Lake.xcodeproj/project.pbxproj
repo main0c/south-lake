@@ -55,6 +55,8 @@
 		E37C7BD41C91022700A3AB43 /* CommentsInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C7BD21C91022700A3AB43 /* CommentsInspector.swift */; };
 		E37C7BD81C91024000A3AB43 /* RelatedInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C7BD61C91024000A3AB43 /* RelatedInspector.swift */; };
 		E37C7BDC1C9108D600A3AB43 /* MetadataInspector.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E37C7BDB1C9108D600A3AB43 /* MetadataInspector.storyboard */; };
+		E37C7BDF1C911AFE00A3AB43 /* CommentsInspector.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E37C7BDE1C911AFE00A3AB43 /* CommentsInspector.storyboard */; };
+		E37C7BE21C911F9600A3AB43 /* RelatedInspector.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E37C7BE11C911F9600A3AB43 /* RelatedInspector.storyboard */; };
 		E37D96101C723B8A000A9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D960F1C723B8A000A9F90 /* AppDelegate.swift */; };
 		E37D96141C723B8A000A9F90 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D96131C723B8A000A9F90 /* Document.swift */; };
 		E37D96161C723B8A000A9F90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E37D96151C723B8A000A9F90 /* Assets.xcassets */; };
@@ -328,6 +330,8 @@
 		E37C7BD21C91022700A3AB43 /* CommentsInspector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsInspector.swift; sourceTree = "<group>"; };
 		E37C7BD61C91024000A3AB43 /* RelatedInspector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelatedInspector.swift; sourceTree = "<group>"; };
 		E37C7BDB1C9108D600A3AB43 /* MetadataInspector.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MetadataInspector.storyboard; sourceTree = "<group>"; };
+		E37C7BDE1C911AFE00A3AB43 /* CommentsInspector.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CommentsInspector.storyboard; sourceTree = "<group>"; };
+		E37C7BE11C911F9600A3AB43 /* RelatedInspector.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RelatedInspector.storyboard; sourceTree = "<group>"; };
 		E37D960C1C723B8A000A9F90 /* South Lake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "South Lake.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E37D960F1C723B8A000A9F90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E37D96131C723B8A000A9F90 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -2613,8 +2617,8 @@
 			isa = PBXGroup;
 			children = (
 				E37C7BDA1C9107B300A3AB43 /* Metadata */,
-				E37C7BD21C91022700A3AB43 /* CommentsInspector.swift */,
-				E37C7BD61C91024000A3AB43 /* RelatedInspector.swift */,
+				E37C7BDD1C911AEC00A3AB43 /* Comments */,
+				E37C7BE01C911F5B00A3AB43 /* Related Files */,
 			);
 			name = Inspectors;
 			sourceTree = "<group>";
@@ -2626,6 +2630,24 @@
 				E37C7BD01C91021C00A3AB43 /* MetadataInspector.swift */,
 			);
 			name = Metadata;
+			sourceTree = "<group>";
+		};
+		E37C7BDD1C911AEC00A3AB43 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				E37C7BDE1C911AFE00A3AB43 /* CommentsInspector.storyboard */,
+				E37C7BD21C91022700A3AB43 /* CommentsInspector.swift */,
+			);
+			name = Comments;
+			sourceTree = "<group>";
+		};
+		E37C7BE01C911F5B00A3AB43 /* Related Files */ = {
+			isa = PBXGroup;
+			children = (
+				E37C7BE11C911F9600A3AB43 /* RelatedInspector.storyboard */,
+				E37C7BD61C91024000A3AB43 /* RelatedInspector.swift */,
+			);
+			name = "Related Files";
 			sourceTree = "<group>";
 		};
 		E37D96031C723B8A000A9F90 = {
@@ -7447,6 +7469,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E37C7BDF1C911AFE00A3AB43 /* CommentsInspector.storyboard in Resources */,
 				E37D96161C723B8A000A9F90 /* Assets.xcassets in Resources */,
 				E3274FD01C75A594000B6A84 /* MarkdownEditor.storyboard in Resources */,
 				E3DDBEEF1C8D312200136BAE /* TagsEditor.storyboard in Resources */,
@@ -7465,6 +7488,7 @@
 				E37AB7731C8F4C5900F44564 /* As We May Think - The Atlantic.pdf in Resources */,
 				E37AB7771C8F4D2B00F44564 /* PDFEditor.storyboard in Resources */,
 				E3E65F541C7C1A8F0085B5B7 /* About Markdown.md in Resources */,
+				E37C7BE21C911F9600A3AB43 /* RelatedInspector.storyboard in Resources */,
 				E37C7BDC1C9108D600A3AB43 /* MetadataInspector.storyboard in Resources */,
 				E3C436231C7640B000DD685D /* Welcome.md in Resources */,
 				E3DDBEED1C8D311700136BAE /* LibraryEditor.storyboard in Resources */,

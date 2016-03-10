@@ -8,7 +8,19 @@
 
 import Cocoa
 
-class RelatedInspector: NSViewController {
+class RelatedInspector: NSViewController, Inspector {
+
+    // MARK: - Inspector
+
+    var icon: NSImage {
+        return NSImage(named: "related-files-icon")!
+    }
+    
+    var selectedIcon: NSImage {
+        return NSImage(named: "related-files-selected-icon")!
+    }
+    
+    // MARK: - Initialization
 
     override func viewDidLoad() {
         super.viewDidLoad()

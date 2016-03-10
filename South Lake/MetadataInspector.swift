@@ -17,6 +17,10 @@ class MetadataInspector: NSViewController, Inspector {
         return NSImage(named: "metadata-icon")!
     }
     
+     var selectedIcon: NSImage {
+        return NSImage(named: "metadata-selected-icon")!
+    }
+    
     // MARK: - Initialization
     
     override func viewDidLoad() {
@@ -47,6 +51,10 @@ extension MetadataInspector: NSTableViewDelegate {
     }
     
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        return 72
+        return 116
     }
+    
+//    func tableView(tableView: NSTableView, selectionIndexesForProposedSelection proposedSelectionIndexes: NSIndexSet) -> NSIndexSet {
+//        return NSIndexSet()
+//    }
 }
