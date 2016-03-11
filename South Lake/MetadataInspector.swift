@@ -8,8 +8,46 @@
 
 import Cocoa
 
+let kTitle = "title"
+let kChildren = "children"
+let kIdentifier = "identifier"
+let kHeight = "height"
+
+let kHeaderCell = "HeaderCell"
+
 class MetadataInspector: NSViewController, Inspector {
-    @IBOutlet var tableView: NSTableView!
+    @IBOutlet var outlineView: NSOutlineView!
+    
+    // http://stackoverflow.com/questions/24828553/swift-code-to-use-nsoutlineview-as-file-system-directory-browser/27626466#27626466
+    
+//    let items:[[String:AnyObject]] = [
+//        [
+//            kTitle: NSLocalizedString("File Info", comment:""),
+//            kIdentifier: "HeaderCell",
+//            kChildren: [[
+//                kTitle: NSLocalizedString("File Info", comment:""),
+//                kIdentifier: "FileInfoCell",
+//                kHeight: CGFloat(96),
+//                kChildren: []
+//            ]]
+//        ]
+//    ]
+    
+    let items:[[String:AnyObject]] = [
+        [
+            kTitle: NSLocalizedString("File Info", comment:""),
+            kIdentifier: "FileInfoCell",
+            kHeight: CGFloat(116),
+            kChildren: []
+        ],
+        [
+            kTitle: NSLocalizedString("Tags", comment:""),
+            kIdentifier: "TagsCell",
+            kHeight: CGFloat(116),
+            kChildren: []
+        ]
+    ]
+
     
     // MARK: - Inspector
 
@@ -27,34 +65,97 @@ class MetadataInspector: NSViewController, Inspector {
         super.viewDidLoad()
         // Do view setup here.
         
-        // tableView.usesStaticContents = true // if only
-    }
-    
-}
-
-// MARK: - NSTableViewDataSource
-
-extension MetadataInspector: NSTableViewDataSource {
-    
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-        return 1
-    }
-}
-
-// MARK: - NSTableViewDelegate
-
-extension MetadataInspector: NSTableViewDelegate {
-    
-    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        // outlineView.usesStaticContents = true // what effect?
+        outlineView.selectionHighlightStyle = .None
+        outlineView.backgroundColor = NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
         
-        return tableView.makeViewWithIdentifier("FileInfo", owner: self) as! NSTableCellView
+        outlineView.sizeLastColumnToFit()
+        outlineView.expandItem(nil, expandChildren: true)
     }
     
-    func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        return 116
+}
+
+// MARK: - NSOutlineViewDataSource
+
+extension MetadataInspector: NSOutlineViewDataSource {
+    
+    func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {
+        guard let item = item as? [NSString: AnyObject] else {
+            return items.count
+        }
+        return item[kChildren]!.count
     }
     
-//    func tableView(tableView: NSTableView, selectionIndexesForProposedSelection proposedSelectionIndexes: NSIndexSet) -> NSIndexSet {
-//        return NSIndexSet()
-//    }
+    func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject {
+        guard let item = item as? [NSString: AnyObject] else {
+            return items[index]
+        }
+        return item[kChildren]![index]
+    }
+    
+    func outlineView(outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool {
+        guard let item = item as? [NSString: AnyObject] else {
+            return true
+        }
+        return item[kChildren]!.count > 0
+    }
+
+}
+
+// MARK: - NSOutlineViewDelegate
+
+extension MetadataInspector: NSOutlineViewDelegate {
+    
+    func outlineView(outlineView: NSOutlineView, viewForTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
+        guard let item = item as? [NSString: AnyObject] else {
+            return nil //error
+        }
+        
+        let identifier = item[kIdentifier] as! String
+        let view = outlineView.makeViewWithIdentifier(identifier, owner: self) as! NSTableCellView
+        
+        if identifier == kHeaderCell {
+            view.textField?.stringValue = item[kTitle] as! String
+            view.textField?.textColor = NSColor(white:0.0, alpha:1.0)
+        }
+        
+        return view
+    }
+    
+    func outlineView(outlineView: NSOutlineView, isGroupItem item: AnyObject) -> Bool {
+        guard let item = item as? [NSString: AnyObject] else {
+            return false //error
+        }
+        
+        let identifier = item[kIdentifier] as! String
+        return identifier == kHeaderCell
+    }
+    
+    func outlineView(outlineView: NSOutlineView, heightOfRowByItem item: AnyObject) -> CGFloat {
+        guard let item = item as? [NSString: AnyObject] else {
+            return 0 //error
+        }
+        
+        let identifier = item[kIdentifier] as! String
+        
+        if identifier == kHeaderCell {
+            return 17 //default
+        } else {
+            return item[kHeight] as! CGFloat
+        }
+    }
+    
+    func outlineView(outlineView: NSOutlineView, shouldSelectItem item: AnyObject) -> Bool {
+        guard let item = item as? [NSString: AnyObject] else {
+            return false
+        }
+        
+        let identifier = item[kIdentifier] as! String
+        return identifier != kHeaderCell
+    }
+    
+    func outlineView(outlineView: NSOutlineView, shouldTrackCell cell: NSCell, forTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> Bool {
+        return true
+    }
+    
 }

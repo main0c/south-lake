@@ -102,6 +102,7 @@
 		E3803F431C7297720048AD46 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F421C7297720048AD46 /* Security.framework */; };
 		E3803F451C7297780048AD46 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F441C7297780048AD46 /* CFNetwork.framework */; };
 		E3803F471C72977D0048AD46 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F461C72977D0048AD46 /* SystemConfiguration.framework */; };
+		E385F7E21C924D550015A91B /* md-toc-index.html in Resources */ = {isa = PBXBuildFile; fileRef = E385F7E11C924D550015A91B /* md-toc-index.html */; };
 		E3898F961C8015E700CA71BE /* SearchDocumentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3898F941C8015E700CA71BE /* SearchDocumentTab.swift */; };
 		E3A8A0DE1C80C1DB009E96C1 /* NSDataNSStringValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385F8071C796B950072A2CD /* NSDataNSStringValueTransformer.swift */; };
 		E3A8A0DF1C80C1DC009E96C1 /* NSStringNSDataValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39E9B381C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift */; };
@@ -2426,6 +2427,7 @@
 		E3803F421C7297720048AD46 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E3803F441C7297780048AD46 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E3803F461C72977D0048AD46 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E385F7E11C924D550015A91B /* md-toc-index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "md-toc-index.html"; sourceTree = "<group>"; };
 		E385F8071C796B950072A2CD /* NSDataNSStringValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataNSStringValueTransformer.swift; sourceTree = "<group>"; };
 		E3898F941C8015E700CA71BE /* SearchDocumentTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDocumentTab.swift; sourceTree = "<group>"; };
 		E39E9B381C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringNSDataValueTransformer.swift; sourceTree = "<group>"; };
@@ -2637,6 +2639,7 @@
 		E37C7BDD1C911AEC00A3AB43 /* Comments */ = {
 			isa = PBXGroup;
 			children = (
+				E37C7BEA1C914CE500A3AB43 /* chat-widget */,
 				E37C7BDE1C911AFE00A3AB43 /* CommentsInspector.storyboard */,
 				E37C7BD21C91022700A3AB43 /* CommentsInspector.swift */,
 			);
@@ -2698,7 +2701,6 @@
 				E37D96151C723B8A000A9F90 /* Assets.xcassets */,
 				E3C436211C7640A400DD685D /* Welcome.md */,
 				E3E65F531C7C1A840085B5B7 /* About Markdown.md */,
-				E37C7BEA1C914CE500A3AB43 /* chat-widget */,
 				E37AB7721C8F4C5900F44564 /* As We May Think - The Atlantic.pdf */,
 				E37D961A1C723B8A000A9F90 /* Info.plist */,
 			);
@@ -7138,6 +7140,7 @@
 		E3898F981C80162700CA71BE /* Markdown */ = {
 			isa = PBXGroup;
 			children = (
+				E385F7E11C924D550015A91B /* md-toc-index.html */,
 				E3274FD21C75A594000B6A84 /* MarkdownEditor.storyboard */,
 				E3274FBE1C75A088000B6A84 /* MarkdownEditor.swift */,
 				E37C7B651C8FF85D00A3AB43 /* MarkdownTOCInspector.swift */,
@@ -7484,6 +7487,7 @@
 				E380358F1C728D780048AD46 /* Extensions in Resources */,
 				E38035901C728D780048AD46 /* MathJax in Resources */,
 				E38035911C728D780048AD46 /* Prism in Resources */,
+				E385F7E21C924D550015A91B /* md-toc-index.html in Resources */,
 				E38035921C728D780048AD46 /* Styles in Resources */,
 				E38035931C728D780048AD46 /* syntax_highlighting.json in Resources */,
 				E38035941C728D780048AD46 /* Themes in Resources */,

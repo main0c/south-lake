@@ -146,46 +146,48 @@ static CGFloat kDMTabBarItemGradientColor_Locations[] =     {0.0f, 0.5f, 1.0f};
 }
 
 - (void) drawBezelWithFrame:(NSRect)frame inView:(NSView *)controlView {
-    if (self.state == NSOnState) { 
-        // If selected we need to draw the border new background for selection (otherwise we will use default back color)
-        // Save current context
-        
+    if (self.state == NSOnState) {
+    
+        // pdow
         return ;
         
-        [[NSGraphicsContext currentContext] saveGraphicsState];
-        
-        // Draw light vertical gradient
-        [kDMTabBarItemGradient drawInRect:frame angle:-90.0f];
-        
-        // Draw shadow on the left border of the item
-        NSShadow *shadow = [[NSShadow alloc] init];
-        shadow.shadowOffset = NSMakeSize(1.0f, 0.0f);
-        shadow.shadowBlurRadius = 2.0f;
-        shadow.shadowColor = [NSColor darkGrayColor];
-        [shadow set];
-        
-        [[NSColor blackColor] set];        
-        CGFloat radius = 50.0;
-        NSPoint center = NSMakePoint(NSMinX(frame) - radius, NSMidY(frame));
-        NSBezierPath *path = [NSBezierPath bezierPath];
-        [path moveToPoint:center];
-        [path appendBezierPathWithArcWithCenter:center radius:radius startAngle:-90.0f endAngle:90.0f];
-        [path closePath];
-        [path fill];
-        
-        // shadow of the right border
-        shadow.shadowOffset = NSMakeSize(-1.0f, 0.0f);
-        [shadow set];
-        
-        center = NSMakePoint(NSMaxX(frame) + radius, NSMidY(frame));
-        path = [NSBezierPath bezierPath];
-        [path moveToPoint:center];
-        [path appendBezierPathWithArcWithCenter:center radius:radius startAngle:90.0f  endAngle:270.0f];
-        [path closePath];
-        [path fill];
-        
-        // Restore context
-        [[NSGraphicsContext currentContext] restoreGraphicsState];
+//        // If selected we need to draw the border new background for selection (otherwise we will use default back color)
+//        // Save current context
+//        
+//        [[NSGraphicsContext currentContext] saveGraphicsState];
+//        
+//        // Draw light vertical gradient
+//        [kDMTabBarItemGradient drawInRect:frame angle:-90.0f];
+//        
+//        // Draw shadow on the left border of the item
+//        NSShadow *shadow = [[NSShadow alloc] init];
+//        shadow.shadowOffset = NSMakeSize(1.0f, 0.0f);
+//        shadow.shadowBlurRadius = 2.0f;
+//        shadow.shadowColor = [NSColor darkGrayColor];
+//        [shadow set];
+//        
+//        [[NSColor blackColor] set];        
+//        CGFloat radius = 50.0;
+//        NSPoint center = NSMakePoint(NSMinX(frame) - radius, NSMidY(frame));
+//        NSBezierPath *path = [NSBezierPath bezierPath];
+//        [path moveToPoint:center];
+//        [path appendBezierPathWithArcWithCenter:center radius:radius startAngle:-90.0f endAngle:90.0f];
+//        [path closePath];
+//        [path fill];
+//        
+//        // shadow of the right border
+//        shadow.shadowOffset = NSMakeSize(-1.0f, 0.0f);
+//        [shadow set];
+//        
+//        center = NSMakePoint(NSMaxX(frame) + radius, NSMidY(frame));
+//        path = [NSBezierPath bezierPath];
+//        [path moveToPoint:center];
+//        [path appendBezierPathWithArcWithCenter:center radius:radius startAngle:90.0f  endAngle:270.0f];
+//        [path closePath];
+//        [path fill];
+//        
+//        // Restore context
+//        [[NSGraphicsContext currentContext] restoreGraphicsState];
     }
 }
 

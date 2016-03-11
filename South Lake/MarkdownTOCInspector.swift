@@ -14,39 +14,41 @@ class MarkdownTOCInspector: NSViewController, Inspector {
 
     // Almost certainly want to move this
     
-    let styling =
-    "<html>" +
-        "<head>" +
-            "<style>" +
-                "html, body {" +
-                    "margin: 5px;" +
-                    "padding: 5px; " +
-                    "font-family: 'HelveticaNeue', 'Helvetica Neue', 'Helvetica Neue', Arial, Helvetica, sans-serif;" +
-                    "font-size: 11px;" +
-                    "background-color: rgb(243, 243, 243)" +
-                "}" +
-                "a {" +
-                    "text-decoration: none;" +
-                "}" +
-                "ul {" +
-                    "margin: 0 0 0 5px;" +
-                    "padding: 0; " +
-                "}" +
-                "li {" +
-                    "margin: 5px 0;" +
-                "}" +
-                "h3 {" +
-                    "margin: 0;" +
-                    "padding: 0;" +
-                    "font-weight: normal;" +
-                "}" +
-            "</style>" +
-        "</head>" +
-        "<body>" +
-            "<h3>Table of Contents</h3>" +
-            "{{toc}}" +
-        "</body>" +
-    "</html>"
+    var template: String?
+    
+//    let template =
+//    "<html>" +
+//        "<head>" +
+//            "<style>" +
+//                "html, body {" +
+//                    "margin: 5px;" +
+//                    "padding: 5px; " +
+//                    "font-family: 'HelveticaNeue', 'Helvetica Neue', 'Helvetica Neue', Arial, Helvetica, sans-serif;" +
+//                    "font-size: 11px;" +
+//                    "background-color: rgb(243, 243, 243)" +
+//                "}" +
+//                "a {" +
+//                    "text-decoration: none;" +
+//                "}" +
+//                "ul {" +
+//                    "margin: 0 0 0 5px;" +
+//                    "padding: 0; " +
+//                "}" +
+//                "li {" +
+//                    "margin: 5px 0;" +
+//                "}" +
+//                "h3 {" +
+//                    "margin: 0;" +
+//                    "padding: 0;" +
+//                    "font-weight: normal;" +
+//                "}" +
+//            "</style>" +
+//        "</head>" +
+//        "<body>" +
+//            "<h3>Table of Contents</h3>" +
+//            "{{toc}}" +
+//        "</body>" +
+//    "</html>"
 
     // MARK: - Inspector
 
@@ -62,8 +64,12 @@ class MarkdownTOCInspector: NSViewController, Inspector {
     
     dynamic var tableOfContents: String? {
         didSet {
+            guard let template = template else {
+                return
+            }
+            
             let toc = tableOfContents ?? ""
-            let html = styling.stringByReplacingOccurrencesOfString("{{toc}}", withString: toc)
+            let html = template.stringByReplacingOccurrencesOfString("{{toc}}", withString: toc)
             webView.mainFrame.loadHTMLString(html, baseURL: NSURL(string: "/"))
         }
     }
@@ -81,6 +87,10 @@ class MarkdownTOCInspector: NSViewController, Inspector {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        
+        do { template = try String(contentsOfURL: NSBundle.mainBundle().URLForResource("md-toc-index", withExtension: "html")!, encoding: NSUTF8StringEncoding) } catch {
+            print(error)
+        }
         
         webView.policyDelegate = self
     }
