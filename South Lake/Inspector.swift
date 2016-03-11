@@ -23,8 +23,14 @@ import Foundation
 /// inspector is a PDF thumbnail view that requires access to the PDF viewer
 /// to display thumbnails and scroll the viewer when a thumbnail is selected.
 
-@objc(Inspector)
-protocol Inspector {
+protocol Inspector: Databasable {
+    
+    // Databasable
+    
+    var databaseManager: DatabaseManager! { get set }
+    var searchService: BRSearchService! { get set }
+    
+    // Inspector
     
     /// The title is optional for an inspector and is used as a tooltip in the inspector palette
     var title: String? { get }

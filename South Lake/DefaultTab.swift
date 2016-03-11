@@ -346,6 +346,14 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         let commentsInspector = NSStoryboard(name: "CommentsInspector", bundle: nil).instantiateInitialController() as! CommentsInspector
         let relatedInspector = NSStoryboard(name: "RelatedInspector", bundle: nil).instantiateInitialController() as! RelatedInspector
         
+        metadataInspector.databaseManager = databaseManager
+        commentsInspector.databaseManager = databaseManager
+        relatedInspector.databaseManager = databaseManager
+        
+        metadataInspector.searchService = searchService
+        commentsInspector.searchService = searchService
+        relatedInspector.searchService = searchService
+        
         inspectors!.append(metadataInspector)
         inspectors!.append(commentsInspector)
         inspectors!.append(relatedInspector)

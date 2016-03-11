@@ -17,14 +17,13 @@ import Foundation
 
 protocol FileEditor: class, Databasable {
     
+    // Databasable
+    
+    var databaseManager: DatabaseManager! { get set }
+    var searchService: BRSearchService! { get set }
+    
     static var filetypes: [String] { get }
     static var storyboard: String { get }
-    
-    /// The default behavior of a file editor should be to ignore the databaseManager
-    var databaseManager: DatabaseManager! { get set }
-    
-    /// The default behavior of a file editor should be to ignore the searchService
-    var searchService: BRSearchService! { get set }
     
     /// A FileEditor is a view controller with a view property
     var view: NSView { get set }

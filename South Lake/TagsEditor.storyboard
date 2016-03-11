@@ -165,7 +165,7 @@
                                         </connections>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FUx-gq-J0C">
-                                        <rect key="frame" x="52" y="6" width="41" height="17"/>
+                                        <rect key="frame" x="54" y="6" width="41" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Count" id="UWb-u2-C5k">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -175,12 +175,21 @@
                                             <binding destination="hAE-oY-KQE" name="value" keyPath="representedObject.count" id="ZtH-bi-DdZ"/>
                                         </connections>
                                     </textField>
+                                    <box horizontalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="0SQ-v0-SZd">
+                                        <rect key="frame" x="48" y="8" width="5" height="13"/>
+                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <font key="titleFont" metaFont="system"/>
+                                    </box>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="0SQ-v0-SZd" firstAttribute="top" secondItem="eU7-ER-7Ru" secondAttribute="top" constant="8" id="1If-Zs-gJb"/>
+                                    <constraint firstAttribute="bottom" secondItem="0SQ-v0-SZd" secondAttribute="bottom" constant="8" id="FG3-jh-SJ3"/>
                                     <constraint firstItem="FUx-gq-J0C" firstAttribute="centerY" secondItem="eU7-ER-7Ru" secondAttribute="centerY" id="Skw-YM-3Qo"/>
-                                    <constraint firstItem="FUx-gq-J0C" firstAttribute="leading" secondItem="aXL-E6-8wV" secondAttribute="trailing" constant="8" id="YlR-Hw-7MG"/>
+                                    <constraint firstItem="FUx-gq-J0C" firstAttribute="leading" secondItem="aXL-E6-8wV" secondAttribute="trailing" constant="10" id="YlR-Hw-7MG"/>
                                     <constraint firstItem="aXL-E6-8wV" firstAttribute="centerY" secondItem="eU7-ER-7Ru" secondAttribute="centerY" id="ZHV-3z-m68"/>
-                                    <constraint firstAttribute="trailing" secondItem="FUx-gq-J0C" secondAttribute="trailing" constant="10" id="b7F-zC-37g"/>
+                                    <constraint firstAttribute="trailing" secondItem="FUx-gq-J0C" secondAttribute="trailing" constant="8" id="b7F-zC-37g"/>
+                                    <constraint firstItem="0SQ-v0-SZd" firstAttribute="leading" secondItem="aXL-E6-8wV" secondAttribute="trailing" constant="4" id="cVp-sB-6vO"/>
                                     <constraint firstItem="aXL-E6-8wV" firstAttribute="leading" secondItem="eU7-ER-7Ru" secondAttribute="leading" constant="10" id="xar-lE-qam"/>
                                 </constraints>
                             </customView>

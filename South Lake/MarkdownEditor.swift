@@ -296,6 +296,9 @@ class MarkdownEditor: NSViewController, FileEditor {
         
         tableOfContentsInspector = storyboard!.instantiateControllerWithIdentifier("tableOfContents") as? MarkdownTOCInspector
         
+        tableOfContentsInspector!.databaseManager = databaseManager
+        tableOfContentsInspector!.searchService = searchService
+        
         // Bind the inspectors table of contents to ours
         // Bind our anchor to the inspectors
         

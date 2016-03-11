@@ -8,30 +8,16 @@
 
 import Cocoa
 
-let kTitle = "title"
-let kChildren = "children"
-let kIdentifier = "identifier"
-let kHeight = "height"
-
-let kHeaderCell = "HeaderCell"
+private let kTitle = "title"
+private let kChildren = "children"
+private let kIdentifier = "identifier"
+private let kHeight = "height"
+private let kHeaderCell = "HeaderCell"
 
 class MetadataInspector: NSViewController, Inspector {
     @IBOutlet var outlineView: NSOutlineView!
     
     // http://stackoverflow.com/questions/24828553/swift-code-to-use-nsoutlineview-as-file-system-directory-browser/27626466#27626466
-    
-//    let items:[[String:AnyObject]] = [
-//        [
-//            kTitle: NSLocalizedString("File Info", comment:""),
-//            kIdentifier: "HeaderCell",
-//            kChildren: [[
-//                kTitle: NSLocalizedString("File Info", comment:""),
-//                kIdentifier: "FileInfoCell",
-//                kHeight: CGFloat(96),
-//                kChildren: []
-//            ]]
-//        ]
-//    ]
     
     let items:[[String:AnyObject]] = [
         [
@@ -57,6 +43,14 @@ class MetadataInspector: NSViewController, Inspector {
     
      var selectedIcon: NSImage {
         return NSImage(named: "metadata-selected-icon")!
+    }
+    
+    var databaseManager: DatabaseManager! {
+        didSet { }
+    }
+    
+    var searchService: BRSearchService! {
+        didSet { }
     }
     
     // MARK: - Initialization

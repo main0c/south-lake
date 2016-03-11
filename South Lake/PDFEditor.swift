@@ -87,6 +87,9 @@ class PDFEditor: NSViewController, FileEditor {
         
         thumbnailInspector = storyboard!.instantiateControllerWithIdentifier("thumbnail") as? PDFThumbnailInspector
         
+        thumbnailInspector!.databaseManager = databaseManager
+        thumbnailInspector!.searchService = searchService
+        
         let _ = thumbnailInspector!.view
         thumbnailInspector!.thumbnailView.setPDFView(editor)
     }

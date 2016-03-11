@@ -22,6 +22,14 @@ class PDFThumbnailInspector: NSViewController, Inspector {
         return NSImage(named:"pdf-thumbnails-selected-icon")!
     }
     
+    var databaseManager: DatabaseManager! {
+        didSet { }
+    }
+    
+    var searchService: BRSearchService! {
+        didSet { }
+    }
+    
     // MARK: - Initialization
 
     override func viewDidLoad() {

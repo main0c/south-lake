@@ -20,6 +20,14 @@ class PDFOutlineInspector: NSViewController, Inspector {
         return NSImage(named:"pdf-table-of-contents-selected-icon")!
     }
     
+    var databaseManager: DatabaseManager! {
+        didSet { }
+    }
+    
+    var searchService: BRSearchService! {
+        didSet { }
+    }
+    
     // MARK: - Initialization
 
     override func viewDidLoad() {

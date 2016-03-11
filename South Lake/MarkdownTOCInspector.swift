@@ -11,45 +11,7 @@ import WebKit
 
 class MarkdownTOCInspector: NSViewController, Inspector {
     @IBOutlet var webView: WebView!
-
-    // Almost certainly want to move this
     
-    var template: String?
-    
-//    let template =
-//    "<html>" +
-//        "<head>" +
-//            "<style>" +
-//                "html, body {" +
-//                    "margin: 5px;" +
-//                    "padding: 5px; " +
-//                    "font-family: 'HelveticaNeue', 'Helvetica Neue', 'Helvetica Neue', Arial, Helvetica, sans-serif;" +
-//                    "font-size: 11px;" +
-//                    "background-color: rgb(243, 243, 243)" +
-//                "}" +
-//                "a {" +
-//                    "text-decoration: none;" +
-//                "}" +
-//                "ul {" +
-//                    "margin: 0 0 0 5px;" +
-//                    "padding: 0; " +
-//                "}" +
-//                "li {" +
-//                    "margin: 5px 0;" +
-//                "}" +
-//                "h3 {" +
-//                    "margin: 0;" +
-//                    "padding: 0;" +
-//                    "font-weight: normal;" +
-//                "}" +
-//            "</style>" +
-//        "</head>" +
-//        "<body>" +
-//            "<h3>Table of Contents</h3>" +
-//            "{{toc}}" +
-//        "</body>" +
-//    "</html>"
-
     // MARK: - Inspector
 
     var icon: NSImage {
@@ -60,7 +22,17 @@ class MarkdownTOCInspector: NSViewController, Inspector {
         return NSImage(named: "md-table-of-contents-selected-icon")!
     }
     
+    var databaseManager: DatabaseManager! {
+        didSet { }
+    }
+    
+    var searchService: BRSearchService! {
+        didSet { }
+    }
+    
     // MARK: - Custom Properties
+    
+    var template: String?
     
     dynamic var tableOfContents: String? {
         didSet {

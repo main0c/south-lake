@@ -10,9 +10,14 @@
 import Cocoa
 
 protocol DocumentTab: class, Databasable {
+    
+    // Databasable
+    
     var databaseManager: DatabaseManager! { get set }
     var searchService: BRSearchService! { get set }
-    
+ 
+    // Document Tab
+ 
     var selectedObjects: [DataSource] { get set }
     
     var title: String? { get set }
