@@ -17,24 +17,6 @@ private let kHeaderCell = "HeaderCell"
 class MetadataInspector: NSViewController, Inspector {
     @IBOutlet var outlineView: NSOutlineView!
     
-    // http://stackoverflow.com/questions/24828553/swift-code-to-use-nsoutlineview-as-file-system-directory-browser/27626466#27626466
-    
-    let items:[[String:AnyObject]] = [
-        [
-            kTitle: NSLocalizedString("File Info", comment:""),
-            kIdentifier: "FileInfoCell",
-            kHeight: CGFloat(116),
-            kChildren: []
-        ],
-        [
-            kTitle: NSLocalizedString("Tags", comment:""),
-            kIdentifier: "TagsCell",
-            kHeight: CGFloat(116),
-            kChildren: []
-        ]
-    ]
-
-    
     // MARK: - Inspector
 
     var icon: NSImage {
@@ -52,6 +34,25 @@ class MetadataInspector: NSViewController, Inspector {
     var searchService: BRSearchService! {
         didSet { }
     }
+    
+    // MARK: - Custom Properties
+    
+    // http://stackoverflow.com/questions/24828553/swift-code-to-use-nsoutlineview-as-file-system-directory-browser/27626466#27626466
+    
+    let items:[[String:AnyObject]] = [
+        [
+            kTitle: NSLocalizedString("File Info", comment:""),
+            kIdentifier: "FileInfoCell",
+            kHeight: CGFloat(116),
+            kChildren: []
+        ],
+        [
+            kTitle: NSLocalizedString("Tags", comment:""),
+            kIdentifier: "TagsCell",
+            kHeight: CGFloat(116),
+            kChildren: []
+        ]
+    ]
     
     // MARK: - Initialization
     

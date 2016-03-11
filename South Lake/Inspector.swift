@@ -14,8 +14,8 @@ import Foundation
 ///
 /// A model inspector needs access to the file object. The data it shows and which
 /// it allows the user to edit depend only on the model. An example of a file
-/// inspector is the metadata inspector. A file inspector does not have access to
-/// the file's editor instance.
+/// inspector is the metadata inspector. In which case we need a selected objects
+/// propety. A file inspector does not have access to the file's editor instance.
 ///
 /// An editor inspector works with the visual editor for a file and so needs access
 /// to that interface (FileEditor protocol). An editor inspector doesn't have default
@@ -25,10 +25,12 @@ import Foundation
 
 protocol Inspector: Databasable {
     
-    // Databasable
+    // Databasable: do we actually need this?
     
     var databaseManager: DatabaseManager! { get set }
     var searchService: BRSearchService! { get set }
+    
+    // TODO: do we maintain a list of selected objects?
     
     // Inspector
     

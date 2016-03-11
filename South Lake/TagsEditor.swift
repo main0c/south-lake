@@ -46,7 +46,9 @@ class TagsEditor: NSViewController, FileEditor {
     
     // MARK: - Custom Propeties
     
-    dynamic var content: [[String:AnyObject]] = []
+    dynamic var sortDescriptors: [NSSortDescriptor]?
+    dynamic var filterPredicate: NSPredicate?
+    dynamic var content: [[String:AnyObject]]?
     
     var liveQuery: CBLLiveQuery! {
         willSet {
@@ -66,9 +68,7 @@ class TagsEditor: NSViewController, FileEditor {
         
         collectionView.itemPrototype = storyboard!.instantiateControllerWithIdentifier("collectionViewItem") as? NSCollectionViewItem
         
-        arrayController.sortDescriptors = [NSSortDescriptor(key: "tag", ascending: true, selector: Selector("caseInsensitiveCompare:"))]
-        
-        arrayController.bind("contentArray", toObject: self, withKeyPath: "content", options: [:])
+        sortDescriptors = [NSSortDescriptor(key: "tag", ascending: true, selector: Selector("caseInsensitiveCompare:"))]
         
         loadData()
     }
@@ -78,7 +78,7 @@ class TagsEditor: NSViewController, FileEditor {
         liveQuery.stop()
     }
     
-    // MARK: -
+    // MARK: - Tags Data
     
     func loadData() {
         guard (databaseManager as DatabaseManager?) != nil else {
@@ -127,13 +127,7 @@ class TagsEditor: NSViewController, FileEditor {
         }
         
         let text = sender.stringValue
-        
-        if text == "" {
-            arrayController.filterPredicate = nil
-        } else {
-            let predicate = NSPredicate(format: "tag contains[cd] %@", text)
-            arrayController.filterPredicate = predicate
-        }
+        filterPredicate = ( text == "" ) ? nil : NSPredicate(format: "tag contains[cd] %@", text)
     }
     
     @IBAction func sortByProperty(sender: AnyObject?) {

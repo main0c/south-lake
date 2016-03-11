@@ -135,7 +135,13 @@
                     </connections>
                 </viewController>
                 <customObject id="6A6-dB-eVB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController avoidsEmptySelection="NO" id="diC-KA-2Zj"/>
+                <arrayController avoidsEmptySelection="NO" id="diC-KA-2Zj">
+                    <connections>
+                        <binding destination="1hg-0a-15P" name="contentArray" keyPath="content" id="r0o-rK-GQD"/>
+                        <binding destination="1hg-0a-15P" name="filterPredicate" keyPath="filterPredicate" id="bQ9-3x-3Ge"/>
+                        <binding destination="1hg-0a-15P" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="bQ9-3x-3Ge" id="APf-dL-KOh"/>
+                    </connections>
+                </arrayController>
             </objects>
             <point key="canvasLocation" x="203" y="127"/>
         </scene>

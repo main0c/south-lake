@@ -319,7 +319,9 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     func unbindInspectors(selection: [DataSource]) {
         // For single selection, do nothing. The editor handles inspector bindings
-        // For multiple selection, unbind the inspectors we created
+        // For multiple selection or inspectors the tab has created, unbind the inspectors
+        
+        
     }
     
     func clearInspector() {
@@ -353,6 +355,11 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         metadataInspector.searchService = searchService
         commentsInspector.searchService = searchService
         relatedInspector.searchService = searchService
+        
+        // TODO: we don't always need to be rebuilding and rebinding these things, file insepctors
+        // that are permanently available should just stick around
+        
+        relatedInspector.bind("selectedObjects", toObject: self, withKeyPath: "selectedObjects", options: [:])
         
         inspectors!.append(metadataInspector)
         inspectors!.append(commentsInspector)

@@ -48,7 +48,9 @@ class LibraryEditor: NSViewController, FileEditor {
     
     // MARK: - Custom Properties
     
-    dynamic var content: [DataSource] = []
+    dynamic var sortDescriptors: [NSSortDescriptor]?
+    dynamic var filterPredicate: NSPredicate?
+    dynamic var content: [DataSource]?
     
     var liveQuery: CBLLiveQuery! {
         willSet {
@@ -68,7 +70,7 @@ class LibraryEditor: NSViewController, FileEditor {
         
         (view as! CustomizableView).backgroundColor = NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
         
-        arrayController.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: Selector("compare:"))]
+        sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: Selector("compare:"))]
         
         // TODO: Save and restore scene preference
         
@@ -127,13 +129,7 @@ class LibraryEditor: NSViewController, FileEditor {
         }
         
         let text = sender.stringValue
-        
-        if text == "" {
-            arrayController.filterPredicate = nil
-        } else {
-            let predicate = NSPredicate(format: "title contains[cd] %@", text)
-            arrayController.filterPredicate = predicate
-        }
+        filterPredicate = ( text == "" ) ? nil : NSPredicate(format: "title contains[cd] %@", text)
     }
     
     @IBAction func sortByProperty(sender: AnyObject?) {
@@ -201,6 +197,7 @@ class LibraryEditor: NSViewController, FileEditor {
         )
         
         // Bind the array controller to ours
+        // Predicates and sorting are applied before it even sees the data
         
         scene.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
     }

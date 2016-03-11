@@ -6,6 +6,8 @@
 //  Copyright © 2016 Phil Dow. All rights reserved.
 //
 
+//  TODO: The collection view and item might be useful elsewhere, make generally available
+
 import Cocoa
 
 class LibraryCollectionViewController: NSViewController, LibraryScene {

@@ -123,6 +123,8 @@
                 <arrayController objectClassName="DataSource" avoidsEmptySelection="NO" id="p0W-cE-9Ld">
                     <connections>
                         <binding destination="9yX-Un-WoT" name="contentArray" keyPath="content" id="Qf5-DF-hVP"/>
+                        <binding destination="9yX-Un-WoT" name="filterPredicate" keyPath="filterPredicate" id="1d7-zj-Wlt"/>
+                        <binding destination="9yX-Un-WoT" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="1d7-zj-Wlt" id="5YK-xX-Mf1"/>
                     </connections>
                 </arrayController>
             </objects>
