@@ -150,13 +150,10 @@ class LibraryEditor: NSViewController, FileEditor {
         switch sender.tag {
         case 1001: // by title
             descriptors = [NSSortDescriptor(key: "title", ascending: key != "title", selector: Selector("caseInsensitiveCompare:"))]
-            break
         case 1002: // by date created
             descriptors = [NSSortDescriptor(key: "created_at", ascending: !(key != "created_at"), selector: Selector("compare:"))]
-            break
         case 1003: // by date updated
             descriptors = [NSSortDescriptor(key: "updated_at", ascending: !(key != "updated_at"), selector: Selector("compare:"))]
-            break
         default:
             break
         }

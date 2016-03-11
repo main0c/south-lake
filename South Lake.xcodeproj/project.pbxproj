@@ -103,6 +103,7 @@
 		E3803F451C7297780048AD46 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F441C7297780048AD46 /* CFNetwork.framework */; };
 		E3803F471C72977D0048AD46 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F461C72977D0048AD46 /* SystemConfiguration.framework */; };
 		E385F7E21C924D550015A91B /* md-toc-index.html in Resources */ = {isa = PBXBuildFile; fileRef = E385F7E11C924D550015A91B /* md-toc-index.html */; };
+		E385F7F21C92865C0015A91B /* TagsCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385F7F11C92865C0015A91B /* TagsCollectionViewItem.swift */; };
 		E3898F961C8015E700CA71BE /* SearchDocumentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3898F941C8015E700CA71BE /* SearchDocumentTab.swift */; };
 		E3A8A0DE1C80C1DB009E96C1 /* NSDataNSStringValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385F8071C796B950072A2CD /* NSDataNSStringValueTransformer.swift */; };
 		E3A8A0DF1C80C1DC009E96C1 /* NSStringNSDataValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39E9B381C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift */; };
@@ -2428,6 +2429,7 @@
 		E3803F441C7297780048AD46 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E3803F461C72977D0048AD46 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E385F7E11C924D550015A91B /* md-toc-index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "md-toc-index.html"; sourceTree = "<group>"; };
+		E385F7F11C92865C0015A91B /* TagsCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewItem.swift; sourceTree = "<group>"; };
 		E385F8071C796B950072A2CD /* NSDataNSStringValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataNSStringValueTransformer.swift; sourceTree = "<group>"; };
 		E3898F941C8015E700CA71BE /* SearchDocumentTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDocumentTab.swift; sourceTree = "<group>"; };
 		E39E9B381C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringNSDataValueTransformer.swift; sourceTree = "<group>"; };
@@ -7191,6 +7193,7 @@
 			children = (
 				E3DDBEEE1C8D312200136BAE /* TagsEditor.storyboard */,
 				E3DDBEF21C8D314D00136BAE /* TagsEditor.swift */,
+				E385F7F11C92865C0015A91B /* TagsCollectionViewItem.swift */,
 			);
 			name = Tags;
 			sourceTree = "<group>";
@@ -7648,6 +7651,7 @@
 				E3E7C9E31C89078C00BD73A9 /* Snippet.swift in Sources */,
 				E3794C501C8CA345005EA307 /* CustomizableView.swift in Sources */,
 				E3274FCB1C75A1BF000B6A84 /* File.swift in Sources */,
+				E385F7F21C92865C0015A91B /* TagsCollectionViewItem.swift in Sources */,
 				E3274FC71C75A148000B6A84 /* Section.swift in Sources */,
 				E37AB7881C8F6A5900F44564 /* PDFThumbnailInspector.swift in Sources */,
 				E3E7C9DE1C89078100BD73A9 /* NSString+RegExEscape.swift in Sources */,

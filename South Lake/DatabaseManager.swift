@@ -14,6 +14,7 @@ class DatabaseManager: NSObject {
     
     private var _sectionQuery: CBLQuery?
     private var _fileQuery: CBLQuery?
+    private var _tagsQuery: CBLQuery?
     
     init(url: NSURL) throws {
         super.init()
@@ -30,6 +31,8 @@ class DatabaseManager: NSObject {
         factory?.registerClass(SmartFolder.self, forDocumentType: "smart_folder")
         factory?.registerClass(File.self, forDocumentType: "file")
     }
+    
+    // TODO: don't need to emit the whole document or even the id?
     
     /// Sections are static, once created in a new document they do not change
     
@@ -65,5 +68,28 @@ class DatabaseManager: NSObject {
         
         _fileQuery = view.createQuery()
         return _fileQuery!
+    }
+    
+    /// Tags query, emit and group tags by name, ignoring case?
+    
+    var tagsQuery: CBLQuery {
+        guard _tagsQuery == nil else {
+            return _tagsQuery!
+        }
+        
+        let view = database!.viewNamed("tags")
+        view.setMapBlock({ (doc, emit) -> Void in
+            if  doc["type"] as? String == "file",
+                let tags = doc["tags"] as? [String] {
+                for tag in tags {
+                    emit(tag, 1)
+                }
+            }
+        }, reduceBlock: { (keys, values, rereduce) -> AnyObject in
+            return values.count
+        }, version: "3")
+        
+        _tagsQuery = view.createQuery()
+        return _tagsQuery!
     }
 }
