@@ -32,7 +32,7 @@ class TagsEditor: NSViewController, FileEditor {
         
         }
         didSet {
-            loadData()
+            loadTags()
         }
     }
     
@@ -70,7 +70,7 @@ class TagsEditor: NSViewController, FileEditor {
         
         sortDescriptors = [NSSortDescriptor(key: "tag", ascending: true, selector: Selector("caseInsensitiveCompare:"))]
         
-        loadData()
+        loadTags()
     }
     
     deinit {
@@ -80,7 +80,7 @@ class TagsEditor: NSViewController, FileEditor {
     
     // MARK: - Tags Data
     
-    func loadData() {
+    func loadTags() {
         guard (databaseManager as DatabaseManager?) != nil else {
             return
         }

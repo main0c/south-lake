@@ -16,11 +16,25 @@
 
 import Cocoa
 
-class FileHeaderViewController: NSViewController {
+class FileHeaderViewController: NSViewController, Databasable {
     @IBOutlet var titleField: NSTextField!
     @IBOutlet var tagsField: NSTokenField!
     @IBOutlet var createdField: NSTextField!
     @IBOutlet var updatedField: NSTextField!
+
+    // MARK: - Databasable
+    
+    var databaseManager: DatabaseManager! {
+        didSet {
+            loadTags()
+        }
+    }
+    
+    var searchService: BRSearchService! {
+        didSet { }
+    }
+
+    // MARK: - Custom Properties
 
     var file: DataSource? {
         willSet {
@@ -28,6 +42,19 @@ class FileHeaderViewController: NSViewController {
         }
         didSet {
             bindMetadata(file)
+        }
+    }
+    
+    // Keep track of the tags in the db for autocompletion
+    // TODO: move these onto the dbm as dynamic variables, e.g. tags, sections, files, etc...
+    
+    var tagsContent: [[String:AnyObject]]?
+    
+    var liveQuery: CBLLiveQuery! {
+        willSet {
+            if let query = liveQuery {
+                query.removeObserver(self, forKeyPath: "rows")
+            }
         }
     }
     
@@ -39,6 +66,54 @@ class FileHeaderViewController: NSViewController {
         
         (self.view as! CustomizableView).backgroundColor = NSColor(white:1.0, alpha: 1.0)
         // NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
+    
+        loadTags()
+    }
+    
+    deinit {
+        liveQuery.removeObserver(self, forKeyPath: "rows")
+        liveQuery.stop()
+    }
+    
+    // MARK: - Tags Data
+    
+    func loadTags() {
+        guard (databaseManager as DatabaseManager?) != nil else {
+            return
+        }
+        
+        let query = databaseManager.tagsQuery
+        query.groupLevel = 1
+        
+        liveQuery = query.asLiveQuery()
+        liveQuery.addObserver(self, forKeyPath: "rows", options: [], context: nil)
+        liveQuery.start()
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if object as? NSObject == liveQuery {
+            displayRows(liveQuery.rows)
+        }
+    }
+    
+    func displayRows(results: CBLQueryEnumerator?) {
+        guard let results = results else {
+            return
+        }
+        
+        var tags: [[String:AnyObject]] = []
+        
+        while let row = results.nextRow() {
+            let count = row.value as! Int
+            let tag = row.key as! String
+            
+            tags.append([
+                "tag": tag,
+                "count": count
+            ])
+        }
+        
+        tagsContent = tags
     }
     
     // MARK: - Metadata Bindings
@@ -88,43 +163,28 @@ class FileHeaderViewController: NSViewController {
             updatedField.placeholderString = NSLocalizedString("No Selection", comment: "")
             updatedField.stringValue = ""
         }
-        
-//        switch selection.count {
-//        case 0:
-//            titleField.placeholderString = NSLocalizedString("No Selection", comment: "")
-//            titleField.stringValue = ""
-//            
-//            tagsField.placeholderString = NSLocalizedString("No Selection", comment: "")
-//            tagsField.stringValue = ""
-//            
-//            createdField.placeholderString = NSLocalizedString("No Selection", comment: "")
-//            createdField.stringValue = ""
-//            
-//            updatedField.placeholderString = NSLocalizedString("No Selection", comment: "")
-//            updatedField.stringValue = ""
-//        case 1:
-//            titleField.bind("value", toObject: selectedObjects[0], withKeyPath: "title", options: [NSNullPlaceholderBindingOption:NSLocalizedString("Click to change title", comment: "")])
-//            tagsField.bind("value", toObject: selectedObjects[0], withKeyPath: "tags", options: [NSNullPlaceholderBindingOption:NSLocalizedString("Click to add tags", comment: "")])
-//            createdField.bind("value", toObject: selectedObjects[0], withKeyPath: "created_at", options: [NSNullPlaceholderBindingOption:NSLocalizedString("Date Created", comment: "")])
-//            updatedField.bind("value", toObject: selectedObjects[0], withKeyPath: "updated_at", options: [NSNullPlaceholderBindingOption:NSLocalizedString("Last Updated", comment: "")])
-//        default:
-//            titleField.placeholderString = NSLocalizedString("Multiple", comment: "")
-//            titleField.stringValue = ""
-//            
-//            tagsField.placeholderString = NSLocalizedString("Multiple", comment: "")
-//            tagsField.stringValue = ""
-//            
-//            createdField.placeholderString = NSLocalizedString("Multiple", comment: "")
-//            createdField.stringValue = ""
-//            
-//            updatedField.placeholderString = NSLocalizedString("Multiple", comment: "")
-//            updatedField.stringValue = ""
-//        }
     }
     
     // MARK: - Utilities
     
     var primaryResponder: NSView {
         return titleField
+    }
+}
+
+extension FileHeaderViewController: NSTokenFieldDelegate {
+    
+    func tokenField(tokenField: NSTokenField, completionsForSubstring substring: String, indexOfToken tokenIndex: Int, indexOfSelectedItem selectedIndex: UnsafeMutablePointer<Int>) -> [AnyObject]? {
+        // Get the tags from the database, predicate filter them beginswith[cd], return the array
+        
+        guard tagsContent != nil else {
+            return nil
+        }
+        
+        let predicate = NSPredicate(format: "tag BEGINSWITH[cd] %@", substring)
+        
+        return tagsContent!
+            .filter { predicate.evaluateWithObject($0) }
+            .map { $0["tag"]! }
     }
 }

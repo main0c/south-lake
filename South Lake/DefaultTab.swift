@@ -285,6 +285,9 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         if ( header == nil ) {
             header = NSStoryboard(name: "FileHeader", bundle: nil).instantiateInitialController() as? FileHeaderViewController
             
+            header?.databaseManager = databaseManager
+            header?.searchService = searchService
+            
             contentController.header = header
             
             // Next responder: tab from title to editor
