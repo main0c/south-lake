@@ -67,9 +67,21 @@
                                     <font key="font" metaFont="cellTitle"/>
                                 </buttonCell>
                             </button>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z7h-Nc-52V">
+                                <rect key="frame" x="40" y="264" width="140" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="136" id="EqF-VO-iRF"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="No other documents" id="U2I-Pm-kzV">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Ci6-a0-fPF" firstAttribute="top" secondItem="bjx-UZ-eap" secondAttribute="top" constant="11" id="Fhh-Uw-KUM"/>
+                            <constraint firstItem="Z7h-Nc-52V" firstAttribute="centerX" secondItem="bjx-UZ-eap" secondAttribute="centerX" id="I5v-ju-fqz"/>
                             <constraint firstItem="5tm-sK-ef7" firstAttribute="top" secondItem="bjx-UZ-eap" secondAttribute="top" constant="13" id="J5A-8f-zJV"/>
                             <constraint firstAttribute="trailing" secondItem="aU9-cM-Lcp" secondAttribute="trailing" id="JeK-ts-S7L"/>
                             <constraint firstAttribute="bottom" secondItem="jOJ-N1-mvq" secondAttribute="bottom" constant="20" id="Uln-vA-qDB"/>
@@ -79,6 +91,7 @@
                             <constraint firstItem="aU9-cM-Lcp" firstAttribute="leading" secondItem="bjx-UZ-eap" secondAttribute="leading" id="hZb-47-dMw"/>
                             <constraint firstAttribute="trailing" secondItem="Ci6-a0-fPF" secondAttribute="trailing" constant="10" id="hpS-3G-8vH"/>
                             <constraint firstItem="Ci6-a0-fPF" firstAttribute="leading" secondItem="bjx-UZ-eap" secondAttribute="leading" constant="88" id="jMK-OW-pBT"/>
+                            <constraint firstItem="Z7h-Nc-52V" firstAttribute="top" secondItem="Ci6-a0-fPF" secondAttribute="bottom" constant="40" id="xZh-WS-CHF"/>
                             <constraint firstItem="aU9-cM-Lcp" firstAttribute="top" secondItem="Ci6-a0-fPF" secondAttribute="bottom" constant="6" id="xkl-WN-0S8"/>
                         </constraints>
                     </view>
