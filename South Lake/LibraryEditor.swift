@@ -30,9 +30,6 @@ class LibraryEditor: NSViewController, FileEditor {
     }
     
     dynamic var file: DataSource? {
-        willSet {
-        
-        }
         didSet {
             loadLibrary()
         }
@@ -75,7 +72,6 @@ class LibraryEditor: NSViewController, FileEditor {
         // TODO: Save and restore scene preference
         
         loadScene("libraryCollectionScene")
-        
         loadLibrary()
     }
     

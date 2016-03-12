@@ -8,6 +8,11 @@
 
 import Cocoa
 
+/// The Database Manager belongs to a particular document and is made available
+/// to the classes that needed it by the view controller hierarchy. Classes that
+/// require access to the Database Manager (and Search Service) conform to the 
+/// Databasable protocol
+
 class DatabaseManager: NSObject {
     var manager: CBLManager!
     var database: CBLDatabase!
@@ -33,6 +38,7 @@ class DatabaseManager: NSObject {
     }
     
     // TODO: don't need to emit the whole document or even the id?
+    // TODO: factor live query observer code into the dbm?
     
     /// Sections are static, once created in a new document they do not change
     
