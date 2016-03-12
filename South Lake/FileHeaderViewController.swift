@@ -26,7 +26,7 @@ class FileHeaderViewController: NSViewController, Databasable {
     
     var databaseManager: DatabaseManager! {
         didSet {
-            loadTags()
+            bindTags()
         }
     }
     
@@ -50,14 +50,6 @@ class FileHeaderViewController: NSViewController, Databasable {
     
     var tagsContent: [[String:AnyObject]]?
     
-    var liveQuery: CBLLiveQuery! {
-        willSet {
-            if let query = liveQuery {
-                query.removeObserver(self, forKeyPath: "rows")
-            }
-        }
-    }
-    
     // MARK: - Initialization
 
     override func viewDidLoad() {
@@ -67,53 +59,21 @@ class FileHeaderViewController: NSViewController, Databasable {
         (self.view as! CustomizableView).backgroundColor = NSColor(white:1.0, alpha: 1.0)
         // NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
     
-        loadTags()
+        bindTags()
     }
     
     deinit {
-        liveQuery.removeObserver(self, forKeyPath: "rows")
-        liveQuery.stop()
+        unbind("tagsContent")
     }
     
     // MARK: - Tags Data
     
-    func loadTags() {
+    func bindTags() {
         guard (databaseManager as DatabaseManager?) != nil else {
             return
         }
         
-        let query = databaseManager.tagsQuery
-        query.groupLevel = 1
-        
-        liveQuery = query.asLiveQuery()
-        liveQuery.addObserver(self, forKeyPath: "rows", options: [], context: nil)
-        liveQuery.start()
-    }
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if object as? NSObject == liveQuery {
-            displayRows(liveQuery.rows)
-        }
-    }
-    
-    func displayRows(results: CBLQueryEnumerator?) {
-        guard let results = results else {
-            return
-        }
-        
-        var tags: [[String:AnyObject]] = []
-        
-        while let row = results.nextRow() {
-            let count = row.value as! Int
-            let tag = row.key as! String
-            
-            tags.append([
-                "tag": tag,
-                "count": count
-            ])
-        }
-        
-        tagsContent = tags
+        bind("tagsContent", toObject: databaseManager, withKeyPath: "tags", options: [:])
     }
     
     // MARK: - Metadata Bindings

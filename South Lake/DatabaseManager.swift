@@ -19,6 +19,19 @@ class DatabaseManager: NSObject {
     
     private var _sectionQuery: CBLQuery?
     private var _fileQuery: CBLQuery?
+    
+    dynamic var tags: [[String:AnyObject]]? {
+        get {
+            loadTags()
+            return _tags
+        }
+        set {
+            _tags = newValue
+        }
+    }
+    
+    private var _tags: [[String:AnyObject]]?
+    private var _liveTagsQuery: CBLLiveQuery?
     private var _tagsQuery: CBLQuery?
     
     init(url: NSURL) throws {
@@ -97,5 +110,47 @@ class DatabaseManager: NSObject {
         
         _tagsQuery = view.createQuery()
         return _tagsQuery!
+    }
+    
+    // MARK: - Dynamic Queries
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        
+        if object as? NSObject == _liveTagsQuery {
+            updateTags(_liveTagsQuery!.rows)
+        }
+    }
+    
+    func loadTags() {
+        guard _liveTagsQuery == nil else {
+            return
+        }
+        
+        let query = tagsQuery
+        query.groupLevel = 1
+        
+        _liveTagsQuery = query.asLiveQuery()
+        _liveTagsQuery!.addObserver(self, forKeyPath: "rows", options: [], context: nil)
+        _liveTagsQuery!.start()
+    }
+    
+    func updateTags(results: CBLQueryEnumerator?) {
+        guard let results = results else {
+            return
+        }
+        
+        var tags: [[String:AnyObject]] = []
+        
+        while let row = results.nextRow() {
+            let count = row.value as! Int
+            let tag = row.key as! String
+            
+            tags.append([
+                "tag": tag,
+                "count": count
+            ])
+        }
+        
+        self.tags = tags
     }
 }

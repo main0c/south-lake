@@ -61,6 +61,7 @@
                                 </searchFieldCell>
                                 <connections>
                                     <action selector="filterByTitle:" target="1hg-0a-15P" id="82n-45-KcR"/>
+                                    <outlet property="delegate" destination="1hg-0a-15P" id="vza-cL-De3"/>
                                 </connections>
                             </searchField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DV7-Py-hfd">

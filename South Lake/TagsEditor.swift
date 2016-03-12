@@ -32,7 +32,7 @@ class TagsEditor: NSViewController, FileEditor {
         
         }
         didSet {
-            loadTags()
+            bindTags()
         }
     }
     
@@ -50,13 +50,7 @@ class TagsEditor: NSViewController, FileEditor {
     dynamic var filterPredicate: NSPredicate?
     dynamic var content: [[String:AnyObject]]?
     
-    var liveQuery: CBLLiveQuery! {
-        willSet {
-            if let query = liveQuery {
-                query.removeObserver(self, forKeyPath: "rows")
-            }
-        }
-    }
+    var completingTag: Bool = false
     
     // MARK: - Initialization
 
@@ -70,53 +64,21 @@ class TagsEditor: NSViewController, FileEditor {
         
         sortDescriptors = [NSSortDescriptor(key: "tag", ascending: true, selector: Selector("caseInsensitiveCompare:"))]
         
-        loadTags()
+        bindTags()
     }
     
     deinit {
-        liveQuery.removeObserver(self, forKeyPath: "rows")
-        liveQuery.stop()
+        unbind("content")
     }
     
     // MARK: - Tags Data
     
-    func loadTags() {
+    func bindTags() {
         guard (databaseManager as DatabaseManager?) != nil else {
             return
         }
         
-        let query = databaseManager.tagsQuery
-        query.groupLevel = 1
-        
-        liveQuery = query.asLiveQuery()
-        liveQuery.addObserver(self, forKeyPath: "rows", options: [], context: nil)
-        liveQuery.start()
-    }
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if object as? NSObject == liveQuery {
-            displayRows(liveQuery.rows)
-        }
-    }
-    
-    func displayRows(results: CBLQueryEnumerator?) {
-        guard let results = results else {
-            return
-        }
-        
-        var tags: [[String:AnyObject]] = []
-        
-        while let row = results.nextRow() {
-            let count = row.value as! Int
-            let tag = row.key as! String
-            
-            tags.append([
-                "tag": tag,
-                "count": count
-            ])
-        }
-        
-        content = tags
+        bind("content", toObject: databaseManager, withKeyPath: "tags", options: [:])
     }
     
     // MARK: - User Actions
@@ -153,3 +115,39 @@ class TagsEditor: NSViewController, FileEditor {
         arrayController.sortDescriptors = descriptors
     }
 }
+
+// MARK: - Search Field Delegate
+
+// Doesn't quite work the same way as it does with a token field
+
+//extension TagsEditor: NSControlTextEditingDelegate {
+//    
+//    override func controlTextDidChange(notification: NSNotification) {
+//        guard let userInfo = notification.userInfo,
+//              let textView = userInfo["NSFieldEditor"] as? NSTextView
+//              where !completingTag else {
+//              return
+//        }
+//        
+//        completingTag = true
+//        textView.complete(nil)
+//        completingTag = false
+//    }
+//    
+//    func control(control: NSControl, textView: NSTextView, completions words: [String], forPartialWordRange charRange: NSRange, indexOfSelectedItem index: UnsafeMutablePointer<Int>) -> [String] {
+//        
+//        guard let text = textView.string,
+//              let range = text.rangeFromNSRange(charRange) else {
+//              return []
+//        }
+//        
+//        let substring = text.substringWithRange(range)
+//        let predicate = NSPredicate(format: "tag BEGINSWITH[cd] %@", substring)
+//        
+//        print(words)
+//        
+//        return content!
+//            .filter { predicate.evaluateWithObject($0) }
+//            .map { ($0["tag"] as! String) }
+//    }
+//}
