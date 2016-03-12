@@ -8,7 +8,7 @@
         <scene sceneID="Lgj-5M-4hq">
             <objects>
                 <viewController title="Related Files" id="ZGh-bb-VoU" customClass="RelatedInspector" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="bjx-UZ-eap">
+                    <view key="view" id="bjx-UZ-eap" customClass="CustomizableView" customModule="South_Lake" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="220" height="355"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -99,7 +99,7 @@
             <objects>
                 <customObject id="C9T-DE-m7j" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="libraryCollectionScene" id="H8D-7t-6Le" userLabel="Collection View" customClass="LibraryCollectionViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="epX-sk-XIe">
+                    <view key="view" id="epX-sk-XIe" userLabel="View">
                         <rect key="frame" x="0.0" y="0.0" width="220" height="355"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>

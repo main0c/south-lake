@@ -56,7 +56,9 @@ class RelatedInspector: NSViewController, Inspector {
                 libraryFilterPredicate = NSPredicate(value: false)
                 return
             }
-            libraryFilterPredicate = NSPredicate(format: "%@ in tags", selectedTag!)
+            
+            let ids = selectedObjects.map { $0.document!.documentID }
+            libraryFilterPredicate = NSPredicate(format: "%@ in tags && !(document.documentID in %@)", selectedTag!, ids)
         }
     }
     
@@ -74,7 +76,12 @@ class RelatedInspector: NSViewController, Inspector {
         super.viewDidLoad()
         // Do view setup here.
         
+        (view as! CustomizableView).backgroundColor = NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
+        
         // TODO: move to IB?
+        // TODO: would rather have a tags controller than a source controller that extracts
+        //       the tags from the source. the popup binds to that rather than doing the
+        //       transformation itself
         
         sourceArrayController.sortDescriptors = [NSSortDescriptor(key: "tag", ascending: true, selector: Selector("caseInsensitiveCompare:"))]
         
@@ -83,6 +90,8 @@ class RelatedInspector: NSViewController, Inspector {
         libraryArrayController.bind("contentArray", toObject: self, withKeyPath: "libraryContent", options: [:])
         
         libraryArrayController.bind("filterPredicate", toObject: self, withKeyPath: "libraryFilterPredicate", options: [:])
+        
+        libraryArrayController.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: Selector("compare:"))]
     
         loadScene("libraryCollectionScene")
         loadLibrary()
