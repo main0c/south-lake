@@ -17,8 +17,9 @@ class DatabaseManager: NSObject {
     var manager: CBLManager!
     var database: CBLDatabase!
     
+    // Bindable variables that change as the db is re-indexed and their queries
+    
     private var _sectionQuery: CBLQuery?
-    private var _fileQuery: CBLQuery?
     
     dynamic var tags: [[String:AnyObject]]? {
         get {
@@ -30,9 +31,25 @@ class DatabaseManager: NSObject {
         }
     }
     
+    dynamic var files: [DataSource]? {
+        get {
+            loadFiles()
+            return _files
+        }
+        set {
+            _files = newValue
+        }
+    }
+    
     private var _tags: [[String:AnyObject]]?
     private var _liveTagsQuery: CBLLiveQuery?
     private var _tagsQuery: CBLQuery?
+    
+    private var _files: [DataSource]?
+    private var _liveFilesQuery: CBLLiveQuery?
+    private var _filesQuery: CBLQuery?
+    
+    // MARK: - Initialization
     
     init(url: NSURL) throws {
         super.init()
@@ -52,6 +69,8 @@ class DatabaseManager: NSObject {
     
     // TODO: don't need to emit the whole document or even the id?
     // TODO: factor live query observer code into the dbm?
+    
+    // MARK: - Queries
     
     /// Sections are static, once created in a new document they do not change
     
@@ -73,9 +92,9 @@ class DatabaseManager: NSObject {
     
     /// Files change, a user can create and delete them, maybe we need a live view
     
-    var fileQuery: CBLQuery {
-        guard _fileQuery == nil else {
-            return _fileQuery!
+    var filesQuery: CBLQuery {
+        guard _filesQuery == nil else {
+            return _filesQuery!
         }
         
         let view = database!.viewNamed("files")
@@ -85,8 +104,8 @@ class DatabaseManager: NSObject {
             }
         }, version: "1")
         
-        _fileQuery = view.createQuery()
-        return _fileQuery!
+        _filesQuery = view.createQuery()
+        return _filesQuery!
     }
     
     /// Tags query, emit and group tags by name, ignoring case?
@@ -119,7 +138,12 @@ class DatabaseManager: NSObject {
         if object as? NSObject == _liveTagsQuery {
             updateTags(_liveTagsQuery!.rows)
         }
+        if object as? NSObject == _liveFilesQuery {
+            updateFiles(_liveFilesQuery!.rows)
+        }
     }
+    
+    // MARK: - Tags
     
     func loadTags() {
         guard _liveTagsQuery == nil else {
@@ -152,5 +176,36 @@ class DatabaseManager: NSObject {
         }
         
         self.tags = tags
+    }
+    
+    // MARK: - Files
+    
+    func loadFiles() {
+        guard _liveFilesQuery == nil else {
+            return
+        }
+        
+        let query = filesQuery
+
+        _liveFilesQuery = query.asLiveQuery()
+        _liveFilesQuery!.addObserver(self, forKeyPath: "rows", options: [], context: nil)
+        _liveFilesQuery!.start()
+    }
+    
+    func updateFiles(results: CBLQueryEnumerator?) {
+        guard let results = results else {
+            return
+        }
+        
+        var files: [File] = []
+            
+        while let row = results.nextRow() {
+            if let document = row.document {
+                let file = CBLModel(forDocument: document) as! File
+                files.append(file)
+            }
+        }
+        
+        self.files = files
     }
 }

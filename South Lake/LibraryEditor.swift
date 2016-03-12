@@ -31,7 +31,7 @@ class LibraryEditor: NSViewController, FileEditor {
     
     dynamic var file: DataSource? {
         didSet {
-            loadLibrary()
+            bindLibrary()
         }
     }
     
@@ -48,15 +48,7 @@ class LibraryEditor: NSViewController, FileEditor {
     dynamic var sortDescriptors: [NSSortDescriptor]?
     dynamic var filterPredicate: NSPredicate?
     dynamic var content: [DataSource]?
-    
-    var liveQuery: CBLLiveQuery! {
-        willSet {
-            if let query = liveQuery {
-                query.removeObserver(self, forKeyPath: "rows")
-            }
-        }
-    }
-    
+
     var scene: LibraryScene!
 
     // MARK: - Initialization
@@ -72,49 +64,21 @@ class LibraryEditor: NSViewController, FileEditor {
         // TODO: Save and restore scene preference
         
         loadScene("libraryCollectionScene")
-        loadLibrary()
+        bindLibrary()
     }
     
     deinit {
-        liveQuery.removeObserver(self, forKeyPath: "rows")
-        liveQuery.stop()
+        unbind("content")
     }
     
     // MARK: - Library Data
     
-    func loadLibrary() {
+    func bindLibrary() {
         guard (databaseManager as DatabaseManager?) != nil else {
             return
         }
         
-        let query = databaseManager.fileQuery
-
-        liveQuery = query.asLiveQuery()
-        liveQuery.addObserver(self, forKeyPath: "rows", options: [], context: nil)
-        liveQuery.start()
-    }
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if object as? NSObject == liveQuery {
-            displayRows(liveQuery.rows)
-        }
-    }
-    
-    func displayRows(results: CBLQueryEnumerator?) {
-        guard let results = results else {
-            return
-        }
-        
-        var files: [File] = []
-            
-        while let row = results.nextRow() {
-            if let document = row.document {
-                let file = CBLModel(forDocument: document) as! File
-                files.append(file)
-            }
-        }
-        
-        content = files
+        bind("content", toObject: databaseManager, withKeyPath: "files", options: [:])
     }
     
     // MARK: - User Actions

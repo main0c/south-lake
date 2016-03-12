@@ -25,7 +25,7 @@ class RelatedInspector: NSViewController, Inspector {
     
     var databaseManager: DatabaseManager! {
         didSet {
-            loadLibrary()
+            bindLibrary()
         }
     }
     
@@ -61,15 +61,7 @@ class RelatedInspector: NSViewController, Inspector {
             libraryFilterPredicate = NSPredicate(format: "%@ in tags && !(document.documentID in %@)", selectedTag!, ids)
         }
     }
-    
-    var liveQuery: CBLLiveQuery! {
-        willSet {
-            if let query = liveQuery {
-                query.removeObserver(self, forKeyPath: "rows")
-            }
-        }
-    }
-    
+  
     // MARK: - Initialization
 
     override func viewDidLoad() {
@@ -94,49 +86,21 @@ class RelatedInspector: NSViewController, Inspector {
         libraryArrayController.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: Selector("compare:"))]
     
         loadScene("libraryCollectionScene")
-        loadLibrary()
+        bindLibrary()
     }
     
     deinit {
-        liveQuery.removeObserver(self, forKeyPath: "rows")
-        liveQuery.stop()
+        unbind("libraryContent")
     }
     
     // MARK: - Library Data
     
-    func loadLibrary() {        
+    func bindLibrary() {
         guard (databaseManager as DatabaseManager?) != nil else {
             return
         }
         
-        let query = databaseManager.fileQuery
-
-        liveQuery = query.asLiveQuery()
-        liveQuery.addObserver(self, forKeyPath: "rows", options: [], context: nil)
-        liveQuery.start()
-    }
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if object as? NSObject == liveQuery {
-            displayRows(liveQuery.rows)
-        }
-    }
-    
-    func displayRows(results: CBLQueryEnumerator?) {
-        guard let results = results else {
-            return
-        }
-        
-        var files: [File] = []
-            
-        while let row = results.nextRow() {
-            if let document = row.document {
-                let file = CBLModel(forDocument: document) as! File
-                files.append(file)
-            }
-        }
-        
-        libraryContent = files
+        bind("libraryContent", toObject: databaseManager, withKeyPath: "files", options: [:])
     }
     
     // MARK: - Utilities
