@@ -305,6 +305,21 @@ class MarkdownEditor: NSViewController, FileEditor {
     
     }
     
+    func willClose() {
+        
+        preview.stopLoading(nil)
+        
+        // Reneable window flush, which might still be disabled from webView:didCommitLoadForFrame
+        
+        if let window = self.preview.window {
+            objc_sync_enter(window)
+            if window.flushWindowDisabled {
+                window.enableFlushWindow()
+            }
+            objc_sync_exit(window)
+        }
+    }
+    
     // MARK: - MacDown Functions
     
     func adjustEditorInsets() {

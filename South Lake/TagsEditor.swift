@@ -111,6 +111,10 @@ class TagsEditor: NSViewController, FileEditor {
     func performSearch(text: String?, results: BRSearchResults?) {
     
     }
+    
+    func willClose() {
+    
+    }
 }
 
 // MARK: - Search Field Delegate

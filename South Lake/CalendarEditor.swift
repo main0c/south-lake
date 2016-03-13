@@ -44,4 +44,7 @@ class CalendarEditor: NSViewController, FileEditor {
     
     }
     
+    func willClose() {
+    
+    }
 }

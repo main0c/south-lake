@@ -239,5 +239,9 @@ class LibraryEditor: NSViewController, FileEditor {
             filterPredicate = nil
         }
     }
+    
+    func willClose() {
+    
+    }
 }
 

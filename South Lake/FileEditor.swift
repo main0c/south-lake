@@ -53,4 +53,8 @@ protocol FileEditor: class, Databasable {
     /// A file editor should take special action if a search is being performed, 
     /// such as highlighting the search term
     func performSearch(text: String?, results: BRSearchResults?)
+    
+    /// Called immediately before the editor is removed from the view hierarchy
+    /// Editors should clean up, for example, unbinding
+    func willClose()
 }

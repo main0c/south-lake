@@ -91,4 +91,7 @@ class PDFEditor: NSViewController, FileEditor {
     
     }
     
+    func willClose() {
+    
+    }
 }

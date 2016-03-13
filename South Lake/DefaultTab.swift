@@ -128,12 +128,12 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     }
     
     func willClose() {
+        sourceListController.willClose()
+        editor?.willClose()
+        
         unbindTitle(selectedObjects)
         unbindIcon(selectedObjects)
-        
         unbind("selectedObjects")
-        
-        sourceListController.willClose()
     }
     
     // MARK: - Document State
@@ -228,6 +228,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         // Load editor if editor has changed
         
         if editor == nil || !editor!.dynamicType.filetypes.contains(file.uti) {
+            editor?.willClose() // TODO: move to willSet?
             editor = EditorPlugIns.sharedInstance.plugInForFiletype(file.file_extension)
             
             guard editor != nil else {
@@ -250,6 +251,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     }
     
     func clearEditor() {
+        editor?.willClose() // TODO: move to willSet?
         contentController.editor = nil
         editor = nil
     }
