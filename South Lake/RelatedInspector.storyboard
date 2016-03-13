@@ -29,15 +29,12 @@
                                     </menu>
                                 </popUpButtonCell>
                                 <connections>
-                                    <binding destination="c7I-RT-vWa" name="contentValues" keyPath="arrangedObjects.@distinctUnionOfArrays.tags" id="c5P-yM-A2c"/>
-                                    <binding destination="ZGh-bb-VoU" name="enabled" keyPath="selectedTag" id="Um7-Z4-Rlx">
+                                    <binding destination="47l-av-0WJ" name="contentValues" keyPath="arrangedObjects" id="4Qp-bs-g8G"/>
+                                    <binding destination="47l-av-0WJ" name="selectedIndex" keyPath="selectionIndex" previousBinding="4Qp-bs-g8G" id="ISd-lT-Utw">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNotNil</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="ZGh-bb-VoU" name="selectedValue" keyPath="selectedTag" previousBinding="c5P-yM-A2c" id="o0D-j9-Q12">
-                                        <dictionary key="options">
-                                            <string key="NSNullPlaceholder">(no tags)</string>
+                                            <string key="NSNoSelectionPlaceholder">(No tags)</string>
+                                            <string key="NSNotApplicablePlaceholder">(No tags)</string>
+                                            <string key="NSNullPlaceholder">(No tags)</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -99,11 +96,25 @@
                         <outlet property="containerView" destination="aU9-cM-Lcp" id="epA-C8-66N"/>
                         <outlet property="libraryArrayController" destination="0oX-Sh-0bS" id="P7L-t1-wnd"/>
                         <outlet property="sourceArrayController" destination="c7I-RT-vWa" id="dPt-ZZ-VCh"/>
+                        <outlet property="tagsArrayController" destination="47l-av-0WJ" id="XYC-xa-WzE"/>
                     </connections>
                 </viewController>
                 <customObject id="qBd-2H-TbT" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController avoidsEmptySelection="NO" id="c7I-RT-vWa"/>
-                <arrayController avoidsEmptySelection="NO" id="0oX-Sh-0bS"/>
+                <arrayController avoidsEmptySelection="NO" id="c7I-RT-vWa">
+                    <connections>
+                        <binding destination="ZGh-bb-VoU" name="contentArray" keyPath="selectedObjects" id="nHq-Kr-bab"/>
+                    </connections>
+                </arrayController>
+                <arrayController id="47l-av-0WJ" userLabel="Tags Array Controller">
+                    <connections>
+                        <binding destination="c7I-RT-vWa" name="contentArray" keyPath="arrangedObjects.@distinctUnionOfArrays.tags" id="pZl-S8-Eam"/>
+                    </connections>
+                </arrayController>
+                <arrayController avoidsEmptySelection="NO" id="0oX-Sh-0bS">
+                    <connections>
+                        <binding destination="ZGh-bb-VoU" name="contentArray" keyPath="libraryContent" id="CJD-9y-4UI"/>
+                    </connections>
+                </arrayController>
             </objects>
             <point key="canvasLocation" x="260" y="406.5"/>
         </scene>

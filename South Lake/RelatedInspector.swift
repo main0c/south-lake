@@ -10,6 +10,7 @@ import Cocoa
 
 class RelatedInspector: NSViewController, Inspector {
     @IBOutlet var sourceArrayController: NSArrayController!
+    @IBOutlet var tagsArrayController: NSArrayController!
     @IBOutlet var libraryArrayController: NSArrayController!
     @IBOutlet var containerView: NSView!
     
@@ -33,36 +34,29 @@ class RelatedInspector: NSViewController, Inspector {
         didSet { }
     }
     
-    // TODO: is selectedObjects an inspector protocol property?
+    // TODO: make selectedObjects an inspector protocol property?
     
-    dynamic var selectedObjects: [DataSource] = [] {
-        didSet {
-            selectedTag = ( selectedObjects.count > 0 ) ?
-                ((selectedObjects as NSArray).valueForKeyPath("@distinctUnionOfArrays.tags") as! Array)[safe: 0]
-                : nil
-        }
-    }
+    dynamic var selectedObjects: [DataSource] = []
     
     // MARK: - Custom Properties
     
+    var tags: [String]?
     var scene: LibraryScene!
     
     dynamic var libraryContent: [DataSource] = []
-    dynamic var libraryFilterPredicate: NSPredicate?
-    
-    dynamic var selectedTag: String? {
+    dynamic var selectedTags: [String]? {
         didSet {
-            guard selectedTag != nil && selectedTag != "" else {
-                libraryFilterPredicate = NSPredicate(value: false)
-                return
+            guard let selectedTags = selectedTags,
+                  let selectedTag = selectedTags[safe: 0] else {
+                  libraryArrayController.filterPredicate = NSPredicate(value: false)
+                  return
             }
             
             let ids = selectedObjects.map { $0.document!.documentID }
-            libraryFilterPredicate = NSPredicate(format: "%@ in tags && !(document.documentID in %@)", selectedTag!, ids)
-            print(libraryFilterPredicate)
+            libraryArrayController.filterPredicate = NSPredicate(format: "%@ in tags && !(document.documentID in %@)", selectedTag, ids)
         }
     }
-  
+    
     // MARK: - Initialization
 
     override func viewDidLoad() {
@@ -71,27 +65,19 @@ class RelatedInspector: NSViewController, Inspector {
         
         (view as! CustomizableView).backgroundColor = NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
         
-        // TODO: move to IB?
-        // TODO: would rather have a tags controller than a source controller that extracts
-        //       the tags from the source. the popup binds to that rather than doing the
-        //       transformation itself
-        
-        sourceArrayController.sortDescriptors = [NSSortDescriptor(key: "tag", ascending: true, selector: Selector("caseInsensitiveCompare:"))]
-        
-        sourceArrayController.bind("contentArray", toObject: self, withKeyPath: "selectedObjects", options: [:])
-        
-        libraryArrayController.bind("contentArray", toObject: self, withKeyPath: "libraryContent", options: [:])
-        
-        libraryArrayController.bind("filterPredicate", toObject: self, withKeyPath: "libraryFilterPredicate", options: [:])
+        tagsArrayController.sortDescriptors = [NSSortDescriptor(key: "self", ascending: true, selector: Selector("caseInsensitiveCompare:"))]
         
         libraryArrayController.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: Selector("compare:"))]
-    
+        
         loadScene("libraryCollectionScene")
+        
+        bind("selectedTags", toObject: tagsArrayController, withKeyPath: "selectedObjects", options: [:])
         bindLibrary()
     }
     
     deinit {
         unbind("libraryContent")
+        unbind("selectedTags")
     }
     
     // MARK: - Library Data

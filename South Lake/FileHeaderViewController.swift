@@ -99,8 +99,8 @@ class FileHeaderViewController: NSViewController, Databasable {
                 toObject: selection,
                 withKeyPath: "tags",
                 options: [
-                    NSNullPlaceholderBindingOption:NSLocalizedString("Click to add tags", comment: ""),
-                    NSContinuouslyUpdatesValueBindingOption:true
+                    NSNullPlaceholderBindingOption:NSLocalizedString("Click to add tags", comment: "")/*,
+                    NSContinuouslyUpdatesValueBindingOption:true*/
                 ])
             createdField.bind("value",
                 toObject: selection,
