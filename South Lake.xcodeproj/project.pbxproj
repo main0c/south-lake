@@ -104,7 +104,6 @@
 		E3803F471C72977D0048AD46 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F461C72977D0048AD46 /* SystemConfiguration.framework */; };
 		E385F7E21C924D550015A91B /* md-toc-index.html in Resources */ = {isa = PBXBuildFile; fileRef = E385F7E11C924D550015A91B /* md-toc-index.html */; };
 		E385F7F21C92865C0015A91B /* TagsCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385F7F11C92865C0015A91B /* TagsCollectionViewItem.swift */; };
-		E3898F961C8015E700CA71BE /* SearchDocumentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3898F941C8015E700CA71BE /* SearchDocumentTab.swift */; };
 		E3A8A0DE1C80C1DB009E96C1 /* NSDataNSStringValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385F8071C796B950072A2CD /* NSDataNSStringValueTransformer.swift */; };
 		E3A8A0DF1C80C1DC009E96C1 /* NSStringNSDataValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39E9B381C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift */; };
 		E3AD255A1C7F9CDE006D6536 /* MarkdownImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AD25591C7F9CDE006D6536 /* MarkdownImporter.swift */; };
@@ -302,6 +301,7 @@
 		E360726E1C74E40500914C2C /* DocumentTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentTabController.swift; sourceTree = "<group>"; };
 		E36072721C74E64200914C2C /* NSTabViewItem+ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTabViewItem+ViewController.swift"; sourceTree = "<group>"; };
 		E360727B1C74FEEC00914C2C /* DocumentTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentTab.swift; sourceTree = "<group>"; };
+		E3783D311C94C32D004BB0A1 /* SearchResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		E378C5331C814F1900CACDFC /* String+Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Range.swift"; sourceTree = "<group>"; };
 		E378E80E1C801F54009539FD /* NSToolbar+Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSToolbar+Items.swift"; sourceTree = "<group>"; };
 		E378E8161C80216E009539FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SearchTab.storyboard; sourceTree = "<group>"; };
@@ -2583,6 +2583,7 @@
 				E37E47C91C73F2710077ECD7 /* DatabaseManager.swift */,
 				E3274FC21C75A134000B6A84 /* DataSource.swift */,
 				E3274FC61C75A148000B6A84 /* Section.swift */,
+				E3783D311C94C32D004BB0A1 /* SearchResults.swift */,
 				E3274FC41C75A13D000B6A84 /* Folder.swift */,
 				E3274FC81C75A151000B6A84 /* SmartFolder.swift */,
 				E3274FCA1C75A1BF000B6A84 /* File.swift */,
@@ -7675,7 +7676,6 @@
 				E37AB74B1C8E20A900F44564 /* LibrarySceneProtocol.swift in Sources */,
 				E3803F0F1C728E790048AD46 /* NSString+Lookup.m in Sources */,
 				E3803F071C728E600048AD46 /* MPAsset.m in Sources */,
-				E3898F961C8015E700CA71BE /* SearchDocumentTab.swift in Sources */,
 				E37C7B661C8FF85D00A3AB43 /* MarkdownTOCInspector.swift in Sources */,
 				E3803F0A1C728E790048AD46 /* hoedown_html_patch.c in Sources */,
 				E3274FBF1C75A088000B6A84 /* MarkdownEditor.swift in Sources */,

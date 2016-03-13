@@ -11,6 +11,7 @@ import Cocoa
 class LibraryEditor: NSViewController, FileEditor {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var containerView: NSView!
+    @IBOutlet var searchLabel: NSTextField!
     
     // MARK: - File Editor
     
@@ -46,8 +47,21 @@ class LibraryEditor: NSViewController, FileEditor {
     // MARK: - Custom Properties
     
     dynamic var sortDescriptors: [NSSortDescriptor]?
-    dynamic var filterPredicate: NSPredicate?
     dynamic var content: [DataSource]?
+
+    dynamic var filterPredicate: NSPredicate?
+    
+    var titlePredicate: NSPredicate? {
+        didSet {
+            updateFilterPredicate()
+        }
+    }
+    
+    var searchPredicate: NSPredicate? {
+        didSet {
+            updateFilterPredicate()
+        }
+    }
 
     var scene: LibraryScene!
 
@@ -89,7 +103,7 @@ class LibraryEditor: NSViewController, FileEditor {
         }
         
         let text = sender.stringValue
-        filterPredicate = ( text == "" ) ? nil : NSPredicate(format: "title contains[cd] %@", text)
+        titlePredicate = ( text == "" ) ? nil : NSPredicate(format: "title contains[cd] %@", text)
     }
     
     @IBAction func sortByProperty(sender: AnyObject?) {
@@ -169,6 +183,65 @@ class LibraryEditor: NSViewController, FileEditor {
         
         scene.arrayController.unbind("contentArray")
         scene.view.removeFromSuperview()
+    }
+    
+    // MARK: -
+    
+    func performSearch(text: String?, results: BRSearchResults?) {
+        searchLabel.hidden = ( text == nil || text! == "" )
+        
+        guard let text = text else {
+            searchPredicate = nil
+            return
+        }
+        
+        searchLabel.stringValue = String.localizedStringWithFormat(NSLocalizedString("Searching for \"%@\"",
+            comment: "Title of find tab"),
+            text)
+        
+        guard let results = results where results.count() != 0 else {
+            print("no search results")
+            return
+        }
+        
+        // Map results to an array of document ids
+        
+        var ids: [String] = []
+        
+        results.iterateWithBlock { (index: UInt, result: BRSearchResult!, stop: UnsafeMutablePointer<ObjCBool>) -> Void in
+             guard let _ = result.dictionaryRepresentation(),
+                  var id = result.valueForField("id") as? String,
+                  let _ = result.valueForField("t") as? String,
+                  let _ = result.valueForField("v") as? String else {
+                  return
+            }
+            
+            // TODO: lucene doc id question mark prefix
+            // The lucene search results return a document identifier beginning
+            // with question mark even though I am indexing using an identifier
+            // that does not have one. What gives?
+            
+            if id[id.startIndex] == "?" {
+                id = id.substringFromIndex(id.startIndex.advancedBy(1))
+            }
+            
+            ids.append(id)
+        }
+        
+        searchPredicate = NSPredicate(format: "document.documentID in %@", ids)
+    }
+    
+    func updateFilterPredicate() {
+        switch (titlePredicate, searchPredicate) {
+        case(.Some(let p1), .Some(let p2)):
+            filterPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [p1,p2])
+        case(.Some(let p1), nil):
+            filterPredicate = p1
+        case(nil, .Some(let p2)):
+            filterPredicate = p2
+        case(nil, nil):
+            filterPredicate = nil
+        }
     }
 }
 

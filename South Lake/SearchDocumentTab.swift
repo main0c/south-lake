@@ -104,7 +104,7 @@ class SearchDocumentTab: NSViewController, DocumentTab {
     
     // MARK: -
     
-    func performSearch(text: String, results: BRSearchResults?) {
+    func performSearch(text: String?, results: BRSearchResults?) {
         print("perform search for: \(text)")
         
         guard let results = results where results.count() != 0 else {

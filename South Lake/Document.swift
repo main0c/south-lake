@@ -102,7 +102,7 @@ class Document: NSDocument, Databasable {
                         continue
                     }
                     
-                    let indexable = BRSimpleIndexable(identifier: file.document!.documentID, data:[
+                    let indexable = BRSimpleIndexable(identifier: change.documentID, data:[
                         kBRSearchFieldNameTitle: file.title,
                         kBRSearchFieldNameValue: file.plain_text
                     ])
@@ -276,7 +276,7 @@ class Document: NSDocument, Databasable {
     
     func bootstrapDatabase() {
         do {
-            let query = databaseManager.sectionQuery
+            let query = databaseManager.sectionsQuery
             let results = try query.run()
             
             guard results.count == 0 else {
@@ -322,7 +322,6 @@ class Document: NSDocument, Databasable {
             let shortcutsSection = Section(forNewDocumentInDatabase: databaseManager.database)
             
             shortcutsSection.title = NSLocalizedString("Shortcuts", comment: "Shortcts section title")
-            
             shortcutsSection.index = 1
             
                 children.append(doc1)
@@ -342,7 +341,6 @@ class Document: NSDocument, Databasable {
                 allEntries.mime_type = "southlake/x-notebook-library"
                 allEntries.uti = "southlake.notebook.library"
 
-            
 //                    allEntries.children.append(doc1)
 //                    allEntries.children.append(doc2)
             

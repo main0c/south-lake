@@ -33,7 +33,7 @@ protocol DocumentTab: class, Databasable {
     
     // Search
     
-    func performSearch(text: String, results: BRSearchResults?)
+    func performSearch(text: String?, results: BRSearchResults?)
     
     // User actions
     

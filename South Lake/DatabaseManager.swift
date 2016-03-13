@@ -17,9 +17,17 @@ class DatabaseManager: NSObject {
     var manager: CBLManager!
     var database: CBLDatabase!
     
-    // Bindable variables that change as the db is re-indexed and their queries
+    // MARK: - Bindable DB Properties
     
-    private var _sectionQuery: CBLQuery?
+    dynamic var sections: [Section]? {
+        get {
+            loadSections()
+            return _sections
+        }
+        set {
+            _sections = newValue
+        }
+    }
     
     dynamic var tags: [[String:AnyObject]]? {
         get {
@@ -40,6 +48,12 @@ class DatabaseManager: NSObject {
             _files = newValue
         }
     }
+    
+    // MARK: - Private Query Properties
+    
+    private var _sections: [Section]?
+    private var _liveSectionsQuery: CBLLiveQuery?
+    private var _sectionsQuery: CBLQuery?
     
     private var _tags: [[String:AnyObject]]?
     private var _liveTagsQuery: CBLLiveQuery?
@@ -62,21 +76,18 @@ class DatabaseManager: NSObject {
         let factory = database!.modelFactory
         
         factory?.registerClass(Section.self, forDocumentType: "section")
+        //factory?.registerClass(SearchResults.self, forDocumentType: "search_results")
         factory?.registerClass(Folder.self, forDocumentType: "folder")
         factory?.registerClass(SmartFolder.self, forDocumentType: "smart_folder")
         factory?.registerClass(File.self, forDocumentType: "file")
     }
     
-    // TODO: don't need to emit the whole document or even the id?
-    // TODO: factor live query observer code into the dbm?
-    
     // MARK: - Queries
+    // TODO: don't need to emit the whole document or even the id?
     
-    /// Sections are static, once created in a new document they do not change
-    
-    var sectionQuery: CBLQuery {
-        guard _sectionQuery == nil else {
-            return _sectionQuery!
+    var sectionsQuery: CBLQuery {
+        guard _sectionsQuery == nil else {
+            return _sectionsQuery!
         }
         
         let view = database!.viewNamed("sections")
@@ -86,8 +97,8 @@ class DatabaseManager: NSObject {
             }
         }, version: "1")
         
-        _sectionQuery = view.createQuery()
-        return _sectionQuery!
+        _sectionsQuery = view.createQuery()
+        return _sectionsQuery!
     }
     
     /// Files change, a user can create and delete them, maybe we need a live view
@@ -137,9 +148,10 @@ class DatabaseManager: NSObject {
         
         if object as? NSObject == _liveTagsQuery {
             updateTags(_liveTagsQuery!.rows)
-        }
-        if object as? NSObject == _liveFilesQuery {
+        } else if object as? NSObject == _liveFilesQuery {
             updateFiles(_liveFilesQuery!.rows)
+        } else if object as? NSObject == _liveSectionsQuery {
+            updateSections(_liveSectionsQuery!.rows)
         }
     }
     
@@ -207,5 +219,42 @@ class DatabaseManager: NSObject {
         }
         
         self.files = files
+    }
+    
+    // MARK: - Sections
+    
+    func loadSections() {
+        guard _liveSectionsQuery == nil else {
+            return
+        }
+        
+        let query = sectionsQuery
+        
+        _liveSectionsQuery = query.asLiveQuery()
+        _liveSectionsQuery!.addObserver(self, forKeyPath: "rows", options: [], context: nil)
+        _liveSectionsQuery!.start()
+    }
+    
+    func updateSections(results: CBLQueryEnumerator?) {
+        guard let results = results else {
+            return
+        }
+        
+        var sections: [Section] = []
+        
+        while let row = results.nextRow() {
+            if let document = row.document {
+                let section = CBLModel(forDocument: document) as! Section
+                sections.append(section)
+            }
+        }
+        
+        // Sort the sections in place
+        
+        sections.sortInPlace({ (x, y) -> Bool in
+            return x.index < y.index
+        })
+        
+        self.sections = sections
     }
 }

@@ -114,6 +114,12 @@ class TagsEditor: NSViewController, FileEditor {
         
         arrayController.sortDescriptors = descriptors
     }
+    
+    // MARK: - 
+    
+    func performSearch(text: String?, results: BRSearchResults?) {
+    
+    }
 }
 
 // MARK: - Search Field Delegate

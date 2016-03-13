@@ -113,32 +113,57 @@ class DocumentWindowController: NSWindowController, Databasable {
     /// Called when the search field executes its action.
     
     @IBAction func executeFindInNotebook(sender: AnyObject?) {
+        guard let tab = tabController.selectedTab else {
+            // just create a new tab?
+            print("should always have a selected tab")
+            return
+        }
         
-        guard let sender = sender as? NSSearchField
-              where sender.stringValue.characters.count > 0 else {
-              return
+        guard let sender = sender as? NSSearchField else {
+            print("sender can only be search field")
+            return
         }
         
         let text = sender.stringValue
-        var searchTab: SearchDocumentTab
         
-        if tabController.selectedTab is SearchDocumentTab {
-            searchTab = tabController.selectedTab as! SearchDocumentTab
+        if text == "" {
+            tab.performSearch(nil, results: nil)
         } else {
-            do {
-                guard let item = try tabController.createNewSearchTab(),
-                      let tab = item.vc as? SearchDocumentTab else {
-                    print("don't have search tab")
-                    return
-                }
-                searchTab = tab
-            } catch {
-                print(error)
-                return
-            }
+            tab.performSearch(text, results: searchService.search(text))
         }
         
-        searchTab.performSearch(text, results: searchService.search(text))
+        
+        
+//        let searchSection = Section(forNewDocumentInDatabase: databaseManager.database)
+//            
+//        searchSection.title = NSLocalizedString("Search", comment: "Search section title")
+//        searchSection.index = -1
+//        
+//        do { try searchSection.save() } catch {
+//            print(error)
+//        }
+
+        
+//        let text = sender.stringValue
+//        var searchTab: SearchDocumentTab
+//        
+//        if tabController.selectedTab is SearchDocumentTab {
+//            searchTab = tabController.selectedTab as! SearchDocumentTab
+//        } else {
+//            do {
+//                guard let item = try tabController.createNewSearchTab(),
+//                      let tab = item.vc as? SearchDocumentTab else {
+//                    print("don't have search tab")
+//                    return
+//                }
+//                searchTab = tab
+//            } catch {
+//                print(error)
+//                return
+//            }
+//        }
+//        
+//        searchTab.performSearch(text, results: searchService.search(text))
     }
     
     // MARK: - UI Validation

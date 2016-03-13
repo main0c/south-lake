@@ -49,4 +49,8 @@ protocol FileEditor: class, Databasable {
     /// An inspector consists of a tile, and icon and a view controller
     /// A metadata inspector is automatically included in the inspector area
     var inspectors: [Inspector]? { get }
+    
+    /// A file editor should take special action if a search is being performed, 
+    /// such as highlighting the search term
+    func performSearch(text: String?, results: BRSearchResults?)
 }

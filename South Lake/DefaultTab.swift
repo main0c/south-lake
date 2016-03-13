@@ -33,11 +33,11 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     // Default inspectors
     
-    
+    // ...
     
     dynamic var icon: NSImage?
     
-    // Document Tab Properties
+    // MARK: - Document Tab
     
     var databaseManager: DatabaseManager! {
         didSet {
@@ -377,8 +377,14 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     // MARK: - Search
     
-    func performSearch(text: String, results: BRSearchResults?) {
-    
+    func performSearch(text: String?, results: BRSearchResults?) {
+        // Get the library and select it: 
+        // TODO: cannot hardcode this
+        
+        let indexPath = NSIndexPath(indexes: [0,0], length: 2)
+        
+        sourceListController.selectItemAtIndexPath(indexPath)
+        editor?.performSearch(text, results: results)
     }
     
     // MARK: - User Actions

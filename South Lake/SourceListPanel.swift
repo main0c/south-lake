@@ -16,14 +16,11 @@ class SourceListPanel: NSViewController, Databasable {
     @IBOutlet var treeController: NSTreeController!
     @IBOutlet var outlineView: NSOutlineView!
     
-    dynamic var selectedObjects: [DataSource] = []
-    dynamic var content: [DataSource] = []
-    
-    private var draggedNodes : [NSTreeNode]?
+    // MARK: - Databasable
     
     var databaseManager: DatabaseManager! {
         didSet {
-            loadData()
+            bindSections()
         }
     }
     
@@ -33,9 +30,18 @@ class SourceListPanel: NSViewController, Databasable {
         }
     }
     
+    // MARK: - Custom Properties
+    
+    dynamic var selectedObjects: [DataSource] = []
+    dynamic var content: [DataSource] = []
+    
+    // TODO: update selected object from selectedObjects so that it's dynamic and observable (everywhere)
+    
     var selectedObject: DataSource? {
         return ( selectedObjects.count == 1 ) ? selectedObjects[0] : nil
     }
+    
+    private var draggedNodes : [NSTreeNode]?
     
     // MARK: - Initialization
 
@@ -51,7 +57,7 @@ class SourceListPanel: NSViewController, Databasable {
         // Load data: defer so that the application can bootstrap the database
         
         NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-            self.loadData()
+            self.bindSections()
             self.outlineView.expandItem(nil, expandChildren: true)
         }
         
@@ -71,33 +77,15 @@ class SourceListPanel: NSViewController, Databasable {
     func willClose() {
         treeController.unbind("content")
         unbind("selectedObjects")
+        unbind("content")
     }
     
-    func loadData() {
+    func bindSections() {
         guard (databaseManager as DatabaseManager?) != nil else {
             return
         }
         
-        do {
-            let query = databaseManager.sectionQuery
-            let results = try query.run()
-            var sections: [Section] = []
-            
-            while let row = results.nextRow() {
-                if let document = row.document {
-                    let section = CBLModel(forDocument: document) as! Section
-                    sections.append(section)
-                }
-            }
-            
-            sections.sortInPlace({ (x, y) -> Bool in
-                return x.index < y.index
-            })
-            
-            self.content = sections
-        } catch {
-            print(error)
-        }
+        bind("content", toObject: databaseManager, withKeyPath: "sections", options: [:])
     }
     
     // MARK: -

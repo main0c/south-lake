@@ -307,6 +307,10 @@ class MarkdownEditor: NSViewController, FileEditor {
         bind("tableOfContentsAnchor", toObject: tableOfContentsInspector!, withKeyPath: "tableOfContentsAnchor", options: [:])
     }
     
+    func performSearch(text: String?, results: BRSearchResults?) {
+    
+    }
+    
     // MARK: - MacDown Functions
     
     func adjustEditorInsets() {

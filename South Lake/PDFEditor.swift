@@ -94,4 +94,10 @@ class PDFEditor: NSViewController, FileEditor {
         thumbnailInspector!.thumbnailView.setPDFView(editor)
     }
     
+    // MARK: - 
+    
+    func performSearch(text: String?, results: BRSearchResults?) {
+    
+    }
+    
 }
