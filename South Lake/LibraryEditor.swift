@@ -75,6 +75,8 @@ class LibraryEditor: NSViewController, FileEditor {
         
         sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: Selector("compare:"))]
         
+        searchLabel.hidden = true
+        
         // TODO: Save and restore scene preference
         
         loadScene("libraryCollectionScene")
@@ -218,7 +220,7 @@ class LibraryEditor: NSViewController, FileEditor {
             
             // TODO: lucene doc id question mark prefix
             // The lucene search results return a document identifier beginning
-            // with question mark even though I am indexing using an identifier
+            // with a question mark even though I am indexing using an identifier
             // that does not have one. What gives?
             
             if id[id.startIndex] == "?" {
