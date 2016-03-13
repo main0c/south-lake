@@ -47,7 +47,6 @@ class SourceListPanel: NSViewController, Databasable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
         
         // Bindings: memory consequences?
         

@@ -58,7 +58,6 @@ class MetadataInspector: NSViewController, Inspector {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
         
         // outlineView.usesStaticContents = true // what effect?
         outlineView.selectionHighlightStyle = .None

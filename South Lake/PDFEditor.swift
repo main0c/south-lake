@@ -58,7 +58,6 @@ class PDFEditor: NSViewController, FileEditor {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
         
         editor.setBackgroundColor(NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0))
     }

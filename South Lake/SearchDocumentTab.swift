@@ -34,7 +34,6 @@ class SearchDocumentTab: NSViewController, DocumentTab {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
         
         title = NSLocalizedString("Find Results", comment: "Title of find tab")
         

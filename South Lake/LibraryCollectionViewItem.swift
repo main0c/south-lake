@@ -13,7 +13,6 @@ class LibraryCollectionViewItem: NSCollectionViewItem {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
         
         backgroundView.backgroundColor = NSColor(white: 1.0, alpha: 1.0)
         backgroundView.borderColor = nil

@@ -42,7 +42,6 @@ class ContentViewPanel: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
         
         self.view.layer?.backgroundColor = NSColor(white: 1.0, alpha: 1.0).CGColor
     }

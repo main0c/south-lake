@@ -187,7 +187,6 @@ class MarkdownEditor: NSViewController, FileEditor {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
         
         // Default preferences
         

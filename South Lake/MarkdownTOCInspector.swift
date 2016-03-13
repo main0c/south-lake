@@ -58,7 +58,6 @@ class MarkdownTOCInspector: NSViewController, Inspector {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
         
         do { template = try String(contentsOfURL: NSBundle.mainBundle().URLForResource("md-toc-index", withExtension: "html")!, encoding: NSUTF8StringEncoding) } catch {
             print(error)

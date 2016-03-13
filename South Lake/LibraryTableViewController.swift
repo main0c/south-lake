@@ -14,7 +14,6 @@ class LibraryTableViewController: NSViewController, LibraryScene {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
     }
     
 }
