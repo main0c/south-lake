@@ -27,13 +27,8 @@ class MetadataInspector: NSViewController, Inspector {
         return NSImage(named: "metadata-selected-icon")!
     }
     
-    var databaseManager: DatabaseManager! {
-        didSet { }
-    }
-    
-    var searchService: BRSearchService! {
-        didSet { }
-    }
+    var databaseManager: DatabaseManager!
+    var searchService: BRSearchService!
     
     // MARK: - Custom Properties
     

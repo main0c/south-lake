@@ -17,22 +17,14 @@ class PDFEditor: NSViewController, FileEditor {
     static var filetypes: [String] { return ["com.adobe.pdf", "pdf", "application/pdf"] }
     static var storyboard: String { return "PDFEditor" }
     
-    var databaseManager: DatabaseManager! {
-        didSet { }
-    }
-    
-    var searchService: BRSearchService! {
-        didSet { }
-    }
+    var databaseManager: DatabaseManager!
+    var searchService: BRSearchService!
     
     var isFileEditor: Bool {
         return true
     }
     
     dynamic var file: DataSource? {
-        willSet {
-        
-        }
         didSet {
             loadFile(file)
         }

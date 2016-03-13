@@ -13,27 +13,15 @@ class CalendarEditor: NSViewController, FileEditor {
    static var filetypes: [String] { return ["southlake.notebook.calendar", "southlake/x-notebook-calendar", "southlake-notebook-calendar"] }
     static var storyboard: String { return "CalendarEditor" }
     
-    var databaseManager: DatabaseManager! {
-        didSet { }
-    }
-    
-    var searchService: BRSearchService! {
-        didSet { }
-    }
+    var databaseManager: DatabaseManager!
+    var searchService: BRSearchService!
     
     var isFileEditor: Bool {
         return false
     }
     
-    dynamic var file: DataSource? {
-        willSet {
+    dynamic var file: DataSource?
         
-        }
-        didSet {
-        
-        }
-    }
-    
     var primaryResponder: NSView {
         return view
     }

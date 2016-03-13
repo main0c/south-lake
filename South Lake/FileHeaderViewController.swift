@@ -30,10 +30,8 @@ class FileHeaderViewController: NSViewController, Databasable {
         }
     }
     
-    var searchService: BRSearchService! {
-        didSet { }
-    }
-
+    var searchService: BRSearchService!
+    
     // MARK: - Custom Properties
 
     var file: DataSource? {

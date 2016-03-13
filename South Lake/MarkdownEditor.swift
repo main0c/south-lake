@@ -113,13 +113,8 @@ class MarkdownEditor: NSViewController, FileEditor {
     
     var editingTemplate: Bool = false
     
-    var databaseManager: DatabaseManager! {
-        didSet { }
-    }
-    
-    var searchService: BRSearchService! {
-        didSet { }
-    }
+    var databaseManager: DatabaseManager!
+    var searchService: BRSearchService!
     
     // It might be possible to bypass the whole data bit and just bind the editor
     // directly to the file key from interface builder

@@ -22,13 +22,8 @@ class MarkdownTOCInspector: NSViewController, Inspector {
         return NSImage(named: "md-table-of-contents-selected-icon")!
     }
     
-    var databaseManager: DatabaseManager! {
-        didSet { }
-    }
-    
-    var searchService: BRSearchService! {
-        didSet { }
-    }
+    var databaseManager: DatabaseManager!
+    var searchService: BRSearchService!
     
     // MARK: - Custom Properties
     
@@ -48,12 +43,8 @@ class MarkdownTOCInspector: NSViewController, Inspector {
     
     // Could use a delegate method here
     
-    dynamic var tableOfContentsAnchor = "" {
-        didSet {
+    dynamic var tableOfContentsAnchor = ""
         
-        }
-    }
-    
     // MARK: - Initialization
     
     override func viewDidLoad() {

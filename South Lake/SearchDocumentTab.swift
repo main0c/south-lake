@@ -18,18 +18,9 @@ class SearchDocumentTab: NSViewController, DocumentTab {
     dynamic var selectedObjects: [DataSource] = []
     dynamic var icon: NSImage?
     
-    var databaseManager: DatabaseManager! {
-        didSet {
-        
-        }
-    }
+    var databaseManager: DatabaseManager!
+    var searchService: BRSearchService!
     
-    var searchService: BRSearchService! {
-        didSet {
-        
-        }
-    }
-
     // MARK: - Initialization
 
     override func viewDidLoad() {

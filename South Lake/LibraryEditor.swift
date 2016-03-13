@@ -18,13 +18,8 @@ class LibraryEditor: NSViewController, FileEditor {
     static var filetypes: [String] { return ["southlake.notebook.library", "southlake/x-notebook-library", "southlake-notebook-library"] }
     static var storyboard: String { return "LibraryEditor" }
     
-    var databaseManager: DatabaseManager! {
-        didSet { }
-    }
-    
-    var searchService: BRSearchService! {
-        didSet { }
-    }
+    var databaseManager: DatabaseManager!
+    var searchService: BRSearchService!
     
     var isFileEditor: Bool {
         return false

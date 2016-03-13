@@ -15,22 +15,14 @@ class TagsEditor: NSViewController, FileEditor {
     static var filetypes: [String] { return ["southlake.notebook.tags", "southlake/x-notebook-tags", "southlake-notebook-tags"] }
     static var storyboard: String { return "TagsEditor" }
     
-    var databaseManager: DatabaseManager! {
-        didSet { }
-    }
-    
-    var searchService: BRSearchService! {
-        didSet { }
-    }
+    var databaseManager: DatabaseManager!
+    var searchService: BRSearchService!
     
     var isFileEditor: Bool {
         return false
     }
     
     dynamic var file: DataSource? {
-        willSet {
-        
-        }
         didSet {
             bindTags()
         }

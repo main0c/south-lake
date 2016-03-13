@@ -30,9 +30,7 @@ class RelatedInspector: NSViewController, Inspector {
         }
     }
     
-    var searchService: BRSearchService! {
-        didSet { }
-    }
+    var searchService: BRSearchService!
     
     // TODO: make selectedObjects an inspector protocol property?
     
