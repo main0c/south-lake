@@ -31,6 +31,7 @@
 		E378E80F1C801F54009539FD /* NSToolbar+Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378E80E1C801F54009539FD /* NSToolbar+Items.swift */; };
 		E378E8151C80216E009539FD /* SearchTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E378E8171C80216E009539FD /* SearchTab.storyboard */; };
 		E3794C501C8CA345005EA307 /* CustomizableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3794C4F1C8CA345005EA307 /* CustomizableView.swift */; };
+		E37A727B1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37A727A1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift */; };
 		E37AB7331C8E0C6E00F44564 /* NSView+Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB7321C8E0C6E00F44564 /* NSView+Identifier.swift */; };
 		E37AB7451C8E1C0500F44564 /* LibraryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB7441C8E1C0500F44564 /* LibraryCollectionViewController.swift */; };
 		E37AB7481C8E1C0E00F44564 /* LibraryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB7461C8E1C0E00F44564 /* LibraryTableViewController.swift */; };
@@ -306,6 +307,7 @@
 		E378E80E1C801F54009539FD /* NSToolbar+Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSToolbar+Items.swift"; sourceTree = "<group>"; };
 		E378E8161C80216E009539FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SearchTab.storyboard; sourceTree = "<group>"; };
 		E3794C4F1C8CA345005EA307 /* CustomizableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizableView.swift; sourceTree = "<group>"; };
+		E37A727A1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTokenFieldTokenTracker.swift; sourceTree = "<group>"; };
 		E37AB7321C8E0C6E00F44564 /* NSView+Identifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+Identifier.swift"; sourceTree = "<group>"; };
 		E37AB7441C8E1C0500F44564 /* LibraryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewController.swift; sourceTree = "<group>"; };
 		E37AB7461C8E1C0E00F44564 /* LibraryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryTableViewController.swift; sourceTree = "<group>"; };
@@ -7158,6 +7160,7 @@
 				E39E9B381C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift */,
 				E37AB74C1C8E281500F44564 /* TagsValueTransformer.swift */,
 				E3794C4F1C8CA345005EA307 /* CustomizableView.swift */,
+				E37A727A1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift */,
 				E3C436291C7642BA00DD685D /* MacDownCopyFiles.h */,
 				E3C4362A1C7642BA00DD685D /* MacDownCopyFiles.m */,
 			);
@@ -7673,6 +7676,7 @@
 				E37C7BB31C90BF6A00A3AB43 /* DMTabBar.m in Sources */,
 				E36072731C74E64200914C2C /* NSTabViewItem+ViewController.swift in Sources */,
 				E378E80F1C801F54009539FD /* NSToolbar+Items.swift in Sources */,
+				E37A727B1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift in Sources */,
 				E37AB74B1C8E20A900F44564 /* LibrarySceneProtocol.swift in Sources */,
 				E3803F0F1C728E790048AD46 /* NSString+Lookup.m in Sources */,
 				E3803F071C728E600048AD46 /* MPAsset.m in Sources */,

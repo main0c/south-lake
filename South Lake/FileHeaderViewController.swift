@@ -43,6 +43,8 @@ class FileHeaderViewController: NSViewController, Databasable {
         }
     }
     
+    var tokenTracker: NSTokenFieldTokenTracker?
+    
     // Keep track of the tags in the db for autocompletion
     // TODO: move these onto the dbm as dynamic variables, e.g. tags, sections, files, etc...
     
@@ -54,7 +56,8 @@ class FileHeaderViewController: NSViewController, Databasable {
         super.viewDidLoad()
         
         (self.view as! CustomizableView).backgroundColor = NSColor(white:1.0, alpha: 1.0)
-        // NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
+        
+        tokenTracker = NSTokenFieldTokenTracker(tokenField: tagsField!, delegate: false)
     
         bindTags()
     }
@@ -127,6 +130,16 @@ class FileHeaderViewController: NSViewController, Databasable {
     var primaryResponder: NSView {
         return titleField
     }
+    
+    @IBAction func updateTokens(sender: AnyObject?) {
+        print("updating tokens")
+        guard let file = file else {
+            return
+        }
+        
+        file.setValue(tagsField.objectValue, forKey: "tags")
+        
+    }
 }
 
 extension FileHeaderViewController: NSTokenFieldDelegate {
@@ -143,5 +156,19 @@ extension FileHeaderViewController: NSTokenFieldDelegate {
         return tagsContent!
             .filter { predicate.evaluateWithObject($0) }
             .map { $0["tag"]! }
+    }
+    
+    func control(control: NSControl, textShouldBeginEditing fieldEditor: NSText) -> Bool {
+        guard let tokenTracker = tokenTracker else {
+            return true
+        }
+        return tokenTracker.control(control, textShouldBeginEditing: fieldEditor)
+    }
+    
+    override func controlTextDidChange(obj: NSNotification) {
+        guard let tokenTracker = tokenTracker else {
+            return
+        }
+        tokenTracker.controlTextDidChange(obj)
     }
 }

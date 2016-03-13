@@ -84,6 +84,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </tokenFieldCell>
                                 <connections>
+                                    <action selector="updateTokens:" target="OdF-rM-MB3" id="CT0-Qr-94N"/>
                                     <outlet property="delegate" destination="OdF-rM-MB3" id="PEX-3X-Or2"/>
                                 </connections>
                             </tokenField>
