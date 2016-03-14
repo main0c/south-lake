@@ -10,9 +10,9 @@ import Cocoa
 
 @objc(Folder)
 class Folder: DataSource {
-    override class var model_mime_type: NSString { return "southlake/folder" }
-    override class var model_uti: NSString { return "southlake.folder" }
-    override class var model_type: NSString { return "folder" }
+    override class var model_mime_type: NSString { return DataTypes.Folder.mime }
+    override class var model_uti: NSString { return DataTypes.Folder.uti }
+    override class var model_type: NSString { return DataTypes.Folder.model }
 }
 
 extension Folder {

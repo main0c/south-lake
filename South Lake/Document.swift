@@ -291,17 +291,17 @@ class Document: NSDocument, Databasable {
             
                 doc1.title = NSLocalizedString("Welcome to South Lake", comment: "")
                 doc1.icon = NSImage(named:"markdown-document-icon")
-                doc1.uti = "net.daringfireball.markdown"
-                doc1.file_extension = "markdown"
-                doc1.mime_type = "text/markdown"
+                doc1.file_extension = DataTypes.Markdown.ext
+                doc1.mime_type = DataTypes.Markdown.mime
+                doc1.uti = DataTypes.Markdown.uti
             
                 let doc2 = File(forNewDocumentInDatabase: databaseManager.database)
             
                 doc2.title = NSLocalizedString("About Markdown", comment: "")
                 doc2.icon = NSImage(named:"markdown-document-icon")
-                doc2.uti = "net.daringfireball.markdown"
-                doc2.file_extension = "markdown"
-                doc2.mime_type = "text/markdown"
+                doc2.file_extension = DataTypes.Markdown.ext
+                doc2.mime_type = DataTypes.Markdown.mime
+                doc2.uti = DataTypes.Markdown.uti
 
                 // PDF Test
 
@@ -337,35 +337,34 @@ class Document: NSDocument, Databasable {
             
                 allEntries.title = NSLocalizedString("Library", comment: "Library folder title")
                 allEntries.icon = NSImage(named: "notebook-icon")
-                allEntries.file_extension = "southlake-notebook-library"
-                allEntries.mime_type = "southlake/x-notebook-library"
-                allEntries.uti = "southlake.notebook.library"
+                allEntries.file_extension = DataTypes.Library.ext
+                allEntries.mime_type = DataTypes.Library.mime
+                allEntries.uti = DataTypes.Library.uti
 
-//                    allEntries.children.append(doc1)
-//                    allEntries.children.append(doc2)
+                    // Children don't need to be explicitly added to the library
             
                 let calendar = Folder(forNewDocumentInDatabase: databaseManager.database)
                 calendar.title = NSLocalizedString("Calendar", comment: "Library calendar title")
                 calendar.icon = NSImage(named: "calendar-icon")
-                calendar.file_extension = "southlake-notebook-calendar"
-                calendar.mime_type = "southlake/x-notebook-calendar"
-                calendar.uti = "southlake.notebook.calendar"
+                calendar.file_extension = DataTypes.Calendar.ext
+                calendar.mime_type = DataTypes.Calendar.mime
+                calendar.uti = DataTypes.Calendar.uti
             
                 let tags = Folder(forNewDocumentInDatabase: databaseManager.database)
             
                 tags.title = NSLocalizedString("Tags", comment: "Tags folder title")
                 tags.icon = NSImage(named: "tags-folder-icon")
-                tags.file_extension = "southlake-notebook-tags"
-                tags.mime_type = "southlake/x-notebook-tags"
-                tags.uti = "southlake.notebook.tags"
+                tags.file_extension = DataTypes.Tags.ext
+                tags.mime_type = DataTypes.Tags.mime
+                tags.uti = DataTypes.Tags.uti
             
                 let trash = Folder(forNewDocumentInDatabase: databaseManager.database)
             
                 trash.title = NSLocalizedString("Trash", comment: "Trash folder title")
                 trash.icon = NSImage(named: "trash-icon")
-                trash.file_extension = "southlake-notebook-trash"
-                trash.mime_type = "southlake/x-notebook-trash"
-                trash.uti = "southlake.notebook.trash"
+                trash.file_extension = DataTypes.Trash.ext
+                trash.mime_type = DataTypes.Trash.mime
+                trash.uti = DataTypes.Trash.uti
             
                 try allEntries.save()
                 try calendar.save()

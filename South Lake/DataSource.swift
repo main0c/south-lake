@@ -15,9 +15,9 @@ class DataSource: CBLModel {
     // TODO: remove references to icon
     
     class var model_file_extension: NSString { return model_uti as String }
-    class var model_mime_type: NSString { return "southlake/source-item" }
-    class var model_uti: NSString { return "southlake.source-item" }
-    class var model_type: NSString { return "datasource" }
+    class var model_mime_type: NSString { return DataTypes.DataSource.mime }
+    class var model_uti: NSString { return DataTypes.DataSource.uti }
+    class var model_type: NSString { return DataTypes.DataSource.model }
     
     @NSManaged var title: String
     @NSManaged var created_at: NSDate

@@ -32,6 +32,7 @@
 		E378E8151C80216E009539FD /* SearchTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E378E8171C80216E009539FD /* SearchTab.storyboard */; };
 		E3794C501C8CA345005EA307 /* CustomizableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3794C4F1C8CA345005EA307 /* CustomizableView.swift */; };
 		E37A727B1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37A727A1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift */; };
+		E37A728D1C96312E002C721D /* ModelTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37A728C1C96312E002C721D /* ModelTypes.swift */; };
 		E37AB7331C8E0C6E00F44564 /* NSView+Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB7321C8E0C6E00F44564 /* NSView+Identifier.swift */; };
 		E37AB7451C8E1C0500F44564 /* LibraryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB7441C8E1C0500F44564 /* LibraryCollectionViewController.swift */; };
 		E37AB7481C8E1C0E00F44564 /* LibraryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB7461C8E1C0E00F44564 /* LibraryTableViewController.swift */; };
@@ -302,12 +303,12 @@
 		E360726E1C74E40500914C2C /* DocumentTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentTabController.swift; sourceTree = "<group>"; };
 		E36072721C74E64200914C2C /* NSTabViewItem+ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTabViewItem+ViewController.swift"; sourceTree = "<group>"; };
 		E360727B1C74FEEC00914C2C /* DocumentTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentTab.swift; sourceTree = "<group>"; };
-		E3783D311C94C32D004BB0A1 /* SearchResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		E378C5331C814F1900CACDFC /* String+Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Range.swift"; sourceTree = "<group>"; };
 		E378E80E1C801F54009539FD /* NSToolbar+Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSToolbar+Items.swift"; sourceTree = "<group>"; };
 		E378E8161C80216E009539FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SearchTab.storyboard; sourceTree = "<group>"; };
 		E3794C4F1C8CA345005EA307 /* CustomizableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizableView.swift; sourceTree = "<group>"; };
 		E37A727A1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTokenFieldTokenTracker.swift; sourceTree = "<group>"; };
+		E37A728C1C96312E002C721D /* ModelTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelTypes.swift; sourceTree = "<group>"; };
 		E37AB7321C8E0C6E00F44564 /* NSView+Identifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+Identifier.swift"; sourceTree = "<group>"; };
 		E37AB7441C8E1C0500F44564 /* LibraryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewController.swift; sourceTree = "<group>"; };
 		E37AB7461C8E1C0E00F44564 /* LibraryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryTableViewController.swift; sourceTree = "<group>"; };
@@ -2583,9 +2584,9 @@
 			isa = PBXGroup;
 			children = (
 				E37E47C91C73F2710077ECD7 /* DatabaseManager.swift */,
+				E37A728C1C96312E002C721D /* ModelTypes.swift */,
 				E3274FC21C75A134000B6A84 /* DataSource.swift */,
 				E3274FC61C75A148000B6A84 /* Section.swift */,
-				E3783D311C94C32D004BB0A1 /* SearchResults.swift */,
 				E3274FC41C75A13D000B6A84 /* Folder.swift */,
 				E3274FC81C75A151000B6A84 /* SmartFolder.swift */,
 				E3274FCA1C75A1BF000B6A84 /* File.swift */,
@@ -7657,6 +7658,7 @@
 				E3274FCB1C75A1BF000B6A84 /* File.swift in Sources */,
 				E385F7F21C92865C0015A91B /* TagsCollectionViewItem.swift in Sources */,
 				E3274FC71C75A148000B6A84 /* Section.swift in Sources */,
+				E37A728D1C96312E002C721D /* ModelTypes.swift in Sources */,
 				E37AB7881C8F6A5900F44564 /* PDFThumbnailInspector.swift in Sources */,
 				E3E7C9DE1C89078100BD73A9 /* NSString+RegExEscape.swift in Sources */,
 				E3FD67A21C7BE4B500D7EBB7 /* ImporterPlugIns.swift in Sources */,

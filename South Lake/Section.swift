@@ -10,9 +10,9 @@ import Cocoa
 
 @objc(Section)
 class Section: DataSource {
-    override class var model_mime_type: NSString { return "southlake/section" }
-    override class var model_uti: NSString { return "southlake.section" }
-    override class var model_type: NSString { return "section" }
+    override class var model_mime_type: NSString { return DataTypes.Section.mime }
+    override class var model_uti: NSString { return DataTypes.Section.uti }
+    override class var model_type: NSString { return DataTypes.Section.model }
     
     @NSManaged var index: Int
 }
