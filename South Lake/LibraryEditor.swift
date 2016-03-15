@@ -191,9 +191,8 @@ class LibraryEditor: NSViewController, FileEditor {
             return
         }
         
-        searchLabel.stringValue = String.localizedStringWithFormat(NSLocalizedString("Searching for \"%@\"",
-            comment: "Title of find tab"),
-            text)
+        searchLabel.stringValue = String(format: NSLocalizedString("Searching for \"%@\"",
+            comment: "Title of find tab"), text)
         
         guard let results = results where results.count() != 0 else {
             print("no search results")
