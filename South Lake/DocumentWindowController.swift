@@ -131,39 +131,6 @@ class DocumentWindowController: NSWindowController, Databasable {
         } else {
             tab.performSearch(text, results: searchService.search(text))
         }
-        
-        
-        
-//        let searchSection = Section(forNewDocumentInDatabase: databaseManager.database)
-//            
-//        searchSection.title = NSLocalizedString("Search", comment: "Search section title")
-//        searchSection.index = -1
-//        
-//        do { try searchSection.save() } catch {
-//            print(error)
-//        }
-
-        
-//        let text = sender.stringValue
-//        var searchTab: SearchDocumentTab
-//        
-//        if tabController.selectedTab is SearchDocumentTab {
-//            searchTab = tabController.selectedTab as! SearchDocumentTab
-//        } else {
-//            do {
-//                guard let item = try tabController.createNewSearchTab(),
-//                      let tab = item.vc as? SearchDocumentTab else {
-//                    print("don't have search tab")
-//                    return
-//                }
-//                searchTab = tab
-//            } catch {
-//                print(error)
-//                return
-//            }
-//        }
-//        
-//        searchTab.performSearch(text, results: searchService.search(text))
     }
     
     // MARK: - UI Validation

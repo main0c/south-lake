@@ -204,32 +204,6 @@ class DocumentTabController: NSViewController, Databasable {
         return tabViewItem
     }
     
-    func createNewSearchTab() throws -> NSTabViewItem? {
-        guard let viewController = NSStoryboard(name: "SearchTab", bundle: nil).instantiateInitialController() as? NSViewController else {
-            throw DocumentTabControllerError.CouldNotInstantiateTabViewController
-        }
-        guard viewController is DocumentTab else {
-            throw DocumentTabControllerError.CouldNotInstantiateTabViewController
-        }
-        
-        let tabBarItem = DocumentTabBarItem()
-        let tabViewItem = NSTabViewItem(identifier: tabBarItem)
-        
-        tabViewItem.view = viewController.view
-        tabViewItem.vc = viewController
-        
-        tabBarItem.bind("title", toObject: viewController, withKeyPath: "title", options: [:])
-        tabBarItem.bind("icon", toObject: viewController, withKeyPath: "icon", options: [:])
-        
-        (viewController as! DocumentTab).databaseManager = databaseManager
-        (viewController as! DocumentTab).searchService = searchService
-        
-        tabView.addTabViewItem(tabViewItem)
-        tabView.selectTabViewItem(tabViewItem)
-        
-        return tabViewItem
-    }
-    
     func clearTabs() {
         for (item) in tabView.tabViewItems {
             tabView.removeTabViewItem(item)

@@ -29,7 +29,6 @@
 		E360727C1C74FEEC00914C2C /* DocumentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E360727B1C74FEEC00914C2C /* DocumentTab.swift */; };
 		E378C5341C814F1900CACDFC /* String+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378C5331C814F1900CACDFC /* String+Range.swift */; };
 		E378E80F1C801F54009539FD /* NSToolbar+Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378E80E1C801F54009539FD /* NSToolbar+Items.swift */; };
-		E378E8151C80216E009539FD /* SearchTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E378E8171C80216E009539FD /* SearchTab.storyboard */; };
 		E3794C501C8CA345005EA307 /* CustomizableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3794C4F1C8CA345005EA307 /* CustomizableView.swift */; };
 		E37A727B1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37A727A1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift */; };
 		E37A728D1C96312E002C721D /* ModelTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37A728C1C96312E002C721D /* ModelTypes.swift */; };
@@ -305,7 +304,6 @@
 		E360727B1C74FEEC00914C2C /* DocumentTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentTab.swift; sourceTree = "<group>"; };
 		E378C5331C814F1900CACDFC /* String+Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Range.swift"; sourceTree = "<group>"; };
 		E378E80E1C801F54009539FD /* NSToolbar+Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSToolbar+Items.swift"; sourceTree = "<group>"; };
-		E378E8161C80216E009539FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SearchTab.storyboard; sourceTree = "<group>"; };
 		E3794C4F1C8CA345005EA307 /* CustomizableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizableView.swift; sourceTree = "<group>"; };
 		E37A727A1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTokenFieldTokenTracker.swift; sourceTree = "<group>"; };
 		E37A728C1C96312E002C721D /* ModelTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelTypes.swift; sourceTree = "<group>"; };
@@ -2434,7 +2432,6 @@
 		E385F7E11C924D550015A91B /* md-toc-index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "md-toc-index.html"; sourceTree = "<group>"; };
 		E385F7F11C92865C0015A91B /* TagsCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewItem.swift; sourceTree = "<group>"; };
 		E385F8071C796B950072A2CD /* NSDataNSStringValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataNSStringValueTransformer.swift; sourceTree = "<group>"; };
-		E3898F941C8015E700CA71BE /* SearchDocumentTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDocumentTab.swift; sourceTree = "<group>"; };
 		E39E9B381C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringNSDataValueTransformer.swift; sourceTree = "<group>"; };
 		E3AD25591C7F9CDE006D6536 /* MarkdownImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownImporter.swift; sourceTree = "<group>"; };
 		E3AD256B1C7F9D08006D6536 /* FileImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileImporter.swift; sourceTree = "<group>"; };
@@ -7134,15 +7131,6 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
-		E3898F831C80153900CA71BE /* Search Tab (Deprecated) */ = {
-			isa = PBXGroup;
-			children = (
-				E378E8171C80216E009539FD /* SearchTab.storyboard */,
-				E3898F941C8015E700CA71BE /* SearchDocumentTab.swift */,
-			);
-			name = "Search Tab (Deprecated)";
-			sourceTree = "<group>";
-		};
 		E3898F981C80162700CA71BE /* Markdown */ = {
 			isa = PBXGroup;
 			children = (
@@ -7175,7 +7163,6 @@
 				E32757A61C8C946B004525E2 /* ContentViewPanel.swift */,
 				E37AB79C1C8F713900F44564 /* InspectorPanel.swift */,
 				E3274FAC1C75A04C000B6A84 /* Default Tab */,
-				E3898F831C80153900CA71BE /* Search Tab (Deprecated) */,
 			);
 			name = Tabs;
 			sourceTree = "<group>";
@@ -7499,7 +7486,6 @@
 				E38035921C728D780048AD46 /* Styles in Resources */,
 				E38035931C728D780048AD46 /* syntax_highlighting.json in Resources */,
 				E38035941C728D780048AD46 /* Themes in Resources */,
-				E378E8151C80216E009539FD /* SearchTab.storyboard in Resources */,
 				E3C821261C75984B00CBAE92 /* DefaultTab.storyboard in Resources */,
 				E37AB7731C8F4C5900F44564 /* As We May Think - The Atlantic.pdf in Resources */,
 				E37AB7771C8F4D2B00F44564 /* PDFEditor.storyboard in Resources */,
@@ -7755,14 +7741,6 @@
 				E3274FD11C75A594000B6A84 /* Base */,
 			);
 			name = MarkdownEditor.storyboard;
-			sourceTree = "<group>";
-		};
-		E378E8171C80216E009539FD /* SearchTab.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E378E8161C80216E009539FD /* Base */,
-			);
-			name = SearchTab.storyboard;
 			sourceTree = "<group>";
 		};
 		E37D96171C723B8A000A9F90 /* Main.storyboard */ = {
