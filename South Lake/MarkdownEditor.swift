@@ -186,7 +186,7 @@ class MarkdownEditor: NSViewController, FileEditor {
         // Default preferences
         
         preferences.editorBaseFont = NSFont(name: "Helvetica", size: 13.0)
-        preferences.editorStyleName = "Mou Fresh Air+" // Tomorrow+
+        preferences.editorStyleName = "South Lake" // Tomorrow+ // Mou Fresh Air+
         preferences.editorSyncScrolling = true
         
         preferences.htmlMathJax = true

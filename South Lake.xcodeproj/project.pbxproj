@@ -27,6 +27,7 @@
 		E36072701C74E40500914C2C /* DocumentTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E360726E1C74E40500914C2C /* DocumentTabController.swift */; };
 		E36072731C74E64200914C2C /* NSTabViewItem+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36072721C74E64200914C2C /* NSTabViewItem+ViewController.swift */; };
 		E360727C1C74FEEC00914C2C /* DocumentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E360727B1C74FEEC00914C2C /* DocumentTab.swift */; };
+		E377CA361C98871800C90011 /* South Lake.style in Resources */ = {isa = PBXBuildFile; fileRef = E377CA351C98871800C90011 /* South Lake.style */; };
 		E378C5341C814F1900CACDFC /* String+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378C5331C814F1900CACDFC /* String+Range.swift */; };
 		E378E80F1C801F54009539FD /* NSToolbar+Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378E80E1C801F54009539FD /* NSToolbar+Items.swift */; };
 		E3794C501C8CA345005EA307 /* CustomizableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3794C4F1C8CA345005EA307 /* CustomizableView.swift */; };
@@ -302,6 +303,7 @@
 		E360726E1C74E40500914C2C /* DocumentTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentTabController.swift; sourceTree = "<group>"; };
 		E36072721C74E64200914C2C /* NSTabViewItem+ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTabViewItem+ViewController.swift"; sourceTree = "<group>"; };
 		E360727B1C74FEEC00914C2C /* DocumentTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentTab.swift; sourceTree = "<group>"; };
+		E377CA351C98871800C90011 /* South Lake.style */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "South Lake.style"; sourceTree = "<group>"; };
 		E378C5331C814F1900CACDFC /* String+Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Range.swift"; sourceTree = "<group>"; };
 		E378E80E1C801F54009539FD /* NSToolbar+Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSToolbar+Items.swift"; sourceTree = "<group>"; };
 		E3794C4F1C8CA345005EA307 /* CustomizableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizableView.swift; sourceTree = "<group>"; };
@@ -6226,6 +6228,7 @@
 				E3803D361C728DA90048AD46 /* Tomorrow.style */,
 				E3803D371C728DA90048AD46 /* Writer+.style */,
 				E3803D381C728DA90048AD46 /* Writer.style */,
+				E377CA351C98871800C90011 /* South Lake.style */,
 			);
 			path = Themes;
 			sourceTree = "<group>";
@@ -7482,6 +7485,7 @@
 				E380358F1C728D780048AD46 /* Extensions in Resources */,
 				E38035901C728D780048AD46 /* MathJax in Resources */,
 				E38035911C728D780048AD46 /* Prism in Resources */,
+				E377CA361C98871800C90011 /* South Lake.style in Resources */,
 				E385F7E21C924D550015A91B /* md-toc-index.html in Resources */,
 				E38035921C728D780048AD46 /* Styles in Resources */,
 				E38035931C728D780048AD46 /* syntax_highlighting.json in Resources */,
