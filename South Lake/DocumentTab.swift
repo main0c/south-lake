@@ -48,6 +48,10 @@ protocol DocumentTab: class, Databasable {
     // UI validation
     
     func validateMenuItem(menuItem: NSMenuItem) -> Bool
+    
+    // URLs
+    
+    func handleOpenURL(notification: NSNotification)
 }
 
 //extension DocumentTab where Self: NSViewController {

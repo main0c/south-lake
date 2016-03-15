@@ -403,6 +403,7 @@
                                             </tableColumns>
                                             <connections>
                                                 <binding destination="lga-xc-fVP" name="content" keyPath="arrangedObjects" id="U8p-4y-vaU"/>
+                                                <binding destination="lga-xc-fVP" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="U8p-4y-vaU" id="qJE-Hu-yJb"/>
                                             </connections>
                                         </tableView>
                                     </subviews>

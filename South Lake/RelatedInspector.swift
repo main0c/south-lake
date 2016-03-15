@@ -26,11 +26,16 @@ class RelatedInspector: NSViewController, Inspector {
     
     var databaseManager: DatabaseManager! {
         didSet {
+            scene?.databaseManager = databaseManager
             bindLibrary()
         }
     }
     
-    var searchService: BRSearchService!
+    var searchService: BRSearchService! {
+        didSet {
+            scene?.searchService = searchService
+        }
+    }
     
     // TODO: make selectedObjects an inspector protocol property?
     
@@ -39,7 +44,7 @@ class RelatedInspector: NSViewController, Inspector {
     // MARK: - Custom Properties
     
     var tags: [String]?
-    var scene: LibraryScene!
+    var scene: LibraryScene?
     
     dynamic var libraryContent: [DataSource] = []
     dynamic var selectedTags: [String]? {
@@ -91,6 +96,15 @@ class RelatedInspector: NSViewController, Inspector {
     
     func loadScene(identifier: String) {
         scene = storyboard!.instantiateControllerWithIdentifier(identifier) as! LibraryScene
+        guard var scene = scene else {
+            print("unable to load scene")
+            return
+        }
+        
+        // Databasable
+        
+        scene.databaseManager = databaseManager
+        scene.searchService = searchService
         
         // Set up frame and view constraints
         
@@ -112,7 +126,7 @@ class RelatedInspector: NSViewController, Inspector {
     }
     
     func unloadScene() {
-        guard (scene as LibraryScene?) != nil else {
+        guard let scene = scene else {
             return
         }
         

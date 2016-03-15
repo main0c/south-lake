@@ -14,6 +14,7 @@ import Cocoa
 import Quartz // temporary
 
 let DocumentWillSaveNotification = "com.phildow.southlake.documentwillsave"
+let OpenURLNotification = "com.phildow.southlake.openurl"
 
 enum DocumentError: ErrorType {
     case ShouldNotSaveFileWrapper

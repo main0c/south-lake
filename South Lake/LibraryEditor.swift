@@ -18,8 +18,17 @@ class LibraryEditor: NSViewController, FileEditor {
     static var filetypes: [String] { return ["southlake.notebook.library", "southlake/x-notebook-library", "southlake-notebook-library"] }
     static var storyboard: String { return "LibraryEditor" }
     
-    var databaseManager: DatabaseManager!
-    var searchService: BRSearchService!
+    var databaseManager: DatabaseManager! {
+        didSet {
+            scene?.databaseManager = databaseManager
+        }
+    }
+    
+    var searchService: BRSearchService! {
+        didSet {
+            scene?.searchService = searchService
+        }
+    }
     
     var isFileEditor: Bool {
         return false
@@ -58,7 +67,7 @@ class LibraryEditor: NSViewController, FileEditor {
         }
     }
 
-    var scene: LibraryScene!
+    var scene: LibraryScene?
 
     // MARK: - Initialization
     
@@ -151,7 +160,16 @@ class LibraryEditor: NSViewController, FileEditor {
     // MARK: - Utilities
     
     func loadScene(identifier: String) {
-        scene = storyboard!.instantiateControllerWithIdentifier(identifier) as! LibraryScene
+        scene = storyboard!.instantiateControllerWithIdentifier(identifier) as? LibraryScene
+        guard var scene = scene else {
+            print("unable to load scene")
+            return
+        }
+        
+        // Databasable
+        
+        scene.databaseManager = databaseManager
+        scene.searchService = searchService
         
         // Set up frame and view constraints
         
@@ -173,7 +191,7 @@ class LibraryEditor: NSViewController, FileEditor {
     }
     
     func unloadScene() {
-        guard (scene as LibraryScene?) != nil else {
+        guard let scene = scene else {
             return
         }
         

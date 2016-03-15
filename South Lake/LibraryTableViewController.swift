@@ -12,8 +12,36 @@ class LibraryTableViewController: NSViewController, LibraryScene {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var tableView: NSTableView!
 
+    // MARK: - Databasable
+
+    var databaseManager: DatabaseManager!
+    var searchService: BRSearchService!
+    
+    // MARK: - Initialization
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.target = self
+        tableView.doubleAction = Selector("doubleClick:")
     }
     
+    @IBAction func doubleClick(sender: AnyObject?) {
+        guard let object = arrayController.selectedObjects[safe: 0] as? DataSource,
+              let id = object.id else {
+            print("no selected object")
+            return
+        }
+        
+        guard let url = NSURL(string: "southlake://library/\(id)") else {
+            print("unable to construct url for object with id \(id)")
+            return
+        }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(OpenURLNotification, object: self, userInfo: [
+            "dbm": databaseManager,
+            "source": object,
+            "url": url
+        ])
+    }
 }

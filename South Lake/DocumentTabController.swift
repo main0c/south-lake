@@ -144,6 +144,21 @@ class DocumentTabController: NSViewController, Databasable {
         selectedTab?.makeFileInfoFirstResponder(sender)
     }
     
+    // MARK: -
+    
+    func handleOpenURL(notification: NSNotification) {
+        guard let userInfo = notification.userInfo,
+              let dbm = userInfo["dbm"] as? DatabaseManager,
+              let _ = userInfo["source"] as? DataSource,
+              let _ = userInfo["url"] as? NSURL
+              where dbm == databaseManager else {
+            print("open url notification does not contain dbm, url, or source")
+            return
+        }
+        
+        selectedTab?.handleOpenURL(notification)
+    }
+    
     // MARK: - UI Validation
     
     override func validateMenuItem(menuItem: NSMenuItem) -> Bool {

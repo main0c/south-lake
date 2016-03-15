@@ -60,6 +60,18 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     // TODO: When you select a folder don't unbind and clear the current editor
     // Whether we unbind depends on on what is being bound
     
+    dynamic var selectedSourceListObjects: [DataSource] = [] {
+        didSet {
+            selectedObjects = selectedSourceListObjects
+        }
+    }
+    
+    dynamic var selectedURLObjects: [DataSource] = [] {
+        didSet {
+            selectedObjects = selectedURLObjects
+        }
+    }
+    
     dynamic var selectedObjects: [DataSource] = [] {
         willSet {
             unbindTitle(selectedObjects)
@@ -111,11 +123,11 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             }
         }
         
-        // TODO: can't use notification center
+        // TODO: can't use notification center: can, just make sure we're passing the dbm
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("documentWillSave:"), name: DocumentWillSaveNotification, object: nil)
         
-        bind("selectedObjects", toObject: sourceListController, withKeyPath: "selectedObjects", options: [:])
+        bind("selectedSourceListObjects", toObject: sourceListController, withKeyPath: "selectedObjects", options: [:])
         
         // TODO: Set up the initial editor?
 
@@ -133,7 +145,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         unbindTitle(selectedObjects)
         unbindIcon(selectedObjects)
-        unbind("selectedObjects")
+        unbind("selectedSourceListObjects")
     }
     
     // MARK: - Document State
@@ -510,6 +522,23 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     @IBAction func makeFileInfoFirstResponder(sender: AnyObject?) {
         NSBeep()
+    }
+    
+    // MARKL -
+    
+    func handleOpenURL(notification: NSNotification) {
+        guard let userInfo = notification.userInfo,
+              let dbm = userInfo["dbm"] as? DatabaseManager,
+              let source = userInfo["source"] as? DataSource,
+              let _ = userInfo["url"] as? NSURL
+              where dbm == databaseManager else {
+            print("open url notification does not contain dbm, url, or source")
+            return
+        }
+        
+        // TODO: examine the url to decided what primary source to select
+        
+        selectedURLObjects = [source]
     }
     
     // MARK: - UI Validation

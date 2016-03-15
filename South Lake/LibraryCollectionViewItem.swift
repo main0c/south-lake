@@ -10,7 +10,12 @@ import Cocoa
 
 class LibraryCollectionViewItem: NSCollectionViewItem {
     @IBOutlet var backgroundView: CustomizableView!
-
+    
+    var target: AnyObject?
+    var doubleAction: Selector?
+    
+    // MARK: - Initialization
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,7 +23,6 @@ class LibraryCollectionViewItem: NSCollectionViewItem {
         backgroundView.borderColor = nil
         backgroundView.borderRadius = 0
         backgroundView.borderWidth = 2
-
     }
     
     // Prototypes don't connect outlets so we do it manually
@@ -32,8 +36,13 @@ class LibraryCollectionViewItem: NSCollectionViewItem {
         copy.backgroundView.borderRadius = backgroundView.borderRadius
         copy.backgroundView.borderWidth = backgroundView.borderWidth
         
+        copy.doubleAction = doubleAction
+        copy.target = target
+        
         return copy
     }
+    
+    // MARK: - State
     
     override var selected: Bool {
         didSet {
@@ -47,10 +56,14 @@ class LibraryCollectionViewItem: NSCollectionViewItem {
     }
     
     override func mouseDown(theEvent: NSEvent) {
-        if theEvent.clickCount == 2 {
-            print("double click")
-        } else {
+        guard theEvent.clickCount == 2 else {
             super.mouseDown(theEvent)
+            return
         }
+        guard let target = target as? NSObject,
+              let doubleAction = doubleAction else {
+            return
+        }
+        target.performSelector(doubleAction, withObject: self)
     }
 }

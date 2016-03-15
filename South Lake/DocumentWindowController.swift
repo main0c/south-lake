@@ -33,7 +33,14 @@ class DocumentWindowController: NSWindowController, Databasable {
     override func windowDidLoad() {
         super.windowDidLoad()
     
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: Selector("handleOpenURL:"),
+            name: OpenURLNotification,
+            object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     // MARK: - Tab Actions
@@ -96,6 +103,21 @@ class DocumentWindowController: NSWindowController, Databasable {
     
     @IBAction func makeFileInfoFirstResponder(sender: AnyObject?) {
         tabController.makeFileInfoFirstResponder(sender)
+    }
+    
+    // MARK: -
+    
+    func handleOpenURL(notification: NSNotification) {
+        guard let userInfo = notification.userInfo,
+              let dbm = userInfo["dbm"] as? DatabaseManager,
+              let _ = userInfo["source"] as? DataSource,
+              let _ = userInfo["url"] as? NSURL
+              where dbm == databaseManager else {
+            print("open url notification does not contain dbm, url, or source")
+            return
+        }
+        
+        tabController.handleOpenURL(notification)
     }
     
     // MARK: - Search Actions
