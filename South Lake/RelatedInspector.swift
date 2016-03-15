@@ -51,7 +51,7 @@ class RelatedInspector: NSViewController, Inspector {
             }
             
             let ids = selectedObjects.map { $0.document!.documentID }
-            libraryArrayController.filterPredicate = NSPredicate(format: "%@ in tags && !(document.documentID in %@)", selectedTag, ids)
+            libraryArrayController.filterPredicate = NSPredicate(format: "%@ in tags && !(id in %@)", selectedTag, ids)
         }
     }
     

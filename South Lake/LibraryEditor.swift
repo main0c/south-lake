@@ -224,7 +224,7 @@ class LibraryEditor: NSViewController, FileEditor {
             ids.append(id)
         }
         
-        searchPredicate = NSPredicate(format: "document.documentID in %@", ids)
+        searchPredicate = NSPredicate(format: "id in %@", ids)
     }
     
     func updateFilterPredicate() {

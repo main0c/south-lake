@@ -29,6 +29,8 @@ class DataSource: CBLModel {
     @NSManaged var mime_type: String
     @NSManaged var uti: String
     
+    var id: String? { return document?.documentID }
+    
     var parents: [DataSource]! = []
     weak var parent: DataSource!
     
