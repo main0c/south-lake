@@ -149,10 +149,10 @@ class DocumentTabController: NSViewController, Databasable {
     func handleOpenURL(notification: NSNotification) {
         guard let userInfo = notification.userInfo,
               let dbm = userInfo["dbm"] as? DatabaseManager,
-              let _ = userInfo["source"] as? DataSource,
+              //let _ = userInfo["source"] as? DataSource,
               let _ = userInfo["url"] as? NSURL
               where dbm == databaseManager else {
-            print("open url notification does not contain dbm, url, or source")
+            print("open url notification does not contain dbm or url")
             return
         }
         

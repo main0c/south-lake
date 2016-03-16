@@ -42,7 +42,7 @@ class LibraryCollectionViewController: NSViewController, LibraryScene {
             return
         }
         
-        guard let url = NSURL(string: "southlake://library/\(id)") else {
+        guard let url = NSURL(string: "southlake://localhost/library/\(id)") else {
             print("unable to construct url for object with id \(id)")
             return
         }

@@ -529,16 +529,46 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     func handleOpenURL(notification: NSNotification) {
         guard let userInfo = notification.userInfo,
               let dbm = userInfo["dbm"] as? DatabaseManager,
-              let source = userInfo["source"] as? DataSource,
-              let _ = userInfo["url"] as? NSURL
+              //let source = userInfo["source"] as? DataSource,
+              let url = userInfo["url"] as? NSURL
               where dbm == databaseManager else {
-            print("open url notification does not contain dbm, url, or source")
+            print("open url notification does not contain dbm or url")
             return
         }
         
-        // TODO: examine the url to decided what primary source to select
+        // TODO: examine the url to decide what primary source to select
+        // Switch up that switch statement to case on a tuple
         
-        selectedURLObjects = [source]
+        print(url.pathComponents)
+        
+        guard let root = url.pathComponents?[safe: 1] else {
+            print("no root path in url \(url)")
+            return
+        }
+        
+        switch root {
+        case "library":
+            print("library")
+            guard let source = userInfo["source"] as? DataSource else {
+                print("wants library but no source")
+                // go to library
+                return
+            }
+            selectedURLObjects = [source]
+        case "tags":
+            print("tags")
+            guard let components = url.pathComponents,
+                  let encodedTag = components[safe: 2],
+                  let tag = encodedTag.stringByRemovingPercentEncoding else {
+                print("wants tags but no tag")
+                // go to tags
+                return
+            }
+            // Select tags, pass open url to tags editor
+            print(tag)
+        case _:
+            print(root)
+        }
     }
     
     // MARK: - UI Validation

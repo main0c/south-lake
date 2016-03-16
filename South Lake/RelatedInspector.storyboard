@@ -59,10 +59,13 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="81" id="5qu-yS-qm5"/>
                                 </constraints>
-                                <buttonCell key="cell" type="roundRect" title="More &gt;" bezelStyle="roundedRect" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ewr-p7-HFA">
+                                <buttonCell key="cell" type="roundRect" title="More &gt;" bezelStyle="roundedRect" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ewr-p7-HFA">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="cellTitle"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="seeMore:" target="ZGh-bb-VoU" id="bcB-LI-gS2"/>
+                                </connections>
                             </button>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z7h-Nc-52V">
                                 <rect key="frame" x="40" y="264" width="140" height="17"/>

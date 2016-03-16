@@ -49,8 +49,7 @@ class RelatedInspector: NSViewController, Inspector {
     dynamic var libraryContent: [DataSource] = []
     dynamic var selectedTags: [String]? {
         didSet {
-            guard let selectedTags = selectedTags,
-                  let selectedTag = selectedTags[safe: 0] else {
+            guard let selectedTag = selectedTags?[safe: 0] else {
                   libraryArrayController.filterPredicate = NSPredicate(value: false)
                   return
             }
@@ -95,7 +94,7 @@ class RelatedInspector: NSViewController, Inspector {
     // MARK: - Utilities
     
     func loadScene(identifier: String) {
-        scene = storyboard!.instantiateControllerWithIdentifier(identifier) as! LibraryScene
+        scene = storyboard!.instantiateControllerWithIdentifier(identifier) as? LibraryScene
         guard var scene = scene else {
             print("unable to load scene")
             return
@@ -134,4 +133,23 @@ class RelatedInspector: NSViewController, Inspector {
         scene.view.removeFromSuperview()
     }
 
+    // MARK: - User Actions
+    
+    @IBAction func seeMore(sender: AnyObject?) {
+        guard let selectedTag = selectedTags?[safe: 0],
+              let encodedTag = selectedTag.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet()) else {
+              return
+        }
+        
+        guard let url = NSURL(string: "southlake://localhost/tags/\(encodedTag)") else {
+            print("unable to construct url for tag \(selectedTag)")
+            return
+        }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(OpenURLNotification, object: self, userInfo: [
+            "dbm": databaseManager,
+            "url": url
+        ])
+    }
+    
 }
