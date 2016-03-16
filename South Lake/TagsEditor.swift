@@ -11,6 +11,7 @@ import Cocoa
 class TagsEditor: NSViewController, FileEditor {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var collectionView: NSCollectionView!
+    @IBOutlet var searchLabel: NSTextField!
 
     static var filetypes: [String] { return ["southlake.notebook.tags", "southlake/x-notebook-tags", "southlake-notebook-tags"] }
     static var storyboard: String { return "TagsEditor" }
@@ -52,6 +53,8 @@ class TagsEditor: NSViewController, FileEditor {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchLabel.hidden = true
         
         (view as! CustomizableView).backgroundColor = NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
         
@@ -128,7 +131,10 @@ class TagsEditor: NSViewController, FileEditor {
             return
         }
         
+        // TODO: Track history
+        
         print(url)
+        openURL(url)
         
 //        NSNotificationCenter.defaultCenter().postNotificationName(OpenURLNotification, object: self, userInfo: [
 //            "dbm": databaseManager,
@@ -144,7 +150,14 @@ class TagsEditor: NSViewController, FileEditor {
     }
     
     func openURL(url: NSURL) {
-    
+        guard let encodedTag = url.pathComponents?[safe: 2],
+              let tag = encodedTag.stringByRemovingPercentEncoding else {
+            searchLabel.hidden = true
+            return
+        }
+        
+        searchLabel.stringValue = tag
+        searchLabel.hidden = ( tag == "" )
     }
     
     func willClose() {

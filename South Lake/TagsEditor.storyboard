@@ -39,9 +39,10 @@
                                 </scroller>
                             </scrollView>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JbV-fW-dKp">
-                                <rect key="frame" x="8" y="269" width="434" height="24"/>
+                                <rect key="frame" x="8" y="269" width="46" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="BVZ-pc-UU5"/>
+                                    <constraint firstAttribute="width" constant="42" id="xIw-UA-lhs"/>
                                 </constraints>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" title="Tags" id="upD-AW-TOi">
                                     <font key="font" metaFont="systemLight" size="19"/>
@@ -110,6 +111,17 @@
                                     </segments>
                                 </segmentedCell>
                             </segmentedControl>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qEH-LQ-NqN">
+                                <rect key="frame" x="58" y="269" width="384" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="bkY-jZ-90K"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" title="Filtered Tag" id="Cgc-j4-ThD">
+                                    <font key="font" metaFont="systemLight" size="19"/>
+                                    <color key="textColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="hCl-Ah-f3C" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="36" id="4um-el-iXJ"/>
@@ -117,22 +129,25 @@
                             <constraint firstItem="JbV-fW-dKp" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" constant="10" id="AAW-YH-Vb5"/>
                             <constraint firstAttribute="trailing" secondItem="9IE-Zv-qbi" secondAttribute="trailing" constant="10" id="Azv-D2-cbP"/>
                             <constraint firstItem="yha-xK-nrm" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="37" id="FdI-yB-oP3"/>
+                            <constraint firstItem="qEH-LQ-NqN" firstAttribute="leading" secondItem="JbV-fW-dKp" secondAttribute="trailing" constant="8" id="LJl-js-5lz"/>
                             <constraint firstItem="JbV-fW-dKp" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="7" id="Mnc-6Q-prf"/>
                             <constraint firstItem="yha-xK-nrm" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" constant="10" id="Ob0-Ja-ata"/>
                             <constraint firstItem="7yb-CE-cuk" firstAttribute="leading" secondItem="hCl-Ah-f3C" secondAttribute="trailing" constant="8" id="PaO-nv-NQZ"/>
                             <constraint firstAttribute="bottom" secondItem="9IE-Zv-qbi" secondAttribute="bottom" id="PdL-QN-KAJ"/>
                             <constraint firstItem="hCl-Ah-f3C" firstAttribute="leading" secondItem="DV7-Py-hfd" secondAttribute="trailing" constant="7" id="SwV-xb-6Ft"/>
+                            <constraint firstAttribute="trailing" secondItem="qEH-LQ-NqN" secondAttribute="trailing" constant="10" id="VZb-fj-PJj"/>
                             <constraint firstItem="hCl-Ah-f3C" firstAttribute="leading" secondItem="DV7-Py-hfd" secondAttribute="trailing" constant="7" id="Y8l-zF-qab"/>
                             <constraint firstItem="9IE-Zv-qbi" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" constant="10" id="h1E-Wf-AaV"/>
-                            <constraint firstAttribute="trailing" secondItem="JbV-fW-dKp" secondAttribute="trailing" constant="10" id="hIX-Xu-ePG"/>
                             <constraint firstItem="9IE-Zv-qbi" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="66" id="itw-6M-IxY"/>
                             <constraint firstItem="DV7-Py-hfd" firstAttribute="leading" secondItem="yha-xK-nrm" secondAttribute="trailing" constant="7" id="oBA-Fe-WIY"/>
+                            <constraint firstItem="qEH-LQ-NqN" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="7" id="yj9-LK-aL6"/>
                             <constraint firstItem="DV7-Py-hfd" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="37" id="zMj-3J-gW2"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="arrayController" destination="diC-KA-2Zj" id="kFg-sA-Z5Z"/>
                         <outlet property="collectionView" destination="ddi-Op-tAr" id="HcV-CP-3kq"/>
+                        <outlet property="searchLabel" destination="qEH-LQ-NqN" id="FQM-J2-fEe"/>
                     </connections>
                 </viewController>
                 <customObject id="6A6-dB-eVB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

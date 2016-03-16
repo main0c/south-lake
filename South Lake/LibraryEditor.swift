@@ -6,6 +6,9 @@
 //  Copyright © 2016 Phil Dow. All rights reserved.
 //
 
+//  TODO: factor library editor scenes. used here, tags editor and related inspector
+//        probably means we move the view controllers to their own storyboards as well
+
 import Cocoa
 
 class LibraryEditor: NSViewController, FileEditor {

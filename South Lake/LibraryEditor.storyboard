@@ -97,7 +97,7 @@
                                     <binding destination="p0W-cE-9Ld" name="value" keyPath="arrangedObjects.@count" id="6Lj-32-BOx"/>
                                 </connections>
                             </textField>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wiV-ak-eyH">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="wiV-ak-eyH">
                                 <rect key="frame" x="75" y="269" width="428" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="nkx-JD-OLS"/>

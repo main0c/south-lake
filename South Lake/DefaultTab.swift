@@ -558,6 +558,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             selectedURLObjects = [source]
         case "tags":
             print("tags")
+            // TODO: the guard shouldn't matter here, it's handled by the tag editor either way
             guard let components = url.pathComponents,
                   let encodedTag = components[safe: 2],
                   let tag = encodedTag.stringByRemovingPercentEncoding else {

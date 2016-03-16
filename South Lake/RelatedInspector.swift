@@ -6,6 +6,8 @@
 //  Copyright © 2016 Phil Dow. All rights reserved.
 //
 
+//  TODO: factor library editor scenes. used here and in the tags editor
+
 import Cocoa
 
 class RelatedInspector: NSViewController, Inspector {
