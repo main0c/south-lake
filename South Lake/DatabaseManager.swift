@@ -17,6 +17,13 @@ class DatabaseManager: NSObject {
     var manager: CBLManager!
     var database: CBLDatabase!
     
+    // MARK: - Significant Folders
+    
+    var librarySource: DataSource?
+    var tagsSource: DataSource?
+    var calendarSource: DataSource?
+    var trashSource: DataSource?
+    
     // MARK: - Bindable DB Properties
     
     dynamic var sections: [Section]? {
@@ -157,7 +164,7 @@ class DatabaseManager: NSObject {
     
     // MARK: - Tags
     
-    func loadTags() {
+    private func loadTags() {
         guard _liveTagsQuery == nil else {
             return
         }
@@ -170,7 +177,7 @@ class DatabaseManager: NSObject {
         _liveTagsQuery!.start()
     }
     
-    func updateTags(results: CBLQueryEnumerator?) {
+    private func updateTags(results: CBLQueryEnumerator?) {
         guard let results = results else {
             return
         }
@@ -192,7 +199,7 @@ class DatabaseManager: NSObject {
     
     // MARK: - Files
     
-    func loadFiles() {
+    private func loadFiles() {
         guard _liveFilesQuery == nil else {
             return
         }
@@ -204,7 +211,7 @@ class DatabaseManager: NSObject {
         _liveFilesQuery!.start()
     }
     
-    func updateFiles(results: CBLQueryEnumerator?) {
+    private func updateFiles(results: CBLQueryEnumerator?) {
         guard let results = results else {
             return
         }
@@ -223,7 +230,7 @@ class DatabaseManager: NSObject {
     
     // MARK: - Sections
     
-    func loadSections() {
+    private func loadSections() {
         guard _liveSectionsQuery == nil else {
             return
         }
@@ -235,7 +242,7 @@ class DatabaseManager: NSObject {
         _liveSectionsQuery!.start()
     }
     
-    func updateSections(results: CBLQueryEnumerator?) {
+    private func updateSections(results: CBLQueryEnumerator?) {
         guard let results = results else {
             return
         }
@@ -256,5 +263,49 @@ class DatabaseManager: NSObject {
         })
         
         self.sections = sections
+        
+        // Note special folders that are children of the notebook sectiom
+        // This may not be the place to do it or the way to do it
+        
+        cacheSignificantDataSources()
+    }
+    
+    private func cacheSignificantDataSources() {
+        guard librarySource == nil else {
+            // only check once
+            return
+        }
+        
+        // TODO: where clause on notebook
+        
+        guard let notebook = sections?[safe: 0] else {
+            print("notebook section not at expected index (0)")
+            return
+        }
+        
+        guard let librarySource = notebook.children[safe: 0] where librarySource.uti == DataTypes.Library.uti else {
+            print("library source not at expected index (0)")
+            return
+        }
+        
+        guard let calendarSource = notebook.children[safe: 1] where calendarSource.uti == DataTypes.Calendar.uti  else {
+            print("calendar source not at expected index (1)")
+            return
+        }
+        
+        guard let tagsSource = notebook.children[safe: 2] where tagsSource.uti == DataTypes.Tags.uti else {
+            print("tags source not at expected index (2)")
+            return
+        }
+        
+        guard let trashSource = notebook.children[safe: 3] where trashSource.uti == DataTypes.Trash.uti else {
+            print("trash source not at expected index (3)")
+            return
+        }
+        
+        self.librarySource = librarySource
+        self.calendarSource = calendarSource
+        self.tagsSource = tagsSource
+        self.trashSource = trashSource
     }
 }

@@ -54,6 +54,10 @@ protocol FileEditor: class, Databasable {
     /// such as highlighting the search term
     func performSearch(text: String?, results: BRSearchResults?)
     
+    /// In most cases a file editor won't need to handle open urls but some of the 
+    /// special editors such as the library and tag editors do need to
+    func openURL(url: NSURL)
+    
     /// Called immediately before the editor is removed from the view hierarchy
     /// Editors should clean up, for example, unbinding
     func willClose()

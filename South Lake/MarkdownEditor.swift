@@ -305,6 +305,10 @@ class MarkdownEditor: NSViewController, FileEditor {
     
     }
     
+    func openURL(url: NSURL) {
+    
+    }
+    
     func willClose() {
         
         preview.stopLoading(nil)

@@ -284,52 +284,6 @@ class Document: NSDocument, Databasable {
                 return
             }
             
-            // Shortcuts section
-            
-                var children: [DataSource] = []
-            
-                let doc1 = File(forNewDocumentInDatabase: databaseManager.database)
-            
-                doc1.title = NSLocalizedString("Welcome to South Lake", comment: "")
-                doc1.icon = NSImage(named:"markdown-document-icon")
-                doc1.file_extension = DataTypes.Markdown.ext
-                doc1.mime_type = DataTypes.Markdown.mime
-                doc1.uti = DataTypes.Markdown.uti
-            
-                let doc2 = File(forNewDocumentInDatabase: databaseManager.database)
-            
-                doc2.title = NSLocalizedString("About Markdown", comment: "")
-                doc2.icon = NSImage(named:"markdown-document-icon")
-                doc2.file_extension = DataTypes.Markdown.ext
-                doc2.mime_type = DataTypes.Markdown.mime
-                doc2.uti = DataTypes.Markdown.uti
-
-                // PDF Test
-
-                let URL = NSBundle.mainBundle().URLForResource("As We May Think - The Atlantic", withExtension: "pdf")!
-
-                let doc3 = File(forNewDocumentInDatabase: databaseManager.database)
-                doc3.title = NSLocalizedString("As We May Think", comment: "")
-                doc3.icon = NSWorkspace.sharedWorkspace().iconForFile(URL.path!)
-                doc3.file_extension = URL.fileExtension ?? "unknown"
-                doc3.mime_type = URL.mimeType ?? "unknown"
-                doc3.uti = URL.UTI ?? "unknown"
-                doc3.data = PDFDocument(URL: URL).dataRepresentation()
-
-                // We must have ids before we can store the children
-            
-                try databaseManager.database.saveAllModels()
-            
-            let shortcutsSection = Section(forNewDocumentInDatabase: databaseManager.database)
-            
-            shortcutsSection.title = NSLocalizedString("Shortcuts", comment: "Shortcts section title")
-            shortcutsSection.index = 1
-            
-                children.append(doc1)
-                children.append(doc2)
-                children.append(doc3) // pdf
-                shortcutsSection.children = children
-            
             // Notebook
             
                 var books: [DataSource] = []
@@ -383,6 +337,52 @@ class Document: NSDocument, Databasable {
                 books.append(trash)
                 
                 notebookSection.children = books
+            
+            // Shortcuts section
+            
+                var children: [DataSource] = []
+            
+                let doc1 = File(forNewDocumentInDatabase: databaseManager.database)
+            
+                doc1.title = NSLocalizedString("Welcome to South Lake", comment: "")
+                doc1.icon = NSImage(named:"markdown-document-icon")
+                doc1.file_extension = DataTypes.Markdown.ext
+                doc1.mime_type = DataTypes.Markdown.mime
+                doc1.uti = DataTypes.Markdown.uti
+            
+                let doc2 = File(forNewDocumentInDatabase: databaseManager.database)
+            
+                doc2.title = NSLocalizedString("About Markdown", comment: "")
+                doc2.icon = NSImage(named:"markdown-document-icon")
+                doc2.file_extension = DataTypes.Markdown.ext
+                doc2.mime_type = DataTypes.Markdown.mime
+                doc2.uti = DataTypes.Markdown.uti
+
+                // PDF Test
+
+                let URL = NSBundle.mainBundle().URLForResource("As We May Think - The Atlantic", withExtension: "pdf")!
+
+                let doc3 = File(forNewDocumentInDatabase: databaseManager.database)
+                doc3.title = NSLocalizedString("As We May Think", comment: "")
+                doc3.icon = NSWorkspace.sharedWorkspace().iconForFile(URL.path!)
+                doc3.file_extension = URL.fileExtension ?? "unknown"
+                doc3.mime_type = URL.mimeType ?? "unknown"
+                doc3.uti = URL.UTI ?? "unknown"
+                doc3.data = PDFDocument(URL: URL).dataRepresentation()
+
+                // We must have ids before we can store the children
+            
+                try databaseManager.database.saveAllModels()
+            
+            let shortcutsSection = Section(forNewDocumentInDatabase: databaseManager.database)
+            
+            shortcutsSection.title = NSLocalizedString("Shortcuts", comment: "Shortcts section title")
+            shortcutsSection.index = 1
+            
+                children.append(doc1)
+                children.append(doc2)
+                children.append(doc3) // pdf
+                shortcutsSection.children = children
             
             // Folders
             

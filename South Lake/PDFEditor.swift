@@ -91,6 +91,10 @@ class PDFEditor: NSViewController, FileEditor {
     
     }
     
+    func openURL(url: NSURL) {
+    
+    }
+    
     func willClose() {
     
     }

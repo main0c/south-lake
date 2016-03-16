@@ -146,7 +146,7 @@ class DocumentTabController: NSViewController, Databasable {
     
     // MARK: -
     
-    func handleOpenURL(notification: NSNotification) {
+    func handleOpenURLNotification(notification: NSNotification) {
         guard let userInfo = notification.userInfo,
               let dbm = userInfo["dbm"] as? DatabaseManager,
               //let _ = userInfo["source"] as? DataSource,
@@ -156,7 +156,7 @@ class DocumentTabController: NSViewController, Databasable {
             return
         }
         
-        selectedTab?.handleOpenURL(notification)
+        selectedTab?.handleOpenURLNotification(notification)
     }
     
     // MARK: - UI Validation

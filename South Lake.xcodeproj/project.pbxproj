@@ -2518,6 +2518,9 @@
 			children = (
 				E3C821281C75984B00CBAE92 /* DefaultTab.storyboard */,
 				E3C821221C7597B600CBAE92 /* DefaultTab.swift */,
+				E3274FC01C75A0B7000B6A84 /* SourceListPanel.swift */,
+				E32757A61C8C946B004525E2 /* ContentViewPanel.swift */,
+				E37AB79C1C8F713900F44564 /* InspectorPanel.swift */,
 			);
 			name = "Default Tab";
 			sourceTree = "<group>";
@@ -7162,9 +7165,6 @@
 		E3C821111C75979100CBAE92 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				E3274FC01C75A0B7000B6A84 /* SourceListPanel.swift */,
-				E32757A61C8C946B004525E2 /* ContentViewPanel.swift */,
-				E37AB79C1C8F713900F44564 /* InspectorPanel.swift */,
 				E3274FAC1C75A04C000B6A84 /* Default Tab */,
 			);
 			name = Tabs;

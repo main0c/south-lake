@@ -15,8 +15,12 @@ class TagsEditor: NSViewController, FileEditor {
     static var filetypes: [String] { return ["southlake.notebook.tags", "southlake/x-notebook-tags", "southlake-notebook-tags"] }
     static var storyboard: String { return "TagsEditor" }
     
+    // MARK: - Databasable
+    
     var databaseManager: DatabaseManager!
     var searchService: BRSearchService!
+    
+    // MARK: - File Editor
     
     var isFileEditor: Bool {
         return false
@@ -51,8 +55,11 @@ class TagsEditor: NSViewController, FileEditor {
         
         (view as! CustomizableView).backgroundColor = NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
         
-        collectionView.itemPrototype = storyboard!.instantiateControllerWithIdentifier("collectionViewItem") as? NSCollectionViewItem
+        let prototype = storyboard!.instantiateControllerWithIdentifier("collectionViewItem") as? TagsCollectionViewItem
+        prototype?.doubleAction = Selector("doubleClick:")
+        prototype?.target = self
         
+        collectionView.itemPrototype = prototype
         sortDescriptors = [NSSortDescriptor(key: "tag", ascending: true, selector: Selector("caseInsensitiveCompare:"))]
         
         bindTags()
@@ -106,9 +113,37 @@ class TagsEditor: NSViewController, FileEditor {
         arrayController.sortDescriptors = descriptors
     }
     
-    // MARK: - 
+    // MARK: -
+    
+    @IBAction func doubleClick(sender: AnyObject?) {
+        guard let object = arrayController.selectedObjects[safe: 0] as? [String:AnyObject],
+              let tag = object["tag"] as? String,
+              let encodedTag = tag.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet()) else {
+            print("no selected object")
+            return
+        }
+        
+        guard let url = NSURL(string: "southlake://localhost/tags/\(encodedTag)") else {
+            print("unable to construct url for object with id \(encodedTag)")
+            return
+        }
+        
+        print(url)
+        
+//        NSNotificationCenter.defaultCenter().postNotificationName(OpenURLNotification, object: self, userInfo: [
+//            "dbm": databaseManager,
+//            "source": object,
+//            "url": url
+//        ])
+    }
+    
+    // MARK: -
     
     func performSearch(text: String?, results: BRSearchResults?) {
+    
+    }
+    
+    func openURL(url: NSURL) {
     
     }
     

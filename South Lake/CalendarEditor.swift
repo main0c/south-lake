@@ -44,6 +44,10 @@ class CalendarEditor: NSViewController, FileEditor {
     
     }
     
+    func openURL(url: NSURL) {
+    
+    }
+    
     func willClose() {
     
     }

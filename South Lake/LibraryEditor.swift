@@ -257,6 +257,10 @@ class LibraryEditor: NSViewController, FileEditor {
         }
     }
     
+    func openURL(url: NSURL) {
+    
+    }
+    
     func willClose() {
     
     }

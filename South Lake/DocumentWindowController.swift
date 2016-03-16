@@ -34,7 +34,7 @@ class DocumentWindowController: NSWindowController, Databasable {
         super.windowDidLoad()
     
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: Selector("handleOpenURL:"),
+            selector: Selector("handleOpenURLNotification:"),
             name: OpenURLNotification,
             object: nil)
     }
@@ -107,9 +107,9 @@ class DocumentWindowController: NSWindowController, Databasable {
     
     // MARK: -
     
-    // TODO: handleOpenURL may not need the source. We can just get it from the id anyway
+    // TODO: handleOpenURLNotification may not need the source. We can just get it from the id anyway
     
-    func handleOpenURL(notification: NSNotification) {
+    func handleOpenURLNotification(notification: NSNotification) {
         guard let userInfo = notification.userInfo,
               let dbm = userInfo["dbm"] as? DatabaseManager,
               //let _ = userInfo["source"] as? DataSource,
@@ -119,7 +119,7 @@ class DocumentWindowController: NSWindowController, Databasable {
             return
         }
         
-        tabController.handleOpenURL(notification)
+        tabController.handleOpenURLNotification(notification)
     }
     
     // MARK: - Search Actions

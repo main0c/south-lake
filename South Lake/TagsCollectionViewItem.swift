@@ -11,6 +11,11 @@ import Cocoa
 class TagsCollectionViewItem: NSCollectionViewItem {
     @IBOutlet var backgroundView: CustomizableView!
 
+    var target: AnyObject?
+    var doubleAction: Selector?
+
+    // MARK: - Initialization
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,7 +26,7 @@ class TagsCollectionViewItem: NSCollectionViewItem {
 
     }
     
-    /// Prototypes don't connect outlets so we do it manually
+    // Prototypes don't connect outlets so we do it manually
     
     override func copyWithZone(zone: NSZone) -> AnyObject {
         let copy: TagsCollectionViewItem = super.copyWithZone(zone) as! TagsCollectionViewItem
@@ -32,11 +37,13 @@ class TagsCollectionViewItem: NSCollectionViewItem {
         copy.backgroundView.borderRadius = backgroundView.borderRadius
         copy.backgroundView.borderWidth = backgroundView.borderWidth
         
-        // print(backgroundView.menu)
-        // copy.backgroundView.menu = backgroundView.menu
+        copy.doubleAction = doubleAction
+        copy.target = target
         
         return copy
     }
+    
+    // MARK: - State
     
     override var selected: Bool {
         didSet {
@@ -47,6 +54,18 @@ class TagsCollectionViewItem: NSCollectionViewItem {
                 ? NSColor(forControlTint: .DefaultControlTint)
                 : NSColor(white:0.8, alpha: 1.0)
         }
+    }
+    
+    override func mouseDown(theEvent: NSEvent) {
+        guard theEvent.clickCount == 2 else {
+            super.mouseDown(theEvent)
+            return
+        }
+        guard let target = target as? NSObject,
+              let doubleAction = doubleAction else {
+            return
+        }
+        target.performSelector(doubleAction, withObject: self)
     }
     
 }

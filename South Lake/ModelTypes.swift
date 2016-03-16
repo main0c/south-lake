@@ -9,6 +9,9 @@
 import Foundation
 
 struct DataTypes {
+    
+    // Base Types
+    
     struct DataSource {
         static let mime = "southlake/x-source-item"
         static let uti = "southlake.source-item"
@@ -35,6 +38,26 @@ struct DataTypes {
         static let model = "file"
     }
     
+    // Sections
+    
+    struct Notebook {
+        static let mime = "southlake/x-section-notebook"
+        static let uti = "southlake.section-notebook"
+        static let ext = "southlake-section-notebook"
+    }
+    struct Shortcuts {
+        static let mime = "southlake/x-section-shortcuts"
+        static let uti = "southlake.section-shortcuts"
+        static let ext = "southlake-section-shortcuts"
+    }
+    struct Folders {
+        static let mime = "southlake/x-section-folders"
+        static let uti = "southlake.section-folders"
+        static let ext = "southlake-section-folders"
+    }
+    
+    // Significant Sources
+    
     struct Library {
         static let mime = "southlake/x-notebook-library"
         static let uti = "southlake.notebook.library"
@@ -55,6 +78,8 @@ struct DataTypes {
         static let uti = "southlake.notebook.trash"
         static let ext = "southlake-notebook-trash"
     }
+    
+    // File Types
     
     struct Markdown {
         static let mime = "text/markdown"

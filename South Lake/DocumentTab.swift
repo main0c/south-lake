@@ -51,7 +51,7 @@ protocol DocumentTab: class, Databasable {
     
     // URLs
     
-    func handleOpenURL(notification: NSNotification)
+    func handleOpenURLNotification(notification: NSNotification)
 }
 
 //extension DocumentTab where Self: NSViewController {

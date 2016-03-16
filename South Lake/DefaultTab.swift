@@ -526,7 +526,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     // MARKL -
     
-    func handleOpenURL(notification: NSNotification) {
+    func handleOpenURLNotification(notification: NSNotification) {
         guard let userInfo = notification.userInfo,
               let dbm = userInfo["dbm"] as? DatabaseManager,
               //let source = userInfo["source"] as? DataSource,
@@ -537,6 +537,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
         
         // TODO: examine the url to decide what primary source to select
+        // TODO: really can't hardcode index paths
         // Switch up that switch statement to case on a tuple
         
         print(url.pathComponents)
@@ -565,6 +566,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
                 return
             }
             // Select tags, pass open url to tags editor
+            sourceListController.selectItemAtIndexPath(NSIndexPath(indexes: [0,2], length: 2))
             print(tag)
         case _:
             print(root)

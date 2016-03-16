@@ -174,6 +174,7 @@ class SourceListPanel: NSViewController, Databasable {
     func selectItemAtIndexPath(indexPath: NSIndexPath) {
         treeController.setSelectionIndexPaths([indexPath])
     }
+
 }
 
 // MARK: - NSOutlineViewDataSource
