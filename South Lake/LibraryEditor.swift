@@ -122,6 +122,8 @@ class LibraryEditor: NSViewController, FileEditor {
         var descriptors = arrayController.sortDescriptors
         let key = descriptors.count != 0 ? descriptors[0].key : nil
         
+        // TODO: fix reverse sort
+        
         // Selecting the same item twice reverses the sort
         // But by default show most recent files first
         
@@ -160,7 +162,7 @@ class LibraryEditor: NSViewController, FileEditor {
         }
     }
     
-    // MARK: - Utilities
+    // MARK: - Scene
     
     func loadScene(identifier: String) {
         scene = storyboard!.instantiateControllerWithIdentifier(identifier) as? LibraryScene

@@ -1,32 +1,33 @@
 //
-//  LibraryCollectionViewController.swift
+//  TagsCollectionViewController.swift
 //  South Lake
 //
-//  Created by Philip Dow on 3/7/16.
+//  Created by Philip Dow on 3/16/16.
 //  Copyright © 2016 Phil Dow. All rights reserved.
 //
 
-//  TODO: The collection view and item might be useful elsewhere, make generally available
+//  TODO: obvious need for factorization, this is not a LibraryScene
 
 import Cocoa
 
-class LibraryCollectionViewController: NSViewController, LibraryScene {
+class TagsCollectionViewController: NSViewController, LibraryScene {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var collectionView: NSCollectionView!
-
+    
     // MARK: - Databasable
 
     var databaseManager: DatabaseManager!
     var searchService: BRSearchService!
-
-    // MARK: - Initialization
     
+    // MARK: - Initialization
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do view setup here.
         
         collectionView.backgroundColors = [NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)]
         
-        let prototype = storyboard!.instantiateControllerWithIdentifier("libraryCollectionViewItem") as? LibraryCollectionViewItem
+        let prototype = storyboard!.instantiateControllerWithIdentifier("tagsCollectionViewItem") as? TagsCollectionViewItem
         prototype?.doubleAction = Selector("doubleClick:")
         prototype?.target = self
         
@@ -36,20 +37,25 @@ class LibraryCollectionViewController: NSViewController, LibraryScene {
     // MARK: -
     
     @IBAction func doubleClick(sender: AnyObject?) {
-        guard let object = arrayController.selectedObjects[safe: 0] as? DataSource,
-              let id = object.id else {
+        guard let object = arrayController.selectedObjects[safe: 0] as? [String:AnyObject],
+              let tag = object["tag"] as? String,
+              let encodedTag = tag.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet()) else {
             print("no selected object")
             return
         }
         
-        guard let url = NSURL(string: "southlake://localhost/library/\(id)") else {
-            print("unable to construct url for object with id \(id)")
+        guard let url = NSURL(string: "southlake://localhost/tags/\(encodedTag)") else {
+            print("unable to construct url for object with id \(encodedTag)")
             return
         }
         
+        // TODO: Track history
+        
+        print(url)
+        
         NSNotificationCenter.defaultCenter().postNotificationName(OpenURLNotification, object: self, userInfo: [
             "dbm": databaseManager,
-            "source": object,
+//            "source": object,
             "url": url
         ])
     }

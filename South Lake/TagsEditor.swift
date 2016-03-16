@@ -9,17 +9,29 @@
 import Cocoa
 
 class TagsEditor: NSViewController, FileEditor {
+    @IBOutlet var libraryArrayController: NSArrayController!
     @IBOutlet var arrayController: NSArrayController!
-    @IBOutlet var collectionView: NSCollectionView!
     @IBOutlet var searchLabel: NSTextField!
+    @IBOutlet var containerView: NSView!
 
     static var filetypes: [String] { return ["southlake.notebook.tags", "southlake/x-notebook-tags", "southlake-notebook-tags"] }
     static var storyboard: String { return "TagsEditor" }
     
     // MARK: - Databasable
     
-    var databaseManager: DatabaseManager!
-    var searchService: BRSearchService!
+    var databaseManager: DatabaseManager! {
+        didSet {
+            scene?.databaseManager = databaseManager
+            bindLibrary()
+            bindTags()
+        }
+    }
+    
+    var searchService: BRSearchService! {
+        didSet {
+            scene?.searchService = searchService
+        }
+    }
     
     // MARK: - File Editor
     
@@ -27,11 +39,7 @@ class TagsEditor: NSViewController, FileEditor {
         return false
     }
     
-    dynamic var file: DataSource? {
-        didSet {
-            bindTags()
-        }
-    }
+    dynamic var file: DataSource?
     
     var primaryResponder: NSView {
         return view
@@ -47,7 +55,9 @@ class TagsEditor: NSViewController, FileEditor {
     dynamic var filterPredicate: NSPredicate?
     dynamic var content: [[String:AnyObject]]?
     
-    var completingTag: Bool = false
+    dynamic var libraryContent: [DataSource] = []
+    
+    var scene: LibraryScene?
     
     // MARK: - Initialization
 
@@ -57,18 +67,16 @@ class TagsEditor: NSViewController, FileEditor {
         searchLabel.hidden = true
         
         (view as! CustomizableView).backgroundColor = NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
-        
-        let prototype = storyboard!.instantiateControllerWithIdentifier("collectionViewItem") as? TagsCollectionViewItem
-        prototype?.doubleAction = Selector("doubleClick:")
-        prototype?.target = self
-        
-        collectionView.itemPrototype = prototype
+    
         sortDescriptors = [NSSortDescriptor(key: "tag", ascending: true, selector: Selector("caseInsensitiveCompare:"))]
         
+        loadScene("tagsCollectionScene")
+        bindLibrary()
         bindTags()
     }
     
     deinit {
+        unbind("libraryContent")
         unbind("content")
     }
     
@@ -80,6 +88,16 @@ class TagsEditor: NSViewController, FileEditor {
         }
         
         bind("content", toObject: databaseManager, withKeyPath: "tags", options: [:])
+    }
+    
+    // MARK: - Library Data
+    
+    func bindLibrary() {
+        guard (databaseManager as DatabaseManager?) != nil else {
+            return
+        }
+        
+        bind("libraryContent", toObject: databaseManager, withKeyPath: "files", options: [:])
     }
     
     // MARK: - User Actions
@@ -104,16 +122,65 @@ class TagsEditor: NSViewController, FileEditor {
         // Selecting the same item twice reverses the sort
         // But by default show most recent files first
         
+        // TODO: reverse sort on same key
+        
         switch sender.tag {
         case 1001: // by tag
             descriptors = [NSSortDescriptor(key: "tag", ascending: key != "title", selector: Selector("caseInsensitiveCompare:"))]
         case 1002: // by count
-            descriptors = [NSSortDescriptor(key: "count", ascending: !(key != "created_at"), selector: Selector("compare:"))]
+            descriptors = [NSSortDescriptor(key: "count", ascending: !(key != "count"), selector: Selector("compare:"))]
         default:
             break
         }
         
         arrayController.sortDescriptors = descriptors
+    }
+    
+    // MARK: - Scene
+    
+    func loadScene(identifier: String) {
+        scene = storyboard!.instantiateControllerWithIdentifier(identifier) as? LibraryScene
+        guard var scene = scene else {
+            print("unable to load scene")
+            return
+        }
+        
+        // Databasable
+        
+        scene.databaseManager = databaseManager
+        scene.searchService = searchService
+        
+        // Set up frame and view constraints
+        
+        scene.view.translatesAutoresizingMaskIntoConstraints = false
+        scene.view.frame = containerView.bounds
+        containerView.addSubview(scene.view)
+        
+        containerView.addConstraints(
+            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": scene.view])
+        )
+        containerView.addConstraints(
+            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": scene.view])
+        )
+        
+        // Bind the array controller to ours
+        // Predicates and sorting are applied before it even sees the data
+        // Check here if we're the right scene
+        
+        if identifier == "tagsCollectionScene" {
+            scene.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
+        } else {
+            scene.arrayController.bind("contentArray", toObject: libraryArrayController, withKeyPath: "arrangedObjects", options: [:])
+        }
+    }
+    
+    func unloadScene() {
+        guard let scene = scene else {
+            return
+        }
+        
+        scene.arrayController.unbind("contentArray")
+        scene.view.removeFromSuperview()
     }
     
     // MARK: -
@@ -135,12 +202,6 @@ class TagsEditor: NSViewController, FileEditor {
         
         print(url)
         openURL(url)
-        
-//        NSNotificationCenter.defaultCenter().postNotificationName(OpenURLNotification, object: self, userInfo: [
-//            "dbm": databaseManager,
-//            "source": object,
-//            "url": url
-//        ])
     }
     
     // MARK: -
@@ -158,6 +219,11 @@ class TagsEditor: NSViewController, FileEditor {
         
         searchLabel.stringValue = tag
         searchLabel.hidden = ( tag == "" )
+        
+        // Filter on the tag, load a scene and morph the toolbar
+        
+        libraryArrayController.filterPredicate = NSPredicate(format: "%@ in tags", tag)
+        loadScene("libraryCollectionScene")
     }
     
     func willClose() {
@@ -170,6 +236,7 @@ class TagsEditor: NSViewController, FileEditor {
 // Doesn't quite work the same way as it does with a token field
 
 //extension TagsEditor: NSControlTextEditingDelegate {
+//    var completingTag: Bool = false // field autocompletion
 //    
 //    override func controlTextDidChange(notification: NSNotification) {
 //        guard let userInfo = notification.userInfo,

@@ -179,7 +179,7 @@
         <!--Library Collection View Item-->
         <scene sceneID="60N-XW-nBi">
             <objects>
-                <collectionViewItem storyboardIdentifier="collectionViewItem" id="EGM-lE-DG9" customClass="LibraryCollectionViewItem" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewItem storyboardIdentifier="libraryCollectionViewItem" id="EGM-lE-DG9" customClass="LibraryCollectionViewItem" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="rvN-Se-PND">
                         <rect key="frame" x="0.0" y="0.0" width="162" height="177"/>
                         <autoresizingMask key="autoresizingMask"/>

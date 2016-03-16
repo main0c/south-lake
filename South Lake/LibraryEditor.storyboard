@@ -443,7 +443,7 @@
         <!--Library Collection View Item-->
         <scene sceneID="AvO-0U-YmG">
             <objects>
-                <collectionViewItem storyboardIdentifier="collectionViewItem" id="oMn-Pa-lPO" customClass="LibraryCollectionViewItem" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewItem storyboardIdentifier="libraryCollectionViewItem" id="oMn-Pa-lPO" customClass="LibraryCollectionViewItem" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="dIb-eP-RFd">
                         <rect key="frame" x="0.0" y="0.0" width="162" height="177"/>
                         <autoresizingMask key="autoresizingMask"/>

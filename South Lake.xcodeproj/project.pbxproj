@@ -106,6 +106,7 @@
 		E3803F471C72977D0048AD46 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F461C72977D0048AD46 /* SystemConfiguration.framework */; };
 		E385F7E21C924D550015A91B /* md-toc-index.html in Resources */ = {isa = PBXBuildFile; fileRef = E385F7E11C924D550015A91B /* md-toc-index.html */; };
 		E385F7F21C92865C0015A91B /* TagsCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385F7F11C92865C0015A91B /* TagsCollectionViewItem.swift */; };
+		E39B92711C99D31100A3FAF2 /* TagsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39B92701C99D31100A3FAF2 /* TagsCollectionViewController.swift */; };
 		E3A8A0DE1C80C1DB009E96C1 /* NSDataNSStringValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385F8071C796B950072A2CD /* NSDataNSStringValueTransformer.swift */; };
 		E3A8A0DF1C80C1DC009E96C1 /* NSStringNSDataValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39E9B381C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift */; };
 		E3AD255A1C7F9CDE006D6536 /* MarkdownImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AD25591C7F9CDE006D6536 /* MarkdownImporter.swift */; };
@@ -2434,6 +2435,7 @@
 		E385F7E11C924D550015A91B /* md-toc-index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "md-toc-index.html"; sourceTree = "<group>"; };
 		E385F7F11C92865C0015A91B /* TagsCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewItem.swift; sourceTree = "<group>"; };
 		E385F8071C796B950072A2CD /* NSDataNSStringValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataNSStringValueTransformer.swift; sourceTree = "<group>"; };
+		E39B92701C99D31100A3FAF2 /* TagsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewController.swift; sourceTree = "<group>"; };
 		E39E9B381C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringNSDataValueTransformer.swift; sourceTree = "<group>"; };
 		E3AD25591C7F9CDE006D6536 /* MarkdownImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownImporter.swift; sourceTree = "<group>"; };
 		E3AD256B1C7F9D08006D6536 /* FileImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileImporter.swift; sourceTree = "<group>"; };
@@ -2691,11 +2693,7 @@
 			isa = PBXGroup;
 			children = (
 				E37D96171C723B8A000A9F90 /* Main.storyboard */,
-				E37D960F1C723B8A000A9F90 /* AppDelegate.swift */,
-				E37E47B71C73F0F90077ECD7 /* DocumentController.swift */,
-				E37D96131C723B8A000A9F90 /* Document.swift */,
-				E360725B1C74E32E00914C2C /* DocumentWindowController.swift */,
-				E360726E1C74E40500914C2C /* DocumentTabController.swift */,
+				E380F61A1C9935BF001C8F9D /* Application and Document */,
 				E32AD26F1C76838E00648BFD /* Protocols */,
 				E360726D1C74E3C800914C2C /* Model */,
 				E3C821111C75979100CBAE92 /* Tabs */,
@@ -7137,6 +7135,18 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
+		E380F61A1C9935BF001C8F9D /* Application and Document */ = {
+			isa = PBXGroup;
+			children = (
+				E37D960F1C723B8A000A9F90 /* AppDelegate.swift */,
+				E37E47B71C73F0F90077ECD7 /* DocumentController.swift */,
+				E37D96131C723B8A000A9F90 /* Document.swift */,
+				E360725B1C74E32E00914C2C /* DocumentWindowController.swift */,
+				E360726E1C74E40500914C2C /* DocumentTabController.swift */,
+			);
+			name = "Application and Document";
+			sourceTree = "<group>";
+		};
 		E3898F981C80162700CA71BE /* Markdown */ = {
 			isa = PBXGroup;
 			children = (
@@ -7188,6 +7198,7 @@
 			children = (
 				E3DDBEEE1C8D312200136BAE /* TagsEditor.storyboard */,
 				E3DDBEF21C8D314D00136BAE /* TagsEditor.swift */,
+				E39B92701C99D31100A3FAF2 /* TagsCollectionViewController.swift */,
 				E385F7F11C92865C0015A91B /* TagsCollectionViewItem.swift */,
 			);
 			name = Tags;
@@ -7667,6 +7678,7 @@
 				E3803F0C1C728E790048AD46 /* NSDocumentController+Document.m in Sources */,
 				E37C7BB31C90BF6A00A3AB43 /* DMTabBar.m in Sources */,
 				E36072731C74E64200914C2C /* NSTabViewItem+ViewController.swift in Sources */,
+				E39B92711C99D31100A3FAF2 /* TagsCollectionViewController.swift in Sources */,
 				E378E80F1C801F54009539FD /* NSToolbar+Items.swift in Sources */,
 				E37A727B1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift in Sources */,
 				E37AB74B1C8E20A900F44564 /* LibrarySceneProtocol.swift in Sources */,

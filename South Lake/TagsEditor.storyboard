@@ -12,32 +12,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9IE-Zv-qbi">
-                                <rect key="frame" x="10" y="0.0" width="430" height="234"/>
-                                <clipView key="contentView" id="69e-Ok-LPk">
-                                    <rect key="frame" x="0.0" y="0.0" width="430" height="234"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <collectionView selectable="YES" allowsMultipleSelection="YES" id="ddi-Op-tAr">
-                                            <rect key="frame" x="0.0" y="0.0" width="430" height="234"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="primaryBackgroundColor" white="0.94041193181818183" alpha="1" colorSpace="calibratedWhite"/>
-                                            <connections>
-                                                <binding destination="diC-KA-2Zj" name="content" keyPath="arrangedObjects" id="Ovw-1B-dNj"/>
-                                                <binding destination="diC-KA-2Zj" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="Ovw-1B-dNj" id="g3V-ZG-Hro"/>
-                                            </connections>
-                                        </collectionView>
-                                    </subviews>
-                                </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="8eT-CN-Iud">
-                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="77S-F0-CR2">
-                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                            </scrollView>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JbV-fW-dKp">
                                 <rect key="frame" x="8" y="269" width="46" height="24"/>
                                 <constraints>
@@ -51,7 +25,7 @@
                                 </textFieldCell>
                             </textField>
                             <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hCl-Ah-f3C">
-                                <rect key="frame" x="242" y="245" width="174" height="19"/>
+                                <rect key="frame" x="166" y="245" width="174" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="174" id="UPa-KU-7dk"/>
                                 </constraints>
@@ -66,7 +40,7 @@
                                 </connections>
                             </searchField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DV7-Py-hfd">
-                                <rect key="frame" x="86" y="244" width="149" height="19"/>
+                                <rect key="frame" x="10" y="244" width="149" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="149" id="XS6-mN-nbt"/>
                                 </constraints>
@@ -90,7 +64,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7yb-CE-cuk">
-                                <rect key="frame" x="422" y="247" width="17" height="14"/>
+                                <rect key="frame" x="346" y="247" width="17" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="12" id="yB4-e8-oq7">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="6Ra-Ug-sWB"/>
                                     <font key="font" metaFont="systemSemibold" size="11"/>
@@ -101,16 +75,6 @@
                                     <binding destination="diC-KA-2Zj" name="value" keyPath="arrangedObjects.@count" id="NEM-c6-gwp"/>
                                 </connections>
                             </textField>
-                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yha-xK-nrm">
-                                <rect key="frame" x="9" y="244" width="71" height="20"/>
-                                <segmentedCell key="cell" enabled="NO" borderStyle="border" alignment="left" style="roundRect" trackingMode="selectOne" id="e68-EE-9qb">
-                                    <font key="font" metaFont="cellTitle"/>
-                                    <segments>
-                                        <segment image="NSIconViewTemplate" width="32" selected="YES"/>
-                                        <segment image="NSListViewTemplate" width="32" tag="1"/>
-                                    </segments>
-                                </segmentedCell>
-                            </segmentedControl>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qEH-LQ-NqN">
                                 <rect key="frame" x="58" y="269" width="384" height="24"/>
                                 <constraints>
@@ -122,40 +86,47 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="ObZ-VS-gFU">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="234"/>
+                            </customView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="ObZ-VS-gFU" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="66" id="28l-HA-y9u"/>
                             <constraint firstItem="hCl-Ah-f3C" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="36" id="4um-el-iXJ"/>
+                            <constraint firstAttribute="bottom" secondItem="ObZ-VS-gFU" secondAttribute="bottom" id="62r-kq-JfC"/>
                             <constraint firstItem="7yb-CE-cuk" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="39" id="7hL-XN-hnP"/>
                             <constraint firstItem="JbV-fW-dKp" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" constant="10" id="AAW-YH-Vb5"/>
-                            <constraint firstAttribute="trailing" secondItem="9IE-Zv-qbi" secondAttribute="trailing" constant="10" id="Azv-D2-cbP"/>
-                            <constraint firstItem="yha-xK-nrm" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="37" id="FdI-yB-oP3"/>
                             <constraint firstItem="qEH-LQ-NqN" firstAttribute="leading" secondItem="JbV-fW-dKp" secondAttribute="trailing" constant="8" id="LJl-js-5lz"/>
                             <constraint firstItem="JbV-fW-dKp" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="7" id="Mnc-6Q-prf"/>
-                            <constraint firstItem="yha-xK-nrm" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" constant="10" id="Ob0-Ja-ata"/>
                             <constraint firstItem="7yb-CE-cuk" firstAttribute="leading" secondItem="hCl-Ah-f3C" secondAttribute="trailing" constant="8" id="PaO-nv-NQZ"/>
-                            <constraint firstAttribute="bottom" secondItem="9IE-Zv-qbi" secondAttribute="bottom" id="PdL-QN-KAJ"/>
                             <constraint firstItem="hCl-Ah-f3C" firstAttribute="leading" secondItem="DV7-Py-hfd" secondAttribute="trailing" constant="7" id="SwV-xb-6Ft"/>
+                            <constraint firstItem="ObZ-VS-gFU" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" id="Ut7-yq-A1X"/>
                             <constraint firstAttribute="trailing" secondItem="qEH-LQ-NqN" secondAttribute="trailing" constant="10" id="VZb-fj-PJj"/>
                             <constraint firstItem="hCl-Ah-f3C" firstAttribute="leading" secondItem="DV7-Py-hfd" secondAttribute="trailing" constant="7" id="Y8l-zF-qab"/>
-                            <constraint firstItem="9IE-Zv-qbi" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" constant="10" id="h1E-Wf-AaV"/>
-                            <constraint firstItem="9IE-Zv-qbi" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="66" id="itw-6M-IxY"/>
-                            <constraint firstItem="DV7-Py-hfd" firstAttribute="leading" secondItem="yha-xK-nrm" secondAttribute="trailing" constant="7" id="oBA-Fe-WIY"/>
+                            <constraint firstItem="DV7-Py-hfd" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" constant="10" id="fws-cs-gKI"/>
+                            <constraint firstAttribute="trailing" secondItem="ObZ-VS-gFU" secondAttribute="trailing" id="lPe-Jy-LOL"/>
                             <constraint firstItem="qEH-LQ-NqN" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="7" id="yj9-LK-aL6"/>
                             <constraint firstItem="DV7-Py-hfd" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="37" id="zMj-3J-gW2"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="arrayController" destination="diC-KA-2Zj" id="kFg-sA-Z5Z"/>
-                        <outlet property="collectionView" destination="ddi-Op-tAr" id="HcV-CP-3kq"/>
+                        <outlet property="containerView" destination="ObZ-VS-gFU" id="0Jr-dX-MGa"/>
+                        <outlet property="libraryArrayController" destination="W8b-4i-iGU" id="JJz-9c-JX7"/>
                         <outlet property="searchLabel" destination="qEH-LQ-NqN" id="FQM-J2-fEe"/>
                     </connections>
                 </viewController>
                 <customObject id="6A6-dB-eVB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController avoidsEmptySelection="NO" id="diC-KA-2Zj">
+                <arrayController avoidsEmptySelection="NO" id="diC-KA-2Zj" userLabel="Tags Array Controller">
                     <connections>
                         <binding destination="1hg-0a-15P" name="contentArray" keyPath="content" id="r0o-rK-GQD"/>
                         <binding destination="1hg-0a-15P" name="filterPredicate" keyPath="filterPredicate" id="bQ9-3x-3Ge"/>
                         <binding destination="1hg-0a-15P" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="bQ9-3x-3Ge" id="APf-dL-KOh"/>
+                    </connections>
+                </arrayController>
+                <arrayController id="W8b-4i-iGU">
+                    <connections>
+                        <binding destination="1hg-0a-15P" name="contentArray" keyPath="libraryContent" id="GJv-Oy-rWg"/>
                     </connections>
                 </arrayController>
             </objects>
@@ -164,7 +135,7 @@
         <!--Tags Collection View Item-->
         <scene sceneID="9ng-3T-PSy">
             <objects>
-                <collectionViewItem storyboardIdentifier="collectionViewItem" id="hAE-oY-KQE" customClass="TagsCollectionViewItem" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewItem storyboardIdentifier="tagsCollectionViewItem" id="hAE-oY-KQE" customClass="TagsCollectionViewItem" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="n0P-Cu-BwC">
                         <rect key="frame" x="0.0" y="0.0" width="227" height="33"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -229,11 +200,203 @@
                 <customObject id="t66-fp-bQ0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="3ha-pr-MY0"/>
             </objects>
-            <point key="canvasLocation" x="581.5" y="161.5"/>
+            <point key="canvasLocation" x="648.5" y="-6.5"/>
+        </scene>
+        <!--Tags Collection View Controller-->
+        <scene sceneID="niR-Ed-60V">
+            <objects>
+                <viewController storyboardIdentifier="tagsCollectionScene" id="V6S-Yl-nLX" customClass="TagsCollectionViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="XJo-zR-dTG">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yId-Ef-d88">
+                                <rect key="frame" x="10" y="0.0" width="430" height="300"/>
+                                <clipView key="contentView" id="OhY-5V-cOo">
+                                    <rect key="frame" x="0.0" y="0.0" width="430" height="300"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView selectable="YES" allowsMultipleSelection="YES" id="OnR-YY-Fi3">
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="300"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="primaryBackgroundColor" white="0.94041193180000004" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <binding destination="Lxf-gQ-Klc" name="content" keyPath="arrangedObjects" id="ClD-sU-tHs"/>
+                                                <binding destination="Lxf-gQ-Klc" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="ClD-sU-tHs" id="Nn6-7h-w6L"/>
+                                            </connections>
+                                        </collectionView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="ySX-Qj-OBd">
+                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="683-f6-czB">
+                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="yId-Ef-d88" firstAttribute="leading" secondItem="XJo-zR-dTG" secondAttribute="leading" constant="10" id="E1i-cc-Kvn"/>
+                            <constraint firstAttribute="bottom" secondItem="yId-Ef-d88" secondAttribute="bottom" id="GG4-wS-LKv"/>
+                            <constraint firstAttribute="trailing" secondItem="yId-Ef-d88" secondAttribute="trailing" constant="10" id="qWe-D1-6Z6"/>
+                            <constraint firstItem="yId-Ef-d88" firstAttribute="top" secondItem="XJo-zR-dTG" secondAttribute="top" id="uEz-3p-cV6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="arrayController" destination="Lxf-gQ-Klc" id="Hd8-nC-FfA"/>
+                        <outlet property="collectionView" destination="OnR-YY-Fi3" id="tON-eJ-UCu"/>
+                    </connections>
+                </viewController>
+                <customObject id="Br5-vU-3Nq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <arrayController id="Lxf-gQ-Klc"/>
+            </objects>
+            <point key="canvasLocation" x="677" y="207"/>
+        </scene>
+        <!--Collection View-->
+        <scene sceneID="byi-Jv-vy2">
+            <objects>
+                <customObject id="91X-Bg-g4e" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="libraryCollectionScene" id="ch3-o0-doR" userLabel="Collection View" customClass="LibraryCollectionViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="b3o-f6-sHz">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="297"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kc-QE-zQu">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="297"/>
+                                <clipView key="contentView" copiesOnScroll="NO" id="9pF-Ri-Pgk">
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="297"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView selectable="YES" allowsMultipleSelection="YES" id="gCP-Qy-MJr">
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="297"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="primaryBackgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <binding destination="p2V-ay-BLW" name="content" keyPath="arrangedObjects" id="FMg-Md-DAo"/>
+                                                <binding destination="p2V-ay-BLW" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="FMg-Md-DAo" id="sRE-z8-OKX"/>
+                                            </connections>
+                                        </collectionView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="piB-ci-OoD">
+                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="aTO-PN-QlV">
+                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3kc-QE-zQu" secondAttribute="trailing" id="DRS-24-UJ7"/>
+                            <constraint firstAttribute="bottom" secondItem="3kc-QE-zQu" secondAttribute="bottom" id="K7b-Fz-xCj"/>
+                            <constraint firstItem="3kc-QE-zQu" firstAttribute="top" secondItem="b3o-f6-sHz" secondAttribute="top" id="WCR-Y2-MxW"/>
+                            <constraint firstItem="3kc-QE-zQu" firstAttribute="leading" secondItem="b3o-f6-sHz" secondAttribute="leading" id="Yaw-hf-L5w"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="arrayController" destination="p2V-ay-BLW" id="jx2-Y3-XBm"/>
+                        <outlet property="collectionView" destination="gCP-Qy-MJr" id="lsF-cU-tYl"/>
+                    </connections>
+                </viewController>
+                <arrayController objectClassName="DataSource" avoidsEmptySelection="NO" id="p2V-ay-BLW"/>
+            </objects>
+            <point key="canvasLocation" x="197" y="482.5"/>
+        </scene>
+        <!--Library Collection View Item-->
+        <scene sceneID="t3G-Dr-Ivx">
+            <objects>
+                <collectionViewItem storyboardIdentifier="libraryCollectionViewItem" id="JMe-aK-5Ur" customClass="LibraryCollectionViewItem" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="XzE-gn-CPI">
+                        <rect key="frame" x="0.0" y="0.0" width="162" height="177"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView identifier="background" translatesAutoresizingMaskIntoConstraints="NO" id="tIB-IS-yXe" customClass="CustomizableView" customModule="South_Lake" customModuleProvider="target">
+                                <rect key="frame" x="10" y="10" width="142" height="157"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kwf-4H-rHD">
+                                        <rect key="frame" x="8" y="111" width="126" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="38" id="oDN-NE-m5q"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" title="Note title might take up two lines ore more" id="dqe-k6-ppT">
+                                            <font key="font" metaFont="systemMedium" size="13"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <connections>
+                                            <binding destination="JMe-aK-5Ur" name="value" keyPath="representedObject.title" id="nR4-S2-YU9"/>
+                                        </connections>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xd1-3v-XUE">
+                                        <rect key="frame" x="8" y="30" width="126" height="77"/>
+                                        <textFieldCell key="cell" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" title="Label" id="fR7-en-IAI">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <connections>
+                                            <binding destination="JMe-aK-5Ur" name="value" keyPath="representedObject.plain_text" id="OP6-6y-4Ex"/>
+                                        </connections>
+                                    </textField>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PbU-Lg-H9f">
+                                        <rect key="frame" x="10" y="8" width="17" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="17" id="SnF-2t-FhY"/>
+                                            <constraint firstAttribute="width" constant="17" id="hFn-bE-Dne"/>
+                                        </constraints>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Q0u-XM-w23"/>
+                                        <connections>
+                                            <binding destination="JMe-aK-5Ur" name="value" keyPath="representedObject.icon" id="tTH-9d-hSk"/>
+                                        </connections>
+                                    </imageView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5D8-8X-cwK">
+                                        <rect key="frame" x="29" y="10" width="105" height="14"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="3/4/16" id="bzT-dZ-aXd">
+                                            <dateFormatter key="formatter" dateStyle="short" id="D7S-fQ-z0E"/>
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <connections>
+                                            <binding destination="JMe-aK-5Ur" name="value" keyPath="representedObject.created_at" id="LIg-dD-zMP"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="157" id="1K1-ct-4D1"/>
+                                    <constraint firstItem="PbU-Lg-H9f" firstAttribute="leading" secondItem="tIB-IS-yXe" secondAttribute="leading" constant="10" id="41I-za-qVT"/>
+                                    <constraint firstItem="5D8-8X-cwK" firstAttribute="leading" secondItem="PbU-Lg-H9f" secondAttribute="trailing" constant="4" id="Ca4-0h-Zj2"/>
+                                    <constraint firstItem="Kwf-4H-rHD" firstAttribute="top" secondItem="tIB-IS-yXe" secondAttribute="top" constant="8" id="D6J-Bu-uiZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="Xd1-3v-XUE" secondAttribute="bottom" constant="30" id="DcK-bz-kte"/>
+                                    <constraint firstAttribute="trailing" secondItem="5D8-8X-cwK" secondAttribute="trailing" constant="10" id="KkN-5o-Ofc"/>
+                                    <constraint firstItem="Xd1-3v-XUE" firstAttribute="top" secondItem="tIB-IS-yXe" secondAttribute="top" constant="50" id="WCE-Je-LpL"/>
+                                    <constraint firstAttribute="width" constant="142" id="WV9-0K-Jby"/>
+                                    <constraint firstItem="5D8-8X-cwK" firstAttribute="top" secondItem="tIB-IS-yXe" secondAttribute="top" constant="133" id="cyA-7z-YkH"/>
+                                    <constraint firstAttribute="trailing" secondItem="Kwf-4H-rHD" secondAttribute="trailing" constant="10" id="ebv-5D-7lc"/>
+                                    <constraint firstItem="PbU-Lg-H9f" firstAttribute="top" secondItem="tIB-IS-yXe" secondAttribute="top" constant="132" id="lSQ-Bz-thS"/>
+                                    <constraint firstItem="Kwf-4H-rHD" firstAttribute="leading" secondItem="tIB-IS-yXe" secondAttribute="leading" constant="10" id="ljl-eO-6jN"/>
+                                    <constraint firstItem="Xd1-3v-XUE" firstAttribute="leading" secondItem="tIB-IS-yXe" secondAttribute="leading" constant="10" id="pJh-c8-SMi"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xd1-3v-XUE" secondAttribute="trailing" constant="10" id="zAw-jH-vgz"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="tIB-IS-yXe" firstAttribute="centerY" secondItem="XzE-gn-CPI" secondAttribute="centerY" id="4sF-w4-Irb"/>
+                            <constraint firstItem="tIB-IS-yXe" firstAttribute="centerX" secondItem="XzE-gn-CPI" secondAttribute="centerX" id="bve-IE-r87"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="tIB-IS-yXe" id="7bG-Yh-Xbi"/>
+                    </connections>
+                </collectionViewItem>
+                <customObject id="Ruf-hW-tCN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="533" y="542.5"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="NSIconViewTemplate" width="10" height="10"/>
-        <image name="NSListViewTemplate" width="14" height="10"/>
-    </resources>
 </document>

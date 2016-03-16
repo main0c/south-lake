@@ -549,15 +549,14 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         switch root {
         case "library":
-            print("library")
             guard let source = userInfo["source"] as? DataSource else {
                 print("wants library but no source")
                 // go to library
                 return
             }
             selectedURLObjects = [source]
+            editor?.openURL(url)
         case "tags":
-            print("tags")
             // TODO: the guard shouldn't matter here, it's handled by the tag editor either way
             guard let components = url.pathComponents,
                   let encodedTag = components[safe: 2],
@@ -568,7 +567,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             }
             // Select tags, pass open url to tags editor
             sourceListController.selectItemAtIndexPath(NSIndexPath(indexes: [0,2], length: 2))
-            print(tag)
+            editor?.openURL(url)
         case _:
             print(root)
         }
