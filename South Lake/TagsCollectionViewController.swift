@@ -55,7 +55,6 @@ class TagsCollectionViewController: NSViewController, LibraryScene {
         
         NSNotificationCenter.defaultCenter().postNotificationName(OpenURLNotification, object: self, userInfo: [
             "dbm": databaseManager,
-//            "source": object,
             "url": url
         ])
     }

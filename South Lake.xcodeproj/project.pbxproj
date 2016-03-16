@@ -116,6 +116,7 @@
 		E3C4362B1C7642BA00DD685D /* MacDownCopyFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C4362A1C7642BA00DD685D /* MacDownCopyFiles.m */; };
 		E3C821231C7597B600CBAE92 /* DefaultTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C821221C7597B600CBAE92 /* DefaultTab.swift */; };
 		E3C821261C75984B00CBAE92 /* DefaultTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C821281C75984B00CBAE92 /* DefaultTab.storyboard */; };
+		E3DA1D1A1C99FB1F00E378BA /* NSPathControlPointing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DA1D191C99FB1F00E378BA /* NSPathControlPointing.swift */; };
 		E3DDBEED1C8D311700136BAE /* LibraryEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3DDBEEC1C8D311700136BAE /* LibraryEditor.storyboard */; };
 		E3DDBEEF1C8D312200136BAE /* TagsEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3DDBEEE1C8D312200136BAE /* TagsEditor.storyboard */; };
 		E3DDBEF11C8D313A00136BAE /* LibraryEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DDBEF01C8D313A00136BAE /* LibraryEditor.swift */; };
@@ -2446,6 +2447,7 @@
 		E3C4362A1C7642BA00DD685D /* MacDownCopyFiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacDownCopyFiles.m; sourceTree = "<group>"; };
 		E3C821221C7597B600CBAE92 /* DefaultTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTab.swift; sourceTree = "<group>"; };
 		E3C821271C75984B00CBAE92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DefaultTab.storyboard; sourceTree = "<group>"; };
+		E3DA1D191C99FB1F00E378BA /* NSPathControlPointing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSPathControlPointing.swift; sourceTree = "<group>"; };
 		E3DDBEEC1C8D311700136BAE /* LibraryEditor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LibraryEditor.storyboard; sourceTree = "<group>"; };
 		E3DDBEEE1C8D312200136BAE /* TagsEditor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TagsEditor.storyboard; sourceTree = "<group>"; };
 		E3DDBEF01C8D313A00136BAE /* LibraryEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryEditor.swift; sourceTree = "<group>"; };
@@ -7166,6 +7168,7 @@
 				E37AB74C1C8E281500F44564 /* TagsValueTransformer.swift */,
 				E3794C4F1C8CA345005EA307 /* CustomizableView.swift */,
 				E37A727A1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift */,
+				E3DA1D191C99FB1F00E378BA /* NSPathControlPointing.swift */,
 				E3C436291C7642BA00DD685D /* MacDownCopyFiles.h */,
 				E3C4362A1C7642BA00DD685D /* MacDownCopyFiles.m */,
 			);
@@ -7677,6 +7680,7 @@
 				E3803F101C728E790048AD46 /* NSTextView+Autocomplete.m in Sources */,
 				E3803F0C1C728E790048AD46 /* NSDocumentController+Document.m in Sources */,
 				E37C7BB31C90BF6A00A3AB43 /* DMTabBar.m in Sources */,
+				E3DA1D1A1C99FB1F00E378BA /* NSPathControlPointing.swift in Sources */,
 				E36072731C74E64200914C2C /* NSTabViewItem+ViewController.swift in Sources */,
 				E39B92711C99D31100A3FAF2 /* TagsCollectionViewController.swift in Sources */,
 				E378E80F1C801F54009539FD /* NSToolbar+Items.swift in Sources */,

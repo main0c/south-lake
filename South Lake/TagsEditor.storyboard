@@ -12,18 +12,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JbV-fW-dKp">
-                                <rect key="frame" x="8" y="269" width="46" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="BVZ-pc-UU5"/>
-                                    <constraint firstAttribute="width" constant="42" id="xIw-UA-lhs"/>
-                                </constraints>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" title="Tags" id="upD-AW-TOi">
-                                    <font key="font" metaFont="systemLight" size="19"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hCl-Ah-f3C">
                                 <rect key="frame" x="166" y="245" width="174" height="19"/>
                                 <constraints>
@@ -75,37 +63,41 @@
                                     <binding destination="diC-KA-2Zj" name="value" keyPath="arrangedObjects.@count" id="NEM-c6-gwp"/>
                                 </connections>
                             </textField>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qEH-LQ-NqN">
-                                <rect key="frame" x="58" y="269" width="384" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="bkY-jZ-90K"/>
-                                </constraints>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" title="Filtered Tag" id="Cgc-j4-ThD">
-                                    <font key="font" metaFont="systemLight" size="19"/>
-                                    <color key="textColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="ObZ-VS-gFU">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="234"/>
                             </customView>
+                            <pathControl focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vau-kB-p5Y" customClass="NSPathControlWithCursor" customModule="South_Lake" customModuleProvider="target">
+                                <rect key="frame" x="4" y="268" width="275" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="GuQ-s4-bCP"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="gyF-oS-HEr"/>
+                                </constraints>
+                                <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" focusRingType="none" alignment="left" id="yTd-Zz-BBx">
+                                    <font key="font" metaFont="systemLight" size="19"/>
+                                    <url key="url" string="Tags/Filtered%20Tag">
+                                        <url key="baseURL" string="file:///"/>
+                                    </url>
+                                    <color key="backgroundColor" white="0.91613833723646221" alpha="1" colorSpace="calibratedWhite"/>
+                                </pathCell>
+                                <connections>
+                                    <action selector="gotoPath:" target="1hg-0a-15P" id="Dl0-sJ-SG4"/>
+                                </connections>
+                            </pathControl>
                         </subviews>
                         <constraints>
                             <constraint firstItem="ObZ-VS-gFU" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="66" id="28l-HA-y9u"/>
                             <constraint firstItem="hCl-Ah-f3C" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="36" id="4um-el-iXJ"/>
                             <constraint firstAttribute="bottom" secondItem="ObZ-VS-gFU" secondAttribute="bottom" id="62r-kq-JfC"/>
                             <constraint firstItem="7yb-CE-cuk" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="39" id="7hL-XN-hnP"/>
-                            <constraint firstItem="JbV-fW-dKp" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" constant="10" id="AAW-YH-Vb5"/>
-                            <constraint firstItem="qEH-LQ-NqN" firstAttribute="leading" secondItem="JbV-fW-dKp" secondAttribute="trailing" constant="8" id="LJl-js-5lz"/>
-                            <constraint firstItem="JbV-fW-dKp" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="7" id="Mnc-6Q-prf"/>
                             <constraint firstItem="7yb-CE-cuk" firstAttribute="leading" secondItem="hCl-Ah-f3C" secondAttribute="trailing" constant="8" id="PaO-nv-NQZ"/>
+                            <constraint firstItem="vau-kB-p5Y" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" constant="4" id="R6T-J4-S8D"/>
                             <constraint firstItem="hCl-Ah-f3C" firstAttribute="leading" secondItem="DV7-Py-hfd" secondAttribute="trailing" constant="7" id="SwV-xb-6Ft"/>
                             <constraint firstItem="ObZ-VS-gFU" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" id="Ut7-yq-A1X"/>
-                            <constraint firstAttribute="trailing" secondItem="qEH-LQ-NqN" secondAttribute="trailing" constant="10" id="VZb-fj-PJj"/>
                             <constraint firstItem="hCl-Ah-f3C" firstAttribute="leading" secondItem="DV7-Py-hfd" secondAttribute="trailing" constant="7" id="Y8l-zF-qab"/>
+                            <constraint firstItem="vau-kB-p5Y" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="8" id="dNO-jo-uL9"/>
                             <constraint firstItem="DV7-Py-hfd" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" constant="10" id="fws-cs-gKI"/>
                             <constraint firstAttribute="trailing" secondItem="ObZ-VS-gFU" secondAttribute="trailing" id="lPe-Jy-LOL"/>
-                            <constraint firstItem="qEH-LQ-NqN" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="7" id="yj9-LK-aL6"/>
+                            <constraint firstAttribute="trailing" secondItem="vau-kB-p5Y" secondAttribute="trailing" priority="250" constant="10" id="mUa-ru-4L8"/>
                             <constraint firstItem="DV7-Py-hfd" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="37" id="zMj-3J-gW2"/>
                         </constraints>
                     </view>
@@ -113,7 +105,7 @@
                         <outlet property="arrayController" destination="diC-KA-2Zj" id="kFg-sA-Z5Z"/>
                         <outlet property="containerView" destination="ObZ-VS-gFU" id="0Jr-dX-MGa"/>
                         <outlet property="libraryArrayController" destination="W8b-4i-iGU" id="JJz-9c-JX7"/>
-                        <outlet property="searchLabel" destination="qEH-LQ-NqN" id="FQM-J2-fEe"/>
+                        <outlet property="pathControl" destination="vau-kB-p5Y" id="BKe-0h-qCF"/>
                     </connections>
                 </viewController>
                 <customObject id="6A6-dB-eVB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

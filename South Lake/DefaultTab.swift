@@ -537,8 +537,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
         
         // TODO: examine the url to decide what primary source to select
-        // TODO: really can't hardcode index paths
-        // Switch up that switch statement to case on a tuple
+        // TODO: Switch up that switch statement to case on a tuple
+        // TODO: really can't hardcode index paths!
         
         print(url.pathComponents)
         
@@ -549,22 +549,13 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         switch root {
         case "library":
-            guard let source = userInfo["source"] as? DataSource else {
-                print("wants library but no source")
-                // go to library
-                return
+            // Select library, pass open url to library editor?
+            sourceListController.selectItemAtIndexPath(NSIndexPath(indexes: [0,0], length: 2))
+            if let source = userInfo["source"] as? DataSource { // guard
+                selectedURLObjects = [source]
             }
-            selectedURLObjects = [source]
             editor?.openURL(url)
         case "tags":
-            // TODO: the guard shouldn't matter here, it's handled by the tag editor either way
-            guard let components = url.pathComponents,
-                  let encodedTag = components[safe: 2],
-                  let tag = encodedTag.stringByRemovingPercentEncoding else {
-                print("wants tags but no tag")
-                // go to tags
-                return
-            }
             // Select tags, pass open url to tags editor
             sourceListController.selectItemAtIndexPath(NSIndexPath(indexes: [0,2], length: 2))
             editor?.openURL(url)

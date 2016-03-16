@@ -11,8 +11,9 @@ import Cocoa
 class TagsEditor: NSViewController, FileEditor {
     @IBOutlet var libraryArrayController: NSArrayController!
     @IBOutlet var arrayController: NSArrayController!
-    @IBOutlet var searchLabel: NSTextField!
     @IBOutlet var containerView: NSView!
+    
+    @IBOutlet var pathControl: NSPathControlWithCursor!
 
     static var filetypes: [String] { return ["southlake.notebook.tags", "southlake/x-notebook-tags", "southlake-notebook-tags"] }
     static var storyboard: String { return "TagsEditor" }
@@ -64,8 +65,6 @@ class TagsEditor: NSViewController, FileEditor {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchLabel.hidden = true
-        
         (view as! CustomizableView).backgroundColor = NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
     
         sortDescriptors = [NSSortDescriptor(key: "tag", ascending: true, selector: Selector("caseInsensitiveCompare:"))]
@@ -73,6 +72,12 @@ class TagsEditor: NSViewController, FileEditor {
         loadScene("tagsCollectionScene")
         bindLibrary()
         bindTags()
+        
+        // pathControl.cursor = NSCursor.pointingHandCursor()
+        pathControl.URL = NSURL(string: "southlake://localhost/tags")
+        pathControl.backgroundColor = NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
+        
+        updatePathControlAppearance()
     }
     
     deinit {
@@ -134,12 +139,26 @@ class TagsEditor: NSViewController, FileEditor {
         arrayController.sortDescriptors = descriptors
     }
     
+    @IBAction func gotoPath(sender: AnyObject?) {
+        guard let sender = sender as? NSPathControl else {
+            return
+        }
+        guard let url = sender.clickedPathComponentCell()?.URL else {
+            return
+        }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(OpenURLNotification, object: self, userInfo: [
+            "dbm": databaseManager,
+            "url": url
+        ])
+    }
+    
     // MARK: - Scene
     
     func loadScene(identifier: String) {
         scene = storyboard!.instantiateControllerWithIdentifier(identifier) as? LibraryScene
         guard var scene = scene else {
-            print("unable to load scene")
+            print("unable to load scene with identifier \(identifier)")
             return
         }
         
@@ -183,42 +202,23 @@ class TagsEditor: NSViewController, FileEditor {
     
     // MARK: -
     
-    @IBAction func doubleClick(sender: AnyObject?) {
-        guard let object = arrayController.selectedObjects[safe: 0] as? [String:AnyObject],
-              let tag = object["tag"] as? String,
-              let encodedTag = tag.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet()) else {
-            print("no selected object")
-            return
-        }
-        
-        guard let url = NSURL(string: "southlake://localhost/tags/\(encodedTag)") else {
-            print("unable to construct url for object with id \(encodedTag)")
-            return
-        }
-        
-        // TODO: Track history
-        
-        print(url)
-        openURL(url)
-    }
-    
-    // MARK: -
-    
     func performSearch(text: String?, results: BRSearchResults?) {
     
     }
     
     func openURL(url: NSURL) {
+        pathControl.URL = url
+        updatePathControlAppearance()
+        
+        // If there is no specific tag, reload the tags scene
+        
         guard let encodedTag = url.pathComponents?[safe: 2],
               let tag = encodedTag.stringByRemovingPercentEncoding else {
-            searchLabel.hidden = true
+            loadScene("tagsCollectionScene")
             return
         }
         
-        searchLabel.stringValue = tag
-        searchLabel.hidden = ( tag == "" )
-        
-        // Filter on the tag, load a scene and morph the toolbar
+        // Otherwise filter on the tag, load a scene and morph the toolbar
         
         libraryArrayController.filterPredicate = NSPredicate(format: "%@ in tags", tag)
         loadScene("libraryCollectionScene")
@@ -226,6 +226,25 @@ class TagsEditor: NSViewController, FileEditor {
     
     func willClose() {
     
+    }
+    
+    // MARK: - Utilities
+    
+    func updatePathControlAppearance() {
+        // First cell's string value is a capitalized, localized transformation of "tags"
+        // First cell is black, remaining are blue
+        
+        let cells = pathControl.pathComponentCells()
+        guard cells.count > 0 else {
+            return
+        }
+        
+        cells.first?.stringValue = cells.first!.stringValue.capitalizedString
+        cells.first?.textColor = NSColor(white: 0.1, alpha: 1.0)
+        
+        for cell in cells[1..<cells.count] {
+            cell.textColor = NSColor.keyboardFocusIndicatorColor()
+        }
     }
 }
 
