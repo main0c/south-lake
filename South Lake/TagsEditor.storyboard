@@ -250,7 +250,7 @@
                     </connections>
                 </viewController>
                 <customObject id="Br5-vU-3Nq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController id="Lxf-gQ-Klc"/>
+                <arrayController avoidsEmptySelection="NO" id="Lxf-gQ-Klc"/>
             </objects>
             <point key="canvasLocation" x="677" y="207"/>
         </scene>

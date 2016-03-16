@@ -116,19 +116,17 @@ class TagsEditor: NSViewController, FileEditor {
             return
         }
         
+        // Selecting the same menu item reverses the sort
+        
         var descriptors = arrayController.sortDescriptors
-        let key = descriptors.count != 0 ? descriptors[0].key : nil
-        
-        // Selecting the same item twice reverses the sort
-        // But by default show most recent files first
-        
-        // TODO: reverse sort on same key
+        let asc = descriptors[safe: 0]?.ascending ?? true
+        let key = descriptors[safe: 0]?.key
         
         switch sender.tag {
         case 1001: // by tag
-            descriptors = [NSSortDescriptor(key: "tag", ascending: key != "title", selector: Selector("caseInsensitiveCompare:"))]
+            descriptors = [NSSortDescriptor(key: "tag", ascending: (key == "tag" ? !asc : true), selector: Selector("caseInsensitiveCompare:"))]
         case 1002: // by count
-            descriptors = [NSSortDescriptor(key: "count", ascending: !(key != "count"), selector: Selector("compare:"))]
+            descriptors = [NSSortDescriptor(key: "count", ascending: (key == "count" ? !asc : false), selector: Selector("compare:"))]
         default:
             break
         }

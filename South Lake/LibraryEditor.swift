@@ -119,21 +119,19 @@ class LibraryEditor: NSViewController, FileEditor {
             return
         }
         
+        // Selecting the same menu item reverses the sort
+        
         var descriptors = arrayController.sortDescriptors
-        let key = descriptors.count != 0 ? descriptors[0].key : nil
-        
-        // TODO: fix reverse sort
-        
-        // Selecting the same item twice reverses the sort
-        // But by default show most recent files first
+        let asc = descriptors[safe: 0]?.ascending ?? true
+        let key = descriptors[safe: 0]?.key
         
         switch sender.tag {
         case 1001: // by title
-            descriptors = [NSSortDescriptor(key: "title", ascending: key != "title", selector: Selector("caseInsensitiveCompare:"))]
+            descriptors = [NSSortDescriptor(key: "title", ascending: (key == "title" ? !asc : true), selector: Selector("caseInsensitiveCompare:"))]
         case 1002: // by date created
-            descriptors = [NSSortDescriptor(key: "created_at", ascending: !(key != "created_at"), selector: Selector("compare:"))]
+            descriptors = [NSSortDescriptor(key: "created_at", ascending: (key == "created_at" ? !asc : false), selector: Selector("compare:"))]
         case 1003: // by date updated
-            descriptors = [NSSortDescriptor(key: "updated_at", ascending: !(key != "updated_at"), selector: Selector("compare:"))]
+            descriptors = [NSSortDescriptor(key: "updated_at", ascending: (key == "updated_at" ? !asc : false), selector: Selector("compare:"))]
         default:
             break
         }
