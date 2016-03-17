@@ -172,6 +172,9 @@ class LibraryEditor: NSViewController, FileEditor {
             return
         }
         
+        // TODO: finish
+        return
+        
         NSNotificationCenter.defaultCenter().postNotificationName(OpenURLNotification, object: self, userInfo: [
             "dbm": databaseManager,
             "url": url
@@ -223,36 +226,11 @@ class LibraryEditor: NSViewController, FileEditor {
     // MARK: -
     
     func performSearch(text: String?, results: BRSearchResults?) {
-        guard let text = text else {
-            pathControl.URL = NSURL(string: "southlake://localhost/library")
-            updatePathControlAppearance()
+        updatePathControlWithSearch(text)
+        
+        guard let _ = text else {
             searchPredicate = nil
             return
-        }
-        
-        // TODO: fix this!
-        // Just move it all to an updatePathControl(url) method
-        
-        // Always update the path control
-        // The url should be of the format southlake://localhost/library/?search=text
-        // But a path control doesn't know how to work with that. The correct approach
-        // is to subclass the path control, because we still want to preserve the url
-        
-        
-        if let queryEncoding = String(format: "search=%@", text).stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()),
-           let queryURL = NSURL(string: "southlake://localhost/library/?\(queryEncoding)"),
-           let pathEncoding = String(format: NSLocalizedString("Searching for \"%@\"", comment: "Title of find tab"), text).stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet()),
-           let pathURL = NSURL(string: "southlake://localhost/library/\(pathEncoding)") {
-        
-            pathControl.URL = pathURL
-            updatePathControlAppearance()
-            
-            if let cell = pathControl.pathComponentCells()[safe: 1] {
-                cell.URL = queryURL
-            }
-            
-        } else {
-            print("unable to create url for search text \(text)")
         }
         
         guard let results = results where results.count() != 0 else {
@@ -309,6 +287,41 @@ class LibraryEditor: NSViewController, FileEditor {
     }
     
     // MARK: - Utilities
+    
+    func updatePathControlWithSearch(text: String?) {
+        guard let text = text else {
+            pathControl.URL = NSURL(string: "southlake://localhost/library")
+            updatePathControlAppearance()
+            return
+        }
+        
+        // The url should be of the format southlake://localhost/library/?search=text
+        // But a path control doesn't know how to work with that.
+        
+        let encodedText = text.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        let encodedPath = String(format: NSLocalizedString("Searching for \"%@\"", comment: ""), text).stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())
+        
+        guard let queryValue = encodedText, let queryPath = encodedPath else {
+            print("unable to encode search string")
+            return
+        }
+        
+        let query = String(format: "search=%@", queryValue)
+        
+        if let queryURL = NSURL(string: "southlake://localhost/library/?\(query)"),
+           let pathURL = NSURL(string: "southlake://localhost/library/\(queryPath)") {
+        
+            pathControl.URL = pathURL
+            updatePathControlAppearance()
+            
+            if let cell = pathControl.pathComponentCells()[safe: 1] {
+                cell.URL = queryURL
+            }
+            
+        } else {
+            print("unable to create url for search text \(text)")
+        }
+    }
     
     func updatePathControlAppearance() {
         // First cell's string value is a capitalized, localized transformation of "tags"

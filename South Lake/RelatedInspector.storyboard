@@ -136,7 +136,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="172" height="355"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <collectionView selectable="YES" allowsMultipleSelection="YES" id="V3T-Jl-sTF">
+                                        <collectionView selectable="YES" allowsMultipleSelection="YES" maxNumberOfColumns="1" id="V3T-Jl-sTF">
                                             <rect key="frame" x="0.0" y="0.0" width="172" height="355"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="primaryBackgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>

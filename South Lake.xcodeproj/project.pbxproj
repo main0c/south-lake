@@ -2533,8 +2533,7 @@
 			isa = PBXGroup;
 			children = (
 				E3FD678E1C7BE37800D7EBB7 /* EditorPlugIns.swift */,
-				E37AB7501C8E6F4A00F44564 /* FileHeader.storyboard */,
-				E37AB74E1C8E6F0E00F44564 /* FileHeaderViewController.swift */,
+				E37A05481C9B0C80006618EC /* File Header */,
 				E3898F981C80162700CA71BE /* Markdown */,
 				E37AB76A1C8EA45B00F44564 /* PDF */,
 				E3DDBEEA1C8D30FF00136BAE /* Library */,
@@ -2598,6 +2597,15 @@
 				E3274FCA1C75A1BF000B6A84 /* File.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		E37A05481C9B0C80006618EC /* File Header */ = {
+			isa = PBXGroup;
+			children = (
+				E37AB7501C8E6F4A00F44564 /* FileHeader.storyboard */,
+				E37AB74E1C8E6F0E00F44564 /* FileHeaderViewController.swift */,
+			);
+			name = "File Header";
 			sourceTree = "<group>";
 		};
 		E37AB7591C8EA37500F44564 /* Trash */ = {

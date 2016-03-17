@@ -297,7 +297,7 @@
                 </viewController>
                 <arrayController objectClassName="DataSource" avoidsEmptySelection="NO" id="p2V-ay-BLW"/>
             </objects>
-            <point key="canvasLocation" x="197" y="482.5"/>
+            <point key="canvasLocation" x="203" y="482.5"/>
         </scene>
         <!--Library Collection View Item-->
         <scene sceneID="t3G-Dr-Ivx">
