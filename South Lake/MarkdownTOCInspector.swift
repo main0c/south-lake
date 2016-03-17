@@ -57,6 +57,9 @@ class MarkdownTOCInspector: NSViewController, Inspector {
         webView.policyDelegate = self
     }
 
+    func willClose() {
+    
+    }
 }
 
 // MARK: - WebPolicyDelegate

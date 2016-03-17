@@ -43,4 +43,6 @@ protocol Inspector: Databasable {
     /// A selected icon is required. It should be a bolder or filled in version of the icon
     var selectedIcon: NSImage { get }
     
+    /// Called immediately before the inspector is removed from the view hierarchy
+    func willClose()
 }

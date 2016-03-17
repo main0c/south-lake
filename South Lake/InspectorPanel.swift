@@ -46,6 +46,15 @@ class InspectorPanel: NSViewController {
         tabBar.borderColor = NSColor(white:0.80, alpha:1.0)
     }
     
+    deinit {
+        print("inspector panel deinit")
+    }
+    
+    func willClose() {
+        tabBar.handleTabBarItemSelection(nil)
+        tabBar.tabBarItems = nil
+    }
+    
     // MARK: - Inspector Interface
     
     func removeInspectorsFromInterface() {

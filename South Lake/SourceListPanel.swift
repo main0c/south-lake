@@ -46,8 +46,8 @@ class SourceListPanel: NSViewController, Databasable {
         
         // Bindings: memory consequences?
         
-        self.bind("selectedObjects", toObject: treeController, withKeyPath: "selectedObjects", options: [:])
-        treeController.bind("content", toObject: self, withKeyPath: "content", options: [:])
+        bind("selectedObjects", toObject: treeController, withKeyPath: "selectedObjects", options: [:])
+        // treeController.bind("content", toObject: self, withKeyPath: "content", options: [:])
         
         // Load data: defer so that the application can bootstrap the database
         
@@ -70,7 +70,6 @@ class SourceListPanel: NSViewController, Databasable {
     }
     
     func willClose() {
-        treeController.unbind("content")
         unbind("selectedObjects")
         unbind("content")
     }

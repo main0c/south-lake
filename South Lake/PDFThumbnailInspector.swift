@@ -33,4 +33,7 @@ class PDFThumbnailInspector: NSViewController, Inspector {
         thumbnailView.setBackgroundColor(NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0))
     }
     
+    func willClose() {
+    
+    }
 }

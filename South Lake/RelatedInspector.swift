@@ -78,9 +78,14 @@ class RelatedInspector: NSViewController, Inspector {
         bindLibrary()
     }
     
-    deinit {
+    func willClose() {
         unbind("libraryContent")
         unbind("selectedTags")
+    }
+    
+    deinit {
+        print("related files inspector deinit")
+        
     }
     
     // MARK: - Library Data

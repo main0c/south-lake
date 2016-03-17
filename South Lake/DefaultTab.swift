@@ -133,19 +133,38 @@ class DefaultTab: NSSplitViewController, DocumentTab {
 
     }
     
-    // TOOD: save when changing selection
-    
-    func documentWillSave(notification: NSNotification) {
-    
+    deinit {
+        print("default tab deinit")
     }
     
     func willClose() {
         sourceListController.willClose()
+        inspectorController.willClose()
         editor?.willClose()
         
         unbindTitle(selectedObjects)
         unbindIcon(selectedObjects)
         unbind("selectedSourceListObjects")
+        
+        if let inspectors = inspectors {
+            for inspector in inspectors {
+                inspector.willClose()
+                switch inspector {
+                case let i as RelatedInspector:
+                    i.unbind("selectedObjects")
+                case _:
+                    break
+                }
+            }
+        }
+        
+        inspectors = nil
+    }
+        
+    // TOOD: save when changing selection
+    
+    func documentWillSave(notification: NSNotification) {
+    
     }
     
     // MARK: - Document State

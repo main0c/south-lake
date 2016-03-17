@@ -214,12 +214,12 @@
                                                                             </textFieldCell>
                                                                             <connections>
                                                                                 <action selector="userDidEndEditingCell:" target="BCA-UI-RVa" id="PdW-m9-37y"/>
+                                                                                <binding destination="wZO-PC-lzU" name="value" keyPath="objectValue.title" id="2Hm-0M-XhH"/>
                                                                                 <binding destination="wZO-PC-lzU" name="editable" keyPath="objectValue.uti" id="jrp-RR-4lN">
                                                                                     <dictionary key="options">
                                                                                         <string key="NSValueTransformerName">DataSourceEditableValueTransformer</string>
                                                                                     </dictionary>
                                                                                 </binding>
-                                                                                <binding destination="wZO-PC-lzU" name="value" keyPath="objectValue.title" id="2Hm-0M-XhH"/>
                                                                                 <outlet property="delegate" destination="BCA-UI-RVa" id="bOO-AK-2II"/>
                                                                             </connections>
                                                                         </textField>
@@ -336,6 +336,9 @@
                         <string>title</string>
                         <string>icon</string>
                     </declaredKeys>
+                    <connections>
+                        <binding destination="BCA-UI-RVa" name="contentArray" keyPath="content" id="2Pc-qs-cTY"/>
+                    </connections>
                 </treeController>
                 <menu id="dM9-GD-YSW">
                     <items>

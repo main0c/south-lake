@@ -29,4 +29,7 @@ class PDFOutlineInspector: NSViewController, Inspector {
         super.viewDidLoad()
     }
     
+    func willClose() {
+    
+    }
 }

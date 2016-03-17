@@ -266,7 +266,6 @@ extension DocumentTabController: MMTabBarViewDelegate {
     }
     
     func tabView(aTabView: NSTabView!, didCloseTabViewItem tabViewItem: NSTabViewItem!) {
-        print("didCloseTabViewItem: \(tabViewItem!.label)")
         if let tab = tabViewItem.vc as? DocumentTab {
             tab.willClose()
         }
