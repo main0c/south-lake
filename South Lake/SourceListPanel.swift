@@ -352,6 +352,7 @@ extension SourceListPanel : NSOutlineViewDelegate {
             return outlineView.makeViewWithIdentifier("HeaderCell", owner: self) as! NSTableCellView
         case _ as Folder,
              _ as File:
+            // Can't set NSTableCellView.textField delegate here
             return outlineView.makeViewWithIdentifier("DataCell", owner: self) as! NSTableCellView
         default:
             return nil
@@ -376,15 +377,28 @@ extension SourceListPanel : NSOutlineViewDelegate {
         return !(object is Section)
     }
     
-    func outlineView(outlineView: NSOutlineView, shouldEditTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> Bool {
-        guard item is NSTreeNode else {
-            return false
-        }
-        
-        return true
-    }
+//    func outlineView(outlineView: NSOutlineView, shouldEditTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> Bool {
+//        // Never called: because we are view based?
+//        guard item is NSTreeNode else {
+//            return false
+//        }
+//        
+//        return true
+//    }
     
     func outlineViewSelectionDidChange(notification: NSNotification) {
         selectedObjects = outlineView.selectedObjects as! [DataSource]
     }
 }
+
+//extension SourceListPanel: NSTextFieldDelegate {
+//    func control(control: NSControl, textShouldBeginEditing fieldEditor: NSText) -> Bool {
+//        // Never called
+//        return true
+//    }
+//    
+//    func textShouldBeginEditing(textObject: NSText) -> Bool {
+//        // Never called
+//        return true
+//    }
+//}
