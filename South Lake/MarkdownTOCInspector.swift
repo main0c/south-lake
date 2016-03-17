@@ -50,7 +50,9 @@ class MarkdownTOCInspector: NSViewController, Inspector {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        do { template = try String(contentsOfURL: NSBundle.mainBundle().URLForResource("md-toc-index", withExtension: "html")!, encoding: NSUTF8StringEncoding) } catch {
+        do {
+            template = try String(contentsOfURL: NSBundle.mainBundle().URLForResource("md-toc-index", withExtension: "html")!, encoding: NSUTF8StringEncoding) }
+        catch {
             print(error)
         }
         
@@ -59,6 +61,10 @@ class MarkdownTOCInspector: NSViewController, Inspector {
 
     func willClose() {
     
+    }
+    
+    deinit {
+        print("toc deinit")
     }
 }
 

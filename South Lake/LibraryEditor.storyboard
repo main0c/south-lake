@@ -85,8 +85,8 @@
                                     <binding destination="p0W-cE-9Ld" name="value" keyPath="arrangedObjects.@count" id="6Lj-32-BOx"/>
                                 </connections>
                             </textField>
-                            <pathControl focusRingType="none" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x7s-jQ-cTj" customClass="NSPathControlWithCursor" customModule="South_Lake" customModuleProvider="target">
-                                <rect key="frame" x="4" y="268" width="275" height="24"/>
+                            <pathControl focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x7s-jQ-cTj" customClass="NSPathControlWithCursor" customModule="South_Lake" customModuleProvider="target">
+                                <rect key="frame" x="4" y="268" width="300" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="666-dW-iwE"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="kQ9-4s-Oai"/>

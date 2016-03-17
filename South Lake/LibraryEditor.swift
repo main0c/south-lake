@@ -24,6 +24,7 @@ class LibraryEditor: NSViewController, FileEditor {
     var databaseManager: DatabaseManager! {
         didSet {
             scene?.databaseManager = databaseManager
+            bindLibrary()
         }
     }
     
@@ -37,11 +38,7 @@ class LibraryEditor: NSViewController, FileEditor {
         return false
     }
     
-    dynamic var file: DataSource? {
-        didSet {
-            bindLibrary()
-        }
-    }
+    dynamic var file: DataSource?
     
     var primaryResponder: NSView {
         return view
@@ -93,8 +90,13 @@ class LibraryEditor: NSViewController, FileEditor {
         bindLibrary()
     }
     
-    deinit {
+    func willClose() {
+        unloadScene()
         unbind("content")
+    }
+
+    deinit {
+        print("library deinit")
     }
     
     // MARK: - Library Data
@@ -219,6 +221,7 @@ class LibraryEditor: NSViewController, FileEditor {
             return
         }
         
+        scene.willClose()
         scene.arrayController.unbind("contentArray")
         scene.view.removeFromSuperview()
     }
@@ -279,10 +282,6 @@ class LibraryEditor: NSViewController, FileEditor {
     }
     
     func openURL(url: NSURL) {
-    
-    }
-    
-    func willClose() {
     
     }
     

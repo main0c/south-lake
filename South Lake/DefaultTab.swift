@@ -140,7 +140,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     func willClose() {
         sourceListController.willClose()
         inspectorController.willClose()
-        editor?.willClose()
+        contentController.willClose()
         
         unbindTitle(selectedObjects)
         unbindIcon(selectedObjects)
@@ -157,8 +157,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
                 }
             }
         }
-        
-        inspectors = nil
     }
         
     // TOOD: save when changing selection
@@ -357,7 +355,17 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         // For single selection, do nothing. The editor handles inspector bindings
         // For multiple selection or inspectors the tab has created, unbind the inspectors
         
-        
+        if let inspectors = inspectors {
+            for inspector in inspectors {
+                inspector.willClose()
+                switch inspector {
+                case let i as RelatedInspector:
+                    i.unbind("selectedObjects")
+                case _:
+                    break
+                }
+            }
+        }
     }
     
     func clearInspector() {

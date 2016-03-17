@@ -80,9 +80,14 @@ class TagsEditor: NSViewController, FileEditor {
         bindTags()
     }
     
-    deinit {
+    func willClose() {
+        unloadScene()
         unbind("libraryContent")
         unbind("content")
+    }
+    
+    deinit {
+        print("tags editor deinit")
     }
     
     // MARK: - Tags Data
@@ -191,13 +196,17 @@ class TagsEditor: NSViewController, FileEditor {
         }
     }
     
+    // TODO: call, won't always be contentArray, scene could be library
+    
     func unloadScene() {
         guard let scene = scene else {
             return
         }
         
         scene.arrayController.unbind("contentArray")
+        scene.arrayController.content = []
         scene.view.removeFromSuperview()
+        scene.willClose()
     }
     
     // MARK: -
@@ -222,10 +231,6 @@ class TagsEditor: NSViewController, FileEditor {
         
         libraryArrayController.filterPredicate = NSPredicate(format: "%@ in tags", tag)
         loadScene("libraryCollectionScene")
-    }
-    
-    func willClose() {
-    
     }
     
     // MARK: - Utilities

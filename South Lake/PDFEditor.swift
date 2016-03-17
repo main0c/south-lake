@@ -54,6 +54,14 @@ class PDFEditor: NSViewController, FileEditor {
         editor.setBackgroundColor(NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0))
     }
     
+    func willClose() {
+    
+    }
+    
+    deinit {
+        print("pdf editor deinit")
+    }
+    
     // MARK: - 
     
     func loadFile(file: DataSource?) {
@@ -92,10 +100,6 @@ class PDFEditor: NSViewController, FileEditor {
     }
     
     func openURL(url: NSURL) {
-    
-    }
-    
-    func willClose() {
     
     }
 }

@@ -34,6 +34,15 @@ class TagsCollectionViewController: NSViewController, LibraryScene {
         collectionView.itemPrototype = prototype
     }
     
+    func willClose() {
+        collectionView.unbind("content")
+        collectionView.unbind("selectionIndexes")
+    }
+    
+    deinit {
+        print("tags collection deinit")
+    }
+    
     // MARK: -
     
     @IBAction func doubleClick(sender: AnyObject?) {

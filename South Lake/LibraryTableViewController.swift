@@ -26,6 +26,14 @@ class LibraryTableViewController: NSViewController, LibraryScene {
         tableView.doubleAction = Selector("doubleClick:")
     }
     
+    func willClose() {
+        
+    }
+    
+    deinit {
+        print("library table deinit")
+    }
+    
     @IBAction func doubleClick(sender: AnyObject?) {
         guard let object = arrayController.selectedObjects[safe: 0] as? DataSource,
               let id = object.id else {

@@ -138,11 +138,11 @@ class MarkdownEditor: NSViewController, FileEditor {
             guard let file = file else {
                 return
             }
-            self.unbindUs("data", toObject: file, withKeyPath: "data")
+            unbindUs("data", toObject: file, withKeyPath: "data")
         }
         didSet {
             if let file = file {
-                self.bindUs("data", toObject: file, withKeyPath: "data", options: [:])
+                bindUs("data", toObject: file, withKeyPath: "data", options: [:])
             }
         }
     }
@@ -171,14 +171,6 @@ class MarkdownEditor: NSViewController, FileEditor {
     private var snippetHelper: SnippetTextViewHelper!
     
     // MARK: - Initialization
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-        
-        for (key, _) in  MPEditorKeysToObserve {
-            editor.removeObserver(self, forKeyPath: key)
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -277,6 +269,38 @@ class MarkdownEditor: NSViewController, FileEditor {
 //        }
     }
     
+    func willClose() {
+        
+        preview.stopLoading(nil)
+        
+        // Reneable window flush, which might still be disabled from webView:didCommitLoadForFrame
+        
+        if let window = self.preview.window {
+            objc_sync_enter(window)
+            if window.flushWindowDisabled {
+                window.enableFlushWindow()
+            }
+            objc_sync_exit(window)
+        }
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        
+        for (key, _) in  MPEditorKeysToObserve {
+            editor.removeObserver(self, forKeyPath: key)
+        }
+        
+        if let file = file {
+            unbindUs("data", toObject: file, withKeyPath: "data")
+        }
+        
+        tableOfContentsInspector?.unbind("tableOfContents")
+        unbind("tableOfContentsAnchor")
+    }
+    
+    deinit {
+        print("markdown editor deinit")
+    }
+    
     // MARK: - South Lake Functions
     
     var primaryResponder: NSView {
@@ -307,21 +331,6 @@ class MarkdownEditor: NSViewController, FileEditor {
     
     func openURL(url: NSURL) {
     
-    }
-    
-    func willClose() {
-        
-        preview.stopLoading(nil)
-        
-        // Reneable window flush, which might still be disabled from webView:didCommitLoadForFrame
-        
-        if let window = self.preview.window {
-            objc_sync_enter(window)
-            if window.flushWindowDisabled {
-                window.enableFlushWindow()
-            }
-            objc_sync_exit(window)
-        }
     }
     
     // MARK: - MacDown Functions

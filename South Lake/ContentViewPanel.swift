@@ -46,6 +46,11 @@ class ContentViewPanel: NSViewController {
         self.view.layer?.backgroundColor = NSColor(white: 1.0, alpha: 1.0).CGColor
     }
     
+    func willClose() {
+        header?.willClose()
+        editor?.willClose()
+    }
+    
     // MARK: - Header and Editor Inteface
     
     func removeHeaderFromInterface() {

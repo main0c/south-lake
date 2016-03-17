@@ -85,7 +85,6 @@ class RelatedInspector: NSViewController, Inspector {
     
     deinit {
         print("related files inspector deinit")
-        
     }
     
     // MARK: - Library Data

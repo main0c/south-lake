@@ -62,8 +62,13 @@ class FileHeaderViewController: NSViewController, Databasable {
         bindTags()
     }
     
-    deinit {
+    func willClose() {
+        unbindMetadata(nil)
         unbind("tagsContent")
+    }
+    
+    deinit {
+        print("file header deinit")
     }
     
     // MARK: - Tags Data
@@ -131,13 +136,11 @@ class FileHeaderViewController: NSViewController, Databasable {
     }
     
     @IBAction func updateTokens(sender: AnyObject?) {
-        print("updating tokens")
         guard let file = file else {
             return
         }
         
         file.setValue(tagsField.objectValue, forKey: "tags")
-        
     }
 }
 

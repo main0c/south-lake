@@ -18,4 +18,7 @@ protocol LibraryScene: Databasable {
     
     /// A LibraryScene has an NSArrayController
     var arrayController: NSArrayController! { get set }
+    
+    /// Called immediately before the scene is removed from the view hierarchy
+    func willClose()
 }
