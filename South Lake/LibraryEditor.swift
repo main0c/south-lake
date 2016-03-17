@@ -14,7 +14,7 @@ import Cocoa
 class LibraryEditor: NSViewController, FileEditor {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var containerView: NSView!
-    @IBOutlet var searchLabel: NSTextField!
+    @IBOutlet var pathControl: NSPathControlWithCursor!
     
     // MARK: - File Editor
     
@@ -81,7 +81,11 @@ class LibraryEditor: NSViewController, FileEditor {
         
         sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: Selector("compare:"))]
         
-        searchLabel.hidden = true
+        // pathControl.cursor = NSCursor.pointingHandCursor()
+        pathControl.URL = NSURL(string: "southlake://localhost/library")
+        pathControl.backgroundColor = NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
+        
+        updatePathControlAppearance()
         
         // TODO: Save and restore scene preference
         
@@ -111,7 +115,7 @@ class LibraryEditor: NSViewController, FileEditor {
         }
         
         let text = sender.stringValue
-        titlePredicate = ( text == "" ) ? nil : NSPredicate(format: "title contains[cd] %@", text)
+        titlePredicate = ( text == "" ) ? nil : NSPredicate(format: "title contains[cd] %@ || any tags like[cd] %@", text, String(format: "*%@*", text))
     }
     
     @IBAction func sortByProperty(sender: AnyObject?) {
@@ -160,6 +164,20 @@ class LibraryEditor: NSViewController, FileEditor {
         }
     }
     
+    @IBAction func gotoPath(sender: AnyObject?) {
+        guard let sender = sender as? NSPathControl else {
+            return
+        }
+        guard let url = sender.clickedPathComponentCell()?.URL else {
+            return
+        }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(OpenURLNotification, object: self, userInfo: [
+            "dbm": databaseManager,
+            "url": url
+        ])
+    }
+    
     // MARK: - Scene
     
     func loadScene(identifier: String) {
@@ -205,15 +223,37 @@ class LibraryEditor: NSViewController, FileEditor {
     // MARK: -
     
     func performSearch(text: String?, results: BRSearchResults?) {
-        searchLabel.hidden = ( text == nil || text! == "" )
-        
         guard let text = text else {
+            pathControl.URL = NSURL(string: "southlake://localhost/library")
+            updatePathControlAppearance()
             searchPredicate = nil
             return
         }
         
-        searchLabel.stringValue = String(format: NSLocalizedString("Searching for \"%@\"",
-            comment: "Title of find tab"), text)
+        // TODO: fix this!
+        // Just move it all to an updatePathControl(url) method
+        
+        // Always update the path control
+        // The url should be of the format southlake://localhost/library/?search=text
+        // But a path control doesn't know how to work with that. The correct approach
+        // is to subclass the path control, because we still want to preserve the url
+        
+        
+        if let queryEncoding = String(format: "search=%@", text).stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()),
+           let queryURL = NSURL(string: "southlake://localhost/library/?\(queryEncoding)"),
+           let pathEncoding = String(format: NSLocalizedString("Searching for \"%@\"", comment: "Title of find tab"), text).stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet()),
+           let pathURL = NSURL(string: "southlake://localhost/library/\(pathEncoding)") {
+        
+            pathControl.URL = pathURL
+            updatePathControlAppearance()
+            
+            if let cell = pathControl.pathComponentCells()[safe: 1] {
+                cell.URL = queryURL
+            }
+            
+        } else {
+            print("unable to create url for search text \(text)")
+        }
         
         guard let results = results where results.count() != 0 else {
             print("no search results")
@@ -267,5 +307,25 @@ class LibraryEditor: NSViewController, FileEditor {
     func willClose() {
     
     }
+    
+    // MARK: - Utilities
+    
+    func updatePathControlAppearance() {
+        // First cell's string value is a capitalized, localized transformation of "tags"
+        // First cell is black, remaining are blue
+        
+        let cells = pathControl.pathComponentCells()
+        guard cells.count > 0 else {
+            return
+        }
+        
+        cells.first?.stringValue = cells.first!.stringValue.capitalizedString
+        cells.first?.textColor = NSColor(white: 0.1, alpha: 1.0)
+        
+        for cell in cells[1..<cells.count] {
+            cell.textColor = NSColor.keyboardFocusIndicatorColor()
+        }
+    }
+
 }
 

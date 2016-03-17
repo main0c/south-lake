@@ -69,15 +69,15 @@ class TagsEditor: NSViewController, FileEditor {
     
         sortDescriptors = [NSSortDescriptor(key: "tag", ascending: true, selector: Selector("caseInsensitiveCompare:"))]
         
-        loadScene("tagsCollectionScene")
-        bindLibrary()
-        bindTags()
-        
         // pathControl.cursor = NSCursor.pointingHandCursor()
         pathControl.URL = NSURL(string: "southlake://localhost/tags")
         pathControl.backgroundColor = NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
         
         updatePathControlAppearance()
+        
+        loadScene("tagsCollectionScene")
+        bindLibrary()
+        bindTags()
     }
     
     deinit {
