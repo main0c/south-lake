@@ -34,8 +34,13 @@ class LibraryCollectionViewController: NSViewController, LibraryScene {
     }
     
     func willClose() {
+        // OS API bug: 
+        // collectionView.itemPrototype must be set to nil for collection view
+        // and this view controller to dealloc, but first the content on the
+        // array controller must be emptied (see unloadScene())
         collectionView.unbind("content")
         collectionView.unbind("selectionIndexes")
+        collectionView.itemPrototype = nil
     }
     
     deinit {

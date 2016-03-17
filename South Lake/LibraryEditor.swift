@@ -221,9 +221,10 @@ class LibraryEditor: NSViewController, FileEditor {
             return
         }
         
-        scene.willClose()
         scene.arrayController.unbind("contentArray")
+        scene.arrayController.content = []
         scene.view.removeFromSuperview()
+        scene.willClose()
     }
     
     // MARK: -
