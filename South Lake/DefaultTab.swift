@@ -414,12 +414,11 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     // MARK: - Search
     
     func performSearch(text: String?, results: BRSearchResults?) {
-        // Get the library and select it: 
-        // TODO: cannot hardcode this
+        guard let library = databaseManager?.librarySource else {
+            return
+        }
         
-        let indexPath = NSIndexPath(indexes: [0,0], length: 2)
-        
-        sourceListController.selectItemAtIndexPath(indexPath)
+        sourceListController.selectItem(library)
         editor?.performSearch(text, results: results)
     }
     
@@ -535,8 +534,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
         
         sourceListController.selectItemAtIndexPath(indexPath)
-        
-        // editor?.newDocument = true
     }
     
     @IBAction func makeFilesAndFoldersFirstResponder(sender: AnyObject?) {
@@ -567,9 +564,13 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             return
         }
         
+        guard let library = databaseManager?.librarySource,
+              let tags = databaseManager?.tagsSource else {
+            return
+        }
+        
         // TODO: examine the url to decide what primary source to select
         // TODO: Switch up that switch statement to case on a tuple
-        // TODO: really can't hardcode index paths!
         
         print(url.pathComponents)
         
@@ -581,14 +582,13 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         switch root {
         case "library":
             // Select library, pass open url to library editor?
-            sourceListController.selectItemAtIndexPath(NSIndexPath(indexes: [0,0], length: 2))
+            sourceListController.selectItem(library)
             if let source = userInfo["source"] as? DataSource { // guard
                 selectedURLObjects = [source]
             }
             editor?.openURL(url)
         case "tags":
-            // Select tags, pass open url to tags editor
-            sourceListController.selectItemAtIndexPath(NSIndexPath(indexes: [0,2], length: 2))
+            sourceListController.selectItem(tags)
             editor?.openURL(url)
         case _:
             print(root)

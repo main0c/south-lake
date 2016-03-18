@@ -169,6 +169,8 @@ class SourceListPanel: NSViewController, Databasable {
         }
     }
     
+    // MARK: - Utilities
+    
     func editItemAtIndexPath(indexPath: NSIndexPath) {
         treeController.setSelectionIndexPaths([indexPath])
         outlineView.editColumn(0, row: outlineView.selectedRow, withEvent: nil, select: true)
@@ -176,6 +178,14 @@ class SourceListPanel: NSViewController, Databasable {
     
     func selectItemAtIndexPath(indexPath: NSIndexPath) {
         treeController.setSelectionIndexPaths([indexPath])
+    }
+
+    func selectItem(item: DataSource) {
+        guard let indexPath = treeController.indexPathOfRepresentedObject(item) else {
+            print("unable to find index path for item: \(item)")
+            return
+        }
+        selectItemAtIndexPath(indexPath)
     }
 
 }

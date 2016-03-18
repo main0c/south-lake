@@ -119,6 +119,7 @@
 		E3C4362B1C7642BA00DD685D /* MacDownCopyFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C4362A1C7642BA00DD685D /* MacDownCopyFiles.m */; };
 		E3C821231C7597B600CBAE92 /* DefaultTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C821221C7597B600CBAE92 /* DefaultTab.swift */; };
 		E3C821261C75984B00CBAE92 /* DefaultTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C821281C75984B00CBAE92 /* DefaultTab.storyboard */; };
+		E3D190DB1C9C5E0800129AD7 /* NSTreeController+IndexPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D190DA1C9C5E0800129AD7 /* NSTreeController+IndexPaths.swift */; };
 		E3DA1D1A1C99FB1F00E378BA /* NSPathControlPointing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DA1D191C99FB1F00E378BA /* NSPathControlPointing.swift */; };
 		E3DDBEED1C8D311700136BAE /* LibraryEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3DDBEEC1C8D311700136BAE /* LibraryEditor.storyboard */; };
 		E3DDBEEF1C8D312200136BAE /* TagsEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3DDBEEE1C8D312200136BAE /* TagsEditor.storyboard */; };
@@ -2453,6 +2454,7 @@
 		E3C4362A1C7642BA00DD685D /* MacDownCopyFiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacDownCopyFiles.m; sourceTree = "<group>"; };
 		E3C821221C7597B600CBAE92 /* DefaultTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTab.swift; sourceTree = "<group>"; };
 		E3C821271C75984B00CBAE92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DefaultTab.storyboard; sourceTree = "<group>"; };
+		E3D190DA1C9C5E0800129AD7 /* NSTreeController+IndexPaths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTreeController+IndexPaths.swift"; sourceTree = "<group>"; };
 		E3DA1D191C99FB1F00E378BA /* NSPathControlPointing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSPathControlPointing.swift; sourceTree = "<group>"; };
 		E3DDBEEC1C8D311700136BAE /* LibraryEditor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LibraryEditor.storyboard; sourceTree = "<group>"; };
 		E3DDBEEE1C8D312200136BAE /* TagsEditor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TagsEditor.storyboard; sourceTree = "<group>"; };
@@ -2571,6 +2573,7 @@
 				E36072721C74E64200914C2C /* NSTabViewItem+ViewController.swift */,
 				E32AD25D1C76827400648BFD /* NSURL+FileType.swift */,
 				E3E12A641C76E3E7000C4F16 /* NSOutlineView+Selection.swift */,
+				E3D190DA1C9C5E0800129AD7 /* NSTreeController+IndexPaths.swift */,
 				E378E80E1C801F54009539FD /* NSToolbar+Items.swift */,
 				E378C5331C814F1900CACDFC /* String+Range.swift */,
 				E3E7C9DA1C89078100BD73A9 /* Array+SafeIndexing.swift */,
@@ -7684,6 +7687,7 @@
 				E3B9D5C41C9B9EB300668557 /* NSObject+NSKeyValueQuestioning.swift in Sources */,
 				E36072701C74E40500914C2C /* DocumentTabController.swift in Sources */,
 				E3E7C9E31C89078C00BD73A9 /* Snippet.swift in Sources */,
+				E3D190DB1C9C5E0800129AD7 /* NSTreeController+IndexPaths.swift in Sources */,
 				E3794C501C8CA345005EA307 /* CustomizableView.swift in Sources */,
 				E3274FCB1C75A1BF000B6A84 /* File.swift in Sources */,
 				E385F7F21C92865C0015A91B /* TagsCollectionViewItem.swift in Sources */,
