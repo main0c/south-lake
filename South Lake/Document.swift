@@ -308,18 +308,18 @@ class Document: NSDocument {
                 tags.mime_type = DataTypes.Tags.mime
                 tags.uti = DataTypes.Tags.uti
             
-                let trash = Folder(forNewDocumentInDatabase: databaseManager.database)
-            
-                trash.title = NSLocalizedString("Trash", comment: "Trash folder title")
-                trash.icon = NSImage(named: "trash-icon")
-                trash.file_extension = DataTypes.Trash.ext
-                trash.mime_type = DataTypes.Trash.mime
-                trash.uti = DataTypes.Trash.uti
+//                let trash = Folder(forNewDocumentInDatabase: databaseManager.database)
+//            
+//                trash.title = NSLocalizedString("Trash", comment: "Trash folder title")
+//                trash.icon = NSImage(named: "trash-icon")
+//                trash.file_extension = DataTypes.Trash.ext
+//                trash.mime_type = DataTypes.Trash.mime
+//                trash.uti = DataTypes.Trash.uti
             
                 try allEntries.save()
                 try calendar.save()
-                try trash.save()
                 try tags.save()
+//                try trash.save()
             
             let notebookSection = Section(forNewDocumentInDatabase: databaseManager.database)
             
@@ -332,8 +332,8 @@ class Document: NSDocument {
                 books.append(allEntries)
                 books.append(calendar)
                 books.append(tags)
-                books.append(trash)
-                
+//                books.append(trash)
+            
                 notebookSection.children = books
             
             // Shortcuts section
