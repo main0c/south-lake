@@ -480,8 +480,6 @@ class MarkdownEditor: NSViewController, FileEditor {
     
     func editorTextDidChange(notification: NSNotification) {
         // Rendering is not necessary, handled in data.didSet
-        
-        
     }
 
     func userDefaultsDidChange(notification: NSNotification) {
