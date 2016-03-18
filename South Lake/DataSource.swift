@@ -12,12 +12,14 @@ import Cocoa
 @objc(DataSource)
 class DataSource: CBLModel {
     
-    // TODO: remove references to icon
+    // Class Identifiers
     
     class var model_file_extension: NSString { return model_uti as String }
     class var model_mime_type: NSString { return DataTypes.DataSource.mime }
     class var model_uti: NSString { return DataTypes.DataSource.uti }
     class var model_type: NSString { return DataTypes.DataSource.model }
+    
+    // MARK: - Managed Variables
     
     @NSManaged var title: String
     @NSManaged var created_at: NSDate
@@ -29,16 +31,14 @@ class DataSource: CBLModel {
     @NSManaged var mime_type: String
     @NSManaged var uti: String
     
-    var id: String? { return document?.documentID }
-    
-    var parents: [DataSource]! = []
-    weak var parent: DataSource!
+    // MARK: - Parents and Children
     
     // A source item can in general contain children of any type
     // children <-> children_ids
     
     @NSManaged var children_ids: [String]
     private var _children: [DataSource] = []
+    var parents: [DataSource]! = []
     
     var children: [DataSource]! {
         get {
@@ -61,6 +61,7 @@ class DataSource: CBLModel {
         }
     }
     
+    // MARK: - Icon
     // The icon is saved as an attachment, but cache it
     
     private var _icon: NSImage?
@@ -93,7 +94,13 @@ class DataSource: CBLModel {
             }
         }
     }
-        
+    
+    // MARK: - Other Properties
+    
+    var id: String? { return document?.documentID }
+    
+    // MARK: - Initialization
+    
     override func awakeFromInitializer() {
         super.awakeFromInitializer()
         
@@ -163,8 +170,6 @@ class DataSource: CBLModel {
         
         updated_at = NSDate()
     }
-    
-    // TODO: a child may belong to more than one parent, then I don't want to delete it
     
     func deleteWithChildren() throws {
         if let children = children {

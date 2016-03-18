@@ -40,6 +40,14 @@ class SourceListPanel: NSViewController, Databasable {
     
     private var draggedNodes : [NSTreeNode]?
     
+    var selectedIndexPath: NSIndexPath? {
+        return treeController.selectionIndexPath
+    }
+    
+    var primaryResponder: NSResponder {
+        return outlineView
+    }
+    
     // MARK: - Initialization
 
     override func viewDidLoad() {
@@ -90,34 +98,73 @@ class SourceListPanel: NSViewController, Databasable {
     
     override func keyDown(theEvent: NSEvent) {
         if theEvent.charactersIgnoringModifiers == String(Character(UnicodeScalar(NSDeleteCharacter))) {
-            for item in treeController.selectedObjects as! [DataSource] {
+            for item in treeController.selectedNodes {
                 deleteItem(item)
             }
         }
     }
     
-    // TODO: we have to delete it from this folder and maybe move it to the trash?
-    
-    func deleteItem(item: DataSource) {
+    func deleteItem(node: NSTreeNode) {
+        guard let item = node.representedObject as? DataSource else {
+            NSBeep() ; return
+        }
         guard !(item is Section) else {
             NSBeep() ; return
         }
-        
         guard item.parents.count != 0 else {
             NSBeep() ; return
         }
+        guard let section = sectionOfItem(node) else {
+            NSBeep() ; return
+        }
         
-//        guard item.parent != nil else {
-//            NSBeep() ; return
-//        }
+        // How an item is deleted depends on the section it is being deleted from
         
-        item.parent.mutableArrayValueForKey("children").removeObject(item)
+        // If the item is in the notebook section, do not delete (library, tags, calendar, etc)
+        // If the item is in the smartfolder section, do not delete (automatically collected)
+        // If the item is in the shortcuts section, remove it from shortcuts
+        // If the item is in the folders section, delete it, removing it from all parents
         
-        do {
-            try item.parent.save()
-            try item.deleteWithChildren()
-        } catch {
-            print(error)
+        switch section.uti {
+        case DataTypes.Notebook.uti, DataTypes.SmartFolders.uti:
+            NSBeep()
+            
+        case DataTypes.Shortcuts.uti:
+            section.mutableArrayValueForKey("children").removeObject(item)
+            do { try section.save() } catch {
+                print(error)
+            }
+            
+        case DataTypes.Folders.uti:
+            for parent in item.parents {
+                parent.mutableArrayValueForKey("children").removeObject(item)
+                do { try parent.save() } catch {
+                    print(error)
+                }
+            }
+            do { try item.deleteWithChildren() } catch {
+                print(error)
+            }
+            
+        case _:
+            NSBeep()
+        }
+    }
+    
+    /// Walk the parent nodes until we arrived at a section
+    func sectionOfItem(node: NSTreeNode?) -> Section? {
+        guard let node = node else {
+            return nil
+        }
+        guard let item = node.representedObject as? DataSource else {
+            return nil
+        }
+        
+        switch item {
+        case let section as Section:
+            return section
+        case _:
+            return sectionOfItem(node.parentNode)
         }
     }
     
@@ -143,10 +190,6 @@ class SourceListPanel: NSViewController, Databasable {
         } else {
             return false
         }
-    }
-    
-    var primaryResponder: NSResponder {
-        return outlineView
     }
     
     // MARK: - IBAction
@@ -188,9 +231,7 @@ class SourceListPanel: NSViewController, Databasable {
         selectItemAtIndexPath(indexPath)
     }
 
-    var selectedIndexPath: NSIndexPath? {
-        return treeController.selectionIndexPath
-    }
+    
 }
 
 // MARK: - NSOutlineViewDataSource
