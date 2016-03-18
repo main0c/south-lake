@@ -36,7 +36,7 @@ class FileHeaderViewController: NSViewController, Databasable {
 
     var file: DataSource? {
         willSet {
-            unbindMetadata(file)
+            unbindMetadata()
         }
         didSet {
             bindMetadata(file)
@@ -44,10 +44,6 @@ class FileHeaderViewController: NSViewController, Databasable {
     }
     
     var tokenTracker: NSTokenFieldTokenTracker?
-    
-    // Keep track of the tags in the db for autocompletion
-    // TODO: move these onto the dbm as dynamic variables, e.g. tags, sections, files, etc...
-    
     var tagsContent: [[String:AnyObject]]?
     
     // MARK: - Initialization
@@ -56,15 +52,14 @@ class FileHeaderViewController: NSViewController, Databasable {
         super.viewDidLoad()
         
         (self.view as! CustomizableView).backgroundColor = NSColor(white:1.0, alpha: 1.0)
-        
         tokenTracker = NSTokenFieldTokenTracker(tokenField: tagsField!, delegate: false)
     
         bindTags()
     }
     
     func willClose() {
-        unbindMetadata(nil)
-        unbind("tagsContent")
+        unbindMetadata()
+        unbindTags()
     }
     
     deinit {
@@ -81,9 +76,13 @@ class FileHeaderViewController: NSViewController, Databasable {
         bind("tagsContent", toObject: databaseManager, withKeyPath: "tags", options: [:])
     }
     
+    func unbindTags() {
+        unbind("tagsContent")
+    }
+    
     // MARK: - Metadata Bindings
     
-    func unbindMetadata(selection: DataSource?) {
+    func unbindMetadata() {
         titleField.unbind("value")
         tagsField.unbind("value")
         createdField.unbind("value")

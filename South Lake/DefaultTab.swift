@@ -432,9 +432,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     // TODO: Refactoring, watch for coupling to source list view controller
     
+    ///Create an untitled folder
     @IBAction func createNewFolder(sender: AnyObject?) {
-        // Create an untitled folder
-        
         guard let databaseManager = databaseManager else {
             return
         }
@@ -471,9 +470,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         sourceListController.editItemAtIndexPath(indexPath)
     }
     
+    /// Create an untitled smart folder
     @IBAction func createNewSmartFolder(sender: AnyObject?) {
-        // Create an untitled smart folder
-        
         guard let databaseManager = databaseManager else {
             return
         }
@@ -502,9 +500,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         sourceListController.editItemAtIndexPath(indexPath)
     }
     
+    /// Create an untitled markdown document
     @IBAction func createNewMarkdownDocument(sender: AnyObject?) {
-        // Create an untitled markdown document
-        
         guard let databaseManager = databaseManager else {
             return
         }
