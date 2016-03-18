@@ -21,8 +21,10 @@ import Cocoa
 
 class SnippetTextViewHelper {
     
-    /// The text view being helped
-    private let textView: NSTextView
+    /// The text view being helped. It seems an NSTextView cannot be weakly referenced.
+    /// http://clang.llvm.org/docs/AutomaticReferenceCounting.html#weak-unavailable-types
+    /// You must call `stop()` to break the strong reference
+    private var textView: NSTextView?
     
     /// The snippets
     var snippets: [Snippet]
@@ -45,10 +47,18 @@ class SnippetTextViewHelper {
         self.snippets = snippets
     }
     
+    /// You must call `stop()` to break the strong reference the helper keeps of its text view
+    func stop() {
+        textView = nil
+    }
+    
     // MARK: - Core Function
     
     /// Returns true if we were able to insert a snippet or advance to the next field, false otherwise
     func handleTab(affectedCharRange: NSRange, forward: Bool) -> Bool {
+        guard let textView = textView else {
+            return false
+        }
         
         guard let string = textView.string else {
             return false
@@ -134,6 +144,10 @@ class SnippetTextViewHelper {
     
     /// Utility method to replace text in a text view over a particular range
     func replaceText(range: Range<String.Index>, replacementString: String) -> Bool {
+        guard let textView = textView else {
+            return false
+        }
+        
         guard let string = textView.string else {
             return false
         }
@@ -151,6 +165,10 @@ class SnippetTextViewHelper {
     
     /// Utility method to replace text in a text view over many ranges, currently unused
     func replaceText(ranges: [Range<String.Index>], replacementStrings: [String]) -> Bool {
+        guard let textView = textView else {
+            return false
+        }
+        
         guard let string = textView.string else {
             return false
         }

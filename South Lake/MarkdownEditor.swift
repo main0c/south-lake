@@ -135,10 +135,9 @@ class MarkdownEditor: NSViewController, FileEditor {
     
     dynamic var file: DataSource? {
         willSet {
-            guard let file = file else {
-                return
+            if let file = file {
+                unbindUs("data", toObject: file, withKeyPath: "data")
             }
-            unbindUs("data", toObject: file, withKeyPath: "data")
         }
         didSet {
             if let file = file {
@@ -288,6 +287,14 @@ class MarkdownEditor: NSViewController, FileEditor {
         for (key, _) in  MPEditorKeysToObserve {
             editor.removeObserver(self, forKeyPath: key)
         }
+        
+        highlighter.deactivate()
+        highlighter.targetTextView = nil
+        
+        renderer.dataSource = nil
+        renderer.delegate = nil
+        
+        snippetHelper.stop()
         
         if let file = file {
             unbindUs("data", toObject: file, withKeyPath: "data")
