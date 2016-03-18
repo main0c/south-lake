@@ -23,7 +23,6 @@ class MarkdownImporter: NSObject, FileImporter {
         guard let data = data else {
             return ""
         }
-        
         guard let text = String(data: data, encoding: NSUTF8StringEncoding) else {
             print("unable to derive markdown string from data")
             return ""

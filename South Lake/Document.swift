@@ -148,15 +148,12 @@ class Document: NSDocument {
         guard let _ = url.path else {
             throw DocumentError.InvalidDocumentURL
         }
-        
         guard let luceneURL = self.luceneURL(url) else {
             throw DocumentError.InvalidLuceneURL
         }
-        
         guard let databaseURL = self.databaseURL(url) else {
             throw DocumentError.InvalidDatabaseURL
         }
-        
         guard let stateURL = self.stateURL(url) else {
             throw DocumentError.InvalidStateURL
         }
@@ -185,22 +182,18 @@ class Document: NSDocument {
                 completionHandler(DocumentError.InvalidDocumentURL as NSError)
                 return
             }
-            
             guard let luceneURL = self.luceneURL(url) else {
                 completionHandler(DocumentError.InvalidLuceneURL as NSError)
                 return
             }
-            
             guard let databaseURL = self.databaseURL(url) else {
                 completionHandler(DocumentError.InvalidDatabaseURL as NSError)
                 return
             }
-            
             guard let packageURL = self.packageURL(url) else {
                 completionHandler(DocumentError.InvalidPackageInfoURL as NSError)
                 return
             }
-            
             guard let stateURL = self.stateURL(url) else {
                 completionHandler(DocumentError.InvalidStateURL as NSError)
                 return

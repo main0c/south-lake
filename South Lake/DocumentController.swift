@@ -27,7 +27,6 @@ class DocumentController: NSDocumentController {
         guard result == NSModalResponseOK else {
             throw AppDocumentControllerError.NewDocumentNotSaved
         }
-        
         guard let URL = savePanel.URL else {
             throw AppDocumentControllerError.NewDocumentNotSaved
         }

@@ -21,7 +21,6 @@ class PDFImporter: NSObject, FileImporter {
         guard let data = data else {
             return ""
         }
-        
         guard let document = PDFDocument(data: data) else {
             print("unable to derive pdf from data")
             return ""

@@ -242,7 +242,6 @@ class LibraryEditor: NSViewController, FileEditor {
             searchPredicate = nil
             return
         }
-        
         guard let results = results where results.count() != 0 else {
             print("no search results")
             return

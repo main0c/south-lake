@@ -249,7 +249,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         guard let editor = editor else {
             return
         }
-        
         editor.file = nil
     }
     

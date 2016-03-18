@@ -68,7 +68,6 @@ class PDFEditor: NSViewController, FileEditor {
         guard let file = file as? File else {
             return
         }
-        
         guard let document = PDFDocument(data: file.data) else {
             print("unable to initialize pdf document from file data")
             return

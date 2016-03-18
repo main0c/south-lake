@@ -59,11 +59,9 @@ class SnippetTextViewHelper {
         guard let textView = textView else {
             return false
         }
-        
         guard let string = textView.string else {
             return false
         }
-        
         guard let index = string.rangeFromNSRange(affectedCharRange)?.startIndex else { // endIndex
             return false
         }
@@ -147,11 +145,9 @@ class SnippetTextViewHelper {
         guard let textView = textView else {
             return false
         }
-        
         guard let string = textView.string else {
             return false
         }
-        
         guard textView.shouldChangeTextInRange(string.NSRangeFromRange(range), replacementString: replacementString) else {
             return false
         }
@@ -168,11 +164,9 @@ class SnippetTextViewHelper {
         guard let textView = textView else {
             return false
         }
-        
         guard let string = textView.string else {
             return false
         }
-        
         guard ranges.count > 0 && ranges.count == replacementStrings.count else {
             return false
         }

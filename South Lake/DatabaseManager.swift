@@ -282,22 +282,18 @@ class DatabaseManager: NSObject {
             print("notebook section not at expected index (0)")
             return
         }
-        
         guard let librarySource = notebook.children[safe: 0] where librarySource.uti == DataTypes.Library.uti else {
             print("library source not at expected index (0)")
             return
         }
-        
         guard let calendarSource = notebook.children[safe: 1] where calendarSource.uti == DataTypes.Calendar.uti  else {
             print("calendar source not at expected index (1)")
             return
         }
-        
         guard let tagsSource = notebook.children[safe: 2] where tagsSource.uti == DataTypes.Tags.uti else {
             print("tags source not at expected index (2)")
             return
         }
-        
         guard let trashSource = notebook.children[safe: 3] where trashSource.uti == DataTypes.Trash.uti else {
             print("trash source not at expected index (3)")
             return

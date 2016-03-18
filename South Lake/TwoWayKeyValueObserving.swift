@@ -85,7 +85,6 @@ extension NSObject /*: TwoWayKeyValueObserving*/ {
             print("no proxies registered")
             return
         }
-        
         guard let proxy = proxies[key] as? KeyValueObservingProxy else {
             print("no proxy for these these objects and keys")
             return
