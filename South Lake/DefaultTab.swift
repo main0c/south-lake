@@ -424,11 +424,10 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     // MARK: - User Actions
     
-    // TODO: Refactoring, watch for coupling to source list view controller
-    
     ///Create an untitled folder
     @IBAction func createNewFolder(sender: AnyObject?) {
-        guard let databaseManager = databaseManager else {
+        guard let databaseManager = databaseManager,
+              let folders = databaseManager.foldersSection else {
             return
         }
         
@@ -442,16 +441,18 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
         
         // Either add the folder to the Folders section or the selected folder
+        // Can use item or index path, but the index path should be faster
         
         var parent: DataSource
         var indexPath: NSIndexPath
         
-        if let item = selectedObject where (item is Folder && !(item is SmartFolder)) {
+        if  let selectedIndexPath = sourceListController.selectedIndexPath,
+            let item = selectedObject where (item is Folder && !(item is SmartFolder)) {
             parent = item
-            indexPath = sourceListController.treeController.selectionIndexPath!.indexPathByAddingIndex(parent.children.count)
+            indexPath = selectedIndexPath.indexPathByAddingIndex(parent.children.count)
         } else {
-            parent = sourceListController.content[1] // Section
-            indexPath = NSIndexPath(index: 1).indexPathByAddingIndex(parent.children.count)
+            parent = folders
+            indexPath = NSIndexPath(index: folders.index).indexPathByAddingIndex(parent.children.count)
         }
         
         parent.mutableArrayValueForKey("children").addObject(folder)
@@ -462,11 +463,13 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
         
         sourceListController.editItemAtIndexPath(indexPath)
+        // sourceListController.selectItem(folder)
     }
     
     /// Create an untitled smart folder
     @IBAction func createNewSmartFolder(sender: AnyObject?) {
-        guard let databaseManager = databaseManager else {
+        guard let databaseManager = databaseManager,
+              let smartFolders = databaseManager.smartFoldersSection else {
             return
         }
         
@@ -480,9 +483,10 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
         
         // Either add the folder to the Smart Folders section or the selected folder
+        // Can use item or index path, but the index path should be faster
         
-        let parent = sourceListController.content[2] // Section
-        let indexPath = NSIndexPath(index: 2).indexPathByAddingIndex(parent.children.count)
+        let parent = smartFolders
+        let indexPath = NSIndexPath(index: smartFolders.index).indexPathByAddingIndex(parent.children.count)
         
         parent.mutableArrayValueForKey("children").addObject(folder)
         
