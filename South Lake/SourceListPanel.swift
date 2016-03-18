@@ -28,14 +28,15 @@ class SourceListPanel: NSViewController, Databasable {
         
     // MARK: - Custom Properties
     
-    dynamic var selectedObjects: [DataSource] = []
     dynamic var content: [DataSource] = []
     
-    // TODO: update selected object from selectedObjects so that it's dynamic and observable (everywhere)
-    
-    var selectedObject: DataSource? {
-        return ( selectedObjects.count == 1 ) ? selectedObjects[0] : nil
+    dynamic var selectedObjects: [DataSource] = [] {
+        didSet {
+            selectedObject = selectedObjects[safe:0]
+        }
     }
+    
+    dynamic var selectedObject: DataSource?
     
     private var draggedNodes : [NSTreeNode]?
     
