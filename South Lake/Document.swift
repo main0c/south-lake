@@ -370,7 +370,9 @@ class Document: NSDocument {
 
                 // We must have ids before we can store the children
             
-                try databaseManager.database.saveAllModels()
+                try doc1.save()
+                try doc2.save()
+                try doc3.save()
             
             let shortcutsSection = Section(forNewDocumentInDatabase: databaseManager.database)
             
@@ -401,23 +403,24 @@ class Document: NSDocument {
 
                 // We must have ids before we can store the children
             
-                // try databaseManager.database.saveAllModels()
-            
                 try folder1.save()
                 try folder2.save()
             
-//            let foldersSection = Section(forNewDocumentInDatabase: databaseManager.database)
-//            
-//            foldersSection.title = NSLocalizedString("Folders", comment: "Folders section title")
-//            foldersSection.index = 2
-//            
-//                folders.append(folder1)
-//                folders.append(folder2)
-//                foldersSection.children = folders
+            let foldersSection = Section(forNewDocumentInDatabase: databaseManager.database)
+            
+            foldersSection.title = NSLocalizedString("Folders & Files", comment: "Folders section title")
+            foldersSection.index = 2
+            foldersSection.file_extension = DataTypes.Folders.ext
+            foldersSection.mime_type = DataTypes.Folders.mime
+            foldersSection.uti = DataTypes.Folders.uti
+            
+                folders.append(folder1)
+                folders.append(folder2)
+                foldersSection.children = folders
             
             // Smart folders
             
-                // var smarts: [DataSource] = []
+                var smarts: [DataSource] = []
             
                 let smart1 = SmartFolder(forNewDocumentInDatabase: databaseManager.database)
             
@@ -430,34 +433,21 @@ class Document: NSDocument {
                 smart2.icon = NSImage(named:"smart-folder-icon")
 
                 // We must have ids before we can store the children
-            
-//                try databaseManager.database.saveAllModels()
 
                 try smart1.save()
                 try smart2.save()
-            
-//            let smartFoldersSection = Section(forNewDocumentInDatabase: databaseManager.database)
-//            
-//            smartFoldersSection.title = NSLocalizedString("Smart Folders", comment: "Smart folders section title")
-//            smartFoldersSection.index = 3
-//            
-//                smarts.append(smart1)
-//                smarts.append(smart2)
-//                smartFoldersSection.children = smarts
 
-            let foldersSection = Section(forNewDocumentInDatabase: databaseManager.database)
+            let smartFoldersSection = Section(forNewDocumentInDatabase: databaseManager.database)
             
-            foldersSection.title = NSLocalizedString("Folders", comment: "Folders section title")
-            foldersSection.index = 2
-            foldersSection.file_extension = DataTypes.Folders.ext
-            foldersSection.mime_type = DataTypes.Folders.mime
-            foldersSection.uti = DataTypes.Folders.uti
-            
-                folders.append(folder1)
-                folders.append(folder2)
-                folders.append(smart1)
-                folders.append(smart2)
-                foldersSection.children = folders
+            smartFoldersSection.title = NSLocalizedString("Smart Folders", comment: "Folders section title")
+            smartFoldersSection.index = 3
+            smartFoldersSection.file_extension = DataTypes.SmartFolders.ext
+            smartFoldersSection.mime_type = DataTypes.SmartFolders.mime
+            smartFoldersSection.uti = DataTypes.SmartFolders.uti
+
+                smarts.append(smart1)
+                smarts.append(smart2)
+                smartFoldersSection.children = smarts
             
             try databaseManager.database.saveAllModels()
 

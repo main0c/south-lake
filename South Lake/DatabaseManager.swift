@@ -282,6 +282,8 @@ class DatabaseManager: NSObject {
             return
         }
         
+        // Sections
+        
         guard let notebook = sections?[safe: 0] where notebook.uti == DataTypes.Notebook.uti else {
             print("notebook section not at expected index (0)")
             return
@@ -294,6 +296,13 @@ class DatabaseManager: NSObject {
             print("folders not at expected index (2)")
             return
         }
+        guard let smartFolders = sections?[safe: 3] where smartFolders.uti == DataTypes.SmartFolders.uti else {
+            print("smart folders not at expected index (3)")
+            return
+        }
+        
+        // Notebook Data Sources
+        
         guard let librarySource = notebook.children[safe: 0] where librarySource.uti == DataTypes.Library.uti else {
             print("library source not at expected index (0)")
             return
@@ -314,6 +323,7 @@ class DatabaseManager: NSObject {
         self.notebookSection = notebook
         self.shortcutsSection = shortcuts
         self.foldersSection = folders
+        self.smartFoldersSection = smartFolders
         
         self.librarySource = librarySource
         self.calendarSource = calendarSource

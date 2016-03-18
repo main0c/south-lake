@@ -681,7 +681,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="View" id="HyV-fh-RgO">
                                     <items>
-                                        <menuItem title="Files and Folders" keyEquivalent="1" id="iSp-6d-8KT">
+                                        <menuItem title="Data Sources" keyEquivalent="1" id="iSp-6d-8KT">
                                             <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                             <connections>
                                                 <action selector="makeFilesAndFoldersFirstResponder:" target="Ady-hI-5gd" id="rBu-rw-DAA"/>
