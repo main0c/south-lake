@@ -9,6 +9,6 @@
 import Foundation
 
 protocol Databasable {
-    var databaseManager: DatabaseManager! { get set}
-    var searchService: BRSearchService! { get set }
+    var databaseManager: DatabaseManager? { get set}
+    var searchService: BRSearchService? { get set }
 }

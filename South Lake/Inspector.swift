@@ -27,8 +27,8 @@ protocol Inspector: Databasable {
     
     // Databasable: do we actually need this?
     
-    var databaseManager: DatabaseManager! { get set }
-    var searchService: BRSearchService! { get set }
+    var databaseManager: DatabaseManager? { get set }
+    var searchService: BRSearchService? { get set }
     
     // TODO: do we maintain a list of selected objects?
     

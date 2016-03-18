@@ -14,8 +14,8 @@ class LibraryTableViewController: NSViewController, LibraryScene {
 
     // MARK: - Databasable
 
-    var databaseManager: DatabaseManager!
-    var searchService: BRSearchService!
+    var databaseManager: DatabaseManager?
+    var searchService: BRSearchService?
     
     // MARK: - Initialization
 
@@ -35,6 +35,10 @@ class LibraryTableViewController: NSViewController, LibraryScene {
     }
     
     @IBAction func doubleClick(sender: AnyObject?) {
+        guard let databaseManager = databaseManager else {
+            return
+        }
+        
         guard let object = arrayController.selectedObjects[safe: 0] as? DataSource,
               let id = object.id else {
             print("no selected object")

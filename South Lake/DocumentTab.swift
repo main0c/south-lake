@@ -13,8 +13,8 @@ protocol DocumentTab: class, Databasable {
     
     // Databasable
     
-    var databaseManager: DatabaseManager! { get set }
-    var searchService: BRSearchService! { get set }
+    var databaseManager: DatabaseManager? { get set }
+    var searchService: BRSearchService? { get set }
  
     // Document Tab
  

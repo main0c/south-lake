@@ -10,8 +10,8 @@ import Foundation
 
 protocol LibraryScene: Databasable {
     // Databasable
-    var databaseManager: DatabaseManager! { get set }
-    var searchService: BRSearchService! { get set }
+    var databaseManager: DatabaseManager? { get set }
+    var searchService: BRSearchService? { get set }
     
     /// A LibraryScene is a view controller with a view property
     var view: NSView { get set }

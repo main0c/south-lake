@@ -17,8 +17,8 @@ class PDFEditor: NSViewController, FileEditor {
     static var filetypes: [String] { return ["com.adobe.pdf", "pdf", "application/pdf"] }
     static var storyboard: String { return "PDFEditor" }
     
-    var databaseManager: DatabaseManager!
-    var searchService: BRSearchService!
+    var databaseManager: DatabaseManager?
+    var searchService: BRSearchService?
     
     var isFileEditor: Bool {
         return true

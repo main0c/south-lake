@@ -26,14 +26,14 @@ class RelatedInspector: NSViewController, Inspector {
         return NSImage(named: "related-files-selected-icon")!
     }
     
-    var databaseManager: DatabaseManager! {
+    var databaseManager: DatabaseManager? {
         didSet {
             scene?.databaseManager = databaseManager
             bindLibrary()
         }
     }
     
-    var searchService: BRSearchService! {
+    var searchService: BRSearchService? {
         didSet {
             scene?.searchService = searchService
         }
@@ -90,7 +90,7 @@ class RelatedInspector: NSViewController, Inspector {
     // MARK: - Library Data
     
     func bindLibrary() {
-        guard (databaseManager as DatabaseManager?) != nil else {
+        guard let databaseManager = databaseManager else {
             return
         }
         
@@ -142,6 +142,10 @@ class RelatedInspector: NSViewController, Inspector {
     // MARK: - User Actions
     
     @IBAction func seeMore(sender: AnyObject?) {
+        guard let databaseManager = databaseManager else {
+            return
+        }
+        
         guard let selectedTag = selectedTags?[safe: 0],
               let encodedTag = selectedTag.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet()) else {
               return

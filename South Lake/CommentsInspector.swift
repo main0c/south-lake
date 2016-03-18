@@ -23,8 +23,8 @@ class CommentsInspector: NSViewController, Inspector {
         return NSImage(named: "comments-selected-icon")!
     }
     
-    var databaseManager: DatabaseManager!
-    var searchService: BRSearchService!
+    var databaseManager: DatabaseManager?
+    var searchService: BRSearchService?
         
     // MARK: - Initialization
 

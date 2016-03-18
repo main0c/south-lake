@@ -20,7 +20,7 @@ class TagsEditor: NSViewController, FileEditor {
     
     // MARK: - Databasable
     
-    var databaseManager: DatabaseManager! {
+    var databaseManager: DatabaseManager? {
         didSet {
             scene?.databaseManager = databaseManager
             bindLibrary()
@@ -28,7 +28,7 @@ class TagsEditor: NSViewController, FileEditor {
         }
     }
     
-    var searchService: BRSearchService! {
+    var searchService: BRSearchService? {
         didSet {
             scene?.searchService = searchService
         }
@@ -93,7 +93,7 @@ class TagsEditor: NSViewController, FileEditor {
     // MARK: - Tags Data
     
     func bindTags() {
-        guard (databaseManager as DatabaseManager?) != nil else {
+        guard let databaseManager = databaseManager else {
             return
         }
         
@@ -103,7 +103,7 @@ class TagsEditor: NSViewController, FileEditor {
     // MARK: - Library Data
     
     func bindLibrary() {
-        guard (databaseManager as DatabaseManager?) != nil else {
+        guard let databaseManager = databaseManager else {
             return
         }
         
@@ -145,6 +145,9 @@ class TagsEditor: NSViewController, FileEditor {
     }
     
     @IBAction func gotoPath(sender: AnyObject?) {
+        guard let databaseManager = databaseManager else {
+            return
+        }
         guard let sender = sender as? NSPathControl else {
             return
         }

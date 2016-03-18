@@ -19,8 +19,8 @@ protocol FileEditor: class, Databasable {
     
     // Databasable
     
-    var databaseManager: DatabaseManager! { get set }
-    var searchService: BRSearchService! { get set }
+    var databaseManager: DatabaseManager? { get set }
+    var searchService: BRSearchService? { get set }
     
     static var filetypes: [String] { get }
     static var storyboard: String { get }

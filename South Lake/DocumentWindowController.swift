@@ -16,13 +16,13 @@ class DocumentWindowController: NSWindowController, Databasable {
         return self.window?.contentViewController as! DocumentTabController
     }
     
-    var databaseManager: DatabaseManager! {
+    var databaseManager: DatabaseManager? {
         didSet {
             tabController.databaseManager = databaseManager
         }
     }
     
-    var searchService: BRSearchService! {
+    var searchService: BRSearchService? {
         didSet {
             tabController.searchService = searchService
         }
@@ -137,12 +137,14 @@ class DocumentWindowController: NSWindowController, Databasable {
     /// Called when the search field executes its action.
     
     @IBAction func executeFindInNotebook(sender: AnyObject?) {
+        guard let searchService = searchService else {
+            return
+        }
         guard let tab = tabController.selectedTab else {
             // just create a new tab?
             print("should always have a selected tab")
             return
         }
-        
         guard let sender = sender as? NSSearchField else {
             print("sender can only be search field")
             return

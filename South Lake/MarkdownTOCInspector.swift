@@ -22,8 +22,8 @@ class MarkdownTOCInspector: NSViewController, Inspector {
         return NSImage(named: "md-table-of-contents-selected-icon")!
     }
     
-    var databaseManager: DatabaseManager!
-    var searchService: BRSearchService!
+    var databaseManager: DatabaseManager?
+    var searchService: BRSearchService?
     
     // MARK: - Custom Properties
     

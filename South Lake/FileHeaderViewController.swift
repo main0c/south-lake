@@ -24,13 +24,13 @@ class FileHeaderViewController: NSViewController, Databasable {
 
     // MARK: - Databasable
     
-    var databaseManager: DatabaseManager! {
+    var databaseManager: DatabaseManager? {
         didSet {
             bindTags()
         }
     }
     
-    var searchService: BRSearchService!
+    var searchService: BRSearchService?
     
     // MARK: - Custom Properties
 
@@ -74,7 +74,7 @@ class FileHeaderViewController: NSViewController, Databasable {
     // MARK: - Tags Data
     
     func bindTags() {
-        guard (databaseManager as DatabaseManager?) != nil else {
+        guard let databaseManager = databaseManager else {
             return
         }
         

@@ -39,7 +39,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     // MARK: - Document Tab
     
-    var databaseManager: DatabaseManager! {
+    var databaseManager: DatabaseManager? {
         didSet {
             for vc in childViewControllers where vc is Databasable {
                 var databasable = vc as! Databasable
@@ -48,7 +48,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
     }
     
-    var searchService: BRSearchService! {
+    var searchService: BRSearchService? {
         didSet {
             for vc in childViewControllers where vc is Databasable {
                 var databasable = vc as! Databasable
@@ -435,6 +435,10 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     @IBAction func createNewFolder(sender: AnyObject?) {
         // Create an untitled folder
         
+        guard let databaseManager = databaseManager else {
+            return
+        }
+        
         let folder = Folder(forNewDocumentInDatabase: databaseManager.database)
         folder.title = NSLocalizedString("Untitled", comment: "Name for new untitled folder")
         folder.icon = NSImage(named: "folder-icon")
@@ -470,6 +474,10 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     @IBAction func createNewSmartFolder(sender: AnyObject?) {
         // Create an untitled smart folder
         
+        guard let databaseManager = databaseManager else {
+            return
+        }
+        
         let folder = SmartFolder(forNewDocumentInDatabase: databaseManager.database)
         folder.title = NSLocalizedString("Untitled", comment: "Name for new untitled smart folder")
         folder.icon = NSImage(named:"smart-folder-icon")
@@ -496,6 +504,10 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     @IBAction func createNewMarkdownDocument(sender: AnyObject?) {
         // Create an untitled markdown document
+        
+        guard let databaseManager = databaseManager else {
+            return
+        }
         
         let file = File(forNewDocumentInDatabase: databaseManager.database)
         file.title = NSLocalizedString("Untitled", comment: "Name for new untitled document")

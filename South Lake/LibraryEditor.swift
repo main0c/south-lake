@@ -21,14 +21,14 @@ class LibraryEditor: NSViewController, FileEditor {
     static var filetypes: [String] { return ["southlake.notebook.library", "southlake/x-notebook-library", "southlake-notebook-library"] }
     static var storyboard: String { return "LibraryEditor" }
     
-    var databaseManager: DatabaseManager! {
+    var databaseManager: DatabaseManager? {
         didSet {
             scene?.databaseManager = databaseManager
             bindLibrary()
         }
     }
     
-    var searchService: BRSearchService! {
+    var searchService: BRSearchService? {
         didSet {
             scene?.searchService = searchService
         }
@@ -102,7 +102,7 @@ class LibraryEditor: NSViewController, FileEditor {
     // MARK: - Library Data
     
     func bindLibrary() {
-        guard (databaseManager as DatabaseManager?) != nil else {
+        guard let databaseManager = databaseManager else {
             return
         }
         
@@ -167,6 +167,10 @@ class LibraryEditor: NSViewController, FileEditor {
     }
     
     @IBAction func gotoPath(sender: AnyObject?) {
+        guard let databaseManager = databaseManager else {
+            return
+        }
+        
         guard let sender = sender as? NSPathControl else {
             return
         }

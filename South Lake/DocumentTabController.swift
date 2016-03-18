@@ -22,7 +22,7 @@ class DocumentTabController: NSViewController, Databasable {
     @IBOutlet var tabBarView: MMTabBarView!
     @IBOutlet var tabView: NSTabView!
     
-    var databaseManager: DatabaseManager! {
+    var databaseManager: DatabaseManager? {
         didSet {
             for vc in tabs {
                 vc.databaseManager = databaseManager
@@ -30,7 +30,7 @@ class DocumentTabController: NSViewController, Databasable {
         }
     }
     
-    var searchService: BRSearchService! {
+    var searchService: BRSearchService? {
         didSet {
             for vc in tabs {
                 vc.searchService = searchService

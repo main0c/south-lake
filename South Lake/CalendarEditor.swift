@@ -13,8 +13,8 @@ class CalendarEditor: NSViewController, FileEditor {
    static var filetypes: [String] { return ["southlake.notebook.calendar", "southlake/x-notebook-calendar", "southlake-notebook-calendar"] }
     static var storyboard: String { return "CalendarEditor" }
     
-    var databaseManager: DatabaseManager!
-    var searchService: BRSearchService!
+    var databaseManager: DatabaseManager?
+    var searchService: BRSearchService?
     
     var isFileEditor: Bool {
         return false

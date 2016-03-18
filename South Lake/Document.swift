@@ -33,7 +33,9 @@ enum DocumentError: ErrorType {
     case CouldNotSaveState
 }
 
-class Document: NSDocument, Databasable {
+/// The document conforms to non-optional Databasable. Other objects should too.
+
+class Document: NSDocument {
 
     // Couchbase database and search
     

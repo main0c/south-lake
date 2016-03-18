@@ -16,8 +16,8 @@ class TagsCollectionViewController: NSViewController, LibraryScene {
     
     // MARK: - Databasable
 
-    var databaseManager: DatabaseManager!
-    var searchService: BRSearchService!
+    var databaseManager: DatabaseManager?
+    var searchService: BRSearchService?
     
     // MARK: - Initialization
 
@@ -51,13 +51,15 @@ class TagsCollectionViewController: NSViewController, LibraryScene {
     // MARK: -
     
     @IBAction func doubleClick(sender: AnyObject?) {
+        guard let databaseManager = databaseManager else {
+            return
+        }
         guard let object = arrayController.selectedObjects[safe: 0] as? [String:AnyObject],
               let tag = object["tag"] as? String,
               let encodedTag = tag.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet()) else {
             print("no selected object")
             return
         }
-        
         guard let url = NSURL(string: "southlake://localhost/tags/\(encodedTag)") else {
             print("unable to construct url for object with id \(encodedTag)")
             return

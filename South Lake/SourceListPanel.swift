@@ -18,13 +18,13 @@ class SourceListPanel: NSViewController, Databasable {
     
     // MARK: - Databasable
     
-    var databaseManager: DatabaseManager! {
+    var databaseManager: DatabaseManager? {
         didSet {
             bindSections()
         }
     }
     
-    var searchService: BRSearchService!
+    var searchService: BRSearchService?
         
     // MARK: - Custom Properties
     
@@ -75,7 +75,7 @@ class SourceListPanel: NSViewController, Databasable {
     }
     
     func bindSections() {
-        guard (databaseManager as DatabaseManager?) != nil else {
+        guard let databaseManager = databaseManager else {
             return
         }
         
@@ -244,9 +244,14 @@ extension SourceListPanel : NSOutlineViewDataSource {
     // TODO: sporadic drag bug still - duplication
     
     func performLocalReorderDrag(info: NSDraggingInfo, parent: NSTreeNode?, index: Int) -> Bool {
+        guard let databaseManager = databaseManager else {
+            return false
+        }
+        
         guard parent != nil else {
             return false
         }
+        
         guard draggedNodes != nil else {
             return false
         }

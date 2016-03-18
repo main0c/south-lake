@@ -12,6 +12,6 @@ import Foundation
 protocol FileImporter {
     static var filetypes: [String] { get }
     
+    init() // weird
     func plainTextRepresentation(data: NSData?) -> String
-    init()
 }
