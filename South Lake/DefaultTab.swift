@@ -496,7 +496,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     /// Create an untitled markdown document
     @IBAction func createNewMarkdownDocument(sender: AnyObject?) {
-        guard let databaseManager = databaseManager else {
+        guard let databaseManager = databaseManager,
+              let folders = databaseManager.foldersSection else {
             return
         }
         
@@ -513,17 +514,19 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             return
         }
         
-        // Either add the file to the Shortcuts section or the selected folder
+        // Either add the file to the Folders section or the selected folder
+        // Can use item or index path, but the index path should be faster
         
         var parent: DataSource
         var indexPath: NSIndexPath
         
-        if let item = selectedObject where item is Folder {
+        if  let selectedIndexPath = sourceListController.selectedIndexPath,
+            let item = selectedObject where item is Folder {
             parent = item
-            indexPath = sourceListController.treeController.selectionIndexPath!.indexPathByAddingIndex(parent.children.count)
+            indexPath = selectedIndexPath.indexPathByAddingIndex(parent.children.count)
         } else {
-            parent = sourceListController.content[0] // Section
-            indexPath = NSIndexPath(index: 0).indexPathByAddingIndex(parent.children.count)
+            parent = folders
+            indexPath = NSIndexPath(index: folders.index).indexPathByAddingIndex(parent.children.count)
         }
         
         parent.mutableArrayValueForKey("children").addObject(file)
@@ -534,6 +537,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
         
         sourceListController.selectItemAtIndexPath(indexPath)
+        // sourceListController.selectItem(file)
     }
     
     @IBAction func makeFilesAndFoldersFirstResponder(sender: AnyObject?) {

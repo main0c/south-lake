@@ -325,6 +325,9 @@ class Document: NSDocument {
             
             notebookSection.title = NSLocalizedString("Notebook", comment: "Notebook section title")
             notebookSection.index = 0
+            notebookSection.file_extension = DataTypes.Notebook.ext
+            notebookSection.mime_type = DataTypes.Notebook.mime
+            notebookSection.uti = DataTypes.Notebook.uti
             
                 books.append(allEntries)
                 books.append(calendar)
@@ -373,6 +376,9 @@ class Document: NSDocument {
             
             shortcutsSection.title = NSLocalizedString("Shortcuts", comment: "Shortcts section title")
             shortcutsSection.index = 1
+            shortcutsSection.file_extension = DataTypes.Shortcuts.ext
+            shortcutsSection.mime_type = DataTypes.Shortcuts.mime
+            shortcutsSection.uti = DataTypes.Shortcuts.uti
             
                 children.append(doc1)
                 children.append(doc2)
@@ -443,6 +449,9 @@ class Document: NSDocument {
             
             foldersSection.title = NSLocalizedString("Folders", comment: "Folders section title")
             foldersSection.index = 2
+            foldersSection.file_extension = DataTypes.Folders.ext
+            foldersSection.mime_type = DataTypes.Folders.mime
+            foldersSection.uti = DataTypes.Folders.uti
             
                 folders.append(folder1)
                 folders.append(folder2)

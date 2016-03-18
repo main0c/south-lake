@@ -55,6 +55,11 @@ struct DataTypes {
         static let uti = "southlake.section-folders"
         static let ext = "southlake-section-folders"
     }
+    struct SmartFolders {
+        static let mime = "southlake/x-section-smart-folders"
+        static let uti = "southlake.section-smart-folders"
+        static let ext = "southlake-section-smart-folders"
+    }
     
     // Significant Sources
     

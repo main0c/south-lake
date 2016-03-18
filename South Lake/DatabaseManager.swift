@@ -17,7 +17,12 @@ class DatabaseManager: NSObject {
     var manager: CBLManager!
     var database: CBLDatabase!
     
-    // MARK: - Significant Folders
+    // MARK: - Significant Sections Folders
+    
+    var notebookSection: Section?
+    var shortcutsSection: Section?
+    var foldersSection: Section?
+    var smartFoldersSection: Section?
     
     var librarySource: DataSource?
     var tagsSource: DataSource?
@@ -270,16 +275,23 @@ class DatabaseManager: NSObject {
         cacheSignificantDataSources()
     }
     
+    // TODO: failure to cache is a significant error and should be propogated to the user
+    
     private func cacheSignificantDataSources() {
         guard librarySource == nil else {
-            // only check once
             return
         }
         
-        // TODO: where clause on notebook
-        
-        guard let notebook = sections?[safe: 0] else {
+        guard let notebook = sections?[safe: 0] where notebook.uti == DataTypes.Notebook.uti else {
             print("notebook section not at expected index (0)")
+            return
+        }
+        guard let shortcuts = sections?[safe: 1] where shortcuts.uti == DataTypes.Shortcuts.uti else {
+            print("shortcuts not at expected index (1)")
+            return
+        }
+        guard let folders = sections?[safe: 2] where folders.uti == DataTypes.Folders.uti else {
+            print("folders not at expected index (2)")
             return
         }
         guard let librarySource = notebook.children[safe: 0] where librarySource.uti == DataTypes.Library.uti else {
@@ -298,6 +310,10 @@ class DatabaseManager: NSObject {
             print("trash source not at expected index (3)")
             return
         }
+        
+        self.notebookSection = notebook
+        self.shortcutsSection = shortcuts
+        self.foldersSection = folders
         
         self.librarySource = librarySource
         self.calendarSource = calendarSource
