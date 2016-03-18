@@ -15,6 +15,7 @@ class LibraryEditor: NSViewController, FileEditor {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var containerView: NSView!
     @IBOutlet var pathControl: NSPathControlWithCursor!
+    @IBOutlet var sceneSelector: NSSegmentedControl!
     
     // MARK: - File Editor
     
@@ -85,7 +86,10 @@ class LibraryEditor: NSViewController, FileEditor {
         
         // TODO: Save and restore scene preference
         
-        loadScene("libraryCollectionScene")
+        let sceneId = NSUserDefaults.standardUserDefaults().objectForKey("SLLibraryScene") as? String ?? "libraryCollectionScene"
+        sceneSelector.selectSegmentWithTag(sceneId == "libraryCollectionScene" ? 0 : 1)
+        
+        loadScene(sceneId)
         bindLibrary()
     }
     
@@ -155,9 +159,11 @@ class LibraryEditor: NSViewController, FileEditor {
         switch tag {
         case 0: // icon collection
             unloadScene()
+            NSUserDefaults.standardUserDefaults().setObject("libraryCollectionScene", forKey: "SLLibraryScene")
             loadScene("libraryCollectionScene")
         case 1: // table view
             unloadScene()
+            NSUserDefaults.standardUserDefaults().setObject("libraryTableScene", forKey: "SLLibraryScene")
             loadScene("libraryTableScene")
         case _:
             break

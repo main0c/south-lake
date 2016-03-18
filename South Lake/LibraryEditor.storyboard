@@ -122,6 +122,7 @@
                         <outlet property="arrayController" destination="p0W-cE-9Ld" id="o3a-Tv-K1w"/>
                         <outlet property="containerView" destination="WzD-xV-wPP" id="21j-zI-zsg"/>
                         <outlet property="pathControl" destination="x7s-jQ-cTj" id="cgO-yz-XQg"/>
+                        <outlet property="sceneSelector" destination="BoY-EX-Wlw" id="D2K-dC-A1n"/>
                     </connections>
                 </viewController>
                 <customObject id="JG0-5V-hUD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
