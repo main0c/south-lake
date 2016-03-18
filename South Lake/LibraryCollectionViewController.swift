@@ -43,10 +43,6 @@ class LibraryCollectionViewController: NSViewController, LibraryScene {
         collectionView.itemPrototype = nil
     }
     
-    deinit {
-        print("library collection deinit")
-    }
-    
     // MARK: -
     
     @IBAction func doubleClick(sender: AnyObject?) {

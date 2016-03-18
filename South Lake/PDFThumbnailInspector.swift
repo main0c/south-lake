@@ -36,8 +36,4 @@ class PDFThumbnailInspector: NSViewController, Inspector {
     func willClose() {
     
     }
-    
-    deinit {
-        print("pdf thumbnail deinit")
-    }
 }

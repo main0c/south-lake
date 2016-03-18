@@ -62,10 +62,6 @@ class FileHeaderViewController: NSViewController, Databasable {
         unbindTags()
     }
     
-    deinit {
-        print("file header deinit")
-    }
-    
     // MARK: - Tags Data
     
     func bindTags() {

@@ -44,10 +44,6 @@ class CommentsInspector: NSViewController, Inspector {
         }
     }
     
-    deinit {
-        print("comments inspector deinit")
-    }
-    
     func willClose() {
     
     }

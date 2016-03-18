@@ -29,11 +29,7 @@ class LibraryTableViewController: NSViewController, LibraryScene {
     func willClose() {
         
     }
-    
-    deinit {
-        print("library table deinit")
-    }
-    
+       
     @IBAction func doubleClick(sender: AnyObject?) {
         guard let databaseManager = databaseManager else {
             return

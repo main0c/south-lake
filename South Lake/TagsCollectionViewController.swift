@@ -44,10 +44,6 @@ class TagsCollectionViewController: NSViewController, LibraryScene {
         collectionView.itemPrototype = nil
     }
     
-    deinit {
-        print("tags collection deinit")
-    }
-    
     // MARK: -
     
     @IBAction func doubleClick(sender: AnyObject?) {

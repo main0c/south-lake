@@ -62,10 +62,6 @@ class MarkdownTOCInspector: NSViewController, Inspector {
     func willClose() {
     
     }
-    
-    deinit {
-        print("toc deinit")
-    }
 }
 
 // MARK: - WebPolicyDelegate

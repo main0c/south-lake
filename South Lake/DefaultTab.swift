@@ -133,10 +133,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
 
     }
     
-    deinit {
-        print("default tab deinit")
-    }
-    
     func willClose() {
         sourceListController.willClose()
         inspectorController.willClose()

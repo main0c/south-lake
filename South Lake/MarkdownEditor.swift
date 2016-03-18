@@ -304,10 +304,6 @@ class MarkdownEditor: NSViewController, FileEditor {
         unbind("tableOfContentsAnchor")
     }
     
-    deinit {
-        print("markdown editor deinit")
-    }
-    
     // MARK: - South Lake Functions
     
     var primaryResponder: NSView {

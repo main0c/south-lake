@@ -62,10 +62,6 @@ class MetadataInspector: NSViewController, Inspector {
         outlineView.expandItem(nil, expandChildren: true)
     }
     
-    deinit {
-        print("metadata inspector deinit")
-    }
-    
     func willClose() {
     
     }

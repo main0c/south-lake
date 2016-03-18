@@ -95,10 +95,6 @@ class LibraryEditor: NSViewController, FileEditor {
         unbind("content")
     }
 
-    deinit {
-        print("library deinit")
-    }
-    
     // MARK: - Library Data
     
     func bindLibrary() {

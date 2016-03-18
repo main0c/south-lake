@@ -58,10 +58,6 @@ class PDFEditor: NSViewController, FileEditor {
     
     }
     
-    deinit {
-        print("pdf editor deinit")
-    }
-    
     // MARK: - 
     
     func loadFile(file: DataSource?) {

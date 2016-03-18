@@ -86,10 +86,6 @@ class TagsEditor: NSViewController, FileEditor {
         unbind("content")
     }
     
-    deinit {
-        print("tags editor deinit")
-    }
-    
     // MARK: - Tags Data
     
     func bindTags() {
