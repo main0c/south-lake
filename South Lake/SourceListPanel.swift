@@ -125,6 +125,8 @@ class SourceListPanel: NSViewController, Databasable {
         // If the item is in the shortcuts section, remove it from shortcuts
         // If the item is in the folders section, delete it, removing it from all parents
         
+        // TODO: confirm deletion
+        
         switch section.uti {
         case DataTypes.Notebook.uti, DataTypes.SmartFolders.uti:
             NSBeep()
@@ -136,6 +138,17 @@ class SourceListPanel: NSViewController, Databasable {
             }
             
         case DataTypes.Folders.uti:
+            let alert = NSAlert()
+           
+            alert.messageText = NSLocalizedString("Delete Items", comment: "")
+            alert.informativeText = NSLocalizedString("Deleting a file or folder permanently removes it from your notebook and cannot be undone.", comment: "")
+            alert.addButtonWithTitle(NSLocalizedString("Delete", comment: ""))
+            alert.addButtonWithTitle(NSLocalizedString("Cancel", comment: ""))
+            
+            guard alert.runModal() == NSAlertFirstButtonReturn else {
+                return
+            }
+            
             for parent in item.parents {
                 parent.mutableArrayValueForKey("children").removeObject(item)
                 do { try parent.save() } catch {
