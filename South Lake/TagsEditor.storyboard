@@ -121,6 +121,7 @@
                         <outlet property="containerView" destination="ObZ-VS-gFU" id="0Jr-dX-MGa"/>
                         <outlet property="libraryArrayController" destination="W8b-4i-iGU" id="JJz-9c-JX7"/>
                         <outlet property="pathControl" destination="vau-kB-p5Y" id="BKe-0h-qCF"/>
+                        <outlet property="viewSelector" destination="NoR-ek-Jwk" id="opE-is-WqC"/>
                     </connections>
                 </viewController>
                 <customObject id="6A6-dB-eVB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -142,7 +143,7 @@
         <!--Tags Collection View Item-->
         <scene sceneID="9ng-3T-PSy">
             <objects>
-                <collectionViewItem storyboardIdentifier="tagsCollectionViewItem" id="hAE-oY-KQE" customClass="TagsCollectionViewItem" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewItem storyboardIdentifier="tagsIconCollectionViewItem" id="hAE-oY-KQE" customClass="TagsCollectionViewItem" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="n0P-Cu-BwC">
                         <rect key="frame" x="0.0" y="0.0" width="227" height="33"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -214,7 +215,7 @@
                 <customObject id="t66-fp-bQ0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="3ha-pr-MY0"/>
             </objects>
-            <point key="canvasLocation" x="648.5" y="-6.5"/>
+            <point key="canvasLocation" x="565.5" y="-6.5"/>
         </scene>
         <!--Tags Collection View Controller-->
         <scene sceneID="niR-Ed-60V">
@@ -411,6 +412,105 @@
                 <customObject id="Ruf-hW-tCN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="533" y="542.5"/>
+        </scene>
+        <!--Tags Collection View Item-->
+        <scene sceneID="A0j-lP-zwH">
+            <objects>
+                <collectionViewItem storyboardIdentifier="tagsListCollectionViewItem" id="zRr-AS-9kN" customClass="TagsCollectionViewItem" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="oVG-aR-Rhc">
+                        <rect key="frame" x="0.0" y="0.0" width="227" height="33"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView identifier="background" translatesAutoresizingMaskIntoConstraints="NO" id="Fx6-yQ-PjG" customClass="CustomizableView" customModule="South_Lake" customModuleProvider="target">
+                                <rect key="frame" x="102" y="2" width="101" height="29"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zmy-nE-AlS">
+                                        <rect key="frame" x="8" y="6" width="40" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="167" id="3oM-hm-tdG"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Name" id="cdS-Rz-qVh">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <connections>
+                                            <binding destination="zRr-AS-9kN" name="value" keyPath="representedObject.tag" id="Vei-Ye-dPU"/>
+                                        </connections>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ICP-2e-Da3">
+                                        <rect key="frame" x="54" y="6" width="41" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Count" id="FSH-Gq-wXr">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <connections>
+                                            <binding destination="zRr-AS-9kN" name="value" keyPath="representedObject.count" id="Jpt-aD-v8r"/>
+                                        </connections>
+                                    </textField>
+                                    <box horizontalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="gm8-BA-RTy">
+                                        <rect key="frame" x="49" y="8" width="5" height="13"/>
+                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <font key="titleFont" metaFont="system"/>
+                                    </box>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Zmy-nE-AlS" firstAttribute="leading" secondItem="Fx6-yQ-PjG" secondAttribute="leading" constant="10" id="IkD-eo-lP8"/>
+                                    <constraint firstItem="ICP-2e-Da3" firstAttribute="leading" secondItem="Zmy-nE-AlS" secondAttribute="trailing" constant="10" id="Mwm-83-UZd"/>
+                                    <constraint firstItem="ICP-2e-Da3" firstAttribute="leading" secondItem="gm8-BA-RTy" secondAttribute="trailing" constant="4" id="WdH-bK-phF"/>
+                                    <constraint firstAttribute="trailing" secondItem="ICP-2e-Da3" secondAttribute="trailing" constant="8" id="g3a-rk-ixp"/>
+                                    <constraint firstItem="ICP-2e-Da3" firstAttribute="centerY" secondItem="Fx6-yQ-PjG" secondAttribute="centerY" id="kT6-DX-aLo"/>
+                                    <constraint firstAttribute="bottom" secondItem="gm8-BA-RTy" secondAttribute="bottom" constant="8" id="mFx-HJ-qn6"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="96" id="p6x-Yh-fs9"/>
+                                    <constraint firstItem="gm8-BA-RTy" firstAttribute="top" secondItem="Fx6-yQ-PjG" secondAttribute="top" constant="8" id="pvD-eg-OZr"/>
+                                    <constraint firstItem="Zmy-nE-AlS" firstAttribute="centerY" secondItem="Fx6-yQ-PjG" secondAttribute="centerY" id="vyv-o6-xRL"/>
+                                </constraints>
+                            </customView>
+                            <customView identifier="levelIndicator" translatesAutoresizingMaskIntoConstraints="NO" id="Y0q-m1-tUf" customClass="TagsLevelIndicator" customModule="South_Lake" customModuleProvider="target">
+                                <rect key="frame" x="210" y="2" width="15" height="29"/>
+                                <connections>
+                                    <binding destination="tpt-lc-c1Z" name="hidden" keyPath="values.SLTagsView" id="gbb-tG-gbK">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </customView>
+                            <box hidden="YES" horizontalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="naq-O9-wP5">
+                                <rect key="frame" x="204" y="0.0" width="5" height="33"/>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <font key="titleFont" metaFont="system"/>
+                            </box>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Y0q-m1-tUf" firstAttribute="top" secondItem="oVG-aR-Rhc" secondAttribute="top" constant="2" id="0F6-Gg-Tot"/>
+                            <constraint firstAttribute="trailing" secondItem="Y0q-m1-tUf" secondAttribute="trailing" constant="2" id="5QW-A1-bBH"/>
+                            <constraint firstItem="naq-O9-wP5" firstAttribute="leading" secondItem="Fx6-yQ-PjG" secondAttribute="trailing" constant="3" id="9eP-kF-laD"/>
+                            <constraint firstItem="Fx6-yQ-PjG" firstAttribute="top" secondItem="oVG-aR-Rhc" secondAttribute="top" constant="2" id="Evz-U6-FAq"/>
+                            <constraint firstAttribute="bottom" secondItem="Y0q-m1-tUf" secondAttribute="bottom" constant="2" id="Je8-2h-9sz"/>
+                            <constraint firstAttribute="trailing" secondItem="Y0q-m1-tUf" secondAttribute="trailing" constant="2" id="NJO-U0-4jl"/>
+                            <constraint firstItem="naq-O9-wP5" firstAttribute="top" secondItem="oVG-aR-Rhc" secondAttribute="top" id="Qig-wr-FKh"/>
+                            <constraint firstAttribute="bottom" secondItem="Y0q-m1-tUf" secondAttribute="bottom" constant="2" id="Xkh-h4-zSC"/>
+                            <constraint firstItem="Y0q-m1-tUf" firstAttribute="top" secondItem="oVG-aR-Rhc" secondAttribute="top" constant="2" id="gVu-Xb-p6j"/>
+                            <constraint firstItem="Y0q-m1-tUf" firstAttribute="leading" secondItem="naq-O9-wP5" secondAttribute="trailing" constant="3" id="ggu-v3-xrB"/>
+                            <constraint firstAttribute="bottom" secondItem="naq-O9-wP5" secondAttribute="bottom" id="jRT-SU-hfm"/>
+                            <constraint firstAttribute="bottom" secondItem="Fx6-yQ-PjG" secondAttribute="bottom" constant="2" id="xTV-LY-5JQ"/>
+                            <constraint firstItem="naq-O9-wP5" firstAttribute="leading" secondItem="oVG-aR-Rhc" secondAttribute="leading" constant="206" id="zd4-x3-7Yq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="Fx6-yQ-PjG" id="ZkB-D9-UrH"/>
+                        <outlet property="levelIndicator" destination="Y0q-m1-tUf" id="Lwp-4F-MLz"/>
+                    </connections>
+                </collectionViewItem>
+                <customObject id="yk2-5w-0Hc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="bRZ-pz-w7e"/>
+                <userDefaultsController id="tpt-lc-c1Z"/>
+            </objects>
+            <point key="canvasLocation" x="812.5" y="-6.5"/>
         </scene>
     </scenes>
     <resources>

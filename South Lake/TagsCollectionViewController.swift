@@ -27,7 +27,7 @@ class TagsCollectionViewController: NSViewController, LibraryScene {
         
         collectionView.backgroundColors = [UI.Color.FileEditorBackground]
         
-        let prototype = storyboard!.instantiateControllerWithIdentifier("tagsCollectionViewItem") as? TagsCollectionViewItem
+        let prototype = storyboard!.instantiateControllerWithIdentifier("tagsListCollectionViewItem") as? TagsCollectionViewItem
         prototype?.doubleAction = Selector("doubleClick:")
         prototype?.target = self
         
@@ -72,6 +72,8 @@ class TagsCollectionViewController: NSViewController, LibraryScene {
     }
     
     // MARK: - View
+    
+    var usingIconView: Bool = true
     
     func useIconView() {
         collectionView.maxItemSize = NSMakeSize(227, 33)

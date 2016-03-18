@@ -13,6 +13,7 @@ class TagsEditor: NSViewController, FileEditor {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var containerView: NSView!
     
+    @IBOutlet var viewSelector: NSSegmentedControl!
     @IBOutlet var pathControl: NSPathControlWithCursor!
 
     static var filetypes: [String] { return ["southlake.notebook.tags", "southlake/x-notebook-tags", "southlake-notebook-tags"] }
@@ -75,6 +76,11 @@ class TagsEditor: NSViewController, FileEditor {
         updatePathControlAppearance()
         
         loadScene("tagsCollectionScene")
+        
+        let viewId = NSUserDefaults.standardUserDefaults().integerForKey("SLTagsView")
+        viewSelector.selectSegmentWithTag(viewId)
+        loadView(viewId)
+        
         bindLibrary()
         bindTags()
     }
@@ -156,16 +162,8 @@ class TagsEditor: NSViewController, FileEditor {
         let segment = sender.selectedSegment
         let tag = cell.tagForSegment(segment)
         
-        switch tag {
-        case 0: // icon collection
-            useIconView()
-            break
-        case 1: // listing collection
-            useListView()
-            break
-        case _:
-            break
-        }
+        NSUserDefaults.standardUserDefaults().setInteger(tag, forKey: "SLTagsView")
+        loadView(tag)
     }
     
     @IBAction func gotoPath(sender: AnyObject?) {
@@ -187,6 +185,19 @@ class TagsEditor: NSViewController, FileEditor {
     
     // MARK: - View
     
+    func loadView(tag: Int) {
+        switch tag {
+        case 0: // icon collection
+            useIconView()
+            break
+        case 1: // listing collection
+            useListView()
+            break
+        case _:
+            break
+        }
+    }
+    
     func useIconView() {
         if let scene = scene as? TagsCollectionViewController {
             scene.useIconView()
@@ -207,6 +218,10 @@ class TagsEditor: NSViewController, FileEditor {
             print("unable to load scene with identifier \(identifier)")
             return
         }
+        
+        // Save the scene
+        
+        // NSUserDefaults.standardUserDefaults().setObject(identifier, forKey: "")
         
         // Databasable
         

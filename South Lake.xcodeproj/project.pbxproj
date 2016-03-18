@@ -32,6 +32,7 @@
 		E378C5341C814F1900CACDFC /* String+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378C5331C814F1900CACDFC /* String+Range.swift */; };
 		E378E80F1C801F54009539FD /* NSToolbar+Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378E80E1C801F54009539FD /* NSToolbar+Items.swift */; };
 		E3794C501C8CA345005EA307 /* CustomizableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3794C4F1C8CA345005EA307 /* CustomizableView.swift */; };
+		E379D4FC1C9CBD1D008BB60F /* TagsLevelIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379D4FB1C9CBD1D008BB60F /* TagsLevelIndicator.swift */; };
 		E37A727B1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37A727A1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift */; };
 		E37A728D1C96312E002C721D /* ModelTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37A728C1C96312E002C721D /* ModelTypes.swift */; };
 		E37AB7331C8E0C6E00F44564 /* NSView+Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB7321C8E0C6E00F44564 /* NSView+Identifier.swift */; };
@@ -314,6 +315,7 @@
 		E378C5331C814F1900CACDFC /* String+Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Range.swift"; sourceTree = "<group>"; };
 		E378E80E1C801F54009539FD /* NSToolbar+Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSToolbar+Items.swift"; sourceTree = "<group>"; };
 		E3794C4F1C8CA345005EA307 /* CustomizableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizableView.swift; sourceTree = "<group>"; };
+		E379D4FB1C9CBD1D008BB60F /* TagsLevelIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsLevelIndicator.swift; sourceTree = "<group>"; };
 		E37A727A1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTokenFieldTokenTracker.swift; sourceTree = "<group>"; };
 		E37A728C1C96312E002C721D /* ModelTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelTypes.swift; sourceTree = "<group>"; };
 		E37AB7321C8E0C6E00F44564 /* NSView+Identifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+Identifier.swift"; sourceTree = "<group>"; };
@@ -7231,6 +7233,7 @@
 				E3DDBEF21C8D314D00136BAE /* TagsEditor.swift */,
 				E39B92701C99D31100A3FAF2 /* TagsCollectionViewController.swift */,
 				E385F7F11C92865C0015A91B /* TagsCollectionViewItem.swift */,
+				E379D4FB1C9CBD1D008BB60F /* TagsLevelIndicator.swift */,
 			);
 			name = Tags;
 			sourceTree = "<group>";
@@ -7707,6 +7710,7 @@
 				E3DDBEF31C8D314D00136BAE /* TagsEditor.swift in Sources */,
 				E360725C1C74E32E00914C2C /* DocumentWindowController.swift in Sources */,
 				E3803F041C728E140048AD46 /* pmh_parser.c in Sources */,
+				E379D4FC1C9CBD1D008BB60F /* TagsLevelIndicator.swift in Sources */,
 				E3803F021C728E140048AD46 /* HGMarkdownHighlighter.m in Sources */,
 				E3803F101C728E790048AD46 /* NSTextView+Autocomplete.m in Sources */,
 				E3803F0C1C728E790048AD46 /* NSDocumentController+Document.m in Sources */,

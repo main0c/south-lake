@@ -10,6 +10,7 @@ import Cocoa
 
 class TagsCollectionViewItem: NSCollectionViewItem {
     @IBOutlet var backgroundView: CustomizableView!
+    @IBOutlet var levelIndicator: TagsLevelIndicator!
 
     var target: AnyObject?
     var doubleAction: Selector?
@@ -23,7 +24,6 @@ class TagsCollectionViewItem: NSCollectionViewItem {
         backgroundView.borderColor = NSColor(white:0.8, alpha: 1.0)
         backgroundView.borderRadius = 3
         backgroundView.borderWidth = 1
-
     }
     
     // Prototypes don't connect outlets so we do it manually
@@ -36,6 +36,9 @@ class TagsCollectionViewItem: NSCollectionViewItem {
         copy.backgroundView.borderColor = backgroundView.borderColor
         copy.backgroundView.borderRadius = backgroundView.borderRadius
         copy.backgroundView.borderWidth = backgroundView.borderWidth
+        
+        copy.levelIndicator = copy.view.viewWithIdentifier("levelIndicator") as! TagsLevelIndicator
+        copy.levelIndicator.bind("count", toObject: copy, withKeyPath: "representedObject.count", options: [:])
         
         copy.doubleAction = doubleAction
         copy.target = target
