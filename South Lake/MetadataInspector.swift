@@ -13,6 +13,7 @@ private let kChildren = "children"
 private let kIdentifier = "identifier"
 private let kHeight = "height"
 private let kHeaderCell = "HeaderCell"
+private let kTagsCell = "TagsCell"
 
 class MetadataInspector: NSViewController, Inspector {
     @IBOutlet var outlineView: NSOutlineView!
@@ -56,7 +57,7 @@ class MetadataInspector: NSViewController, Inspector {
         
         // outlineView.usesStaticContents = true // what effect?
         outlineView.selectionHighlightStyle = .None
-        outlineView.backgroundColor = NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
+        outlineView.backgroundColor = UI.Color.InspectorBackground
         
         outlineView.sizeLastColumnToFit()
         outlineView.expandItem(nil, expandChildren: true)
@@ -109,6 +110,11 @@ extension MetadataInspector: NSOutlineViewDelegate {
         if identifier == kHeaderCell {
             view.textField?.stringValue = item[kTitle] as! String
             view.textField?.textColor = NSColor(white:0.0, alpha:1.0)
+        }
+        if identifier == kTagsCell {
+            if let tokenField = view.viewWithTag(42) as? NSTokenField {
+                tokenField.backgroundColor = UI.Color.InspectorBackground
+            }
         }
         
         return view

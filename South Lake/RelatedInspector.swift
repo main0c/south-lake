@@ -66,10 +66,10 @@ class RelatedInspector: NSViewController, Inspector {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (view as! CustomizableView).backgroundColor = NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
+        (view as! CustomizableView).backgroundColor = UI.Color.InspectorBackground
         
         tagsArrayController.sortDescriptors = [NSSortDescriptor(key: "self", ascending: true, selector: Selector("caseInsensitiveCompare:"))]
-        
+
         libraryArrayController.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: Selector("compare:"))]
         
         loadScene("libraryCollectionScene")
@@ -122,6 +122,13 @@ class RelatedInspector: NSViewController, Inspector {
         containerView.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": scene.view])
         )
+        
+        // Custom background colors - would prefer to do this another way
+        // Simple setBackgroundColor() on LibraryScene for example
+        
+        if let tagsScene = scene as? LibraryCollectionViewController {
+            tagsScene.collectionView.backgroundColors = [UI.Color.InspectorBackground]
+        }
         
         // Bind the array controller to ours
         // Predicates and sorting are applied before it even sees the data

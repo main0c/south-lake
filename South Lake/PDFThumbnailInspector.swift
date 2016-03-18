@@ -30,7 +30,7 @@ class PDFThumbnailInspector: NSViewController, Inspector {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        thumbnailView.setBackgroundColor(NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0))
+        thumbnailView.setBackgroundColor(UI.Color.InspectorBackground)
     }
     
     func willClose() {

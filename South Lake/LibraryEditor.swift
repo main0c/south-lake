@@ -74,14 +74,13 @@ class LibraryEditor: NSViewController, FileEditor {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (view as! CustomizableView).backgroundColor = NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
+        (view as! CustomizableView).backgroundColor = UI.Color.FileEditorBackground
+        pathControl.backgroundColor = UI.Color.FileEditorBackground
         
         sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: Selector("compare:"))]
         
         // pathControl.cursor = NSCursor.pointingHandCursor()
         pathControl.URL = NSURL(string: "southlake://localhost/library")
-        pathControl.backgroundColor = NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
-        
         updatePathControlAppearance()
         
         // TODO: Save and restore scene preference

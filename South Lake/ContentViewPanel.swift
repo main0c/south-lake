@@ -43,7 +43,7 @@ class ContentViewPanel: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.layer?.backgroundColor = NSColor(white: 1.0, alpha: 1.0).CGColor
+        (self.view as! CustomizableView).backgroundColor = UI.Color.FileEditorBackground
     }
     
     func willClose() {

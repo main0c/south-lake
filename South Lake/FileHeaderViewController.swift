@@ -51,7 +51,7 @@ class FileHeaderViewController: NSViewController, Databasable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (self.view as! CustomizableView).backgroundColor = NSColor(white:1.0, alpha: 1.0)
+        (self.view as! CustomizableView).backgroundColor = UI.Color.FileHeaderBackground
         tokenTracker = NSTokenFieldTokenTracker(tokenField: tagsField!, delegate: false)
     
         bindTags()

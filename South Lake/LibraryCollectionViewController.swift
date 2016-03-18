@@ -13,7 +13,7 @@ import Cocoa
 class LibraryCollectionViewController: NSViewController, LibraryScene {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var collectionView: NSCollectionView!
-
+    
     // MARK: - Databasable
 
     var databaseManager: DatabaseManager?
@@ -24,7 +24,7 @@ class LibraryCollectionViewController: NSViewController, LibraryScene {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.backgroundColors = [NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)]
+        collectionView.backgroundColors = [UI.Color.FileEditorBackground]
         
         let prototype = storyboard!.instantiateControllerWithIdentifier("libraryCollectionViewItem") as? LibraryCollectionViewItem
         prototype?.doubleAction = Selector("doubleClick:")

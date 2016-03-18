@@ -35,7 +35,7 @@ class CalendarEditor: NSViewController, FileEditor {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (view as! CustomizableView).backgroundColor = NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
+        (view as! CustomizableView).backgroundColor = UI.Color.FileEditorBackground
     }
     
     // MARK: - 

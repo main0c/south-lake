@@ -19,7 +19,7 @@ class TagsCollectionViewItem: NSCollectionViewItem {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backgroundView.backgroundColor = NSColor(white: 0.98, alpha: 1.0)
+        backgroundView.backgroundColor = NSColor(white: 1.0, alpha: 1.0)
         backgroundView.borderColor = NSColor(white:0.8, alpha: 1.0)
         backgroundView.borderRadius = 3
         backgroundView.borderWidth = 1

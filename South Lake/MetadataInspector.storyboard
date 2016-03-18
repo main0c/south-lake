@@ -22,7 +22,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="201" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
-                                            <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.95294117647058818" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="gridColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                                             <tableColumns>
                                                 <tableColumn width="198" minWidth="16" maxWidth="1000" id="EhK-Uq-xtN">
@@ -219,7 +219,7 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <tokenField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZfI-RP-HyC">
+                                                                <tokenField focusRingType="none" verticalHuggingPriority="750" tag="42" translatesAutoresizingMaskIntoConstraints="NO" id="ZfI-RP-HyC">
                                                                     <rect key="frame" x="5" y="3" width="188" height="87"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="87" id="bpP-Ve-a0z"/>
@@ -227,7 +227,7 @@
                                                                     <tokenFieldCell key="cell" controlSize="small" selectable="YES" editable="YES" focusRingType="none" alignment="left" placeholderString="Panel not yet implemented" drawsBackground="YES" allowsEditingTextAttributes="YES" id="Ah9-Xg-gsw">
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <color key="backgroundColor" red="0.95294117647058818" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                                                                     </tokenFieldCell>
                                                                 </tokenField>
                                                             </subviews>
@@ -249,7 +249,7 @@
                                             </connections>
                                         </outlineView>
                                     </subviews>
-                                    <nil key="backgroundColor"/>
+                                    <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="SwU-mK-XWo">
                                     <rect key="frame" x="0.0" y="284" width="200" height="16"/>

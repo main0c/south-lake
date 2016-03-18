@@ -31,7 +31,7 @@
         <scene sceneID="lUj-dP-CsN">
             <objects>
                 <viewController id="gSK-tU-OTL" userLabel="Content View Controller" customClass="ContentViewPanel" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="b62-9X-aZ2">
+                    <view key="view" id="b62-9X-aZ2" customClass="CustomizableView" customModule="South_Lake" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="578"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -71,7 +71,7 @@
         <scene sceneID="es3-lF-qMF">
             <objects>
                 <viewController id="Oek-qD-h4p" userLabel="Inspector Controller" customClass="InspectorPanel" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="rdU-W6-1rA">
+                    <view key="view" id="rdU-W6-1rA" customClass="CustomizableView" customModule="South_Lake" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="478"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
