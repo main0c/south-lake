@@ -315,10 +315,10 @@ class DatabaseManager: NSObject {
             print("tags source not at expected index (2)")
             return
         }
-        guard let trashSource = notebook.children[safe: 3] where trashSource.uti == DataTypes.Trash.uti else {
-            print("trash source not at expected index (3)")
-            return
-        }
+//        guard let trashSource = notebook.children[safe: 3] where trashSource.uti == DataTypes.Trash.uti else {
+//            print("trash source not at expected index (3)")
+//            return
+//        }
         
         self.notebookSection = notebook
         self.shortcutsSection = shortcuts
@@ -328,6 +328,6 @@ class DatabaseManager: NSObject {
         self.librarySource = librarySource
         self.calendarSource = calendarSource
         self.tagsSource = tagsSource
-        self.trashSource = trashSource
+//        self.trashSource = trashSource
     }
 }

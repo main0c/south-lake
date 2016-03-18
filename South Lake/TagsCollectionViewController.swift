@@ -71,4 +71,15 @@ class TagsCollectionViewController: NSViewController, LibraryScene {
         ])
     }
     
+    // MARK: - View
+    
+    func useIconView() {
+        collectionView.maxItemSize = NSMakeSize(227, 33)
+        collectionView.maxNumberOfColumns = 0
+    }
+    
+    func useListView() {
+        collectionView.maxItemSize = NSMakeSize(0, 33)
+        collectionView.maxNumberOfColumns = 1
+    }
 }

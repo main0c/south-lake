@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hCl-Ah-f3C">
-                                <rect key="frame" x="166" y="245" width="174" height="19"/>
+                                <rect key="frame" x="242" y="245" width="174" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="174" id="UPa-KU-7dk"/>
                                 </constraints>
@@ -28,7 +28,7 @@
                                 </connections>
                             </searchField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DV7-Py-hfd">
-                                <rect key="frame" x="10" y="244" width="149" height="19"/>
+                                <rect key="frame" x="86" y="244" width="149" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="149" id="XS6-mN-nbt"/>
                                 </constraints>
@@ -52,7 +52,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7yb-CE-cuk">
-                                <rect key="frame" x="346" y="247" width="17" height="14"/>
+                                <rect key="frame" x="422" y="247" width="17" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="12" id="yB4-e8-oq7">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="6Ra-Ug-sWB"/>
                                     <font key="font" metaFont="systemSemibold" size="11"/>
@@ -83,6 +83,19 @@
                                     <action selector="gotoPath:" target="1hg-0a-15P" id="Dl0-sJ-SG4"/>
                                 </connections>
                             </pathControl>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NoR-ek-Jwk">
+                                <rect key="frame" x="9" y="244" width="71" height="20"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="roundRect" trackingMode="selectOne" id="ZLe-Wo-72d">
+                                    <font key="font" metaFont="cellTitle"/>
+                                    <segments>
+                                        <segment image="NSIconViewTemplate" width="32" selected="YES"/>
+                                        <segment image="NSListViewTemplate" width="32" tag="1"/>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <action selector="changeView:" target="1hg-0a-15P" id="oeb-Qa-Wvt"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <constraints>
                             <constraint firstItem="ObZ-VS-gFU" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="66" id="28l-HA-y9u"/>
@@ -93,11 +106,13 @@
                             <constraint firstItem="vau-kB-p5Y" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" constant="4" id="R6T-J4-S8D"/>
                             <constraint firstItem="hCl-Ah-f3C" firstAttribute="leading" secondItem="DV7-Py-hfd" secondAttribute="trailing" constant="7" id="SwV-xb-6Ft"/>
                             <constraint firstItem="ObZ-VS-gFU" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" id="Ut7-yq-A1X"/>
+                            <constraint firstItem="NoR-ek-Jwk" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="37" id="Wi6-rK-lj4"/>
                             <constraint firstItem="hCl-Ah-f3C" firstAttribute="leading" secondItem="DV7-Py-hfd" secondAttribute="trailing" constant="7" id="Y8l-zF-qab"/>
                             <constraint firstItem="vau-kB-p5Y" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="8" id="dNO-jo-uL9"/>
-                            <constraint firstItem="DV7-Py-hfd" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" constant="10" id="fws-cs-gKI"/>
+                            <constraint firstItem="NoR-ek-Jwk" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" constant="10" id="dke-lg-RFj"/>
                             <constraint firstAttribute="trailing" secondItem="ObZ-VS-gFU" secondAttribute="trailing" id="lPe-Jy-LOL"/>
                             <constraint firstAttribute="trailing" secondItem="vau-kB-p5Y" secondAttribute="trailing" priority="250" constant="10" id="mUa-ru-4L8"/>
+                            <constraint firstItem="DV7-Py-hfd" firstAttribute="leading" secondItem="NoR-ek-Jwk" secondAttribute="trailing" constant="7" id="nrk-VR-e8a"/>
                             <constraint firstItem="DV7-Py-hfd" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="37" id="zMj-3J-gW2"/>
                         </constraints>
                     </view>
@@ -178,11 +193,18 @@
                                     <constraint firstItem="aXL-E6-8wV" firstAttribute="leading" secondItem="eU7-ER-7Ru" secondAttribute="leading" constant="10" id="xar-lE-qam"/>
                                 </constraints>
                             </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="XmX-0r-tbm" customClass="CustomizableView" customModule="South_Lake" customModuleProvider="target">
+                                <rect key="frame" x="103" y="2" width="122" height="29"/>
+                            </customView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="eU7-ER-7Ru" firstAttribute="leading" secondItem="n0P-Cu-BwC" secondAttribute="leading" id="IZR-Dg-Iga"/>
+                            <constraint firstItem="XmX-0r-tbm" firstAttribute="top" secondItem="n0P-Cu-BwC" secondAttribute="top" constant="2" id="Kmu-e1-LpH"/>
+                            <constraint firstAttribute="trailing" secondItem="XmX-0r-tbm" secondAttribute="trailing" constant="2" id="N0d-jT-wGm"/>
                             <constraint firstItem="eU7-ER-7Ru" firstAttribute="top" secondItem="n0P-Cu-BwC" secondAttribute="top" constant="2" id="NEQ-W0-GoU"/>
                             <constraint firstAttribute="bottom" secondItem="eU7-ER-7Ru" secondAttribute="bottom" constant="2" id="X6i-JX-ibB"/>
+                            <constraint firstItem="XmX-0r-tbm" firstAttribute="leading" secondItem="eU7-ER-7Ru" secondAttribute="trailing" constant="2" id="nSv-qh-Vyu"/>
+                            <constraint firstAttribute="bottom" secondItem="XmX-0r-tbm" secondAttribute="bottom" constant="2" id="uRd-HC-tWs"/>
                         </constraints>
                     </view>
                     <connections>
@@ -391,4 +413,8 @@
             <point key="canvasLocation" x="533" y="542.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSIconViewTemplate" width="10" height="10"/>
+        <image name="NSListViewTemplate" width="14" height="10"/>
+    </resources>
 </document>

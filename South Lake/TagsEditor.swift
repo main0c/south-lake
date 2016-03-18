@@ -145,6 +145,29 @@ class TagsEditor: NSViewController, FileEditor {
         arrayController.sortDescriptors = descriptors
     }
     
+    // Actually we're just changing the collection view item used in this case
+    
+    @IBAction func changeView(sender: AnyObject?) {
+        guard let sender = sender as? NSSegmentedControl,
+              let cell = sender.cell as? NSSegmentedCell else {
+              return
+        }
+        
+        let segment = sender.selectedSegment
+        let tag = cell.tagForSegment(segment)
+        
+        switch tag {
+        case 0: // icon collection
+            useIconView()
+            break
+        case 1: // listing collection
+            useListView()
+            break
+        case _:
+            break
+        }
+    }
+    
     @IBAction func gotoPath(sender: AnyObject?) {
         guard let databaseManager = databaseManager else {
             return
@@ -160,6 +183,20 @@ class TagsEditor: NSViewController, FileEditor {
             "dbm": databaseManager,
             "url": url
         ])
+    }
+    
+    // MARK: - View
+    
+    func useIconView() {
+        if let scene = scene as? TagsCollectionViewController {
+            scene.useIconView()
+        }
+    }
+    
+    func useListView() {
+        if let scene = scene as? TagsCollectionViewController {
+            scene.useListView()
+        }
     }
     
     // MARK: - Scene
@@ -199,8 +236,6 @@ class TagsEditor: NSViewController, FileEditor {
             scene.arrayController.bind("contentArray", toObject: libraryArrayController, withKeyPath: "arrangedObjects", options: [:])
         }
     }
-    
-    // TODO: call, won't always be contentArray, scene could be library
     
     func unloadScene() {
         guard let scene = scene else {
