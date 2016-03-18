@@ -96,6 +96,9 @@ class TagsEditor: NSViewController, FileEditor {
         guard let databaseManager = databaseManager else {
             return
         }
+        guard unbound("content") else {
+            return
+        }
         
         bind("content", toObject: databaseManager, withKeyPath: "tags", options: [:])
     }
@@ -104,6 +107,9 @@ class TagsEditor: NSViewController, FileEditor {
     
     func bindLibrary() {
         guard let databaseManager = databaseManager else {
+            return
+        }
+        guard unbound("libraryContent") else {
             return
         }
         

@@ -78,6 +78,9 @@ class SourceListPanel: NSViewController, Databasable {
         guard let databaseManager = databaseManager else {
             return
         }
+        guard unbound("content") else {
+            return
+        }
         
         bind("content", toObject: databaseManager, withKeyPath: "sections", options: [:])
     }
@@ -247,11 +250,9 @@ extension SourceListPanel : NSOutlineViewDataSource {
         guard let databaseManager = databaseManager else {
             return false
         }
-        
         guard parent != nil else {
             return false
         }
-        
         guard draggedNodes != nil else {
             return false
         }

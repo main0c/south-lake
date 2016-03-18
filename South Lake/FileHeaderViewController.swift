@@ -72,6 +72,9 @@ class FileHeaderViewController: NSViewController, Databasable {
         guard let databaseManager = databaseManager else {
             return
         }
+        guard unbound("tagsContent") else {
+            return
+        }
         
         bind("tagsContent", toObject: databaseManager, withKeyPath: "tags", options: [:])
     }

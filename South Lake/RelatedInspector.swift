@@ -93,6 +93,9 @@ class RelatedInspector: NSViewController, Inspector {
         guard let databaseManager = databaseManager else {
             return
         }
+        guard unbound("libraryContent") else {
+            return
+        }
         
         bind("libraryContent", toObject: databaseManager, withKeyPath: "files", options: [:])
     }
@@ -145,12 +148,10 @@ class RelatedInspector: NSViewController, Inspector {
         guard let databaseManager = databaseManager else {
             return
         }
-        
         guard let selectedTag = selectedTags?[safe: 0],
               let encodedTag = selectedTag.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet()) else {
               return
         }
-        
         guard let url = NSURL(string: "southlake://localhost/tags/\(encodedTag)") else {
             print("unable to construct url for tag \(selectedTag)")
             return

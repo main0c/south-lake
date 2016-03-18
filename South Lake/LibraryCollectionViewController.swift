@@ -53,13 +53,11 @@ class LibraryCollectionViewController: NSViewController, LibraryScene {
         guard let databaseManager = databaseManager else {
             return
         }
-
         guard let object = arrayController.selectedObjects[safe: 0] as? DataSource,
               let id = object.id else {
             print("no selected object")
             return
         }
-        
         guard let url = NSURL(string: "southlake://localhost/library/\(id)") else {
             print("unable to construct url for object with id \(id)")
             return

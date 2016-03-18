@@ -105,6 +105,9 @@ class LibraryEditor: NSViewController, FileEditor {
         guard let databaseManager = databaseManager else {
             return
         }
+        guard unbound("content") else {
+            return
+        }
         
         bind("content", toObject: databaseManager, withKeyPath: "files", options: [:])
     }
@@ -170,7 +173,6 @@ class LibraryEditor: NSViewController, FileEditor {
         guard let databaseManager = databaseManager else {
             return
         }
-        
         guard let sender = sender as? NSPathControl else {
             return
         }
