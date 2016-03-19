@@ -256,10 +256,11 @@ class LibraryEditor: NSViewController, FileEditor {
         var ids: [String] = []
         
         results.iterateWithBlock { (index: UInt, result: BRSearchResult!, stop: UnsafeMutablePointer<ObjCBool>) -> Void in
-             guard let _ = result.dictionaryRepresentation(),
-                  var id = result.valueForField("id") as? String,
-                  let _ = result.valueForField("t") as? String,
-                  let _ = result.valueForField("v") as? String else {
+            // guard let _ = result.dictionaryRepresentation()
+            // let _ = result.valueForField("t") as? String,
+            // let _ = result.valueForField("v") as? String
+            
+            guard var id = result.valueForField("id") as? String else {
                   return
             }
             

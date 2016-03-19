@@ -111,12 +111,8 @@ class Document: NSDocument {
                     let indexable = BRSimpleIndexable(identifier: change.documentID, data:[
                         kBRSearchFieldNameTitle: file.title,
                         kBRSearchFieldNameValue: file.plain_text,
-                        String("g"): file.tags
+                        String("q"): file.tags
                     ])
-                    
-                    print( indexable.indexFieldsDictionary() )
-                    // print( indexable.indexFieldStorageType("g") )
-                    let indexType = indexable.indexFieldIndexType("g")
                     
                     var error: NSError?
                     self.searchService.addObjectToIndexAndWait(indexable, error: &error)
@@ -486,8 +482,7 @@ class Document: NSDocument {
             throw DocumentError.CouldNotInitializeSearch
         }
         
-        // must update search service and build for mac os again
-        // (self.searchService as! CLuceneSearchService).generalTextFields = []
+        (self.searchService as! CLuceneSearchService).generalTextFields.append("q")
     }
     
     func bootstrapLucene() {
