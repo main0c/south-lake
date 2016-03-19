@@ -13,12 +13,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h0C-0L-1d6">
-                                <rect key="frame" x="9" y="244" width="158" height="20"/>
+                                <rect key="frame" x="119" y="244" width="140" height="20"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="roundRect" trackingMode="selectOne" id="YcY-Pv-fS2">
                                     <font key="font" metaFont="cellTitle"/>
                                     <segments>
-                                        <segment label="Created" width="76" selected="YES"/>
-                                        <segment label="Updated" width="75" tag="1"/>
+                                        <segment label="Created" width="67" selected="YES"/>
+                                        <segment label="Updated" width="66" tag="1"/>
                                     </segments>
                                 </segmentedCell>
                             </segmentedControl>
@@ -33,6 +33,20 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PwF-yQ-yIr">
+                                <rect key="frame" x="9" y="244" width="104" height="20"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="roundRect" trackingMode="momentary" id="5Gp-dV-TYL">
+                                    <font key="font" metaFont="cellTitle"/>
+                                    <segments>
+                                        <segment label="&lt;" width="22"/>
+                                        <segment label="Today" width="52" tag="1"/>
+                                        <segment label="&gt;" width="22"/>
+                                    </segments>
+                                </segmentedCell>
+                            </segmentedControl>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="fyO-Pa-Fcb">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="237"/>
+                            </customView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Sa3-Kv-Cax">
                                 <rect key="frame" x="152" y="142" width="146" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Calendar View Coming" id="3Kc-yR-1SO">
@@ -44,18 +58,53 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="9ne-im-T5M" secondAttribute="trailing" constant="10" id="6tQ-ke-l1a"/>
-                            <constraint firstItem="h0C-0L-1d6" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" constant="10" id="EZt-oU-HoO"/>
+                            <constraint firstItem="fyO-Pa-Fcb" firstAttribute="top" secondItem="PwF-yQ-yIr" secondAttribute="bottom" constant="8" id="PwQ-ZT-ssK"/>
                             <constraint firstItem="9ne-im-T5M" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" constant="10" id="TUj-Js-r8Y"/>
+                            <constraint firstItem="PwF-yQ-yIr" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" constant="10" id="ace-RU-dEw"/>
+                            <constraint firstItem="PwF-yQ-yIr" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="37" id="bEw-I3-iqH"/>
                             <constraint firstItem="9ne-im-T5M" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="7" id="cRf-wB-1DJ"/>
                             <constraint firstItem="Sa3-Kv-Cax" firstAttribute="centerY" secondItem="yGH-dJ-Tg1" secondAttribute="centerY" id="eMf-T6-MJ1"/>
+                            <constraint firstAttribute="bottom" secondItem="fyO-Pa-Fcb" secondAttribute="bottom" id="f6o-NU-qJx"/>
+                            <constraint firstItem="fyO-Pa-Fcb" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" id="fGJ-8z-obh"/>
                             <constraint firstItem="h0C-0L-1d6" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="37" id="g73-vj-H9H"/>
+                            <constraint firstItem="h0C-0L-1d6" firstAttribute="leading" secondItem="PwF-yQ-yIr" secondAttribute="trailing" constant="8" id="gEX-V6-wwL"/>
+                            <constraint firstAttribute="trailing" secondItem="fyO-Pa-Fcb" secondAttribute="trailing" id="qpm-xF-ANI"/>
                             <constraint firstItem="Sa3-Kv-Cax" firstAttribute="centerX" secondItem="yGH-dJ-Tg1" secondAttribute="centerX" id="yAX-f9-LC6"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="containerView" destination="fyO-Pa-Fcb" id="TDs-qa-Xpm"/>
+                    </connections>
                 </viewController>
                 <customObject id="kTl-sn-Twx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="423" y="179"/>
+        </scene>
+        <!--Page Controller-->
+        <scene sceneID="CN8-v6-8CT">
+            <objects>
+                <pagecontroller id="rmk-Vq-GKu" sceneMemberID="viewController">
+                    <view key="view" id="5sr-3U-1Kl">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </pagecontroller>
+                <customObject id="iPS-sa-fyL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="887" y="179"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="yhc-aS-WaK">
+            <objects>
+                <viewController id="iW1-TK-RiW" sceneMemberID="viewController">
+                    <view key="view" id="ay0-Do-0KE">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="6rS-Fo-k3I" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="887" y="525"/>
         </scene>
     </scenes>
 </document>

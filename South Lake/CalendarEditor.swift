@@ -9,8 +9,9 @@
 import Cocoa
 
 class CalendarEditor: NSViewController, FileEditor {
+    @IBOutlet var containerView: NSView!
 
-   static var filetypes: [String] { return ["southlake.notebook.calendar", "southlake/x-notebook-calendar", "southlake-notebook-calendar"] }
+    static var filetypes: [String] { return ["southlake.notebook.calendar", "southlake/x-notebook-calendar", "southlake-notebook-calendar"] }
     static var storyboard: String { return "CalendarEditor" }
     
     var databaseManager: DatabaseManager?
