@@ -105,9 +105,6 @@ class Document: NSDocument {
                         continue
                     }
                     
-                    let tags = file.tags.joinWithSeparator(" ")
-                    print("tags: \(tags)")
-                    
                     let indexable = BRSimpleIndexable(identifier: change.documentID, data:[
                         kBRSearchFieldNameTitle: file.title,
                         kBRSearchFieldNameValue: file.plain_text,
