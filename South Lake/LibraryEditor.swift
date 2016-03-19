@@ -260,12 +260,7 @@ class LibraryEditor: NSViewController, FileEditor {
                   return
             }
             
-            // TODO: lucene doc id question mark prefix
-            // The lucene search results return a document identifier beginning
-            // with a question mark even though I am indexing using an identifier
-            // that does not have one. What gives?
-            
-            if id[id.startIndex] == "?" {
+            if id[id.startIndex] == "?" { // kBRSimpleIndexableSearchObjectType
                 id = id.substringFromIndex(id.startIndex.advancedBy(1))
             }
             
