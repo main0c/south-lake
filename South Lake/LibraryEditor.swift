@@ -244,7 +244,8 @@ class LibraryEditor: NSViewController, FileEditor {
             return
         }
         guard let results = results where results.count() != 0 else {
-            print("no search results")
+            searchPredicate = NSPredicate(value: false)
+            // TODO: indicate in interface
             return
         }
         

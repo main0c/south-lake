@@ -107,7 +107,8 @@ class Document: NSDocument {
                     
                     let indexable = BRSimpleIndexable(identifier: change.documentID, data:[
                         kBRSearchFieldNameTitle: file.title,
-                        kBRSearchFieldNameValue: file.plain_text
+                        kBRSearchFieldNameValue: file.plain_text,
+                        "q": file.tags.joinWithSeparator(" ")
                     ])
                     
                     var error: NSError?
