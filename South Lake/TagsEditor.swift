@@ -76,10 +76,7 @@ class TagsEditor: NSViewController, FileEditor {
         updatePathControlAppearance()
         
         loadScene("tagsCollectionScene")
-        
-        let viewId = NSUserDefaults.standardUserDefaults().integerForKey("SLTagsView")
-        viewSelector.selectSegmentWithTag(viewId)
-        loadView(viewId)
+        restoreView()
         
         bindLibrary()
         bindTags()
@@ -185,6 +182,13 @@ class TagsEditor: NSViewController, FileEditor {
     
     // MARK: - View
     
+    func restoreView() {
+        // might guard against the scene
+        let viewId = NSUserDefaults.standardUserDefaults().integerForKey("SLTagsView")
+        viewSelector.selectSegmentWithTag(viewId)
+        loadView(viewId)
+    }
+    
     func loadView(tag: Int) {
         switch tag {
         case 0: // icon collection
@@ -273,18 +277,17 @@ class TagsEditor: NSViewController, FileEditor {
         pathControl.URL = url
         updatePathControlAppearance()
         
-        // If there is no specific tag, reload the tags scene
+        // If the url contains a tag, load only those entries for the tag
+        // Otherwise just show all tags
         
-        guard let encodedTag = url.pathComponents?[safe: 2],
-              let tag = encodedTag.stringByRemovingPercentEncoding else {
+        if  let encodedTag = url.pathComponents?[safe: 2],
+            let tag = encodedTag.stringByRemovingPercentEncoding {
+            libraryArrayController.filterPredicate = NSPredicate(format: "%@ in tags", tag)
+            loadScene("libraryCollectionScene")
+        } else {
             loadScene("tagsCollectionScene")
-            return
+            restoreView()
         }
-        
-        // Otherwise filter on the tag, load a scene and morph the toolbar
-        
-        libraryArrayController.filterPredicate = NSPredicate(format: "%@ in tags", tag)
-        loadScene("libraryCollectionScene")
     }
     
     // MARK: - Utilities
