@@ -100,6 +100,14 @@
                                     <action selector="gotoPath:" target="9yX-Un-WoT" id="1kh-1p-80P"/>
                                 </connections>
                             </pathControl>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KTt-tF-vM6">
+                                <rect key="frame" x="8" y="212" width="85" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No results" id="RAq-t2-8zV">
+                                    <font key="font" metaFont="systemLight" size="17"/>
+                                    <color key="textColor" red="0.92549019610000005" green="0.2193655303030303" blue="0.14798768939393939" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="H5b-Nw-NKT" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="36" id="AxH-CJ-tZM"/>
@@ -121,6 +129,7 @@
                     <connections>
                         <outlet property="arrayController" destination="p0W-cE-9Ld" id="o3a-Tv-K1w"/>
                         <outlet property="containerView" destination="WzD-xV-wPP" id="21j-zI-zsg"/>
+                        <outlet property="noSearchResultsLabel" destination="KTt-tF-vM6" id="yYP-BI-wzH"/>
                         <outlet property="pathControl" destination="x7s-jQ-cTj" id="cgO-yz-XQg"/>
                         <outlet property="sceneSelector" destination="BoY-EX-Wlw" id="D2K-dC-A1n"/>
                     </connections>

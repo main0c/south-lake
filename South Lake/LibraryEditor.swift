@@ -16,6 +16,7 @@ class LibraryEditor: NSViewController, FileEditor {
     @IBOutlet var containerView: NSView!
     @IBOutlet var pathControl: NSPathControlWithCursor!
     @IBOutlet var sceneSelector: NSSegmentedControl!
+    @IBOutlet var noSearchResultsLabel: NSTextField!
     
     // MARK: - File Editor
     
@@ -237,6 +238,7 @@ class LibraryEditor: NSViewController, FileEditor {
     // MARK: -
     
     func performSearch(text: String?, results: BRSearchResults?) {
+        noSearchResultsLabel.hidden = true
         updatePathControlWithSearch(text)
         
         guard let _ = text else {
@@ -245,7 +247,7 @@ class LibraryEditor: NSViewController, FileEditor {
         }
         guard let results = results where results.count() != 0 else {
             searchPredicate = NSPredicate(value: false)
-            // TODO: indicate in interface
+            noSearchResultsLabel.hidden = false
             return
         }
         
