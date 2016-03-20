@@ -447,7 +447,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         var indexPath: NSIndexPath
         
         if  let selectedIndexPath = sourceListController.selectedIndexPath,
-            let item = selectedObject where (item is Folder && !(item is SmartFolder)) {
+            let item = selectedObject where item.uti == DataTypes.Folder.uti {
             parent = item
             indexPath = selectedIndexPath.indexPathByAddingIndex(parent.children.count)
         } else {
@@ -525,7 +525,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         var indexPath: NSIndexPath
         
         if  let selectedIndexPath = sourceListController.selectedIndexPath,
-            let item = selectedObject where item is Folder {
+            let item = selectedObject where item.uti == DataTypes.Folder.uti {
             parent = item
             indexPath = selectedIndexPath.indexPathByAddingIndex(parent.children.count)
         } else {
