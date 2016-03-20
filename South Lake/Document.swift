@@ -94,29 +94,41 @@ class Document: NSDocument {
         NSNotificationCenter.defaultCenter().addObserverForName(kCBLDatabaseChangeNotification, object: databaseManager.database, queue: nil) { (notification) -> Void in
             if let changes = notification.userInfo!["changes"] as? [CBLDatabaseChange] {
                 for change in changes {
-                    NSLog("Document '%@' changed", change.documentID)
-                    guard let doc = self.databaseManager.database.documentWithID(change.documentID) else {
+                    let documentID = change.documentID
+                    guard let doc = self.databaseManager.database.documentWithID(documentID) else {
                         continue
                     }
                 
                     let model = CBLModel(forDocument: doc)
-                
                     guard let file = model as? File else {
                         continue
                     }
                     
-                    let indexable = BRSimpleIndexable(identifier: change.documentID, data:[
-                        kBRSearchFieldNameTitle: file.title,
-                        kBRSearchFieldNameValue: file.plain_text,
-                        String("q"): file.tags
-                    ])
-                    
-                    var error: NSError?
-                    self.searchService.addObjectToIndexAndWait(indexable, error: &error)
-                    if error != nil {
-                        print("unable to index \(file.title)")
+                    if doc.isDeleted {
+                        let ids = Set(arrayLiteral: documentID)
+                        let type = Int8(UnicodeScalar("?").value)
+                        var error: NSError?
+                        
+                        self.searchService.removeObjectsFromIndexAndWait(type, withIdentifiers: ids, error: &error)
+                        if error != nil {
+                            print("unable to de-index \(documentID)")
+                        } else {
+                            print("de-indexed \(documentID)")
+                        }
                     } else {
-                        print("index \(file.title)")
+                        let indexable = BRSimpleIndexable(identifier: documentID, data:[
+                            kBRSearchFieldNameTitle: file.title,
+                            kBRSearchFieldNameValue: file.plain_text,
+                            String("q"): file.tags
+                        ])
+                        
+                        var error: NSError?
+                        self.searchService.addObjectToIndexAndWait(indexable, error: &error)
+                        if error != nil {
+                            print("unable to index \(documentID)")
+                        } else {
+                            print("index \(documentID)")
+                        }
                     }
                 }
             }
