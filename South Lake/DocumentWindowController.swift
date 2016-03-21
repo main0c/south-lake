@@ -122,6 +122,29 @@ class DocumentWindowController: NSWindowController, Databasable {
         tabController.handleOpenURLNotification(notification)
     }
     
+    // MARK: - Document Import
+    
+    @IBAction func importFiles(sender: AnyObject?) {
+        guard let databaseManager = databaseManager,
+              let searchService = searchService else {
+            return
+        }
+        
+        let op = NSOpenPanel()
+        
+        op.title = NSLocalizedString("Select folders and files. Files will be copied into the notebook.", comment: "")
+        op.allowsMultipleSelection = true
+        op.canChooseDirectories = false
+        op.canChooseFiles = true
+        
+        op.beginWithCompletionHandler { (result: Int) -> Void in
+            if result == NSFileHandlingPanelOKButton {
+                let importer = Importer(databaseManager: databaseManager, searchService: searchService)
+                importer.importFiles(op.URLs)
+            }
+        }
+    }
+    
     // MARK: - Search Actions
     
     @IBAction func findInNotebook(sender: AnyObject?) {
@@ -179,7 +202,8 @@ class DocumentWindowController: NSWindowController, Databasable {
              Selector("selectPreviousTab:"):
             return tabController.validateMenuItem(menuItem)
         case Selector("findInNotebook:"),
-             Selector("closeWindow:"):
+             Selector("closeWindow:"),
+             Selector("importFiles:"):
              return true
         default:
              return false

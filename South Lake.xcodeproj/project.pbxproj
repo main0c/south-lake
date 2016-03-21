@@ -28,6 +28,7 @@
 		E36072701C74E40500914C2C /* DocumentTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E360726E1C74E40500914C2C /* DocumentTabController.swift */; };
 		E36072731C74E64200914C2C /* NSTabViewItem+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36072721C74E64200914C2C /* NSTabViewItem+ViewController.swift */; };
 		E360727C1C74FEEC00914C2C /* DocumentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E360727B1C74FEEC00914C2C /* DocumentTab.swift */; };
+		E36E261B1C9FA87D0060E61F /* Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36E261A1C9FA87D0060E61F /* Importer.swift */; };
 		E377CA361C98871800C90011 /* South Lake.style in Resources */ = {isa = PBXBuildFile; fileRef = E377CA351C98871800C90011 /* South Lake.style */; };
 		E378C5341C814F1900CACDFC /* String+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378C5331C814F1900CACDFC /* String+Range.swift */; };
 		E378E80F1C801F54009539FD /* NSToolbar+Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378E80E1C801F54009539FD /* NSToolbar+Items.swift */; };
@@ -311,6 +312,7 @@
 		E360726E1C74E40500914C2C /* DocumentTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentTabController.swift; sourceTree = "<group>"; };
 		E36072721C74E64200914C2C /* NSTabViewItem+ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTabViewItem+ViewController.swift"; sourceTree = "<group>"; };
 		E360727B1C74FEEC00914C2C /* DocumentTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentTab.swift; sourceTree = "<group>"; };
+		E36E261A1C9FA87D0060E61F /* Importer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Importer.swift; sourceTree = "<group>"; };
 		E377CA351C98871800C90011 /* South Lake.style */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "South Lake.style"; sourceTree = "<group>"; };
 		E378C5331C814F1900CACDFC /* String+Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Range.swift"; sourceTree = "<group>"; };
 		E378E80E1C801F54009539FD /* NSToolbar+Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSToolbar+Items.swift"; sourceTree = "<group>"; };
@@ -7260,6 +7262,7 @@
 		E3FD67A01C7BE4A200D7EBB7 /* Importers */ = {
 			isa = PBXGroup;
 			children = (
+				E36E261A1C9FA87D0060E61F /* Importer.swift */,
 				E3FD67A11C7BE4B500D7EBB7 /* ImporterPlugIns.swift */,
 				E3AD25591C7F9CDE006D6536 /* MarkdownImporter.swift */,
 				E37AB76B1C8F4A2E00F44564 /* PDFImporter.swift */,
@@ -7663,6 +7666,7 @@
 				E37D96101C723B8A000A9F90 /* AppDelegate.swift in Sources */,
 				E3AD255A1C7F9CDE006D6536 /* MarkdownImporter.swift in Sources */,
 				E3DDBEFA1C8D5AF300136BAE /* LibraryCollectionViewItem.swift in Sources */,
+				E36E261B1C9FA87D0060E61F /* Importer.swift in Sources */,
 				E37C7BB71C90C85800A3AB43 /* NSImage+Tint.swift in Sources */,
 				E37C7BB41C90BF6A00A3AB43 /* DMTabBarItem.m in Sources */,
 				E3274FC51C75A13D000B6A84 /* Folder.swift in Sources */,

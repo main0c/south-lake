@@ -473,7 +473,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
-                                            <binding destination="oMn-Pa-lPO" name="value" keyPath="representedObject.plain_text" id="DmJ-4D-Ugn"/>
+                                            <binding destination="q6c-kg-moM" name="value" keyPath="values.representedObject.plain_text" id="Dgf-su-SKZ"/>
                                         </connections>
                                     </textField>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L04-Ih-jPz">
@@ -528,6 +528,7 @@
                     </connections>
                 </collectionViewItem>
                 <customObject id="iIG-FB-7pW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="q6c-kg-moM"/>
             </objects>
             <point key="canvasLocation" x="542" y="586.5"/>
         </scene>

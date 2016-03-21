@@ -100,6 +100,9 @@
                                         <menuItem isSeparatorItem="YES" id="AbW-6F-Kla"/>
                                         <menuItem title="Add Files to Notebook" keyEquivalent="a" id="En2-8q-V2R">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="importFiles:" target="Ady-hI-5gd" id="kf3-K9-YSt"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="CjW-TN-2qF"/>
                                         <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
