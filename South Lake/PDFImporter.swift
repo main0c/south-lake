@@ -17,13 +17,13 @@ class PDFImporter: NSObject, FileImporter {
         super.init()
     }
     
-    func plainTextRepresentation(data: NSData?) -> String {
+    func plainTextRepresentation(data: NSData?) -> String? {
         guard let data = data else {
-            return ""
+            return nil
         }
         guard let document = PDFDocument(data: data) else {
             print("unable to derive pdf from data")
-            return ""
+            return nil
         }
         
         let badCharacters = NSMutableCharacterSet.alphanumericCharacterSet()
@@ -38,5 +38,9 @@ class PDFImporter: NSObject, FileImporter {
             .joinWithSeparator(" ")
         
         return text
+    }
+    
+    func thumbnail(data: NSData?) -> NSImage? {
+        return nil
     }
 }

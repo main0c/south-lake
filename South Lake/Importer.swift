@@ -81,7 +81,6 @@ class Importer {
             item!.file_extension = URL.fileExtension ?? "unknown"
             item!.mime_type = URL.mimeType ?? "unknown"
             item!.uti = URL.UTI ?? "unknown"
-            
             (item as! File).data = d
         }
         

@@ -19,15 +19,19 @@ class MarkdownImporter: NSObject, FileImporter {
         super.init()
     }
     
-    func plainTextRepresentation(data: NSData?) -> String {
+    func plainTextRepresentation(data: NSData?) -> String? {
         guard let data = data else {
-            return ""
+            return nil
         }
         guard let text = String(data: data, encoding: NSUTF8StringEncoding) else {
             print("unable to derive markdown string from data")
-            return ""
+            return nil
         }
         
         return text
+    }
+    
+    func thumbnail(data: NSData?) -> NSImage? {
+        return nil
     }
 }

@@ -86,7 +86,7 @@ class File: DataSource {
     
     func updatePlainText(data: NSData?) {
         if let importer = ImporterPlugIns.sharedInstance.plugInForFiletype(file_extension) {
-            plain_text = importer.plainTextRepresentation(data)
+            plain_text = importer.plainTextRepresentation(data) ?? ""
         } else {
             print("no importer found for file of type \(file_extension)")
         }
