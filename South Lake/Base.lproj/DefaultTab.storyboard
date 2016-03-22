@@ -144,13 +144,13 @@
                             <visualEffectView blendingMode="behindWindow" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="uwr-DL-gki">
                                 <rect key="frame" x="0.0" y="0.0" width="234" height="400"/>
                                 <subviews>
-                                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EpO-yU-go6">
+                                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EpO-yU-go6">
                                         <rect key="frame" x="0.0" y="29" width="234" height="371"/>
                                         <clipView key="contentView" drawsBackground="NO" id="9Jm-Sb-Rms">
                                             <rect key="frame" x="0.0" y="0.0" width="234" height="371"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <outlineView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="sourceList" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" floatsGroupRows="NO" indentationPerLevel="14" outlineTableColumn="VW4-Ja-dU6" id="db9-k2-GDY">
+                                                <outlineView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="sourceList" autosaveColumns="NO" rowHeight="22" viewBased="YES" floatsGroupRows="NO" indentationPerLevel="14" outlineTableColumn="VW4-Ja-dU6" id="db9-k2-GDY">
                                                     <rect key="frame" x="0.0" y="0.0" width="234" height="0.0"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -195,10 +195,10 @@
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <imageView translatesAutoresizingMaskIntoConstraints="NO" id="Mia-KF-hed">
-                                                                            <rect key="frame" x="3" y="0.0" width="17" height="17"/>
+                                                                            <rect key="frame" x="3" y="-2" width="21" height="21"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="17" id="hzr-Le-w29"/>
-                                                                                <constraint firstAttribute="height" constant="17" id="jL3-yO-e38"/>
+                                                                                <constraint firstAttribute="width" constant="21" id="hzr-Le-w29"/>
+                                                                                <constraint firstAttribute="height" constant="21" id="jL3-yO-e38"/>
                                                                             </constraints>
                                                                             <imageCell key="cell" refusesFirstResponder="YES" imageScaling="proportionallyDown" image="NSActionTemplate" id="JmS-A5-Q61"/>
                                                                             <connections>
@@ -227,7 +227,7 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="trailing" secondItem="SSR-hI-ohl" secondAttribute="trailing" constant="7" id="34K-4R-Awh"/>
                                                                         <constraint firstItem="Mia-KF-hed" firstAttribute="centerY" secondItem="wZO-PC-lzU" secondAttribute="centerY" id="4WQ-0S-Vwf"/>
-                                                                        <constraint firstItem="SSR-hI-ohl" firstAttribute="leading" secondItem="Mia-KF-hed" secondAttribute="trailing" constant="7" id="Xb1-jZ-7zz"/>
+                                                                        <constraint firstItem="SSR-hI-ohl" firstAttribute="leading" secondItem="Mia-KF-hed" secondAttribute="trailing" constant="3" id="Xb1-jZ-7zz"/>
                                                                         <constraint firstItem="Mia-KF-hed" firstAttribute="leading" secondItem="wZO-PC-lzU" secondAttribute="leading" constant="3" id="qKE-48-eVX"/>
                                                                         <constraint firstItem="SSR-hI-ohl" firstAttribute="centerY" secondItem="wZO-PC-lzU" secondAttribute="centerY" id="uyj-Vz-w9L"/>
                                                                     </constraints>

@@ -299,7 +299,7 @@ class Document: NSDocument {
                 let allEntries = Folder(forNewDocumentInDatabase: databaseManager.database)
             
                 allEntries.title = NSLocalizedString("Library", comment: "Library folder title")
-                allEntries.icon = NSImage(named: "notebook-icon")
+                allEntries.icon = NSImage(named: "light-notebook-icon")
                 allEntries.file_extension = DataTypes.Library.ext
                 allEntries.mime_type = DataTypes.Library.mime
                 allEntries.uti = DataTypes.Library.uti
@@ -308,7 +308,7 @@ class Document: NSDocument {
             
                 let calendar = Folder(forNewDocumentInDatabase: databaseManager.database)
                 calendar.title = NSLocalizedString("Calendar", comment: "Library calendar title")
-                calendar.icon = NSImage(named: "calendar-icon")
+                calendar.icon = NSImage(named: "light-calendar-icon")
                 calendar.file_extension = DataTypes.Calendar.ext
                 calendar.mime_type = DataTypes.Calendar.mime
                 calendar.uti = DataTypes.Calendar.uti
@@ -316,7 +316,7 @@ class Document: NSDocument {
                 let tags = Folder(forNewDocumentInDatabase: databaseManager.database)
             
                 tags.title = NSLocalizedString("Tags", comment: "Tags folder title")
-                tags.icon = NSImage(named: "tags-folder-icon")
+                tags.icon = NSImage(named: "light-tags-folder-icon")
                 tags.file_extension = DataTypes.Tags.ext
                 tags.mime_type = DataTypes.Tags.mime
                 tags.uti = DataTypes.Tags.uti
@@ -361,6 +361,47 @@ class Document: NSDocument {
                 doc1.mime_type = DataTypes.Markdown.mime
                 doc1.uti = DataTypes.Markdown.uti
             
+                // We must have ids before we can store the children
+            
+                try doc1.save()
+            
+            let shortcutsSection = Section(forNewDocumentInDatabase: databaseManager.database)
+            
+            shortcutsSection.title = NSLocalizedString("Shortcuts", comment: "Shortcts section title")
+            shortcutsSection.index = 1
+            shortcutsSection.file_extension = DataTypes.Shortcuts.ext
+            shortcutsSection.mime_type = DataTypes.Shortcuts.mime
+            shortcutsSection.uti = DataTypes.Shortcuts.uti
+            
+                children.append(doc1)
+                shortcutsSection.children = children
+            
+            // Folders
+            
+                var folders: [DataSource] = []
+            
+                let inbox = Folder(forNewDocumentInDatabase: databaseManager.database)
+            
+                inbox.title = "Inbox"
+                inbox.icon = NSImage(named: "light-inbox-icon")
+                inbox.file_extension = DataTypes.Inbox.ext
+                inbox.mime_type = DataTypes.Inbox.mime
+                inbox.uti = DataTypes.Inbox.uti
+            
+                let folder2 = Folder(forNewDocumentInDatabase: databaseManager.database)
+            
+                folder2.title = "My Folder"
+                folder2.icon = NSImage(named: "folder-icon")
+
+                // We must have ids before we can store the children
+            
+                try inbox.save()
+                try folder2.save()
+            
+                // Let's give the inbox some children
+            
+                var inboxChildren: [DataSource] = []
+            
                 let doc2 = File(forNewDocumentInDatabase: databaseManager.database)
             
                 doc2.title = NSLocalizedString("About Markdown", comment: "")
@@ -376,58 +417,30 @@ class Document: NSDocument {
                 let doc3 = File(forNewDocumentInDatabase: databaseManager.database)
                 doc3.title = NSLocalizedString("As We May Think", comment: "")
                 doc3.icon = NSWorkspace.sharedWorkspace().iconForFile(URL.path!)
+                doc3.thumbnail = NSWorkspace.sharedWorkspace().previewForFile(URL)
                 doc3.file_extension = URL.fileExtension ?? "unknown"
                 doc3.mime_type = URL.mimeType ?? "unknown"
                 doc3.uti = URL.UTI ?? "unknown"
                 doc3.data = PDFDocument(URL: URL).dataRepresentation()
-
-                // We must have ids before we can store the children
             
-                try doc1.save()
                 try doc2.save()
                 try doc3.save()
             
-            let shortcutsSection = Section(forNewDocumentInDatabase: databaseManager.database)
+                inboxChildren.append(doc2)
+                inboxChildren.append(doc3) // pdf
             
-            shortcutsSection.title = NSLocalizedString("Shortcuts", comment: "Shortcts section title")
-            shortcutsSection.index = 1
-            shortcutsSection.file_extension = DataTypes.Shortcuts.ext
-            shortcutsSection.mime_type = DataTypes.Shortcuts.mime
-            shortcutsSection.uti = DataTypes.Shortcuts.uti
-            
-                children.append(doc1)
-                children.append(doc2)
-                children.append(doc3) // pdf
-                shortcutsSection.children = children
-            
-            // Folders
-            
-                var folders: [DataSource] = []
-            
-                let folder1 = Folder(forNewDocumentInDatabase: databaseManager.database)
-            
-                folder1.title = "Important Folder"
-                folder1.icon = NSImage(named: "folder-icon")
-            
-                let folder2 = Folder(forNewDocumentInDatabase: databaseManager.database)
-            
-                folder2.title = "Another Folder"
-                folder2.icon = NSImage(named: "folder-icon")
+                inbox.children = inboxChildren
 
-                // We must have ids before we can store the children
-            
-                try folder1.save()
-                try folder2.save()
             
             let foldersSection = Section(forNewDocumentInDatabase: databaseManager.database)
             
-            foldersSection.title = NSLocalizedString("Folders & Files", comment: "Folders section title")
+            foldersSection.title = NSLocalizedString("Folders", comment: "Folders section title")
             foldersSection.index = 2
             foldersSection.file_extension = DataTypes.Folders.ext
             foldersSection.mime_type = DataTypes.Folders.mime
             foldersSection.uti = DataTypes.Folders.uti
             
-                folders.append(folder1)
+                folders.append(inbox)
                 folders.append(folder2)
                 foldersSection.children = folders
             

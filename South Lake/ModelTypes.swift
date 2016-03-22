@@ -83,6 +83,11 @@ struct DataTypes {
         static let uti = "southlake.notebook.trash"
         static let ext = "southlake-notebook-trash"
     }
+    struct Inbox {
+        static let mime = "southlake/x-notebook-inbox"
+        static let uti = "southlake.notebook.inbox"
+        static let ext = "southlake-notebook-inbox"
+    }
     
     // File Types
     
@@ -90,7 +95,5 @@ struct DataTypes {
         static let mime = "text/markdown"
         static let ext = "markdown"
         static let uti = "net.daringfireball.markdow"
-        static let model = "text/markdown"
-        
     }
 }

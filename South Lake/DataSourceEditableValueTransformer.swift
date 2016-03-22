@@ -15,7 +15,8 @@ class DataSourceEditableValueTransformer: NSValueTransformer {
         DataTypes.Library.uti,
         DataTypes.Calendar.uti,
         DataTypes.Tags.uti,
-        DataTypes.Trash.uti
+        DataTypes.Trash.uti,
+        DataTypes.Inbox.uti
     ]
     
     override class func allowsReverseTransformation() -> Bool {

@@ -742,6 +742,7 @@
 DQ
 </string>
                                         </menuItem>
+                                        <menuItem title="Move To" keyEquivalent="m" id="nfl-cp-eH6"/>
                                         <menuItem isSeparatorItem="YES" id="02J-jB-o1Y"/>
                                         <menuItem title="Snippets…" id="zXk-Dy-2GM">
                                             <modifierMask key="keyEquivalentModifierMask"/>

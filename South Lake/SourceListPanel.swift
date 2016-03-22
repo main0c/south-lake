@@ -246,7 +246,6 @@ class SourceListPanel: NSViewController, Databasable {
         }
         selectItemAtIndexPath(indexPath)
     }
-
     
 }
 
