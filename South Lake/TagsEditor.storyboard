@@ -355,7 +355,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
-                                            <binding destination="JMe-aK-5Ur" name="value" keyPath="representedObject.plain_text" id="OP6-6y-4Ex"/>
+                                            <binding destination="JMe-aK-5Ur" name="value" keyPath="representedObject.text_preview" id="Z5O-Ub-M8M"/>
                                         </connections>
                                     </textField>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PbU-Lg-H9f">

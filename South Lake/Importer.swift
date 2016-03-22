@@ -76,6 +76,7 @@ class Importer {
             item = File(forNewDocumentInDatabase: databaseManager.database)
             
             item!.title = (URL.lastPathComponent! as NSString).stringByDeletingPathExtension
+            item!.thumbnail = NSWorkspace.sharedWorkspace().previewForFile(URL)
             item!.icon = NSWorkspace.sharedWorkspace().iconForFile(path)
             item!.file_extension = URL.fileExtension ?? "unknown"
             item!.mime_type = URL.mimeType ?? "unknown"

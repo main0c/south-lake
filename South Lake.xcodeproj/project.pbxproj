@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		E3023A681C7AD43500111289 /* TwoWayKeyValueObserving.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3023A671C7AD43500111289 /* TwoWayKeyValueObserving.swift */; };
+		E3088A801CA065AF00CCA77C /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3088A7F1CA065AF00CCA77C /* QuickLook.framework */; };
+		E3088A931CA0666B00CCA77C /* NSWorkspace+Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = E3088A921CA0666B00CCA77C /* NSWorkspace+Thumbnail.m */; };
+		E3088A951CA0A82300CCA77C /* TableRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3088A941CA0A82300CCA77C /* TableRowView.swift */; };
+		E3088A971CA0AC4500CCA77C /* TableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3088A961CA0AC4500CCA77C /* TableCellView.swift */; };
+		E3088A991CA0F18100CCA77C /* LibraryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3088A981CA0F18100CCA77C /* LibraryTableView.swift */; };
+		E3088A9B1CA0F34800CCA77C /* LibraryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3088A9A1CA0F34800CCA77C /* LibraryCollectionView.swift */; };
 		E3148F121C79353B006BCE53 /* FileEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3148F111C79353B006BCE53 /* FileEditor.swift */; };
 		E3274FBF1C75A088000B6A84 /* MarkdownEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3274FBE1C75A088000B6A84 /* MarkdownEditor.swift */; };
 		E3274FC11C75A0B7000B6A84 /* SourceListPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3274FC01C75A0B7000B6A84 /* SourceListPanel.swift */; };
@@ -293,6 +299,13 @@
 		13FCBDC9A158BD5332E2FC09 /* libPods-South Lake.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-South Lake.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		654657607D7E3F52002B88CB /* Pods-South Lake.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-South Lake.release.xcconfig"; path = "Pods/Target Support Files/Pods-South Lake/Pods-South Lake.release.xcconfig"; sourceTree = "<group>"; };
 		E3023A671C7AD43500111289 /* TwoWayKeyValueObserving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoWayKeyValueObserving.swift; sourceTree = "<group>"; };
+		E3088A7F1CA065AF00CCA77C /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
+		E3088A911CA0666B00CCA77C /* NSWorkspace+Thumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWorkspace+Thumbnail.h"; sourceTree = "<group>"; };
+		E3088A921CA0666B00CCA77C /* NSWorkspace+Thumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWorkspace+Thumbnail.m"; sourceTree = "<group>"; };
+		E3088A941CA0A82300CCA77C /* TableRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableRowView.swift; sourceTree = "<group>"; };
+		E3088A961CA0AC4500CCA77C /* TableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCellView.swift; sourceTree = "<group>"; };
+		E3088A981CA0F18100CCA77C /* LibraryTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryTableView.swift; sourceTree = "<group>"; };
+		E3088A9A1CA0F34800CCA77C /* LibraryCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCollectionView.swift; sourceTree = "<group>"; };
 		E3148F111C79353B006BCE53 /* FileEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileEditor.swift; sourceTree = "<group>"; };
 		E3274FBE1C75A088000B6A84 /* MarkdownEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownEditor.swift; sourceTree = "<group>"; };
 		E3274FC01C75A0B7000B6A84 /* SourceListPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceListPanel.swift; sourceTree = "<group>"; };
@@ -2484,6 +2497,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3088A801CA065AF00CCA77C /* QuickLook.framework in Frameworks */,
 				E37AB7701C8F4AE600F44564 /* Quartz.framework in Frameworks */,
 				E3803F471C72977D0048AD46 /* SystemConfiguration.framework in Frameworks */,
 				E3803F451C7297780048AD46 /* CFNetwork.framework in Frameworks */,
@@ -2517,6 +2531,7 @@
 		7262FBE22EB6B82E7CC1DF59 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E3088A7F1CA065AF00CCA77C /* QuickLook.framework */,
 				E37AB76F1C8F4AE600F44564 /* Quartz.framework */,
 				E37AB76D1C8F4AC400F44564 /* QuartzCore.framework */,
 				E3803F461C72977D0048AD46 /* SystemConfiguration.framework */,
@@ -2587,6 +2602,8 @@
 				E37C7BB61C90C85800A3AB43 /* NSImage+Tint.swift */,
 				E3C436251C7641E900DD685D /* MPRenderer+TOC.h */,
 				E3C436261C7641E900DD685D /* MPRenderer+TOC.m */,
+				E3088A911CA0666B00CCA77C /* NSWorkspace+Thumbnail.h */,
+				E3088A921CA0666B00CCA77C /* NSWorkspace+Thumbnail.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -7224,6 +7241,10 @@
 				E37AB7441C8E1C0500F44564 /* LibraryCollectionViewController.swift */,
 				E3DDBEF91C8D5AF300136BAE /* LibraryCollectionViewItem.swift */,
 				E37AB7461C8E1C0E00F44564 /* LibraryTableViewController.swift */,
+				E3088A9A1CA0F34800CCA77C /* LibraryCollectionView.swift */,
+				E3088A981CA0F18100CCA77C /* LibraryTableView.swift */,
+				E3088A941CA0A82300CCA77C /* TableRowView.swift */,
+				E3088A961CA0AC4500CCA77C /* TableCellView.swift */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -7669,6 +7690,7 @@
 				E36E261B1C9FA87D0060E61F /* Importer.swift in Sources */,
 				E37C7BB71C90C85800A3AB43 /* NSImage+Tint.swift in Sources */,
 				E37C7BB41C90BF6A00A3AB43 /* DMTabBarItem.m in Sources */,
+				E3088A951CA0A82300CCA77C /* TableRowView.swift in Sources */,
 				E3274FC51C75A13D000B6A84 /* Folder.swift in Sources */,
 				E3803F051C728E140048AD46 /* pmh_styleparser.c in Sources */,
 				E37C7BD81C91024000A3AB43 /* RelatedInspector.swift in Sources */,
@@ -7684,6 +7706,7 @@
 				E3148F121C79353B006BCE53 /* FileEditor.swift in Sources */,
 				E3274FC91C75A151000B6A84 /* SmartFolder.swift in Sources */,
 				E3FD678F1C7BE37800D7EBB7 /* EditorPlugIns.swift in Sources */,
+				E3088A931CA0666B00CCA77C /* NSWorkspace+Thumbnail.m in Sources */,
 				E3C436271C7641E900DD685D /* MPRenderer+TOC.m in Sources */,
 				E3A8A0DF1C80C1DC009E96C1 /* NSStringNSDataValueTransformer.swift in Sources */,
 				E32AD2711C76843500648BFD /* Databasable.swift in Sources */,
@@ -7696,6 +7719,7 @@
 				E3E7C9E31C89078C00BD73A9 /* Snippet.swift in Sources */,
 				E3D190DB1C9C5E0800129AD7 /* NSTreeController+IndexPaths.swift in Sources */,
 				E3794C501C8CA345005EA307 /* CustomizableView.swift in Sources */,
+				E3088A991CA0F18100CCA77C /* LibraryTableView.swift in Sources */,
 				E3274FCB1C75A1BF000B6A84 /* File.swift in Sources */,
 				E385F7F21C92865C0015A91B /* TagsCollectionViewItem.swift in Sources */,
 				E3274FC71C75A148000B6A84 /* Section.swift in Sources */,
@@ -7705,6 +7729,7 @@
 				E3FD67A21C7BE4B500D7EBB7 /* ImporterPlugIns.swift in Sources */,
 				E3023A681C7AD43500111289 /* TwoWayKeyValueObserving.swift in Sources */,
 				E328F1A61C9BA97F00146381 /* UI.swift in Sources */,
+				E3088A9B1CA0F34800CCA77C /* LibraryCollectionView.swift in Sources */,
 				E3274FC31C75A134000B6A84 /* DataSource.swift in Sources */,
 				E37AB74F1C8E6F0E00F44564 /* FileHeaderViewController.swift in Sources */,
 				E360727C1C74FEEC00914C2C /* DocumentTab.swift in Sources */,
@@ -7718,6 +7743,7 @@
 				E3803F021C728E140048AD46 /* HGMarkdownHighlighter.m in Sources */,
 				E3803F101C728E790048AD46 /* NSTextView+Autocomplete.m in Sources */,
 				E3803F0C1C728E790048AD46 /* NSDocumentController+Document.m in Sources */,
+				E3088A971CA0AC4500CCA77C /* TableCellView.swift in Sources */,
 				E37C7BB31C90BF6A00A3AB43 /* DMTabBar.m in Sources */,
 				E3DA1D1A1C99FB1F00E378BA /* NSPathControlPointing.swift in Sources */,
 				E36072731C74E64200914C2C /* NSTabViewItem+ViewController.swift in Sources */,

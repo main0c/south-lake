@@ -66,4 +66,16 @@ class LibraryCollectionViewController: NSViewController, LibraryScene {
         ])
     }
     
+    override func deleteBackward(sender: AnyObject?) {
+        print("deleteBackward")
+    }
+    
+    override func insertNewline(sender: AnyObject?) {
+        print("insertNewline")
+        doubleClick(sender)
+    }
+    
+    override func quickLookPreviewItems(sender: AnyObject?) {
+        print("quickLookPreviewItems")
+    }
 }

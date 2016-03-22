@@ -47,6 +47,7 @@ class File: DataSource {
     override class var model_type: NSString { return DataTypes.File.model }
     
     @NSManaged var plain_text: String
+    @NSManaged var text_preview: String
     
     // The data is saved as an attachment, but cache it
     // An attachment is available as NSData or a read only file NSURL
@@ -79,18 +80,28 @@ class File: DataSource {
             }
         
             updatePlainText(_data)
+            updatePreviewText(plain_text)
         }
     }
     
     func updatePlainText(data: NSData?) {
-        // let importer = MarkdownImporter()
-        // plain_text = importer.plainTextRepresentation(data)
-        
         if let importer = ImporterPlugIns.sharedInstance.plugInForFiletype(file_extension) {
             plain_text = importer.plainTextRepresentation(data)
         } else {
             print("no importer found for file of type \(file_extension)")
         }
+    }
+    
+    func updatePreviewText(text: String?) {
+        guard let text = text else {
+            return
+        }
+        
+        let length = text.characters.count
+        let index = length < 100 ? length : 100
+        
+        text_preview = text.substringToIndex(text.startIndex.advancedBy(index))
+        print(text_preview)
     }
 }
 

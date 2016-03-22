@@ -62,10 +62,9 @@ class DataSource: CBLModel {
     }
     
     // MARK: - Icon
-    // The icon is saved as an attachment, but cache it
+    /// The icon is saved as an attachment but is cached
     
     private var _icon: NSImage?
-    
     var icon: NSImage? {
         get {
             guard _icon == nil else {
@@ -91,6 +90,39 @@ class DataSource: CBLModel {
             } else {
                 removeAttachmentNamed("icon")
                 _icon = nil
+            }
+        }
+    }
+    
+    // MARK: - Thumbnail
+    /// The thumbnail is saved as an attachment but is cached
+    
+    private var _thumbnail: NSImage?
+    var thumbnail: NSImage? {
+        get {
+            guard _thumbnail == nil else {
+                return _thumbnail
+            }
+            
+            if  let attachment = attachmentNamed("thumbnail"),
+                let content = attachment.content,
+                let image = NSImage(data: content) {
+                _thumbnail = image
+                return image
+            } else {
+                return nil
+            }
+        }
+        set (value) {
+            if  let value = value,
+                let rep = value.TIFFRepresentation,
+                let bitmap = NSBitmapImageRep(data: rep),
+                let data = bitmap.representationUsingType(.NSPNGFileType, properties: [:]) {
+                setAttachmentNamed("thumbnail", withContentType: "image/png", content: data)
+                _thumbnail = value
+            } else {
+                removeAttachmentNamed("thumbnail")
+                _thumbnail = nil
             }
         }
     }

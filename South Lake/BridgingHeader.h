@@ -40,6 +40,7 @@
 // South Lake
 
 #import "MPRenderer+TOC.h"
+#import "NSWorkspace+Thumbnail.h"
 #import "MacDownCopyFiles.h"
 #import "DMTabBar.h"
 #import "DMTabBarItem.h"

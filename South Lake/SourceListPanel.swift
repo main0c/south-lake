@@ -97,10 +97,13 @@ class SourceListPanel: NSViewController, Databasable {
     // MARK: -
     
     override func keyDown(theEvent: NSEvent) {
-        if theEvent.charactersIgnoringModifiers == String(Character(UnicodeScalar(NSDeleteCharacter))) {
+        switch theEvent.charactersIgnoringModifiers {
+        case .Some(String(Character(UnicodeScalar(NSDeleteCharacter)))):
             for item in treeController.selectedNodes {
                 deleteItem(item)
             }
+        default:
+            NSBeep()
         }
     }
     

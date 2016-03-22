@@ -50,4 +50,30 @@ class LibraryTableViewController: NSViewController, LibraryScene {
             "url": url
         ])
     }
+    
+    override func deleteBackward(sender: AnyObject?) {
+        print("deleteBackward")
+    }
+    
+    override func insertNewline(sender: AnyObject?) {
+        print("insertNewline")
+        doubleClick(sender)
+    }
+    
+    override func quickLookPreviewItems(sender: AnyObject?) {
+        print("quickLookPreviewItems")
+    }
+}
+
+extension LibraryTableViewController: NSTableViewDelegate {
+    
+    func tableView(tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
+        if let view = tableView.makeViewWithIdentifier("RowView", owner: self) as? TableRowView {
+            return view
+        } else {
+            let view = TableRowView()
+            view.identifier = "RowView"
+            return view
+        }
+    }
 }
