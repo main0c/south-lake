@@ -101,7 +101,6 @@ class File: DataSource {
         let index = length < 100 ? length : 100
         
         text_preview = text.substringToIndex(text.startIndex.advancedBy(index))
-        print(text_preview)
     }
 }
 

@@ -355,6 +355,11 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
+                                            <binding destination="JMe-aK-5Ur" name="hidden" keyPath="representedObject.thumbnail" id="33Q-yl-IMe">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                </dictionary>
+                                            </binding>
                                             <binding destination="JMe-aK-5Ur" name="value" keyPath="representedObject.text_preview" id="Z5O-Ub-M8M"/>
                                         </connections>
                                     </textField>
@@ -366,6 +371,11 @@
                                         </constraints>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Q0u-XM-w23"/>
                                         <connections>
+                                            <binding destination="JMe-aK-5Ur" name="hidden" keyPath="representedObject.thumbnail" id="nck-og-HzX">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                </dictionary>
+                                            </binding>
                                             <binding destination="JMe-aK-5Ur" name="value" keyPath="representedObject.icon" id="tTH-9d-hSk"/>
                                         </connections>
                                     </imageView>
@@ -378,9 +388,26 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
+                                            <binding destination="JMe-aK-5Ur" name="hidden" keyPath="representedObject.thumbnail" id="94S-WD-k7R">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                </dictionary>
+                                            </binding>
                                             <binding destination="JMe-aK-5Ur" name="value" keyPath="representedObject.created_at" id="LIg-dD-zMP"/>
                                         </connections>
                                     </textField>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o40-Jr-r36">
+                                        <rect key="frame" x="2" y="2" width="138" height="105"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" id="4tU-5q-hzm"/>
+                                        <connections>
+                                            <binding destination="JMe-aK-5Ur" name="hidden" keyPath="representedObject.thumbnail" id="LSE-Kk-em0">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSIsNil</string>
+                                                </dictionary>
+                                            </binding>
+                                            <binding destination="JMe-aK-5Ur" name="value" keyPath="representedObject.thumbnail" id="hhn-R5-wLb"/>
+                                        </connections>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="157" id="1K1-ct-4D1"/>
@@ -388,9 +415,13 @@
                                     <constraint firstItem="5D8-8X-cwK" firstAttribute="leading" secondItem="PbU-Lg-H9f" secondAttribute="trailing" constant="4" id="Ca4-0h-Zj2"/>
                                     <constraint firstItem="Kwf-4H-rHD" firstAttribute="top" secondItem="tIB-IS-yXe" secondAttribute="top" constant="8" id="D6J-Bu-uiZ"/>
                                     <constraint firstAttribute="bottom" secondItem="Xd1-3v-XUE" secondAttribute="bottom" constant="30" id="DcK-bz-kte"/>
+                                    <constraint firstAttribute="bottom" secondItem="o40-Jr-r36" secondAttribute="bottom" constant="2" id="Ja8-xz-i2B"/>
                                     <constraint firstAttribute="trailing" secondItem="5D8-8X-cwK" secondAttribute="trailing" constant="10" id="KkN-5o-Ofc"/>
+                                    <constraint firstItem="o40-Jr-r36" firstAttribute="top" secondItem="tIB-IS-yXe" secondAttribute="top" constant="50" id="N7n-bk-zAb"/>
+                                    <constraint firstItem="o40-Jr-r36" firstAttribute="leading" secondItem="tIB-IS-yXe" secondAttribute="leading" constant="2" id="Tza-U5-dqh"/>
                                     <constraint firstItem="Xd1-3v-XUE" firstAttribute="top" secondItem="tIB-IS-yXe" secondAttribute="top" constant="50" id="WCE-Je-LpL"/>
                                     <constraint firstAttribute="width" constant="142" id="WV9-0K-Jby"/>
+                                    <constraint firstAttribute="trailing" secondItem="o40-Jr-r36" secondAttribute="trailing" constant="2" id="cQU-fU-y2a"/>
                                     <constraint firstItem="5D8-8X-cwK" firstAttribute="top" secondItem="tIB-IS-yXe" secondAttribute="top" constant="133" id="cyA-7z-YkH"/>
                                     <constraint firstAttribute="trailing" secondItem="Kwf-4H-rHD" secondAttribute="trailing" constant="10" id="ebv-5D-7lc"/>
                                     <constraint firstItem="PbU-Lg-H9f" firstAttribute="top" secondItem="tIB-IS-yXe" secondAttribute="top" constant="132" id="lSQ-Bz-thS"/>

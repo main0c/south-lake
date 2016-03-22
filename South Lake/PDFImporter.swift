@@ -26,6 +26,17 @@ class PDFImporter: NSObject, FileImporter {
             return ""
         }
         
-        return document.string()
+        let badCharacters = NSMutableCharacterSet.alphanumericCharacterSet()
+            .union(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            .union(NSCharacterSet.punctuationCharacterSet())
+            .invertedSet
+        
+        let text = document
+            .string()
+            .componentsSeparatedByCharactersInSet(badCharacters)
+            .filter { !$0.isEmpty }
+            .joinWithSeparator(" ")
+        
+        return text
     }
 }

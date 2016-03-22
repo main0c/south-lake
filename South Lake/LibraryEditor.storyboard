@@ -475,12 +475,12 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
+                                            <binding destination="oMn-Pa-lPO" name="value" keyPath="representedObject.text_preview" id="DCl-ts-0sb"/>
                                             <binding destination="oMn-Pa-lPO" name="hidden" keyPath="representedObject.thumbnail" id="qAa-KY-heu">
                                                 <dictionary key="options">
                                                     <string key="NSValueTransformerName">NSIsNotNil</string>
                                                 </dictionary>
                                             </binding>
-                                            <binding destination="oMn-Pa-lPO" name="value" keyPath="representedObject.text_preview" id="DCl-ts-0sb"/>
                                         </connections>
                                     </textField>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L04-Ih-jPz">
@@ -491,6 +491,11 @@
                                         </constraints>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="sIH-h6-66f"/>
                                         <connections>
+                                            <binding destination="oMn-Pa-lPO" name="hidden" keyPath="representedObject.thumbnail" id="HHx-Tq-WeE">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                </dictionary>
+                                            </binding>
                                             <binding destination="oMn-Pa-lPO" name="value" keyPath="representedObject.icon" id="BmZ-Ac-2DS"/>
                                         </connections>
                                     </imageView>
@@ -503,6 +508,11 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
+                                            <binding destination="oMn-Pa-lPO" name="hidden" keyPath="representedObject.thumbnail" id="wd9-Y5-Qye">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                </dictionary>
+                                            </binding>
                                             <binding destination="oMn-Pa-lPO" name="value" keyPath="representedObject.created_at" id="H0t-Ii-ldM"/>
                                         </connections>
                                     </textField>
@@ -510,12 +520,12 @@
                                         <rect key="frame" x="2" y="2" width="138" height="105"/>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" id="6TA-ce-mzS"/>
                                         <connections>
+                                            <binding destination="oMn-Pa-lPO" name="value" keyPath="representedObject.thumbnail" id="CD1-A3-Cvd"/>
                                             <binding destination="oMn-Pa-lPO" name="hidden" keyPath="representedObject.thumbnail" id="wO7-7U-2YI">
                                                 <dictionary key="options">
                                                     <string key="NSValueTransformerName">NSIsNil</string>
                                                 </dictionary>
                                             </binding>
-                                            <binding destination="oMn-Pa-lPO" name="value" keyPath="representedObject.thumbnail" id="CD1-A3-Cvd"/>
                                         </connections>
                                     </imageView>
                                 </subviews>
