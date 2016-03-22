@@ -28,6 +28,7 @@ class DatabaseManager: NSObject {
     var tagsSource: DataSource?
     var calendarSource: DataSource?
     var trashSource: DataSource?
+    var inboxSource: DataSource?
     
     // MARK: - Bindable DB Properties
     
@@ -319,6 +320,13 @@ class DatabaseManager: NSObject {
 //            print("trash source not at expected index (3)")
 //            return
 //        }
+
+        // Inbox
+        
+        guard let inboxSource = folders.children[safe: 0] where inboxSource.uti == DataTypes.Inbox.uti else {
+            print("inbox source not at expected index (0)")
+            return
+        }
         
         self.notebookSection = notebook
         self.shortcutsSection = shortcuts
@@ -329,5 +337,7 @@ class DatabaseManager: NSObject {
         self.calendarSource = calendarSource
         self.tagsSource = tagsSource
 //        self.trashSource = trashSource
+
+        self.inboxSource = inboxSource
     }
 }

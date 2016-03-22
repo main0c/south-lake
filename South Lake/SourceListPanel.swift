@@ -62,7 +62,12 @@ class SourceListPanel: NSViewController, Databasable {
         
         NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
             self.bindSections()
-            self.outlineView.expandItem(nil, expandChildren: true)
+            
+            // Definitely want to guard here. Temporary solution
+            self.outlineView.expandItem(self.treeController.arrangedObjects.childNodes!![safe: 0])
+            self.outlineView.expandItem(self.treeController.arrangedObjects.childNodes!![safe: 1])
+            self.outlineView.expandItem(self.treeController.arrangedObjects.childNodes!![safe: 2])
+            self.outlineView.expandItem(self.treeController.arrangedObjects.childNodes!![safe: 3])
         }
         
         // Set up outline view
