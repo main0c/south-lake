@@ -355,12 +355,12 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
+                                            <binding destination="JMe-aK-5Ur" name="value" keyPath="representedObject.text_preview" id="Z5O-Ub-M8M"/>
                                             <binding destination="JMe-aK-5Ur" name="hidden" keyPath="representedObject.thumbnail" id="33Q-yl-IMe">
                                                 <dictionary key="options">
                                                     <string key="NSValueTransformerName">NSIsNotNil</string>
                                                 </dictionary>
                                             </binding>
-                                            <binding destination="JMe-aK-5Ur" name="value" keyPath="representedObject.text_preview" id="Z5O-Ub-M8M"/>
                                         </connections>
                                     </textField>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PbU-Lg-H9f">
@@ -371,12 +371,12 @@
                                         </constraints>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Q0u-XM-w23"/>
                                         <connections>
+                                            <binding destination="JMe-aK-5Ur" name="value" keyPath="representedObject.icon" id="tTH-9d-hSk"/>
                                             <binding destination="JMe-aK-5Ur" name="hidden" keyPath="representedObject.thumbnail" id="nck-og-HzX">
                                                 <dictionary key="options">
                                                     <string key="NSValueTransformerName">NSIsNotNil</string>
                                                 </dictionary>
                                             </binding>
-                                            <binding destination="JMe-aK-5Ur" name="value" keyPath="representedObject.icon" id="tTH-9d-hSk"/>
                                         </connections>
                                     </imageView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5D8-8X-cwK">
@@ -388,12 +388,12 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
+                                            <binding destination="JMe-aK-5Ur" name="value" keyPath="representedObject.created_at" id="LIg-dD-zMP"/>
                                             <binding destination="JMe-aK-5Ur" name="hidden" keyPath="representedObject.thumbnail" id="94S-WD-k7R">
                                                 <dictionary key="options">
                                                     <string key="NSValueTransformerName">NSIsNotNil</string>
                                                 </dictionary>
                                             </binding>
-                                            <binding destination="JMe-aK-5Ur" name="value" keyPath="representedObject.created_at" id="LIg-dD-zMP"/>
                                         </connections>
                                     </textField>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o40-Jr-r36">

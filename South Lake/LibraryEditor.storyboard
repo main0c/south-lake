@@ -44,9 +44,9 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="149" id="Cxo-bN-Z6I"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="roundRect" title="Sort by Date Created" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="1002" imageScaling="proportionallyDown" inset="2" selectedItem="jQ0-xa-kRu" id="O6T-Lb-cU8">
+                                <popUpButtonCell key="cell" type="roundRect" title="Sort by Title" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" tag="1001" imageScaling="proportionallyDown" inset="2" selectedItem="jQ0-xa-kRu" id="O6T-Lb-cU8">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="system" size="11"/>
                                     <menu key="menu" id="FmD-5b-df1">
                                         <items>
                                             <menuItem title="Sort by Title" tag="1001" id="kr9-oz-Qgc">
