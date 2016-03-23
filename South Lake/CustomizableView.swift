@@ -39,7 +39,7 @@ class CustomizableView: NSView {
     /// Dim selection color to a default gray whenever this view and its superviews
     /// aren't in the responder chain
     
-    var dimsSelection: Bool = true {
+    var dimsSelection: Bool = false {
         didSet {
             needsDisplay = true
         }

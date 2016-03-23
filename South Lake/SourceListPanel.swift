@@ -302,7 +302,8 @@ extension SourceListPanel : NSOutlineViewDataSource {
             
             // Files can be moved to folders
             case ( .Some(UI.Pasteboard.Type.File), let folder as Folder )
-                 where folder.uti == DataTypes.Folder.uti:
+                 where folder.uti == DataTypes.Folder.uti
+                    || folder.uti == DataTypes.Inbox.uti:
                 operation = .Move
             
             // Files can be added to shortcuts
