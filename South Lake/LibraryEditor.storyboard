@@ -491,12 +491,12 @@
                                         </constraints>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="sIH-h6-66f"/>
                                         <connections>
+                                            <binding destination="oMn-Pa-lPO" name="value" keyPath="representedObject.icon" id="BmZ-Ac-2DS"/>
                                             <binding destination="oMn-Pa-lPO" name="hidden" keyPath="representedObject.thumbnail" id="HHx-Tq-WeE">
                                                 <dictionary key="options">
                                                     <string key="NSValueTransformerName">NSIsNotNil</string>
                                                 </dictionary>
                                             </binding>
-                                            <binding destination="oMn-Pa-lPO" name="value" keyPath="representedObject.icon" id="BmZ-Ac-2DS"/>
                                         </connections>
                                     </imageView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iqx-ck-NrL">
@@ -508,12 +508,12 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
+                                            <binding destination="oMn-Pa-lPO" name="value" keyPath="representedObject.created_at" id="H0t-Ii-ldM"/>
                                             <binding destination="oMn-Pa-lPO" name="hidden" keyPath="representedObject.thumbnail" id="wd9-Y5-Qye">
                                                 <dictionary key="options">
                                                     <string key="NSValueTransformerName">NSIsNotNil</string>
                                                 </dictionary>
                                             </binding>
-                                            <binding destination="oMn-Pa-lPO" name="value" keyPath="representedObject.created_at" id="H0t-Ii-ldM"/>
                                         </connections>
                                     </textField>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eL7-OF-XSB">

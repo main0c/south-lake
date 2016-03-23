@@ -66,4 +66,5 @@ class LibraryCollectionViewItem: NSCollectionViewItem {
         }
         target.performSelector(doubleAction, withObject: self)
     }
+    
 }

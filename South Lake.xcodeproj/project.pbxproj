@@ -79,6 +79,7 @@
 		E37D962F1C723B8A000A9F90 /* South_LakeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37D962E1C723B8A000A9F90 /* South_LakeUITests.swift */; };
 		E37D963E1C72407D000A9F90 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E37D963D1C72407D000A9F90 /* WebKit.framework */; };
 		E37D96401C724081000A9F90 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E37D963F1C724081000A9F90 /* JavaScriptCore.framework */; };
+		E37DD6DA1CA22F9D00F654ED /* NSView+ResponderChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37DD6D91CA22F9D00F654ED /* NSView+ResponderChain.swift */; };
 		E37E47B81C73F0F90077ECD7 /* DocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E47B71C73F0F90077ECD7 /* DocumentController.swift */; };
 		E37E47CA1C73F2710077ECD7 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E47C91C73F2710077ECD7 /* DatabaseManager.swift */; };
 		E380358E1C728D780048AD46 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = E38035871C728D780048AD46 /* Data */; };
@@ -382,6 +383,7 @@
 		E37D963C1C723C76000A9F90 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BridgingHeader.h; path = "South Lake/BridgingHeader.h"; sourceTree = "<group>"; };
 		E37D963D1C72407D000A9F90 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		E37D963F1C724081000A9F90 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		E37DD6D91CA22F9D00F654ED /* NSView+ResponderChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+ResponderChain.swift"; sourceTree = "<group>"; };
 		E37E47B71C73F0F90077ECD7 /* DocumentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentController.swift; sourceTree = "<group>"; };
 		E37E47C91C73F2710077ECD7 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		E38035871C728D780048AD46 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Data; path = Dependencies/macdown/MacDown/Resources/Data; sourceTree = "<group>"; };
@@ -2607,6 +2609,7 @@
 				E3088AB61CA0FC7700CCA77C /* NSMutableCharacterSet+Chaining.swift */,
 				E3C436251C7641E900DD685D /* MPRenderer+TOC.h */,
 				E3C436261C7641E900DD685D /* MPRenderer+TOC.m */,
+				E37DD6D91CA22F9D00F654ED /* NSView+ResponderChain.swift */,
 				E3088A911CA0666B00CCA77C /* NSWorkspace+Thumbnail.h */,
 				E3088A921CA0666B00CCA77C /* NSWorkspace+Thumbnail.m */,
 			);
@@ -7698,6 +7701,7 @@
 				E37C7BB41C90BF6A00A3AB43 /* DMTabBarItem.m in Sources */,
 				E3088A951CA0A82300CCA77C /* TableRowView.swift in Sources */,
 				E3274FC51C75A13D000B6A84 /* Folder.swift in Sources */,
+				E37DD6DA1CA22F9D00F654ED /* NSView+ResponderChain.swift in Sources */,
 				E3803F051C728E140048AD46 /* pmh_styleparser.c in Sources */,
 				E37C7BD81C91024000A3AB43 /* RelatedInspector.swift in Sources */,
 				E3803F151C728E950048AD46 /* MPEditorView.m in Sources */,
