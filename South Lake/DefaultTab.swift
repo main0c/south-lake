@@ -443,17 +443,22 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         // Either add the folder to the Folders section or the selected folder
         // Can use item or index path, but the index path should be faster
         
-        var parent: DataSource
-        var indexPath: NSIndexPath
+//        var parent: DataSource
+//        var indexPath: NSIndexPath
+//        
+//        if  let selectedIndexPath = sourceListController.selectedIndexPath,
+//            let item = selectedObject where item.uti == DataTypes.Folder.uti {
+//            parent = item
+//            indexPath = selectedIndexPath.indexPathByAddingIndex(parent.children.count)
+//        } else {
+//            parent = folders
+//            indexPath = NSIndexPath(index: folders.index).indexPathByAddingIndex(parent.children.count)
+//        }
         
-        if  let selectedIndexPath = sourceListController.selectedIndexPath,
-            let item = selectedObject where item.uti == DataTypes.Folder.uti {
-            parent = item
-            indexPath = selectedIndexPath.indexPathByAddingIndex(parent.children.count)
-        } else {
-            parent = folders
-            indexPath = NSIndexPath(index: folders.index).indexPathByAddingIndex(parent.children.count)
-        }
+        // Actually disallow subfolders for now
+        
+        let parent = folders
+        let indexPath = NSIndexPath(index: folders.index).indexPathByAddingIndex(parent.children.count)
         
         parent.mutableArrayValueForKey("children").addObject(folder)
         

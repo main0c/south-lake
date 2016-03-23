@@ -16,5 +16,6 @@ class Folder: DataSource {
 }
 
 extension Folder {
-    var leaf: Bool { return children.count == 0 }
+    // var leaf: Bool { return children.count == 0 }
+    var leaf: Bool { return true }
 }
