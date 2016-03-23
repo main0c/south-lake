@@ -31,6 +31,7 @@
 		E32EC0A21C74494A00E47B3F /* NSBundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32EC0A11C74494A00E47B3F /* NSBundle+Version.swift */; };
 		E336440D1C73DDF1000FFC9C /* MMTabBarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E33643FF1C73DDE2000FFC9C /* MMTabBarView.framework */; };
 		E336440E1C73DDF1000FFC9C /* MMTabBarView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E33643FF1C73DDE2000FFC9C /* MMTabBarView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E35A80071CA1D5C300CBEB36 /* MoveToMenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35A80061CA1D5C300CBEB36 /* MoveToMenuBuilder.swift */; };
 		E360725C1C74E32E00914C2C /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E360725B1C74E32E00914C2C /* DocumentWindowController.swift */; };
 		E36072701C74E40500914C2C /* DocumentTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E360726E1C74E40500914C2C /* DocumentTabController.swift */; };
 		E36072731C74E64200914C2C /* NSTabViewItem+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36072721C74E64200914C2C /* NSTabViewItem+ViewController.swift */; };
@@ -323,6 +324,7 @@
 		E32AD2701C76843500648BFD /* Databasable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Databasable.swift; sourceTree = "<group>"; };
 		E32EC0A11C74494A00E47B3F /* NSBundle+Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+Version.swift"; sourceTree = "<group>"; };
 		E33643F71C73DDE1000FFC9C /* MMTabBarView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MMTabBarView.xcodeproj; path = Dependencies/MMTabBarView/MMTabBarView/MMTabBarView.xcodeproj; sourceTree = "<group>"; };
+		E35A80061CA1D5C300CBEB36 /* MoveToMenuBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToMenuBuilder.swift; sourceTree = "<group>"; };
 		E360725B1C74E32E00914C2C /* DocumentWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
 		E360726E1C74E40500914C2C /* DocumentTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentTabController.swift; sourceTree = "<group>"; };
 		E36072721C74E64200914C2C /* NSTabViewItem+ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTabViewItem+ViewController.swift"; sourceTree = "<group>"; };
@@ -7221,6 +7223,7 @@
 				E3794C4F1C8CA345005EA307 /* CustomizableView.swift */,
 				E37A727A1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift */,
 				E3DA1D191C99FB1F00E378BA /* NSPathControlPointing.swift */,
+				E35A80061CA1D5C300CBEB36 /* MoveToMenuBuilder.swift */,
 				E3C436291C7642BA00DD685D /* MacDownCopyFiles.h */,
 				E3C4362A1C7642BA00DD685D /* MacDownCopyFiles.m */,
 			);
@@ -7773,6 +7776,7 @@
 				E37C7B461C8FF2F700A3AB43 /* Inspector.swift in Sources */,
 				E3B9D5A31C9B1E5A00668557 /* DataSourceEditableValueTransformer.swift in Sources */,
 				E37C7BD11C91021C00A3AB43 /* MetadataInspector.swift in Sources */,
+				E35A80071CA1D5C300CBEB36 /* MoveToMenuBuilder.swift in Sources */,
 				E3803F091C728E790048AD46 /* DOMNode+Text.m in Sources */,
 				E3803F081C728E600048AD46 /* MPRenderer.m in Sources */,
 				E3AD256C1C7F9D08006D6536 /* FileImporter.swift in Sources */,

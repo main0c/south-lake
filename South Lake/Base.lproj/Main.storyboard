@@ -742,7 +742,11 @@
 DQ
 </string>
                                         </menuItem>
-                                        <menuItem title="Move To" keyEquivalent="m" id="nfl-cp-eH6"/>
+                                        <menuItem title="Move To" keyEquivalent="m" id="nfl-cp-eH6">
+                                            <connections>
+                                                <action selector="moveTo:" target="Ady-hI-5gd" id="bFc-VP-c7z"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="02J-jB-o1Y"/>
                                         <menuItem title="Snippets…" id="zXk-Dy-2GM">
                                             <modifierMask key="keyEquivalentModifierMask"/>

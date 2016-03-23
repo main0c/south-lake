@@ -60,7 +60,7 @@ class SourceListPanel: NSViewController, Databasable {
         
         // Load data: defer so that the application can bootstrap the database
         
-        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        NSOperationQueue.mainQueue().addOperationWithBlock {
             self.bindSections()
             
             // Definitely want to guard here. Temporary solution

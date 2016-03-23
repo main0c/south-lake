@@ -45,6 +45,41 @@ class LibraryCollectionViewController: NSViewController, LibraryScene {
     
     // MARK: -
     
+    @IBAction func moveTo(sender: AnyObject?) {
+        guard let databaseManager = databaseManager else {
+            return
+        }
+        // TODO: validate so that item is always selected
+        guard let collectionItem = collectionView.itemAtIndex(collectionView.selectionIndexes.firstIndex) else {
+            NSBeep() ; return
+        }
+        
+        let selection = arrayController.selectedObjects as? [DataSource]
+        
+        let menuBuilder = MoveToMenuBuilder(databaseManager: databaseManager, action: Selector("executeMoveTo:"), selection: selection)
+        
+        guard let menu = menuBuilder.menu() else {
+            return
+        }
+        
+        NSOperationQueue.mainQueue().addOperationWithBlock {
+            menu.popUpMenuPositioningItem(nil, atLocation: NSZeroPoint, inView: collectionItem.view)
+        }
+    }
+    
+    @IBAction func executeMoveTo(sender: AnyObject?) {
+        guard let sender = sender as? NSMenuItem else {
+            return
+        }
+        guard let folder = sender.representedObject as? Folder else {
+            return
+        }
+        
+        print("execute move to \(folder.title)")
+    }
+    
+    // -
+    
     @IBAction func doubleClick(sender: AnyObject?) {
         guard let databaseManager = databaseManager else {
             return
