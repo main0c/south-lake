@@ -285,59 +285,85 @@ class DatabaseManager: NSObject {
         
         // Sections
         
-        guard let notebook = sections?[safe: 0] where notebook.uti == DataTypes.Notebook.uti else {
-            print("notebook section not at expected index (0)")
+        notebookSection = sections?
+            .filter { $0.uti == DataTypes.Notebook.uti }
+            .first
+        
+        shortcutsSection = sections?
+            .filter { $0.uti == DataTypes.Shortcuts.uti }
+            .first
+
+        foldersSection = sections?
+            .filter { $0.uti == DataTypes.Folders.uti }
+            .first
+
+        smartFoldersSection = sections?
+            .filter { $0.uti == DataTypes.SmartFolders.uti }
+            .first
+        
+        // Notebook Data Sources
+        
+        librarySource = notebookSection?.children
+            .filter { $0.uti == DataTypes.Library.uti }
+            .first
+        
+        calendarSource = notebookSection?.children
+            .filter { $0.uti == DataTypes.Calendar.uti }
+            .first
+        
+        tagsSource = notebookSection?.children
+            .filter { $0.uti == DataTypes.Tags.uti }
+            .first
+        
+        /* trash = ... */
+
+        // Inbox
+        
+        inboxSource = foldersSection?.children
+            .filter { $0.uti == DataTypes.Inbox.uti }
+            .first
+        
+        // Safety checks: bubble these errors up
+        
+        guard notebookSection != nil else {
+            print("notebook section not found")
             return
         }
-        guard let shortcuts = sections?[safe: 1] where shortcuts.uti == DataTypes.Shortcuts.uti else {
-            print("shortcuts not at expected index (1)")
+        guard shortcutsSection != nil else {
+            print("shortcuts section not found")
             return
         }
-        guard let folders = sections?[safe: 2] where folders.uti == DataTypes.Folders.uti else {
-            print("folders not at expected index (2)")
+        guard foldersSection != nil else {
+            print("folders section not found")
             return
         }
-        guard let smartFolders = sections?[safe: 3] where smartFolders.uti == DataTypes.SmartFolders.uti else {
+        guard smartFoldersSection != nil else {
             print("smart folders not at expected index (3)")
             return
         }
         
         // Notebook Data Sources
         
-        guard let librarySource = notebook.children[safe: 0] where librarySource.uti == DataTypes.Library.uti else {
+        guard librarySource != nil else {
             print("library source not at expected index (0)")
             return
         }
-        guard let calendarSource = notebook.children[safe: 1] where calendarSource.uti == DataTypes.Calendar.uti  else {
+        guard calendarSource != nil else {
             print("calendar source not at expected index (1)")
             return
         }
-        guard let tagsSource = notebook.children[safe: 2] where tagsSource.uti == DataTypes.Tags.uti else {
+        guard tagsSource != nil else {
             print("tags source not at expected index (2)")
             return
         }
-//        guard let trashSource = notebook.children[safe: 3] where trashSource.uti == DataTypes.Trash.uti else {
-//            print("trash source not at expected index (3)")
-//            return
-//        }
+        
+        /* guard trash ... */
 
         // Inbox
         
-        guard let inboxSource = folders.children[safe: 0] where inboxSource.uti == DataTypes.Inbox.uti else {
+        guard inboxSource != nil else {
             print("inbox source not at expected index (0)")
             return
         }
-        
-        self.notebookSection = notebook
-        self.shortcutsSection = shortcuts
-        self.foldersSection = folders
-        self.smartFoldersSection = smartFolders
-        
-        self.librarySource = librarySource
-        self.calendarSource = calendarSource
-        self.tagsSource = tagsSource
-//        self.trashSource = trashSource
-
-        self.inboxSource = inboxSource
     }
 }
