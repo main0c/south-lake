@@ -114,3 +114,20 @@ class LibraryCollectionViewController: NSViewController, LibraryScene {
         print("quickLookPreviewItems")
     }
 }
+
+extension LibraryCollectionViewController: NSCollectionViewDelegate {
+    func collectionView(collectionView: NSCollectionView, canDragItemsAtIndexes indexes: NSIndexSet, withEvent event: NSEvent) -> Bool {
+        return true
+    }
+    
+    func collectionView(collectionView: NSCollectionView, writeItemsAtIndexes indexes: NSIndexSet, toPasteboard pasteboard: NSPasteboard) -> Bool {
+        
+        let items = arrayController.arrangedObjects.objectsAtIndexes(indexes)
+        let titles = items.map { $0.title }
+        
+        pasteboard.declareTypes([UI.Pasteboard.Type.File], owner: nil)
+        pasteboard.setPropertyList(titles, forType: NSPasteboardTypeString)
+        
+        return true
+    }
+}

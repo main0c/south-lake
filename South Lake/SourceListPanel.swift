@@ -77,6 +77,7 @@ class SourceListPanel: NSViewController, Databasable {
         
         outlineView.registerForDraggedTypes([
             SourceListDragTypes.dataSourcePasteboardType,
+            UI.Pasteboard.Type.File,
             kUTTypeFileURL as String
         ])
         
@@ -259,13 +260,17 @@ class SourceListPanel: NSViewController, Databasable {
 extension SourceListPanel : NSOutlineViewDataSource {
     
     func outlineView(outlineView: NSOutlineView, validateDrop info: NSDraggingInfo, proposedItem item: AnyObject?, proposedChildIndex index: Int) -> NSDragOperation {
+        guard let item = item as? NSTreeNode,
+              let object = item.representedObject as? DataSource else {
+            return NSDragOperation.None
+        }
+        
         var operation = NSDragOperation.Generic
         
-        // Depends on what we are dragging and where we are dragging it to
+        if dragIsLocalReorder(info) {
         
-        if  let item = item as? NSTreeNode,
-            let object = item.representedObject as? DataSource {
-        
+            // Depends on what we are dragging and where we are dragging it to
+            
             switch object {
             case _ as File:
                 operation = .None
@@ -287,6 +292,28 @@ extension SourceListPanel : NSOutlineViewDataSource {
                     ? .None
                     : .Generic
             }
+        } else {
+            
+            let type = info.draggingPasteboard().availableTypeFromArray([
+                UI.Pasteboard.Type.File
+            ])
+            
+            switch (type, object) {
+            
+            // Files can be moved to folders
+            case ( .Some(UI.Pasteboard.Type.File), let folder as Folder )
+                 where folder.uti == DataTypes.Folder.uti:
+                operation = .Move
+            
+            // Files can be added to shortcuts
+            case ( .Some(UI.Pasteboard.Type.File), let section as Section )
+                 where section.uti == DataTypes.Shortcuts.uti:
+                operation = .Copy
+            
+            default:
+                operation = .None
+            }
+            
         }
         
         return operation

@@ -14,4 +14,10 @@ struct UI {
         static let FileEditorBackground = NSColor(red: 243.0/255.0, green: 243.0/255.0, blue: 243.0/255.0, alpha: 1.0)
         static let FileHeaderBackground = NSColor(white: 1.0, alpha: 1.0)
     }
+    
+    struct Pasteboard {
+        struct Type {
+            static let File = "SouthLake.UI.Pasteboard.Type.File"
+        }
+    }
 }
