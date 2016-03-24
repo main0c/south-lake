@@ -40,6 +40,13 @@ class EditorPlugIns {
             [
                 "filetypes": ["southlake.notebook.calendar", "southlake/x-notebook-calendar", "southlake-notebook-calendar"],
                 "storyboard": "CalendarEditor"
+            ],
+            [
+                "filetypes": [
+                              "southlake.folder", "southlake/x-folder", "southlake-folder",
+                              "southlake.smart-folder", "southlake/x-smart-folder", "southlake-smart-folder"
+                             ],
+                "storyboard": "FolderEditor"
             ]
         ]
     }

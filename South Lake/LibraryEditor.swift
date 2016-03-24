@@ -26,7 +26,7 @@ class LibraryEditor: NSViewController, FileEditor {
     var databaseManager: DatabaseManager? {
         didSet {
             scene?.databaseManager = databaseManager
-            bindLibrary()
+            bindContent()
         }
     }
     
@@ -91,7 +91,7 @@ class LibraryEditor: NSViewController, FileEditor {
         sceneSelector.selectSegmentWithTag(sceneId == "FileCardView" ? 0 : 1)
         
         loadScene(sceneId)
-        bindLibrary()
+        bindContent()
     }
     
     func willClose() {
@@ -101,7 +101,7 @@ class LibraryEditor: NSViewController, FileEditor {
 
     // MARK: - Library Data
     
-    func bindLibrary() {
+    func bindContent() {
         guard let databaseManager = databaseManager else {
             return
         }
@@ -291,7 +291,7 @@ class LibraryEditor: NSViewController, FileEditor {
     
     }
     
-    // MARK: - Utilities
+    // MARK: - Path Control
     
     func updatePathControlWithSearch(text: String?) {
         guard let text = text else {

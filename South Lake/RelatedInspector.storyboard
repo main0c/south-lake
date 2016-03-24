@@ -125,7 +125,7 @@
         <scene sceneID="5gb-gM-4Rs">
             <objects>
                 <customObject id="C9T-DE-m7j" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController storyboardIdentifier="libraryCollectionScene" id="H8D-7t-6Le" userLabel="Collection View" customClass="FileCardViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FileCardView" id="H8D-7t-6Le" userLabel="Collection View" customClass="FileCardViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="epX-sk-XIe" userLabel="View">
                         <rect key="frame" x="0.0" y="0.0" width="220" height="355"/>
                         <autoresizingMask key="autoresizingMask"/>
