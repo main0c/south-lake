@@ -245,7 +245,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         guard let editor = editor else {
             return
         }
-        editor.file = nil
+        editor.source = nil
     }
     
     func loadEditor(file: DataSource) {
@@ -271,7 +271,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         // Always pass selection to the editor
         
-        editor!.file = file
+        editor!.source = file
     }
     
     func clearEditor() {

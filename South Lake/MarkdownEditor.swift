@@ -133,15 +133,15 @@ class MarkdownEditor: NSViewController, SourceViewer {
         return true
     }
     
-    dynamic var file: DataSource? {
+    dynamic var source: DataSource? {
         willSet {
-            if let file = file {
-                unbindUs("data", toObject: file, withKeyPath: "data")
+            if let source = source {
+                unbindUs("data", toObject: source, withKeyPath: "data")
             }
         }
         didSet {
-            if let file = file {
-                bindUs("data", toObject: file, withKeyPath: "data", options: [:])
+            if let source = source {
+                bindUs("data", toObject: source, withKeyPath: "data", options: [:])
             }
         }
     }
@@ -296,7 +296,7 @@ class MarkdownEditor: NSViewController, SourceViewer {
         
         snippetHelper.stop()
         
-        if let file = file {
+        if let file = source {
             unbindUs("data", toObject: file, withKeyPath: "data")
         }
         

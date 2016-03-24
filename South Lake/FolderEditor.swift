@@ -41,9 +41,9 @@ class FolderEditor: NSViewController, SourceViewer {
         return false
     }
     
-    dynamic var file: DataSource? {
-        willSet(oldValue) {
-            if let _ = oldValue {
+    dynamic var source: DataSource? {
+        willSet {
+            if let _ = source {
                 unbind("content")
             }
         }
@@ -112,18 +112,18 @@ class FolderEditor: NSViewController, SourceViewer {
     // MARK: - Library Data
     
     func bindContent() {
-        guard let file = file else {
+        guard let source = source else {
             return
         }
         guard unbound("content") else {
             return
         }
         
-        bind("content", toObject: file, withKeyPath: "children", options: [:])
+        bind("content", toObject: source, withKeyPath: "children", options: [:])
         
         // TODO: bind path control value somewhere
         
-        updatePathControlWithTitle(file.title)
+        updatePathControlWithTitle(source.title)
     }
     
     // MARK: - User Actions

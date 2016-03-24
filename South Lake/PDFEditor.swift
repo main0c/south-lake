@@ -24,9 +24,9 @@ class PDFEditor: NSViewController, SourceViewer {
         return true
     }
     
-    dynamic var file: DataSource? {
+    dynamic var source: DataSource? {
         didSet {
-            loadFile(file)
+            loadFile(source)
         }
     }
     

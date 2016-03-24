@@ -40,7 +40,7 @@ class LibraryEditor: NSViewController, SourceViewer {
         return false
     }
     
-    dynamic var file: DataSource?
+    dynamic var source: DataSource?
     
     var primaryResponder: NSView {
         return view

@@ -35,9 +35,7 @@ protocol SourceViewer: class, Databasable {
     /// many any changes it likes to the file, including metadata changes.
     /// Editors should use the universal data: NSData interface for file contents
     
-    // TODO: you can tell something's wrong because it's a DataSource called File
-    
-    var file: DataSource? { get set }
+    var source: DataSource? { get set }
     
     /// The responder that take focus for editing and first responder switching
     var primaryResponder: NSView { get }
