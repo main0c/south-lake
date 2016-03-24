@@ -120,6 +120,8 @@
 		E385F7F21C92865C0015A91B /* TagsCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385F7F11C92865C0015A91B /* TagsCollectionViewItem.swift */; };
 		E389C9031CA3696200BD1AA9 /* FileCardView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E389C9021CA3696200BD1AA9 /* FileCardView.storyboard */; };
 		E389C9051CA3697100BD1AA9 /* FileTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E389C9041CA3697100BD1AA9 /* FileTableView.storyboard */; };
+		E389C9081CA3711A00BD1AA9 /* FolderEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E389C9071CA3711A00BD1AA9 /* FolderEditor.storyboard */; };
+		E389C90A1CA3713700BD1AA9 /* FolderEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E389C9091CA3713700BD1AA9 /* FolderEditor.swift */; };
 		E39B92711C99D31100A3FAF2 /* TagsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39B92701C99D31100A3FAF2 /* TagsCollectionViewController.swift */; };
 		E3A8A0DE1C80C1DB009E96C1 /* NSDataNSStringValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385F8071C796B950072A2CD /* NSDataNSStringValueTransformer.swift */; };
 		E3A8A0DF1C80C1DC009E96C1 /* NSStringNSDataValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39E9B381C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift */; };
@@ -2468,6 +2470,8 @@
 		E385F8071C796B950072A2CD /* NSDataNSStringValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataNSStringValueTransformer.swift; sourceTree = "<group>"; };
 		E389C9021CA3696200BD1AA9 /* FileCardView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FileCardView.storyboard; sourceTree = "<group>"; };
 		E389C9041CA3697100BD1AA9 /* FileTableView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FileTableView.storyboard; sourceTree = "<group>"; };
+		E389C9071CA3711A00BD1AA9 /* FolderEditor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FolderEditor.storyboard; sourceTree = "<group>"; };
+		E389C9091CA3713700BD1AA9 /* FolderEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderEditor.swift; sourceTree = "<group>"; };
 		E39B92701C99D31100A3FAF2 /* TagsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewController.swift; sourceTree = "<group>"; };
 		E39E9B381C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringNSDataValueTransformer.swift; sourceTree = "<group>"; };
 		E3AD25591C7F9CDE006D6536 /* MarkdownImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownImporter.swift; sourceTree = "<group>"; };
@@ -2574,12 +2578,13 @@
 				E389C8FE1CA3633600BD1AA9 /* File Card View */,
 				E389C8FF1CA3640C00BD1AA9 /* File Table View */,
 				E389C9011CA3667F00BD1AA9 /* File List View */,
-				E3898F981C80162700CA71BE /* Markdown */,
-				E37AB76A1C8EA45B00F44564 /* PDF */,
 				E3DDBEEA1C8D30FF00136BAE /* Library */,
 				E3DDBEEB1C8D310A00136BAE /* Tags */,
 				E3DDBEF41C8D450F00136BAE /* Calendar */,
 				E37AB7591C8EA37500F44564 /* Trash */,
+				E389C9061CA3710800BD1AA9 /* Folder */,
+				E3898F981C80162700CA71BE /* Markdown */,
+				E37AB76A1C8EA45B00F44564 /* PDF */,
 			);
 			name = Editors;
 			sourceTree = "<group>";
@@ -7255,6 +7260,15 @@
 			name = "File List View";
 			sourceTree = "<group>";
 		};
+		E389C9061CA3710800BD1AA9 /* Folder */ = {
+			isa = PBXGroup;
+			children = (
+				E389C9071CA3711A00BD1AA9 /* FolderEditor.storyboard */,
+				E389C9091CA3713700BD1AA9 /* FolderEditor.swift */,
+			);
+			name = Folder;
+			sourceTree = "<group>";
+		};
 		E3B9D5B41C9B204600668557 /* Value Transformers */ = {
 			isa = PBXGroup;
 			children = (
@@ -7614,6 +7628,7 @@
 				E3E65F541C7C1A8F0085B5B7 /* About Markdown.md in Resources */,
 				E37C7BE21C911F9600A3AB43 /* RelatedInspector.storyboard in Resources */,
 				E37C7BDC1C9108D600A3AB43 /* MetadataInspector.storyboard in Resources */,
+				E389C9081CA3711A00BD1AA9 /* FolderEditor.storyboard in Resources */,
 				E3C436231C7640B000DD685D /* Welcome.md in Resources */,
 				E3DDBEED1C8D311700136BAE /* LibraryEditor.storyboard in Resources */,
 			);
@@ -7807,6 +7822,7 @@
 				E3803F0A1C728E790048AD46 /* hoedown_html_patch.c in Sources */,
 				E3274FBF1C75A088000B6A84 /* MarkdownEditor.swift in Sources */,
 				E37E47B81C73F0F90077ECD7 /* DocumentController.swift in Sources */,
+				E389C90A1CA3713700BD1AA9 /* FolderEditor.swift in Sources */,
 				E32757A71C8C946B004525E2 /* ContentViewPanel.swift in Sources */,
 				E378C5341C814F1900CACDFC /* String+Range.swift in Sources */,
 				E3E7C9E21C89078C00BD73A9 /* SnippetTextViewHelper.swift in Sources */,
