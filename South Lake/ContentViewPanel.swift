@@ -9,7 +9,7 @@
 
 import Cocoa
 
-/// Given a FileEditor, knows how to display the editor, knows if it should display a header
+/// Given a SourceViewer, knows how to display the editor, knows if it should display a header
 /// It does not manage bindings for the editor or header, and it doesn't care what is displayed
 /// in the editor or header.
 
@@ -29,7 +29,7 @@ class ContentViewPanel: NSViewController {
         }
     }
     
-    var editor: FileEditor? {
+    var editor: SourceViewer? {
         willSet {
             removeEditorFromInterface()
         }
@@ -43,7 +43,7 @@ class ContentViewPanel: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (self.view as! CustomizableView).backgroundColor = UI.Color.FileEditorBackground
+        (self.view as! CustomizableView).backgroundColor = UI.Color.SourceViewerBackground
     }
     
     func willClose() {

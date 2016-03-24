@@ -97,7 +97,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
    
     var inspectors: [Inspector]?
     var header: FileHeaderViewController?
-    var editor: FileEditor?
+    var editor: SourceViewer?
     
     // MARK: - Initialization
 

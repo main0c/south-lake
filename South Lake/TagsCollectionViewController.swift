@@ -25,7 +25,7 @@ class TagsCollectionViewController: NSViewController, FileCollectionScene {
         super.viewDidLoad()
         // Do view setup here.
         
-        collectionView.backgroundColors = [UI.Color.FileEditorBackground]
+        collectionView.backgroundColors = [UI.Color.SourceViewerBackground]
         
         let prototype = storyboard!.instantiateControllerWithIdentifier("tagsListCollectionViewItem") as? TagsCollectionViewItem
         prototype?.doubleAction = Selector("doubleClick:")

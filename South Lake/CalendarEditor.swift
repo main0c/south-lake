@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class CalendarEditor: NSViewController, FileEditor {
+class CalendarEditor: NSViewController, SourceViewer {
     @IBOutlet var containerView: NSView!
 
     static var filetypes: [String] { return ["southlake.notebook.calendar", "southlake/x-notebook-calendar", "southlake-notebook-calendar"] }
@@ -16,6 +16,8 @@ class CalendarEditor: NSViewController, FileEditor {
     
     var databaseManager: DatabaseManager?
     var searchService: BRSearchService?
+    
+    // TODO: what is this used for?
     
     var isFileEditor: Bool {
         return false
@@ -36,7 +38,7 @@ class CalendarEditor: NSViewController, FileEditor {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (view as! CustomizableView).backgroundColor = UI.Color.FileEditorBackground
+        (view as! CustomizableView).backgroundColor = UI.Color.SourceViewerBackground
     }
     
     // MARK: - 

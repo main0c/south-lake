@@ -9,7 +9,7 @@
 
 import Cocoa
 
-class FolderEditor: NSViewController, FileEditor {
+class FolderEditor: NSViewController, SourceViewer {
 
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var containerView: NSView!
@@ -86,8 +86,8 @@ class FolderEditor: NSViewController, FileEditor {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (view as! CustomizableView).backgroundColor = UI.Color.FileEditorBackground
-        pathControl.backgroundColor = UI.Color.FileEditorBackground
+        (view as! CustomizableView).backgroundColor = UI.Color.SourceViewerBackground
+        pathControl.backgroundColor = UI.Color.SourceViewerBackground
         
         sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: Selector("compare:"))]
         

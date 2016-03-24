@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class TagsEditor: NSViewController, FileEditor {
+class TagsEditor: NSViewController, SourceViewer {
     @IBOutlet var libraryArrayController: NSArrayController!
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var containerView: NSView!
@@ -66,8 +66,8 @@ class TagsEditor: NSViewController, FileEditor {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (view as! CustomizableView).backgroundColor = UI.Color.FileEditorBackground
-        pathControl.backgroundColor = UI.Color.FileEditorBackground
+        (view as! CustomizableView).backgroundColor = UI.Color.SourceViewerBackground
+        pathControl.backgroundColor = UI.Color.SourceViewerBackground
     
         sortDescriptors = [NSSortDescriptor(key: "tag", ascending: true, selector: Selector("caseInsensitiveCompare:"))]
         

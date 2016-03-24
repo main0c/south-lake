@@ -51,7 +51,7 @@ class EditorPlugIns {
         ]
     }
     
-    func plugInForFiletype(filetype: String) -> FileEditor? {
+    func plugInForFiletype(filetype: String) -> SourceViewer? {
         var storyboard: String?
         
         for plugin in plugins {
@@ -70,6 +70,6 @@ class EditorPlugIns {
             return nil
         }
         
-        return NSStoryboard(name: storyboard!, bundle: nil).instantiateInitialController() as? FileEditor
+        return NSStoryboard(name: storyboard!, bundle: nil).instantiateInitialController() as? SourceViewer
     }
 }

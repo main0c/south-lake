@@ -9,7 +9,7 @@
 import Cocoa
 import Quartz
 
-class PDFEditor: NSViewController, FileEditor {
+class PDFEditor: NSViewController, SourceViewer {
     @IBOutlet var editor: PDFView!
 
     // MARK: - File Editor
@@ -51,7 +51,7 @@ class PDFEditor: NSViewController, FileEditor {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        editor.setBackgroundColor(UI.Color.FileEditorBackground)
+        editor.setBackgroundColor(UI.Color.SourceViewerBackground)
     }
     
     func willClose() {

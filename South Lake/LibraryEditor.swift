@@ -11,7 +11,7 @@
 
 import Cocoa
 
-class LibraryEditor: NSViewController, FileEditor {
+class LibraryEditor: NSViewController, SourceViewer {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var containerView: NSView!
     @IBOutlet var pathControl: NSPathControlWithCursor!
@@ -76,8 +76,8 @@ class LibraryEditor: NSViewController, FileEditor {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (view as! CustomizableView).backgroundColor = UI.Color.FileEditorBackground
-        pathControl.backgroundColor = UI.Color.FileEditorBackground
+        (view as! CustomizableView).backgroundColor = UI.Color.SourceViewerBackground
+        pathControl.backgroundColor = UI.Color.SourceViewerBackground
         
         sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: Selector("compare:"))]
         

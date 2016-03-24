@@ -24,7 +24,7 @@ class FileCardViewController: NSViewController, FileCollectionScene {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.backgroundColors = [UI.Color.FileEditorBackground]
+        collectionView.backgroundColors = [UI.Color.SourceViewerBackground]
         
         let prototype = storyboard!.instantiateControllerWithIdentifier("FileCardCollectionViewItem") as? FileCardCollectionViewItem
         prototype?.doubleAction = Selector("doubleClick:")
