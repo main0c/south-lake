@@ -17,6 +17,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
         
+        // Reset user defaults
+        // NSUserDefaults.standardUserDefaults().setPersistentDomain([:], forName: NSBundle.mainBundle().bundleIdentifier!)
+        
         MacDownCopyFiles.copyFiles()
     }
 

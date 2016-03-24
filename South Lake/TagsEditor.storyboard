@@ -273,7 +273,7 @@
         <scene sceneID="byi-Jv-vy2">
             <objects>
                 <customObject id="91X-Bg-g4e" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController storyboardIdentifier="libraryCollectionScene" id="ch3-o0-doR" userLabel="Collection View" customClass="LibraryCollectionViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="libraryCollectionScene" id="ch3-o0-doR" userLabel="Collection View" customClass="FileCardViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="b3o-f6-sHz">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="297"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -322,10 +322,10 @@
             </objects>
             <point key="canvasLocation" x="203" y="482.5"/>
         </scene>
-        <!--Library Collection View Item-->
+        <!--File Card Collection View Item-->
         <scene sceneID="t3G-Dr-Ivx">
             <objects>
-                <collectionViewItem storyboardIdentifier="libraryCollectionViewItem" id="JMe-aK-5Ur" customClass="LibraryCollectionViewItem" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewItem storyboardIdentifier="FileCardCollectionViewItem" id="JMe-aK-5Ur" customClass="FileCardCollectionViewItem" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="XzE-gn-CPI">
                         <rect key="frame" x="0.0" y="0.0" width="162" height="177"/>
                         <autoresizingMask key="autoresizingMask"/>

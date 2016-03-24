@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="xeZ-sC-hee">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
+    </dependencies>
+    <scenes>
+        <!--Collection View-->
+        <scene sceneID="9Sy-55-9b0">
+            <objects>
+                <customObject id="lH0-2Q-b7p" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="FileCardScene" id="xeZ-sC-hee" userLabel="Collection View" customClass="FileCardViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="s1B-VL-Lnk">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="297"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxF-n6-wKp">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="297"/>
+                                <clipView key="contentView" copiesOnScroll="NO" id="NbF-p9-Vg7">
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="297"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView selectable="YES" allowsMultipleSelection="YES" id="VqN-ds-84T">
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="297"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="primaryBackgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <binding destination="NzS-Rz-a8k" name="content" keyPath="arrangedObjects" id="NMZ-x8-IlB"/>
+                                                <binding destination="NzS-Rz-a8k" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="NMZ-x8-IlB" id="3kf-my-KvM"/>
+                                                <outlet property="delegate" destination="xeZ-sC-hee" id="Sug-MY-8JU"/>
+                                            </connections>
+                                        </collectionView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="bqT-Pq-Gg4">
+                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="QfE-z2-HZl">
+                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="fxF-n6-wKp" firstAttribute="top" secondItem="s1B-VL-Lnk" secondAttribute="top" id="Cbd-eM-Rvz"/>
+                            <constraint firstAttribute="bottom" secondItem="fxF-n6-wKp" secondAttribute="bottom" id="CkU-E9-AA5"/>
+                            <constraint firstAttribute="trailing" secondItem="fxF-n6-wKp" secondAttribute="trailing" id="kRu-LD-xFx"/>
+                            <constraint firstItem="fxF-n6-wKp" firstAttribute="leading" secondItem="s1B-VL-Lnk" secondAttribute="leading" id="mTy-mr-VL2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="arrayController" destination="NzS-Rz-a8k" id="JB3-Rd-G8O"/>
+                        <outlet property="collectionView" destination="VqN-ds-84T" id="nwJ-tQ-a2U"/>
+                    </connections>
+                </viewController>
+                <arrayController objectClassName="DataSource" avoidsEmptySelection="NO" id="NzS-Rz-a8k"/>
+            </objects>
+            <point key="canvasLocation" x="261" y="303.5"/>
+        </scene>
+        <!--File Card Collection View Item-->
+        <scene sceneID="Kn2-Qd-2Cm">
+            <objects>
+                <collectionViewItem storyboardIdentifier="FileCardCollectionViewItem" id="TWG-kL-sKK" customClass="FileCardCollectionViewItem" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Mh9-j5-Ahd">
+                        <rect key="frame" x="0.0" y="0.0" width="162" height="177"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView identifier="background" translatesAutoresizingMaskIntoConstraints="NO" id="WEl-sb-r58" customClass="CustomizableView" customModule="South_Lake" customModuleProvider="target">
+                                <rect key="frame" x="10" y="10" width="142" height="157"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VmA-cv-Ip3">
+                                        <rect key="frame" x="8" y="111" width="126" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="38" id="tI9-mp-0hm"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" title="Note title might take up two lines ore more" id="eTQ-ST-rxx">
+                                            <font key="font" metaFont="systemMedium" size="13"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <connections>
+                                            <binding destination="TWG-kL-sKK" name="value" keyPath="representedObject.title" id="PW7-aR-oxy"/>
+                                        </connections>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0oX-tw-MOf">
+                                        <rect key="frame" x="8" y="30" width="126" height="77"/>
+                                        <textFieldCell key="cell" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" title="Label" id="2j4-hx-hGg">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <connections>
+                                            <binding destination="TWG-kL-sKK" name="value" keyPath="representedObject.text_preview" id="qKK-vR-tcA"/>
+                                            <binding destination="TWG-kL-sKK" name="hidden" keyPath="representedObject.thumbnail" id="pJb-iz-ls1">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                </dictionary>
+                                            </binding>
+                                        </connections>
+                                    </textField>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BpC-yn-Vez">
+                                        <rect key="frame" x="10" y="8" width="17" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="17" id="djk-26-cYy"/>
+                                            <constraint firstAttribute="width" constant="17" id="ydp-u2-tXn"/>
+                                        </constraints>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="wb1-sw-8QW"/>
+                                        <connections>
+                                            <binding destination="TWG-kL-sKK" name="value" keyPath="representedObject.icon" id="CwB-WV-yMZ"/>
+                                            <binding destination="TWG-kL-sKK" name="hidden" keyPath="representedObject.thumbnail" id="xrh-7f-IDe">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                </dictionary>
+                                            </binding>
+                                        </connections>
+                                    </imageView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Qf-0G-rke">
+                                        <rect key="frame" x="29" y="10" width="105" height="14"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="3/4/16" id="Bli-dj-r4E">
+                                            <dateFormatter key="formatter" dateStyle="short" id="DmR-3e-GJF"/>
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <connections>
+                                            <binding destination="TWG-kL-sKK" name="value" keyPath="representedObject.created_at" id="2Pa-ZY-s8b"/>
+                                            <binding destination="TWG-kL-sKK" name="hidden" keyPath="representedObject.thumbnail" id="OZR-jc-QjY">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                </dictionary>
+                                            </binding>
+                                        </connections>
+                                    </textField>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bmw-Al-9Jd">
+                                        <rect key="frame" x="2" y="2" width="138" height="105"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" id="xv7-av-pmo"/>
+                                        <connections>
+                                            <binding destination="TWG-kL-sKK" name="hidden" keyPath="representedObject.thumbnail" id="hIq-fW-0rz">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSIsNil</string>
+                                                </dictionary>
+                                            </binding>
+                                            <binding destination="TWG-kL-sKK" name="value" keyPath="representedObject.thumbnail" id="zll-pn-iT1"/>
+                                        </connections>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="VmA-cv-Ip3" secondAttribute="trailing" constant="10" id="1ic-gu-PSX"/>
+                                    <constraint firstAttribute="trailing" secondItem="0oX-tw-MOf" secondAttribute="trailing" constant="10" id="6AF-vJ-ZXF"/>
+                                    <constraint firstItem="VmA-cv-Ip3" firstAttribute="leading" secondItem="WEl-sb-r58" secondAttribute="leading" constant="10" id="8OF-TY-wf4"/>
+                                    <constraint firstAttribute="trailing" secondItem="bmw-Al-9Jd" secondAttribute="trailing" constant="2" id="8fm-vQ-56u"/>
+                                    <constraint firstItem="BpC-yn-Vez" firstAttribute="top" secondItem="WEl-sb-r58" secondAttribute="top" constant="132" id="9Gp-Qo-PuF"/>
+                                    <constraint firstAttribute="width" constant="142" id="9k3-ZE-qfL"/>
+                                    <constraint firstItem="2Qf-0G-rke" firstAttribute="leading" secondItem="BpC-yn-Vez" secondAttribute="trailing" constant="4" id="GvS-ls-o4o"/>
+                                    <constraint firstItem="2Qf-0G-rke" firstAttribute="top" secondItem="WEl-sb-r58" secondAttribute="top" constant="133" id="Okg-Dj-Z5W"/>
+                                    <constraint firstAttribute="height" constant="157" id="QU6-Vv-z5Y"/>
+                                    <constraint firstItem="0oX-tw-MOf" firstAttribute="leading" secondItem="WEl-sb-r58" secondAttribute="leading" constant="10" id="efz-7i-OWH"/>
+                                    <constraint firstItem="0oX-tw-MOf" firstAttribute="top" secondItem="WEl-sb-r58" secondAttribute="top" constant="50" id="kc3-FH-Whc"/>
+                                    <constraint firstItem="BpC-yn-Vez" firstAttribute="leading" secondItem="WEl-sb-r58" secondAttribute="leading" constant="10" id="njn-fY-4sN"/>
+                                    <constraint firstAttribute="bottom" secondItem="0oX-tw-MOf" secondAttribute="bottom" constant="30" id="rDc-T4-xgG"/>
+                                    <constraint firstItem="VmA-cv-Ip3" firstAttribute="top" secondItem="WEl-sb-r58" secondAttribute="top" constant="8" id="rbZ-1U-JbE"/>
+                                    <constraint firstAttribute="trailing" secondItem="2Qf-0G-rke" secondAttribute="trailing" constant="10" id="rmy-8V-Gd7"/>
+                                    <constraint firstItem="bmw-Al-9Jd" firstAttribute="leading" secondItem="WEl-sb-r58" secondAttribute="leading" constant="2" id="tUa-RL-XNa"/>
+                                    <constraint firstItem="bmw-Al-9Jd" firstAttribute="top" secondItem="WEl-sb-r58" secondAttribute="top" constant="50" id="xQj-Fi-FWF"/>
+                                    <constraint firstAttribute="bottom" secondItem="bmw-Al-9Jd" secondAttribute="bottom" constant="2" id="zbm-kd-A3t"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="WEl-sb-r58" firstAttribute="centerX" secondItem="Mh9-j5-Ahd" secondAttribute="centerX" id="5fq-Sm-LYi"/>
+                            <constraint firstItem="WEl-sb-r58" firstAttribute="centerY" secondItem="Mh9-j5-Ahd" secondAttribute="centerY" id="j0f-cB-iLe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="WEl-sb-r58" id="9dl-Tm-phl"/>
+                    </connections>
+                </collectionViewItem>
+                <customObject id="ILM-eb-jaD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="fdq-Bs-Gcp"/>
+            </objects>
+            <point key="canvasLocation" x="609" y="303.5"/>
+        </scene>
+    </scenes>
+</document>

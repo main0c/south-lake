@@ -1,5 +1,5 @@
 //
-//  LibraryCollectionViewItem.swift
+//  FileCardCollectionViewItem.swift
 //  South Lake
 //
 //  Created by Philip Dow on 3/6/16.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class LibraryCollectionViewItem: NSCollectionViewItem {
+class FileCardCollectionViewItem: NSCollectionViewItem {
     @IBOutlet var backgroundView: CustomizableView!
     
     var target: AnyObject?
@@ -28,7 +28,7 @@ class LibraryCollectionViewItem: NSCollectionViewItem {
     // Prototypes don't connect outlets so we do it manually
     
     override func copyWithZone(zone: NSZone) -> AnyObject {
-        let copy: LibraryCollectionViewItem = super.copyWithZone(zone) as! LibraryCollectionViewItem
+        let copy: FileCardCollectionViewItem = super.copyWithZone(zone) as! FileCardCollectionViewItem
         
         copy.backgroundView = copy.view.viewWithIdentifier("background") as! CustomizableView
         copy.backgroundView.backgroundColor = backgroundView.backgroundColor

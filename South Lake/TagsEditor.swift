@@ -283,7 +283,7 @@ class TagsEditor: NSViewController, FileEditor {
         if  let encodedTag = url.pathComponents?[safe: 2],
             let tag = encodedTag.stringByRemovingPercentEncoding {
             libraryArrayController.filterPredicate = NSPredicate(format: "%@ in tags", tag)
-            loadScene("libraryCollectionScene")
+            loadScene("FileCardView")
         } else {
             loadScene("tagsCollectionScene")
             restoreView()

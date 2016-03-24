@@ -1,5 +1,5 @@
 //
-//  LibraryTableViewController.swift
+//  FileTableViewController.swift
 //  South Lake
 //
 //  Created by Philip Dow on 3/7/16.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class LibraryTableViewController: NSViewController, LibraryScene {
+class FileTableViewController: NSViewController, LibraryScene {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var tableView: NSTableView!
 
@@ -65,7 +65,7 @@ class LibraryTableViewController: NSViewController, LibraryScene {
     }
 }
 
-extension LibraryTableViewController: NSTableViewDelegate {
+extension FileTableViewController: NSTableViewDelegate {
     
     func tableView(tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
         if let view = tableView.makeViewWithIdentifier("RowView", owner: self) as? TableRowView {

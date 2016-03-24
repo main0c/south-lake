@@ -72,7 +72,7 @@ class RelatedInspector: NSViewController, Inspector {
 
         libraryArrayController.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: Selector("compare:"))]
         
-        loadScene("libraryCollectionScene")
+        loadScene("FileCardView")
         
         bind("selectedTags", toObject: tagsArrayController, withKeyPath: "selectedObjects", options: [:])
         bindLibrary()
@@ -126,7 +126,7 @@ class RelatedInspector: NSViewController, Inspector {
         // Custom background colors - would prefer to do this another way
         // Simple setBackgroundColor() on LibraryScene for example
         
-        if let tagsScene = scene as? LibraryCollectionViewController {
+        if let tagsScene = scene as? FileCardViewController {
             tagsScene.collectionView.backgroundColors = [UI.Color.InspectorBackground]
         }
         

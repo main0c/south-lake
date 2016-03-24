@@ -12,8 +12,8 @@
 		E3088A931CA0666B00CCA77C /* NSWorkspace+Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = E3088A921CA0666B00CCA77C /* NSWorkspace+Thumbnail.m */; };
 		E3088A951CA0A82300CCA77C /* TableRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3088A941CA0A82300CCA77C /* TableRowView.swift */; };
 		E3088A971CA0AC4500CCA77C /* TableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3088A961CA0AC4500CCA77C /* TableCellView.swift */; };
-		E3088A991CA0F18100CCA77C /* LibraryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3088A981CA0F18100CCA77C /* LibraryTableView.swift */; };
-		E3088A9B1CA0F34800CCA77C /* LibraryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3088A9A1CA0F34800CCA77C /* LibraryCollectionView.swift */; };
+		E3088A991CA0F18100CCA77C /* FileTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3088A981CA0F18100CCA77C /* FileTableView.swift */; };
+		E3088A9B1CA0F34800CCA77C /* FileCardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3088A9A1CA0F34800CCA77C /* FileCardCollectionView.swift */; };
 		E3088AB71CA0FC7700CCA77C /* NSMutableCharacterSet+Chaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3088AB61CA0FC7700CCA77C /* NSMutableCharacterSet+Chaining.swift */; };
 		E3148F121C79353B006BCE53 /* FileEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3148F111C79353B006BCE53 /* FileEditor.swift */; };
 		E3274FBF1C75A088000B6A84 /* MarkdownEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3274FBE1C75A088000B6A84 /* MarkdownEditor.swift */; };
@@ -45,8 +45,8 @@
 		E37A727B1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37A727A1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift */; };
 		E37A728D1C96312E002C721D /* ModelTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37A728C1C96312E002C721D /* ModelTypes.swift */; };
 		E37AB7331C8E0C6E00F44564 /* NSView+Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB7321C8E0C6E00F44564 /* NSView+Identifier.swift */; };
-		E37AB7451C8E1C0500F44564 /* LibraryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB7441C8E1C0500F44564 /* LibraryCollectionViewController.swift */; };
-		E37AB7481C8E1C0E00F44564 /* LibraryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB7461C8E1C0E00F44564 /* LibraryTableViewController.swift */; };
+		E37AB7451C8E1C0500F44564 /* FileCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB7441C8E1C0500F44564 /* FileCardViewController.swift */; };
+		E37AB7481C8E1C0E00F44564 /* FileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB7461C8E1C0E00F44564 /* FileTableViewController.swift */; };
 		E37AB74B1C8E20A900F44564 /* LibrarySceneProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB74A1C8E20A900F44564 /* LibrarySceneProtocol.swift */; };
 		E37AB74D1C8E281500F44564 /* TagsValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB74C1C8E281500F44564 /* TagsValueTransformer.swift */; };
 		E37AB74F1C8E6F0E00F44564 /* FileHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB74E1C8E6F0E00F44564 /* FileHeaderViewController.swift */; };
@@ -118,6 +118,8 @@
 		E3803F471C72977D0048AD46 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F461C72977D0048AD46 /* SystemConfiguration.framework */; };
 		E385F7E21C924D550015A91B /* md-toc-index.html in Resources */ = {isa = PBXBuildFile; fileRef = E385F7E11C924D550015A91B /* md-toc-index.html */; };
 		E385F7F21C92865C0015A91B /* TagsCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385F7F11C92865C0015A91B /* TagsCollectionViewItem.swift */; };
+		E389C9031CA3696200BD1AA9 /* FileCardView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E389C9021CA3696200BD1AA9 /* FileCardView.storyboard */; };
+		E389C9051CA3697100BD1AA9 /* FileTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E389C9041CA3697100BD1AA9 /* FileTableView.storyboard */; };
 		E39B92711C99D31100A3FAF2 /* TagsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39B92701C99D31100A3FAF2 /* TagsCollectionViewController.swift */; };
 		E3A8A0DE1C80C1DB009E96C1 /* NSDataNSStringValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385F8071C796B950072A2CD /* NSDataNSStringValueTransformer.swift */; };
 		E3A8A0DF1C80C1DC009E96C1 /* NSStringNSDataValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39E9B381C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift */; };
@@ -138,7 +140,7 @@
 		E3DDBEF31C8D314D00136BAE /* TagsEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DDBEF21C8D314D00136BAE /* TagsEditor.swift */; };
 		E3DDBEF61C8D451E00136BAE /* CalendarEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DDBEF51C8D451E00136BAE /* CalendarEditor.swift */; };
 		E3DDBEF81C8D455000136BAE /* CalendarEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3DDBEF71C8D455000136BAE /* CalendarEditor.storyboard */; };
-		E3DDBEFA1C8D5AF300136BAE /* LibraryCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DDBEF91C8D5AF300136BAE /* LibraryCollectionViewItem.swift */; };
+		E3DDBEFA1C8D5AF300136BAE /* FileCardCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DDBEF91C8D5AF300136BAE /* FileCardCollectionViewItem.swift */; };
 		E3E12A651C76E3E7000C4F16 /* NSOutlineView+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E12A641C76E3E7000C4F16 /* NSOutlineView+Selection.swift */; };
 		E3E65F541C7C1A8F0085B5B7 /* About Markdown.md in Resources */ = {isa = PBXBuildFile; fileRef = E3E65F531C7C1A840085B5B7 /* About Markdown.md */; };
 		E3E7C9DD1C89078100BD73A9 /* Array+SafeIndexing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E7C9DA1C89078100BD73A9 /* Array+SafeIndexing.swift */; };
@@ -307,8 +309,8 @@
 		E3088A921CA0666B00CCA77C /* NSWorkspace+Thumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWorkspace+Thumbnail.m"; sourceTree = "<group>"; };
 		E3088A941CA0A82300CCA77C /* TableRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableRowView.swift; sourceTree = "<group>"; };
 		E3088A961CA0AC4500CCA77C /* TableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCellView.swift; sourceTree = "<group>"; };
-		E3088A981CA0F18100CCA77C /* LibraryTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryTableView.swift; sourceTree = "<group>"; };
-		E3088A9A1CA0F34800CCA77C /* LibraryCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCollectionView.swift; sourceTree = "<group>"; };
+		E3088A981CA0F18100CCA77C /* FileTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileTableView.swift; sourceTree = "<group>"; };
+		E3088A9A1CA0F34800CCA77C /* FileCardCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCardCollectionView.swift; sourceTree = "<group>"; };
 		E3088AB61CA0FC7700CCA77C /* NSMutableCharacterSet+Chaining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableCharacterSet+Chaining.swift"; sourceTree = "<group>"; };
 		E3148F111C79353B006BCE53 /* FileEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileEditor.swift; sourceTree = "<group>"; };
 		E3274FBE1C75A088000B6A84 /* MarkdownEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownEditor.swift; sourceTree = "<group>"; };
@@ -339,8 +341,8 @@
 		E37A727A1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTokenFieldTokenTracker.swift; sourceTree = "<group>"; };
 		E37A728C1C96312E002C721D /* ModelTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelTypes.swift; sourceTree = "<group>"; };
 		E37AB7321C8E0C6E00F44564 /* NSView+Identifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+Identifier.swift"; sourceTree = "<group>"; };
-		E37AB7441C8E1C0500F44564 /* LibraryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewController.swift; sourceTree = "<group>"; };
-		E37AB7461C8E1C0E00F44564 /* LibraryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryTableViewController.swift; sourceTree = "<group>"; };
+		E37AB7441C8E1C0500F44564 /* FileCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCardViewController.swift; sourceTree = "<group>"; };
+		E37AB7461C8E1C0E00F44564 /* FileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileTableViewController.swift; sourceTree = "<group>"; };
 		E37AB74A1C8E20A900F44564 /* LibrarySceneProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibrarySceneProtocol.swift; sourceTree = "<group>"; };
 		E37AB74C1C8E281500F44564 /* TagsValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsValueTransformer.swift; sourceTree = "<group>"; };
 		E37AB74E1C8E6F0E00F44564 /* FileHeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileHeaderViewController.swift; sourceTree = "<group>"; };
@@ -2464,6 +2466,8 @@
 		E385F7E11C924D550015A91B /* md-toc-index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "md-toc-index.html"; sourceTree = "<group>"; };
 		E385F7F11C92865C0015A91B /* TagsCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewItem.swift; sourceTree = "<group>"; };
 		E385F8071C796B950072A2CD /* NSDataNSStringValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataNSStringValueTransformer.swift; sourceTree = "<group>"; };
+		E389C9021CA3696200BD1AA9 /* FileCardView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FileCardView.storyboard; sourceTree = "<group>"; };
+		E389C9041CA3697100BD1AA9 /* FileTableView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FileTableView.storyboard; sourceTree = "<group>"; };
 		E39B92701C99D31100A3FAF2 /* TagsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewController.swift; sourceTree = "<group>"; };
 		E39E9B381C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringNSDataValueTransformer.swift; sourceTree = "<group>"; };
 		E3AD25591C7F9CDE006D6536 /* MarkdownImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownImporter.swift; sourceTree = "<group>"; };
@@ -2485,7 +2489,7 @@
 		E3DDBEF21C8D314D00136BAE /* TagsEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsEditor.swift; sourceTree = "<group>"; };
 		E3DDBEF51C8D451E00136BAE /* CalendarEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEditor.swift; sourceTree = "<group>"; };
 		E3DDBEF71C8D455000136BAE /* CalendarEditor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CalendarEditor.storyboard; sourceTree = "<group>"; };
-		E3DDBEF91C8D5AF300136BAE /* LibraryCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewItem.swift; sourceTree = "<group>"; };
+		E3DDBEF91C8D5AF300136BAE /* FileCardCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCardCollectionViewItem.swift; sourceTree = "<group>"; };
 		E3E12A641C76E3E7000C4F16 /* NSOutlineView+Selection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSOutlineView+Selection.swift"; sourceTree = "<group>"; };
 		E3E65F531C7C1A840085B5B7 /* About Markdown.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "About Markdown.md"; sourceTree = "<group>"; };
 		E3E7C9DA1C89078100BD73A9 /* Array+SafeIndexing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+SafeIndexing.swift"; sourceTree = "<group>"; };
@@ -2567,6 +2571,9 @@
 			children = (
 				E3FD678E1C7BE37800D7EBB7 /* EditorPlugIns.swift */,
 				E37A05481C9B0C80006618EC /* File Header */,
+				E389C8FE1CA3633600BD1AA9 /* File Card View */,
+				E389C8FF1CA3640C00BD1AA9 /* File Table View */,
+				E389C9011CA3667F00BD1AA9 /* File List View */,
 				E3898F981C80162700CA71BE /* Markdown */,
 				E37AB76A1C8EA45B00F44564 /* PDF */,
 				E3DDBEEA1C8D30FF00136BAE /* Library */,
@@ -2750,6 +2757,7 @@
 				E3274FBD1C75A065000B6A84 /* Editors */,
 				E3FD67A01C7BE4A200D7EBB7 /* Importers */,
 				E3E7C9E41C89079000BD73A9 /* Snippets */,
+				E389C9001CA3644900BD1AA9 /* Custom User Interface */,
 				E32EC0901C74493900E47B3F /* Extensions */,
 				E3B9D5B41C9B204600668557 /* Value Transformers */,
 				E3C436281C7642A500DD685D /* Utilities */,
@@ -7209,6 +7217,44 @@
 			name = Markdown;
 			sourceTree = "<group>";
 		};
+		E389C8FE1CA3633600BD1AA9 /* File Card View */ = {
+			isa = PBXGroup;
+			children = (
+				E389C9021CA3696200BD1AA9 /* FileCardView.storyboard */,
+				E37AB7441C8E1C0500F44564 /* FileCardViewController.swift */,
+				E3DDBEF91C8D5AF300136BAE /* FileCardCollectionViewItem.swift */,
+				E3088A9A1CA0F34800CCA77C /* FileCardCollectionView.swift */,
+			);
+			name = "File Card View";
+			sourceTree = "<group>";
+		};
+		E389C8FF1CA3640C00BD1AA9 /* File Table View */ = {
+			isa = PBXGroup;
+			children = (
+				E389C9041CA3697100BD1AA9 /* FileTableView.storyboard */,
+				E37AB7461C8E1C0E00F44564 /* FileTableViewController.swift */,
+				E3088A981CA0F18100CCA77C /* FileTableView.swift */,
+			);
+			name = "File Table View";
+			sourceTree = "<group>";
+		};
+		E389C9001CA3644900BD1AA9 /* Custom User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				E3794C4F1C8CA345005EA307 /* CustomizableView.swift */,
+				E3088A941CA0A82300CCA77C /* TableRowView.swift */,
+				E3088A961CA0AC4500CCA77C /* TableCellView.swift */,
+			);
+			name = "Custom User Interface";
+			sourceTree = "<group>";
+		};
+		E389C9011CA3667F00BD1AA9 /* File List View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "File List View";
+			sourceTree = "<group>";
+		};
 		E3B9D5B41C9B204600668557 /* Value Transformers */ = {
 			isa = PBXGroup;
 			children = (
@@ -7223,7 +7269,6 @@
 		E3C436281C7642A500DD685D /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				E3794C4F1C8CA345005EA307 /* CustomizableView.swift */,
 				E37A727A1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift */,
 				E3DA1D191C99FB1F00E378BA /* NSPathControlPointing.swift */,
 				E35A80061CA1D5C300CBEB36 /* MoveToMenuBuilder.swift */,
@@ -7247,13 +7292,6 @@
 				E3DDBEEC1C8D311700136BAE /* LibraryEditor.storyboard */,
 				E3DDBEF01C8D313A00136BAE /* LibraryEditor.swift */,
 				E37AB74A1C8E20A900F44564 /* LibrarySceneProtocol.swift */,
-				E37AB7441C8E1C0500F44564 /* LibraryCollectionViewController.swift */,
-				E3DDBEF91C8D5AF300136BAE /* LibraryCollectionViewItem.swift */,
-				E37AB7461C8E1C0E00F44564 /* LibraryTableViewController.swift */,
-				E3088A9A1CA0F34800CCA77C /* LibraryCollectionView.swift */,
-				E3088A981CA0F18100CCA77C /* LibraryTableView.swift */,
-				E3088A941CA0A82300CCA77C /* TableRowView.swift */,
-				E3088A961CA0AC4500CCA77C /* TableCellView.swift */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -7564,12 +7602,14 @@
 				E38035901C728D780048AD46 /* MathJax in Resources */,
 				E38035911C728D780048AD46 /* Prism in Resources */,
 				E377CA361C98871800C90011 /* South Lake.style in Resources */,
+				E389C9031CA3696200BD1AA9 /* FileCardView.storyboard in Resources */,
 				E385F7E21C924D550015A91B /* md-toc-index.html in Resources */,
 				E38035921C728D780048AD46 /* Styles in Resources */,
 				E38035931C728D780048AD46 /* syntax_highlighting.json in Resources */,
 				E38035941C728D780048AD46 /* Themes in Resources */,
 				E3C821261C75984B00CBAE92 /* DefaultTab.storyboard in Resources */,
 				E37AB7731C8F4C5900F44564 /* As We May Think - The Atlantic.pdf in Resources */,
+				E389C9051CA3697100BD1AA9 /* FileTableView.storyboard in Resources */,
 				E37AB7771C8F4D2B00F44564 /* PDFEditor.storyboard in Resources */,
 				E3E65F541C7C1A8F0085B5B7 /* About Markdown.md in Resources */,
 				E37C7BE21C911F9600A3AB43 /* RelatedInspector.storyboard in Resources */,
@@ -7695,7 +7735,7 @@
 				E32AD25E1C76827400648BFD /* NSURL+FileType.swift in Sources */,
 				E37D96101C723B8A000A9F90 /* AppDelegate.swift in Sources */,
 				E3AD255A1C7F9CDE006D6536 /* MarkdownImporter.swift in Sources */,
-				E3DDBEFA1C8D5AF300136BAE /* LibraryCollectionViewItem.swift in Sources */,
+				E3DDBEFA1C8D5AF300136BAE /* FileCardCollectionViewItem.swift in Sources */,
 				E36E261B1C9FA87D0060E61F /* Importer.swift in Sources */,
 				E37C7BB71C90C85800A3AB43 /* NSImage+Tint.swift in Sources */,
 				E37C7BB41C90BF6A00A3AB43 /* DMTabBarItem.m in Sources */,
@@ -7708,11 +7748,11 @@
 				E37AB76C1C8F4A2E00F44564 /* PDFImporter.swift in Sources */,
 				E3DDBEF11C8D313A00136BAE /* LibraryEditor.swift in Sources */,
 				E3803F0B1C728E790048AD46 /* NSColor+HTML.m in Sources */,
-				E37AB7481C8E1C0E00F44564 /* LibraryTableViewController.swift in Sources */,
+				E37AB7481C8E1C0E00F44564 /* FileTableViewController.swift in Sources */,
 				E37D96141C723B8A000A9F90 /* Document.swift in Sources */,
 				E3274FC11C75A0B7000B6A84 /* SourceListPanel.swift in Sources */,
 				E3C4362B1C7642BA00DD685D /* MacDownCopyFiles.m in Sources */,
-				E37AB7451C8E1C0500F44564 /* LibraryCollectionViewController.swift in Sources */,
+				E37AB7451C8E1C0500F44564 /* FileCardViewController.swift in Sources */,
 				E3148F121C79353B006BCE53 /* FileEditor.swift in Sources */,
 				E3274FC91C75A151000B6A84 /* SmartFolder.swift in Sources */,
 				E3FD678F1C7BE37800D7EBB7 /* EditorPlugIns.swift in Sources */,
@@ -7729,7 +7769,7 @@
 				E3E7C9E31C89078C00BD73A9 /* Snippet.swift in Sources */,
 				E3D190DB1C9C5E0800129AD7 /* NSTreeController+IndexPaths.swift in Sources */,
 				E3794C501C8CA345005EA307 /* CustomizableView.swift in Sources */,
-				E3088A991CA0F18100CCA77C /* LibraryTableView.swift in Sources */,
+				E3088A991CA0F18100CCA77C /* FileTableView.swift in Sources */,
 				E3274FCB1C75A1BF000B6A84 /* File.swift in Sources */,
 				E385F7F21C92865C0015A91B /* TagsCollectionViewItem.swift in Sources */,
 				E3274FC71C75A148000B6A84 /* Section.swift in Sources */,
@@ -7739,7 +7779,7 @@
 				E3FD67A21C7BE4B500D7EBB7 /* ImporterPlugIns.swift in Sources */,
 				E3023A681C7AD43500111289 /* TwoWayKeyValueObserving.swift in Sources */,
 				E328F1A61C9BA97F00146381 /* UI.swift in Sources */,
-				E3088A9B1CA0F34800CCA77C /* LibraryCollectionView.swift in Sources */,
+				E3088A9B1CA0F34800CCA77C /* FileCardCollectionView.swift in Sources */,
 				E3274FC31C75A134000B6A84 /* DataSource.swift in Sources */,
 				E37AB74F1C8E6F0E00F44564 /* FileHeaderViewController.swift in Sources */,
 				E360727C1C74FEEC00914C2C /* DocumentTab.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  LibraryTableView.swift
+//  FileTableView.swift
 //  South Lake
 //
 //  Created by Philip Dow on 3/21/16.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class LibraryTableView: NSTableView {
+class FileTableView: NSTableView {
 
     override func deleteBackward(sender: AnyObject?) {
         nextResponder?.tryToPerform(Selector("deleteBackward:"), with: sender)

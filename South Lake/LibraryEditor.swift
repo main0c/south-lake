@@ -85,10 +85,10 @@ class LibraryEditor: NSViewController, FileEditor {
         pathControl.URL = NSURL(string: "southlake://localhost/library")
         updatePathControlAppearance()
         
-        // TODO: Save and restore scene preference
+        // Restore view preference
         
-        let sceneId = NSUserDefaults.standardUserDefaults().objectForKey("SLLibraryScene") as? String ?? "libraryCollectionScene"
-        sceneSelector.selectSegmentWithTag(sceneId == "libraryCollectionScene" ? 0 : 1)
+        let sceneId = NSUserDefaults.standardUserDefaults().objectForKey("SLLibraryScene") as? String ?? "FileCardView"
+        sceneSelector.selectSegmentWithTag(sceneId == "FileCardView" ? 0 : 1)
         
         loadScene(sceneId)
         bindLibrary()
@@ -160,12 +160,12 @@ class LibraryEditor: NSViewController, FileEditor {
         switch tag {
         case 0: // icon collection
             unloadScene()
-            NSUserDefaults.standardUserDefaults().setObject("libraryCollectionScene", forKey: "SLLibraryScene")
-            loadScene("libraryCollectionScene")
+            NSUserDefaults.standardUserDefaults().setObject("FileCardView", forKey: "SLLibraryScene")
+            loadScene("FileCardView")
         case 1: // table view
             unloadScene()
-            NSUserDefaults.standardUserDefaults().setObject("libraryTableScene", forKey: "SLLibraryScene")
-            loadScene("libraryTableScene")
+            NSUserDefaults.standardUserDefaults().setObject("FileTableView", forKey: "SLLibraryScene")
+            loadScene("FileTableView")
         case _:
             break
         }
@@ -194,7 +194,8 @@ class LibraryEditor: NSViewController, FileEditor {
     // MARK: - Scene
     
     func loadScene(identifier: String) {
-        scene = storyboard!.instantiateControllerWithIdentifier(identifier) as? LibraryScene
+        // scene = storyboard!.instantiateControllerWithIdentifier(identifier) as? LibraryScene
+        scene = NSStoryboard(name: identifier, bundle: nil).instantiateInitialController() as? LibraryScene
         guard var scene = scene else {
             print("unable to load scene")
             return

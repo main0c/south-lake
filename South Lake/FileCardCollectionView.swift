@@ -1,14 +1,15 @@
 //
-//  LibraryCollectionView.swift
+//  FileCardCollectionView.swift
 //  South Lake
 //
 //  Created by Philip Dow on 3/21/16.
 //  Copyright © 2016 Phil Dow. All rights reserved.
 //
+//  TODO: Unused? Implement in IB
 
 import Cocoa
 
-class LibraryCollectionView: NSCollectionView {
+class FileCardCollectionView: NSCollectionView {
 
     override func deleteBackward(sender: AnyObject?) {
         nextResponder?.tryToPerform(Selector("deleteBackward:"), with: sender)

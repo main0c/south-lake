@@ -1,5 +1,5 @@
 //
-//  LibraryCollectionViewController.swift
+//  FileCardViewController.swift
 //  South Lake
 //
 //  Created by Philip Dow on 3/7/16.
@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class LibraryCollectionViewController: NSViewController, LibraryScene {
+class FileCardViewController: NSViewController, LibraryScene {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var collectionView: NSCollectionView!
     
@@ -26,7 +26,7 @@ class LibraryCollectionViewController: NSViewController, LibraryScene {
         
         collectionView.backgroundColors = [UI.Color.FileEditorBackground]
         
-        let prototype = storyboard!.instantiateControllerWithIdentifier("libraryCollectionViewItem") as? LibraryCollectionViewItem
+        let prototype = storyboard!.instantiateControllerWithIdentifier("FileCardCollectionViewItem") as? FileCardCollectionViewItem
         prototype?.doubleAction = Selector("doubleClick:")
         prototype?.target = self
         
@@ -115,7 +115,7 @@ class LibraryCollectionViewController: NSViewController, LibraryScene {
     }
 }
 
-extension LibraryCollectionViewController: NSCollectionViewDelegate {
+extension FileCardViewController: NSCollectionViewDelegate {
     func collectionView(collectionView: NSCollectionView, canDragItemsAtIndexes indexes: NSIndexSet, withEvent event: NSEvent) -> Bool {
         return true
     }
