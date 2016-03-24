@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class FileCardViewController: NSViewController, LibraryScene {
+class FileCardViewController: NSViewController, FileCollectionScene {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var collectionView: NSCollectionView!
     

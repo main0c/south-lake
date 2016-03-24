@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class FileTableViewController: NSViewController, LibraryScene {
+class FileTableViewController: NSViewController, FileCollectionScene {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var tableView: NSTableView!
 

@@ -47,7 +47,7 @@
 		E37AB7331C8E0C6E00F44564 /* NSView+Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB7321C8E0C6E00F44564 /* NSView+Identifier.swift */; };
 		E37AB7451C8E1C0500F44564 /* FileCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB7441C8E1C0500F44564 /* FileCardViewController.swift */; };
 		E37AB7481C8E1C0E00F44564 /* FileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB7461C8E1C0E00F44564 /* FileTableViewController.swift */; };
-		E37AB74B1C8E20A900F44564 /* LibrarySceneProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB74A1C8E20A900F44564 /* LibrarySceneProtocol.swift */; };
+		E37AB74B1C8E20A900F44564 /* FileCollectionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB74A1C8E20A900F44564 /* FileCollectionScene.swift */; };
 		E37AB74D1C8E281500F44564 /* TagsValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB74C1C8E281500F44564 /* TagsValueTransformer.swift */; };
 		E37AB74F1C8E6F0E00F44564 /* FileHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37AB74E1C8E6F0E00F44564 /* FileHeaderViewController.swift */; };
 		E37AB7511C8E6F4A00F44564 /* FileHeader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E37AB7501C8E6F4A00F44564 /* FileHeader.storyboard */; };
@@ -122,6 +122,8 @@
 		E389C9051CA3697100BD1AA9 /* FileTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E389C9041CA3697100BD1AA9 /* FileTableView.storyboard */; };
 		E389C9081CA3711A00BD1AA9 /* FolderEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E389C9071CA3711A00BD1AA9 /* FolderEditor.storyboard */; };
 		E389C90A1CA3713700BD1AA9 /* FolderEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E389C9091CA3713700BD1AA9 /* FolderEditor.swift */; };
+		E389C90D1CA3727A00BD1AA9 /* FileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E389C90B1CA3727A00BD1AA9 /* FileListViewController.swift */; };
+		E389C9101CA3728A00BD1AA9 /* FileListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E389C90F1CA3728A00BD1AA9 /* FileListView.storyboard */; };
 		E39B92711C99D31100A3FAF2 /* TagsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39B92701C99D31100A3FAF2 /* TagsCollectionViewController.swift */; };
 		E3A8A0DE1C80C1DB009E96C1 /* NSDataNSStringValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385F8071C796B950072A2CD /* NSDataNSStringValueTransformer.swift */; };
 		E3A8A0DF1C80C1DC009E96C1 /* NSStringNSDataValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39E9B381C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift */; };
@@ -345,7 +347,7 @@
 		E37AB7321C8E0C6E00F44564 /* NSView+Identifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+Identifier.swift"; sourceTree = "<group>"; };
 		E37AB7441C8E1C0500F44564 /* FileCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCardViewController.swift; sourceTree = "<group>"; };
 		E37AB7461C8E1C0E00F44564 /* FileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileTableViewController.swift; sourceTree = "<group>"; };
-		E37AB74A1C8E20A900F44564 /* LibrarySceneProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibrarySceneProtocol.swift; sourceTree = "<group>"; };
+		E37AB74A1C8E20A900F44564 /* FileCollectionScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCollectionScene.swift; sourceTree = "<group>"; };
 		E37AB74C1C8E281500F44564 /* TagsValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsValueTransformer.swift; sourceTree = "<group>"; };
 		E37AB74E1C8E6F0E00F44564 /* FileHeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileHeaderViewController.swift; sourceTree = "<group>"; };
 		E37AB7501C8E6F4A00F44564 /* FileHeader.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FileHeader.storyboard; sourceTree = "<group>"; };
@@ -2472,6 +2474,8 @@
 		E389C9041CA3697100BD1AA9 /* FileTableView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FileTableView.storyboard; sourceTree = "<group>"; };
 		E389C9071CA3711A00BD1AA9 /* FolderEditor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FolderEditor.storyboard; sourceTree = "<group>"; };
 		E389C9091CA3713700BD1AA9 /* FolderEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderEditor.swift; sourceTree = "<group>"; };
+		E389C90B1CA3727A00BD1AA9 /* FileListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileListViewController.swift; sourceTree = "<group>"; };
+		E389C90F1CA3728A00BD1AA9 /* FileListView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FileListView.storyboard; sourceTree = "<group>"; };
 		E39B92701C99D31100A3FAF2 /* TagsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewController.swift; sourceTree = "<group>"; };
 		E39E9B381C796E7100CDE9E6 /* NSStringNSDataValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringNSDataValueTransformer.swift; sourceTree = "<group>"; };
 		E3AD25591C7F9CDE006D6536 /* MarkdownImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownImporter.swift; sourceTree = "<group>"; };
@@ -2574,6 +2578,7 @@
 			isa = PBXGroup;
 			children = (
 				E3FD678E1C7BE37800D7EBB7 /* EditorPlugIns.swift */,
+				E37AB74A1C8E20A900F44564 /* FileCollectionScene.swift */,
 				E37A05481C9B0C80006618EC /* File Header */,
 				E389C8FE1CA3633600BD1AA9 /* File Card View */,
 				E389C8FF1CA3640C00BD1AA9 /* File Table View */,
@@ -7256,6 +7261,8 @@
 		E389C9011CA3667F00BD1AA9 /* File List View */ = {
 			isa = PBXGroup;
 			children = (
+				E389C90F1CA3728A00BD1AA9 /* FileListView.storyboard */,
+				E389C90B1CA3727A00BD1AA9 /* FileListViewController.swift */,
 			);
 			name = "File List View";
 			sourceTree = "<group>";
@@ -7305,7 +7312,6 @@
 			children = (
 				E3DDBEEC1C8D311700136BAE /* LibraryEditor.storyboard */,
 				E3DDBEF01C8D313A00136BAE /* LibraryEditor.swift */,
-				E37AB74A1C8E20A900F44564 /* LibrarySceneProtocol.swift */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -7617,6 +7623,7 @@
 				E38035911C728D780048AD46 /* Prism in Resources */,
 				E377CA361C98871800C90011 /* South Lake.style in Resources */,
 				E389C9031CA3696200BD1AA9 /* FileCardView.storyboard in Resources */,
+				E389C9101CA3728A00BD1AA9 /* FileListView.storyboard in Resources */,
 				E385F7E21C924D550015A91B /* md-toc-index.html in Resources */,
 				E38035921C728D780048AD46 /* Styles in Resources */,
 				E38035931C728D780048AD46 /* syntax_highlighting.json in Resources */,
@@ -7815,7 +7822,7 @@
 				E39B92711C99D31100A3FAF2 /* TagsCollectionViewController.swift in Sources */,
 				E378E80F1C801F54009539FD /* NSToolbar+Items.swift in Sources */,
 				E37A727B1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift in Sources */,
-				E37AB74B1C8E20A900F44564 /* LibrarySceneProtocol.swift in Sources */,
+				E37AB74B1C8E20A900F44564 /* FileCollectionScene.swift in Sources */,
 				E3803F0F1C728E790048AD46 /* NSString+Lookup.m in Sources */,
 				E3803F071C728E600048AD46 /* MPAsset.m in Sources */,
 				E37C7B661C8FF85D00A3AB43 /* MarkdownTOCInspector.swift in Sources */,
@@ -7844,6 +7851,7 @@
 				E37AB7331C8E0C6E00F44564 /* NSView+Identifier.swift in Sources */,
 				E3A8A0DE1C80C1DB009E96C1 /* NSDataNSStringValueTransformer.swift in Sources */,
 				E3DDBEF61C8D451E00136BAE /* CalendarEditor.swift in Sources */,
+				E389C90D1CA3727A00BD1AA9 /* FileListViewController.swift in Sources */,
 				E3803F121C728E910048AD46 /* MPMathJaxListener.m in Sources */,
 				E3E7C9E61C89079C00BD73A9 /* String+Snippet.swift in Sources */,
 				E37C7BD41C91022700A3AB43 /* CommentsInspector.swift in Sources */,

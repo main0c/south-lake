@@ -69,7 +69,7 @@ class LibraryEditor: NSViewController, FileEditor {
         }
     }
 
-    var scene: LibraryScene?
+    var scene: FileCollectionScene?
 
     // MARK: - Initialization
     
@@ -194,8 +194,7 @@ class LibraryEditor: NSViewController, FileEditor {
     // MARK: - Scene
     
     func loadScene(identifier: String) {
-        // scene = storyboard!.instantiateControllerWithIdentifier(identifier) as? LibraryScene
-        scene = NSStoryboard(name: identifier, bundle: nil).instantiateInitialController() as? LibraryScene
+        scene = NSStoryboard(name: identifier, bundle: nil).instantiateInitialController() as? FileCollectionScene
         guard var scene = scene else {
             print("unable to load scene")
             return

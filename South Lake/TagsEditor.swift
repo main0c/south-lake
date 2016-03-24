@@ -59,7 +59,7 @@ class TagsEditor: NSViewController, FileEditor {
     
     dynamic var libraryContent: [DataSource] = []
     
-    var scene: LibraryScene?
+    var scene: FileCollectionScene?
     
     // MARK: - Initialization
 
@@ -217,7 +217,7 @@ class TagsEditor: NSViewController, FileEditor {
     // MARK: - Scene
     
     func loadScene(identifier: String) {
-        scene = storyboard!.instantiateControllerWithIdentifier(identifier) as? LibraryScene
+        scene = storyboard!.instantiateControllerWithIdentifier(identifier) as? FileCollectionScene
         guard var scene = scene else {
             print("unable to load scene with identifier \(identifier)")
             return

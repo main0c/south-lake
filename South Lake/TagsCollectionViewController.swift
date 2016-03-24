@@ -6,11 +6,11 @@
 //  Copyright © 2016 Phil Dow. All rights reserved.
 //
 
-//  TODO: obvious need for factorization, this is not a LibraryScene
+//  TODO: obvious need for factorization, this is not a FileCollectionScene
 
 import Cocoa
 
-class TagsCollectionViewController: NSViewController, LibraryScene {
+class TagsCollectionViewController: NSViewController, FileCollectionScene {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var collectionView: NSCollectionView!
     

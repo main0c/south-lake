@@ -46,7 +46,7 @@ class RelatedInspector: NSViewController, Inspector {
     // MARK: - Custom Properties
     
     var tags: [String]?
-    var scene: LibraryScene?
+    var scene: FileCollectionScene?
     
     dynamic var libraryContent: [DataSource] = []
     dynamic var selectedTags: [String]? {
@@ -99,7 +99,7 @@ class RelatedInspector: NSViewController, Inspector {
     // MARK: - Utilities
     
     func loadScene(identifier: String) {
-        scene = storyboard!.instantiateControllerWithIdentifier(identifier) as? LibraryScene
+        scene = storyboard!.instantiateControllerWithIdentifier(identifier) as? FileCollectionScene
         guard var scene = scene else {
             print("unable to load scene")
             return
@@ -124,7 +124,7 @@ class RelatedInspector: NSViewController, Inspector {
         )
         
         // Custom background colors - would prefer to do this another way
-        // Simple setBackgroundColor() on LibraryScene for example
+        // Simple setBackgroundColor() on FileCollectionScene for example
         
         if let tagsScene = scene as? FileCardViewController {
             tagsScene.collectionView.backgroundColors = [UI.Color.InspectorBackground]
