@@ -7,7 +7,7 @@
         <!--File Table View Controller-->
         <scene sceneID="SIa-k9-gII">
             <objects>
-                <viewController storyboardIdentifier="libraryTableScene" id="ewD-EV-mU9" customClass="FileTableViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FileTableView" id="ewD-EV-mU9" customClass="FileTableViewController" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hwG-Oo-vTj">
                         <rect key="frame" x="0.0" y="0.0" width="675" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -43,8 +43,8 @@
                                                             <rect key="frame" x="1" y="1" width="369" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="22z-XM-l5o">
-                                                                    <rect key="frame" x="3" y="-3" width="22" height="23"/>
+                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="22z-XM-l5o">
+                                                                    <rect key="frame" x="3" y="9" width="22" height="22"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="22" id="0Nz-gC-CMr"/>
                                                                         <constraint firstAttribute="height" constant="22" id="ZSr-qx-LVs"/>
@@ -54,8 +54,8 @@
                                                                         <binding destination="3S6-N2-kkv" name="value" keyPath="objectValue.icon" id="j2c-5n-tbG"/>
                                                                     </connections>
                                                                 </imageView>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S31-xB-Top">
-                                                                    <rect key="frame" x="25" y="1" width="339" height="16"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S31-xB-Top">
+                                                                    <rect key="frame" x="25" y="12" width="339" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="rRQ-Uj-Zxu">
                                                                         <font key="font" metaFont="systemMedium" size="12"/>
                                                                         <color key="textColor" white="0.135061553" alpha="1" colorSpace="calibratedWhite"/>
@@ -97,8 +97,8 @@
                                                             <rect key="frame" x="1" y="1" width="-3" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IgO-Rd-Kl8">
-                                                                    <rect key="frame" x="-1" y="24" width="100" height="16"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="IgO-Rd-Kl8">
+                                                                    <rect key="frame" x="0.0" y="12" width="4" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="yRx-gu-HNI">
                                                                         <dateFormatter key="formatter" dateStyle="medium" id="NGy-f4-oZo"/>
                                                                         <font key="font" metaFont="cellTitle"/>
@@ -138,8 +138,8 @@
                                                             <rect key="frame" x="373" y="1" width="100" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CFa-Ho-2hA">
-                                                                    <rect key="frame" x="0.0" y="1" width="100" height="16"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="CFa-Ho-2hA">
+                                                                    <rect key="frame" x="0.0" y="12" width="100" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="h0V-Mb-R4O">
                                                                         <dateFormatter key="formatter" dateStyle="medium" id="xVm-ae-8lr"/>
                                                                         <font key="font" metaFont="cellTitle"/>
@@ -179,8 +179,8 @@
                                                             <rect key="frame" x="476" y="1" width="197" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U1m-H0-eV6">
-                                                                    <rect key="frame" x="0.0" y="1" width="197" height="16"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="U1m-H0-eV6">
+                                                                    <rect key="frame" x="0.0" y="12" width="197" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="A7M-e0-kOt">
                                                                         <font key="font" metaFont="cellTitle"/>
                                                                         <color key="textColor" white="0.13855350380000001" alpha="1" colorSpace="calibratedWhite"/>
