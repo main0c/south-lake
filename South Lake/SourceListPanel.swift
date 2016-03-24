@@ -68,6 +68,11 @@ class SourceListPanel: NSViewController, Databasable {
             self.outlineView.expandItem(self.treeController.arrangedObjects.childNodes!![safe: 1])
             self.outlineView.expandItem(self.treeController.arrangedObjects.childNodes!![safe: 2])
             self.outlineView.expandItem(self.treeController.arrangedObjects.childNodes!![safe: 3])
+            
+            // Want to preserve last selection
+            if let library = self.databaseManager?.librarySource {
+                self.selectItem(library)
+            }
         }
         
         // Set up outline view
