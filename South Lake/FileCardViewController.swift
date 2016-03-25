@@ -19,10 +19,16 @@ class FileCardViewController: NSViewController, FileCollectionScene {
     var databaseManager: DatabaseManager?
     var searchService: BRSearchService?
 
+    // MARK: - Custom
+    
+    dynamic var selectedObjects: [DataSource]?
+
     // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Collection View
         
         collectionView.backgroundColors = [UI.Color.SourceViewerBackground]
         
@@ -31,10 +37,16 @@ class FileCardViewController: NSViewController, FileCollectionScene {
         prototype?.target = self
         
         collectionView.itemPrototype = prototype
+        
+        // Array Controller
+        
+        bind("selectedObjects", toObject: arrayController, withKeyPath: "selectedObjects", options: [:])
     }
     
     func willClose() {
-        // OS API bug: 
+        unbind("selectedObjects")
+        
+        // OS API bug:
         // collectionView.itemPrototype must be set to nil for collection view
         // and this view controller to dealloc, but first the content on the
         // array controller must be emptied (see unloadScene())

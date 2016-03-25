@@ -74,6 +74,36 @@ class LibraryEditor: NSViewController, SourceViewer {
         return nil
     }
     
+    // MARK: - From Tab Implementation
+    
+    dynamic var icon: NSImage?
+    // var title: String
+    
+    dynamic var selectedObject: DataSource?
+    dynamic var selectedObjects: [DataSource] = [] {
+        willSet {
+            unbindTitle(selectedObjects)
+            unbindIcon(selectedObjects)
+            
+            unbindEditor(selectedObjects)
+            // unbindHeader(selectedObjects)
+            // unbindInspectors(selectedObjects)
+        }
+        didSet {
+            selectedObject = selectedObjects[safe:0]
+            
+            bindTitle(selectedObjects)
+            bindIcon(selectedObjects)
+            
+            bindEditor(selectedObjects)
+            // bindHeader(selectedObjects)
+            // bindInspectors(selectedObjects)
+        }
+    }
+    
+    var header: FileHeaderViewController?
+    var editor: SourceViewer?
+    
     // MARK: - Custom Properties
     
     dynamic var sortDescriptors: [NSSortDescriptor]?
@@ -110,20 +140,24 @@ class LibraryEditor: NSViewController, SourceViewer {
         pathControl.URL = NSURL(string: "southlake://localhost/library")
         updatePathControlAppearance()
         
-        // Restore view preference
+        // TODO: Restore view preference
+        
+        let options = (layout: Layout.Compact, view: FileView.Card)
+        loadLayout(options.layout)
+        loadScene(options.view)
         
 //        let sceneId = NSUserDefaults.standardUserDefaults().objectForKey("SLLibraryScene") as? String ?? "FileCardView"
 //        sceneSelector.selectSegmentWithTag(sceneId == "FileCardView" ? 0 : 1)
 //        loadScene(sceneId)
         
-        log("something")
-        
         bindContent()
     }
     
     func willClose() {
+        unloadLayout()
         unloadScene()
         unbind("content")
+        unbind("selectedObjects")
     }
 
     // MARK: - Library Data
@@ -184,25 +218,25 @@ class LibraryEditor: NSViewController, SourceViewer {
             return
         }
         
-        var options = (Layout.Compact, FileView.Card)
+        var options = (layout: Layout.Compact, view: FileView.Card)
         
         switch tag {
-        case ViewTag.CompactCard: options = (Layout.Compact, FileView.Card)
-        case ViewTag.CompactList: options = (Layout.Compact, FileView.List)
-        case ViewTag.CompactTable: options = (Layout.Compact, FileView.Table)
-        case ViewTag.ExpandedCard: options = (Layout.Expanded, FileView.Card)
-        case ViewTag.ExpandedTable: options = (Layout.Expanded, FileView.Table)
-        case ViewTag.HorizontalCard: options = (Layout.Horizontal, FileView.Card)
-        case ViewTag.HorizontalTable: options = (Layout.Horizontal, FileView.Table)
+        case ViewTag.CompactCard: options = (layout: Layout.Compact, view: FileView.Card)
+        case ViewTag.CompactList: options = (layout: Layout.Compact, view: FileView.List)
+        case ViewTag.CompactTable: options = (layout: Layout.Compact, view: FileView.Table)
+        case ViewTag.ExpandedCard: options = (layout: Layout.Expanded, view: FileView.Card)
+        case ViewTag.ExpandedTable: options = (layout: Layout.Expanded, view: FileView.Table)
+        case ViewTag.HorizontalCard: options = (layout: Layout.Horizontal, view: FileView.Card)
+        case ViewTag.HorizontalTable: options = (layout: Layout.Horizontal, view: FileView.Table)
         }
         
-        let (layout, view) = options
+        // TODO: don't reload the layout if it's the same one
         
         unloadLayout()
         unloadScene()
         
-        loadLayout(layout)
-        loadScene(view)
+        loadLayout(options.layout)
+        loadScene(options.view)
         
 //        switch tag {
 //        case 0: // icon collection
@@ -265,7 +299,6 @@ class LibraryEditor: NSViewController, SourceViewer {
                 metrics: nil,
                 views: ["subview": layoutController.view])
         )
-
     }
     
     func unloadLayout() {
@@ -324,7 +357,10 @@ class LibraryEditor: NSViewController, SourceViewer {
         // Bind the array controller to ours
         // Predicates and sorting are applied before it even sees the data
         
+        // Set up connections
+        
         scene.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
+        bind("selectedObjects", toObject: scene as! AnyObject, withKeyPath: "selectedObjects", options: [:])
     }
     
     func unloadScene() {
@@ -336,6 +372,113 @@ class LibraryEditor: NSViewController, SourceViewer {
         scene.arrayController.content = []
         scene.view.removeFromSuperview()
         scene.willClose()
+    }
+    
+    // MARK: - Bindings
+    
+    func bindTitle(selection: [DataSource]) {
+        let count = selection.count
+        
+        switch count {
+        case 0:
+            title = NSLocalizedString("No Selection", comment: "")
+        case 1:
+            bind("title", toObject: selectedObjects[0], withKeyPath: "title", options: [:])
+        default:
+            title = NSLocalizedString("Multiple Selection", comment: "")
+        }
+    }
+    
+    func bindIcon(selection: [DataSource]) {
+        let count = selection.count
+        
+        switch count {
+        case 0:
+            icon = nil
+        case 1:
+            bind("icon", toObject: selectedObjects[0], withKeyPath: "icon", options: [:])
+        default:
+            icon = nil
+        }
+    }
+    
+    func unbindTitle(selection: [DataSource]) {
+        unbind("title")
+    }
+    
+    func unbindIcon(selection: [DataSource]) {
+        unbind("icon")
+    }
+    
+    // MARK: - Editor
+    
+    func bindEditor(selection: [DataSource]) {
+        let item = selectedObject
+        
+        switch (selection.count, item) {
+        case (0, _): clearEditor()
+        case (1, is File): loadEditor(item!)
+        case (_,_): break
+        }
+    }
+      
+    func unbindEditor(selection: [DataSource]) {
+        guard let editor = editor else {
+            return
+        }
+        editor.source = nil
+    }
+    
+    func loadEditor(file: DataSource) {
+        guard let layoutController = layoutController else {
+            log("layout controller unavailable")
+            return
+        }
+        guard layoutController.splitViewItems.count >= 2 else {
+            log("layout controller does no have more than one split view items")
+            return
+        }
+        
+        // Load editor iff editor has changed
+        
+        if editor == nil || !editor!.dynamicType.filetypes.contains(file.uti) {
+            
+            // Clear existing editor
+            
+            clearEditor()
+
+            // Load new editor
+            
+            editor = EditorPlugIns.sharedInstance.plugInForFiletype(file.file_extension)
+            
+            guard editor != nil else {
+                print("unable to find editor for file with type \(file.file_extension)")
+                clearEditor()
+                return
+            }
+
+            // Prepare the new editor
+            
+            editor!.databaseManager = databaseManager
+            editor!.searchService = searchService
+            
+            // Move it into the split view items
+            
+            let splitViewItem = NSSplitViewItem(viewController: editor as! NSViewController)
+            layoutController.removeSplitViewItem(layoutController.splitViewItems[1])
+            layoutController.insertSplitViewItem(splitViewItem, atIndex: 1)
+         }
+        
+        // Always pass selection to the editor
+        
+        editor!.source = file
+    }
+    
+    func clearEditor() {
+        editor?.willClose() // TODO: move to willSet
+        // editor?.removeFromParentViewController()
+        editor?.view.removeFromSuperview()
+        editor = nil
     }
     
     // MARK: -

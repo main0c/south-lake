@@ -44,6 +44,10 @@ class TagsCollectionViewController: NSViewController, FileCollectionScene {
         collectionView.itemPrototype = nil
     }
     
+    // ...
+    
+    var selectedObjects: [DataSource]?
+    
     // MARK: -
     
     @IBAction func doubleClick(sender: AnyObject?) {

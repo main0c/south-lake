@@ -17,17 +17,27 @@ class FileTableViewController: NSViewController, FileCollectionScene {
     var databaseManager: DatabaseManager?
     var searchService: BRSearchService?
     
+    // MARK: - Custom
+    
+    dynamic var selectedObjects: [DataSource]?
+    
     // MARK: - Initialization
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Table View
+        
         tableView.target = self
         tableView.doubleAction = Selector("doubleClick:")
+        
+        // Array Controller
+        
+        bind("selectedObjects", toObject: arrayController, withKeyPath: "selectedObjects", options: [:])
     }
     
     func willClose() {
-        
+        unbind("selectedObjects")
     }
        
     @IBAction func doubleClick(sender: AnyObject?) {
