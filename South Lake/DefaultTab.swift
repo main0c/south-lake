@@ -25,11 +25,16 @@ import Cocoa
 /// The Tab maintains a selection history of that provides enough information to recall the
 /// selection in the source list as well as selection changes in an editor. I guess we'll see
 /// about that.
+///
+/// CHANGES
+/// The sole responbility of the tab is to watch the selection in the source list
+/// and load the appropriate editor. No inspector. No header. No content view panel
 
 class DefaultTab: NSSplitViewController, DocumentTab {
     var sourceListController: SourceListPanel!     // left data source
     var contentController: ContentViewPanel! // center content
-    var inspectorController: InspectorPanel! // right inspector
+    
+    // var inspectorController: InspectorPanel! // right inspector
     
     // Default inspectors
     
@@ -116,8 +121,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             case let controller as ContentViewPanel:
                 contentController = controller
                 break
-            case let controller as InspectorPanel:
-                inspectorController = controller
+//            case let controller as InspectorPanel:
+//                inspectorController = controller
             default:
                 break
             }
@@ -135,7 +140,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     func willClose() {
         sourceListController.willClose()
-        inspectorController.willClose()
+//        inspectorController.willClose()
         contentController.willClose()
         
         unbindTitle(selectedObjects)
@@ -364,7 +369,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     }
     
     func clearInspector() {
-        inspectorController.inspectors = nil
+//        inspectorController.inspectors = nil
         inspectors = nil
     }
     
@@ -404,7 +409,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         inspectors!.append(commentsInspector)
         inspectors!.append(relatedInspector)
         
-        inspectorController.inspectors = inspectors
+//        inspectorController.inspectors = inspectors
     }
     
     func loadInspectorForMultipleSelection(files: [DataSource]) {

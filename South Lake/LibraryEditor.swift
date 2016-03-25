@@ -11,6 +11,30 @@
 
 import Cocoa
 
+enum Layout: String {
+    case Expanded
+    case Compact
+    case Horizontal
+}
+
+enum FileView: String {
+    case Card = "FileCardView"
+    case Table = "FileTableView"
+    case List = "FileListView"
+}
+
+enum ViewTag: Int {
+    case CompactCard = 1
+    case CompactList = 2
+    case CompactTable = 3
+    
+    case ExpandedCard = 11
+    case ExpandedTable = 12
+    
+    case HorizontalCard = 21
+    case HorizontalTable = 22
+}
+
 class LibraryEditor: NSViewController, SourceViewer {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var containerView: NSView!
@@ -69,6 +93,7 @@ class LibraryEditor: NSViewController, SourceViewer {
         }
     }
 
+    var layoutController: NSSplitViewController?
     var scene: FileCollectionScene?
 
     // MARK: - Initialization
@@ -87,10 +112,12 @@ class LibraryEditor: NSViewController, SourceViewer {
         
         // Restore view preference
         
-        let sceneId = NSUserDefaults.standardUserDefaults().objectForKey("SLLibraryScene") as? String ?? "FileCardView"
-        sceneSelector.selectSegmentWithTag(sceneId == "FileCardView" ? 0 : 1)
+//        let sceneId = NSUserDefaults.standardUserDefaults().objectForKey("SLLibraryScene") as? String ?? "FileCardView"
+//        sceneSelector.selectSegmentWithTag(sceneId == "FileCardView" ? 0 : 1)
+//        loadScene(sceneId)
         
-        loadScene(sceneId)
+        log("something")
+        
         bindContent()
     }
     
@@ -149,26 +176,46 @@ class LibraryEditor: NSViewController, SourceViewer {
     }
     
     @IBAction func changeScene(sender: AnyObject?) {
-        guard let sender = sender as? NSSegmentedControl,
-              let cell = sender.cell as? NSSegmentedCell else {
+        guard let sender = sender as? NSPopUpButton else {
               return
         }
+        guard let tag = ViewTag(rawValue: sender.selectedTag()) else {
+            print("LibraryEditor.changeScene: invalid tag")
+            return
+        }
         
-        let segment = sender.selectedSegment
-        let tag = cell.tagForSegment(segment)
+        var options = (Layout.Compact, FileView.Card)
         
         switch tag {
-        case 0: // icon collection
-            unloadScene()
-            NSUserDefaults.standardUserDefaults().setObject("FileCardView", forKey: "SLLibraryScene")
-            loadScene("FileCardView")
-        case 1: // table view
-            unloadScene()
-            NSUserDefaults.standardUserDefaults().setObject("FileTableView", forKey: "SLLibraryScene")
-            loadScene("FileTableView")
-        case _:
-            break
+        case ViewTag.CompactCard: options = (Layout.Compact, FileView.Card)
+        case ViewTag.CompactList: options = (Layout.Compact, FileView.List)
+        case ViewTag.CompactTable: options = (Layout.Compact, FileView.Table)
+        case ViewTag.ExpandedCard: options = (Layout.Expanded, FileView.Card)
+        case ViewTag.ExpandedTable: options = (Layout.Expanded, FileView.Table)
+        case ViewTag.HorizontalCard: options = (Layout.Horizontal, FileView.Card)
+        case ViewTag.HorizontalTable: options = (Layout.Horizontal, FileView.Table)
         }
+        
+        let (layout, view) = options
+        
+        unloadLayout()
+        unloadScene()
+        
+        loadLayout(layout)
+        loadScene(view)
+        
+//        switch tag {
+//        case 0: // icon collection
+//            unloadScene()
+//            NSUserDefaults.standardUserDefaults().setObject("FileCardView", forKey: "SLLibraryScene")
+//            loadScene("FileCardView")
+//        case 1: // table view
+//            unloadScene()
+//            NSUserDefaults.standardUserDefaults().setObject("FileTableView", forKey: "SLLibraryScene")
+//            loadScene("FileTableView")
+//        case _:
+//            break
+//        }
     }
     
     @IBAction func gotoPath(sender: AnyObject?) {
@@ -193,10 +240,62 @@ class LibraryEditor: NSViewController, SourceViewer {
     
     // MARK: - Scene
     
-    func loadScene(identifier: String) {
-        scene = NSStoryboard(name: identifier, bundle: nil).instantiateInitialController() as? FileCollectionScene
+    func loadLayout(identifier: Layout) {
+        layoutController = storyboard!.instantiateControllerWithIdentifier(identifier.rawValue) as? NSSplitViewController
+        guard let layoutController = layoutController else {
+            print("LibraryEditor.loadLayout: unable to load layout \(identifier)")
+            return
+        }
+        
+        // Set up frame and view constraints
+        
+        layoutController.view.translatesAutoresizingMaskIntoConstraints = false
+        layoutController.view.frame = containerView.bounds
+        containerView.addSubview(layoutController.view)
+        
+        containerView.addConstraints(
+            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|",
+                options: .DirectionLeadingToTrailing,
+                metrics: nil,
+                views: ["subview": layoutController.view])
+        )
+        containerView.addConstraints(
+            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|",
+                options: .DirectionLeadingToTrailing,
+                metrics: nil,
+                views: ["subview": layoutController.view])
+        )
+
+    }
+    
+    func unloadLayout() {
+        guard let layoutController = layoutController else {
+            return
+        }
+        
+        layoutController.view.removeFromSuperview()
+    }
+    
+    func loadFileView(fileView: FileView) {
+        print("load file view: \(fileView)")
+    }
+    
+    func unloadFileView() {
+    
+    }
+    
+    func loadScene(identifier: FileView) {
+        scene = NSStoryboard(name: identifier.rawValue, bundle: nil).instantiateInitialController() as? FileCollectionScene
         guard var scene = scene else {
-            print("unable to load scene")
+            log("unable to load scene \(identifier)")
+            return
+        }
+        guard let layoutController = layoutController else {
+            log("layout controller unavailable")
+            return
+        }
+        guard layoutController.splitViewItems.count >= 1 else {
+            log("layout controller has no split view items")
             return
         }
         
@@ -207,16 +306,20 @@ class LibraryEditor: NSViewController, SourceViewer {
         
         // Set up frame and view constraints
         
-        scene.view.translatesAutoresizingMaskIntoConstraints = false
-        scene.view.frame = containerView.bounds
-        containerView.addSubview(scene.view)
+        let splitViewItem = NSSplitViewItem(viewController: scene as! NSViewController)
+        layoutController.removeSplitViewItem(layoutController.splitViewItems[0])
+        layoutController.insertSplitViewItem(splitViewItem, atIndex: 0)
         
-        containerView.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": scene.view])
-        )
-        containerView.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": scene.view])
-        )
+//        scene.view.translatesAutoresizingMaskIntoConstraints = false
+//        scene.view.frame = containerView.bounds
+//        containerView.addSubview(scene.view)
+//        
+//        containerView.addConstraints(
+//            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": scene.view])
+//        )
+//        containerView.addConstraints(
+//            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": scene.view])
+//        )
         
         // Bind the array controller to ours
         // Predicates and sorting are applied before it even sees the data

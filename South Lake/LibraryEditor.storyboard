@@ -108,6 +108,44 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ywx-eb-vtY">
+                                <rect key="frame" x="448" y="274" width="56" height="19"/>
+                                <popUpButtonCell key="cell" type="roundRect" title="View" bezelStyle="roundedRect" alignment="right" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="2sc-nC-hdS" id="jrd-as-VjP">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="cellTitle"/>
+                                    <menu key="menu" id="l0s-gX-td9">
+                                        <items>
+                                            <menuItem title="View" state="on" hidden="YES" id="Edd-oT-y3b"/>
+                                            <menuItem title="Compact Card" tag="1" id="gO5-iN-juI">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Compact List" tag="2" id="JN9-O2-oEF">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Compact Table" tag="3" id="VPj-vh-kNG">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem isSeparatorItem="YES" id="G9x-rH-scQ"/>
+                                            <menuItem title="Expanded Card" tag="11" id="eJA-2q-VjS">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Expanded Table" tag="12" id="1Ii-v5-1cJ">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem isSeparatorItem="YES" id="ZK7-Rf-ghV"/>
+                                            <menuItem title="Horizontal Card" tag="21" id="qid-iC-sdL">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Horizontal Table" tag="22" id="2sc-nC-hdS">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="changeScene:" target="9yX-Un-WoT" id="Apx-9A-DJM"/>
+                                </connections>
+                            </popUpButton>
                         </subviews>
                         <constraints>
                             <constraint firstItem="H5b-Nw-NKT" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="36" id="AxH-CJ-tZM"/>
@@ -143,7 +181,133 @@
                     </connections>
                 </arrayController>
             </objects>
-            <point key="canvasLocation" x="227.5" y="163"/>
+            <point key="canvasLocation" x="-366.5" y="36"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="XPl-HK-g0D">
+            <objects>
+                <splitViewController storyboardIdentifier="Compact" id="hs0-QV-HWP" sceneMemberID="viewController">
+                    <splitViewItems>
+                        <splitViewItem id="nnI-GQ-TMM"/>
+                        <splitViewItem id="m6a-C3-eNu"/>
+                    </splitViewItems>
+                    <splitView key="splitView" dividerStyle="thin" vertical="YES" id="9sh-ph-zm2">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </splitView>
+                    <connections>
+                        <segue destination="ma7-kj-ojq" kind="relationship" relationship="splitItems" id="6hs-lm-K4C"/>
+                        <segue destination="AHZ-BG-M4y" kind="relationship" relationship="splitItems" id="7B6-Sc-9hT"/>
+                    </connections>
+                </splitViewController>
+                <customObject id="iX2-gk-xdx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="147" y="90"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="uWy-lj-ROq">
+            <objects>
+                <viewController id="ma7-kj-ojq" sceneMemberID="viewController">
+                    <view key="view" id="CEq-f7-zYV">
+                        <rect key="frame" x="0.0" y="0.0" width="220" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="jas-AZ-MHg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="597" y="90"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="rSo-mO-QA0">
+            <objects>
+                <splitViewController storyboardIdentifier="Horizontal" id="za3-Jw-85v" sceneMemberID="viewController">
+                    <splitViewItems>
+                        <splitViewItem id="Gjk-rJ-fXm"/>
+                        <splitViewItem id="MBN-K8-zqV"/>
+                    </splitViewItems>
+                    <splitView key="splitView" dividerStyle="thin" id="rwq-I4-6uP">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </splitView>
+                    <connections>
+                        <segue destination="6UQ-am-DdC" kind="relationship" relationship="splitItems" id="G22-Bc-0fx"/>
+                        <segue destination="j1x-tT-7ba" kind="relationship" relationship="splitItems" id="q2V-wQ-vSl"/>
+                    </connections>
+                </splitViewController>
+                <customObject id="tPU-NE-Ye4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="147" y="465"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="OWS-qD-7ZC">
+            <objects>
+                <splitViewController storyboardIdentifier="Expanded" id="bFg-17-NL5" sceneMemberID="viewController">
+                    <splitViewItems>
+                        <splitViewItem id="0pK-fI-5QL"/>
+                    </splitViewItems>
+                    <splitView key="splitView" dividerStyle="thin" vertical="YES" id="pGH-Qj-fJB">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </splitView>
+                    <connections>
+                        <segue destination="xId-po-ko7" kind="relationship" relationship="splitItems" id="TRo-f0-bgv"/>
+                    </connections>
+                </splitViewController>
+                <customObject id="XPL-hj-Z1W" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="147" y="-280"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="J3w-ye-3rC">
+            <objects>
+                <viewController id="xId-po-ko7" sceneMemberID="viewController">
+                    <view key="view" id="tj7-Dd-RO8">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="amQ-ZQ-c02" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="712" y="-280"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="FfK-hK-Jry">
+            <objects>
+                <viewController id="6UQ-am-DdC" sceneMemberID="viewController">
+                    <view key="view" id="kY3-Nk-lPN">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="161"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="lPM-bb-Enx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="712" y="395.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="YHc-RR-xhF">
+            <objects>
+                <viewController id="j1x-tT-7ba" sceneMemberID="viewController">
+                    <view key="view" id="WtR-HK-2OH">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="hNB-Zd-PHY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="712" y="683"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="6iR-Pc-caj">
+            <objects>
+                <viewController id="AHZ-BG-M4y" sceneMemberID="viewController">
+                    <view key="view" id="3Sz-Sq-tdt">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="kMG-ha-1BV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="984" y="90"/>
         </scene>
     </scenes>
     <resources>
