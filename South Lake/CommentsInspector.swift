@@ -39,7 +39,7 @@ class CommentsInspector: NSViewController, Inspector {
                 let html = try String(contentsOfURL: URL, encoding: NSUTF8StringEncoding)
                 webView.mainFrame.loadHTMLString(html, baseURL: URL)
             } catch {
-                print(error)
+                log(error)
             }
         }
     }

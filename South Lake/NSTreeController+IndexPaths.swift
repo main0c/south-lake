@@ -9,7 +9,7 @@
 //  http://stackoverflow.com/questions/9050028/given-model-object-how-to-find-index-path-in-nstreecontroller
 
 //  guard (arrangedObjects as! NSObject).respondsToSelector(Selector("childNodes")) else {
-//      print("arranged objects does not respond to childNodes")
+//      log("arranged objects does not respond to childNodes")
 //      return nil
 //  }
 //  let childNodes = (arrangedObjects as! NSObject).valueForKey("childNodes")

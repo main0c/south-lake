@@ -69,7 +69,7 @@ class Snippet {
                 .stringByRestoringCaptureGroups()
                 , options: [])
         } catch {
-            print(error)
+            log(error)
         }
     }
     
@@ -120,14 +120,14 @@ class Snippet {
         // Find the index of the targetField in the content
         
         guard let targetFieldIndex = content.snippetIndexOfField(targetField) else {
-            if _isDebugAssertConfiguration() { print("unable to locate field: \(targetField)") }
+            if _isDebugAssertConfiguration() { log("unable to locate field: \(targetField)") }
             return nil
         }
         
         // Find the matches in the string using content with field markers replaced by capture groups
         
         guard let captureRegex = captureRegex else {
-            if _isDebugAssertConfiguration() { print("no capture group regex available") }
+            if _isDebugAssertConfiguration() { log("no capture group regex available") }
             return nil
         }
         
@@ -135,7 +135,7 @@ class Snippet {
         let matches = captureRegex.matchesInString(string, options: [], range: fromRange)
         
         guard let match = matches[safe: 0] else {
-            if _isDebugAssertConfiguration() { print("content not found in string") }
+            if _isDebugAssertConfiguration() { log("content not found in string") }
             return nil
         }
         
@@ -143,7 +143,7 @@ class Snippet {
         // The first result in the match is always the content itself
         
         guard match.numberOfRanges >= targetFieldIndex + 1 else {
-            if _isDebugAssertConfiguration() { print("field not found in string") }
+            if _isDebugAssertConfiguration() { log("field not found in string") }
             return nil
         }
         

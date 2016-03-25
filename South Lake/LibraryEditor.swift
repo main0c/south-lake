@@ -277,7 +277,7 @@ class LibraryEditor: NSViewController, SourceViewer {
     func loadLayout(identifier: Layout) {
         layoutController = storyboard!.instantiateControllerWithIdentifier(identifier.rawValue) as? NSSplitViewController
         guard let layoutController = layoutController else {
-            print("LibraryEditor.loadLayout: unable to load layout \(identifier)")
+            log("LibraryEditor.loadLayout: unable to load layout \(identifier)")
             return
         }
         
@@ -310,7 +310,7 @@ class LibraryEditor: NSViewController, SourceViewer {
     }
     
     func loadFileView(fileView: FileView) {
-        print("load file view: \(fileView)")
+        log("load file view: \(fileView)")
     }
     
     func unloadFileView() {
@@ -457,7 +457,7 @@ class LibraryEditor: NSViewController, SourceViewer {
             editor = EditorPlugIns.sharedInstance.plugInForFiletype(file.file_extension)
             
             guard editor != nil else {
-                print("unable to find editor for file with type \(file.file_extension)")
+                log("unable to find editor for file with type \(file.file_extension)")
                 clearEditor()
                 return
             }
@@ -563,7 +563,7 @@ class LibraryEditor: NSViewController, SourceViewer {
         let encodedPath = String(format: NSLocalizedString("Searching for \"%@\"", comment: ""), text).stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())
         
         guard let queryValue = encodedText, let queryPath = encodedPath else {
-            print("unable to encode search string")
+            log("unable to encode search string")
             return
         }
         
@@ -580,7 +580,7 @@ class LibraryEditor: NSViewController, SourceViewer {
             }
             
         } else {
-            print("unable to create url for search text \(text)")
+            log("unable to create url for search text \(text)")
         }
     }
     

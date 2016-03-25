@@ -32,7 +32,7 @@ extension String {
             let matches = regex.matchesInString(self, options: [], range: range)
             return matches.count
         } catch {
-            print(error)
+            log(error)
             return 0
         }
     }
@@ -46,7 +46,7 @@ extension String {
             
             return regex.stringByReplacingMatchesInString(self, options: [], range: range, withTemplate: template)
         } catch {
-            print(error)
+            log(error)
             return self
         }
     }
@@ -60,7 +60,7 @@ extension String {
             
             return regex.stringByReplacingMatchesInString(self, options: [], range: range, withTemplate: template)
         } catch {
-            print(error)
+            log(error)
             return self
         }
     }
@@ -85,7 +85,7 @@ extension String {
             })
             
         } catch {
-            print(error)
+            log(error)
             return nil
         }
     }

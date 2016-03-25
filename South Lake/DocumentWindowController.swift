@@ -119,7 +119,7 @@ class DocumentWindowController: NSWindowController, Databasable {
               //let _ = userInfo["source"] as? DataSource,
               let _ = userInfo["url"] as? NSURL
               where dbm == databaseManager else {
-            print("open url notification does not contain dbm, url, or source")
+            log("open url notification does not contain dbm, url, or source")
             return
         }
         
@@ -169,11 +169,11 @@ class DocumentWindowController: NSWindowController, Databasable {
         }
         guard let tab = tabController.selectedTab else {
             // just create a new tab?
-            print("should always have a selected tab")
+            log("should always have a selected tab")
             return
         }
         guard let sender = sender as? NSSearchField else {
-            print("sender can only be search field")
+            log("sender can only be search field")
             return
         }
         

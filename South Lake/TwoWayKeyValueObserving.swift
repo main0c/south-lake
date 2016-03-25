@@ -62,7 +62,7 @@ extension NSObject /*: TwoWayKeyValueObserving*/ {
         var proxies = kvoProxies ?? Dictionary()
         
         guard proxies[key] == nil else {
-            print("objects are already bound with these keys")
+            log("objects are already bound with these keys")
             return
         }
         
@@ -82,11 +82,11 @@ extension NSObject /*: TwoWayKeyValueObserving*/ {
         let key = bindUsKey(binding, toObject: toObject, withKeyPath: withKeyPath)
         
         guard var proxies = kvoProxies else {
-            print("no proxies registered")
+            log("no proxies registered")
             return
         }
         guard let proxy = proxies[key] as? KeyValueObservingProxy else {
-            print("no proxy for these these objects and keys")
+            log("no proxy for these these objects and keys")
             return
         }
         
@@ -143,7 +143,7 @@ class KeyValueObservingProxy: NSObject {
         // Ensure we have something to update
         
         guard let change = change, let newValue = change[NSKeyValueChangeNewKey] else {
-            print("observer proxy didn't receive new value")
+            log("observer proxy didn't receive new value")
             return
         }
         
@@ -156,7 +156,7 @@ class KeyValueObservingProxy: NSObject {
         } else if object === toObject {
             receiver!.setValue(newValue, forKey: receiverKey)
         } else {
-            print("object !== receiver and object !== toObject")
+            log("object !== receiver and object !== toObject")
         }
         
         updating = false

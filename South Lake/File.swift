@@ -71,7 +71,7 @@ class File: DataSource {
             if let value = value {
                 // TODO: does removeAttachment not do anything? keeping versions?
                 // removeAttachmentNamed("data")
-                // do { try save() } catch { print(error) }
+                // do { try save() } catch { log(error) }
                 setAttachmentNamed("data", withContentType: mime_type, content: value)
                 _data = value
             } else {
@@ -88,7 +88,7 @@ class File: DataSource {
         if let importer = ImporterPlugIns.sharedInstance.plugInForFiletype(file_extension) {
             plain_text = importer.plainTextRepresentation(data) ?? ""
         } else {
-            print("no importer found for file of type \(file_extension)")
+            log("no importer found for file of type \(file_extension)")
         }
     }
     

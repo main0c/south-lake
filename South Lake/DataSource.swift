@@ -289,7 +289,7 @@ extension DataSource: NSPasteboardWriting {
 //                // Save
 //                
 //                do { try item?.save() } catch {
-//                    print(error)
+//                    log(error)
 //                    item = nil
 //                }
 //            }

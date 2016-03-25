@@ -87,7 +87,7 @@ class FileCardViewController: NSViewController, FileCollectionScene {
             return
         }
         
-        print("execute move to \(folder.title)")
+        log("execute move to \(folder.title)")
     }
     
     // -
@@ -98,11 +98,11 @@ class FileCardViewController: NSViewController, FileCollectionScene {
         }
         guard let object = arrayController.selectedObjects[safe: 0] as? DataSource,
               let id = object.id else {
-            print("no selected object")
+            log("no selected object")
             return
         }
         guard let url = NSURL(string: "southlake://localhost/library/\(id)") else {
-            print("unable to construct url for object with id \(id)")
+            log("unable to construct url for object with id \(id)")
             return
         }
         
@@ -114,16 +114,16 @@ class FileCardViewController: NSViewController, FileCollectionScene {
     }
     
     override func deleteBackward(sender: AnyObject?) {
-        print("deleteBackward")
+        log("deleteBackward")
     }
     
     override func insertNewline(sender: AnyObject?) {
-        print("insertNewline")
+        log("insertNewline")
         doubleClick(sender)
     }
     
     override func quickLookPreviewItems(sender: AnyObject?) {
-        print("quickLookPreviewItems")
+        log("quickLookPreviewItems")
     }
 }
 

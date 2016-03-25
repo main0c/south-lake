@@ -21,7 +21,7 @@ extension NSURL {
             try getResourceValue(&typeIdentifier, forKey: NSURLTypeIdentifierKey)
             return typeIdentifier as? String ?? nil
         } catch {
-            print(error)
+            log(error)
             return nil
         }
     }

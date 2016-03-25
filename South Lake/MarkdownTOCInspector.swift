@@ -53,7 +53,7 @@ class MarkdownTOCInspector: NSViewController, Inspector {
         do {
             template = try String(contentsOfURL: NSBundle.mainBundle().URLForResource("md-toc-index", withExtension: "html")!, encoding: NSUTF8StringEncoding) }
         catch {
-            print(error)
+            log(error)
         }
         
         webView.policyDelegate = self

@@ -210,7 +210,7 @@ class FolderEditor: NSViewController, SourceViewer {
     func loadScene(identifier: String) {
         scene = NSStoryboard(name: identifier, bundle: nil).instantiateInitialController() as? FileCollectionScene
         guard var scene = scene else {
-            print("unable to load scene")
+            log("unable to load scene")
             return
         }
         
@@ -321,7 +321,7 @@ class FolderEditor: NSViewController, SourceViewer {
         // Two folders may have the same name. Need to encode the folder id
         
         guard let encodedText = text.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet()) else {
-            print("unable to encode title")
+            log("unable to encode title")
             return
         }
         
@@ -329,7 +329,7 @@ class FolderEditor: NSViewController, SourceViewer {
             pathControl.URL = pathURL
             updatePathControlAppearance()
         } else {
-            print("unable to create url for title \(text)")
+            log("unable to create url for title \(text)")
         }
     }
     
@@ -347,7 +347,7 @@ class FolderEditor: NSViewController, SourceViewer {
         let encodedPath = String(format: NSLocalizedString("Searching for \"%@\"", comment: ""), text).stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())
         
         guard let queryValue = encodedText, let queryPath = encodedPath else {
-            print("unable to encode search string")
+            log("unable to encode search string")
             return
         }
         
@@ -364,7 +364,7 @@ class FolderEditor: NSViewController, SourceViewer {
             }
             
         } else {
-            print("unable to create url for search text \(text)")
+            log("unable to create url for search text \(text)")
         }
     }
     

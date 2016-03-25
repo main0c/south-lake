@@ -46,11 +46,11 @@ class FileTableViewController: NSViewController, FileCollectionScene {
         }
         guard let object = arrayController.selectedObjects[safe: 0] as? DataSource,
               let id = object.id else {
-            print("no selected object")
+            log("no selected object")
             return
         }
         guard let url = NSURL(string: "southlake://localhost/library/\(id)") else {
-            print("unable to construct url for object with id \(id)")
+            log("unable to construct url for object with id \(id)")
             return
         }
         
@@ -62,16 +62,16 @@ class FileTableViewController: NSViewController, FileCollectionScene {
     }
     
     override func deleteBackward(sender: AnyObject?) {
-        print("deleteBackward")
+        log("deleteBackward")
     }
     
     override func insertNewline(sender: AnyObject?) {
-        print("insertNewline")
+        log("insertNewline")
         doubleClick(sender)
     }
     
     override func quickLookPreviewItems(sender: AnyObject?) {
-        print("quickLookPreviewItems")
+        log("quickLookPreviewItems")
     }
 }
 

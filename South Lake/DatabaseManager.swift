@@ -326,34 +326,34 @@ class DatabaseManager: NSObject {
         // Safety checks: bubble these errors up
         
         guard notebookSection != nil else {
-            print("notebook section not found")
+            log("notebook section not found")
             return
         }
         guard shortcutsSection != nil else {
-            print("shortcuts section not found")
+            log("shortcuts section not found")
             return
         }
         guard foldersSection != nil else {
-            print("folders section not found")
+            log("folders section not found")
             return
         }
         guard smartFoldersSection != nil else {
-            print("smart folders not at expected index (3)")
+            log("smart folders not found")
             return
         }
         
         // Notebook Data Sources
         
         guard librarySource != nil else {
-            print("library source not at expected index (0)")
+            log("library source not found")
             return
         }
         guard calendarSource != nil else {
-            print("calendar source not at expected index (1)")
+            log("calendar source not found")
             return
         }
         guard tagsSource != nil else {
-            print("tags source not at expected index (2)")
+            log("tags source not found")
             return
         }
         
@@ -362,7 +362,7 @@ class DatabaseManager: NSObject {
         // Inbox
         
         guard inboxSource != nil else {
-            print("inbox source not at expected index (0)")
+            log("inbox source not found")
             return
         }
     }

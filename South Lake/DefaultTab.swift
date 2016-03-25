@@ -261,7 +261,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             editor = EditorPlugIns.sharedInstance.plugInForFiletype(file.file_extension)
             
             guard editor != nil else {
-                print("unable to find editor for file with type \(file.file_extension)")
+                log("unable to find editor for file with type \(file.file_extension)")
                 clearEditor()
                 return
             }
@@ -441,7 +441,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         folder.icon = NSImage(named: "folder-icon")
         
         do { try folder.save() } catch {
-            print(error)
+            log(error)
             return
         }
         
@@ -468,7 +468,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         parent.mutableArrayValueForKey("children").addObject(folder)
         
         do { try parent.save() } catch {
-            print(error)
+            log(error)
             return
         }
         
@@ -488,7 +488,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         folder.icon = NSImage(named:"smart-folder-icon")
         
         do { try folder.save() } catch {
-            print(error)
+            log(error)
             return
         }
         
@@ -501,7 +501,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         parent.mutableArrayValueForKey("children").addObject(folder)
         
         do { try parent.save() } catch {
-            print(error)
+            log(error)
             return
         }
         
@@ -524,7 +524,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         file.mime_type = "text/markdown"
         
         do { try file.save() } catch {
-            print(error)
+            log(error)
             return
         }
         
@@ -546,7 +546,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         parent.mutableArrayValueForKey("children").addObject(file)
         
         do { try parent.save() } catch {
-            print(error)
+            log(error)
             return
         }
         
@@ -578,7 +578,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
               //let source = userInfo["source"] as? DataSource,
               let url = userInfo["url"] as? NSURL
               where dbm == databaseManager else {
-            print("open url notification does not contain dbm or url")
+            log("open url notification does not contain dbm or url")
             return
         }
         
@@ -590,10 +590,10 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         // TODO: examine the url to decide what primary source to select
         // TODO: Switch up that switch statement to case on a tuple
         
-        print(url.pathComponents)
+        log(url.pathComponents)
         
         guard let root = url.pathComponents?[safe: 1] else {
-            print("no root path in url \(url)")
+            log("no root path in url \(url)")
             return
         }
         
@@ -609,7 +609,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             sourceListController.selectItem(tags)
             editor?.openURL(url)
         case _:
-            print(root)
+            log(root)
         }
     }
     

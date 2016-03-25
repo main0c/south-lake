@@ -24,7 +24,7 @@ class MarkdownImporter: NSObject, FileImporter {
             return nil
         }
         guard let text = String(data: data, encoding: NSUTF8StringEncoding) else {
-            print("unable to derive markdown string from data")
+            log("unable to derive markdown string from data")
             return nil
         }
         

@@ -65,7 +65,7 @@ class PDFEditor: NSViewController, SourceViewer {
             return
         }
         guard let document = PDFDocument(data: file.data) else {
-            print("unable to initialize pdf document from file data")
+            log("unable to initialize pdf document from file data")
             return
         }
         

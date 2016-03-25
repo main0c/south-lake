@@ -101,7 +101,7 @@ class RelatedInspector: NSViewController, Inspector {
     func loadScene(identifier: String) {
         scene = storyboard!.instantiateControllerWithIdentifier(identifier) as? FileCollectionScene
         guard var scene = scene else {
-            print("unable to load scene")
+            log("unable to load scene")
             return
         }
         
@@ -156,7 +156,7 @@ class RelatedInspector: NSViewController, Inspector {
               return
         }
         guard let url = NSURL(string: "southlake://localhost/tags/\(encodedTag)") else {
-            print("unable to construct url for tag \(selectedTag)")
+            log("unable to construct url for tag \(selectedTag)")
             return
         }
         

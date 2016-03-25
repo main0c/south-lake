@@ -148,7 +148,7 @@ class SourceListPanel: NSViewController, Databasable {
         case DataTypes.Shortcuts.uti:
             section.mutableArrayValueForKey("children").removeObject(item)
             do { try section.save() } catch {
-                print(error)
+                log(error)
             }
             
         case DataTypes.Folders.uti:
@@ -166,11 +166,11 @@ class SourceListPanel: NSViewController, Databasable {
             for parent in item.parents {
                 parent.mutableArrayValueForKey("children").removeObject(item)
                 do { try parent.save() } catch {
-                    print(error)
+                    log(error)
                 }
             }
             do { try item.deleteWithChildren() } catch {
-                print(error)
+                log(error)
             }
             
         case _:
@@ -233,7 +233,7 @@ class SourceListPanel: NSViewController, Databasable {
             let item = node.representedObject as? DataSource   {
             
             do { try item.save() } catch {
-                print(error)
+                log(error)
                 return
             }
         }
@@ -252,7 +252,7 @@ class SourceListPanel: NSViewController, Databasable {
 
     func selectItem(item: DataSource) {
         guard let indexPath = treeController.indexPathOfRepresentedObject(item) else {
-            print("unable to find index path for item: \(item)")
+            log("unable to find index path for item: \(item)")
             return
         }
         selectItemAtIndexPath(indexPath)
@@ -394,7 +394,7 @@ extension SourceListPanel : NSOutlineViewDataSource {
         // Save all changes
         
         do { try databaseManager.database?.saveAllModels() } catch {
-            print(error)
+            log(error)
         }
         
         // Reload the whole thing, expand target
@@ -426,7 +426,7 @@ extension SourceListPanel : NSOutlineViewDataSource {
 //            
 //            let itemReader = draggingItem.item as! DataSourcePasteboardReader
 //            guard itemReader.item != nil else {
-//                print("unable to produce source item for pboard item")
+//                log("unable to produce source item for pboard item")
 //                return
 //            }
 //            
@@ -441,7 +441,7 @@ extension SourceListPanel : NSOutlineViewDataSource {
 //        // Save all changes
 //        
 //        do { try databaseManager.database?.saveAllModels() } catch {
-//            print(error)
+//            log(error)
 //        }
 //        
 //        // Reload the parent and expand it

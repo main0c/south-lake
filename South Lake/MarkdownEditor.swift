@@ -105,7 +105,7 @@ class MarkdownEditor: NSViewController, SourceViewer {
         didSet {
             let script = "window.location.href = \"#" + tableOfContentsAnchor + "\""
             let eval = preview.stringByEvaluatingJavaScriptFromString(script)
-            print("\(tableOfContentsAnchor) : \(eval)")
+            log("\(tableOfContentsAnchor) : \(eval)")
 //            let URL = NSURL(string: "#" + tocRef)
 //            preview.mainFrame.loadRequest(NSURLRequest(URL: URL!))
         }

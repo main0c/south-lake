@@ -28,5 +28,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 }
 
 func log<T>(message: T, file: String = __FILE__, line: Int = __LINE__, function: String = __FUNCTION__) {
-    print("\((file as NSString).lastPathComponent).\(function)[\(line)]: \(message)")
+    log("\((file as NSString).lastPathComponent).\(function)[\(line)]: \(message)")
 }

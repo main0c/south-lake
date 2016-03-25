@@ -23,9 +23,9 @@ class Importer {
     func importFiles(files: [NSURL]) {
         for url in files {
             if let file = importFile(url) {
-                print("imported \(file)")
+                log("imported \(file)")
             } else {
-                print("unable to import \(url)")
+                log("unable to import \(url)")
             }
         }
     }
@@ -36,7 +36,7 @@ class Importer {
     
     private func importFile(URL: NSURL) -> DataSource? {
         guard let path = URL.path else {
-            print("unable to determine path for url: \(URL)")
+            log("unable to determine path for url: \(URL)")
             return nil
         }
         
@@ -66,7 +66,7 @@ class Importer {
             var data: NSData?
             
             do { data = try NSData(contentsOfURL: URL, options: []) } catch {
-                print(error)
+                log(error)
             }
             
             guard let d = data else {
@@ -87,7 +87,7 @@ class Importer {
         // Save
         
         do { try item!.save() } catch {
-            print(error)
+            log(error)
             item = nil
         }
         

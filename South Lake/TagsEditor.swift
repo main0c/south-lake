@@ -219,7 +219,7 @@ class TagsEditor: NSViewController, SourceViewer {
     func loadScene(identifier: String) {
         scene = storyboard!.instantiateControllerWithIdentifier(identifier) as? FileCollectionScene
         guard var scene = scene else {
-            print("unable to load scene with identifier \(identifier)")
+            log("unable to load scene with identifier \(identifier)")
             return
         }
         
@@ -339,7 +339,7 @@ class TagsEditor: NSViewController, SourceViewer {
 //        let substring = text.substringWithRange(range)
 //        let predicate = NSPredicate(format: "tag BEGINSWITH[cd] %@", substring)
 //        
-//        print(words)
+//        log(words)
 //        
 //        return content!
 //            .filter { predicate.evaluateWithObject($0) }

@@ -111,9 +111,9 @@ class Document: NSDocument {
                         
                         self.searchService.removeObjectsFromIndexAndWait(type, withIdentifiers: ids, error: &error)
                         if error != nil {
-                            print("unable to de-index \(documentID)")
+                            log("unable to de-index \(documentID)")
                         } else {
-                            print("de-indexed \(documentID)")
+                            log("de-indexed \(documentID)")
                         }
                     } else {
                         let indexable = BRSimpleIndexable(identifier: documentID, data:[
@@ -125,9 +125,9 @@ class Document: NSDocument {
                         var error: NSError?
                         self.searchService.addObjectToIndexAndWait(indexable, error: &error)
                         if error != nil {
-                            print("unable to index \(documentID)")
+                            log("unable to index \(documentID)")
                         } else {
-                            print("index \(documentID)")
+                            log("index \(documentID)")
                         }
                     }
                 }
@@ -142,7 +142,7 @@ class Document: NSDocument {
 
     override func fileWrapperOfType(typeName: String) throws -> NSFileWrapper {
         guard fileURL == nil else {
-            print("Document already initialized, don't save")
+            log("Document already initialized, don't save")
             throw DocumentError.ShouldNotSaveFileWrapper
         }
         
@@ -185,7 +185,7 @@ class Document: NSDocument {
     
     override func saveToURL(url: NSURL, ofType typeName: String, forSaveOperation saveOperation: NSSaveOperationType, completionHandler: (NSError?) -> Void) {
         guard fileURL == nil else {
-            print("Document already initialized, don't save")
+            log("Document already initialized, don't save")
             completionHandler(nil)
             return
         }
@@ -215,7 +215,7 @@ class Document: NSDocument {
             // Hide extension: should be unnecessary
             
             do { try NSFileManager().setAttributes([NSFileExtensionHidden: true], ofItemAtPath: path) } catch {
-                print(error)
+                log(error)
             }
             
             // Package info
@@ -257,11 +257,11 @@ class Document: NSDocument {
         NSNotificationCenter.defaultCenter().postNotificationName(DocumentWillSaveNotification, object: self)
         
         do { try databaseManager.database.saveAllModels() } catch {
-            print(error)
+            log(error)
         }
         
         do { try saveState() } catch {
-            print(error)
+            log(error)
         }
     }
     
@@ -478,7 +478,7 @@ class Document: NSDocument {
             try databaseManager.database.saveAllModels()
 
         } catch {
-            print(error)
+            log(error)
         }
     }
     

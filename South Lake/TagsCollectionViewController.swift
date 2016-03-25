@@ -57,17 +57,17 @@ class TagsCollectionViewController: NSViewController, FileCollectionScene {
         guard let object = arrayController.selectedObjects[safe: 0] as? [String:AnyObject],
               let tag = object["tag"] as? String,
               let encodedTag = tag.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet()) else {
-            print("no selected object")
+            log("no selected object")
             return
         }
         guard let url = NSURL(string: "southlake://localhost/tags/\(encodedTag)") else {
-            print("unable to construct url for object with id \(encodedTag)")
+            log("unable to construct url for object with id \(encodedTag)")
             return
         }
         
         // TODO: Track history
         
-        print(url)
+        log(url)
         
         NSNotificationCenter.defaultCenter().postNotificationName(OpenURLNotification, object: self, userInfo: [
             "dbm": databaseManager,

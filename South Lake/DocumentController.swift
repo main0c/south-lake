@@ -34,7 +34,7 @@ class DocumentController: NSDocumentController {
         document.saveToURL(URL, ofType: defaultType!, forSaveOperation: .SaveOperation) { (error) -> Void in
             // Save callback is executed after document is returned
             guard error == nil else {
-                print(error)
+                log(error)
                 return
             }
             

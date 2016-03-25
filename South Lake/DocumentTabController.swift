@@ -72,7 +72,7 @@ class DocumentTabController: NSViewController, Databasable {
         tabBarView.setButtonOptimumWidth(130)
         
         do { try createNewTabWithTitle("Tab One") } catch {
-            print("viewDidLoad: could not create new tab")
+            log("viewDidLoad: could not create new tab")
         }
     }
     
@@ -80,7 +80,7 @@ class DocumentTabController: NSViewController, Databasable {
     
     @IBAction func createNewTab(sender: AnyObject?) {
         do { try createNewTabWithTitle(NSLocalizedString("Untitled", comment: "Untitled tab")) } catch {
-            print("createNewTab: could not create new tab")
+            log("createNewTab: could not create new tab")
         }
     }
     
@@ -152,7 +152,7 @@ class DocumentTabController: NSViewController, Databasable {
               //let _ = userInfo["source"] as? DataSource,
               let _ = userInfo["url"] as? NSURL
               where dbm == databaseManager else {
-            print("open url notification does not contain dbm or url")
+            log("open url notification does not contain dbm or url")
             return
         }
         
@@ -248,7 +248,7 @@ class DocumentTabController: NSViewController, Databasable {
                         vc.restoreState(tabState)
                     }
                 } catch {
-                    print("restoreState: unable to restore a tab")
+                    log("restoreState: unable to restore a tab")
                 }
             }
         }
@@ -272,7 +272,7 @@ extension DocumentTabController: MMTabBarViewDelegate {
     }
     
     func tabView(tabView: NSTabView, didSelectTabViewItem tabViewItem: NSTabViewItem?) {
-        // print("didSelectTabViewItem: \(tabViewItem!.label)")
+        // log("didSelectTabViewItem: \(tabViewItem!.label)")
     }
 }
 

@@ -57,7 +57,7 @@ class ImporterPlugIns {
             let instance: FileImporter = Class.init() {
             return instance
         } else {
-            print("unable to instantiate importer")
+            log("unable to instantiate importer")
             return nil
         }
     }
