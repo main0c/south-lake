@@ -105,6 +105,10 @@ class DocumentWindowController: NSWindowController, Databasable {
         tabController.makeFileInfoFirstResponder(sender)
     }
     
+    @IBAction func changeLayout(sender: AnyObject?) {
+        // tabController.changeLayout(sender)
+    }
+    
     // MARK: -
     
     // TODO: handleOpenURLNotification may not need the source. We can just get it from the id anyway
@@ -194,7 +198,8 @@ class DocumentWindowController: NSWindowController, Databasable {
              Selector("createNewFolder:"),
              Selector("makeFilesAndFoldersFirstResponder:"),
              Selector("makeEditorFirstResponder:"),
-             Selector("makeFileInfoFirstResponder:"):
+             Selector("makeFileInfoFirstResponder:"),
+             Selector("changeLayout:"):
              return tabController.validateMenuItem(menuItem)
         case Selector("closeTab:"),
              Selector("createNewTab:"),

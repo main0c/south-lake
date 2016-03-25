@@ -12,21 +12,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="511" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BoY-EX-Wlw">
-                                <rect key="frame" x="9" y="244" width="71" height="20"/>
-                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="roundRect" trackingMode="selectOne" id="CZq-Rr-cND">
-                                    <font key="font" metaFont="cellTitle"/>
-                                    <segments>
-                                        <segment image="NSIconViewTemplate" width="32" selected="YES"/>
-                                        <segment image="NSListViewTemplate" width="32" tag="1"/>
-                                    </segments>
-                                </segmentedCell>
-                                <connections>
-                                    <action selector="changeScene:" target="9yX-Un-WoT" id="yYx-34-0Os"/>
-                                </connections>
-                            </segmentedControl>
                             <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H5b-Nw-NKT">
-                                <rect key="frame" x="242" y="245" width="174" height="19"/>
+                                <rect key="frame" x="230" y="245" width="174" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="174" id="4hG-p2-k8c"/>
                                 </constraints>
@@ -40,7 +27,7 @@
                                 </connections>
                             </searchField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qAA-Xq-1wj">
-                                <rect key="frame" x="86" y="244" width="149" height="19"/>
+                                <rect key="frame" x="74" y="244" width="149" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="149" id="Cxo-bN-Z6I"/>
                                 </constraints>
@@ -74,7 +61,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="511" height="236"/>
                             </customView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f4p-sQ-iih">
-                                <rect key="frame" x="422" y="247" width="54" height="14"/>
+                                <rect key="frame" x="410" y="247" width="54" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="12" id="c05-wQ-0Ur">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Iqy-TA-mY7"/>
                                     <font key="font" metaFont="systemSemibold" size="11"/>
@@ -108,8 +95,11 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ywx-eb-vtY">
-                                <rect key="frame" x="448" y="274" width="56" height="19"/>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ywx-eb-vtY">
+                                <rect key="frame" x="10" y="244" width="56" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="Cdx-nh-jHU"/>
+                                </constraints>
                                 <popUpButtonCell key="cell" type="roundRect" title="View" bezelStyle="roundedRect" alignment="right" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="2sc-nC-hdS" id="jrd-as-VjP">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="cellTitle"/>
@@ -143,23 +133,22 @@
                                     </menu>
                                 </popUpButtonCell>
                                 <connections>
-                                    <action selector="changeScene:" target="9yX-Un-WoT" id="Apx-9A-DJM"/>
+                                    <action selector="changeLayout:" target="9yX-Un-WoT" id="Apx-9A-DJM"/>
                                 </connections>
                             </popUpButton>
                         </subviews>
                         <constraints>
                             <constraint firstItem="H5b-Nw-NKT" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="36" id="AxH-CJ-tZM"/>
-                            <constraint firstItem="BoY-EX-Wlw" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="37" id="DQK-2s-pz0"/>
                             <constraint firstAttribute="trailing" secondItem="x7s-jQ-cTj" secondAttribute="trailing" priority="1" constant="10" id="FT5-vD-aUx"/>
                             <constraint firstItem="WzD-xV-wPP" firstAttribute="top" secondItem="qAA-Xq-1wj" secondAttribute="bottom" constant="9" id="MPP-8n-LtD"/>
                             <constraint firstItem="H5b-Nw-NKT" firstAttribute="leading" secondItem="qAA-Xq-1wj" secondAttribute="trailing" constant="7" id="Mqj-Uk-06A"/>
                             <constraint firstItem="x7s-jQ-cTj" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" constant="4" id="OvB-9K-KxZ"/>
                             <constraint firstAttribute="bottom" secondItem="WzD-xV-wPP" secondAttribute="bottom" id="RkD-n0-WFI"/>
-                            <constraint firstItem="BoY-EX-Wlw" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" constant="10" id="SK8-mS-NcG"/>
                             <constraint firstItem="WzD-xV-wPP" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" id="VqH-WV-7RY"/>
                             <constraint firstItem="x7s-jQ-cTj" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="8" id="WiL-Ny-Riz"/>
-                            <constraint firstItem="qAA-Xq-1wj" firstAttribute="leading" secondItem="BoY-EX-Wlw" secondAttribute="trailing" constant="7" id="hDq-VB-lRJ"/>
-                            <constraint firstItem="BoY-EX-Wlw" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="37" id="qcb-uZ-ACr"/>
+                            <constraint firstItem="ywx-eb-vtY" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" constant="10" id="aqn-Ua-ec0"/>
+                            <constraint firstItem="qAA-Xq-1wj" firstAttribute="leading" secondItem="ywx-eb-vtY" secondAttribute="trailing" constant="8" id="pbb-tX-atq"/>
+                            <constraint firstItem="ywx-eb-vtY" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="37" id="vJ7-rR-DTg"/>
                             <constraint firstItem="qAA-Xq-1wj" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="37" id="yV4-Wl-JFU"/>
                             <constraint firstAttribute="trailing" secondItem="WzD-xV-wPP" secondAttribute="trailing" id="zi8-z6-ZHj"/>
                         </constraints>
@@ -169,7 +158,6 @@
                         <outlet property="containerView" destination="WzD-xV-wPP" id="21j-zI-zsg"/>
                         <outlet property="noSearchResultsLabel" destination="KTt-tF-vM6" id="yYP-BI-wzH"/>
                         <outlet property="pathControl" destination="x7s-jQ-cTj" id="cgO-yz-XQg"/>
-                        <outlet property="sceneSelector" destination="BoY-EX-Wlw" id="D2K-dC-A1n"/>
                     </connections>
                 </viewController>
                 <customObject id="JG0-5V-hUD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -310,8 +298,4 @@
             <point key="canvasLocation" x="984" y="90"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="NSIconViewTemplate" width="10" height="10"/>
-        <image name="NSListViewTemplate" width="14" height="10"/>
-    </resources>
 </document>

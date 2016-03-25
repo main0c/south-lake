@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
@@ -860,12 +860,57 @@ DQ
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="8CE906D6-049F-426F-9CD9-DDEF655E3993" label="Back" paletteLabel="Back" tag="-1" image="toolbar-back-icon" id="Xq7-jw-y1G"/>
                                 <toolbarItem implicitItemIdentifier="8A76FC60-B8FC-48CD-86DA-E6B8AAD1E550" label="Forward" paletteLabel="Forward" tag="-1" image="toolbar-forward-icon" id="Pr7-JH-Mbc"/>
+                                <toolbarItem implicitItemIdentifier="90EAE9A1-D5A7-4C43-ACDD-8D744BC23542" label="Layout" paletteLabel="Layout" id="Gti-Xn-DjO">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="56" height="21"/>
+                                    <size key="maxSize" width="86" height="21"/>
+                                    <popUpButton key="view" verticalHuggingPriority="750" id="Ung-UZ-6ue">
+                                        <rect key="frame" x="0.0" y="14" width="81" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <popUpButtonCell key="cell" type="push" title="Layout" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="4mi-WU-miH" id="Qtb-dh-QIX">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="menu"/>
+                                            <menu key="menu" id="14E-W8-l2d">
+                                                <items>
+                                                    <menuItem title="Layout" state="on" hidden="YES" id="4mi-WU-miH"/>
+                                                    <menuItem title="Compact Card" tag="1" id="bG3-1w-1h9">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                    <menuItem title="Compact List" tag="2" id="X8i-3I-PQV">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                    <menuItem title="Compact Table" tag="3" id="8hc-Pc-OE4">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="YAK-vz-EGX"/>
+                                                    <menuItem title="Expanded Card" tag="11" id="P2i-93-ehX">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                    <menuItem title="Expanded Table" tag="12" id="evP-KC-fH9">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="NtJ-DA-MNw"/>
+                                                    <menuItem title="Horizontal Card" tag="21" id="rX1-m1-PnB">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                    <menuItem title="Horizontal Table" tag="22" id="Izo-W2-vUA">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </popUpButtonCell>
+                                        <connections>
+                                            <action selector="changeLayout:" target="6f7-a7-6o1" id="uEi-s5-br2"/>
+                                        </connections>
+                                    </popUpButton>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="Xq7-jw-y1G"/>
                                 <toolbarItem reference="Pr7-JH-Mbc"/>
                                 <toolbarItem reference="sKr-Yj-KFT"/>
                                 <toolbarItem reference="hWu-DY-Aqg"/>
+                                <toolbarItem reference="Gti-Xn-DjO"/>
                             </defaultToolbarItems>
                         </toolbar>
                     </window>

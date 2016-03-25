@@ -22,7 +22,7 @@
                                     </segments>
                                 </segmentedCell>
                                 <connections>
-                                    <action selector="changeScene:" target="Xve-Ph-wc4" id="9x1-y6-jal"/>
+                                    <action selector="changeLayout:" target="Xve-Ph-wc4" id="9x1-y6-jal"/>
                                 </connections>
                             </segmentedControl>
                             <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zYG-bE-Eod">

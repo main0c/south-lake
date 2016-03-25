@@ -209,12 +209,12 @@ class LibraryEditor: NSViewController, SourceViewer {
         arrayController.sortDescriptors = descriptors
     }
     
-    @IBAction func changeScene(sender: AnyObject?) {
+    @IBAction func changeLayout(sender: AnyObject?) {
         guard let sender = sender as? NSPopUpButton else {
               return
         }
         guard let tag = ViewTag(rawValue: sender.selectedTag()) else {
-            print("LibraryEditor.changeScene: invalid tag")
+            log("invalid tag")
             return
         }
         
@@ -337,7 +337,12 @@ class LibraryEditor: NSViewController, SourceViewer {
         scene.databaseManager = databaseManager
         scene.searchService = searchService
         
-        // Set up frame and view constraints
+        // Set up the frame
+            
+        let frame = layoutController.splitViewItems[0].viewController.view.frame
+        scene.view.frame = frame
+            
+        // Move it into the split view items
         
         let splitViewItem = NSSplitViewItem(viewController: scene as! NSViewController)
         layoutController.removeSplitViewItem(layoutController.splitViewItems[0])
@@ -461,6 +466,11 @@ class LibraryEditor: NSViewController, SourceViewer {
             
             editor!.databaseManager = databaseManager
             editor!.searchService = searchService
+            
+            // Set up the frame
+            
+            let frame = layoutController.splitViewItems[1].viewController.view.frame
+            editor!.view.frame = frame
             
             // Move it into the split view items
             

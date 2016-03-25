@@ -162,7 +162,7 @@ class FolderEditor: NSViewController, SourceViewer {
         arrayController.sortDescriptors = descriptors
     }
     
-    @IBAction func changeScene(sender: AnyObject?) {
+    @IBAction func changeLayout(sender: AnyObject?) {
         guard let sender = sender as? NSSegmentedControl,
               let cell = sender.cell as? NSSegmentedCell else {
               return
