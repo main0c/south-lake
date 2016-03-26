@@ -41,6 +41,8 @@ class TagsEditor: NSViewController, SourceViewer {
         return false
     }
     
+    dynamic var selectedObjects: [DataSource]?
+    
     dynamic var source: DataSource?
     
     var primaryResponder: NSView {

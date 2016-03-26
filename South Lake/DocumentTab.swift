@@ -45,6 +45,8 @@ protocol DocumentTab: class, Databasable {
     func makeEditorFirstResponder(sender: AnyObject?)
     func makeFileInfoFirstResponder(sender: AnyObject?)
     
+    func changeLayout(sender: AnyObject?)
+    
     // UI validation
     
     func validateMenuItem(menuItem: NSMenuItem) -> Bool

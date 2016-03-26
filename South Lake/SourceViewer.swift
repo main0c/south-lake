@@ -43,6 +43,9 @@ protocol SourceViewer: class, Databasable {
     /// Return true if we edit files specifically and not some other kind of data source
     var isFileEditor: Bool { get }
     
+    /// Some source viewers can themselves have selected objects. This variable should be dynamic
+    var selectedObjects: [DataSource]? { get }
+    
     /// A file editor can return inspectors that it manages which are placed in the inspector area
     /// An inspector consists of a tile, and icon and a view controller
     /// A metadata inspector is automatically included in the inspector area

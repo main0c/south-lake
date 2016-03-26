@@ -24,6 +24,10 @@ class PDFEditor: NSViewController, SourceViewer {
         return true
     }
     
+    dynamic var selectedObjects: [DataSource]? {
+        return nil
+    }
+    
     dynamic var source: DataSource? {
         didSet {
             loadFile(source)

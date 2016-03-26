@@ -144,6 +144,10 @@ class DocumentTabController: NSViewController, Databasable {
         selectedTab?.makeFileInfoFirstResponder(sender)
     }
     
+    @IBAction func changeLayout(sender: AnyObject?) {
+        selectedTab?.changeLayout(sender)
+    }
+    
     // MARK: -
     
     func handleOpenURLNotification(notification: NSNotification) {
@@ -168,7 +172,8 @@ class DocumentTabController: NSViewController, Databasable {
              Selector("createNewFolder:"),
              Selector("makeFilesAndFoldersFirstResponder:"),
              Selector("makeEditorFirstResponder:"),
-             Selector("makeFileInfoFirstResponder:"):
+             Selector("makeFileInfoFirstResponder:"),
+             Selector("changeLayout:"):
              return selectedTab != nil
                 ? selectedTab!.validateMenuItem(menuItem)
                 : false

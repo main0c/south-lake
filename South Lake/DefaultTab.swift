@@ -29,6 +29,53 @@ import Cocoa
 /// CHANGES
 /// The sole responbility of the tab is to watch the selection in the source list
 /// and load the appropriate editor. No inspector. No header. No content view panel
+///
+/// The tab manages the layout. The editor/viewer manages whether it's card, table or list
+/// The editor/viewer also manages a selected object, which can cause the tab to change
+/// what is shown in one of the panels
+///
+/// The layout describes the split view structure: expanded, compact, horizontal, etc
+/// The scene describes the way collection data is displayed: card, table, list.
+/// Difference sources have differet storyboards for their scenes
+///
+/// The tab maintains a selectedSource from the source list, which could be a folder
+/// or a file, as well as a selectedObject when the source is a folder that itself
+/// can have a selection
+
+enum Layout: String {
+    case None
+    case Expanded
+    case Compact
+    case Horizontal
+}
+
+enum Scene: String {
+    case None
+    case Card
+    case Table
+    case List
+}
+
+/// TODO: move to LibraryEditor or FolderEditor?
+
+enum FileView: String {
+    case Card = "FileCardView"
+    case Table = "FileTableView"
+    case List = "FileListView"
+}
+
+enum ViewTag: Int {
+    case CompactCard = 1
+    case CompactList = 2
+    case CompactTable = 3
+    
+    case ExpandedCard = 11
+    case ExpandedTable = 12
+    
+    case HorizontalCard = 21
+    case HorizontalTable = 22
+}
+
 
 class DefaultTab: NSSplitViewController, DocumentTab {
     var sourceListController: SourceListPanel!     // left data source
@@ -62,14 +109,28 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
     }
     
-    // TODO: When you select a folder don't unbind and clear the current editor
-    // Whether we unbind depends on on what is being bound
+    // TODO: When you select a folder don't unbind and clear the current editor, Whether we unbind depends on on what is being bound?
+    
+    /// The selected source list objects originate in the source list and are
+    /// displayed in the second panel
     
     dynamic var selectedSourceListObjects: [DataSource] = [] {
         didSet {
             selectedObjects = selectedSourceListObjects
         }
     }
+    
+    /// The selected file objects originate in the source viewer being shown for
+    /// the currently selected source list objects and are displayed in either
+    /// the second or third panel
+    
+    dynamic var selectedFileObjects: [DataSource] = [] {
+        didSet {
+            selectedObjects = selectedFileObjects
+        }
+    }
+    
+    /// ...
     
     dynamic var selectedURLObjects: [DataSource] = [] {
         didSet {
@@ -100,16 +161,32 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     dynamic var selectedObject: DataSource?
    
+    var layoutController: NSSplitViewController?
+   
     var inspectors: [Inspector]?
     var header: FileHeaderViewController?
     var editor: SourceViewer?
+    
+    var sourceViewer: SourceViewer?
+    var fileViewer: SourceViewer?
+    
+    var layout: Layout = .None {
+        didSet {
+            if layout != oldValue {
+                loadLayout(layout)
+            }
+        }
+    }
+    var scene: Scene = .None {
+        didSet {
+            
+        }
+    }
     
     // MARK: - Initialization
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // self.view.translatesAutoresizingMaskIntoConstraints = false
         
         // Acquire child view controllers
         
@@ -135,7 +212,11 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         bind("selectedSourceListObjects", toObject: sourceListController, withKeyPath: "selectedObjects", options: [:])
         
         // TODO: Set up the initial editor?
-
+        // TODO: Restore view preference
+        
+        let options = (layout: Layout.Compact, view: FileView.Card)
+        loadLayout(options.layout)
+        // loadScene(options.view)
     }
     
     func willClose() {
@@ -145,6 +226,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         unbindTitle(selectedObjects)
         unbindIcon(selectedObjects)
+        
+        unbind("selectedFileObjects")
         unbind("selectedSourceListObjects")
         
         if let inspectors = inspectors {
@@ -197,6 +280,31 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         splitView.display()
     }
     
+    // MARK: - Layout
+    
+    func loadLayout(identifier: Layout) {
+        layoutController = storyboard!.instantiateControllerWithIdentifier(identifier.rawValue) as? NSSplitViewController
+        guard let layoutController = layoutController else {
+            log("unable to load layout \(identifier)")
+            return
+        }
+        
+        replaceSplitViewItem(atIndex: 1, withViewController: layoutController)
+        
+        // Preserve currently visible source and file viewers
+        // TODO: if we're moving from two panes to one pane, preserve the file viewer instead of the source viewer
+        
+        if let sourceViewer = sourceViewer where splitViewItems.count >= 1 {
+            layoutController.replaceSplitViewItem(atIndex: 0, withViewController: sourceViewer as! NSViewController)
+        }
+        
+        // TODO: change from editor to fileViewer
+        
+        if let editor = editor where splitViewItems.count >= 2 {
+            layoutController.replaceSplitViewItem(atIndex: 1, withViewController: editor as! NSViewController)
+        }
+    }
+
     // MARK: - Bindings
     
     func bindTitle(selection: [DataSource]) {
@@ -238,11 +346,18 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     func bindEditor(selection: [DataSource]) {
         let item = selectedObject
         
+        // TODO: changes to the source list will need the editor cleared as well
+        // TODO: when loading a file from the source list we always need to display in expanded view
+        
         switch (selection.count, item) {
-        case (0, _): clearEditor()
-        case (1, is File): loadEditor(item!)
-        case (1, is Folder): loadEditor(item!) // in most cases we'll want to clear the editor here
-        case (_,_): break
+        case (0, _):
+            clearEditor()
+        case (1, is File):
+            loadEditor(item!)
+        case (1, is Folder):
+            loadSource(item!)
+        case (_,_):
+            break
         }
     }
       
@@ -266,12 +381,22 @@ class DefaultTab: NSSplitViewController, DocumentTab {
                 return
             }
 
-            contentController.editor = editor
+            // contentController.editor = editor
             
             // Prepare the new editor
             
             editor!.databaseManager = databaseManager
             editor!.searchService = searchService
+            
+            // Move the editor into place
+        
+            guard let layoutController = layoutController else {
+                log("layout controller unavailable")
+                return
+            }
+            
+            let index = layoutController.splitViewItems.count >= 2 ? 1 : 0
+            layoutController.replaceSplitViewItem(atIndex: index, withViewController: editor as! NSViewController)
          }
         
         // Always pass selection to the editor
@@ -283,6 +408,52 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         editor?.willClose() // TODO: move to willSet?
         contentController.editor = nil
         editor = nil
+    }
+    
+    func loadSource(source: DataSource) {
+        
+        // Load a new source viewer iff it has changed
+        
+        guard sourceViewer == nil || !sourceViewer!.dynamicType.filetypes.contains(source.uti) else {
+            sourceViewer!.source = source
+            return
+        }
+        
+        // Acquire a new source viewer
+        
+        sourceViewer?.willClose()
+        sourceViewer = EditorPlugIns.sharedInstance.plugInForFiletype(source.file_extension)
+        
+        guard sourceViewer != nil else {
+            log("unable to find editor for file with type \(source.file_extension)")
+            clearSource()
+            return
+        }
+        
+        // Prepare the source viewer
+        
+        sourceViewer!.databaseManager = databaseManager
+        sourceViewer!.searchService = searchService
+        sourceViewer!.source = source
+        
+        // Move the source viewer into place
+        
+        guard let layoutController = layoutController else {
+            log("layout controller unavailable")
+            return
+        }
+        
+        layoutController.replaceSplitViewItem(atIndex: 0, withViewController: sourceViewer as! NSViewController)
+        
+        // Establish connections
+        
+        bind("selectedFileObjects", toObject: sourceViewer!, withKeyPath: "selectedObjects", options: [:])
+    }
+    
+    func clearSource() {
+        unbind("selectedFileObjects")
+        sourceViewer?.willClose()
+        sourceViewer = nil
     }
     
     // MARK: - Header
@@ -307,6 +478,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     func loadHeader(file: DataSource) {
         // It's possible this file does not show a header
+        
+        return
         
         guard editor != nil && editor!.isFileEditor else {
             clearHeader()
@@ -570,7 +743,48 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         NSBeep()
     }
     
-    // MARKL -
+    @IBAction func changeLayout(sender: AnyObject?) {
+        guard let sender = sender as? NSPopUpButton else {
+              return
+        }
+        guard let tag = ViewTag(rawValue: sender.selectedTag()) else {
+            log("invalid tag")
+            return
+        }
+        
+        // Extract options
+
+        switch tag {
+        case ViewTag.CompactCard:
+            layout = Layout.Compact
+            scene = Scene.Card
+        case ViewTag.CompactList:
+            layout = Layout.Compact
+            scene = Scene.List
+        case ViewTag.CompactTable:
+            layout = Layout.Compact
+            scene = Scene.Table
+        case ViewTag.ExpandedCard:
+            layout = Layout.Expanded
+            scene = Scene.Card
+        case ViewTag.ExpandedTable:
+            layout = Layout.Expanded
+            scene = Scene.Table
+        case ViewTag.HorizontalCard:
+            layout = Layout.Horizontal
+            scene = Scene.Card
+        case ViewTag.HorizontalTable:
+            layout = Layout.Horizontal
+            scene = Scene.Table
+        }
+        
+        // Save setting
+        
+        NSUserDefaults.standardUserDefaults().setObject(layout.rawValue, forKey: "SLLayout")
+        NSUserDefaults.standardUserDefaults().setObject(layout.rawValue, forKey: "SLScene")
+    }
+    
+    // MARK: -
     
     func handleOpenURLNotification(notification: NSNotification) {
         guard let userInfo = notification.userInfo,
@@ -622,7 +836,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
              Selector("createNewFolder:"),
              Selector("makeFilesAndFoldersFirstResponder:"),
              Selector("makeEditorFirstResponder:"),
-             Selector("makeFileInfoFirstResponder:"):
+             Selector("makeFileInfoFirstResponder:"),
+             Selector("changeLayout:"):
              return true
         default:
              return false

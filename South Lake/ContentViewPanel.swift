@@ -38,6 +38,15 @@ class ContentViewPanel: NSViewController {
         }
     }
     
+    var layoutController: NSViewController? {
+        willSet {
+            removeLayoutFromInterface()
+        }
+        didSet {
+            addLayoutToInterface()
+        }
+    }
+    
     // MARK: - Initialization
     
     override func viewDidLoad() {
@@ -119,5 +128,38 @@ class ContentViewPanel: NSViewController {
             NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": editor!.view])
         )
 
+    }
+    
+    func removeLayoutFromInterface() {
+        guard let layoutController = layoutController else {
+            return
+        }
+        
+        layoutController.view.removeFromSuperview()
+    }
+    
+    func addLayoutToInterface() {
+        guard let layoutController = layoutController else {
+            return
+        }
+        
+        // Set up frame and view constraints
+        
+        layoutController.view.translatesAutoresizingMaskIntoConstraints = false
+        layoutController.view.frame = editorContainer.bounds
+        editorContainer.addSubview(layoutController.view)
+        
+        editorContainer.addConstraints(
+            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|",
+                options: .DirectionLeadingToTrailing,
+                metrics: nil,
+                views: ["subview": layoutController.view])
+        )
+        editorContainer.addConstraints(
+            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|",
+                options: .DirectionLeadingToTrailing,
+                metrics: nil,
+                views: ["subview": layoutController.view])
+        )
     }
 }

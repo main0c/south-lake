@@ -41,6 +41,8 @@ class FolderEditor: NSViewController, SourceViewer {
         return false
     }
     
+    dynamic var selectedObjects: [DataSource]?
+    
     dynamic var source: DataSource? {
         willSet {
             if let _ = source {

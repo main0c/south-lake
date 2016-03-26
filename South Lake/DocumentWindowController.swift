@@ -106,7 +106,7 @@ class DocumentWindowController: NSWindowController, Databasable {
     }
     
     @IBAction func changeLayout(sender: AnyObject?) {
-        // tabController.changeLayout(sender)
+        tabController.changeLayout(sender)
     }
     
     // MARK: -

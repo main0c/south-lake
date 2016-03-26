@@ -12,11 +12,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="511" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H5b-Nw-NKT">
+                            <searchField hidden="YES" wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H5b-Nw-NKT">
                                 <rect key="frame" x="230" y="245" width="174" height="19"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="174" id="4hG-p2-k8c"/>
-                                </constraints>
                                 <searchFieldCell key="cell" controlSize="small" selectable="YES" editable="YES" borderStyle="bezel" focusRingType="none" placeholderString="Filter by title or tag" usesSingleLineMode="YES" bezelStyle="round" id="u74-oK-J4C">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -26,43 +23,12 @@
                                     <action selector="filterByTitle:" target="9yX-Un-WoT" id="TxF-Yy-MUb"/>
                                 </connections>
                             </searchField>
-                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qAA-Xq-1wj">
-                                <rect key="frame" x="74" y="244" width="149" height="19"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="149" id="Cxo-bN-Z6I"/>
-                                </constraints>
-                                <popUpButtonCell key="cell" type="roundRect" title="Sort by Date Created" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="1002" imageScaling="proportionallyDown" inset="2" selectedItem="jQ0-xa-kRu" id="O6T-Lb-cU8">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <menu key="menu" id="FmD-5b-df1">
-                                        <items>
-                                            <menuItem title="Sort by Title" tag="1001" id="kr9-oz-Qgc">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                                <connections>
-                                                    <action selector="sortByProperty:" target="9yX-Un-WoT" id="li0-RV-ShV"/>
-                                                </connections>
-                                            </menuItem>
-                                            <menuItem isSeparatorItem="YES" id="vIC-eq-Cxn"/>
-                                            <menuItem title="Sort by Date Created" state="on" tag="1002" id="jQ0-xa-kRu">
-                                                <connections>
-                                                    <action selector="sortByProperty:" target="9yX-Un-WoT" id="h5k-sa-12d"/>
-                                                </connections>
-                                            </menuItem>
-                                            <menuItem title="Sort by Date Updated" tag="1003" id="gvn-9L-IiR">
-                                                <connections>
-                                                    <action selector="sortByProperty:" target="9yX-Un-WoT" id="NiI-fe-KvJ"/>
-                                                </connections>
-                                            </menuItem>
-                                        </items>
-                                    </menu>
-                                </popUpButtonCell>
-                            </popUpButton>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="WzD-xV-wPP">
-                                <rect key="frame" x="0.0" y="0.0" width="511" height="236"/>
+                                <rect key="frame" x="0.0" y="0.0" width="511" height="273"/>
                             </customView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f4p-sQ-iih">
-                                <rect key="frame" x="410" y="247" width="54" height="14"/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="12" id="c05-wQ-0Ur">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f4p-sQ-iih">
+                                <rect key="frame" x="259" y="279" width="24" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="120" id="c05-wQ-0Ur">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Iqy-TA-mY7"/>
                                     <font key="font" metaFont="systemSemibold" size="11"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -73,13 +39,12 @@
                                 </connections>
                             </textField>
                             <pathControl focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x7s-jQ-cTj" customClass="NSPathControlWithCursor" customModule="South_Lake" customModuleProvider="target">
-                                <rect key="frame" x="4" y="268" width="300" height="24"/>
+                                <rect key="frame" x="4" y="276" width="249" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="666-dW-iwE"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="kQ9-4s-Oai"/>
                                 </constraints>
                                 <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" focusRingType="none" alignment="left" id="RKa-S2-dPZ">
-                                    <font key="font" metaFont="systemLight" size="19"/>
+                                    <font key="font" metaFont="systemMedium" size="13"/>
                                     <url key="url" string="file:///Library/Search%20Term"/>
                                     <color key="backgroundColor" white="0.91613833720000004" alpha="1" colorSpace="calibratedWhite"/>
                                 </pathCell>
@@ -95,11 +60,8 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ywx-eb-vtY">
+                            <popUpButton hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ywx-eb-vtY">
                                 <rect key="frame" x="10" y="244" width="56" height="19"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="56" id="Cdx-nh-jHU"/>
-                                </constraints>
                                 <popUpButtonCell key="cell" type="roundRect" title="View" bezelStyle="roundedRect" alignment="right" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="2sc-nC-hdS" id="jrd-as-VjP">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="cellTitle"/>
@@ -132,24 +94,59 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
-                                <connections>
-                                    <action selector="changeLayout:" target="9yX-Un-WoT" id="Apx-9A-DJM"/>
-                                </connections>
+                            </popUpButton>
+                            <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="se1-SS-AUW">
+                                <rect key="frame" x="0.0" y="271" width="511" height="5"/>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <font key="titleFont" metaFont="system"/>
+                            </box>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qAA-Xq-1wj">
+                                <rect key="frame" x="354" y="276" width="149" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="149" id="Cxo-bN-Z6I"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="recessed" title="Sort by Date Created" bezelStyle="recessed" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="1002" imageScaling="proportionallyDown" inset="2" selectedItem="jQ0-xa-kRu" id="O6T-Lb-cU8">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                    <font key="font" metaFont="systemLight" size="13"/>
+                                    <menu key="menu" id="FmD-5b-df1">
+                                        <items>
+                                            <menuItem title="Sort by Title" tag="1001" id="kr9-oz-Qgc">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                <connections>
+                                                    <action selector="sortByProperty:" target="9yX-Un-WoT" id="li0-RV-ShV"/>
+                                                </connections>
+                                            </menuItem>
+                                            <menuItem isSeparatorItem="YES" id="vIC-eq-Cxn"/>
+                                            <menuItem title="Sort by Date Created" state="on" tag="1002" id="jQ0-xa-kRu">
+                                                <connections>
+                                                    <action selector="sortByProperty:" target="9yX-Un-WoT" id="h5k-sa-12d"/>
+                                                </connections>
+                                            </menuItem>
+                                            <menuItem title="Sort by Date Updated" tag="1003" id="gvn-9L-IiR">
+                                                <connections>
+                                                    <action selector="sortByProperty:" target="9yX-Un-WoT" id="NiI-fe-KvJ"/>
+                                                </connections>
+                                            </menuItem>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
                             </popUpButton>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="H5b-Nw-NKT" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="36" id="AxH-CJ-tZM"/>
-                            <constraint firstAttribute="trailing" secondItem="x7s-jQ-cTj" secondAttribute="trailing" priority="1" constant="10" id="FT5-vD-aUx"/>
-                            <constraint firstItem="WzD-xV-wPP" firstAttribute="top" secondItem="qAA-Xq-1wj" secondAttribute="bottom" constant="9" id="MPP-8n-LtD"/>
-                            <constraint firstItem="H5b-Nw-NKT" firstAttribute="leading" secondItem="qAA-Xq-1wj" secondAttribute="trailing" constant="7" id="Mqj-Uk-06A"/>
+                            <constraint firstAttribute="trailing" secondItem="se1-SS-AUW" secondAttribute="trailing" id="2lD-oI-FKF"/>
+                            <constraint firstItem="se1-SS-AUW" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" id="2qC-2j-WvK"/>
+                            <constraint firstItem="WzD-xV-wPP" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="27" id="4Nv-ig-JQT"/>
+                            <constraint firstItem="se1-SS-AUW" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="26" id="7Na-FS-a2h"/>
+                            <constraint firstAttribute="trailing" secondItem="x7s-jQ-cTj" secondAttribute="trailing" priority="1" constant="258" id="FT5-vD-aUx"/>
+                            <constraint firstItem="f4p-sQ-iih" firstAttribute="leading" secondItem="x7s-jQ-cTj" secondAttribute="trailing" constant="8" id="Opt-HD-Bzu"/>
                             <constraint firstItem="x7s-jQ-cTj" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" constant="4" id="OvB-9K-KxZ"/>
                             <constraint firstAttribute="bottom" secondItem="WzD-xV-wPP" secondAttribute="bottom" id="RkD-n0-WFI"/>
                             <constraint firstItem="WzD-xV-wPP" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" id="VqH-WV-7RY"/>
-                            <constraint firstItem="x7s-jQ-cTj" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="8" id="WiL-Ny-Riz"/>
-                            <constraint firstItem="ywx-eb-vtY" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" constant="10" id="aqn-Ua-ec0"/>
-                            <constraint firstItem="qAA-Xq-1wj" firstAttribute="leading" secondItem="ywx-eb-vtY" secondAttribute="trailing" constant="8" id="pbb-tX-atq"/>
-                            <constraint firstItem="ywx-eb-vtY" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="37" id="vJ7-rR-DTg"/>
-                            <constraint firstItem="qAA-Xq-1wj" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="37" id="yV4-Wl-JFU"/>
+                            <constraint firstItem="x7s-jQ-cTj" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="4" id="WiL-Ny-Riz"/>
+                            <constraint firstAttribute="trailing" secondItem="qAA-Xq-1wj" secondAttribute="trailing" constant="8" id="XvN-A6-blN"/>
+                            <constraint firstItem="f4p-sQ-iih" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="7" id="Xw3-Kk-vgo"/>
+                            <constraint firstItem="qAA-Xq-1wj" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="5" id="yV4-Wl-JFU"/>
                             <constraint firstAttribute="trailing" secondItem="WzD-xV-wPP" secondAttribute="trailing" id="zi8-z6-ZHj"/>
                         </constraints>
                     </view>
@@ -170,132 +167,6 @@
                 </arrayController>
             </objects>
             <point key="canvasLocation" x="-366.5" y="36"/>
-        </scene>
-        <!--Split View Controller-->
-        <scene sceneID="XPl-HK-g0D">
-            <objects>
-                <splitViewController storyboardIdentifier="Compact" id="hs0-QV-HWP" sceneMemberID="viewController">
-                    <splitViewItems>
-                        <splitViewItem id="nnI-GQ-TMM"/>
-                        <splitViewItem id="m6a-C3-eNu"/>
-                    </splitViewItems>
-                    <splitView key="splitView" dividerStyle="thin" vertical="YES" id="9sh-ph-zm2">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </splitView>
-                    <connections>
-                        <segue destination="ma7-kj-ojq" kind="relationship" relationship="splitItems" id="6hs-lm-K4C"/>
-                        <segue destination="AHZ-BG-M4y" kind="relationship" relationship="splitItems" id="7B6-Sc-9hT"/>
-                    </connections>
-                </splitViewController>
-                <customObject id="iX2-gk-xdx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="147" y="90"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="uWy-lj-ROq">
-            <objects>
-                <viewController id="ma7-kj-ojq" sceneMemberID="viewController">
-                    <view key="view" id="CEq-f7-zYV">
-                        <rect key="frame" x="0.0" y="0.0" width="220" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="jas-AZ-MHg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="597" y="90"/>
-        </scene>
-        <!--Split View Controller-->
-        <scene sceneID="rSo-mO-QA0">
-            <objects>
-                <splitViewController storyboardIdentifier="Horizontal" id="za3-Jw-85v" sceneMemberID="viewController">
-                    <splitViewItems>
-                        <splitViewItem id="Gjk-rJ-fXm"/>
-                        <splitViewItem id="MBN-K8-zqV"/>
-                    </splitViewItems>
-                    <splitView key="splitView" dividerStyle="thin" id="rwq-I4-6uP">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </splitView>
-                    <connections>
-                        <segue destination="6UQ-am-DdC" kind="relationship" relationship="splitItems" id="G22-Bc-0fx"/>
-                        <segue destination="j1x-tT-7ba" kind="relationship" relationship="splitItems" id="q2V-wQ-vSl"/>
-                    </connections>
-                </splitViewController>
-                <customObject id="tPU-NE-Ye4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="147" y="465"/>
-        </scene>
-        <!--Split View Controller-->
-        <scene sceneID="OWS-qD-7ZC">
-            <objects>
-                <splitViewController storyboardIdentifier="Expanded" id="bFg-17-NL5" sceneMemberID="viewController">
-                    <splitViewItems>
-                        <splitViewItem id="0pK-fI-5QL"/>
-                    </splitViewItems>
-                    <splitView key="splitView" dividerStyle="thin" vertical="YES" id="pGH-Qj-fJB">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </splitView>
-                    <connections>
-                        <segue destination="xId-po-ko7" kind="relationship" relationship="splitItems" id="TRo-f0-bgv"/>
-                    </connections>
-                </splitViewController>
-                <customObject id="XPL-hj-Z1W" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="147" y="-280"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="J3w-ye-3rC">
-            <objects>
-                <viewController id="xId-po-ko7" sceneMemberID="viewController">
-                    <view key="view" id="tj7-Dd-RO8">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="amQ-ZQ-c02" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="712" y="-280"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="FfK-hK-Jry">
-            <objects>
-                <viewController id="6UQ-am-DdC" sceneMemberID="viewController">
-                    <view key="view" id="kY3-Nk-lPN">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="161"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="lPM-bb-Enx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="712" y="395.5"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="YHc-RR-xhF">
-            <objects>
-                <viewController id="j1x-tT-7ba" sceneMemberID="viewController">
-                    <view key="view" id="WtR-HK-2OH">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="hNB-Zd-PHY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="712" y="683"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="6iR-Pc-caj">
-            <objects>
-                <viewController id="AHZ-BG-M4y" sceneMemberID="viewController">
-                    <view key="view" id="3Sz-Sq-tdt">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="kMG-ha-1BV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="984" y="90"/>
         </scene>
     </scenes>
 </document>

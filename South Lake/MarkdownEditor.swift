@@ -133,6 +133,10 @@ class MarkdownEditor: NSViewController, SourceViewer {
         return true
     }
     
+    dynamic var selectedObjects: [DataSource]? {
+        return nil
+    }
+    
     dynamic var source: DataSource? {
         willSet {
             if let source = source {
