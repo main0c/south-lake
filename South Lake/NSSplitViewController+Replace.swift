@@ -12,16 +12,26 @@ extension NSSplitViewController {
     func replaceSplitViewItem(atIndex index: Int, withViewController viewController: NSViewController) {
         assert(index <= splitViewItems.count)
         
+        // Note item settings
+        
+        let holdingPriority = splitViewItems[index].holdingPriority
+        
         // Set up the frame
             
         let frame = splitViewItems[index].viewController.view.frame
         viewController.view.frame = frame
         
+        // Create a new item
+        
+        let newItem = NSSplitViewItem(viewController: viewController)
+        
         // Move it into place
         
-        let newIem = NSSplitViewItem(viewController: viewController)
-        
         removeSplitViewItem(splitViewItems[index])
-        insertSplitViewItem(newIem, atIndex: index)
+        insertSplitViewItem(newItem, atIndex: index)
+        
+        // Restore settings
+        
+        newItem.holdingPriority = holdingPriority
     }
 }

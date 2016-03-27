@@ -84,7 +84,6 @@ class LibraryEditor: NSViewController, SourceViewer {
         }
     }
 
-    // var layoutController: NSSplitViewController?
     var sceneController: FileCollectionScene?
 
     // MARK: - Initialization

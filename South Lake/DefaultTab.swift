@@ -70,10 +70,9 @@ enum ViewTag: Int {
 
 
 class DefaultTab: NSSplitViewController, DocumentTab {
-    var sourceListController: SourceListPanel!     // left data source
-    var contentController: ContentViewPanel! // center content
-    
-    // var inspectorController: InspectorPanel! // right inspector
+    var sourceListPanel: SourceListPanel!
+    var contentPanel: ContentPanel!
+    // var inspectorPanel: InspectorPanel!
     
     // Default inspectors
     
@@ -102,6 +101,9 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     }
     
     // TODO: When you select a folder don't unbind and clear the current editor, Whether we unbind depends on on what is being bound?
+    // TODO: We may not route all of this through selectedObjects. It's convenient
+    //       because title and icon bindings are already set up to work with it,
+    //       but that's all really and can easily enough be duplicated
     
     /// The selected source list objects originate in the source list and are
     /// displayed in the second panel
@@ -152,15 +154,18 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     }
     
     dynamic var selectedObject: DataSource?
+    
+    // TODO: rename layout controller
    
     var layoutController: NSSplitViewController?
+    var sourceViewer: SourceViewer?
    
-    var inspectors: [Inspector]?
     var header: FileHeaderViewController?
     var editor: SourceViewer?
     
-    var sourceViewer: SourceViewer?
-    var fileViewer: SourceViewer?
+    var inspectors: [Inspector]?
+    
+    //
     
     var layout: Layout = .None {
         didSet {
@@ -187,24 +192,27 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         for vc in childViewControllers {
             switch vc {
             case let controller as SourceListPanel:
-                sourceListController = controller
+                sourceListPanel = controller
                 break
-            case let controller as ContentViewPanel:
-                contentController = controller
-                break
+//            case let controller as ContentPanel:
+//                contentPanel = controller
+//                break
 //            case let controller as InspectorPanel:
-//                inspectorController = controller
+//                inspectorPanel = controller
             default:
                 break
             }
         }
+        
+        contentPanel = ContentPanel()
+        contentPanel.view = NSView(frame: CGRectZero)
         
         // TODO: can't use notification center: can, just make sure we're passing the dbm
         // TODO: Set up the initial editor?
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("documentWillSave:"), name: DocumentWillSaveNotification, object: nil)
         
-        bind("selectedSourceListObjects", toObject: sourceListController, withKeyPath: "selectedObjects", options: [:])
+        bind("selectedSourceListObjects", toObject: sourceListPanel, withKeyPath: "selectedObjects", options: [:])
         
         if  let savedValue = NSUserDefaults.standardUserDefaults().stringForKey("SLLayout"),
             let savedLayout = Layout(rawValue: savedValue) {
@@ -222,9 +230,9 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     }
     
     func willClose() {
-        sourceListController.willClose()
-//        inspectorController.willClose()
-        contentController.willClose()
+        sourceListPanel.willClose()
+//        inspectorPanel.willClose()
+        contentPanel.willClose()
         
         unbindTitle(selectedObjects)
         unbindIcon(selectedObjects)
@@ -296,14 +304,14 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         // Preserve currently visible source and file viewers
         // TODO: if we're moving from two panes to one pane, preserve the file viewer instead of the source viewer
         
-        if let sourceViewer = sourceViewer where splitViewItems.count >= 1 {
+        if sourceViewer != nil && splitViewItems.count >= 1 {
             layoutController.replaceSplitViewItem(atIndex: 0, withViewController: sourceViewer as! NSViewController)
         }
         
-        // TODO: change from editor to fileViewer
+        // TODO: replace the content panel, not the editor
         
-        if let editor = editor where splitViewItems.count >= 2 {
-            layoutController.replaceSplitViewItem(atIndex: 1, withViewController: editor as! NSViewController)
+        if splitViewItems.count >= 2 {
+            layoutController.replaceSplitViewItem(atIndex: 1, withViewController: contentPanel)
         }
     }
 
@@ -350,6 +358,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         // TODO: changes to the source list will need the editor cleared as well
         // TODO: when loading a file from the source list we always need to display in expanded view
+        // TODO: some sources won't support all views: calendar, tags...
         
         // Breaking on no selection in order to preserve the editor across changes to the scene
         
@@ -393,8 +402,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             clearEditor()
             return
         }
-
-        // contentController.editor = editor
         
         // Prepare the editor
         
@@ -404,19 +411,13 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         // Move the editor into place
     
-        guard let layoutController = layoutController else {
-            log("layout controller unavailable")
-            return
-        }
-        
-        let index = layoutController.splitViewItems.count >= 2 ? 1 : 0
-        layoutController.replaceSplitViewItem(atIndex: index, withViewController: editor as! NSViewController)
+        contentPanel.editor = editor
     }
     
     func clearEditor() {
-        editor?.source = nil
         editor?.willClose()
-        // contentController.editor = nil
+        // editor?.source = nil
+        // contentPanel.editor = nil
         editor = nil
     }
     
@@ -472,9 +473,9 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         let item = selectedObject
         
         switch (selection.count, item) {
-        case (0, _): clearHeader()
+//        case (0, _): clearHeader()
         case (1, is File): loadHeader(item!)
-        case (1, is Folder): clearHeader()
+//        case (1, is Folder): clearHeader()
         case (_,_): break
         }
     }
@@ -489,10 +490,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     func loadHeader(file: DataSource) {
         // It's possible this file does not show a header
         
-        return
-        
         guard editor != nil && editor!.isFileEditor else {
-            clearHeader()
+//            clearHeader()
             return
         }
         
@@ -502,7 +501,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             header?.databaseManager = databaseManager
             header?.searchService = searchService
             
-            contentController.header = header
+            contentPanel.header = header
             
             // Next responder: tab from title to editor
             header?.primaryResponder.nextKeyView = editor?.primaryResponder
@@ -511,10 +510,10 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         header!.file = file
     }
     
-    func clearHeader() {
-        contentController.header = nil
-        header = nil
-    }
+//    func clearHeader() {
+//        contentPanel.header = nil
+//        header = nil
+//    }
     
     // MARK: - Inspector
     
@@ -552,7 +551,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     }
     
     func clearInspector() {
-//        inspectorController.inspectors = nil
+//        inspectorPanel.inspectors = nil
         inspectors = nil
     }
     
@@ -592,7 +591,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         inspectors!.append(commentsInspector)
         inspectors!.append(relatedInspector)
         
-//        inspectorController.inspectors = inspectors
+//        inspectorPanel.inspectors = inspectors
     }
     
     func loadInspectorForMultipleSelection(files: [DataSource]) {
@@ -606,7 +605,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             return
         }
         
-        sourceListController.selectItem(library)
+        sourceListPanel.selectItem(library)
         editor?.performSearch(text, results: results)
     }
     
@@ -634,7 +633,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
 //        var parent: DataSource
 //        var indexPath: NSIndexPath
 //        
-//        if  let selectedIndexPath = sourceListController.selectedIndexPath,
+//        if  let selectedIndexPath = sourceListPanel.selectedIndexPath,
 //            let item = selectedObject where item.uti == DataTypes.Folder.uti {
 //            parent = item
 //            indexPath = selectedIndexPath.indexPathByAddingIndex(parent.children.count)
@@ -655,8 +654,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             return
         }
         
-        sourceListController.editItemAtIndexPath(indexPath)
-        // sourceListController.selectItem(folder)
+        sourceListPanel.editItemAtIndexPath(indexPath)
+        // sourceListPanel.selectItem(folder)
     }
     
     /// Create an untitled smart folder
@@ -688,7 +687,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             return
         }
         
-        sourceListController.editItemAtIndexPath(indexPath)
+        sourceListPanel.editItemAtIndexPath(indexPath)
     }
     
     /// Create an untitled markdown document
@@ -717,7 +716,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         var parent: DataSource
         var indexPath: NSIndexPath
         
-        if  let selectedIndexPath = sourceListController.selectedIndexPath,
+        if  let selectedIndexPath = sourceListPanel.selectedIndexPath,
             let item = selectedObject where item.uti == DataTypes.Folder.uti {
             parent = item
             indexPath = selectedIndexPath.indexPathByAddingIndex(parent.children.count)
@@ -733,12 +732,12 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             return
         }
         
-        sourceListController.selectItemAtIndexPath(indexPath)
-        // sourceListController.selectItem(file)
+        sourceListPanel.selectItemAtIndexPath(indexPath)
+        // sourceListPanel.selectItem(file)
     }
     
     @IBAction func makeFilesAndFoldersFirstResponder(sender: AnyObject?) {
-        self.view.window?.makeFirstResponder(sourceListController.primaryResponder)
+        self.view.window?.makeFirstResponder(sourceListPanel.primaryResponder)
     }
     
     @IBAction func makeEditorFirstResponder(sender: AnyObject?) {
@@ -825,13 +824,13 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         switch root {
         case "library":
             // Select library, pass open url to library editor?
-            sourceListController.selectItem(library)
+            sourceListPanel.selectItem(library)
             if let source = userInfo["source"] as? DataSource { // guard
                 selectedURLObjects = [source]
             }
             editor?.openURL(url)
         case "tags":
-            sourceListController.selectItem(tags)
+            sourceListPanel.selectItem(tags)
             editor?.openURL(url)
         case _:
             log(root)

@@ -1,5 +1,5 @@
 //
-//  ContentViewPanel.swift
+//  ContentPanel.swift
 //  South Lake
 //
 //  Created by Philip Dow on 3/6/16.
@@ -13,11 +13,8 @@ import Cocoa
 /// It does not manage bindings for the editor or header, and it doesn't care what is displayed
 /// in the editor or header.
 
-class ContentViewPanel: NSViewController {
-    @IBOutlet var viewContainer: NSView!
-    @IBOutlet var editorContainer: NSView!
-    @IBOutlet var editorContainerTopContraint: NSLayoutConstraint!
-
+class ContentPanel: NSViewController {
+    
     // MARK: - Custom Properties
     
     var header: FileHeaderViewController? {
@@ -35,15 +32,6 @@ class ContentViewPanel: NSViewController {
         }
         didSet {
             addEditorToInterface()
-        }
-    }
-    
-    var layoutController: NSViewController? {
-        willSet {
-            removeLayoutFromInterface()
-        }
-        didSet {
-            addLayoutToInterface()
         }
     }
     
@@ -69,8 +57,6 @@ class ContentViewPanel: NSViewController {
         
         header!.removeFromParentViewController()
         header!.view.removeFromSuperview()
-        
-        editorContainerTopContraint.constant = 0
     }
     
     func addHeaderToInterface() {
@@ -78,21 +64,21 @@ class ContentViewPanel: NSViewController {
             return
         }
         
-        editorContainerTopContraint.constant = editor!.isFileEditor ? 64 : 0
+        // Frame
         
         let height = CGFloat(64) // header!.view.frame.size.height
-        let width = viewContainer.bounds.size.width
+        let width = CGRectGetWidth(view.bounds)
         
-        header!.view.frame = NSMakeRect(0, 0, width, height)
         header!.view.translatesAutoresizingMaskIntoConstraints = false
+        header!.view.frame = NSMakeRect(0, 0, width, height)
         
-        viewContainer.addSubview(header!.view)
+        view.addSubview(header!.view)
         addChildViewController(header!)
         
-        viewContainer.addConstraints(
+        view.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": header!.view])
         )
-        viewContainer.addConstraints(
+        view.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview(64)]", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": header!.view])
         )
     }
@@ -113,53 +99,23 @@ class ContentViewPanel: NSViewController {
         
         // Frame
         
-        editor!.view.translatesAutoresizingMaskIntoConstraints = false
-        editor!.view.frame = editorContainer.bounds
+        let height = CGRectGetHeight(view.bounds) - CGFloat(64)
+        let width = CGRectGetWidth(view.bounds)
         
-        editorContainer.addSubview(editor!.view)
+        editor!.view.translatesAutoresizingMaskIntoConstraints = false
+        editor!.view.frame = NSMakeRect(0, 0, width, height)
+        
+        view.addSubview(editor!.view)
         addChildViewController(editor as! NSViewController)
         
         // Layout Constraints
         
-        editorContainer.addConstraints(
+        view.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": editor!.view])
         )
-        editorContainer.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": editor!.view])
+        view.addConstraints(
+            NSLayoutConstraint.constraintsWithVisualFormat("V:|-64-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": editor!.view])
         )
 
-    }
-    
-    func removeLayoutFromInterface() {
-        guard let layoutController = layoutController else {
-            return
-        }
-        
-        layoutController.view.removeFromSuperview()
-    }
-    
-    func addLayoutToInterface() {
-        guard let layoutController = layoutController else {
-            return
-        }
-        
-        // Set up frame and view constraints
-        
-        layoutController.view.translatesAutoresizingMaskIntoConstraints = false
-        layoutController.view.frame = editorContainer.bounds
-        editorContainer.addSubview(layoutController.view)
-        
-        editorContainer.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|",
-                options: .DirectionLeadingToTrailing,
-                metrics: nil,
-                views: ["subview": layoutController.view])
-        )
-        editorContainer.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|",
-                options: .DirectionLeadingToTrailing,
-                metrics: nil,
-                views: ["subview": layoutController.view])
-        )
     }
 }
