@@ -52,7 +52,19 @@ class LibraryEditor: NSViewController, SourceViewer {
     
     var scene: Scene = .None {
         didSet {
-            loadScene(scene)
+            if scene != oldValue {
+                loadScene(scene)
+            }
+        }
+    }
+    
+    var layout: Layout = .None {
+        didSet {
+            if layout == .Compact {
+                sceneController?.minimize()
+            } else {
+                sceneController?.maximize()
+            }
         }
     }
     
@@ -201,7 +213,7 @@ class LibraryEditor: NSViewController, SourceViewer {
         
         let selection = selectedObjects
         
-        //
+        // Prepare the scene
         
         unloadScene()
         sceneController = sc
@@ -223,6 +235,14 @@ class LibraryEditor: NSViewController, SourceViewer {
         containerView.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": sceneController!.view])
         )
+        
+        // Prepare interface
+        
+        if layout == .Compact {
+            sceneController!.minimize()
+        } else {
+            sceneController!.maximize()
+        }
         
         // Set up connections
         

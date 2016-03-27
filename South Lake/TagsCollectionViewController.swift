@@ -19,6 +19,8 @@ class TagsCollectionViewController: NSViewController, FileCollectionScene {
     var databaseManager: DatabaseManager?
     var searchService: BRSearchService?
     
+    var selectedObjects: [DataSource]?
+    
     // MARK: - Initialization
 
     override func viewDidLoad() {
@@ -44,9 +46,15 @@ class TagsCollectionViewController: NSViewController, FileCollectionScene {
         collectionView.itemPrototype = nil
     }
     
-    // ...
+    // MARK: -
     
-    var selectedObjects: [DataSource]?
+    func minimize() {
+    
+    }
+    
+    func maximize() {
+    
+    }
     
     // MARK: -
     

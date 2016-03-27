@@ -25,4 +25,10 @@ protocol FileCollectionScene: Databasable {
     
     /// Called immediately before the scene is removed from the view hierarchy
     func willClose()
+    
+    /// Used with compact layouts, the collection may have different representaiton
+    func minimize()
+    
+    /// Used with horizontal and expanded, the collection may have a different representation
+    func maximize()
 }

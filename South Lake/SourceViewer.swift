@@ -48,8 +48,11 @@ protocol SourceViewer: class, Databasable {
         /// Some source viewers can themselves have selected objects. This variable should be dynamic
         var selectedObjects: [DataSource]? { get set }
         
-        /// Some source viewers may be able to change their presentation based on the scene preference
+        /// Some source viewers may change their presentation based on the scene
         var scene: Scene { get set }
+    
+        /// Some source viewers may change their presentation based on the layout
+        var layout: Layout { get set }
     
     // }
     

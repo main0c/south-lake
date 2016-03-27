@@ -32,6 +32,7 @@ class PDFEditor: NSViewController, SourceViewer {
         }
     }
     
+    var layout: Layout = .None
     var scene: Scene = .None
     
     var primaryResponder: NSView {
@@ -62,7 +63,10 @@ class PDFEditor: NSViewController, SourceViewer {
     }
     
     func willClose() {
-    
+        editor.setDocument(nil)
+        if let thumbnailInspector = thumbnailInspector {
+            thumbnailInspector.thumbnailView.setPDFView(nil)
+        }
     }
     
     // MARK: - 

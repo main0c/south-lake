@@ -170,13 +170,12 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             if layout != oldValue {
                 loadLayout(layout)
             }
+            sourceViewer?.layout = layout
         }
     }
     var scene: Scene = .None {
         didSet {
-            if scene != oldValue {
-                sourceViewer?.scene = scene
-            }
+            sourceViewer?.scene = scene
         }
     }
     
@@ -313,9 +312,9 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         var vertical = true
         
         switch identifier {
-        case .Compact, .Expanded:
+        case .Compact:
             vertical = true
-        case .Horizontal:
+        case .Expanded, .Horizontal:
             vertical = false
         default:
             vertical = true
@@ -480,6 +479,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         sourceViewer!.searchService = searchService
         sourceViewer!.source = source
         sourceViewer!.scene = scene
+        sourceViewer!.layout = layout
         
         // Move the source viewer into place
         

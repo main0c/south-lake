@@ -15,4 +15,14 @@ class FileListViewController: NSViewController {
         // Do view setup here.
     }
     
+    // MARK: -
+    
+    func minimize() {
+    
+    }
+    
+    func maximize() {
+    
+    }
+    
 }

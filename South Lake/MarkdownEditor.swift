@@ -135,6 +135,7 @@ class MarkdownEditor: NSViewController, SourceViewer {
     
     dynamic var selectedObjects: [DataSource]?
     
+    var layout: Layout = .None
     var scene: Scene = .None
     
     dynamic var source: DataSource? {

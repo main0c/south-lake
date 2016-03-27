@@ -8,6 +8,13 @@
 
 import Cocoa
 
+struct FileTableColumnIdentifier {
+    static let Document = "document"
+    static let Created = "created"
+    static let Updated = "updated"
+    static let Tags = "tags"
+}
+
 class FileTableViewController: NSViewController, FileCollectionScene {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var tableView: NSTableView!
@@ -39,7 +46,43 @@ class FileTableViewController: NSViewController, FileCollectionScene {
     func willClose() {
         unbind("selectedObjects")
     }
-       
+    
+    // MARK: -
+    
+    func minimize() {
+        guard viewLoaded else {
+            return
+        }
+        
+        let identifiers = [
+            FileTableColumnIdentifier.Created,
+            FileTableColumnIdentifier.Updated,
+            FileTableColumnIdentifier.Tags,
+        ]
+        
+        for id in identifiers {
+            tableView.tableColumnWithIdentifier(id)?.hidden = true
+        }
+    }
+    
+    func maximize() {
+        guard viewLoaded else {
+            return
+        }
+        
+        let identifiers = [
+            FileTableColumnIdentifier.Created,
+            FileTableColumnIdentifier.Updated,
+            FileTableColumnIdentifier.Tags,
+        ]
+        
+        for id in identifiers {
+            tableView.tableColumnWithIdentifier(id)?.hidden = false
+        }
+    }
+    
+    // MARK: -
+    
     @IBAction func doubleClick(sender: AnyObject?) {
         guard let databaseManager = databaseManager else {
             return

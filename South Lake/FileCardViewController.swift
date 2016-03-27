@@ -57,6 +57,16 @@ class FileCardViewController: NSViewController, FileCollectionScene {
     
     // MARK: -
     
+    func minimize() {
+    
+    }
+    
+    func maximize() {
+    
+    }
+    
+    // MARK: -
+    
     @IBAction func moveTo(sender: AnyObject?) {
         guard let databaseManager = databaseManager else {
             return
