@@ -716,7 +716,7 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="66U-Q0-rjl"/>
-                                        <menuItem title="Hide Header" keyEquivalent="H" id="CS1-dJ-PAT"/>
+                                        <menuItem title="Hide Document Header" keyEquivalent="H" id="CS1-dJ-PAT"/>
                                         <menuItem isSeparatorItem="YES" id="8Xf-ek-UrM"/>
                                         <menuItem title="Show Toolbar" keyEquivalent="t" id="snW-S8-Cw5">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
@@ -823,7 +823,7 @@ DQ
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="South_Lake" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-280" y="-563"/>
+            <point key="canvasLocation" x="-293" y="-367"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -862,7 +862,7 @@ DQ
                                 <toolbarItem implicitItemIdentifier="8A76FC60-B8FC-48CD-86DA-E6B8AAD1E550" label="Forward" paletteLabel="Forward" tag="-1" image="toolbar-forward-icon" id="Pr7-JH-Mbc"/>
                                 <toolbarItem implicitItemIdentifier="90EAE9A1-D5A7-4C43-ACDD-8D744BC23542" label="Layout" paletteLabel="Layout" id="Gti-Xn-DjO">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="56" height="21"/>
+                                    <size key="minSize" width="56" height="19"/>
                                     <size key="maxSize" width="86" height="21"/>
                                     <popUpButton key="view" verticalHuggingPriority="750" id="Ung-UZ-6ue">
                                         <rect key="frame" x="0.0" y="14" width="81" height="19"/>
@@ -980,7 +980,7 @@ DQ
                 </viewController>
                 <customObject id="EOB-88-eDj" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="688"/>
+            <point key="canvasLocation" x="-181" y="467"/>
         </scene>
     </scenes>
     <resources>

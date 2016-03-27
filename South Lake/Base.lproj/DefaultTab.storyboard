@@ -122,7 +122,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <outlineView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="sourceList" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="22" viewBased="YES" floatsGroupRows="NO" indentationPerLevel="14" outlineTableColumn="VW4-Ja-dU6" id="db9-k2-GDY">
-                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="371"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="0.0"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -329,6 +329,53 @@
             <point key="canvasLocation" x="-618" y="1282"/>
         </scene>
         <!--Split View Controller-->
+        <scene sceneID="mBa-1e-rYX">
+            <objects>
+                <splitViewController storyboardIdentifier="Layout" id="t0Q-Pm-a3i" sceneMemberID="viewController">
+                    <splitViewItems>
+                        <splitViewItem id="ox2-Ag-czC"/>
+                        <splitViewItem id="8xa-WO-S1L"/>
+                    </splitViewItems>
+                    <splitView key="splitView" dividerStyle="thin" vertical="YES" id="mo6-8r-EB0">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </splitView>
+                    <connections>
+                        <segue destination="HoG-my-hgV" kind="relationship" relationship="splitItems" id="Ip6-H3-lsM"/>
+                        <segue destination="wJq-2C-uWc" kind="relationship" relationship="splitItems" id="qnv-Fs-c9j"/>
+                    </connections>
+                </splitViewController>
+                <customObject id="mvj-JV-BRK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="414" y="537"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="hGo-Af-fMd">
+            <objects>
+                <viewController id="HoG-my-hgV" sceneMemberID="viewController">
+                    <view key="view" id="Oc2-ah-gb1">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="zWE-Q2-sdv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1413" y="537"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="dSk-p9-bCs">
+            <objects>
+                <viewController id="wJq-2C-uWc" sceneMemberID="viewController">
+                    <view key="view" id="kge-2E-4NC">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="D5B-UX-P8c" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="929" y="537"/>
+        </scene>
+        <!--Split View Controller-->
         <scene sceneID="zrF-W7-QT2">
             <objects>
                 <splitViewController storyboardIdentifier="Expanded" id="VEn-mZ-FEj" sceneMemberID="viewController">
@@ -379,7 +426,7 @@
                 </viewController>
                 <customObject id="evA-C3-VVU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="840" y="1290"/>
+            <point key="canvasLocation" x="790" y="1290"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="hkc-VE-SFb">
@@ -413,7 +460,7 @@
                 </viewController>
                 <customObject id="ckd-AE-HQT" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="979" y="1576"/>
+            <point key="canvasLocation" x="929" y="1576"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Wb2-sJ-L4f">
@@ -426,7 +473,7 @@
                 </viewController>
                 <customObject id="bUr-ck-Ekx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="979" y="1849"/>
+            <point key="canvasLocation" x="929" y="1850"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Gvt-jN-rnJ">
@@ -439,7 +486,7 @@
                 </viewController>
                 <customObject id="mou-Rv-KOy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1180" y="1290"/>
+            <point key="canvasLocation" x="1130" y="1290"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="B5y-hB-BVk">
@@ -452,7 +499,7 @@
                 </viewController>
                 <customObject id="cCg-gb-Pi9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="979" y="915"/>
+            <point key="canvasLocation" x="929" y="915"/>
         </scene>
     </scenes>
     <resources>

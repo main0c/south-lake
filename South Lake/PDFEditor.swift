@@ -56,6 +56,8 @@ class PDFEditor: NSViewController, SourceViewer {
         super.viewDidLoad()
         
         editor.setBackgroundColor(UI.Color.SourceViewerBackground)
+        editor.setAutoScales(true)
+        
         loadFile(source)
     }
     

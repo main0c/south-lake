@@ -4,14 +4,10 @@
 //
 //  Created by Philip Dow on 3/6/16.
 //  Copyright © 2016 Phil Dow. All rights reserved.
-//
-//  Contains the editor but also basic metadata info such as the title, etc
 
 import Cocoa
 
-/// Given a SourceViewer, knows how to display the editor, knows if it should display a header
-/// It does not manage bindings for the editor or header, and it doesn't care what is displayed
-/// in the editor or header.
+/// Displays the header and editor views for a file.
 
 class ContentPanel: NSViewController {
     
@@ -33,6 +29,10 @@ class ContentPanel: NSViewController {
         didSet {
             addEditorToInterface()
         }
+    }
+    
+    var headerHidden: Bool {
+        return header == nil
     }
     
     // MARK: - Initialization

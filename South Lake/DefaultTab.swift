@@ -155,9 +155,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     dynamic var selectedObject: DataSource?
     
-    // TODO: rename layout controller
-   
-    var layoutController: NSSplitViewController?
+    var layoutController: NSSplitViewController!
     var sourceViewer: SourceViewer?
    
     var header: FileHeaderViewController?
@@ -193,10 +191,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             switch vc {
             case let controller as SourceListPanel:
                 sourceListPanel = controller
-                break
-//            case let controller as ContentPanel:
-//                contentPanel = controller
-//                break
 //            case let controller as InspectorPanel:
 //                inspectorPanel = controller
             default:
@@ -204,15 +198,28 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             }
         }
         
-        contentPanel = ContentPanel()
-        contentPanel.view = NSView(frame: CGRectZero)
-        
         // TODO: can't use notification center: can, just make sure we're passing the dbm
         // TODO: Set up the initial editor?
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("documentWillSave:"), name: DocumentWillSaveNotification, object: nil)
         
         bind("selectedSourceListObjects", toObject: sourceListPanel, withKeyPath: "selectedObjects", options: [:])
+        
+        // Load the layout controller
+
+        layoutController = storyboard!.instantiateControllerWithIdentifier("Layout") as? NSSplitViewController
+        replaceSplitViewItem(atIndex: 1, withViewController: layoutController!)
+        
+        // Create the content panel and move it into place
+        
+        contentPanel = ContentPanel()
+        contentPanel.view = NSView(frame: CGRectZero)
+        
+        if layoutController.splitViewItems.count >= 2 {
+            layoutController.replaceSplitViewItem(atIndex: 1, withViewController: contentPanel)
+        }
+        
+        // Restore user layout preferences
         
         if  let savedValue = NSUserDefaults.standardUserDefaults().stringForKey("SLLayout"),
             let savedLayout = Layout(rawValue: savedValue) {
@@ -293,26 +300,53 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     // MARK: - Layout
     
     func loadLayout(identifier: Layout) {
-        layoutController = storyboard!.instantiateControllerWithIdentifier(identifier.rawValue) as? NSSplitViewController
-        guard let layoutController = layoutController else {
-            log("unable to load layout \(identifier)")
-            return
+    
+        // Preserve the existing divider position
+        // TODO: save vertical and horizontal sizes and ensure we have enough room for the change
+    
+        let position = layoutController.splitView.vertical
+            ? layoutController.splitViewItems[0].viewController.view.frame.size.width
+            : layoutController.splitViewItems[0].viewController.view.frame.size.height
+    
+        // Determine if the layout is vertical
+    
+        var vertical = true
+        
+        switch identifier {
+        case .Compact, .Expanded:
+            vertical = true
+        case .Horizontal:
+            vertical = false
+        default:
+            vertical = true
         }
         
-        replaceSplitViewItem(atIndex: 1, withViewController: layoutController)
+        layoutController!.splitView.vertical = vertical
+        layoutController!.splitView.adjustSubviews()
+        layoutController!.splitView.setPosition(position, ofDividerAtIndex: 0)
         
-        // Preserve currently visible source and file viewers
-        // TODO: if we're moving from two panes to one pane, preserve the file viewer instead of the source viewer
         
-        if sourceViewer != nil && splitViewItems.count >= 1 {
-            layoutController.replaceSplitViewItem(atIndex: 0, withViewController: sourceViewer as! NSViewController)
-        }
         
-        // TODO: replace the content panel, not the editor
-        
-        if splitViewItems.count >= 2 {
-            layoutController.replaceSplitViewItem(atIndex: 1, withViewController: contentPanel)
-        }
+//        layoutController = storyboard!.instantiateControllerWithIdentifier(identifier.rawValue) as? NSSplitViewController
+//        guard let layoutController = layoutController else {
+//            log("unable to load layout \(identifier)")
+//            return
+//        }
+//        
+//        replaceSplitViewItem(atIndex: 1, withViewController: layoutController)
+//        
+//        // Preserve currently visible source and file viewers
+//        // TODO: if we're moving from two panes to one pane, preserve the file viewer instead of the source viewer
+//        
+//        if sourceViewer != nil && splitViewItems.count >= 1 {
+//            layoutController.replaceSplitViewItem(atIndex: 0, withViewController: sourceViewer as! NSViewController)
+//        }
+//        
+//        // TODO: replace the content panel, not the editor
+//        
+//        if splitViewItems.count >= 2 {
+//            layoutController.replaceSplitViewItem(atIndex: 1, withViewController: contentPanel)
+//        }
     }
 
     // MARK: - Bindings
