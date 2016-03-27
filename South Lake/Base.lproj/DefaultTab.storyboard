@@ -149,7 +149,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <outlineView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="sourceList" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="22" viewBased="YES" floatsGroupRows="NO" indentationPerLevel="14" outlineTableColumn="VW4-Ja-dU6" id="db9-k2-GDY">
-                                                    <rect key="frame" x="0.0" y="0.0" width="234" height="371"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="234" height="0.0"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -379,7 +379,7 @@
             <objects>
                 <splitViewController storyboardIdentifier="Compact" id="QWm-xX-7bO" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem id="6ds-La-FN6"/>
+                        <splitViewItem holdingPriority="260" id="6ds-La-FN6"/>
                         <splitViewItem id="dHV-Dg-YjE"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" vertical="YES" id="8ey-0B-Cm1">
@@ -413,7 +413,7 @@
             <objects>
                 <splitViewController storyboardIdentifier="Horizontal" id="DwW-qz-kkW" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem id="IYb-MS-5Je"/>
+                        <splitViewItem holdingPriority="260" id="IYb-MS-5Je"/>
                         <splitViewItem id="SeD-vd-5g6"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" id="2uh-Mx-nr9">

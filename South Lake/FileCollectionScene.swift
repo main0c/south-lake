@@ -21,7 +21,7 @@ protocol FileCollectionScene: Databasable {
     var arrayController: NSArrayController! { get set }
     
     /// The FileCollectionScene should maintain a dynamic variable for selected objects
-    var selectedObjects: [DataSource]? { get }
+    var selectedObjects: [DataSource]? { get set }
     
     /// Called immediately before the scene is removed from the view hierarchy
     func willClose()

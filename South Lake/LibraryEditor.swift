@@ -24,7 +24,6 @@ class LibraryEditor: NSViewController, SourceViewer {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var containerView: NSView!
     @IBOutlet var pathControl: NSPathControlWithCursor!
-    @IBOutlet var sceneSelector: NSSegmentedControl!
     @IBOutlet var noSearchResultsLabel: NSTextField!
     
     // MARK: - File Editor
@@ -199,6 +198,12 @@ class LibraryEditor: NSViewController, SourceViewer {
             return
         }
         
+        // Preserve the selected objects
+        
+        let selection = selectedObjects
+        
+        //
+        
         unloadScene()
         sceneController = sc
         
@@ -224,6 +229,10 @@ class LibraryEditor: NSViewController, SourceViewer {
         
         sceneController!.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
         bind("selectedObjects", toObject: sceneController as! AnyObject, withKeyPath: "selectedObjects", options: [:])
+        
+        if let selection = selection {
+            sceneController!.arrayController.setSelectedObjects(selection)
+        }
     }
     
     func unloadScene() {

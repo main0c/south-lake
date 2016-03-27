@@ -46,7 +46,7 @@ protocol SourceViewer: class, Databasable {
         var isFileEditor: Bool { get }
         
         /// Some source viewers can themselves have selected objects. This variable should be dynamic
-        var selectedObjects: [DataSource]? { get }
+        var selectedObjects: [DataSource]? { get set }
         
         /// Some source viewers may be able to change their presentation based on the scene preference
         var scene: Scene { get set }

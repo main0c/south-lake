@@ -60,41 +60,6 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <popUpButton hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ywx-eb-vtY">
-                                <rect key="frame" x="10" y="244" width="56" height="19"/>
-                                <popUpButtonCell key="cell" type="roundRect" title="View" bezelStyle="roundedRect" alignment="right" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="2sc-nC-hdS" id="jrd-as-VjP">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="cellTitle"/>
-                                    <menu key="menu" id="l0s-gX-td9">
-                                        <items>
-                                            <menuItem title="View" state="on" hidden="YES" id="Edd-oT-y3b"/>
-                                            <menuItem title="Compact Card" tag="1" id="gO5-iN-juI">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Compact List" tag="2" id="JN9-O2-oEF">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Compact Table" tag="3" id="VPj-vh-kNG">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem isSeparatorItem="YES" id="G9x-rH-scQ"/>
-                                            <menuItem title="Expanded Card" tag="11" id="eJA-2q-VjS">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Expanded Table" tag="12" id="1Ii-v5-1cJ">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem isSeparatorItem="YES" id="ZK7-Rf-ghV"/>
-                                            <menuItem title="Horizontal Card" tag="21" id="qid-iC-sdL">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Horizontal Table" tag="22" id="2sc-nC-hdS">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                        </items>
-                                    </menu>
-                                </popUpButtonCell>
-                            </popUpButton>
                             <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="se1-SS-AUW">
                                 <rect key="frame" x="0.0" y="271" width="511" height="5"/>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>

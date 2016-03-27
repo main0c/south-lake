@@ -135,7 +135,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             unbindTitle(selectedObjects)
             unbindIcon(selectedObjects)
             
-            unbindEditor(selectedObjects)
+            // unbindEditor(selectedObjects)
             unbindHeader(selectedObjects)
             unbindInspectors(selectedObjects)
         }
@@ -200,13 +200,11 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
         
         // TODO: can't use notification center: can, just make sure we're passing the dbm
+        // TODO: Set up the initial editor?
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("documentWillSave:"), name: DocumentWillSaveNotification, object: nil)
         
         bind("selectedSourceListObjects", toObject: sourceListController, withKeyPath: "selectedObjects", options: [:])
-        
-        // TODO: Set up the initial editor?
-        // TODO: Restore view preference
         
         if  let savedValue = NSUserDefaults.standardUserDefaults().stringForKey("SLLayout"),
             let savedLayout = Layout(rawValue: savedValue) {
@@ -353,9 +351,11 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         // TODO: changes to the source list will need the editor cleared as well
         // TODO: when loading a file from the source list we always need to display in expanded view
         
+        // Breaking on no selection in order to preserve the editor across changes to the scene
+        
         switch (selection.count, item) {
         case (0, _):
-            clearEditor()
+            break
         case (1, is File):
             loadEditor(item!)
         case (1, is Folder):
@@ -365,16 +365,19 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
     }
       
-    func unbindEditor(selection: [DataSource]) {
-        guard let editor = editor else {
-            return
-        }
-        editor.source = nil
-    }
+//    func unbindEditor(selection: [DataSource]) {
+//        guard let editor = editor else {
+//            return
+//        }
+//        editor.source = nil
+//    }
     
     /// Loads a new file editor iff it has changed
     
     func loadEditor(file: DataSource) {
+        guard editor?.source != file else {
+            return
+        }
         guard editor == nil || !editor!.dynamicType.filetypes.contains(file.uti) else {
             editor!.source = file
             return
@@ -411,6 +414,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     }
     
     func clearEditor() {
+        editor?.source = nil
         editor?.willClose()
         // contentController.editor = nil
         editor = nil

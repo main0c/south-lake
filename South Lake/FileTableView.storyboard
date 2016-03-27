@@ -18,7 +18,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="675" height="301"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" autosaveColumns="NO" rowHeight="32" headerView="H1R-Ep-ZgU" viewBased="YES" id="WNR-An-auH" customClass="FileTableView" customModule="South_Lake" customModuleProvider="target">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" autosaveColumns="NO" rowHeight="32" headerView="H1R-Ep-ZgU" viewBased="YES" id="WNR-An-auH" customClass="FileTableView" customModule="South_Lake" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="675" height="278"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
