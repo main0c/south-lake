@@ -109,6 +109,10 @@ class DocumentWindowController: NSWindowController, Databasable {
         tabController.changeLayout(sender)
     }
     
+    @IBAction func toggleDocumentHeader(sender: AnyObject?) {
+        tabController.toggleDocumentHeader(sender)
+    }
+    
     // MARK: -
     
     // TODO: handleOpenURLNotification may not need the source. We can just get it from the id anyway
@@ -199,7 +203,8 @@ class DocumentWindowController: NSWindowController, Databasable {
              Selector("makeFilesAndFoldersFirstResponder:"),
              Selector("makeEditorFirstResponder:"),
              Selector("makeFileInfoFirstResponder:"),
-             Selector("changeLayout:"):
+             Selector("changeLayout:"),
+             Selector("toggleDocumentHeader:"):
              return tabController.validateMenuItem(menuItem)
         case Selector("closeTab:"),
              Selector("createNewTab:"),

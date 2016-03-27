@@ -148,6 +148,10 @@ class DocumentTabController: NSViewController, Databasable {
         selectedTab?.changeLayout(sender)
     }
     
+    @IBAction func toggleDocumentHeader(sender: AnyObject?) {
+        selectedTab?.toggleDocumentHeader(sender)
+    }
+    
     // MARK: -
     
     func handleOpenURLNotification(notification: NSNotification) {
@@ -173,7 +177,8 @@ class DocumentTabController: NSViewController, Databasable {
              Selector("makeFilesAndFoldersFirstResponder:"),
              Selector("makeEditorFirstResponder:"),
              Selector("makeFileInfoFirstResponder:"),
-             Selector("changeLayout:"):
+             Selector("changeLayout:"),
+             Selector("toggleDocumentHeader:"):
              return selectedTab != nil
                 ? selectedTab!.validateMenuItem(menuItem)
                 : false

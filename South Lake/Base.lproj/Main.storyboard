@@ -716,7 +716,11 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="66U-Q0-rjl"/>
-                                        <menuItem title="Hide Document Header" keyEquivalent="H" id="CS1-dJ-PAT"/>
+                                        <menuItem title="Hide Document Header" keyEquivalent="H" id="CS1-dJ-PAT">
+                                            <connections>
+                                                <action selector="toggleDocumentHeader:" target="Ady-hI-5gd" id="64e-yn-vf6"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="8Xf-ek-UrM"/>
                                         <menuItem title="Show Toolbar" keyEquivalent="t" id="snW-S8-Cw5">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>

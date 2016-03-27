@@ -46,6 +46,7 @@ protocol DocumentTab: class, Databasable {
     func makeFileInfoFirstResponder(sender: AnyObject?)
     
     func changeLayout(sender: AnyObject?)
+    func toggleDocumentHeader(sender: AnyObject?)
     
     // UI validation
     

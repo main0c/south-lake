@@ -522,8 +522,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     }
     
     func loadHeader(file: DataSource) {
-        // It's possible this file does not show a header
-        
         guard editor != nil && editor!.isFileEditor else {
 //            clearHeader()
             return
@@ -828,6 +826,10 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         NSUserDefaults.standardUserDefaults().setObject(scene.rawValue, forKey: "SLScene")
     }
     
+    @IBAction func toggleDocumentHeader(sender: AnyObject?) {
+        contentPanel.toggleHeader()
+    }
+    
     // MARK: -
     
     func handleOpenURLNotification(notification: NSNotification) {
@@ -883,8 +885,18 @@ class DefaultTab: NSSplitViewController, DocumentTab {
              Selector("makeFileInfoFirstResponder:"),
              Selector("changeLayout:"):
              return true
+        case Selector("toggleDocumentHeader:"):
+             menuItem.title = toggleHeaderTitle()
+             return selectedObject is File
         default:
              return false
         }
     }
+    
+    func toggleHeaderTitle() -> String {
+        return contentPanel.headerHidden
+            ? NSLocalizedString("Show Document Header", comment: "")
+            : NSLocalizedString("Hide Document Header", comment: "")
+    }
+
 }

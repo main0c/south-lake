@@ -31,9 +31,9 @@ class ContentPanel: NSViewController {
         }
     }
     
-    var headerHidden: Bool {
-        return header == nil
-    }
+    var headerHidden: Bool = false
+    
+    var verticalEditorConstraints: [NSLayoutConstraint] = []
     
     // MARK: - Initialization
     
@@ -57,6 +57,7 @@ class ContentPanel: NSViewController {
         
         header!.removeFromParentViewController()
         header!.view.removeFromSuperview()
+        headerHidden = true
     }
     
     func addHeaderToInterface() {
@@ -76,24 +77,32 @@ class ContentPanel: NSViewController {
         addChildViewController(header!)
         
         view.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": header!.view])
+            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|",
+                options: .DirectionLeadingToTrailing,
+                metrics: nil,
+                views: ["subview": header!.view])
         )
         view.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview(64)]", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": header!.view])
+            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview(64)]",
+                options: .DirectionLeadingToTrailing,
+                metrics: nil,
+                views: ["subview": header!.view])
         )
+        
+        headerHidden = false
     }
 
     func removeEditorFromInterface() {
-        guard editor != nil else {
+        guard let editor = editor else {
             return
         }
         
-        editor!.removeFromParentViewController()
-        editor!.view.removeFromSuperview()
+        editor.removeFromParentViewController()
+        editor.view.removeFromSuperview()
     }
     
     func addEditorToInterface() {
-        guard editor != nil else {
+        guard let editor = editor else {
             return
         }
         
@@ -102,20 +111,66 @@ class ContentPanel: NSViewController {
         let height = CGRectGetHeight(view.bounds) - CGFloat(64)
         let width = CGRectGetWidth(view.bounds)
         
-        editor!.view.translatesAutoresizingMaskIntoConstraints = false
-        editor!.view.frame = NSMakeRect(0, 0, width, height)
+        editor.view.translatesAutoresizingMaskIntoConstraints = false
+        editor.view.frame = NSMakeRect(0, 0, width, height)
         
-        view.addSubview(editor!.view)
+        view.addSubview(editor.view)
         addChildViewController(editor as! NSViewController)
         
-        // Layout Constraints
+        // Layout Constraints: depends on header visibility
+        
+        verticalEditorConstraints = editorConstraints(headerHidden)
         
         view.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": editor!.view])
+            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|",
+                options: .DirectionLeadingToTrailing,
+                metrics: nil,
+                views: ["subview": editor.view])
         )
         view.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("V:|-64-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": editor!.view])
+            verticalEditorConstraints
         )
-
+    }
+    
+    // MARK: - Utilities
+    
+    func toggleHeader() {
+        guard let _ = editor else {
+            return
+        }
+        
+        if headerHidden {
+            addHeaderToInterface()
+            view.removeConstraints(verticalEditorConstraints)
+            verticalEditorConstraints = editorConstraints(false)
+        } else {
+            removeHeaderFromInterface()
+            view.removeConstraints(verticalEditorConstraints)
+            verticalEditorConstraints = editorConstraints(true)
+        }
+        
+        view.addConstraints(verticalEditorConstraints)
+    }
+    
+    func editorConstraints(headerHidden: Bool) -> [NSLayoutConstraint] {
+        guard let editor = editor else {
+            return []
+        }
+        
+        if headerHidden {
+            return NSLayoutConstraint.constraintsWithVisualFormat(
+                "V:|-0-[subview]-0-|",
+                options: .DirectionLeadingToTrailing,
+                metrics: nil,
+                views: ["subview": editor.view]
+            )
+        } else {
+            return NSLayoutConstraint.constraintsWithVisualFormat(
+                "V:|-64-[subview]-0-|",
+                options: .DirectionLeadingToTrailing,
+                metrics: nil,
+                views: ["subview": editor.view]
+            )
+        }
     }
 }
