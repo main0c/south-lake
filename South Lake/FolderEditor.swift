@@ -27,13 +27,13 @@ class FolderEditor: NSViewController, SourceViewer {
     
     var databaseManager: DatabaseManager? {
         didSet {
-            scene?.databaseManager = databaseManager
+            sceneController?.databaseManager = databaseManager
         }
     }
     
     var searchService: BRSearchService? {
         didSet {
-            scene?.searchService = searchService
+            sceneController?.searchService = searchService
         }
     }
     
@@ -42,6 +42,7 @@ class FolderEditor: NSViewController, SourceViewer {
     }
     
     dynamic var selectedObjects: [DataSource]?
+    var scene: Scene = .None
     
     dynamic var source: DataSource? {
         willSet {
@@ -81,7 +82,7 @@ class FolderEditor: NSViewController, SourceViewer {
         }
     }
 
-    var scene: FileCollectionScene?
+    var sceneController: FileCollectionScene?
 
     // MARK: - Initialization
     
@@ -210,45 +211,45 @@ class FolderEditor: NSViewController, SourceViewer {
     // MARK: - Scene
     
     func loadScene(identifier: String) {
-        scene = NSStoryboard(name: identifier, bundle: nil).instantiateInitialController() as? FileCollectionScene
-        guard var scene = scene else {
+        sceneController = NSStoryboard(name: identifier, bundle: nil).instantiateInitialController() as? FileCollectionScene
+        guard var sceneController = sceneController else {
             log("unable to load scene")
             return
         }
         
         // Databasable
         
-        scene.databaseManager = databaseManager
-        scene.searchService = searchService
+        sceneController.databaseManager = databaseManager
+        sceneController.searchService = searchService
         
         // Set up frame and view constraints
         
-        scene.view.translatesAutoresizingMaskIntoConstraints = false
-        scene.view.frame = containerView.bounds
-        containerView.addSubview(scene.view)
+        sceneController.view.translatesAutoresizingMaskIntoConstraints = false
+        sceneController.view.frame = containerView.bounds
+        containerView.addSubview(sceneController.view)
         
         containerView.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": scene.view])
+            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": sceneController.view])
         )
         containerView.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": scene.view])
+            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": sceneController.view])
         )
         
         // Bind the array controller to ours
         // Predicates and sorting are applied before it even sees the data
         
-        scene.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
+        sceneController.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
     }
     
     func unloadScene() {
-        guard let scene = scene else {
+        guard let sceneController = sceneController else {
             return
         }
         
-        scene.arrayController.unbind("contentArray")
-        scene.arrayController.content = []
-        scene.view.removeFromSuperview()
-        scene.willClose()
+        sceneController.arrayController.unbind("contentArray")
+        sceneController.arrayController.content = []
+        sceneController.view.removeFromSuperview()
+        sceneController.willClose()
     }
     
     // MARK: -

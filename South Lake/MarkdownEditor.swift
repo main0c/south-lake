@@ -137,6 +137,8 @@ class MarkdownEditor: NSViewController, SourceViewer {
         return nil
     }
     
+    var scene: Scene = .None
+    
     dynamic var source: DataSource? {
         willSet {
             if let source = source {

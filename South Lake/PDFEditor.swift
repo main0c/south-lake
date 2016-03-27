@@ -34,6 +34,8 @@ class PDFEditor: NSViewController, SourceViewer {
         }
     }
     
+    var scene: Scene = .None
+    
     var primaryResponder: NSView {
         return view
     }
@@ -56,6 +58,7 @@ class PDFEditor: NSViewController, SourceViewer {
         super.viewDidLoad()
         
         editor.setBackgroundColor(UI.Color.SourceViewerBackground)
+        loadFile(source)
     }
     
     func willClose() {
@@ -66,6 +69,9 @@ class PDFEditor: NSViewController, SourceViewer {
     
     func loadFile(file: DataSource?) {
         guard let file = file as? File else {
+            return
+        }
+        guard viewLoaded else {
             return
         }
         guard let document = PDFDocument(data: file.data) else {

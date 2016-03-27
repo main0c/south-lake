@@ -24,8 +24,8 @@ class CalendarEditor: NSViewController, SourceViewer {
     }
     
     dynamic var selectedObjects: [DataSource]?
-    
     dynamic var source: DataSource?
+    var scene: Scene = .None
         
     var primaryResponder: NSView {
         return view

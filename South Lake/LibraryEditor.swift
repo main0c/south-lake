@@ -8,8 +8,16 @@
 
 import Cocoa
 
-/// Loads the contents of the library and supports filtering on those contents.
-/// Switches between the card, table and list views for those contents.
+/// TODO: move to LibraryEditor or FolderEditor?
+
+enum FileView: String {
+    case Card = "FileCardView"
+    case Table = "FileTableView"
+    case List = "FileListView"
+}
+
+/// Loads the contents of the library and supports filtering and sorting those 
+/// contents. Switches between the card, table and list views for those contents.
 /// Maintains a list of selected objects, which an interested party can bind to.
 
 class LibraryEditor: NSViewController, SourceViewer {
@@ -26,14 +34,14 @@ class LibraryEditor: NSViewController, SourceViewer {
     
     var databaseManager: DatabaseManager? {
         didSet {
-            scene?.databaseManager = databaseManager
+            sceneController?.databaseManager = databaseManager
             bindContent()
         }
     }
     
     var searchService: BRSearchService? {
         didSet {
-            scene?.searchService = searchService
+            sceneController?.searchService = searchService
         }
     }
     
@@ -42,6 +50,12 @@ class LibraryEditor: NSViewController, SourceViewer {
     }
     
     dynamic var source: DataSource?
+    
+    var scene: Scene = .None {
+        didSet {
+            loadScene(scene)
+        }
+    }
     
     var primaryResponder: NSView {
         return view
@@ -72,7 +86,7 @@ class LibraryEditor: NSViewController, SourceViewer {
     }
 
     // var layoutController: NSSplitViewController?
-    var scene: FileCollectionScene?
+    var sceneController: FileCollectionScene?
 
     // MARK: - Initialization
     
@@ -88,18 +102,7 @@ class LibraryEditor: NSViewController, SourceViewer {
         pathControl.URL = NSURL(string: "southlake://localhost/library")
         updatePathControlAppearance()
         
-        // TODO: Restore view preference
-        
-        loadScene(FileView.Card)
-        
-//        let options = (layout: Layout.Compact, view: FileView.Card)
-//        loadLayout(options.layout)
-//        loadScene(options.view)
-        
-//        let sceneId = NSUserDefaults.standardUserDefaults().objectForKey("SLLibraryScene") as? String ?? "FileCardView"
-//        sceneSelector.selectSegmentWithTag(sceneId == "FileCardView" ? 0 : 1)
-//        loadScene(sceneId)
-        
+        loadScene(scene)
         bindContent()
     }
     
@@ -179,74 +182,72 @@ class LibraryEditor: NSViewController, SourceViewer {
     }
     
     // MARK: - Scene
-    
-//    func loadLayout(identifier: Layout) {
-//        layoutController = storyboard!.instantiateControllerWithIdentifier(identifier.rawValue) as? NSSplitViewController
-//        guard let layoutController = layoutController else {
-//            log("LibraryEditor.loadLayout: unable to load layout \(identifier)")
-//            return
-//        }
-//        
-//        // Set up frame and view constraints
-//        
-//        layoutController.view.translatesAutoresizingMaskIntoConstraints = false
-//        layoutController.view.frame = containerView.bounds
-//        containerView.addSubview(layoutController.view)
-//        
-//        containerView.addConstraints(
-//            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|",
-//                options: .DirectionLeadingToTrailing,
-//                metrics: nil,
-//                views: ["subview": layoutController.view])
-//        )
-//        containerView.addConstraints(
-//            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|",
-//                options: .DirectionLeadingToTrailing,
-//                metrics: nil,
-//                views: ["subview": layoutController.view])
-//        )
-//    }
    
-    func loadScene(identifier: FileView) {
-        scene = NSStoryboard(name: identifier.rawValue, bundle: nil).instantiateInitialController() as? FileCollectionScene
-        guard var scene = scene else {
-            log("unable to load scene \(identifier)")
+    func loadScene(scene: Scene) {
+        guard scene != .None else {
+            return
+        }
+        guard viewLoaded else {
+            return
+        }
+        guard let storyboard = storyboardForScene(scene) else {
+            log("no storyboard for scene \(scene)")
+            return
+        }
+        guard let sc = storyboard.instantiateInitialController() as? FileCollectionScene else {
+            log("no initial view controller for scene \(scene)")
             return
         }
         
+        unloadScene()
+        sceneController = sc
+        
         // Databasable
         
-        scene.databaseManager = databaseManager
-        scene.searchService = searchService
+        sceneController!.databaseManager = databaseManager
+        sceneController!.searchService = searchService
         
         // Place it into the container
         
-        scene.view.translatesAutoresizingMaskIntoConstraints = false
-        scene.view.frame = containerView.bounds
-        containerView.addSubview(scene.view)
+        sceneController!.view.translatesAutoresizingMaskIntoConstraints = false
+        sceneController!.view.frame = containerView.bounds
+        containerView.addSubview(sceneController!.view)
         
         containerView.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": scene.view])
+            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": sceneController!.view])
         )
         containerView.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": scene.view])
+            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": sceneController!.view])
         )
         
         // Set up connections
         
-        scene.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
-        bind("selectedObjects", toObject: scene as! AnyObject, withKeyPath: "selectedObjects", options: [:])
+        sceneController!.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
+        bind("selectedObjects", toObject: sceneController as! AnyObject, withKeyPath: "selectedObjects", options: [:])
     }
     
     func unloadScene() {
-        guard let scene = scene else {
+        guard let sceneController = sceneController else {
             return
         }
         
-        scene.arrayController.unbind("contentArray")
-        scene.arrayController.content = []
-        scene.view.removeFromSuperview()
-        scene.willClose()
+        sceneController.arrayController.unbind("contentArray")
+        sceneController.arrayController.content = []
+        sceneController.view.removeFromSuperview()
+        sceneController.willClose()
+    }
+    
+    func storyboardForScene(scene: Scene) -> NSStoryboard? {
+        switch scene {
+        case .Table:
+            return NSStoryboard(name: "FileTableView", bundle: nil)
+        case .Card:
+            return NSStoryboard(name: "FileCardView", bundle: nil)
+        case .List:
+            return NSStoryboard(name: "FileListView", bundle: nil)
+        case .None:
+            return nil
+        }
     }
     
     // MARK: -

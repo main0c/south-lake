@@ -56,14 +56,6 @@ enum Scene: String {
     case List
 }
 
-/// TODO: move to LibraryEditor or FolderEditor?
-
-enum FileView: String {
-    case Card = "FileCardView"
-    case Table = "FileTableView"
-    case List = "FileListView"
-}
-
 enum ViewTag: Int {
     case CompactCard = 1
     case CompactList = 2
@@ -179,7 +171,9 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     }
     var scene: Scene = .None {
         didSet {
-            
+            if scene != oldValue {
+                sourceViewer?.scene = scene
+            }
         }
     }
     
@@ -214,9 +208,19 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         // TODO: Set up the initial editor?
         // TODO: Restore view preference
         
-        let options = (layout: Layout.Compact, view: FileView.Card)
-        loadLayout(options.layout)
-        // loadScene(options.view)
+        if  let savedValue = NSUserDefaults.standardUserDefaults().stringForKey("SLLayout"),
+            let savedLayout = Layout(rawValue: savedValue) {
+            layout = savedLayout
+        } else {
+            layout = .Compact
+        }
+        
+        if  let savedValue = NSUserDefaults.standardUserDefaults().stringForKey("SLScene"),
+            let savedScene = Scene(rawValue: savedValue) {
+            scene = savedScene
+        } else {
+            scene = .Card
+        }
     }
     
     func willClose() {
@@ -368,52 +372,53 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         editor.source = nil
     }
     
+    /// Loads a new file editor iff it has changed
+    
     func loadEditor(file: DataSource) {
-        // Load editor if editor has changed
+        guard editor == nil || !editor!.dynamicType.filetypes.contains(file.uti) else {
+            editor!.source = file
+            return
+        }
         
-        if editor == nil || !editor!.dynamicType.filetypes.contains(file.uti) {
-            editor?.willClose() // TODO: move to willSet?
-            editor = EditorPlugIns.sharedInstance.plugInForFiletype(file.file_extension)
-            
-            guard editor != nil else {
-                log("unable to find editor for file with type \(file.file_extension)")
-                clearEditor()
-                return
-            }
+        // Acquire a new editor
+        
+        clearEditor()
+        editor = EditorPlugIns.sharedInstance.plugInForFiletype(file.file_extension)
+        
+        guard editor != nil else {
+            log("unable to find editor for file with type \(file.file_extension)")
+            clearEditor()
+            return
+        }
 
-            // contentController.editor = editor
-            
-            // Prepare the new editor
-            
-            editor!.databaseManager = databaseManager
-            editor!.searchService = searchService
-            
-            // Move the editor into place
+        // contentController.editor = editor
         
-            guard let layoutController = layoutController else {
-                log("layout controller unavailable")
-                return
-            }
-            
-            let index = layoutController.splitViewItems.count >= 2 ? 1 : 0
-            layoutController.replaceSplitViewItem(atIndex: index, withViewController: editor as! NSViewController)
-         }
+        // Prepare the editor
         
-        // Always pass selection to the editor
-        
+        editor!.databaseManager = databaseManager
+        editor!.searchService = searchService
         editor!.source = file
+        
+        // Move the editor into place
+    
+        guard let layoutController = layoutController else {
+            log("layout controller unavailable")
+            return
+        }
+        
+        let index = layoutController.splitViewItems.count >= 2 ? 1 : 0
+        layoutController.replaceSplitViewItem(atIndex: index, withViewController: editor as! NSViewController)
     }
     
     func clearEditor() {
-        editor?.willClose() // TODO: move to willSet?
-        contentController.editor = nil
+        editor?.willClose()
+        // contentController.editor = nil
         editor = nil
     }
     
+    /// Loads a new source viewer iff it has changed
+    
     func loadSource(source: DataSource) {
-        
-        // Load a new source viewer iff it has changed
-        
         guard sourceViewer == nil || !sourceViewer!.dynamicType.filetypes.contains(source.uti) else {
             sourceViewer!.source = source
             return
@@ -435,6 +440,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         sourceViewer!.databaseManager = databaseManager
         sourceViewer!.searchService = searchService
         sourceViewer!.source = source
+        sourceViewer!.scene = scene
         
         // Move the source viewer into place
         
@@ -745,7 +751,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     @IBAction func changeLayout(sender: AnyObject?) {
         guard let sender = sender as? NSPopUpButton else {
-              return
+            log("sender must be a popup button")
+            return
         }
         guard let tag = ViewTag(rawValue: sender.selectedTag()) else {
             log("invalid tag")
@@ -781,7 +788,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         // Save setting
         
         NSUserDefaults.standardUserDefaults().setObject(layout.rawValue, forKey: "SLLayout")
-        NSUserDefaults.standardUserDefaults().setObject(layout.rawValue, forKey: "SLScene")
+        NSUserDefaults.standardUserDefaults().setObject(scene.rawValue, forKey: "SLScene")
     }
     
     // MARK: -

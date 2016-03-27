@@ -23,7 +23,7 @@ class TagsEditor: NSViewController, SourceViewer {
     
     var databaseManager: DatabaseManager? {
         didSet {
-            scene?.databaseManager = databaseManager
+            sceneController?.databaseManager = databaseManager
             bindLibrary()
             bindTags()
         }
@@ -31,7 +31,7 @@ class TagsEditor: NSViewController, SourceViewer {
     
     var searchService: BRSearchService? {
         didSet {
-            scene?.searchService = searchService
+            sceneController?.searchService = searchService
         }
     }
     
@@ -42,8 +42,8 @@ class TagsEditor: NSViewController, SourceViewer {
     }
     
     dynamic var selectedObjects: [DataSource]?
-    
     dynamic var source: DataSource?
+    var scene: Scene = .None
     
     var primaryResponder: NSView {
         return view
@@ -61,7 +61,7 @@ class TagsEditor: NSViewController, SourceViewer {
     
     dynamic var libraryContent: [DataSource] = []
     
-    var scene: FileCollectionScene?
+    var sceneController: FileCollectionScene?
     
     // MARK: - Initialization
 
@@ -205,22 +205,22 @@ class TagsEditor: NSViewController, SourceViewer {
     }
     
     func useIconView() {
-        if let scene = scene as? TagsCollectionViewController {
-            scene.useIconView()
+        if let sceneController = sceneController as? TagsCollectionViewController {
+            sceneController.useIconView()
         }
     }
     
     func useListView() {
-        if let scene = scene as? TagsCollectionViewController {
-            scene.useListView()
+        if let sceneController = sceneController as? TagsCollectionViewController {
+            sceneController.useListView()
         }
     }
     
     // MARK: - Scene
     
     func loadScene(identifier: String) {
-        scene = storyboard!.instantiateControllerWithIdentifier(identifier) as? FileCollectionScene
-        guard var scene = scene else {
+        sceneController = storyboard!.instantiateControllerWithIdentifier(identifier) as? FileCollectionScene
+        guard var sceneController = sceneController else {
             log("unable to load scene with identifier \(identifier)")
             return
         }
@@ -231,20 +231,20 @@ class TagsEditor: NSViewController, SourceViewer {
         
         // Databasable
         
-        scene.databaseManager = databaseManager
-        scene.searchService = searchService
+        sceneController.databaseManager = databaseManager
+        sceneController.searchService = searchService
         
         // Set up frame and view constraints
         
-        scene.view.translatesAutoresizingMaskIntoConstraints = false
-        scene.view.frame = containerView.bounds
-        containerView.addSubview(scene.view)
+        sceneController.view.translatesAutoresizingMaskIntoConstraints = false
+        sceneController.view.frame = containerView.bounds
+        containerView.addSubview(sceneController.view)
         
         containerView.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": scene.view])
+            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": sceneController.view])
         )
         containerView.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": scene.view])
+            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": sceneController.view])
         )
         
         // Bind the array controller to ours
@@ -252,21 +252,21 @@ class TagsEditor: NSViewController, SourceViewer {
         // Check here if we're the right scene
         
         if identifier == "tagsCollectionScene" {
-            scene.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
+            sceneController.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
         } else {
-            scene.arrayController.bind("contentArray", toObject: libraryArrayController, withKeyPath: "arrangedObjects", options: [:])
+            sceneController.arrayController.bind("contentArray", toObject: libraryArrayController, withKeyPath: "arrangedObjects", options: [:])
         }
     }
     
     func unloadScene() {
-        guard let scene = scene else {
+        guard let sceneController = sceneController else {
             return
         }
         
-        scene.arrayController.unbind("contentArray")
-        scene.arrayController.content = []
-        scene.view.removeFromSuperview()
-        scene.willClose()
+        sceneController.arrayController.unbind("contentArray")
+        sceneController.arrayController.content = []
+        sceneController.view.removeFromSuperview()
+        sceneController.willClose()
     }
     
     // MARK: -

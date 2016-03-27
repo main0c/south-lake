@@ -40,11 +40,18 @@ protocol SourceViewer: class, Databasable {
     /// The responder that take focus for editing and first responder switching
     var primaryResponder: NSView { get }
     
-    /// Return true if we edit files specifically and not some other kind of data source
-    var isFileEditor: Bool { get }
+    // These three really belong to folder source viewers and not file source viewers {
     
-    /// Some source viewers can themselves have selected objects. This variable should be dynamic
-    var selectedObjects: [DataSource]? { get }
+        /// Return true if we edit files specifically and not some other kind of data source
+        var isFileEditor: Bool { get }
+        
+        /// Some source viewers can themselves have selected objects. This variable should be dynamic
+        var selectedObjects: [DataSource]? { get }
+        
+        /// Some source viewers may be able to change their presentation based on the scene preference
+        var scene: Scene { get set }
+    
+    // }
     
     /// A file editor can return inspectors that it manages which are placed in the inspector area
     /// An inspector consists of a tile, and icon and a view controller
