@@ -36,7 +36,7 @@ class PDFEditor: NSViewController, SourceViewer {
     var scene: Scene = .None
     
     var primaryResponder: NSView {
-        return view
+        return editor
     }
     
     var inspectors: [Inspector]? {
