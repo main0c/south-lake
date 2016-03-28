@@ -273,6 +273,12 @@ class MarkdownEditor: NSViewController, SourceViewer {
 //        }
     }
     
+    override func viewDidAppear() {
+        self.renderer.parseAndRenderNow()
+        self.highlighter.parseAndHighlightNow()
+        self.tableOfContents = self.renderer.tableOfContents()
+    }
+    
     func willClose() {
         
         preview.stopLoading(nil)
