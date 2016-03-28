@@ -1,14 +1,14 @@
 //
-//  FileCardCollectionViewItem.swift
+//  FileListCollectionViewItem.swift
 //  South Lake
 //
-//  Created by Philip Dow on 3/6/16.
+//  Created by Philip Dow on 3/28/16.
 //  Copyright © 2016 Phil Dow. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
-class FileCardCollectionViewItem: NSCollectionViewItem {
+class FileListCollectionViewItem: NSCollectionViewItem {
     @IBOutlet var backgroundView: CustomizableView!
     
     var target: AnyObject?
@@ -28,7 +28,7 @@ class FileCardCollectionViewItem: NSCollectionViewItem {
     // Prototypes don't connect outlets so we do it manually
     
     override func copyWithZone(zone: NSZone) -> AnyObject {
-        let copy: FileCardCollectionViewItem = super.copyWithZone(zone) as! FileCardCollectionViewItem
+        let copy: FileListCollectionViewItem = super.copyWithZone(zone) as! FileListCollectionViewItem
         
         copy.backgroundView = copy.view.viewWithIdentifier("background") as! CustomizableView
         copy.backgroundView.backgroundColor = backgroundView.backgroundColor
@@ -110,11 +110,11 @@ class FileCardCollectionViewItem: NSCollectionViewItem {
         
         switch (selected, firstResponder) {
         case (true, true):
-            backgroundView.borderColor = NSColor(forControlTint: .BlueControlTint) // UI.Color.Selection.KeyView
+            backgroundView.backgroundColor = UI.Color.Selection.KeyView
         case (true, false):
-            backgroundView.borderColor = NSColor(forControlTint: .GraphiteControlTint) // UI.Color.Selection.NotKeyView
+            backgroundView.backgroundColor = UI.Color.Selection.NotKeyView
         case (_,_):
-            backgroundView.borderColor = nil
+            backgroundView.backgroundColor = NSColor(white: 1.0, alpha: 1.0)
         }
     }
     
@@ -133,4 +133,3 @@ class FileCardCollectionViewItem: NSCollectionViewItem {
     }
     
 }
-

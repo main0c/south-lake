@@ -33,7 +33,7 @@ class InspectorPanel: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (self.view as! CustomizableView).backgroundColor = UI.Color.InspectorBackground
+        (self.view as! CustomizableView).backgroundColor = UI.Color.Background.Inspector
         
         // Clear the tab view
         
@@ -43,8 +43,8 @@ class InspectorPanel: NSViewController {
         
         // Customize the tab bar
         
-        tabBar.gradientColorStart = UI.Color.InspectorBackground
-        tabBar.gradientColorEnd = UI.Color.InspectorBackground
+        tabBar.gradientColorStart = UI.Color.Background.Inspector
+        tabBar.gradientColorEnd = UI.Color.Background.Inspector
         tabBar.borderColor = NSColor(white:0.80, alpha:1.0)
     }
     

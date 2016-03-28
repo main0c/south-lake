@@ -38,7 +38,7 @@ class FileCardViewController: NSViewController, FileCollectionScene {
         
         // Collection View
         
-        collectionView.backgroundColors = [UI.Color.SourceViewerBackground]
+        collectionView.backgroundColors = [UI.Color.Background.SourceViewer]
         
         let prototype = storyboard!.instantiateControllerWithIdentifier("FileCardCollectionViewItem") as? FileCardCollectionViewItem
         prototype?.doubleAction = Selector("doubleClick:")
@@ -129,6 +129,8 @@ class FileCardViewController: NSViewController, FileCollectionScene {
         log("quickLookPreviewItems")
     }
 }
+
+// MARK: - Collection View Delegate
 
 extension FileCardViewController: NSCollectionViewDelegate {
     func collectionView(collectionView: NSCollectionView, canDragItemsAtIndexes indexes: NSIndexSet, withEvent event: NSEvent) -> Bool {

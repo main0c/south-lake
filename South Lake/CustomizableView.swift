@@ -10,7 +10,7 @@ import Cocoa
 
 class CustomizableView: NSView {
     
-    static let keylessColor = NSColor(red: 246.0/255.0, green: 246.0/255.0, blue: 246.0/255.0, alpha: 1.0)
+    static let keylessColor = UI.Color.Selection.NotKeyView
     
     var backgroundColor: NSColor? = NSColor(white: 1.0, alpha: 1.0) {
         didSet {

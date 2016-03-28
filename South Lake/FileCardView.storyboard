@@ -19,7 +19,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="297"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <collectionView selectable="YES" allowsMultipleSelection="YES" id="VqN-ds-84T">
+                                        <collectionView selectable="YES" allowsMultipleSelection="YES" id="VqN-ds-84T" customClass="FileCardCollectionView" customModule="South_Lake" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="450" height="297"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="primaryBackgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>

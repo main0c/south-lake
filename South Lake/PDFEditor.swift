@@ -56,7 +56,7 @@ class PDFEditor: NSViewController, SourceViewer {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        editor.setBackgroundColor(UI.Color.SourceViewerBackground)
+        editor.setBackgroundColor(UI.Color.Background.SourceViewer)
         editor.setAutoScales(true)
         
         loadFile(source)

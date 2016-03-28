@@ -10,8 +10,8 @@ import Cocoa
 
 class TableRowView: NSTableRowView {
 
-    static let keyColor = NSColor(red: 238.0/255.0, green: 246.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-    static let keylessColor = NSColor(red: 246.0/255.0, green: 246.0/255.0, blue: 246.0/255.0, alpha: 1.0)
+    static let keyColor = UI.Color.Selection.KeyView
+    static let keylessColor = UI.Color.Selection.NotKeyView
 
     override func drawSelectionInRect(dirtyRect: NSRect) {
         guard selectionHighlightStyle != .None else {

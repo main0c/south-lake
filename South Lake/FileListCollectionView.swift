@@ -1,14 +1,14 @@
 //
-//  FileCardCollectionView.swift
+//  FileListCollectionView.swift
 //  South Lake
 //
-//  Created by Philip Dow on 3/21/16.
+//  Created by Philip Dow on 3/28/16.
 //  Copyright © 2016 Phil Dow. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
-class FileCardCollectionView: NSCollectionView {
+class FileListCollectionView: NSCollectionView {
 
     /// Because as far as I can tell the firstResponder property doesn't do shit
     

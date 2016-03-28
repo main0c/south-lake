@@ -41,7 +41,7 @@ class CalendarEditor: NSViewController, SourceViewer {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (view as! CustomizableView).backgroundColor = UI.Color.SourceViewerBackground
+        (view as! CustomizableView).backgroundColor = UI.Color.Background.SourceViewer
     }
     
     // MARK: - 

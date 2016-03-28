@@ -69,8 +69,8 @@ class TagsEditor: NSViewController, SourceViewer {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (view as! CustomizableView).backgroundColor = UI.Color.SourceViewerBackground
-        pathControl.backgroundColor = UI.Color.SourceViewerBackground
+        (view as! CustomizableView).backgroundColor = UI.Color.Background.SourceViewer
+        pathControl.backgroundColor = UI.Color.Background.SourceViewer
     
         sortDescriptors = [NSSortDescriptor(key: "tag", ascending: true, selector: Selector("caseInsensitiveCompare:"))]
         

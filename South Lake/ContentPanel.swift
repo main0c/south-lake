@@ -40,7 +40,7 @@ class ContentPanel: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (self.view as! CustomizableView).backgroundColor = UI.Color.SourceViewerBackground
+        (self.view as! CustomizableView).backgroundColor = UI.Color.Background.SourceViewer
     }
     
     func willClose() {

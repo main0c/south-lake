@@ -57,7 +57,7 @@ class MetadataInspector: NSViewController, Inspector {
         
         // outlineView.usesStaticContents = true // what effect?
         outlineView.selectionHighlightStyle = .None
-        outlineView.backgroundColor = UI.Color.InspectorBackground
+        outlineView.backgroundColor = UI.Color.Background.Inspector
         
         outlineView.sizeLastColumnToFit()
         outlineView.expandItem(nil, expandChildren: true)
@@ -113,7 +113,7 @@ extension MetadataInspector: NSOutlineViewDelegate {
         }
         if identifier == kTagsCell {
             if let tokenField = view.viewWithTag(42) as? NSTokenField {
-                tokenField.backgroundColor = UI.Color.InspectorBackground
+                tokenField.backgroundColor = UI.Color.Background.Inspector
             }
         }
         

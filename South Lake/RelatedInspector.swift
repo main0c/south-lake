@@ -66,7 +66,7 @@ class RelatedInspector: NSViewController, Inspector {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (view as! CustomizableView).backgroundColor = UI.Color.InspectorBackground
+        (view as! CustomizableView).backgroundColor = UI.Color.Background.Inspector
         
         tagsArrayController.sortDescriptors = [NSSortDescriptor(key: "self", ascending: true, selector: Selector("caseInsensitiveCompare:"))]
 
@@ -127,7 +127,7 @@ class RelatedInspector: NSViewController, Inspector {
         // Simple setBackgroundColor() on FileCollectionScene for example
         
         if let tagsScene = scene as? FileCardViewController {
-            tagsScene.collectionView.backgroundColors = [UI.Color.InspectorBackground]
+            tagsScene.collectionView.backgroundColors = [UI.Color.Background.Inspector]
         }
         
         // Bind the array controller to ours

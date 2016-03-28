@@ -32,6 +32,8 @@
 		E32EC0A21C74494A00E47B3F /* NSBundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32EC0A11C74494A00E47B3F /* NSBundle+Version.swift */; };
 		E336440D1C73DDF1000FFC9C /* MMTabBarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E33643FF1C73DDE2000FFC9C /* MMTabBarView.framework */; };
 		E336440E1C73DDF1000FFC9C /* MMTabBarView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E33643FF1C73DDE2000FFC9C /* MMTabBarView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E343AC5E1CA9A13100BEF51D /* FileListCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E343AC5D1CA9A13100BEF51D /* FileListCollectionViewItem.swift */; };
+		E343AC601CA9A13C00BEF51D /* FileListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E343AC5F1CA9A13C00BEF51D /* FileListCollectionView.swift */; };
 		E35A80071CA1D5C300CBEB36 /* MoveToMenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35A80061CA1D5C300CBEB36 /* MoveToMenuBuilder.swift */; };
 		E360725C1C74E32E00914C2C /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E360725B1C74E32E00914C2C /* DocumentWindowController.swift */; };
 		E36072701C74E40500914C2C /* DocumentTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E360726E1C74E40500914C2C /* DocumentTabController.swift */; };
@@ -333,6 +335,8 @@
 		E32AD2701C76843500648BFD /* Databasable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Databasable.swift; sourceTree = "<group>"; };
 		E32EC0A11C74494A00E47B3F /* NSBundle+Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+Version.swift"; sourceTree = "<group>"; };
 		E33643F71C73DDE1000FFC9C /* MMTabBarView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MMTabBarView.xcodeproj; path = Dependencies/MMTabBarView/MMTabBarView/MMTabBarView.xcodeproj; sourceTree = "<group>"; };
+		E343AC5D1CA9A13100BEF51D /* FileListCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileListCollectionViewItem.swift; sourceTree = "<group>"; };
+		E343AC5F1CA9A13C00BEF51D /* FileListCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileListCollectionView.swift; sourceTree = "<group>"; };
 		E35A80061CA1D5C300CBEB36 /* MoveToMenuBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToMenuBuilder.swift; sourceTree = "<group>"; };
 		E360725B1C74E32E00914C2C /* DocumentWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
 		E360726E1C74E40500914C2C /* DocumentTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentTabController.swift; sourceTree = "<group>"; };
@@ -2583,8 +2587,8 @@
 				E37AB74A1C8E20A900F44564 /* FileCollectionScene.swift */,
 				E37A05481C9B0C80006618EC /* File Header */,
 				E389C8FE1CA3633600BD1AA9 /* File Card View */,
-				E389C8FF1CA3640C00BD1AA9 /* File Table View */,
 				E389C9011CA3667F00BD1AA9 /* File List View */,
+				E389C8FF1CA3640C00BD1AA9 /* File Table View */,
 				E3DDBEEA1C8D30FF00136BAE /* Library */,
 				E3DDBEEB1C8D310A00136BAE /* Tags */,
 				E3DDBEF41C8D450F00136BAE /* Calendar */,
@@ -7266,6 +7270,8 @@
 			children = (
 				E389C90F1CA3728A00BD1AA9 /* FileListView.storyboard */,
 				E389C90B1CA3727A00BD1AA9 /* FileListViewController.swift */,
+				E343AC5D1CA9A13100BEF51D /* FileListCollectionViewItem.swift */,
+				E343AC5F1CA9A13C00BEF51D /* FileListCollectionView.swift */,
 			);
 			name = "File List View";
 			sourceTree = "<group>";
@@ -7780,6 +7786,7 @@
 				E37AB7451C8E1C0500F44564 /* FileCardViewController.swift in Sources */,
 				E3148F121C79353B006BCE53 /* SourceViewer.swift in Sources */,
 				E3274FC91C75A151000B6A84 /* SmartFolder.swift in Sources */,
+				E343AC601CA9A13C00BEF51D /* FileListCollectionView.swift in Sources */,
 				E3FD678F1C7BE37800D7EBB7 /* EditorPlugIns.swift in Sources */,
 				E3088A931CA0666B00CCA77C /* NSWorkspace+Thumbnail.m in Sources */,
 				E3C436271C7641E900DD685D /* MPRenderer+TOC.m in Sources */,
@@ -7810,6 +7817,7 @@
 				E360727C1C74FEEC00914C2C /* DocumentTab.swift in Sources */,
 				E37AB79E1C8F713900F44564 /* InspectorPanel.swift in Sources */,
 				E37AB79B1C8F6A6E00F44564 /* PDFOutlineInspector.swift in Sources */,
+				E343AC5E1CA9A13100BEF51D /* FileListCollectionViewItem.swift in Sources */,
 				E3C821231C7597B600CBAE92 /* DefaultTab.swift in Sources */,
 				E3DDBEF31C8D314D00136BAE /* TagsEditor.swift in Sources */,
 				E360725C1C74E32E00914C2C /* DocumentWindowController.swift in Sources */,
