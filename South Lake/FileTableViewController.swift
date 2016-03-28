@@ -19,14 +19,21 @@ class FileTableViewController: NSViewController, FileCollectionScene {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var tableView: NSTableView!
 
-    // MARK: - Databasable
+    // MARK: - File Collection Scene
 
     var databaseManager: DatabaseManager?
     var searchService: BRSearchService?
     
-    // MARK: - Custom
-    
     dynamic var selectedObjects: [DataSource]?
+    var selectsOnDoubleClick: Bool = false {
+        didSet {
+            if selectsOnDoubleClick {
+                unbind("selectedObjects")
+            } else {
+                bind("selectedObjects", toObject: arrayController, withKeyPath: "selectedObjects", options: [:])
+            }
+        }
+    }
     
     // MARK: - Initialization
 
@@ -84,24 +91,11 @@ class FileTableViewController: NSViewController, FileCollectionScene {
     // MARK: -
     
     @IBAction func doubleClick(sender: AnyObject?) {
-        guard let databaseManager = databaseManager else {
-            return
-        }
-        guard let object = arrayController.selectedObjects[safe: 0] as? DataSource,
-              let id = object.id else {
-            log("no selected object")
-            return
-        }
-        guard let url = NSURL(string: "southlake://localhost/library/\(id)") else {
-            log("unable to construct url for object with id \(id)")
+        guard arrayController.selectedObjects.count > 0 else {
             return
         }
         
-        NSNotificationCenter.defaultCenter().postNotificationName(OpenURLNotification, object: self, userInfo: [
-            "dbm": databaseManager,
-            "source": object,
-            "url": url
-        ])
+        selectedObjects = arrayController.selectedObjects as? [DataSource]
     }
     
     override func deleteBackward(sender: AnyObject?) {

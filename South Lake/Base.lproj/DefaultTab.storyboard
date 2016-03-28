@@ -211,6 +211,7 @@
                                                         </tableColumn>
                                                     </tableColumns>
                                                     <connections>
+                                                        <action selector="userDidClickRow:" target="BCA-UI-RVa" id="yi7-oo-6mu"/>
                                                         <binding destination="K28-ay-sKC" name="content" keyPath="arrangedObjects" id="lGx-oB-ssn"/>
                                                         <binding destination="K28-ay-sKC" name="selectionIndexPaths" keyPath="selectionIndexPaths" previousBinding="lGx-oB-ssn" id="mt1-lF-ErO"/>
                                                         <outlet property="dataSource" destination="BCA-UI-RVa" id="gNN-hb-Hya"/>

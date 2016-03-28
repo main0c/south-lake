@@ -23,6 +23,9 @@ protocol FileCollectionScene: Databasable {
     /// The FileCollectionScene should maintain a dynamic variable for selected objects
     var selectedObjects: [DataSource]? { get set }
     
+    /// Depending on the layout it may only be appropriate to change the selection on a double click
+    var selectsOnDoubleClick: Bool { get set }
+    
     /// Called immediately before the scene is removed from the view hierarchy
     func willClose()
     

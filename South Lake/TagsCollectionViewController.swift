@@ -14,12 +14,13 @@ class TagsCollectionViewController: NSViewController, FileCollectionScene {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var collectionView: NSCollectionView!
     
-    // MARK: - Databasable
+    // MARK: - File Collection Scene
 
     var databaseManager: DatabaseManager?
     var searchService: BRSearchService?
     
     var selectedObjects: [DataSource]?
+    var selectsOnDoubleClick: Bool = false
     
     // MARK: - Initialization
 

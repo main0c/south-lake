@@ -42,6 +42,9 @@ import Cocoa
 /// or a file, as well as a selectedObject when the source is a folder that itself
 /// can have a selection
 
+// TODO: document all the interactions between source list selectioned, source viewer selection, layout, and editor
+//       centralize effects of that relationships
+
 enum Layout: String {
     case None
     case Expanded
@@ -68,15 +71,10 @@ enum ViewTag: Int {
     case HorizontalTable = 22
 }
 
-
 class DefaultTab: NSSplitViewController, DocumentTab {
     var sourceListPanel: SourceListPanel!
     var contentPanel: ContentPanel!
     // var inspectorPanel: InspectorPanel!
-    
-    // Default inspectors
-    
-    // ...
     
     dynamic var icon: NSImage?
     
@@ -301,7 +299,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     func loadLayout(identifier: Layout) {
     
         // Preserve the existing divider position
-        // TODO: save vertical and horizontal sizes and ensure we have enough room for the change
+        // TODO: save and restore vertical and horizontal sizes and ensure we have enough room for the change
     
         let position = layoutController.splitView.vertical
             ? layoutController.splitViewItems[0].viewController.view.frame.size.width
@@ -314,38 +312,31 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         switch identifier {
         case .Compact:
             vertical = true
-        case .Expanded, .Horizontal:
+        case .Expanded:
+            vertical = true
+        case .Horizontal:
             vertical = false
         default:
             vertical = true
         }
         
+        // Adjust vertical
+        
         layoutController!.splitView.vertical = vertical
         layoutController!.splitView.adjustSubviews()
         layoutController!.splitView.setPosition(position, ofDividerAtIndex: 0)
         
+        // Adjust collapsed views for expanded | not layout
         
-        
-//        layoutController = storyboard!.instantiateControllerWithIdentifier(identifier.rawValue) as? NSSplitViewController
-//        guard let layoutController = layoutController else {
-//            log("unable to load layout \(identifier)")
-//            return
-//        }
-//        
-//        replaceSplitViewItem(atIndex: 1, withViewController: layoutController)
-//        
-//        // Preserve currently visible source and file viewers
-//        // TODO: if we're moving from two panes to one pane, preserve the file viewer instead of the source viewer
-//        
-//        if sourceViewer != nil && splitViewItems.count >= 1 {
-//            layoutController.replaceSplitViewItem(atIndex: 0, withViewController: sourceViewer as! NSViewController)
-//        }
-//        
-//        // TODO: replace the content panel, not the editor
-//        
-//        if splitViewItems.count >= 2 {
-//            layoutController.replaceSplitViewItem(atIndex: 1, withViewController: contentPanel)
-//        }
+        switch (identifier, selectedObject) {
+        case (.Expanded, _ as Folder),
+             (.Expanded, _ as File):
+            layoutController!.splitViewItems[0].collapsed = false
+            layoutController!.splitViewItems[1].collapsed = true
+        default:
+            layoutController!.splitViewItems[0].collapsed = false
+            layoutController!.splitViewItems[1].collapsed = false
+        }
     }
 
     // MARK: - Bindings
@@ -394,6 +385,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         // TODO: some sources won't support all views: calendar, tags...
         
         // Breaking on no selection in order to preserve the editor across changes to the scene
+        // TODO: but I do want to clear the editor on no selection
         
         switch (selection.count, item) {
         case (0, _):
@@ -414,9 +406,16 @@ class DefaultTab: NSSplitViewController, DocumentTab {
 //        editor.source = nil
 //    }
     
-    /// Loads a new file editor iff it has changed
+    /// Loads a new file editor iff it has changed,
+    /// but always shows the editor if we're in expanded view
     
     func loadEditor(file: DataSource) {
+        if layout == .Expanded {
+            layoutController.splitViewItems[0].collapsed = true
+            layoutController.splitViewItems[1].collapsed = false
+            // view.window!.makeFirstResponder(editor!.primaryResponder)
+        }
+        
         guard editor?.source != file else {
             return
         }
@@ -445,6 +444,15 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         // Move the editor into place
     
         contentPanel.editor = editor
+        
+        // If we are expanded, collapse the source viewer in favor of the editor
+        // Make the editor first responder
+        
+//        if layout == .Expanded {
+//            layoutController.splitViewItems[0].collapsed = true
+//            layoutController.splitViewItems[1].collapsed = false
+//            view.window!.makeFirstResponder(editor!.primaryResponder)
+//        }
     }
     
     func clearEditor() {
@@ -454,9 +462,15 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         editor = nil
     }
     
-    /// Loads a new source viewer iff it has changed
+    /// Loads a new source viewer iff it has changed,
+    /// blways shows the source if in expanded view
     
     func loadSource(source: DataSource) {
+        if layout == .Expanded {
+            layoutController.splitViewItems[0].collapsed = false
+            layoutController.splitViewItems[1].collapsed = true
+        }
+        
         guard sourceViewer == nil || !sourceViewer!.dynamicType.filetypes.contains(source.uti) else {
             sourceViewer!.source = source
             return
@@ -487,6 +501,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             log("layout controller unavailable")
             return
         }
+        
+        // TODO: maye would be nice if we didn't need to replace the split view item entirely, as with the editor
         
         layoutController.replaceSplitViewItem(atIndex: 0, withViewController: sourceViewer as! NSViewController)
         

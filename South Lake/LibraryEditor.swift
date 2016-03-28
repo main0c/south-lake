@@ -65,6 +65,11 @@ class LibraryEditor: NSViewController, SourceViewer {
             } else {
                 sceneController?.maximize()
             }
+            if layout == .Expanded {
+                sceneController?.selectsOnDoubleClick = true
+            } else {
+                sceneController?.selectsOnDoubleClick = false
+            }
         }
     }
     
@@ -242,6 +247,12 @@ class LibraryEditor: NSViewController, SourceViewer {
             sceneController!.minimize()
         } else {
             sceneController!.maximize()
+        }
+        
+        if layout == .Expanded {
+            sceneController!.selectsOnDoubleClick = true
+        } else {
+            sceneController!.selectsOnDoubleClick = false
         }
         
         // Set up connections

@@ -38,6 +38,7 @@ class SourceListPanel: NSViewController, Databasable {
     
     dynamic var selectedObject: DataSource?
     
+    /// Tracking dragged nodes simplifies outline view drag and drop rearrangement
     private var draggedNodes : [NSTreeNode]?
     
     var selectedIndexPath: NSIndexPath? {
@@ -237,6 +238,20 @@ class SourceListPanel: NSViewController, Databasable {
                 return
             }
         }
+    }
+    
+    @IBAction func userDidClickRow(sender: AnyObject?) {
+        guard treeController.selectedObjects.count > 0 else {
+            return
+        }
+        guard treeController.selectedObjects.first as? DataSource == selectedObjects.first else {
+            return
+        }
+        
+//        let selection = treeController.selectedObjects as! [DataSource]
+//        selectedObjects = selection.map { $0 }
+//        selectedObjects = [selection.first!]
+//        log("clicked")
     }
     
     // MARK: - Utilities
@@ -499,9 +514,9 @@ extension SourceListPanel : NSOutlineViewDelegate {
 //        return true
 //    }
     
-    func outlineViewSelectionDidChange(notification: NSNotification) {
-        selectedObjects = outlineView.selectedObjects as! [DataSource]
-    }
+//    func outlineViewSelectionDidChange(notification: NSNotification) {
+//        selectedObjects = outlineView.selectedObjects as! [DataSource]
+//    }
 }
 
 //extension SourceListPanel: NSTextFieldDelegate {

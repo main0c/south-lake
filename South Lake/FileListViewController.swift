@@ -9,6 +9,26 @@
 import Cocoa
 
 class FileListViewController: NSViewController {
+    @IBOutlet var arrayController: NSArrayController!
+    @IBOutlet var collectionView: NSCollectionView!
+    
+    // MARK: - File Collection Scene
+
+    var databaseManager: DatabaseManager?
+    var searchService: BRSearchService?
+
+    dynamic var selectedObjects: [DataSource]?
+    var selectsOnDoubleClick: Bool = false {
+        didSet {
+            if selectsOnDoubleClick {
+                unbind("selectedObjects")
+            } else {
+                bind("selectedObjects", toObject: arrayController, withKeyPath: "selectedObjects", options: [:])
+            }
+        }
+    }
+    
+    // MARK: - Initialiation
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +43,16 @@ class FileListViewController: NSViewController {
     
     func maximize() {
     
+    }
+    
+    // MARK:
+    
+    @IBAction func doubleClick(sender: AnyObject?) {
+        guard arrayController.selectedObjects.count > 0 else {
+            return
+        }
+        
+        selectedObjects = arrayController.selectedObjects as? [DataSource]
     }
     
 }

@@ -62,6 +62,10 @@ class PDFEditor: NSViewController, SourceViewer {
         loadFile(source)
     }
     
+    override func viewDidAppear() {
+        editor.goToFirstPage(nil)
+    }
+    
     func willClose() {
         editor.setDocument(nil)
         if let thumbnailInspector = thumbnailInspector {
