@@ -188,6 +188,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             switch vc {
             case let controller as SourceListPanel:
                 sourceListPanel = controller
+            case let controller as NSSplitViewController:
+                layoutController = controller
 //            case let controller as InspectorPanel:
 //                inspectorPanel = controller
             default:
@@ -203,11 +205,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         // TODO: Set up the initial editor?
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DefaultTab.documentWillSave(_:)), name: DocumentWillSaveNotification, object: nil)
-        
-        // Load the layout controller
-
-        layoutController = storyboard!.instantiateControllerWithIdentifier("Layout") as? NSSplitViewController
-        replaceSplitViewItem(atIndex: 1, withViewController: layoutController!)
         
         // Create the content panel and move it into place
         

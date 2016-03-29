@@ -10,7 +10,7 @@
                 <splitViewController id="P7i-y0-Gmj" customClass="DefaultTab" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem canCollapse="YES" holdingPriority="260" id="jaa-bu-Pik"/>
-                        <splitViewItem id="r3S-wC-o5K"/>
+                        <splitViewItem id="NQa-rm-6OK"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" vertical="YES" id="MZl-Ad-cPP">
                         <rect key="frame" x="-107" y="0.0" width="818" height="394"/>
@@ -18,25 +18,12 @@
                     </splitView>
                     <connections>
                         <segue destination="BCA-UI-RVa" kind="relationship" relationship="splitItems" id="O45-ns-Mwn"/>
-                        <segue destination="gSK-tU-OTL" kind="relationship" relationship="splitItems" id="Ren-hD-726"/>
+                        <segue destination="t0Q-Pm-a3i" kind="relationship" relationship="splitItems" id="Xhs-wE-pPg"/>
                     </connections>
                 </splitViewController>
                 <customObject id="TK0-L5-kqH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-326" y="707"/>
-        </scene>
-        <!--Content-->
-        <scene sceneID="lUj-dP-CsN">
-            <objects>
-                <viewController id="gSK-tU-OTL" userLabel="Content" sceneMemberID="viewController">
-                    <view key="view" id="b62-9X-aZ2">
-                        <rect key="frame" x="0.0" y="0.0" width="551" height="400"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="PHC-lk-EKd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-192.5" y="1282"/>
+            <point key="canvasLocation" x="-996" y="715"/>
         </scene>
         <!--Inspector Controller-->
         <scene sceneID="es3-lF-qMF">
@@ -107,7 +94,7 @@
         <!--Source List-->
         <scene sceneID="gsY-rn-MuH">
             <objects>
-                <viewController id="BCA-UI-RVa" userLabel="Source List" customClass="SourceListPanel" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SourceList" id="BCA-UI-RVa" userLabel="Source List" customClass="SourceListPanel" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="WFb-qx-mSZ">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="400"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -222,7 +209,7 @@
                                             <nil key="backgroundColor"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="hwF-r1-ZHQ">
-                                            <rect key="frame" x="0.0" y="356" width="200" height="15"/>
+                                            <rect key="frame" x="0.0" y="355" width="200" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Xwu-cs-W4a">
@@ -327,12 +314,12 @@
                     </items>
                 </menu>
             </objects>
-            <point key="canvasLocation" x="-618" y="1282"/>
+            <point key="canvasLocation" x="-424" y="718"/>
         </scene>
-        <!--Split View Controller-->
+        <!--Content-->
         <scene sceneID="mBa-1e-rYX">
             <objects>
-                <splitViewController storyboardIdentifier="Layout" id="t0Q-Pm-a3i" sceneMemberID="viewController">
+                <splitViewController storyboardIdentifier="Layout" id="t0Q-Pm-a3i" userLabel="Content" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="ox2-Ag-czC"/>
                         <splitViewItem id="8xa-WO-S1L"/>
@@ -348,33 +335,33 @@
                 </splitViewController>
                 <customObject id="mvj-JV-BRK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="352" y="1281.5"/>
+            <point key="canvasLocation" x="-53" y="717.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Folder Content-->
         <scene sceneID="hGo-Af-fMd">
             <objects>
-                <viewController id="HoG-my-hgV" sceneMemberID="viewController">
+                <viewController id="HoG-my-hgV" userLabel="Folder Content" sceneMemberID="viewController">
                     <view key="view" id="Oc2-ah-gb1">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="399"/>
+                        <rect key="frame" x="0.0" y="0.0" width="168" height="399"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>
                 <customObject id="zWE-Q2-sdv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1356" y="1281.5"/>
+            <point key="canvasLocation" x="313" y="718.5"/>
         </scene>
-        <!--View Controller-->
+        <!--File Content-->
         <scene sceneID="dSk-p9-bCs">
             <objects>
-                <viewController id="wJq-2C-uWc" sceneMemberID="viewController">
+                <viewController id="wJq-2C-uWc" userLabel="File Content" sceneMemberID="viewController">
                     <view key="view" id="kge-2E-4NC">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="399"/>
+                        <rect key="frame" x="0.0" y="0.0" width="412" height="399"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>
                 <customObject id="D5B-UX-P8c" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="867" y="1281.5"/>
+            <point key="canvasLocation" x="650" y="718.5"/>
         </scene>
     </scenes>
     <resources>
