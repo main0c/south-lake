@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="WzD-xV-wPP">
-                                <rect key="frame" x="0.0" y="27" width="511" height="246"/>
+                                <rect key="frame" x="0.0" y="0.0" width="511" height="246"/>
                             </customView>
                             <pathControl focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x7s-jQ-cTj" customClass="NSPathControlWithCursor" customModule="South_Lake" customModuleProvider="target">
                                 <rect key="frame" x="4" y="276" width="249" height="20"/>
@@ -68,34 +68,23 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H5b-Nw-NKT">
-                                <rect key="frame" x="4" y="2" width="472" height="22"/>
-                                <searchFieldCell key="cell" selectable="YES" editable="YES" borderStyle="bezel" focusRingType="none" placeholderString="Filter by title or tag" usesSingleLineMode="YES" bezelStyle="round" id="u74-oK-J4C">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </searchFieldCell>
-                                <connections>
-                                    <action selector="filterByTitle:" target="9yX-Un-WoT" id="TxF-Yy-MUb"/>
-                                </connections>
-                            </searchField>
                             <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="se1-SS-AUW">
-                                <rect key="frame" x="0.0" y="271" width="511" height="5"/>
+                                <rect key="frame" x="0.0" y="244" width="511" height="5"/>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <font key="titleFont" metaFont="system"/>
                             </box>
-                            <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="2av-Ke-pgK">
+                            <box hidden="YES" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="2av-Ke-pgK">
                                 <rect key="frame" x="0.0" y="24" width="511" height="5"/>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <font key="titleFont" metaFont="system"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f4p-sQ-iih">
-                                <rect key="frame" x="482" y="6" width="23" height="14"/>
+                                <rect key="frame" x="477" y="257" width="23" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="120" id="c05-wQ-0Ur">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Iqy-TA-mY7"/>
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -103,26 +92,37 @@
                                     <binding destination="p0W-cE-9Ld" name="value" keyPath="arrangedObjects.@count" id="6Lj-32-BOx"/>
                                 </connections>
                             </textField>
+                            <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H5b-Nw-NKT">
+                                <rect key="frame" x="10" y="254" width="462" height="19"/>
+                                <searchFieldCell key="cell" controlSize="small" selectable="YES" editable="YES" borderStyle="bezel" focusRingType="none" placeholderString="Filter by title or tag" usesSingleLineMode="YES" bezelStyle="round" id="u74-oK-J4C">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </searchFieldCell>
+                                <connections>
+                                    <action selector="filterByTitle:" target="9yX-Un-WoT" id="TxF-Yy-MUb"/>
+                                </connections>
+                            </searchField>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="se1-SS-AUW" secondAttribute="trailing" id="2lD-oI-FKF"/>
                             <constraint firstItem="se1-SS-AUW" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" id="2qC-2j-WvK"/>
-                            <constraint firstItem="WzD-xV-wPP" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="27" id="4Nv-ig-JQT"/>
+                            <constraint firstItem="WzD-xV-wPP" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="54" id="4Nv-ig-JQT"/>
                             <constraint firstItem="2av-Ke-pgK" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" id="4g3-M7-AfU"/>
-                            <constraint firstItem="se1-SS-AUW" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="26" id="7Na-FS-a2h"/>
+                            <constraint firstItem="se1-SS-AUW" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="53" id="7Na-FS-a2h"/>
                             <constraint firstAttribute="trailing" secondItem="x7s-jQ-cTj" secondAttribute="trailing" priority="1" constant="258" id="FT5-vD-aUx"/>
                             <constraint firstItem="x7s-jQ-cTj" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" constant="4" id="OvB-9K-KxZ"/>
-                            <constraint firstAttribute="bottom" secondItem="H5b-Nw-NKT" secondAttribute="bottom" constant="2" id="QEJ-rV-NTb"/>
                             <constraint firstAttribute="trailing" secondItem="2av-Ke-pgK" secondAttribute="trailing" id="R9J-S4-1yt"/>
-                            <constraint firstAttribute="bottom" secondItem="WzD-xV-wPP" secondAttribute="bottom" constant="27" id="RkD-n0-WFI"/>
-                            <constraint firstItem="f4p-sQ-iih" firstAttribute="leading" secondItem="H5b-Nw-NKT" secondAttribute="trailing" constant="8" id="T1M-Zf-snd"/>
+                            <constraint firstAttribute="bottom" secondItem="WzD-xV-wPP" secondAttribute="bottom" id="RkD-n0-WFI"/>
+                            <constraint firstItem="f4p-sQ-iih" firstAttribute="leading" secondItem="H5b-Nw-NKT" secondAttribute="trailing" constant="7" id="T1M-Zf-snd"/>
                             <constraint firstItem="WzD-xV-wPP" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" id="VqH-WV-7RY"/>
                             <constraint firstItem="x7s-jQ-cTj" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="4" id="WiL-Ny-Riz"/>
+                            <constraint firstItem="f4p-sQ-iih" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="29" id="X4y-ay-O19"/>
                             <constraint firstAttribute="trailing" secondItem="qAA-Xq-1wj" secondAttribute="trailing" constant="8" id="XvN-A6-blN"/>
-                            <constraint firstAttribute="trailing" secondItem="f4p-sQ-iih" secondAttribute="trailing" constant="8" id="eSs-Av-UzP"/>
-                            <constraint firstAttribute="bottom" secondItem="f4p-sQ-iih" secondAttribute="bottom" constant="6" id="izk-uI-rhM"/>
+                            <constraint firstAttribute="trailing" secondItem="f4p-sQ-iih" secondAttribute="trailing" constant="13" id="eSs-Av-UzP"/>
                             <constraint firstAttribute="bottom" secondItem="2av-Ke-pgK" secondAttribute="bottom" constant="26" id="jbZ-lQ-pH4"/>
-                            <constraint firstItem="H5b-Nw-NKT" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" constant="4" id="yNH-x6-Z9h"/>
+                            <constraint firstItem="H5b-Nw-NKT" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="27" id="xic-vJ-dQS"/>
+                            <constraint firstItem="H5b-Nw-NKT" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" constant="10" id="yNH-x6-Z9h"/>
                             <constraint firstItem="qAA-Xq-1wj" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="5" id="yV4-Wl-JFU"/>
                             <constraint firstAttribute="trailing" secondItem="WzD-xV-wPP" secondAttribute="trailing" id="zi8-z6-ZHj"/>
                         </constraints>

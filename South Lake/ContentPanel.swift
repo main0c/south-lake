@@ -7,6 +7,8 @@
 
 import Cocoa
 
+private let kHeaderHeight = CGFloat(54)
+
 /// Displays the header and editor views for a file.
 
 class ContentPanel: NSViewController {
@@ -70,7 +72,7 @@ class ContentPanel: NSViewController {
         
         // Frame
         
-        let height = CGFloat(64) // header!.view.frame.size.height
+        let height = kHeaderHeight // header!.view.frame.size.height
         let width = CGRectGetWidth(view.bounds)
         
         header!.view.translatesAutoresizingMaskIntoConstraints = false
@@ -86,7 +88,7 @@ class ContentPanel: NSViewController {
                 views: ["subview": header!.view])
         )
         view.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview(64)]",
+            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview(54)]",
                 options: .DirectionLeadingToTrailing,
                 metrics: nil,
                 views: ["subview": header!.view])
@@ -111,7 +113,7 @@ class ContentPanel: NSViewController {
         
         // Frame
         
-        let height = CGRectGetHeight(view.bounds) - CGFloat(64)
+        let height = CGRectGetHeight(view.bounds) - kHeaderHeight
         let width = CGRectGetWidth(view.bounds)
         
         editor.view.translatesAutoresizingMaskIntoConstraints = false
@@ -169,7 +171,7 @@ class ContentPanel: NSViewController {
             )
         } else {
             return NSLayoutConstraint.constraintsWithVisualFormat(
-                "V:|-64-[subview]-0-|",
+                "V:|-54-[subview]-0-|",
                 options: .DirectionLeadingToTrailing,
                 metrics: nil,
                 views: ["subview": editor.view]
