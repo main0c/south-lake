@@ -327,12 +327,11 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         // Adjust collapsed views for expanded | not layout
         
-        switch (identifier, selectedObject) {
-        case (.Expanded, _ as Folder),
-             (.Expanded, _ as File):
+        switch identifier {
+        case .Expanded:
             layoutController!.splitViewItems[0].collapsed = false
             layoutController!.splitViewItems[1].collapsed = true
-        default:
+        case _:
             layoutController!.splitViewItems[0].collapsed = false
             layoutController!.splitViewItems[1].collapsed = false
         }
