@@ -42,8 +42,13 @@ import Cocoa
 /// or a file, as well as a selectedObject when the source is a folder that itself
 /// can have a selection
 
-// TODO: document all the interactions between source list selectioned, source viewer selection, layout, and editor
-//       centralize effects of that relationships
+// TODO: document all the interactions between source list selectioned, source 
+//       viewer selection, layout, and editor centralize effects of that 
+//       relationships
+
+// TODO: Fix this shit. Too much going on, too many interactions. What I want is 
+//       to map events to state declaratively. given event x produce ui y.
+//       Instead I'm changing ui state all over the place
 
 enum Layout: String {
     case None
