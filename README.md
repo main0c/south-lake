@@ -20,7 +20,7 @@ More: improved markdown (images), interdocument linking, table of contents, cale
 
 ## Build
 
-Ensure you have [Cocoapods](https://cocoapods.org/) installed.
+Requires Xcode 7.3 and Swift 2.2. Ensure you have [Cocoapods](https://cocoapods.org/) installed.
 
 Pull the repository and its submodules:
 
