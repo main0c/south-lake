@@ -85,6 +85,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     // MARK: - Document Tab
     
+    // TODO: Remove databasable did sets: won't have any when source list is factored out
+    
     var databaseManager: DatabaseManager? {
         didSet {
             for vc in childViewControllers where vc is Databasable {
@@ -201,11 +203,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         sourceListPanel.delegate = self
         
-        // TODO: can't use notification center: can, just make sure we're passing the dbm
-        // TODO: Set up the initial editor?
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DefaultTab.documentWillSave(_:)), name: DocumentWillSaveNotification, object: nil)
-        
         // Create the content panel and move it into place
         
         contentPanel = NSStoryboard(name: "ContentPanel", bundle: nil).instantiateInitialController() as! ContentPanel
@@ -229,6 +226,11 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         } else {
             scene = .Card
         }
+        
+        // TODO: can't use notification center: can, just make sure we're passing the dbm
+        // TODO: Set up the initial editor?
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DefaultTab.documentWillSave(_:)), name: DocumentWillSaveNotification, object: nil)
     }
     
     func willClose() {
