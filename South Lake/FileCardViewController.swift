@@ -45,14 +45,10 @@ class FileCardViewController: NSViewController, FileCollectionScene {
         
         collectionView.itemPrototype = prototype
         
-        // Array Controller
-        
-        //bind("selectedObjects", toObject: arrayController, withKeyPath: "selectedObjects", options: [:])
+        collectionView.delegate = self
     }
     
     func willClose() {
-        //unbind("selectedObjects")
-        
         // OS API bug:
         // collectionView.itemPrototype must be set to nil for collection view
         // and this view controller to dealloc, but first the content on the
@@ -159,4 +155,10 @@ extension FileCardViewController: NSCollectionViewDelegate {
         
         selectedObjects = selection
     }
+    
+    func collectionView(collectionView: NSCollectionView, shouldSelectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) -> Set<NSIndexPath> {
+        
+        return indexPaths
+    }
+    
 }

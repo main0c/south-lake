@@ -45,15 +45,9 @@ class FileListViewController: NSViewController, FileCollectionScene {
         prototype?.target = self
         
         collectionView.itemPrototype = prototype
-        
-        // Array Controller
-        
-        //bind("selectedObjects", toObject: arrayController, withKeyPath: "selectedObjects", options: [:])
     }
     
     func willClose() {
-        //unbind("selectedObjects")
-        
         // OS API bug:
         // collectionView.itemPrototype must be set to nil for collection view
         // and this view controller to dealloc, but first the content on the

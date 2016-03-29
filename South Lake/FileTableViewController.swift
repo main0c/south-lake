@@ -44,14 +44,10 @@ class FileTableViewController: NSViewController, FileCollectionScene {
         
         tableView.target = self
         tableView.doubleAction = #selector(FileTableViewController.doubleClick(_:))
-        
-        // Array Controller
-        
-        // bind("selectedObjects", toObject: arrayController, withKeyPath: "selectedObjects", options: [:])
     }
     
     func willClose() {
-        // unbind("selectedObjects")
+    
     }
     
     // MARK: -

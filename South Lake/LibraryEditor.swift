@@ -131,7 +131,6 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
     func willClose() {
         unloadScene()
         unbind("content")
-        //unbind("selectedObjects")
     }
 
     // MARK: - Library Data
@@ -264,8 +263,6 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
         // Set up connections
         
         sceneController!.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
-        
-        //bind("selectedObjects", toObject: sceneController as! AnyObject, withKeyPath: "selectedObjects", options: [:])
         sceneController?.delegate = self
         
         if let selection = selection {
@@ -278,7 +275,6 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
             return
         }
         
-        // unbind("selectedObjects")
         sceneController.arrayController.unbind("contentArray")
         sceneController.arrayController.content = []
         sceneController.view.removeFromSuperview()

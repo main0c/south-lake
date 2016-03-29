@@ -199,8 +199,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         sourceListPanel.delegate = self
         
-        // bind("selectedSourceListObjects", toObject: sourceListPanel, withKeyPath: "selectedObjects", options: [:])
-        
         // TODO: can't use notification center: can, just make sure we're passing the dbm
         // TODO: Set up the initial editor?
         
@@ -244,9 +242,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         unbindTitle(selectedObjects)
         unbindIcon(selectedObjects)
-        
-        // unbind("selectedFileObjects")
-        // unbind("selectedSourceListObjects")
         
         if let inspectors = inspectors {
             for inspector in inspectors {
