@@ -50,7 +50,7 @@ extension WebView {
 
 private var MarkdownEditorContext = 0
 
-class MarkdownEditor: NSViewController, SourceViewer {
+class MarkdownEditor: NSViewController, DataSourceViewController {
     static var filetypes: [String] = ["net.daringfireball.markdown", "markdown", "text/markdown"]
     static var storyboard: String = "MarkdownEditor"
     
@@ -133,6 +133,7 @@ class MarkdownEditor: NSViewController, SourceViewer {
         return true
     }
     
+    var delegate: DataSourceViewControllerDelegate?
     dynamic var selectedObjects: [DataSource]?
     
     var layout: Layout = .None

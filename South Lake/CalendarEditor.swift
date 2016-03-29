@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class CalendarEditor: NSViewController, SourceViewer {
+class CalendarEditor: NSViewController, DataSourceViewController, Databasable {
     @IBOutlet var containerView: NSView!
 
     static var filetypes: [String] { return ["southlake.notebook.calendar", "southlake/x-notebook-calendar", "southlake-notebook-calendar"] }
@@ -23,6 +23,7 @@ class CalendarEditor: NSViewController, SourceViewer {
         return false
     }
     
+    var delegate: DataSourceViewControllerDelegate?
     dynamic var selectedObjects: [DataSource]?
     dynamic var source: DataSource?
     var layout: Layout = .None
@@ -41,7 +42,7 @@ class CalendarEditor: NSViewController, SourceViewer {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (view as! CustomizableView).backgroundColor = UI.Color.Background.SourceViewer
+        (view as! CustomizableView).backgroundColor = UI.Color.Background.DataSourceViewController
     }
     
     // MARK: - 

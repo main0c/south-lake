@@ -20,7 +20,7 @@ enum FileView: String {
 /// contents. Switches between the card, table and list views for those contents.
 /// Maintains a list of selected objects, which an interested party can bind to.
 
-class LibraryEditor: NSViewController, SourceViewer {
+class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var containerView: NSView!
     @IBOutlet var pathControl: NSPathControlWithCursor!
@@ -81,7 +81,14 @@ class LibraryEditor: NSViewController, SourceViewer {
         return nil
     }
     
-    dynamic var selectedObjects: [DataSource]?
+    var delegate: DataSourceViewControllerDelegate?
+    dynamic var selectedObjects: [DataSource]? {
+        didSet {
+            if let delegate = delegate, let selection = selectedObjects {
+                delegate.dataSourceViewController(self, didChangeSelection: selection)
+            }
+        }
+    }
     
     // MARK: - Custom Properties
     
@@ -108,8 +115,8 @@ class LibraryEditor: NSViewController, SourceViewer {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (view as! CustomizableView).backgroundColor = UI.Color.Background.SourceViewer
-        pathControl.backgroundColor = UI.Color.Background.SourceViewer
+        (view as! CustomizableView).backgroundColor = UI.Color.Background.DataSourceViewController
+        pathControl.backgroundColor = UI.Color.Background.DataSourceViewController
         
         sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: #selector(NSNumber.compare(_:)))]
         

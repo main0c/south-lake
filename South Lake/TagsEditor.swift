@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class TagsEditor: NSViewController, SourceViewer {
+class TagsEditor: NSViewController, DataSourceViewController {
     @IBOutlet var libraryArrayController: NSArrayController!
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var containerView: NSView!
@@ -41,6 +41,7 @@ class TagsEditor: NSViewController, SourceViewer {
         return false
     }
     
+    var delegate: DataSourceViewControllerDelegate?
     dynamic var selectedObjects: [DataSource]?
     dynamic var source: DataSource?
     var layout: Layout = .None
@@ -69,8 +70,8 @@ class TagsEditor: NSViewController, SourceViewer {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (view as! CustomizableView).backgroundColor = UI.Color.Background.SourceViewer
-        pathControl.backgroundColor = UI.Color.Background.SourceViewer
+        (view as! CustomizableView).backgroundColor = UI.Color.Background.DataSourceViewController
+        pathControl.backgroundColor = UI.Color.Background.DataSourceViewController
     
         sortDescriptors = [NSSortDescriptor(key: "tag", ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))]
         

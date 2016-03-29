@@ -16,7 +16,7 @@
 		E3088A9B1CA0F34800CCA77C /* FileCardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3088A9A1CA0F34800CCA77C /* FileCardCollectionView.swift */; };
 		E3088AB71CA0FC7700CCA77C /* NSMutableCharacterSet+Chaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3088AB61CA0FC7700CCA77C /* NSMutableCharacterSet+Chaining.swift */; };
 		E310EFE71CA7066E00D66E1C /* NSSplitViewController+Replace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E310EFE61CA7066E00D66E1C /* NSSplitViewController+Replace.swift */; };
-		E3148F121C79353B006BCE53 /* SourceViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3148F111C79353B006BCE53 /* SourceViewer.swift */; };
+		E3148F121C79353B006BCE53 /* DataSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3148F111C79353B006BCE53 /* DataSourceViewController.swift */; };
 		E3274FBF1C75A088000B6A84 /* MarkdownEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3274FBE1C75A088000B6A84 /* MarkdownEditor.swift */; };
 		E3274FC11C75A0B7000B6A84 /* SourceListPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3274FC01C75A0B7000B6A84 /* SourceListPanel.swift */; };
 		E3274FC31C75A134000B6A84 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3274FC21C75A134000B6A84 /* DataSource.swift */; };
@@ -119,6 +119,9 @@
 		E3803F431C7297720048AD46 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F421C7297720048AD46 /* Security.framework */; };
 		E3803F451C7297780048AD46 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F441C7297780048AD46 /* CFNetwork.framework */; };
 		E3803F471C72977D0048AD46 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3803F461C72977D0048AD46 /* SystemConfiguration.framework */; };
+		E3824FA61CAA258D0073885C /* FolderViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3824FA51CAA258D0073885C /* FolderViewer.swift */; };
+		E3824FB81CAA281A0073885C /* SourceListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3824FB71CAA281A0073885C /* SourceListDelegate.swift */; };
+		E3824FBB1CAA30A80073885C /* DataSourceViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3824FBA1CAA30A80073885C /* DataSourceViewControllerDelegate.swift */; };
 		E385F7E21C924D550015A91B /* md-toc-index.html in Resources */ = {isa = PBXBuildFile; fileRef = E385F7E11C924D550015A91B /* md-toc-index.html */; };
 		E385F7F21C92865C0015A91B /* TagsCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385F7F11C92865C0015A91B /* TagsCollectionViewItem.swift */; };
 		E389C9031CA3696200BD1AA9 /* FileCardView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E389C9021CA3696200BD1AA9 /* FileCardView.storyboard */; };
@@ -320,7 +323,7 @@
 		E3088A9A1CA0F34800CCA77C /* FileCardCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCardCollectionView.swift; sourceTree = "<group>"; };
 		E3088AB61CA0FC7700CCA77C /* NSMutableCharacterSet+Chaining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableCharacterSet+Chaining.swift"; sourceTree = "<group>"; };
 		E310EFE61CA7066E00D66E1C /* NSSplitViewController+Replace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSSplitViewController+Replace.swift"; sourceTree = "<group>"; };
-		E3148F111C79353B006BCE53 /* SourceViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceViewer.swift; sourceTree = "<group>"; };
+		E3148F111C79353B006BCE53 /* DataSourceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceViewController.swift; sourceTree = "<group>"; };
 		E3274FBE1C75A088000B6A84 /* MarkdownEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownEditor.swift; sourceTree = "<group>"; };
 		E3274FC01C75A0B7000B6A84 /* SourceListPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceListPanel.swift; sourceTree = "<group>"; };
 		E3274FC21C75A134000B6A84 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
@@ -2473,6 +2476,9 @@
 		E3803F421C7297720048AD46 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E3803F441C7297780048AD46 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E3803F461C72977D0048AD46 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E3824FA51CAA258D0073885C /* FolderViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderViewer.swift; sourceTree = "<group>"; };
+		E3824FB71CAA281A0073885C /* SourceListDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceListDelegate.swift; sourceTree = "<group>"; };
+		E3824FBA1CAA30A80073885C /* DataSourceViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceViewControllerDelegate.swift; sourceTree = "<group>"; };
 		E385F7E11C924D550015A91B /* md-toc-index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "md-toc-index.html"; sourceTree = "<group>"; };
 		E385F7F11C92865C0015A91B /* TagsCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewItem.swift; sourceTree = "<group>"; };
 		E385F8071C796B950072A2CD /* NSDataNSStringValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataNSStringValueTransformer.swift; sourceTree = "<group>"; };
@@ -2573,7 +2579,6 @@
 			children = (
 				E3C821281C75984B00CBAE92 /* DefaultTab.storyboard */,
 				E3C821221C7597B600CBAE92 /* DefaultTab.swift */,
-				E3274FC01C75A0B7000B6A84 /* SourceListPanel.swift */,
 				E32757A61C8C946B004525E2 /* ContentPanel.swift */,
 				E37AB79C1C8F713900F44564 /* InspectorPanel.swift */,
 			);
@@ -2585,6 +2590,7 @@
 			children = (
 				E3FD678E1C7BE37800D7EBB7 /* EditorPlugIns.swift */,
 				E37AB74A1C8E20A900F44564 /* FileCollectionScene.swift */,
+				E3824FBA1CAA30A80073885C /* DataSourceViewControllerDelegate.swift */,
 				E37A05481C9B0C80006618EC /* File Header */,
 				E389C8FE1CA3633600BD1AA9 /* File Card View */,
 				E389C9011CA3667F00BD1AA9 /* File List View */,
@@ -2605,7 +2611,8 @@
 			children = (
 				E32AD2701C76843500648BFD /* Databasable.swift */,
 				E360727B1C74FEEC00914C2C /* DocumentTab.swift */,
-				E3148F111C79353B006BCE53 /* SourceViewer.swift */,
+				E3148F111C79353B006BCE53 /* DataSourceViewController.swift */,
+				E3824FA51CAA258D0073885C /* FolderViewer.swift */,
 				E3AD256B1C7F9D08006D6536 /* FileImporter.swift */,
 				E37C7B451C8FF2F600A3AB43 /* Inspector.swift */,
 			);
@@ -7223,6 +7230,15 @@
 			name = "Application and Document";
 			sourceTree = "<group>";
 		};
+		E3824FB91CAA30640073885C /* Source List */ = {
+			isa = PBXGroup;
+			children = (
+				E3274FC01C75A0B7000B6A84 /* SourceListPanel.swift */,
+				E3824FB71CAA281A0073885C /* SourceListDelegate.swift */,
+			);
+			name = "Source List";
+			sourceTree = "<group>";
+		};
 		E3898F981C80162700CA71BE /* Markdown */ = {
 			isa = PBXGroup;
 			children = (
@@ -7311,6 +7327,7 @@
 		E3C821111C75979100CBAE92 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				E3824FB91CAA30640073885C /* Source List */,
 				E3274FAC1C75A04C000B6A84 /* Default Tab */,
 			);
 			name = Tabs;
@@ -7784,11 +7801,12 @@
 				E3274FC11C75A0B7000B6A84 /* SourceListPanel.swift in Sources */,
 				E3C4362B1C7642BA00DD685D /* MacDownCopyFiles.m in Sources */,
 				E37AB7451C8E1C0500F44564 /* FileCardViewController.swift in Sources */,
-				E3148F121C79353B006BCE53 /* SourceViewer.swift in Sources */,
+				E3148F121C79353B006BCE53 /* DataSourceViewController.swift in Sources */,
 				E3274FC91C75A151000B6A84 /* SmartFolder.swift in Sources */,
 				E343AC601CA9A13C00BEF51D /* FileListCollectionView.swift in Sources */,
 				E3FD678F1C7BE37800D7EBB7 /* EditorPlugIns.swift in Sources */,
 				E3088A931CA0666B00CCA77C /* NSWorkspace+Thumbnail.m in Sources */,
+				E3824FB81CAA281A0073885C /* SourceListDelegate.swift in Sources */,
 				E3C436271C7641E900DD685D /* MPRenderer+TOC.m in Sources */,
 				E3A8A0DF1C80C1DC009E96C1 /* NSStringNSDataValueTransformer.swift in Sources */,
 				E32AD2711C76843500648BFD /* Databasable.swift in Sources */,
@@ -7841,6 +7859,7 @@
 				E3803F0A1C728E790048AD46 /* hoedown_html_patch.c in Sources */,
 				E3274FBF1C75A088000B6A84 /* MarkdownEditor.swift in Sources */,
 				E37E47B81C73F0F90077ECD7 /* DocumentController.swift in Sources */,
+				E3824FBB1CAA30A80073885C /* DataSourceViewControllerDelegate.swift in Sources */,
 				E389C90A1CA3713700BD1AA9 /* FolderEditor.swift in Sources */,
 				E32757A71C8C946B004525E2 /* ContentPanel.swift in Sources */,
 				E378C5341C814F1900CACDFC /* String+Range.swift in Sources */,
@@ -7853,6 +7872,7 @@
 				E3803F111C728E800048AD46 /* MPPreferences.m in Sources */,
 				E3E7C9DD1C89078100BD73A9 /* Array+SafeIndexing.swift in Sources */,
 				E37C7B461C8FF2F700A3AB43 /* Inspector.swift in Sources */,
+				E3824FA61CAA258D0073885C /* FolderViewer.swift in Sources */,
 				E3B9D5A31C9B1E5A00668557 /* DataSourceEditableValueTransformer.swift in Sources */,
 				E37C7BD11C91021C00A3AB43 /* MetadataInspector.swift in Sources */,
 				E35A80071CA1D5C300CBEB36 /* MoveToMenuBuilder.swift in Sources */,

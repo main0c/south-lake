@@ -9,7 +9,7 @@
 
 import Cocoa
 
-class FolderEditor: NSViewController, SourceViewer {
+class FolderEditor: NSViewController, DataSourceViewController {
 
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var containerView: NSView!
@@ -41,6 +41,7 @@ class FolderEditor: NSViewController, SourceViewer {
         return false
     }
     
+    var delegate: DataSourceViewControllerDelegate?
     dynamic var selectedObjects: [DataSource]?
     var layout: Layout = .None
     var scene: Scene = .None
@@ -90,8 +91,8 @@ class FolderEditor: NSViewController, SourceViewer {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (view as! CustomizableView).backgroundColor = UI.Color.Background.SourceViewer
-        pathControl.backgroundColor = UI.Color.Background.SourceViewer
+        (view as! CustomizableView).backgroundColor = UI.Color.Background.DataSourceViewController
+        pathControl.backgroundColor = UI.Color.Background.DataSourceViewController
         
         sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: #selector(NSNumber.compare(_:)))]
         

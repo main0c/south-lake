@@ -38,7 +38,7 @@ class FileCardViewController: NSViewController, FileCollectionScene {
         
         // Collection View
         
-        collectionView.backgroundColors = [UI.Color.Background.SourceViewer]
+        collectionView.backgroundColors = [UI.Color.Background.DataSourceViewController]
         
         let prototype = storyboard!.instantiateControllerWithIdentifier("FileCardCollectionViewItem") as? FileCardCollectionViewItem
         prototype?.doubleAction = #selector(FileCardViewController.doubleClick(_:))
