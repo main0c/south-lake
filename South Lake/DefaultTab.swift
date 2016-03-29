@@ -85,8 +85,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     // MARK: - Document Tab
     
-    // TODO: Remove databasable did sets: won't have any when source list is factored out
-    
     var databaseManager: DatabaseManager? {
         didSet {
             for vc in childViewControllers where vc is Databasable {
@@ -186,30 +184,35 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         // Acquire child view controllers
         
-        for vc in childViewControllers {
-            switch vc {
-            case let controller as SourceListPanel:
-                sourceListPanel = controller
-            case let controller as NSSplitViewController:
-                layoutController = controller
-//            case let controller as InspectorPanel:
-//                inspectorPanel = controller
-            default:
-                break
-            }
-        }
+        layoutController = splitViewItems[1].viewController as! NSSplitViewController
+        
+//        for vc in childViewControllers {
+//            switch vc {
+////            case let controller as SourceListPanel:
+////                sourceListPanel = controller
+//            case let controller as NSSplitViewController:
+//                layoutController = controller
+////            case let controller as InspectorPanel:
+////                inspectorPanel = controller
+//            default:
+//                break
+//            }
+//        }
         
         // Using delegates instead of bindings for selection: see SelectionDelegate
         
+        sourceListPanel = NSStoryboard(name: "SourceListPanel", bundle: nil).instantiateInitialController() as! SourceListPanel
+        replaceSplitViewItem(atIndex: 0, withViewController: sourceListPanel)
         sourceListPanel.delegate = self
         
         // Create the content panel and move it into place
         
         contentPanel = NSStoryboard(name: "ContentPanel", bundle: nil).instantiateInitialController() as! ContentPanel
+        layoutController.replaceSplitViewItem(atIndex: 1, withViewController: contentPanel)
         
-        if layoutController.splitViewItems.count >= 2 {
-            layoutController.replaceSplitViewItem(atIndex: 1, withViewController: contentPanel)
-        }
+//        if layoutController.splitViewItems.count >= 2 {
+//            layoutController.replaceSplitViewItem(atIndex: 1, withViewController: contentPanel)
+//        }
         
         // Restore user layout preferences
         

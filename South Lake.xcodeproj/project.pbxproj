@@ -151,6 +151,7 @@
 		E3DDBEF81C8D455000136BAE /* CalendarEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3DDBEF71C8D455000136BAE /* CalendarEditor.storyboard */; };
 		E3DDBEFA1C8D5AF300136BAE /* FileCardCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DDBEF91C8D5AF300136BAE /* FileCardCollectionViewItem.swift */; };
 		E3E12A651C76E3E7000C4F16 /* NSOutlineView+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E12A641C76E3E7000C4F16 /* NSOutlineView+Selection.swift */; };
+		E3E608731CAB0DD200821E86 /* SourceListPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3E608721CAB0DD200821E86 /* SourceListPanel.storyboard */; };
 		E3E65F541C7C1A8F0085B5B7 /* About Markdown.md in Resources */ = {isa = PBXBuildFile; fileRef = E3E65F531C7C1A840085B5B7 /* About Markdown.md */; };
 		E3E7C9DD1C89078100BD73A9 /* Array+SafeIndexing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E7C9DA1C89078100BD73A9 /* Array+SafeIndexing.swift */; };
 		E3E7C9DE1C89078100BD73A9 /* NSString+RegExEscape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E7C9DB1C89078100BD73A9 /* NSString+RegExEscape.swift */; };
@@ -2509,6 +2510,7 @@
 		E3DDBEF71C8D455000136BAE /* CalendarEditor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CalendarEditor.storyboard; sourceTree = "<group>"; };
 		E3DDBEF91C8D5AF300136BAE /* FileCardCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCardCollectionViewItem.swift; sourceTree = "<group>"; };
 		E3E12A641C76E3E7000C4F16 /* NSOutlineView+Selection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSOutlineView+Selection.swift"; sourceTree = "<group>"; };
+		E3E608721CAB0DD200821E86 /* SourceListPanel.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SourceListPanel.storyboard; sourceTree = "<group>"; };
 		E3E65F531C7C1A840085B5B7 /* About Markdown.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "About Markdown.md"; sourceTree = "<group>"; };
 		E3E7C9DA1C89078100BD73A9 /* Array+SafeIndexing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+SafeIndexing.swift"; sourceTree = "<group>"; };
 		E3E7C9DB1C89078100BD73A9 /* NSString+RegExEscape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSString+RegExEscape.swift"; sourceTree = "<group>"; };
@@ -7242,6 +7244,7 @@
 		E3824FB91CAA30640073885C /* Source List Panel */ = {
 			isa = PBXGroup;
 			children = (
+				E3E608721CAB0DD200821E86 /* SourceListPanel.storyboard */,
 				E3274FC01C75A0B7000B6A84 /* SourceListPanel.swift */,
 			);
 			name = "Source List Panel";
@@ -7688,6 +7691,7 @@
 				E37AB7511C8E6F4A00F44564 /* FileHeader.storyboard in Resources */,
 				E3DDBEF81C8D455000136BAE /* CalendarEditor.storyboard in Resources */,
 				E37D96191C723B8A000A9F90 /* Main.storyboard in Resources */,
+				E3E608731CAB0DD200821E86 /* SourceListPanel.storyboard in Resources */,
 				E380358E1C728D780048AD46 /* Data in Resources */,
 				E380358F1C728D780048AD46 /* Extensions in Resources */,
 				E38035901C728D780048AD46 /* MathJax in Resources */,
