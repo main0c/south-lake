@@ -24,13 +24,13 @@ class FileTableViewController: NSViewController, FileCollectionScene {
     var databaseManager: DatabaseManager?
     var searchService: BRSearchService?
     
-    dynamic var selectedObjects: [DataSource]?
-    var selectsOnDoubleClick: Bool = false {
+    var selectsOnDoubleClick: Bool = false
+    var delegate: SelectionDelegate?
+    
+    dynamic var selectedObjects: [DataSource] = [] {
         didSet {
-            if selectsOnDoubleClick {
-                unbind("selectedObjects")
-            } else {
-                bind("selectedObjects", toObject: arrayController, withKeyPath: "selectedObjects", options: [:])
+            if let delegate = delegate {
+                delegate.object(self, didChangeSelection: selectedObjects)
             }
         }
     }
@@ -47,11 +47,11 @@ class FileTableViewController: NSViewController, FileCollectionScene {
         
         // Array Controller
         
-        bind("selectedObjects", toObject: arrayController, withKeyPath: "selectedObjects", options: [:])
+        // bind("selectedObjects", toObject: arrayController, withKeyPath: "selectedObjects", options: [:])
     }
     
     func willClose() {
-        unbind("selectedObjects")
+        // unbind("selectedObjects")
     }
     
     // MARK: -
@@ -91,11 +91,14 @@ class FileTableViewController: NSViewController, FileCollectionScene {
     // MARK: -
     
     @IBAction func doubleClick(sender: AnyObject?) {
+        guard selectsOnDoubleClick else {
+            return
+        }
         guard arrayController.selectedObjects.count > 0 else {
             return
         }
         
-        selectedObjects = arrayController.selectedObjects as? [DataSource]
+        selectedObjects = arrayController.selectedObjects as! [DataSource]
     }
     
     override func deleteBackward(sender: AnyObject?) {
@@ -122,5 +125,13 @@ extension FileTableViewController: NSTableViewDelegate {
             view.identifier = "RowView"
             return view
         }
+    }
+    
+    func tableViewSelectionDidChange(notification: NSNotification) {
+        guard let selection = arrayController.selectedObjects as? [DataSource] else {
+            return
+        }
+        
+        selectedObjects = selection
     }
 }

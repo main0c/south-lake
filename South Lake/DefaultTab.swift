@@ -103,11 +103,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
     }
     
-    // TODO: When you select a folder don't unbind and clear the current editor, Whether we unbind depends on on what is being bound?
-    // TODO: We may not route all of this through selectedObjects. It's convenient
-    //       because title and icon bindings are already set up to work with it,
-    //       but that's all really and can easily enough be duplicated
-    
     /// The selected source list objects originate in the source list and are
     /// displayed in the second panel
     
@@ -140,7 +135,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             unbindTitle(selectedObjects)
             unbindIcon(selectedObjects)
             
-            // unbindEditor(selectedObjects)
+            unbindEditor(selectedObjects)
             unbindHeader(selectedObjects)
             unbindInspectors(selectedObjects)
         }
@@ -391,31 +386,30 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     func bindEditor(selection: [DataSource]) {
         let item = selectedObject
         
-        // TODO: changes to the source list will need the editor cleared as well
         // TODO: when loading a file from the source list we always need to display in expanded view
         // TODO: some sources won't support all views: calendar, tags...
         
         // Breaking on no selection in order to preserve the editor across changes to the scene
-        // TODO: but I do want to clear the editor on no selection
         
         switch (selection.count, item) {
         case (0, _):
-            break
+            clearEditor()
         case (1, is File):
             loadEditor(item!)
         case (1, is Folder):
+            clearEditor()
             loadSource(item!)
         case (_,_):
             break
         }
     }
       
-//    func unbindEditor(selection: [DataSource]) {
-//        guard let editor = editor else {
-//            return
-//        }
-//        editor.source = nil
-//    }
+    func unbindEditor(selection: [DataSource]) {
+        guard let editor = editor else {
+            return
+        }
+        editor.source = nil
+    }
     
     /// Loads a new file editor iff it has changed,
     /// but always shows the editor if we're in expanded view
@@ -468,8 +462,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     func clearEditor() {
         editor?.willClose()
-        // editor?.source = nil
-        // contentPanel.editor = nil
+        editor?.source = nil
+        contentPanel.editor = nil
         editor = nil
     }
     
@@ -933,26 +927,23 @@ extension DefaultTab {
 
 }
 
-// MARK: - Source List Delegate
+// MARK: - Selection Delegate
 
-extension DefaultTab: SourceListDelegate {
-    func sourceList(sourceList: SourceListPanel, didChangeSelection selection: [AnyObject]) {
+// Source List Source and File Editor (Collection)
+
+extension DefaultTab: SelectionDelegate {
+    func object(object: AnyObject, didChangeSelection selection: [AnyObject]) {
         guard let selection = selection as? [DataSource] else {
             return
         }
-        selectedSourceListObjects = selection
-        log(selection)
-    }
-}
-
-// MARK: Data Source View Controller Delegate
-
-extension DefaultTab: DataSourceViewControllerDelegate {
-    func dataSourceViewController(dataSourceViewController: DataSourceViewController, didChangeSelection selection: [AnyObject]) {
-        guard let selection = selection as? [DataSource] else {
-            return
+        
+        switch object {
+        case _ as SourceListPanel:
+            selectedSourceListObjects = selection
+        case _ as DataSourceViewController:
+            selectedFileObjects = selection
+        default:
+            break
         }
-        selectedFileObjects = selection
-        log(selection)
     }
 }

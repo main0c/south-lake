@@ -36,7 +36,7 @@ protocol DataSourceViewController: class, Databasable {
     /// delegate methods. Bindings were in use but the binding firing when
     /// established is undesirable
     
-    var delegate: DataSourceViewControllerDelegate? { get set }
+    var delegate: SelectionDelegate? { get set }
     
     /// The responder that take focus for editing and first responder switching
     var primaryResponder: NSView { get }

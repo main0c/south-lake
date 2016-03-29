@@ -41,8 +41,9 @@ class TagsEditor: NSViewController, DataSourceViewController {
         return false
     }
     
-    var delegate: DataSourceViewControllerDelegate?
+    var delegate: SelectionDelegate?
     dynamic var selectedObjects: [DataSource]?
+    
     dynamic var source: DataSource?
     var layout: Layout = .None
     var scene: Scene = .None

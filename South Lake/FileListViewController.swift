@@ -17,18 +17,17 @@ class FileListViewController: NSViewController, FileCollectionScene {
     var databaseManager: DatabaseManager?
     var searchService: BRSearchService?
     
-    dynamic var selectedObjects: [DataSource]?
+    var selectsOnDoubleClick: Bool = false
+    var delegate: SelectionDelegate?
     
-    var selectsOnDoubleClick: Bool = false {
+    dynamic var selectedObjects: [DataSource] = [] {
         didSet {
-            if selectsOnDoubleClick {
-                unbind("selectedObjects")
-            } else {
-                bind("selectedObjects", toObject: arrayController, withKeyPath: "selectedObjects", options: [:])
+            if let delegate = delegate {
+                delegate.object(self, didChangeSelection: selectedObjects)
             }
         }
     }
-
+    
     // MARK: - Initialization
     
     override func viewDidLoad() {
@@ -49,11 +48,11 @@ class FileListViewController: NSViewController, FileCollectionScene {
         
         // Array Controller
         
-        bind("selectedObjects", toObject: arrayController, withKeyPath: "selectedObjects", options: [:])
+        //bind("selectedObjects", toObject: arrayController, withKeyPath: "selectedObjects", options: [:])
     }
     
     func willClose() {
-        unbind("selectedObjects")
+        //unbind("selectedObjects")
         
         // OS API bug:
         // collectionView.itemPrototype must be set to nil for collection view
@@ -110,11 +109,17 @@ class FileListViewController: NSViewController, FileCollectionScene {
     }
     
     @IBAction func doubleClick(sender: AnyObject?) {
+        guard selectsOnDoubleClick else {
+            return
+        }
         guard arrayController.selectedObjects.count > 0 else {
             return
         }
+        guard let selection = arrayController.selectedObjects as? [DataSource] else {
+            return
+        }
         
-        selectedObjects = arrayController.selectedObjects as? [DataSource]
+        selectedObjects = selection
     }
     
     override func deleteBackward(sender: AnyObject?) {
@@ -148,6 +153,14 @@ extension FileListViewController: NSCollectionViewDelegate {
         pasteboard.setPropertyList(titles, forType: NSPasteboardTypeString)
         
         return true
+    }
+    
+    func collectionView(collectionView: NSCollectionView, didSelectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) {
+        guard let selection = arrayController.selectedObjects as? [DataSource] else {
+            return
+        }
+        
+        selectedObjects = selection
     }
 }
 

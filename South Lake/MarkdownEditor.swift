@@ -133,7 +133,7 @@ class MarkdownEditor: NSViewController, DataSourceViewController {
         return true
     }
     
-    var delegate: DataSourceViewControllerDelegate?
+    var delegate: SelectionDelegate?
     dynamic var selectedObjects: [DataSource]?
     
     var layout: Layout = .None

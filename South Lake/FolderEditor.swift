@@ -41,7 +41,7 @@ class FolderEditor: NSViewController, DataSourceViewController {
         return false
     }
     
-    var delegate: DataSourceViewControllerDelegate?
+    var delegate: SelectionDelegate?
     dynamic var selectedObjects: [DataSource]?
     var layout: Layout = .None
     var scene: Scene = .None

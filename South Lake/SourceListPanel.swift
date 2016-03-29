@@ -16,7 +16,7 @@ class SourceListPanel: NSViewController, Databasable {
     @IBOutlet var treeController: NSTreeController!
     @IBOutlet var outlineView: NSOutlineView!
     
-    weak var delegate: SourceListDelegate?
+    weak var delegate: SelectionDelegate?
     
     // MARK: - Databasable
     
@@ -37,7 +37,7 @@ class SourceListPanel: NSViewController, Databasable {
             selectedObject = selectedObjects[safe:0]
             
             if let delegate = delegate {
-                delegate.sourceList(self, didChangeSelection: selectedObjects)
+                delegate.object(self, didChangeSelection: selectedObjects)
             }
         }
     }

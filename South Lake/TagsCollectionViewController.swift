@@ -19,8 +19,16 @@ class TagsCollectionViewController: NSViewController, FileCollectionScene {
     var databaseManager: DatabaseManager?
     var searchService: BRSearchService?
     
-    var selectedObjects: [DataSource]?
     var selectsOnDoubleClick: Bool = false
+    var delegate: SelectionDelegate?
+    
+    dynamic var selectedObjects: [DataSource] = [] {
+        didSet {
+            if let delegate = delegate {
+                delegate.object(self, didChangeSelection: selectedObjects)
+            }
+        }
+    }
     
     // MARK: - Initialization
 
@@ -60,6 +68,9 @@ class TagsCollectionViewController: NSViewController, FileCollectionScene {
     // MARK: -
     
     @IBAction func doubleClick(sender: AnyObject?) {
+        guard selectsOnDoubleClick else {
+            return
+        }
         guard let databaseManager = databaseManager else {
             return
         }

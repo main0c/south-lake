@@ -24,7 +24,7 @@ class PDFEditor: NSViewController, DataSourceViewController {
         return true
     }
     
-    var delegate: DataSourceViewControllerDelegate?
+    var delegate: SelectionDelegate?
     dynamic var selectedObjects: [DataSource]?
     
     dynamic var source: DataSource? {

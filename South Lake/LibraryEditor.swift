@@ -81,11 +81,11 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
         return nil
     }
     
-    var delegate: DataSourceViewControllerDelegate?
+    var delegate: SelectionDelegate?
     dynamic var selectedObjects: [DataSource]? {
         didSet {
             if let delegate = delegate, let selection = selectedObjects {
-                delegate.dataSourceViewController(self, didChangeSelection: selection)
+                delegate.object(self, didChangeSelection: selection)
             }
         }
     }
@@ -131,7 +131,7 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
     func willClose() {
         unloadScene()
         unbind("content")
-        unbind("selectedObjects")
+        //unbind("selectedObjects")
     }
 
     // MARK: - Library Data
@@ -264,7 +264,9 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
         // Set up connections
         
         sceneController!.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
-        bind("selectedObjects", toObject: sceneController as! AnyObject, withKeyPath: "selectedObjects", options: [:])
+        
+        //bind("selectedObjects", toObject: sceneController as! AnyObject, withKeyPath: "selectedObjects", options: [:])
+        sceneController?.delegate = self
         
         if let selection = selection {
             sceneController!.arrayController.setSelectedObjects(selection)
@@ -276,6 +278,7 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
             return
         }
         
+        // unbind("selectedObjects")
         sceneController.arrayController.unbind("contentArray")
         sceneController.arrayController.content = []
         sceneController.view.removeFromSuperview()
@@ -404,6 +407,16 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
             cell.textColor = NSColor.keyboardFocusIndicatorColor()
         }
     }
+}
 
+extension LibraryEditor: SelectionDelegate {
+    
+    func object(object: AnyObject, didChangeSelection selection: [AnyObject]) {
+        guard let selection = selection as? [DataSource] else {
+            return
+        }
+        
+        selectedObjects = selection
+    }
 }
 

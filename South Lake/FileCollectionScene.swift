@@ -21,7 +21,9 @@ protocol FileCollectionScene: Databasable {
     var arrayController: NSArrayController! { get set }
     
     /// The FileCollectionScene should maintain a dynamic variable for selected objects
-    var selectedObjects: [DataSource]? { get set }
+    var selectedObjects: [DataSource] { get set }
+    
+    var delegate: SelectionDelegate? { get set }
     
     /// Depending on the layout it may only be appropriate to change the selection on a double click
     var selectsOnDoubleClick: Bool { get set }

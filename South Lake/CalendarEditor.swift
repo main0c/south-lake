@@ -23,7 +23,7 @@ class CalendarEditor: NSViewController, DataSourceViewController, Databasable {
         return false
     }
     
-    var delegate: DataSourceViewControllerDelegate?
+    var delegate: SelectionDelegate?
     dynamic var selectedObjects: [DataSource]?
     dynamic var source: DataSource?
     var layout: Layout = .None
