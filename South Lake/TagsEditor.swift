@@ -9,15 +9,18 @@
 import Cocoa
 
 class TagsEditor: NSViewController, DataSourceViewController {
+    static var storyboard: String = "TagsEditor"
+    static var filetypes: [String] = [
+        "southlake.notebook.tags",
+        "southlake/x-notebook-tags",
+        "southlake-notebook-tags"
+    ]
+    
     @IBOutlet var libraryArrayController: NSArrayController!
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var containerView: NSView!
-    
     @IBOutlet var viewSelector: NSSegmentedControl!
     @IBOutlet var pathControl: NSPathControlWithCursor!
-
-    static var filetypes: [String] { return ["southlake.notebook.tags", "southlake/x-notebook-tags", "southlake-notebook-tags"] }
-    static var storyboard: String { return "TagsEditor" }
     
     // MARK: - Databasable
     

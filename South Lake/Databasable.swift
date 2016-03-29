@@ -8,6 +8,9 @@
 
 import Foundation
 
+/// Protocol for objects which require access to the model layer and search
+/// services
+
 protocol Databasable {
     var databaseManager: DatabaseManager? { get set}
     var searchService: BRSearchService? { get set }

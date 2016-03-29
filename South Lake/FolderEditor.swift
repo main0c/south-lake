@@ -10,20 +10,23 @@
 import Cocoa
 
 class FolderEditor: NSViewController, DataSourceViewController {
-
+    static var storyboard: String = "FolderEditor"
+    static var filetypes: [String] = [
+        "southlake.folder",
+        "southlake/x-folder",
+        "southlake-folder",
+        "southlake.smart-folder",
+        "southlake/x-smart-folder",
+        "southlake-smart-folder"
+    ]
+    
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var containerView: NSView!
     @IBOutlet var pathControl: NSPathControlWithCursor!
-    @IBOutlet var sceneSelector: NSSegmentedControl!
     @IBOutlet var noSearchResultsLabel: NSTextField!
+    @IBOutlet var searchField: NSSearchField!
     
     // MARK: - File Editor
-    
-    static var filetypes: [String] { return [
-        "southlake.folder", "southlake/x-folder", "southlake-folder",
-        "southlake.smart-folder", "southlake/x-smart-folder", "southlake-smart-folder"
-    ] }
-    static var storyboard: String { return "LibraryEditor" }
     
     var databaseManager: DatabaseManager? {
         didSet {
@@ -41,11 +44,6 @@ class FolderEditor: NSViewController, DataSourceViewController {
         return false
     }
     
-    var delegate: SelectionDelegate?
-    dynamic var selectedObjects: [DataSource]?
-    var layout: Layout = .None
-    var scene: Scene = .None
-    
     dynamic var source: DataSource? {
         willSet {
             if let _ = source {
@@ -57,6 +55,29 @@ class FolderEditor: NSViewController, DataSourceViewController {
         }
     }
     
+    var scene: Scene = .None {
+        didSet {
+            if scene != oldValue {
+                loadScene(scene)
+            }
+        }
+    }
+    
+    var layout: Layout = .None {
+        didSet {
+            if layout == .Compact {
+                sceneController?.minimize()
+            } else {
+                sceneController?.maximize()
+            }
+            if layout == .Expanded {
+                sceneController?.selectsOnDoubleClick = true
+            } else {
+                sceneController?.selectsOnDoubleClick = false
+            }
+        }
+    }
+    
     var primaryResponder: NSView {
         return view
     }
@@ -65,12 +86,31 @@ class FolderEditor: NSViewController, DataSourceViewController {
         return nil
     }
     
+    var delegate: SelectionDelegate?
+    
+    // What I want is to not use bindings at all for selection, which cause misfires,
+    // but collection view delegate selection callbacks have inexplicably stopped working
+    
+    private var ignoreChangeInSelection = false
+    
+    dynamic var selectedObjects: [DataSource]? {
+        didSet {
+            guard !ignoreChangeInSelection else {
+                return
+            }
+            guard let delegate = delegate, let selection = selectedObjects else {
+                return
+            }
+            
+            delegate.object(self, didChangeSelection: selection)
+        }
+    }
+    
     // MARK: - Custom Properties
     
     dynamic var sortDescriptors: [NSSortDescriptor]?
-    dynamic var content: [DataSource]?
-
     dynamic var filterPredicate: NSPredicate?
+    dynamic var content: [DataSource]?
     
     var titlePredicate: NSPredicate? {
         didSet {
@@ -100,12 +140,9 @@ class FolderEditor: NSViewController, DataSourceViewController {
         pathControl.URL = NSURL(string: "southlake://localhost/library")
         updatePathControlAppearance()
         
-        // Restore view preference
+        searchField.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
         
-        let sceneId = NSUserDefaults.standardUserDefaults().objectForKey("SLLibraryScene") as? String ?? "FileCardView"
-        sceneSelector.selectSegmentWithTag(sceneId == "FileCardView" ? 0 : 1)
-        
-        loadScene(sceneId)
+        loadScene(scene)
         bindContent()
     }
     
@@ -114,9 +151,12 @@ class FolderEditor: NSViewController, DataSourceViewController {
         unbind("content")
     }
 
-    // MARK: - Library Data
+    // MARK: - Folder Data
     
     func bindContent() {
+        guard viewLoaded else {
+            return
+        }
         guard let source = source else {
             return
         }
@@ -167,29 +207,6 @@ class FolderEditor: NSViewController, DataSourceViewController {
         arrayController.sortDescriptors = descriptors
     }
     
-    @IBAction func changeLayout(sender: AnyObject?) {
-        guard let sender = sender as? NSSegmentedControl,
-              let cell = sender.cell as? NSSegmentedCell else {
-              return
-        }
-        
-        let segment = sender.selectedSegment
-        let tag = cell.tagForSegment(segment)
-        
-        switch tag {
-        case 0: // icon collection
-            unloadScene()
-            NSUserDefaults.standardUserDefaults().setObject("FileCardView", forKey: "SLLibraryScene")
-            loadScene("FileCardView")
-        case 1: // table view
-            unloadScene()
-            NSUserDefaults.standardUserDefaults().setObject("FileTableView", forKey: "SLLibraryScene")
-            loadScene("FileTableView")
-        case _:
-            break
-        }
-    }
-    
     @IBAction func gotoPath(sender: AnyObject?) {
 //        guard let databaseManager = databaseManager else {
 //            return
@@ -210,36 +227,74 @@ class FolderEditor: NSViewController, DataSourceViewController {
     }
     
     // MARK: - Scene
-    
-    func loadScene(identifier: String) {
-        sceneController = NSStoryboard(name: identifier, bundle: nil).instantiateInitialController() as? FileCollectionScene
-        guard var sceneController = sceneController else {
-            log("unable to load scene")
+   
+    func loadScene(scene: Scene) {
+        guard scene != .None else {
+            return
+        }
+        guard viewLoaded else {
+            return
+        }
+        guard let storyboard = storyboardForScene(scene) else {
+            log("no storyboard for scene \(scene)")
+            return
+        }
+        guard let sc = storyboard.instantiateInitialController() as? FileCollectionScene else {
+            log("no initial view controller for scene \(scene)")
             return
         }
         
+        // Preserve the selected objects
+        
+        let selection = selectedObjects
+        
+        // Prepare the scene
+        
+        unloadScene()
+        sceneController = sc
+        
         // Databasable
         
-        sceneController.databaseManager = databaseManager
-        sceneController.searchService = searchService
+        sceneController!.databaseManager = databaseManager
+        sceneController!.searchService = searchService
         
-        // Set up frame and view constraints
+        // Place it into the container
         
-        sceneController.view.translatesAutoresizingMaskIntoConstraints = false
-        sceneController.view.frame = containerView.bounds
-        containerView.addSubview(sceneController.view)
+        sceneController!.view.translatesAutoresizingMaskIntoConstraints = false
+        sceneController!.view.frame = containerView.bounds
+        containerView.addSubview(sceneController!.view)
         
         containerView.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": sceneController.view])
+            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": sceneController!.view])
         )
         containerView.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": sceneController.view])
+            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": sceneController!.view])
         )
         
-        // Bind the array controller to ours
-        // Predicates and sorting are applied before it even sees the data
+        // Prepare interface
         
-        sceneController.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
+        if layout == .Compact {
+            sceneController!.minimize()
+        } else {
+            sceneController!.maximize()
+        }
+        
+        if layout == .Expanded {
+            sceneController!.selectsOnDoubleClick = true
+        } else {
+            sceneController!.selectsOnDoubleClick = false
+        }
+        
+        // Set up connections
+        
+        sceneController!.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
+        sceneController!.delegate = self
+        
+        if let selection = selection {
+            whileIgnoringChangeInSelection {
+                self.sceneController!.arrayController.setSelectedObjects(selection)
+            }
+        }
     }
     
     func unloadScene() {
@@ -247,49 +302,37 @@ class FolderEditor: NSViewController, DataSourceViewController {
             return
         }
         
-        sceneController.arrayController.unbind("contentArray")
-        sceneController.arrayController.content = []
-        sceneController.view.removeFromSuperview()
-        sceneController.willClose()
+        whileIgnoringChangeInSelection {
+            sceneController.arrayController.unbind("contentArray")
+            sceneController.arrayController.content = []
+            sceneController.view.removeFromSuperview()
+            sceneController.willClose()
+        }
+    }
+    
+    func storyboardForScene(scene: Scene) -> NSStoryboard? {
+        switch scene {
+        case .Table:
+            return NSStoryboard(name: "FileTableView", bundle: nil)
+        case .Card:
+            return NSStoryboard(name: "FileCardView", bundle: nil)
+        case .List:
+            return NSStoryboard(name: "FileListView", bundle: nil)
+        case .None:
+            return nil
+        }
+    }
+    
+    func whileIgnoringChangeInSelection(whileIgnoring: Void -> Void) {
+        ignoreChangeInSelection = true
+        whileIgnoring()
+        ignoreChangeInSelection = false
     }
     
     // MARK: -
     
     func performSearch(text: String?, results: BRSearchResults?) {
-        noSearchResultsLabel.hidden = true
-        updatePathControlWithSearch(text)
-        
-        guard let _ = text else {
-            searchPredicate = nil
-            return
-        }
-        guard let results = results where results.count() != 0 else {
-            searchPredicate = NSPredicate(value: false)
-            noSearchResultsLabel.hidden = false
-            return
-        }
-        
-        // Map results to an array of document ids
-        
-        var ids: [String] = []
-        
-        results.iterateWithBlock { (index: UInt, result: BRSearchResult!, stop: UnsafeMutablePointer<ObjCBool>) -> Void in
-            // guard let _ = result.dictionaryRepresentation()
-            // let _ = result.valueForField("t") as? String,
-            // let _ = result.valueForField("v") as? String
-            
-            guard var id = result.valueForField("id") as? String else {
-                  return
-            }
-            
-            if id[id.startIndex] == "?" { // kBRSimpleIndexableSearchObjectType
-                id = id.substringFromIndex(id.startIndex.advancedBy(1))
-            }
-            
-            ids.append(id)
-        }
-        
-        searchPredicate = NSPredicate(format: "id in %@", ids)
+        NSBeep()
     }
     
     func updateFilterPredicate() {
@@ -337,41 +380,6 @@ class FolderEditor: NSViewController, DataSourceViewController {
         }
     }
     
-    func updatePathControlWithSearch(text: String?) {
-        guard let text = text else {
-            pathControl.URL = NSURL(string: "southlake://localhost/library")
-            updatePathControlAppearance()
-            return
-        }
-        
-        // The url should be of the format southlake://localhost/library/?search=text
-        // But a path control doesn't know how to work with that.
-        
-        let encodedText = text.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-        let encodedPath = String(format: NSLocalizedString("Searching for \"%@\"", comment: ""), text).stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())
-        
-        guard let queryValue = encodedText, let queryPath = encodedPath else {
-            log("unable to encode search string")
-            return
-        }
-        
-        let query = String(format: "search=%@", queryValue)
-        
-        if let queryURL = NSURL(string: "southlake://localhost/library/?\(query)"),
-           let pathURL = NSURL(string: "southlake://localhost/library/\(queryPath)") {
-        
-            pathControl.URL = pathURL
-            updatePathControlAppearance()
-            
-            if let cell = pathControl.pathComponentCells()[safe: 1] {
-                cell.URL = queryURL
-            }
-            
-        } else {
-            log("unable to create url for search text \(text)")
-        }
-    }
-    
     func updatePathControlAppearance() {
         // First cell's string value is a capitalized, localized transformation of "tags"
         // First cell is black, remaining are blue
@@ -388,5 +396,18 @@ class FolderEditor: NSViewController, DataSourceViewController {
             cell.textColor = NSColor.keyboardFocusIndicatorColor()
         }
     }
+}
+
+extension FolderEditor: SelectionDelegate {
     
+    func object(object: AnyObject, didChangeSelection selection: [AnyObject]) {
+        guard let selection = selection as? [DataSource] else {
+            return
+        }
+        guard !ignoreChangeInSelection else {
+            return
+        }
+        
+        selectedObjects = selection
+    }
 }

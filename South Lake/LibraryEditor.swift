@@ -8,28 +8,24 @@
 
 import Cocoa
 
-/// TODO: move to LibraryEditor or FolderEditor?
-
-enum FileView: String {
-    case Card = "FileCardView"
-    case Table = "FileTableView"
-    case List = "FileListView"
-}
-
 /// Loads the contents of the library and supports filtering and sorting those 
 /// contents. Switches between the card, table and list views for those contents.
-/// Maintains a list of selected objects, which an interested party can bind to.
+/// Maintains a list of selected objects, which an interested party can bind to,
+/// or which are communicated through a SelectionDelegate
 
 class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
+    static var storyboard: String = "LibraryEditor"
+    static var filetypes: [String] = [
+        "southlake.notebook.library",
+        "southlake/x-notebook-library",
+        "southlake-notebook-library"
+    ]
+    
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var containerView: NSView!
     @IBOutlet var pathControl: NSPathControlWithCursor!
     @IBOutlet var noSearchResultsLabel: NSTextField!
-    
-    // MARK: - File Editor
-    
-    static var filetypes: [String] { return ["southlake.notebook.library", "southlake/x-notebook-library", "southlake-notebook-library"] }
-    static var storyboard: String { return "LibraryEditor" }
+    @IBOutlet var searchField: NSSearchField!
     
     var databaseManager: DatabaseManager? {
         didSet {
@@ -134,6 +130,8 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
         // pathControl.cursor = NSCursor.pointingHandCursor()
         pathControl.URL = NSURL(string: "southlake://localhost/library")
         updatePathControlAppearance()
+        
+        searchField.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
         
         loadScene(scene)
         bindContent()

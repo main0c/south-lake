@@ -10,12 +10,17 @@ import Cocoa
 import Quartz
 
 class PDFEditor: NSViewController, DataSourceViewController {
-    @IBOutlet var editor: PDFView!
-
-    // MARK: - File Editor
+    static var storyboard: String = "PDFEditor"
+    static var filetypes: [String] = [
+        "com.adobe.pdf",
+        "pdf",
+        "application/pdf"
+    ]
     
-    static var filetypes: [String] { return ["com.adobe.pdf", "pdf", "application/pdf"] }
-    static var storyboard: String { return "PDFEditor" }
+    @IBOutlet var editor: PDFView!
+    
+    // MARK: - File Editor
+
     
     var databaseManager: DatabaseManager?
     var searchService: BRSearchService?

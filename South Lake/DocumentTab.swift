@@ -5,13 +5,19 @@
 //  Created by Philip Dow on 2/17/16.
 //  Copyright © 2016 Phil Dow. All rights reserved.
 //
-//  Abstract superclass for document tabs
 
 import Cocoa
+
+/// The DocumentTab protocol describes the methods and properties any application
+/// tab is expected to implement. Most of the methods are template methods
+/// called by other parts of the appliction or IBAction methods that are passed
+/// down from the window controller at the top of the responder chain.
 
 protocol DocumentTab: class, Databasable {
     
     // Databasable
+    // If these are not included here I get "let constant" errors when trying to 
+    // assign to the property
     
     var databaseManager: DatabaseManager? { get set }
     var searchService: BRSearchService? { get set }
@@ -56,13 +62,3 @@ protocol DocumentTab: class, Databasable {
     
     func handleOpenURLNotification(notification: NSNotification)
 }
-
-//extension DocumentTab where Self: NSViewController {
-//    func documentWillSave() {
-//    
-//    }
-//    
-//    func willClose() {
-//    
-//    }
-//}

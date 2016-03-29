@@ -41,7 +41,7 @@ protocol DataSourceViewController: class, Databasable {
     /// The responder that take focus for editing and first responder switching
     var primaryResponder: NSView { get }
     
-    // These three really belong to folder source viewers and not file source viewers {
+    // These really belong to folder source viewers and not file source viewers {
     
         /// Return true if we edit files specifically and not some other kind of data source
         var isFileEditor: Bool { get }
