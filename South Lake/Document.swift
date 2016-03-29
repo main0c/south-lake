@@ -385,10 +385,10 @@ class Document: NSDocument {
                 inbox.title = "Inbox"
                 inbox.icon = NSImage(named: "light-inbox-icon")
             
-                // The inbox is just a folder with a special icon
-                // inbox.file_extension = DataTypes.Inbox.ext
-                // inbox.mime_type = DataTypes.Inbox.mime
-                // inbox.uti = DataTypes.Inbox.uti
+                // The inbox is just a folder with a special icon, or not?
+                inbox.file_extension = DataTypes.Inbox.ext
+                inbox.mime_type = DataTypes.Inbox.mime
+                inbox.uti = DataTypes.Inbox.uti
             
                 let folder2 = Folder(forNewDocumentInDatabase: databaseManager.database)
             

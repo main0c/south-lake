@@ -22,30 +22,57 @@ class EditorPlugIns {
         
         plugins = [
             [
-                "filetypes": ["net.daringfireball.markdown", "markdown", "text/markdown"],
+                "filetypes": [
+                    "net.daringfireball.markdown",
+                    "markdown",
+                    "text/markdown"
+                ],
                 "storyboard": "MarkdownEditor"
             ],
             [
-                "filetypes": ["com.adobe.pdf", "pdf", "application/pdf"],
+                "filetypes": [
+                    "com.adobe.pdf",
+                    "pdf",
+                    "application/pdf"
+                ],
                 "storyboard": "PDFEditor"
             ],
             [
-                "filetypes": ["southlake.notebook.library", "southlake/x-notebook-library", "southlake-notebook-library"],
+                "filetypes": [
+                    "southlake.notebook.library",
+                    "southlake/x-notebook-library",
+                    "southlake-notebook-library"
+                ],
                 "storyboard": "LibraryEditor"
             ],
             [
-                "filetypes": ["southlake.notebook.tags", "southlake/x-notebook-tags", "southlake-notebook-tags"],
+                "filetypes": [
+                    "southlake.notebook.tags",
+                    "southlake/x-notebook-tags",
+                    "southlake-notebook-tags"
+                ],
                 "storyboard": "TagsEditor"
             ],
             [
-                "filetypes": ["southlake.notebook.calendar", "southlake/x-notebook-calendar", "southlake-notebook-calendar"],
+                "filetypes": [
+                    "southlake.notebook.calendar",
+                    "southlake/x-notebook-calendar",
+                    "southlake-notebook-calendar"
+                ],
                 "storyboard": "CalendarEditor"
             ],
             [
                 "filetypes": [
-                              "southlake.folder", "southlake/x-folder", "southlake-folder",
-                              "southlake.smart-folder", "southlake/x-smart-folder", "southlake-smart-folder"
-                             ],
+                    "southlake.folder",
+                    "southlake/x-folder",
+                    "southlake-folder",
+                    "southlake.smart-folder",
+                    "southlake/x-smart-folder",
+                    "southlake-smart-folder",
+                    "southlake/x-notebook-inbox",
+                    "southlake.notebook.inbox",
+                    "southlake-notebook-inbox"
+                ],
                 "storyboard": "FolderEditor"
             ]
         ]

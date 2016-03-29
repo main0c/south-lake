@@ -17,7 +17,10 @@ class FolderEditor: NSViewController, DataSourceViewController {
         "southlake-folder",
         "southlake.smart-folder",
         "southlake/x-smart-folder",
-        "southlake-smart-folder"
+        "southlake-smart-folder",
+        "southlake/x-notebook-inbox",
+        "southlake.notebook.inbox",
+        "southlake-notebook-inbox"
     ]
     
     @IBOutlet var arrayController: NSArrayController!
