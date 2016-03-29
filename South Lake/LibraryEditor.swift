@@ -82,11 +82,22 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
     }
     
     var delegate: SelectionDelegate?
+    
+    // What I want is to not use bindings at all for selection, which cause misfires,
+    // but collection view delegate selection callbacks have inexplicably stopped working
+    
+    private var ignoreChangeInSelection = false
+    
     dynamic var selectedObjects: [DataSource]? {
         didSet {
-            if let delegate = delegate, let selection = selectedObjects {
-                delegate.object(self, didChangeSelection: selection)
+            guard !ignoreChangeInSelection else {
+                return
             }
+            guard let delegate = delegate, let selection = selectedObjects else {
+                return
+            }
+            
+            delegate.object(self, didChangeSelection: selection)
         }
     }
     
@@ -263,10 +274,12 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
         // Set up connections
         
         sceneController!.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
-        sceneController?.delegate = self
+        sceneController!.delegate = self
         
         if let selection = selection {
-            sceneController!.arrayController.setSelectedObjects(selection)
+            whileIgnoringChangeInSelection {
+                self.sceneController!.arrayController.setSelectedObjects(selection)
+            }
         }
     }
     
@@ -275,10 +288,12 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
             return
         }
         
-        sceneController.arrayController.unbind("contentArray")
-        sceneController.arrayController.content = []
-        sceneController.view.removeFromSuperview()
-        sceneController.willClose()
+        whileIgnoringChangeInSelection {
+            sceneController.arrayController.unbind("contentArray")
+            sceneController.arrayController.content = []
+            sceneController.view.removeFromSuperview()
+            sceneController.willClose()
+        }
     }
     
     func storyboardForScene(scene: Scene) -> NSStoryboard? {
@@ -292,6 +307,12 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
         case .None:
             return nil
         }
+    }
+    
+    func whileIgnoringChangeInSelection(whileIgnoring: Void -> Void) {
+        ignoreChangeInSelection = true
+        whileIgnoring()
+        ignoreChangeInSelection = false
     }
     
     // MARK: -
@@ -409,6 +430,9 @@ extension LibraryEditor: SelectionDelegate {
     
     func object(object: AnyObject, didChangeSelection selection: [AnyObject]) {
         guard let selection = selection as? [DataSource] else {
+            return
+        }
+        guard !ignoreChangeInSelection else {
             return
         }
         

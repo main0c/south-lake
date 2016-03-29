@@ -45,6 +45,8 @@ class FileCardCollectionViewItem: NSCollectionViewItem {
     // MARK: - First responder observation
     
     override func viewDidAppear() {
+        super.viewDidAppear()
+        
         guard let window = view.window else {
             return
         }

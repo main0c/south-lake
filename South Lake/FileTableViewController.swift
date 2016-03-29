@@ -127,6 +127,9 @@ extension FileTableViewController: NSTableViewDelegate {
         guard let selection = arrayController.selectedObjects as? [DataSource] else {
             return
         }
+        guard !selectsOnDoubleClick else {
+            return
+        }
         
         selectedObjects = selection
     }

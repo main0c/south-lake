@@ -275,6 +275,8 @@ class MarkdownEditor: NSViewController, DataSourceViewController {
     }
     
     override func viewDidAppear() {
+        super.viewDidAppear()
+        
         self.renderer.parseAndRenderNow()
         self.highlighter.parseAndHighlightNow()
         self.tableOfContents = self.renderer.tableOfContents()

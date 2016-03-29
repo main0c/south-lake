@@ -19,8 +19,16 @@ class FileCardViewController: NSViewController, FileCollectionScene {
     var databaseManager: DatabaseManager?
     var searchService: BRSearchService?
     
-    var selectsOnDoubleClick: Bool = false
     var delegate: SelectionDelegate?
+    var selectsOnDoubleClick: Bool = false {
+        didSet {
+            if selectsOnDoubleClick {
+                unbind("selectedObjects")
+            } else {
+                bind("selectedObjects", toObject: arrayController, withKeyPath: "selectedObjects", options: [:])
+            }
+        }
+    }
     
     dynamic var selectedObjects: [DataSource] = [] {
         didSet {
@@ -44,11 +52,13 @@ class FileCardViewController: NSViewController, FileCollectionScene {
         prototype?.target = self
         
         collectionView.itemPrototype = prototype
-        
         collectionView.delegate = self
+        
+        bind("selectedObjects", toObject: arrayController, withKeyPath: "selectedObjects", options: [:])
     }
     
     func willClose() {
+        unbind("selectedObjects")
         // OS API bug:
         // collectionView.itemPrototype must be set to nil for collection view
         // and this view controller to dealloc, but first the content on the
@@ -80,8 +90,9 @@ class FileCardViewController: NSViewController, FileCollectionScene {
         }
         
         let selection = arrayController.selectedObjects as? [DataSource]
-        
-        let menuBuilder = MoveToMenuBuilder(databaseManager: databaseManager, action: #selector(FileCardViewController.executeMoveTo(_:)), selection: selection)
+        let menuBuilder = MoveToMenuBuilder(databaseManager: databaseManager,
+            action: #selector(FileCardViewController.executeMoveTo(_:)),
+            selection: selection)
         
         guard let menu = menuBuilder.menu() else {
             return
@@ -147,18 +158,20 @@ extension FileCardViewController: NSCollectionViewDelegate {
         
         return true
     }
-    
+
+    // This method is inexplicably not called
+
     func collectionView(collectionView: NSCollectionView, didSelectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) {
+        log("call me baby")
+        
         guard let selection = arrayController.selectedObjects as? [DataSource] else {
+            return
+        }
+        guard !selectsOnDoubleClick else {
             return
         }
         
         selectedObjects = selection
-    }
-    
-    func collectionView(collectionView: NSCollectionView, shouldSelectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) -> Set<NSIndexPath> {
-        
-        return indexPaths
     }
     
 }

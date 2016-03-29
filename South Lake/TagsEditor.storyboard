@@ -238,6 +238,7 @@
                                             <connections>
                                                 <binding destination="Lxf-gQ-Klc" name="content" keyPath="arrangedObjects" id="ClD-sU-tHs"/>
                                                 <binding destination="Lxf-gQ-Klc" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="ClD-sU-tHs" id="Nn6-7h-w6L"/>
+                                                <outlet property="delegate" destination="V6S-Yl-nLX" id="xKz-5f-VE0"/>
                                             </connections>
                                         </collectionView>
                                     </subviews>
@@ -291,6 +292,7 @@
                                             <connections>
                                                 <binding destination="p2V-ay-BLW" name="content" keyPath="arrangedObjects" id="FMg-Md-DAo"/>
                                                 <binding destination="p2V-ay-BLW" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="FMg-Md-DAo" id="sRE-z8-OKX"/>
+                                                <outlet property="delegate" destination="ch3-o0-doR" id="AMM-ag-wxj"/>
                                             </connections>
                                         </collectionView>
                                     </subviews>

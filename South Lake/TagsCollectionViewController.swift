@@ -108,4 +108,8 @@ class TagsCollectionViewController: NSViewController, FileCollectionScene {
         collectionView.maxItemSize = NSMakeSize(0, 33)
         collectionView.maxNumberOfColumns = 1
     }
+    
+    func collectionView(collectionView: NSCollectionView, didSelectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) {
+        log("")
+    }
 }
