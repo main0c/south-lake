@@ -34,6 +34,7 @@
 		E336440E1C73DDF1000FFC9C /* MMTabBarView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E33643FF1C73DDE2000FFC9C /* MMTabBarView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E343AC5E1CA9A13100BEF51D /* FileListCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E343AC5D1CA9A13100BEF51D /* FileListCollectionViewItem.swift */; };
 		E343AC601CA9A13C00BEF51D /* FileListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E343AC5F1CA9A13C00BEF51D /* FileListCollectionView.swift */; };
+		E35529171CAAFF9A00E8110E /* ContentPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E35529161CAAFF9A00E8110E /* ContentPanel.storyboard */; };
 		E35A80071CA1D5C300CBEB36 /* MoveToMenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35A80061CA1D5C300CBEB36 /* MoveToMenuBuilder.swift */; };
 		E360725C1C74E32E00914C2C /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E360725B1C74E32E00914C2C /* DocumentWindowController.swift */; };
 		E36072701C74E40500914C2C /* DocumentTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E360726E1C74E40500914C2C /* DocumentTabController.swift */; };
@@ -338,6 +339,7 @@
 		E33643F71C73DDE1000FFC9C /* MMTabBarView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MMTabBarView.xcodeproj; path = Dependencies/MMTabBarView/MMTabBarView/MMTabBarView.xcodeproj; sourceTree = "<group>"; };
 		E343AC5D1CA9A13100BEF51D /* FileListCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileListCollectionViewItem.swift; sourceTree = "<group>"; };
 		E343AC5F1CA9A13C00BEF51D /* FileListCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileListCollectionView.swift; sourceTree = "<group>"; };
+		E35529161CAAFF9A00E8110E /* ContentPanel.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ContentPanel.storyboard; sourceTree = "<group>"; };
 		E35A80061CA1D5C300CBEB36 /* MoveToMenuBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToMenuBuilder.swift; sourceTree = "<group>"; };
 		E360725B1C74E32E00914C2C /* DocumentWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
 		E360726E1C74E40500914C2C /* DocumentTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentTabController.swift; sourceTree = "<group>"; };
@@ -2575,8 +2577,6 @@
 			children = (
 				E3C821281C75984B00CBAE92 /* DefaultTab.storyboard */,
 				E3C821221C7597B600CBAE92 /* DefaultTab.swift */,
-				E32757A61C8C946B004525E2 /* ContentPanel.swift */,
-				E37AB79C1C8F713900F44564 /* InspectorPanel.swift */,
 			);
 			name = "Default Tab";
 			sourceTree = "<group>";
@@ -2586,7 +2586,6 @@
 			children = (
 				E3FD678E1C7BE37800D7EBB7 /* EditorPlugIns.swift */,
 				E37AB74A1C8E20A900F44564 /* FileCollectionScene.swift */,
-				E37A05481C9B0C80006618EC /* File Header */,
 				E389C8FE1CA3633600BD1AA9 /* File Card View */,
 				E389C9011CA3667F00BD1AA9 /* File List View */,
 				E389C8FF1CA3640C00BD1AA9 /* File Table View */,
@@ -2636,6 +2635,34 @@
 				E33643FF1C73DDE2000FFC9C /* MMTabBarView.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E35529131CAAFE9B00E8110E /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				E3824FB91CAA30640073885C /* Source List Panel */,
+				E35529141CAAFEA500E8110E /* Content Panel */,
+				E35529151CAAFF4D00E8110E /* Inspector Panel */,
+				E37A05481C9B0C80006618EC /* File Header */,
+			);
+			name = "UI Components";
+			sourceTree = "<group>";
+		};
+		E35529141CAAFEA500E8110E /* Content Panel */ = {
+			isa = PBXGroup;
+			children = (
+				E35529161CAAFF9A00E8110E /* ContentPanel.storyboard */,
+				E32757A61C8C946B004525E2 /* ContentPanel.swift */,
+			);
+			name = "Content Panel";
+			sourceTree = "<group>";
+		};
+		E35529151CAAFF4D00E8110E /* Inspector Panel */ = {
+			isa = PBXGroup;
+			children = (
+				E37AB79C1C8F713900F44564 /* InspectorPanel.swift */,
+			);
+			name = "Inspector Panel";
 			sourceTree = "<group>";
 		};
 		E360726D1C74E3C800914C2C /* Model */ = {
@@ -2759,6 +2786,7 @@
 				E380F61A1C9935BF001C8F9D /* Application and Document */,
 				E32AD26F1C76838E00648BFD /* Protocols */,
 				E360726D1C74E3C800914C2C /* Model */,
+				E35529131CAAFE9B00E8110E /* UI Components */,
 				E3C821111C75979100CBAE92 /* Tabs */,
 				E37C7BBF1C91020400A3AB43 /* Inspectors */,
 				E3274FBD1C75A065000B6A84 /* Editors */,
@@ -7215,12 +7243,12 @@
 			name = "Application and Document";
 			sourceTree = "<group>";
 		};
-		E3824FB91CAA30640073885C /* Source List */ = {
+		E3824FB91CAA30640073885C /* Source List Panel */ = {
 			isa = PBXGroup;
 			children = (
 				E3274FC01C75A0B7000B6A84 /* SourceListPanel.swift */,
 			);
-			name = "Source List";
+			name = "Source List Panel";
 			sourceTree = "<group>";
 		};
 		E3824FBC1CAA34E20073885C /* AppKit Extensions */ = {
@@ -7337,7 +7365,6 @@
 		E3C821111C75979100CBAE92 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				E3824FB91CAA30640073885C /* Source List */,
 				E3274FAC1C75A04C000B6A84 /* Default Tab */,
 			);
 			name = Tabs;
@@ -7666,6 +7693,7 @@
 				E38035941C728D780048AD46 /* Themes in Resources */,
 				E3C821261C75984B00CBAE92 /* DefaultTab.storyboard in Resources */,
 				E37AB7731C8F4C5900F44564 /* As We May Think - The Atlantic.pdf in Resources */,
+				E35529171CAAFF9A00E8110E /* ContentPanel.storyboard in Resources */,
 				E389C9051CA3697100BD1AA9 /* FileTableView.storyboard in Resources */,
 				E37AB7771C8F4D2B00F44564 /* PDFEditor.storyboard in Resources */,
 				E3E65F541C7C1A8F0085B5B7 /* About Markdown.md in Resources */,

@@ -195,7 +195,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             }
         }
         
-        // Use delegates instead of bindings because bindings firing when established
+        // Using delegates instead of bindings for selection: see SelectionDelegate
         
         sourceListPanel.delegate = self
         
@@ -211,8 +211,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         // Create the content panel and move it into place
         
-        contentPanel = ContentPanel()
-        contentPanel.view = NSView(frame: CGRectZero)
+        contentPanel = NSStoryboard(name: "ContentPanel", bundle: nil).instantiateInitialController() as! ContentPanel
         
         if layoutController.splitViewItems.count >= 2 {
             layoutController.replaceSplitViewItem(atIndex: 1, withViewController: contentPanel)
