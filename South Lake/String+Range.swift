@@ -22,7 +22,7 @@ import Foundation
 extension String {
     
     func entireRange() -> Range<String.Index> {
-        return Range<String.Index>(start: startIndex, end: endIndex)
+        return startIndex ..< endIndex
     }
     
     func entireNSRange() -> NSRange {
@@ -30,7 +30,7 @@ extension String {
     }
     
     func rangeFrom(index: String.Index) -> Range<String.Index> {
-        return Range<String.Index>(start: index, end: endIndex)
+        return index ..< endIndex
     }
     
     func rangeFromNSRange(nsRange : NSRange) -> Range<String.Index>? {

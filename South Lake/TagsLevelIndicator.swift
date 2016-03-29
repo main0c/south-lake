@@ -43,7 +43,8 @@ class TagsLevelIndicator: NSView {
                 y = floor(NSHeight(bounds)/2 - 10/2)
                 y -= (10/2 + 2)
                 
-                if (++row > 2) {
+                row += 1
+                if (row > 2) {
                     break
                 }
             }

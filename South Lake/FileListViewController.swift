@@ -42,7 +42,7 @@ class FileListViewController: NSViewController, FileCollectionScene {
         collectionView.maxNumberOfColumns = 1
         
         let prototype = storyboard!.instantiateControllerWithIdentifier("FileListCollectionViewItem") as? FileListCollectionViewItem
-        prototype?.doubleAction = Selector("doubleClick:")
+        prototype?.doubleAction = #selector(FileListViewController.doubleClick(_:))
         prototype?.target = self
         
         collectionView.itemPrototype = prototype
@@ -87,7 +87,7 @@ class FileListViewController: NSViewController, FileCollectionScene {
         
         let selection = arrayController.selectedObjects as? [DataSource]
         
-        let menuBuilder = MoveToMenuBuilder(databaseManager: databaseManager, action: Selector("executeMoveTo:"), selection: selection)
+        let menuBuilder = MoveToMenuBuilder(databaseManager: databaseManager, action: #selector(FileListViewController.executeMoveTo(_:)), selection: selection)
         
         guard let menu = menuBuilder.menu() else {
             return
@@ -142,7 +142,7 @@ extension FileListViewController: NSCollectionViewDelegate {
     func collectionView(collectionView: NSCollectionView, writeItemsAtIndexes indexes: NSIndexSet, toPasteboard pasteboard: NSPasteboard) -> Bool {
         
         let items = arrayController.arrangedObjects.objectsAtIndexes(indexes)
-        let titles = items.map { $0.title }
+        let titles = items.map { ($0 as! DataSource).title }
         
         pasteboard.declareTypes([UI.Pasteboard.Type.File], owner: nil)
         pasteboard.setPropertyList(titles, forType: NSPasteboardTypeString)

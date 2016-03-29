@@ -226,13 +226,13 @@ class MarkdownEditor: NSViewController, SourceViewer {
 
         let center = NSNotificationCenter.defaultCenter()
 
-        center.addObserver(self, selector: Selector("editorTextDidChange:"), name: NSTextDidChangeNotification, object: editor)
+        center.addObserver(self, selector: #selector(MarkdownEditor.editorTextDidChange(_:)), name: NSTextDidChangeNotification, object: editor)
         
-        center.addObserver(self, selector: Selector("userDefaultsDidChange:"), name: NSUserDefaultsDidChangeNotification, object: NSUserDefaults.standardUserDefaults())
+        center.addObserver(self, selector: #selector(MarkdownEditor.userDefaultsDidChange(_:)), name: NSUserDefaultsDidChangeNotification, object: NSUserDefaults.standardUserDefaults())
         
-        center.addObserver(self, selector: Selector("editorBoundsDidChange:"), name: NSViewBoundsDidChangeNotification, object: editor.enclosingScrollView?.contentView)
+        center.addObserver(self, selector: #selector(MarkdownEditor.editorBoundsDidChange(_:)), name: NSViewBoundsDidChangeNotification, object: editor.enclosingScrollView?.contentView)
         
-        center.addObserver(self, selector: Selector("editorFrameDidChange:"), name: NSViewFrameDidChangeNotification, object: editor)
+        center.addObserver(self, selector: #selector(MarkdownEditor.editorFrameDidChange(_:)), name: NSViewFrameDidChangeNotification, object: editor)
         
 //        center.addObserver(self, selector: Selector("didRequestEditorReload"), name: MPDidRequestEditorSetupNotification, object: nil)
 //    
@@ -240,7 +240,7 @@ class MarkdownEditor: NSViewController, SourceViewer {
      
         
         if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber10_9) {
-            center.addObserver(self, selector: Selector("previewDidLiveScroll:"), name: NSScrollViewDidEndLiveScrollNotification, object: preview.mainFrameEnclosingScrollView)
+            center.addObserver(self, selector: #selector(MarkdownEditor.previewDidLiveScroll(_:)), name: NSScrollViewDidEndLiveScrollNotification, object: preview.mainFrameEnclosingScrollView)
         }
         
         // TODO: this whole thing may not be necessary
@@ -672,9 +672,9 @@ extension MarkdownEditor: NSTextViewDelegate {
         let range = textView.selectedRange()
         
         switch commandSelector {
-        case Selector("insertTab:"):
+        case #selector(NSResponder.insertTab(_:)):
             return snippetHelper.handleTab(range, forward: true)
-        case Selector("insertBacktab:"):
+        case #selector(NSResponder.insertBacktab(_:)):
             return snippetHelper.handleTab(range, forward: false)
         default:
             return false
@@ -766,7 +766,7 @@ extension MarkdownEditor: WebPolicyDelegate {
 extension MarkdownEditor: WebEditingDelegate {
     
     override func webView(webView: WebView!, doCommandBySelector selector: Selector) -> Bool {
-        if selector == Selector("copy:") {
+        if selector == #selector(NSText.copy(_:)) {
             let html = webView.selectedDOMRange.markupString
             NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                 let pb = NSPasteboard.generalPasteboard()

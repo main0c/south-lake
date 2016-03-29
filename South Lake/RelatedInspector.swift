@@ -68,9 +68,9 @@ class RelatedInspector: NSViewController, Inspector {
         
         (view as! CustomizableView).backgroundColor = UI.Color.Background.Inspector
         
-        tagsArrayController.sortDescriptors = [NSSortDescriptor(key: "self", ascending: true, selector: Selector("caseInsensitiveCompare:"))]
+        tagsArrayController.sortDescriptors = [NSSortDescriptor(key: "self", ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))]
 
-        libraryArrayController.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: Selector("compare:"))]
+        libraryArrayController.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: #selector(NSNumber.compare(_:)))]
         
         loadScene("FileCardView")
         

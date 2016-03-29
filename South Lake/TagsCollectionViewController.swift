@@ -31,7 +31,7 @@ class TagsCollectionViewController: NSViewController, FileCollectionScene {
         collectionView.backgroundColors = [UI.Color.Background.SourceViewer]
         
         let prototype = storyboard!.instantiateControllerWithIdentifier("tagsListCollectionViewItem") as? TagsCollectionViewItem
-        prototype?.doubleAction = Selector("doubleClick:")
+        prototype?.doubleAction = #selector(TagsCollectionViewController.doubleClick(_:))
         prototype?.target = self
         
         collectionView.itemPrototype = prototype

@@ -41,7 +41,7 @@ class FileCardViewController: NSViewController, FileCollectionScene {
         collectionView.backgroundColors = [UI.Color.Background.SourceViewer]
         
         let prototype = storyboard!.instantiateControllerWithIdentifier("FileCardCollectionViewItem") as? FileCardCollectionViewItem
-        prototype?.doubleAction = Selector("doubleClick:")
+        prototype?.doubleAction = #selector(FileCardViewController.doubleClick(_:))
         prototype?.target = self
         
         collectionView.itemPrototype = prototype
@@ -86,7 +86,7 @@ class FileCardViewController: NSViewController, FileCollectionScene {
         
         let selection = arrayController.selectedObjects as? [DataSource]
         
-        let menuBuilder = MoveToMenuBuilder(databaseManager: databaseManager, action: Selector("executeMoveTo:"), selection: selection)
+        let menuBuilder = MoveToMenuBuilder(databaseManager: databaseManager, action: #selector(FileCardViewController.executeMoveTo(_:)), selection: selection)
         
         guard let menu = menuBuilder.menu() else {
             return
@@ -140,7 +140,7 @@ extension FileCardViewController: NSCollectionViewDelegate {
     func collectionView(collectionView: NSCollectionView, writeItemsAtIndexes indexes: NSIndexSet, toPasteboard pasteboard: NSPasteboard) -> Bool {
         
         let items = arrayController.arrangedObjects.objectsAtIndexes(indexes)
-        let titles = items.map { $0.title }
+        let titles = items.map { ($0 as! DataSource).title }
         
         pasteboard.declareTypes([UI.Pasteboard.Type.File], owner: nil)
         pasteboard.setPropertyList(titles, forType: NSPasteboardTypeString)

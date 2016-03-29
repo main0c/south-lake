@@ -122,19 +122,19 @@ class SnippetTextViewHelper {
     /// Returns the trigger word and range from a particular index into a string
     func triggerFor(string: String, index: String.Index) -> (range: Range<String.Index>, string: String) {
         let boundaries = NSCharacterSet.alphanumericCharacterSet().invertedSet
-        let searchRange = Range<String.Index>(start: string.startIndex, end: index)
+        let searchRange = string.startIndex ..< index
         
         var range = string.rangeOfCharacterFromSet(boundaries, options: .BackwardsSearch, range: searchRange)
         
         if range == nil {
             // Want entire range
-            range = Range<String.Index>(start: string.startIndex, end: string.endIndex)
+            range = string.startIndex ..< string.endIndex
         } else {
             // Advance by one to ignore matched character
             range!.startIndex = range!.startIndex.advancedBy(1)
         }
         
-        let triggerRange = Range<String.Index>(start: range!.startIndex, end: searchRange.endIndex)
+        let triggerRange = range!.startIndex ..< searchRange.endIndex
         let triggerString = string.substringWithRange(triggerRange)
         
         return (triggerRange, triggerString)

@@ -34,7 +34,7 @@ class DocumentWindowController: NSWindowController, Databasable {
         super.windowDidLoad()
     
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: Selector("handleOpenURLNotification:"),
+            selector: #selector(DocumentWindowController.handleOpenURLNotification(_:)),
             name: OpenURLNotification,
             object: nil)
     }
@@ -194,26 +194,26 @@ class DocumentWindowController: NSWindowController, Databasable {
     
     override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
         switch menuItem.action {
-        case Selector("performTabbedClose:"):
+        case #selector(DocumentWindowController.performTabbedClose(_:)):
              menuItem.title = closeMenuTitle()
              return true
-        case Selector("createNewMarkdownDocument:"),
-             Selector("createNewSmartFolder:"),
-             Selector("createNewFolder:"),
-             Selector("makeFilesAndFoldersFirstResponder:"),
-             Selector("makeEditorFirstResponder:"),
-             Selector("makeFileInfoFirstResponder:"),
-             Selector("changeLayout:"),
-             Selector("toggleDocumentHeader:"):
+        case #selector(DocumentTabController.createNewMarkdownDocument(_:)),
+             #selector(DocumentTabController.createNewSmartFolder(_:)),
+             #selector(DocumentTabController.createNewFolder(_:)),
+             #selector(DocumentTabController.makeFilesAndFoldersFirstResponder(_:)),
+             #selector(DocumentTabController.makeEditorFirstResponder(_:)),
+             #selector(DocumentTabController.makeFileInfoFirstResponder(_:)),
+             #selector(DocumentTabController.changeLayout(_:)),
+             #selector(DocumentTabController.toggleDocumentHeader(_:)):
              return tabController.validateMenuItem(menuItem)
-        case Selector("closeTab:"),
-             Selector("createNewTab:"),
-             Selector("selectNextTab:"),
-             Selector("selectPreviousTab:"):
+        case #selector(DocumentWindowController.closeTab(_:)),
+             #selector(DocumentTabController.createNewTab(_:)),
+             #selector(DocumentTabController.selectNextTab(_:)),
+             #selector(DocumentTabController.selectPreviousTab(_:)):
             return tabController.validateMenuItem(menuItem)
-        case Selector("findInNotebook:"),
-             Selector("closeWindow:"),
-             Selector("importFiles:"):
+        case #selector(DocumentWindowController.findInNotebook(_:)),
+             #selector(DocumentWindowController.closeWindow(_:)),
+             #selector(DocumentWindowController.importFiles(_:)):
              return true
         default:
              return false

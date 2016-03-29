@@ -72,7 +72,7 @@ class TagsEditor: NSViewController, SourceViewer {
         (view as! CustomizableView).backgroundColor = UI.Color.Background.SourceViewer
         pathControl.backgroundColor = UI.Color.Background.SourceViewer
     
-        sortDescriptors = [NSSortDescriptor(key: "tag", ascending: true, selector: Selector("caseInsensitiveCompare:"))]
+        sortDescriptors = [NSSortDescriptor(key: "tag", ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))]
         
         // pathControl.cursor = NSCursor.pointingHandCursor()
         pathControl.URL = NSURL(string: "southlake://localhost/tags")
@@ -141,9 +141,9 @@ class TagsEditor: NSViewController, SourceViewer {
         
         switch sender.tag {
         case 1001: // by tag
-            descriptors = [NSSortDescriptor(key: "tag", ascending: (key == "tag" ? !asc : true), selector: Selector("caseInsensitiveCompare:"))]
+            descriptors = [NSSortDescriptor(key: "tag", ascending: (key == "tag" ? !asc : true), selector: #selector(NSString.caseInsensitiveCompare(_:)))]
         case 1002: // by count
-            descriptors = [NSSortDescriptor(key: "count", ascending: (key == "count" ? !asc : false), selector: Selector("compare:"))]
+            descriptors = [NSSortDescriptor(key: "count", ascending: (key == "count" ? !asc : false), selector: #selector(NSNumber.compare(_:)))]
         default:
             break
         }

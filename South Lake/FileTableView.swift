@@ -11,15 +11,15 @@ import Cocoa
 class FileTableView: NSTableView {
 
     override func deleteBackward(sender: AnyObject?) {
-        nextResponder?.tryToPerform(Selector("deleteBackward:"), with: sender)
+        nextResponder?.tryToPerform(#selector(NSResponder.deleteBackward(_:)), with: sender)
     }
     
     override func insertNewline(sender: AnyObject?) {
-        nextResponder?.tryToPerform(Selector("insertNewline:"), with: sender)
+        nextResponder?.tryToPerform(#selector(NSResponder.insertNewline(_:)), with: sender)
     }
     
     override func quickLookPreviewItems(sender: AnyObject?) {
-        nextResponder?.tryToPerform(Selector("quickLookPreviewItems:"), with: sender)
+        nextResponder?.tryToPerform(#selector(NSResponder.quickLookPreviewItems(_:)), with: sender)
     }
 
     override func keyDown(theEvent: NSEvent) {

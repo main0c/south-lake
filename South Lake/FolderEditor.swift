@@ -93,7 +93,7 @@ class FolderEditor: NSViewController, SourceViewer {
         (view as! CustomizableView).backgroundColor = UI.Color.Background.SourceViewer
         pathControl.backgroundColor = UI.Color.Background.SourceViewer
         
-        sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: Selector("compare:"))]
+        sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: #selector(NSNumber.compare(_:)))]
         
         // pathControl.cursor = NSCursor.pointingHandCursor()
         pathControl.URL = NSURL(string: "southlake://localhost/library")
@@ -154,11 +154,11 @@ class FolderEditor: NSViewController, SourceViewer {
         
         switch sender.tag {
         case 1001: // by title
-            descriptors = [NSSortDescriptor(key: "title", ascending: (key == "title" ? !asc : true), selector: Selector("caseInsensitiveCompare:"))]
+            descriptors = [NSSortDescriptor(key: "title", ascending: (key == "title" ? !asc : true), selector: #selector(NSString.caseInsensitiveCompare(_:)))]
         case 1002: // by date created
-            descriptors = [NSSortDescriptor(key: "created_at", ascending: (key == "created_at" ? !asc : false), selector: Selector("compare:"))]
+            descriptors = [NSSortDescriptor(key: "created_at", ascending: (key == "created_at" ? !asc : false), selector: #selector(NSNumber.compare(_:)))]
         case 1003: // by date updated
-            descriptors = [NSSortDescriptor(key: "updated_at", ascending: (key == "updated_at" ? !asc : false), selector: Selector("compare:"))]
+            descriptors = [NSSortDescriptor(key: "updated_at", ascending: (key == "updated_at" ? !asc : false), selector: #selector(NSNumber.compare(_:)))]
         default:
             break
         }
@@ -190,23 +190,22 @@ class FolderEditor: NSViewController, SourceViewer {
     }
     
     @IBAction func gotoPath(sender: AnyObject?) {
-        guard let databaseManager = databaseManager else {
-            return
-        }
-        guard let sender = sender as? NSPathControl else {
-            return
-        }
-        guard let url = sender.clickedPathComponentCell()?.URL else {
-            return
-        }
-        
-        // TODO: finish
-        return
-        
-        NSNotificationCenter.defaultCenter().postNotificationName(OpenURLNotification, object: self, userInfo: [
-            "dbm": databaseManager,
-            "url": url
-        ])
+//        guard let databaseManager = databaseManager else {
+//            return
+//        }
+//        guard let sender = sender as? NSPathControl else {
+//            return
+//        }
+//        guard let url = sender.clickedPathComponentCell()?.URL else {
+//            return
+//        }
+//        
+//        // TODO: finish
+//        
+//        NSNotificationCenter.defaultCenter().postNotificationName(OpenURLNotification, object: self, userInfo: [
+//            "dbm": databaseManager,
+//            "url": url
+//        ])
     }
     
     // MARK: - Scene

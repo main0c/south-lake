@@ -198,7 +198,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         // TODO: can't use notification center: can, just make sure we're passing the dbm
         // TODO: Set up the initial editor?
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("documentWillSave:"), name: DocumentWillSaveNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DefaultTab.documentWillSave(_:)), name: DocumentWillSaveNotification, object: nil)
         
         bind("selectedSourceListObjects", toObject: sourceListPanel, withKeyPath: "selectedObjects", options: [:])
         
@@ -893,15 +893,15 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
         switch menuItem.action {
-        case Selector("createNewMarkdownDocument:"),
-             Selector("createNewSmartFolder:"),
-             Selector("createNewFolder:"),
-             Selector("makeFilesAndFoldersFirstResponder:"),
-             Selector("makeEditorFirstResponder:"),
-             Selector("makeFileInfoFirstResponder:"),
-             Selector("changeLayout:"):
+        case #selector(DefaultTab.createNewMarkdownDocument(_:)),
+             #selector(DefaultTab.createNewSmartFolder(_:)),
+             #selector(DefaultTab.createNewFolder(_:)),
+             #selector(DefaultTab.makeFilesAndFoldersFirstResponder(_:)),
+             #selector(DefaultTab.makeEditorFirstResponder(_:)),
+             #selector(DefaultTab.makeFileInfoFirstResponder(_:)),
+             #selector(DefaultTab.changeLayout(_:)):
              return true
-        case Selector("toggleDocumentHeader:"):
+        case #selector(DefaultTab.toggleDocumentHeader(_:)):
              menuItem.title = toggleHeaderTitle()
              return selectedObject is File
         default:

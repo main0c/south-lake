@@ -43,7 +43,7 @@ class FileTableViewController: NSViewController, FileCollectionScene {
         // Table View
         
         tableView.target = self
-        tableView.doubleAction = Selector("doubleClick:")
+        tableView.doubleAction = #selector(FileTableViewController.doubleClick(_:))
         
         // Array Controller
         

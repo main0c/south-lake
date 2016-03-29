@@ -171,22 +171,22 @@ class DocumentTabController: NSViewController, Databasable {
     
     override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
         switch menuItem.action {
-        case Selector("createNewMarkdownDocument:"),
-             Selector("createNewSmartFolder:"),
-             Selector("createNewFolder:"),
-             Selector("makeFilesAndFoldersFirstResponder:"),
-             Selector("makeEditorFirstResponder:"),
-             Selector("makeFileInfoFirstResponder:"),
-             Selector("changeLayout:"),
-             Selector("toggleDocumentHeader:"):
+        case #selector(DocumentTabController.createNewMarkdownDocument(_:)),
+             #selector(DocumentTabController.createNewSmartFolder(_:)),
+             #selector(DocumentTabController.createNewFolder(_:)),
+             #selector(DocumentTabController.makeFilesAndFoldersFirstResponder(_:)),
+             #selector(DocumentTabController.makeEditorFirstResponder(_:)),
+             #selector(DocumentTabController.makeFileInfoFirstResponder(_:)),
+             #selector(DocumentTabController.changeLayout(_:)),
+             #selector(DocumentTabController.toggleDocumentHeader(_:)):
              return selectedTab != nil
                 ? selectedTab!.validateMenuItem(menuItem)
                 : false
-        case Selector("closeTab:"),
-             Selector("createNewTab:"):
+        case #selector(DocumentTabController.closeTab(_:)),
+             #selector(DocumentTabController.createNewTab(_:)):
              return true
-        case Selector("selectNextTab:"),
-             Selector("selectPreviousTab:"):
+        case #selector(DocumentTabController.selectNextTab(_:)),
+             #selector(DocumentTabController.selectPreviousTab(_:)):
              return count > 1
         default:
              return false

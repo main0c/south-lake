@@ -54,7 +54,7 @@ class MoveToMenuBuilder {
     }
     
     private func menuItemForFolder(item: Folder) -> NSMenuItem {
-        let menuItem = NSMenuItem(title: item.title, action: Selector("executeMoveTo:"), keyEquivalent: "")
+        let menuItem = NSMenuItem(title: item.title, action: action, keyEquivalent: "")
         
         menuItem.representedObject = item
         

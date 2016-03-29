@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="P7i-y0-Gmj">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="P7i-y0-Gmj">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
     </dependencies>
     <scenes>
         <!--Default Tab-->
@@ -118,11 +118,11 @@
                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EpO-yU-go6">
                                         <rect key="frame" x="0.0" y="29" width="200" height="371"/>
                                         <clipView key="contentView" drawsBackground="NO" id="9Jm-Sb-Rms">
-                                            <rect key="frame" x="0.0" y="0.0" width="200" height="371"/>
+                                            <rect key="frame" x="1" y="0.0" width="200" height="370"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <outlineView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="sourceList" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="22" viewBased="YES" floatsGroupRows="NO" indentationPerLevel="14" outlineTableColumn="VW4-Ja-dU6" id="db9-k2-GDY">
-                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="0.0"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="370"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -221,11 +221,11 @@
                                             </subviews>
                                             <nil key="backgroundColor"/>
                                         </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="hwF-r1-ZHQ">
-                                            <rect key="frame" x="0.0" y="356" width="234" height="15"/>
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="0.99999999999986322" horizontal="YES" id="hwF-r1-ZHQ">
+                                            <rect key="frame" x="0.0" y="356" width="200" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Xwu-cs-W4a">
+                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="0.002583210926933698" horizontal="NO" id="Xwu-cs-W4a">
                                             <rect key="frame" x="224" y="17" width="15" height="102"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>

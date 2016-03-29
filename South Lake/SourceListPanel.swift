@@ -398,12 +398,12 @@ extension SourceListPanel : NSOutlineViewDataSource {
             // If moving within same parent, adjust target index accordingly
             
             if draggedItemParent == parentItem && targetIndex > indexInParent {
-                targetIndex--
+                targetIndex -= 1
             }
             
             parentItem.mutableArrayValueForKey("children").insertObject(draggedItem, atIndex: targetIndex)
             
-            targetIndex++
+            targetIndex += 1
         }
         
         // Save all changes
@@ -420,11 +420,11 @@ extension SourceListPanel : NSOutlineViewDataSource {
         return true
     }
     
-    func performExternalDrag(info: NSDraggingInfo, var parent: NSTreeNode?, var index: Int) -> Bool {
+    func performExternalDrag(info: NSDraggingInfo, parent: NSTreeNode?, index: Int) -> Bool {
         return true
         
-        parent = nil
-        index = 0
+//        parent = nil
+//        index = 0
         
 //        var targetIndex = index
 //        
