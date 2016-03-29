@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="-326" y="707"/>
         </scene>
-        <!--Content View Controller-->
+        <!--Content-->
         <scene sceneID="lUj-dP-CsN">
             <objects>
-                <viewController id="gSK-tU-OTL" userLabel="Content View Controller" sceneMemberID="viewController">
+                <viewController id="gSK-tU-OTL" userLabel="Content" sceneMemberID="viewController">
                     <view key="view" id="b62-9X-aZ2">
                         <rect key="frame" x="0.0" y="0.0" width="551" height="400"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -104,10 +104,10 @@
             </objects>
             <point key="canvasLocation" x="-869" y="1321"/>
         </scene>
-        <!--Source List Controller-->
+        <!--Source List-->
         <scene sceneID="gsY-rn-MuH">
             <objects>
-                <viewController id="BCA-UI-RVa" userLabel="Source List Controller" customClass="SourceListPanel" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BCA-UI-RVa" userLabel="Source List" customClass="SourceListPanel" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="WFb-qx-mSZ">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="400"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -338,7 +338,7 @@
                         <splitViewItem id="8xa-WO-S1L"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" vertical="YES" id="mo6-8r-EB0">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="399"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </splitView>
                     <connections>
@@ -348,33 +348,33 @@
                 </splitViewController>
                 <customObject id="mvj-JV-BRK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="352" y="1232"/>
+            <point key="canvasLocation" x="352" y="1281.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hGo-Af-fMd">
             <objects>
                 <viewController id="HoG-my-hgV" sceneMemberID="viewController">
                     <view key="view" id="Oc2-ah-gb1">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="399"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>
                 <customObject id="zWE-Q2-sdv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1356" y="1232"/>
+            <point key="canvasLocation" x="1356" y="1281.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="dSk-p9-bCs">
             <objects>
                 <viewController id="wJq-2C-uWc" sceneMemberID="viewController">
                     <view key="view" id="kge-2E-4NC">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="399"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>
                 <customObject id="D5B-UX-P8c" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="867" y="1232"/>
+            <point key="canvasLocation" x="867" y="1281.5"/>
         </scene>
     </scenes>
     <resources>
