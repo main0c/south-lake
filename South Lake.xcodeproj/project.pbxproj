@@ -2585,10 +2585,7 @@
 			isa = PBXGroup;
 			children = (
 				E3FD678E1C7BE37800D7EBB7 /* EditorPlugIns.swift */,
-				E37AB74A1C8E20A900F44564 /* FileCollectionScene.swift */,
-				E389C8FE1CA3633600BD1AA9 /* File Card View */,
-				E389C9011CA3667F00BD1AA9 /* File List View */,
-				E389C8FF1CA3640C00BD1AA9 /* File Table View */,
+				E3E608711CAB0B4000821E86 /* Editor Components */,
 				E3DDBEEA1C8D30FF00136BAE /* Library */,
 				E389C9061CA3710800BD1AA9 /* Folder */,
 				E3DDBEEB1C8D310A00136BAE /* Tags */,
@@ -2637,7 +2634,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E35529131CAAFE9B00E8110E /* UI Components */ = {
+		E35529131CAAFE9B00E8110E /* Tab Components */ = {
 			isa = PBXGroup;
 			children = (
 				E3824FB91CAA30640073885C /* Source List Panel */,
@@ -2645,7 +2642,7 @@
 				E35529151CAAFF4D00E8110E /* Inspector Panel */,
 				E37A05481C9B0C80006618EC /* File Header */,
 			);
-			name = "UI Components";
+			name = "Tab Components";
 			sourceTree = "<group>";
 		};
 		E35529141CAAFEA500E8110E /* Content Panel */ = {
@@ -2786,7 +2783,6 @@
 				E380F61A1C9935BF001C8F9D /* Application and Document */,
 				E32AD26F1C76838E00648BFD /* Protocols */,
 				E360726D1C74E3C800914C2C /* Model */,
-				E35529131CAAFE9B00E8110E /* UI Components */,
 				E3C821111C75979100CBAE92 /* Tabs */,
 				E37C7BBF1C91020400A3AB43 /* Inspectors */,
 				E3274FBD1C75A065000B6A84 /* Editors */,
@@ -7365,6 +7361,7 @@
 		E3C821111C75979100CBAE92 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				E35529131CAAFE9B00E8110E /* Tab Components */,
 				E3274FAC1C75A04C000B6A84 /* Default Tab */,
 			);
 			name = Tabs;
@@ -7398,6 +7395,17 @@
 				E3DDBEF51C8D451E00136BAE /* CalendarEditor.swift */,
 			);
 			name = Calendar;
+			sourceTree = "<group>";
+		};
+		E3E608711CAB0B4000821E86 /* Editor Components */ = {
+			isa = PBXGroup;
+			children = (
+				E37AB74A1C8E20A900F44564 /* FileCollectionScene.swift */,
+				E389C8FE1CA3633600BD1AA9 /* File Card View */,
+				E389C9011CA3667F00BD1AA9 /* File List View */,
+				E389C8FF1CA3640C00BD1AA9 /* File Table View */,
+			);
+			name = "Editor Components";
 			sourceTree = "<group>";
 		};
 		E3E7C9E41C89079000BD73A9 /* Snippets */ = {
