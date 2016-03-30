@@ -21,6 +21,7 @@ class TagsEditor: NSViewController, DataSourceViewController {
     @IBOutlet var containerView: NSView!
     @IBOutlet var viewSelector: NSSegmentedControl!
     @IBOutlet var pathControl: NSPathControlWithCursor!
+    @IBOutlet var searchField: NSSearchField!
     
     // MARK: - Databasable
     
@@ -82,6 +83,8 @@ class TagsEditor: NSViewController, DataSourceViewController {
         // pathControl.cursor = NSCursor.pointingHandCursor()
         pathControl.URL = NSURL(string: "southlake://localhost/tags")
         updatePathControlAppearance()
+        
+        searchField.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
         
         loadScene("tagsCollectionScene")
         restoreView()
@@ -191,6 +194,7 @@ class TagsEditor: NSViewController, DataSourceViewController {
     // MARK: - View
     
     func restoreView() {
+        return ;
         // might guard against the scene
         let viewId = NSUserDefaults.standardUserDefaults().integerForKey("SLTagsView")
         viewSelector.selectSegmentWithTag(viewId)

@@ -12,40 +12,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h0C-0L-1d6">
-                                <rect key="frame" x="119" y="244" width="140" height="20"/>
-                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="roundRect" trackingMode="selectOne" id="YcY-Pv-fS2">
-                                    <font key="font" metaFont="cellTitle"/>
-                                    <segments>
-                                        <segment label="Created" width="67" selected="YES"/>
-                                        <segment label="Updated" width="66" tag="1"/>
-                                    </segments>
-                                </segmentedCell>
-                            </segmentedControl>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9ne-im-T5M">
-                                <rect key="frame" x="8" y="269" width="434" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="etr-NF-T8A"/>
-                                </constraints>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" title="Calendar" id="ap1-Rg-EPn">
-                                    <font key="font" metaFont="systemLight" size="19"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PwF-yQ-yIr">
-                                <rect key="frame" x="9" y="244" width="104" height="20"/>
-                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="roundRect" trackingMode="momentary" id="5Gp-dV-TYL">
-                                    <font key="font" metaFont="cellTitle"/>
-                                    <segments>
-                                        <segment label="&lt;" width="22"/>
-                                        <segment label="Today" width="52" tag="1"/>
-                                        <segment label="&gt;" width="22"/>
-                                    </segments>
-                                </segmentedCell>
-                            </segmentedControl>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="fyO-Pa-Fcb">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="237"/>
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="246"/>
                             </customView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Sa3-Kv-Cax">
                                 <rect key="frame" x="152" y="142" width="146" height="17"/>
@@ -55,25 +23,88 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <pathControl focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4F3-2s-Vik" customClass="NSPathControlWithCursor" customModule="South_Lake" customModuleProvider="target">
+                                <rect key="frame" x="4" y="276" width="147" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="4ak-M7-YB2"/>
+                                </constraints>
+                                <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" focusRingType="none" alignment="left" id="F4w-Gi-G0E">
+                                    <font key="font" metaFont="systemMedium" size="13"/>
+                                    <url key="url" string="file:///Calendar"/>
+                                    <color key="backgroundColor" white="0.91613833720000004" alpha="1" colorSpace="calibratedWhite"/>
+                                </pathCell>
+                            </pathControl>
+                            <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rNJ-Ff-CsX">
+                                <rect key="frame" x="10" y="254" width="318" height="19"/>
+                                <searchFieldCell key="cell" controlSize="small" selectable="YES" editable="YES" borderStyle="bezel" focusRingType="none" placeholderString="Last year, March 3, etc..." usesSingleLineMode="YES" bezelStyle="round" id="Huw-R1-4Uj">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </searchFieldCell>
+                            </searchField>
+                            <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="of7-Ai-SFB">
+                                <rect key="frame" x="0.0" y="244" width="450" height="5"/>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <font key="titleFont" metaFont="system"/>
+                            </box>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9pu-1f-QqS">
+                                <rect key="frame" x="336" y="276" width="103" height="19"/>
+                                <popUpButtonCell key="cell" type="recessed" title="Date Created" bezelStyle="recessed" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" tag="1001" imageScaling="proportionallyDown" inset="2" selectedItem="qaV-bD-oex" id="KXw-wd-HM0">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                    <font key="font" metaFont="systemLight" size="12"/>
+                                    <menu key="menu" id="cah-1e-1u0">
+                                        <items>
+                                            <menuItem title="Date Created" tag="1001" id="qaV-bD-oex">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Date Updated" state="on" tag="1002" id="15L-0L-wWT">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Date Added" tag="1003" id="WmI-JL-jtO">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PwF-yQ-yIr">
+                                <rect key="frame" x="335" y="254" width="106" height="20"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="roundRect" trackingMode="momentary" id="5Gp-dV-TYL">
+                                    <font key="font" metaFont="cellTitle"/>
+                                    <segments>
+                                        <segment label="&lt;" width="22"/>
+                                        <segment label="Today" width="53" tag="1"/>
+                                        <segment label="&gt;" width="23"/>
+                                    </segments>
+                                </segmentedCell>
+                            </segmentedControl>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="9ne-im-T5M" secondAttribute="trailing" constant="10" id="6tQ-ke-l1a"/>
-                            <constraint firstItem="fyO-Pa-Fcb" firstAttribute="top" secondItem="PwF-yQ-yIr" secondAttribute="bottom" constant="8" id="PwQ-ZT-ssK"/>
-                            <constraint firstItem="9ne-im-T5M" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" constant="10" id="TUj-Js-r8Y"/>
-                            <constraint firstItem="PwF-yQ-yIr" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" constant="10" id="ace-RU-dEw"/>
-                            <constraint firstItem="PwF-yQ-yIr" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="37" id="bEw-I3-iqH"/>
-                            <constraint firstItem="9ne-im-T5M" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="7" id="cRf-wB-1DJ"/>
+                            <constraint firstItem="of7-Ai-SFB" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="53" id="0Oj-z9-npC"/>
+                            <constraint firstItem="4F3-2s-Vik" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" constant="4" id="41A-FZ-f82"/>
+                            <constraint firstItem="of7-Ai-SFB" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" id="8WW-8e-lFX"/>
+                            <constraint firstAttribute="trailing" secondItem="of7-Ai-SFB" secondAttribute="trailing" id="8m5-W2-3nI"/>
+                            <constraint firstItem="fyO-Pa-Fcb" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="54" id="AQw-Ws-QQk"/>
+                            <constraint firstItem="rNJ-Ff-CsX" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="27" id="DvF-BQ-rjC"/>
+                            <constraint firstItem="4F3-2s-Vik" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="4" id="G23-vs-XOd"/>
+                            <constraint firstAttribute="trailing" secondItem="9pu-1f-QqS" secondAttribute="trailing" constant="11" id="ZWf-Mu-Mxs"/>
+                            <constraint firstItem="PwF-yQ-yIr" firstAttribute="leading" secondItem="rNJ-Ff-CsX" secondAttribute="trailing" constant="8" id="bAd-6o-NIg"/>
                             <constraint firstItem="Sa3-Kv-Cax" firstAttribute="centerY" secondItem="yGH-dJ-Tg1" secondAttribute="centerY" id="eMf-T6-MJ1"/>
+                            <constraint firstAttribute="trailing" secondItem="PwF-yQ-yIr" secondAttribute="trailing" constant="10" id="eb7-6T-NW7"/>
                             <constraint firstAttribute="bottom" secondItem="fyO-Pa-Fcb" secondAttribute="bottom" id="f6o-NU-qJx"/>
                             <constraint firstItem="fyO-Pa-Fcb" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" id="fGJ-8z-obh"/>
-                            <constraint firstItem="h0C-0L-1d6" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="37" id="g73-vj-H9H"/>
-                            <constraint firstItem="h0C-0L-1d6" firstAttribute="leading" secondItem="PwF-yQ-yIr" secondAttribute="trailing" constant="8" id="gEX-V6-wwL"/>
+                            <constraint firstItem="9pu-1f-QqS" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="5" id="pE4-tg-4Bd"/>
                             <constraint firstAttribute="trailing" secondItem="fyO-Pa-Fcb" secondAttribute="trailing" id="qpm-xF-ANI"/>
+                            <constraint firstItem="PwF-yQ-yIr" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="27" id="rb4-SD-Htq"/>
+                            <constraint firstItem="rNJ-Ff-CsX" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" constant="10" id="x61-cu-Rwf"/>
                             <constraint firstItem="Sa3-Kv-Cax" firstAttribute="centerX" secondItem="yGH-dJ-Tg1" secondAttribute="centerX" id="yAX-f9-LC6"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="containerView" destination="fyO-Pa-Fcb" id="TDs-qa-Xpm"/>
+                        <outlet property="pathControl" destination="4F3-2s-Vik" id="N2j-Mn-0Xf"/>
+                        <outlet property="searchField" destination="rNJ-Ff-CsX" id="6Ow-kd-zan"/>
                     </connections>
                 </viewController>
                 <customObject id="kTl-sn-Twx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

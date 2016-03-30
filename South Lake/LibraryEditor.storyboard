@@ -34,19 +34,19 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="149" id="Cxo-bN-Z6I"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="recessed" title="Sort by Date Created" bezelStyle="recessed" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="1002" imageScaling="proportionallyDown" inset="2" selectedItem="jQ0-xa-kRu" id="O6T-Lb-cU8">
+                                <popUpButtonCell key="cell" type="recessed" title="Sort by Title" bezelStyle="recessed" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="1001" imageScaling="proportionallyDown" inset="2" selectedItem="kr9-oz-Qgc" id="O6T-Lb-cU8">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                     <font key="font" metaFont="systemLight" size="12"/>
                                     <menu key="menu" id="FmD-5b-df1">
                                         <items>
-                                            <menuItem title="Sort by Title" tag="1001" id="kr9-oz-Qgc">
+                                            <menuItem title="Sort by Title" state="on" tag="1001" id="kr9-oz-Qgc">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                 <connections>
                                                     <action selector="sortByProperty:" target="9yX-Un-WoT" id="li0-RV-ShV"/>
                                                 </connections>
                                             </menuItem>
                                             <menuItem isSeparatorItem="YES" id="vIC-eq-Cxn"/>
-                                            <menuItem title="Sort by Date Created" state="on" tag="1002" id="jQ0-xa-kRu">
+                                            <menuItem title="Sort by Date Created" tag="1002" id="jQ0-xa-kRu">
                                                 <connections>
                                                     <action selector="sortByProperty:" target="9yX-Un-WoT" id="h5k-sa-12d"/>
                                                 </connections>
@@ -74,12 +74,6 @@
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <font key="titleFont" metaFont="system"/>
                             </box>
-                            <box hidden="YES" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="2av-Ke-pgK">
-                                <rect key="frame" x="0.0" y="24" width="511" height="5"/>
-                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <font key="titleFont" metaFont="system"/>
-                            </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f4p-sQ-iih">
                                 <rect key="frame" x="477" y="257" width="23" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="120" id="c05-wQ-0Ur">
@@ -89,7 +83,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="p0W-cE-9Ld" name="value" keyPath="arrangedObjects.@count" id="6Lj-32-BOx"/>
+                                    <binding destination="p0W-cE-9Ld" name="value" keyPath="arrangedObjects.@count" id="tmc-bP-ztC"/>
                                 </connections>
                             </textField>
                             <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H5b-Nw-NKT">
@@ -108,11 +102,9 @@
                             <constraint firstAttribute="trailing" secondItem="se1-SS-AUW" secondAttribute="trailing" id="2lD-oI-FKF"/>
                             <constraint firstItem="se1-SS-AUW" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" id="2qC-2j-WvK"/>
                             <constraint firstItem="WzD-xV-wPP" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="54" id="4Nv-ig-JQT"/>
-                            <constraint firstItem="2av-Ke-pgK" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" id="4g3-M7-AfU"/>
                             <constraint firstItem="se1-SS-AUW" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="53" id="7Na-FS-a2h"/>
                             <constraint firstAttribute="trailing" secondItem="x7s-jQ-cTj" secondAttribute="trailing" priority="1" constant="258" id="FT5-vD-aUx"/>
                             <constraint firstItem="x7s-jQ-cTj" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" constant="4" id="OvB-9K-KxZ"/>
-                            <constraint firstAttribute="trailing" secondItem="2av-Ke-pgK" secondAttribute="trailing" id="R9J-S4-1yt"/>
                             <constraint firstAttribute="bottom" secondItem="WzD-xV-wPP" secondAttribute="bottom" id="RkD-n0-WFI"/>
                             <constraint firstItem="f4p-sQ-iih" firstAttribute="leading" secondItem="H5b-Nw-NKT" secondAttribute="trailing" constant="7" id="T1M-Zf-snd"/>
                             <constraint firstItem="WzD-xV-wPP" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" id="VqH-WV-7RY"/>
@@ -120,7 +112,6 @@
                             <constraint firstItem="f4p-sQ-iih" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="29" id="X4y-ay-O19"/>
                             <constraint firstAttribute="trailing" secondItem="qAA-Xq-1wj" secondAttribute="trailing" constant="8" id="XvN-A6-blN"/>
                             <constraint firstAttribute="trailing" secondItem="f4p-sQ-iih" secondAttribute="trailing" constant="13" id="eSs-Av-UzP"/>
-                            <constraint firstAttribute="bottom" secondItem="2av-Ke-pgK" secondAttribute="bottom" constant="26" id="jbZ-lQ-pH4"/>
                             <constraint firstItem="H5b-Nw-NKT" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="27" id="xic-vJ-dQS"/>
                             <constraint firstItem="H5b-Nw-NKT" firstAttribute="leading" secondItem="hXW-5Q-uSw" secondAttribute="leading" constant="10" id="yNH-x6-Z9h"/>
                             <constraint firstItem="qAA-Xq-1wj" firstAttribute="top" secondItem="hXW-5Q-uSw" secondAttribute="top" constant="5" id="yV4-Wl-JFU"/>

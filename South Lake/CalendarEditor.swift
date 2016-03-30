@@ -17,6 +17,8 @@ class CalendarEditor: NSViewController, DataSourceViewController, Databasable {
     ]
     
     @IBOutlet var containerView: NSView!
+    @IBOutlet var pathControl: NSPathControlWithCursor!
+    @IBOutlet var searchField: NSSearchField!
     
     var databaseManager: DatabaseManager?
     var searchService: BRSearchService?
@@ -47,6 +49,12 @@ class CalendarEditor: NSViewController, DataSourceViewController, Databasable {
         super.viewDidLoad()
         
         (view as! CustomizableView).backgroundColor = UI.Color.Background.DataSourceViewController
+        
+        pathControl.backgroundColor = UI.Color.Background.DataSourceViewController
+        pathControl.URL = NSURL(string: "southlake://localhost/calendar")
+        updatePathControlAppearance()
+        
+        searchField.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
     }
     
     // MARK: - 
@@ -61,5 +69,24 @@ class CalendarEditor: NSViewController, DataSourceViewController, Databasable {
     
     func willClose() {
     
+    }
+    
+    // MARK: - 
+    
+    func updatePathControlAppearance() {
+        // First cell's string value is a capitalized, localized transformation of "tags"
+        // First cell is black, remaining are blue
+        
+        let cells = pathControl.pathComponentCells()
+        guard cells.count > 0 else {
+            return
+        }
+        
+        cells.first?.stringValue = cells.first!.stringValue.capitalizedString
+        cells.first?.textColor = NSColor(white: 0.1, alpha: 1.0)
+        
+        for cell in cells[1..<cells.count] {
+            cell.textColor = NSColor.keyboardFocusIndicatorColor()
+        }
     }
 }

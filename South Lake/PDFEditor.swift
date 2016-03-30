@@ -71,7 +71,10 @@ class PDFEditor: NSViewController, DataSourceViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         
-        editor.goToFirstPage(nil)
+//        NSOperationQueue.mainQueue().addOperationWithBlock {
+//            self.editor.goToFirstPage(nil)
+//            
+//        }
     }
     
     func willClose() {
