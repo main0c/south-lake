@@ -14,6 +14,10 @@
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="WzD-xV-wPP">
                                 <rect key="frame" x="0.0" y="0.0" width="511" height="246"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="162" id="H9L-1u-fDy"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="162" id="fF4-x4-80n"/>
+                                </constraints>
                             </customView>
                             <pathControl focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x7s-jQ-cTj" customClass="NSPathControlWithCursor" customModule="South_Lake" customModuleProvider="target">
                                 <rect key="frame" x="4" y="276" width="249" height="20"/>

@@ -20,18 +20,18 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="103" id="1B9-0d-I1R"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="recessed" title="Sort by Name" bezelStyle="recessed" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" tag="1001" imageScaling="proportionallyDown" inset="2" selectedItem="alw-NW-h4u" id="MpP-L4-sim">
+                                <popUpButtonCell key="cell" type="recessed" title="Sort by Name" bezelStyle="recessed" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="1001" imageScaling="proportionallyDown" inset="2" selectedItem="alw-NW-h4u" id="MpP-L4-sim">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                     <font key="font" metaFont="systemLight" size="12"/>
                                     <menu key="menu" id="00L-wU-AVm">
                                         <items>
-                                            <menuItem title="Sort by Name" tag="1001" id="alw-NW-h4u">
+                                            <menuItem title="Sort by Name" state="on" tag="1001" id="alw-NW-h4u">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                 <connections>
                                                     <action selector="sortByProperty:" target="1hg-0a-15P" id="5zg-1R-wSD"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="Sort by Count" state="on" tag="1002" id="Y6B-RC-0hx">
+                                            <menuItem title="Sort by Count" tag="1002" id="Y6B-RC-0hx">
                                                 <connections>
                                                     <action selector="sortByProperty:" target="1hg-0a-15P" id="pRc-g7-Fqj"/>
                                                 </connections>
