@@ -140,16 +140,23 @@ class FolderEditor: NSViewController, DataSourceViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Custom appearance
+        
         (view as! CustomizableView).backgroundColor = UI.Color.Background.DataSourceViewController
         pathControl.backgroundColor = UI.Color.Background.DataSourceViewController
+        searchField.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
         
-        sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: #selector(NSNumber.compare(_:)))]
+        // Restore sort descriptors or provide defaults
+        
+        sortDescriptors = initialSortDescriptors()
+        
+        // Path control
         
         // pathControl.cursor = NSCursor.pointingHandCursor()
         pathControl.URL = NSURL(string: "southlake://localhost/library")
         updatePathControlAppearance()
         
-        searchField.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
+        // Data
         
         loadScene(scene)
         bindContent()
@@ -158,6 +165,18 @@ class FolderEditor: NSViewController, DataSourceViewController {
     func willClose() {
         unloadScene()
         unbind("content")
+    }
+    
+    func initialSortDescriptors() -> [NSSortDescriptor] {
+        let keys = ["title", "created_at", "updated_at"]
+        
+        if  let key = NSUserDefaults.standardUserDefaults().stringForKey("SLFolderSortKey") where keys.contains(key) {
+            let ascending = NSUserDefaults.standardUserDefaults().boolForKey("SLFolderSortAscending")
+            let selector = key == "title" ? #selector(NSString.caseInsensitiveCompare(_:)) : #selector(NSNumber.compare(_:))
+            return [NSSortDescriptor(key: key, ascending: ascending, selector: selector)]
+        } else {
+            return [NSSortDescriptor(key: "created_at", ascending: false, selector: #selector(NSNumber.compare(_:)))]
+        }
     }
 
     // MARK: - Folder Data
@@ -216,8 +235,12 @@ class FolderEditor: NSViewController, DataSourceViewController {
         }
         
         arrayController.sortDescriptors = descriptors
+        
+        // Save sort descriptors
+        
+        NSUserDefaults.standardUserDefaults().setObject(descriptors.first!.key!, forKey: "SLFolderSortKey")
+        NSUserDefaults.standardUserDefaults().setBool(descriptors.first!.ascending, forKey: "SLFolderSortAscending")
     }
-
     
     @IBAction func gotoPath(sender: AnyObject?) {
 //        guard let databaseManager = databaseManager else {
