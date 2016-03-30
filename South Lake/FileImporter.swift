@@ -15,9 +15,11 @@ protocol FileImporter {
     init() // weird
     
     /// Return a plain text representation of your data source or nil if there is none
+    
     func plainTextRepresentation(data: NSData?) -> String?
     
     /// Return a thumbnail representation of your data source or nil if there is none
+    
     func thumbnail(data: NSData?) -> NSImage?
     
 }
