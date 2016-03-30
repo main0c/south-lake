@@ -186,19 +186,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         layoutController = splitViewItems[1].viewController as! NSSplitViewController
         
-//        for vc in childViewControllers {
-//            switch vc {
-////            case let controller as SourceListPanel:
-////                sourceListPanel = controller
-//            case let controller as NSSplitViewController:
-//                layoutController = controller
-////            case let controller as InspectorPanel:
-////                inspectorPanel = controller
-//            default:
-//                break
-//            }
-//        }
-        
         // Using delegates instead of bindings for selection: see SelectionDelegate
         
         sourceListPanel = NSStoryboard(name: "SourceListPanel", bundle: nil).instantiateInitialController() as! SourceListPanel
@@ -209,10 +196,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         contentPanel = NSStoryboard(name: "ContentPanel", bundle: nil).instantiateInitialController() as! ContentPanel
         layoutController.replaceSplitViewItem(atIndex: 1, withViewController: contentPanel)
-        
-//        if layoutController.splitViewItems.count >= 2 {
-//            layoutController.replaceSplitViewItem(atIndex: 1, withViewController: contentPanel)
-//        }
         
         // Restore user layout preferences
         

@@ -27,9 +27,8 @@ protocol DataSourceViewController: class, Databasable {
     func removeFromParentViewController()
     
     /// A tab passes a file to the editor. The file may be nil. The editor may
-    /// many any changes it likes to the file, including metadata changes.
+    /// make any changes it likes to the file, including metadata changes.
     /// Editors should use the universal data: NSData interface for file contents
-    
     var source: DataSource? { get set }
     
     /// A data source communicates changes in selection to observers using
