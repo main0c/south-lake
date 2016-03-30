@@ -13,6 +13,12 @@ import Cocoa
 /// Maintains a list of selected objects, which an interested party can bind to,
 /// or which are communicated through a SelectionDelegate
 
+private enum SortBy: Int {
+    case Title   = 1001
+    case Created = 1002
+    case Updated = 1003
+}
+
 class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
     static var storyboard: String = "LibraryEditor"
     static var filetypes: [String] = [
@@ -125,6 +131,8 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
         (view as! CustomizableView).backgroundColor = UI.Color.Background.DataSourceViewController
         pathControl.backgroundColor = UI.Color.Background.DataSourceViewController
         
+        // TODO: save and restore sort descriptors
+        
         sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false, selector: #selector(NSNumber.compare(_:)))]
         
         // pathControl.cursor = NSCursor.pointingHandCursor()
@@ -167,7 +175,11 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
     }
     
     @IBAction func sortByProperty(sender: AnyObject?) {
-        guard let sender = sender as? NSMenuItem else {
+        guard let sender = sender as? NSPopUpButton else { // NSMenuItem
+            return
+        }
+        guard let property = SortBy(rawValue: sender.selectedTag()) else {
+            log("unkonwn property")
             return
         }
         
@@ -177,15 +189,13 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
         let asc = descriptors[safe: 0]?.ascending ?? true
         let key = descriptors[safe: 0]?.key
         
-        switch sender.tag {
-        case 1001: // by title
+        switch property {
+        case .Title:
             descriptors = [NSSortDescriptor(key: "title", ascending: (key == "title" ? !asc : true), selector: #selector(NSString.caseInsensitiveCompare(_:)))]
-        case 1002: // by date created
+        case .Created:
             descriptors = [NSSortDescriptor(key: "created_at", ascending: (key == "created_at" ? !asc : false), selector: #selector(NSNumber.compare(_:)))]
-        case 1003: // by date updated
+        case .Updated:
             descriptors = [NSSortDescriptor(key: "updated_at", ascending: (key == "updated_at" ? !asc : false), selector: #selector(NSNumber.compare(_:)))]
-        default:
-            break
         }
         
         arrayController.sortDescriptors = descriptors
@@ -208,6 +218,26 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
 //            "dbm": databaseManager,
 //            "url": url
 //        ])
+    }
+    
+    override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
+        let sortBy = #selector(LibraryEditor.sortByProperty(_:))
+        let action = menuItem.action
+        let tag = menuItem.tag
+        
+        switch (action, tag) {
+        case (sortBy, SortBy.Title.rawValue):
+            menuItem.state = sortDescriptors?.first?.key == "title" ? NSOnState : NSOffState
+            return true
+        case (sortBy, SortBy.Created.rawValue):
+            menuItem.state = sortDescriptors?.first?.key == "created_at" ? NSOnState : NSOffState
+            return true
+        case (sortBy, SortBy.Updated.rawValue):
+            menuItem.state = sortDescriptors?.first?.key == "updated_at" ? NSOnState : NSOffState
+            return true
+        case _:
+            return false
+        }
     }
     
     // MARK: - Scene

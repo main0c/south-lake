@@ -34,35 +34,30 @@
                                 </connections>
                             </pathControl>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qAA-Xq-1wj">
-                                <rect key="frame" x="354" y="276" width="149" height="19"/>
+                                <rect key="frame" x="453" y="276" width="50" height="19"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="149" id="Cxo-bN-Z6I"/>
+                                    <constraint firstAttribute="width" constant="50" id="Cxo-bN-Z6I"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="recessed" title="Sort by Title" bezelStyle="recessed" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="1001" imageScaling="proportionallyDown" inset="2" selectedItem="kr9-oz-Qgc" id="O6T-Lb-cU8">
+                                <popUpButtonCell key="cell" type="recessed" title="Sort" bezelStyle="recessed" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="gvn-9L-IiR" id="O6T-Lb-cU8">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                     <font key="font" metaFont="systemLight" size="12"/>
                                     <menu key="menu" id="FmD-5b-df1">
                                         <items>
+                                            <menuItem title="Sort" state="on" hidden="YES" id="iyx-Id-OYO">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
                                             <menuItem title="Sort by Title" state="on" tag="1001" id="kr9-oz-Qgc">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                                <connections>
-                                                    <action selector="sortByProperty:" target="9yX-Un-WoT" id="li0-RV-ShV"/>
-                                                </connections>
                                             </menuItem>
                                             <menuItem isSeparatorItem="YES" id="vIC-eq-Cxn"/>
-                                            <menuItem title="Sort by Date Created" tag="1002" id="jQ0-xa-kRu">
-                                                <connections>
-                                                    <action selector="sortByProperty:" target="9yX-Un-WoT" id="h5k-sa-12d"/>
-                                                </connections>
-                                            </menuItem>
-                                            <menuItem title="Sort by Date Updated" tag="1003" id="gvn-9L-IiR">
-                                                <connections>
-                                                    <action selector="sortByProperty:" target="9yX-Un-WoT" id="NiI-fe-KvJ"/>
-                                                </connections>
-                                            </menuItem>
+                                            <menuItem title="Sort by Date Created" tag="1002" id="jQ0-xa-kRu"/>
+                                            <menuItem title="Sort by Date Updated" tag="1003" id="gvn-9L-IiR"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <connections>
+                                    <action selector="sortByProperty:" target="9yX-Un-WoT" id="YXn-Qc-rhq"/>
+                                </connections>
                             </popUpButton>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KTt-tF-vM6">
                                 <rect key="frame" x="8" y="212" width="85" height="21"/>
@@ -92,7 +87,7 @@
                             </textField>
                             <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H5b-Nw-NKT">
                                 <rect key="frame" x="10" y="254" width="462" height="19"/>
-                                <searchFieldCell key="cell" controlSize="small" selectable="YES" editable="YES" borderStyle="bezel" focusRingType="none" placeholderString="Filter by title or tag" usesSingleLineMode="YES" bezelStyle="round" id="u74-oK-J4C">
+                                <searchFieldCell key="cell" controlSize="small" selectable="YES" editable="YES" borderStyle="bezel" focusRingType="none" placeholderString="Filter title or tag" usesSingleLineMode="YES" bezelStyle="round" id="u74-oK-J4C">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

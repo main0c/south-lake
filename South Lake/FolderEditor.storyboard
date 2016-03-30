@@ -34,35 +34,34 @@
                                 </connections>
                             </pathControl>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QBI-XD-RMS">
-                                <rect key="frame" x="354" y="276" width="149" height="19"/>
+                                <rect key="frame" x="453" y="276" width="50" height="19"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="149" id="YZ5-6T-YvW"/>
+                                    <constraint firstAttribute="width" constant="50" id="YZ5-6T-YvW"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="recessed" title="Sort by Date Created" bezelStyle="recessed" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="1002" imageScaling="proportionallyDown" inset="2" selectedItem="6ge-Mp-0Ne" id="3PR-sy-wTn">
+                                <popUpButtonCell key="cell" type="recessed" title="Sort" bezelStyle="recessed" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="xCp-IA-A6d" id="3PR-sy-wTn">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                     <font key="font" metaFont="systemLight" size="12"/>
                                     <menu key="menu" id="JFv-Vl-jp4">
                                         <items>
+                                            <menuItem title="Sort" hidden="YES" id="xCp-IA-A6d">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
                                             <menuItem title="Sort by Title" tag="1001" id="LYY-gV-riS">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                                <connections>
-                                                    <action selector="sortByProperty:" target="isa-di-TMb" id="uNY-hv-C0c"/>
-                                                </connections>
                                             </menuItem>
                                             <menuItem isSeparatorItem="YES" id="J1o-Bg-Xyc"/>
                                             <menuItem title="Sort by Date Created" state="on" tag="1002" id="6ge-Mp-0Ne">
-                                                <connections>
-                                                    <action selector="sortByProperty:" target="isa-di-TMb" id="FiP-8t-4tb"/>
-                                                </connections>
+                                                <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                             <menuItem title="Sort by Date Updated" tag="1003" id="jAl-OA-VSb">
-                                                <connections>
-                                                    <action selector="sortByProperty:" target="isa-di-TMb" id="pmn-8K-Vw1"/>
-                                                </connections>
+                                                <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <connections>
+                                    <action selector="sortByProperty:" target="isa-di-TMb" id="O67-ll-Bcs"/>
+                                </connections>
                             </popUpButton>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NnX-Zx-DTx">
                                 <rect key="frame" x="8" y="212" width="128" height="21"/>
