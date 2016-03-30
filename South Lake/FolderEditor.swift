@@ -211,7 +211,8 @@ class FolderEditor: NSViewController, DataSourceViewController {
     }
     
     @IBAction func sortByProperty(sender: AnyObject?) {
-        guard let sender = sender as? NSPopUpButton else { // NSMenuItem
+        guard let sender = sender as? NSPopUpButton else {
+            log("sender mut be pop up button")
             return
         }
         guard let property = SortBy(rawValue: sender.selectedTag()) else {

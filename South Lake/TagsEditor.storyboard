@@ -13,32 +13,36 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="ObZ-VS-gFU">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="242"/>
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="244"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="214" id="cjt-fm-iqi"/>
+                                </constraints>
                             </customView>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8hb-Iq-KLg">
-                                <rect key="frame" x="339" y="276" width="103" height="19"/>
+                                <rect key="frame" x="392" y="276" width="50" height="19"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="103" id="1B9-0d-I1R"/>
+                                    <constraint firstAttribute="width" constant="50" id="1B9-0d-I1R"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="recessed" title="Sort by Name" bezelStyle="recessed" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="1001" imageScaling="proportionallyDown" inset="2" selectedItem="alw-NW-h4u" id="MpP-L4-sim">
+                                <popUpButtonCell key="cell" type="recessed" title="Sort" bezelStyle="recessed" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="wfX-Yq-9Cn" id="MpP-L4-sim">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                     <font key="font" metaFont="systemLight" size="12"/>
                                     <menu key="menu" id="00L-wU-AVm">
                                         <items>
+                                            <menuItem title="Sort" hidden="YES" id="wfX-Yq-9Cn">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
                                             <menuItem title="Sort by Name" state="on" tag="1001" id="alw-NW-h4u">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                                <connections>
-                                                    <action selector="sortByProperty:" target="1hg-0a-15P" id="5zg-1R-wSD"/>
-                                                </connections>
                                             </menuItem>
                                             <menuItem title="Sort by Count" tag="1002" id="Y6B-RC-0hx">
-                                                <connections>
-                                                    <action selector="sortByProperty:" target="1hg-0a-15P" id="pRc-g7-Fqj"/>
-                                                </connections>
+                                                <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <connections>
+                                    <action selector="sortByProperty:" target="1hg-0a-15P" id="ztw-Et-EZZ"/>
+                                </connections>
                             </popUpButton>
                             <pathControl focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="88x-s1-wFc" customClass="NSPathControlWithCursor" customModule="South_Lake" customModuleProvider="target">
                                 <rect key="frame" x="4" y="276" width="249" height="20"/>
@@ -83,14 +87,14 @@
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="pbY-mO-Pmq">
-                                <rect key="frame" x="0.0" y="243" width="450" height="5"/>
+                                <rect key="frame" x="0.0" y="244" width="450" height="5"/>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <font key="titleFont" metaFont="system"/>
                             </box>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="ObZ-VS-gFU" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="58" id="28l-HA-y9u"/>
+                            <constraint firstItem="ObZ-VS-gFU" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="56" id="28l-HA-y9u"/>
                             <constraint firstAttribute="bottom" secondItem="ObZ-VS-gFU" secondAttribute="bottom" id="62r-kq-JfC"/>
                             <constraint firstAttribute="trailing" secondItem="4dD-bX-xcN" secondAttribute="trailing" constant="13" id="8pe-nD-gRh"/>
                             <constraint firstItem="88x-s1-wFc" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="4" id="8uY-00-6HW"/>
@@ -105,7 +109,7 @@
                             <constraint firstItem="meW-cX-HEq" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="27" id="chQ-K7-3mI"/>
                             <constraint firstAttribute="trailing" secondItem="ObZ-VS-gFU" secondAttribute="trailing" id="lPe-Jy-LOL"/>
                             <constraint firstItem="pbY-mO-Pmq" firstAttribute="leading" secondItem="r9v-bw-nhh" secondAttribute="leading" id="q8x-jw-NCN"/>
-                            <constraint firstItem="pbY-mO-Pmq" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="54" id="qWl-C0-88h"/>
+                            <constraint firstItem="pbY-mO-Pmq" firstAttribute="top" secondItem="r9v-bw-nhh" secondAttribute="top" constant="53" id="qWl-C0-88h"/>
                         </constraints>
                     </view>
                     <connections>
@@ -207,7 +211,7 @@
                 <customObject id="t66-fp-bQ0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="3ha-pr-MY0"/>
             </objects>
-            <point key="canvasLocation" x="565.5" y="-6.5"/>
+            <point key="canvasLocation" x="1038.5" y="73.5"/>
         </scene>
         <!--Tags Collection View Controller-->
         <scene sceneID="niR-Ed-60V">
@@ -218,13 +222,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yId-Ef-d88">
-                                <rect key="frame" x="10" y="0.0" width="430" height="300"/>
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                                 <clipView key="contentView" id="OhY-5V-cOo">
-                                    <rect key="frame" x="0.0" y="0.0" width="430" height="300"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView selectable="YES" allowsMultipleSelection="YES" id="OnR-YY-Fi3">
-                                            <rect key="frame" x="0.0" y="0.0" width="430" height="300"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="primaryBackgroundColor" white="0.94041193180000004" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
@@ -246,9 +250,9 @@
                             </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="yId-Ef-d88" firstAttribute="leading" secondItem="XJo-zR-dTG" secondAttribute="leading" constant="10" id="E1i-cc-Kvn"/>
+                            <constraint firstItem="yId-Ef-d88" firstAttribute="leading" secondItem="XJo-zR-dTG" secondAttribute="leading" id="E1i-cc-Kvn"/>
                             <constraint firstAttribute="bottom" secondItem="yId-Ef-d88" secondAttribute="bottom" id="GG4-wS-LKv"/>
-                            <constraint firstAttribute="trailing" secondItem="yId-Ef-d88" secondAttribute="trailing" constant="10" id="qWe-D1-6Z6"/>
+                            <constraint firstAttribute="trailing" secondItem="yId-Ef-d88" secondAttribute="trailing" id="qWe-D1-6Z6"/>
                             <constraint firstItem="yId-Ef-d88" firstAttribute="top" secondItem="XJo-zR-dTG" secondAttribute="top" id="uEz-3p-cV6"/>
                         </constraints>
                     </view>
@@ -535,7 +539,7 @@
                 <userDefaultsController id="bRZ-pz-w7e"/>
                 <userDefaultsController id="tpt-lc-c1Z"/>
             </objects>
-            <point key="canvasLocation" x="812.5" y="-6.5"/>
+            <point key="canvasLocation" x="1038.5" y="163.5"/>
         </scene>
     </scenes>
 </document>

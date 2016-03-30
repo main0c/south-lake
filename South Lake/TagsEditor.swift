@@ -8,6 +8,11 @@
 
 import Cocoa
 
+private enum SortBy: Int {
+    case Tag   = 1001
+    case Count = 1002
+}
+
 class TagsEditor: NSViewController, DataSourceViewController {
     static var storyboard: String = "TagsEditor"
     static var filetypes: [String] = [
@@ -75,16 +80,23 @@ class TagsEditor: NSViewController, DataSourceViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Appearance
+        
         (view as! CustomizableView).backgroundColor = UI.Color.Background.DataSourceViewController
         pathControl.backgroundColor = UI.Color.Background.DataSourceViewController
+        searchField.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
     
-        sortDescriptors = [NSSortDescriptor(key: "tag", ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))]
+        // TODO: save and restore tags sort
+    
+        sortDescriptors = initialSortDescriptors()
+        
+        // Path control
         
         // pathControl.cursor = NSCursor.pointingHandCursor()
         pathControl.URL = NSURL(string: "southlake://localhost/tags")
         updatePathControlAppearance()
         
-        searchField.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
+        // Data
         
         loadScene("tagsCollectionScene")
         restoreView()
@@ -99,7 +111,19 @@ class TagsEditor: NSViewController, DataSourceViewController {
         unbind("content")
     }
     
-    // MARK: - Tags Data
+    func initialSortDescriptors() -> [NSSortDescriptor] {
+        let keys = ["tag", "count"]
+        
+        if  let key = NSUserDefaults.standardUserDefaults().stringForKey("SLTagsSortKey") where keys.contains(key) {
+            let ascending = NSUserDefaults.standardUserDefaults().boolForKey("SLTagsSortAscending")
+            let selector = key == "tag" ? #selector(NSString.caseInsensitiveCompare(_:)) : #selector(NSNumber.compare(_:))
+            return [NSSortDescriptor(key: key, ascending: ascending, selector: selector)]
+        } else {
+            return [NSSortDescriptor(key: "tag", ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))]
+        }
+    }
+    
+    // MARK: - Tags and Library Data
     
     func bindTags() {
         guard let databaseManager = databaseManager else {
@@ -111,8 +135,6 @@ class TagsEditor: NSViewController, DataSourceViewController {
         
         bind("content", toObject: databaseManager, withKeyPath: "tags", options: [:])
     }
-    
-    // MARK: - Library Data
     
     func bindLibrary() {
         guard let databaseManager = databaseManager else {
@@ -137,7 +159,12 @@ class TagsEditor: NSViewController, DataSourceViewController {
     }
     
     @IBAction func sortByProperty(sender: AnyObject?) {
-        guard let sender = sender as? NSMenuItem else {
+        guard let sender = sender as? NSPopUpButton else {
+            log("sender mut be pop up button")
+            return
+        }
+        guard let property = SortBy(rawValue: sender.selectedTag()) else {
+            log("unkonwn property")
             return
         }
         
@@ -147,31 +174,19 @@ class TagsEditor: NSViewController, DataSourceViewController {
         let asc = descriptors[safe: 0]?.ascending ?? true
         let key = descriptors[safe: 0]?.key
         
-        switch sender.tag {
-        case 1001: // by tag
+        switch property {
+        case .Tag:
             descriptors = [NSSortDescriptor(key: "tag", ascending: (key == "tag" ? !asc : true), selector: #selector(NSString.caseInsensitiveCompare(_:)))]
-        case 1002: // by count
+        case .Count:
             descriptors = [NSSortDescriptor(key: "count", ascending: (key == "count" ? !asc : false), selector: #selector(NSNumber.compare(_:)))]
-        default:
-            break
         }
         
         arrayController.sortDescriptors = descriptors
-    }
-    
-    // Actually we're just changing the collection view item used in this case
-    
-    @IBAction func changeView(sender: AnyObject?) {
-        guard let sender = sender as? NSSegmentedControl,
-              let cell = sender.cell as? NSSegmentedCell else {
-              return
-        }
         
-        let segment = sender.selectedSegment
-        let tag = cell.tagForSegment(segment)
+        // Save sort descriptors
         
-        NSUserDefaults.standardUserDefaults().setInteger(tag, forKey: "SLTagsView")
-        loadView(tag)
+        NSUserDefaults.standardUserDefaults().setObject(descriptors.first!.key!, forKey: "SLTagsSortKey")
+        NSUserDefaults.standardUserDefaults().setBool(descriptors.first!.ascending, forKey: "SLTagsSortAscending")
     }
     
     @IBAction func gotoPath(sender: AnyObject?) {
@@ -189,6 +204,23 @@ class TagsEditor: NSViewController, DataSourceViewController {
             "dbm": databaseManager,
             "url": url
         ])
+    }
+    
+    override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
+        let sortBy = #selector(LibraryEditor.sortByProperty(_:))
+        let action = menuItem.action
+        let tag = menuItem.tag
+        
+        switch (action, tag) {
+        case (sortBy, SortBy.Tag.rawValue):
+            menuItem.state = sortDescriptors?.first?.key == "tag" ? NSOnState : NSOffState
+            return true
+        case (sortBy, SortBy.Count.rawValue):
+            menuItem.state = sortDescriptors?.first?.key == "count" ? NSOnState : NSOffState
+            return true
+        case _:
+            return false
+        }
     }
     
     // MARK: - View
