@@ -15,7 +15,7 @@ private enum SortBy: Int {
     case Updated = 1003
 }
 
-class FolderEditor: NSViewController, DataSourceViewController {
+class FolderEditor: NSViewController, SelectableSourceViewer {
     static var storyboard: String = "FolderEditor"
     static var filetypes: [String] = [
         "southlake.folder",
@@ -47,10 +47,6 @@ class FolderEditor: NSViewController, DataSourceViewController {
         didSet {
             sceneController?.searchService = searchService
         }
-    }
-    
-    var isFileEditor: Bool {
-        return false
     }
     
     dynamic var source: DataSource? {
@@ -95,7 +91,7 @@ class FolderEditor: NSViewController, DataSourceViewController {
         return nil
     }
     
-    var delegate: SelectionDelegate?
+    var selectionDelegate: SelectionDelegate?
     
     // What I want is to not use bindings at all for selection, which cause misfires,
     // but collection view delegate selection callbacks have inexplicably stopped working
@@ -107,11 +103,11 @@ class FolderEditor: NSViewController, DataSourceViewController {
             guard !ignoreChangeInSelection else {
                 return
             }
-            guard let delegate = delegate, let selection = selectedObjects else {
+            guard let selectionDelegate = selectionDelegate, let selection = selectedObjects else {
                 return
             }
             
-            delegate.object(self, didChangeSelection: selection)
+            selectionDelegate.object(self, didChangeSelection: selection)
         }
     }
     
@@ -142,8 +138,8 @@ class FolderEditor: NSViewController, DataSourceViewController {
         
         // Custom appearance
         
-        (view as! CustomizableView).backgroundColor = UI.Color.Background.DataSourceViewController
-        pathControl.backgroundColor = UI.Color.Background.DataSourceViewController
+        (view as! CustomizableView).backgroundColor = UI.Color.Background.SourceViewer
+        pathControl.backgroundColor = UI.Color.Background.SourceViewer
         searchField.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
         
         // Restore sort descriptors or provide defaults
@@ -344,7 +340,7 @@ class FolderEditor: NSViewController, DataSourceViewController {
         // Set up connections
         
         sceneController!.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
-        sceneController!.delegate = self
+        sceneController!.selectionDelegate = self
         
         if let selection = selection {
             whileIgnoringChangeInSelection {

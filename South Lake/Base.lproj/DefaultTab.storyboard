@@ -28,7 +28,7 @@
         <!--Inspector Controller-->
         <scene sceneID="es3-lF-qMF">
             <objects>
-                <viewController id="Oek-qD-h4p" userLabel="Inspector Controller" customClass="InspectorPanel" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InspectorPanel" id="Oek-qD-h4p" userLabel="Inspector Controller" customClass="InspectorPanel" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="rdU-W6-1rA" customClass="CustomizableView" customModule="South_Lake" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="478"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -154,10 +154,10 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     dynamic var selectedObject: DataSource?
     
     var layoutController: NSSplitViewController!
-    var dataSourceViewController: DataSourceViewController?
+    var sourceViewer: SourceViewer?
    
     var header: FileHeaderViewController?
-    var editor: DataSourceViewController?
+    var editor: SourceViewer?
     
     var inspectors: [Inspector]?
     
@@ -168,12 +168,12 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             if layout != oldValue {
                 loadLayout(layout)
             }
-            dataSourceViewController?.layout = layout
+            sourceViewer?.layout = layout
         }
     }
     var scene: Scene = .None {
         didSet {
-            dataSourceViewController?.scene = scene
+            sourceViewer?.scene = scene
         }
     }
     
@@ -190,7 +190,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         sourceListPanel = NSStoryboard(name: "SourceListPanel", bundle: nil).instantiateInitialController() as! SourceListPanel
         replaceSplitViewItem(atIndex: 0, withViewController: sourceListPanel)
-        sourceListPanel.delegate = self
+        sourceListPanel.selectionDelegate = self
         
         // Create the content panel and move it into place
         
@@ -454,17 +454,17 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             layoutController.splitViewItems[1].collapsed = true
         }
         
-        guard dataSourceViewController == nil || !dataSourceViewController!.dynamicType.filetypes.contains(source.uti) else {
-            dataSourceViewController!.source = source
+        guard sourceViewer == nil || !sourceViewer!.dynamicType.filetypes.contains(source.uti) else {
+            sourceViewer!.source = source
             return
         }
         
         // Acquire a new source viewer
         
-        dataSourceViewController?.willClose()
-        dataSourceViewController = EditorPlugIns.sharedInstance.plugInForFiletype(source.file_extension)
+        sourceViewer?.willClose()
+        sourceViewer = EditorPlugIns.sharedInstance.plugInForFiletype(source.file_extension)
         
-        guard dataSourceViewController != nil else {
+        guard sourceViewer != nil else {
             log("unable to find editor for file with type \(source.file_extension)")
             clearSource()
             return
@@ -472,11 +472,11 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         // Prepare the source viewer
         
-        dataSourceViewController!.databaseManager = databaseManager
-        dataSourceViewController!.searchService = searchService
-        dataSourceViewController!.source = source
-        dataSourceViewController!.scene = scene
-        dataSourceViewController!.layout = layout
+        sourceViewer!.databaseManager = databaseManager
+        sourceViewer!.searchService = searchService
+        sourceViewer!.source = source
+        sourceViewer!.scene = scene
+        sourceViewer!.layout = layout
         
         // Move the source viewer into place
         
@@ -485,20 +485,21 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             return
         }
         
-        // TODO: maye would be nice if we didn't need to replace the split view item entirely, as with the editor
+        // TODO: maybe would be nice if we didn't need to replace the split view item entirely, as with the editor
         
-        layoutController.replaceSplitViewItem(atIndex: 0, withViewController: dataSourceViewController as! NSViewController)
+        layoutController.replaceSplitViewItem(atIndex: 0, withViewController: sourceViewer as! NSViewController)
         
         // Establish connections
         
-        // bind("selectedFileObjects", toObject: dataSourceViewController!, withKeyPath: "selectedObjects", options: [:])
-        dataSourceViewController!.delegate = self
+        if let sourceViewer = sourceViewer as? SelectableSourceViewer {
+            sourceViewer.selectionDelegate = self
+        }
     }
     
     func clearSource() {
         // unbind("selectedFileObjects")
-        dataSourceViewController?.willClose()
-        dataSourceViewController = nil
+        sourceViewer?.willClose()
+        sourceViewer = nil
     }
     
     // MARK: - Header
@@ -522,7 +523,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     }
     
     func loadHeader(file: DataSource) {
-        guard editor != nil && editor!.isFileEditor else {
+        // guard editor != nil && editor!.isFileEditor else {
+        guard editor != nil && !(editor is SelectableSourceViewer) else {
 //            clearHeader()
             return
         }
@@ -918,7 +920,7 @@ extension DefaultTab: SelectionDelegate {
         switch object {
         case _ as SourceListPanel:
             selectedSourceListObjects = selection
-        case _ as DataSourceViewController:
+        case _ as SelectableSourceViewer:
             selectedFileObjects = selection
         default:
             break

@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class CalendarEditor: NSViewController, DataSourceViewController, Databasable {
+class CalendarEditor: NSViewController, SelectableSourceViewer {
     static var storyboard: String = "CalendarEditor"
     static var filetypes: [String] = [
         "southlake.notebook.calendar",
@@ -23,13 +23,7 @@ class CalendarEditor: NSViewController, DataSourceViewController, Databasable {
     var databaseManager: DatabaseManager?
     var searchService: BRSearchService?
     
-    // TODO: what is this used for?
-    
-    var isFileEditor: Bool {
-        return false
-    }
-    
-    var delegate: SelectionDelegate?
+    var selectionDelegate: SelectionDelegate?
     dynamic var selectedObjects: [DataSource]?
     dynamic var source: DataSource?
     var layout: Layout = .None
@@ -48,9 +42,9 @@ class CalendarEditor: NSViewController, DataSourceViewController, Databasable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (view as! CustomizableView).backgroundColor = UI.Color.Background.DataSourceViewController
+        (view as! CustomizableView).backgroundColor = UI.Color.Background.SourceViewer
         
-        pathControl.backgroundColor = UI.Color.Background.DataSourceViewController
+        pathControl.backgroundColor = UI.Color.Background.SourceViewer
         pathControl.URL = NSURL(string: "southlake://localhost/calendar")
         updatePathControlAppearance()
         

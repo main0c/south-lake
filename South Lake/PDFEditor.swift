@@ -9,7 +9,7 @@
 import Cocoa
 import Quartz
 
-class PDFEditor: NSViewController, DataSourceViewController {
+class PDFEditor: NSViewController, SourceViewer {
     static var storyboard: String = "PDFEditor"
     static var filetypes: [String] = [
         "com.adobe.pdf",
@@ -24,12 +24,8 @@ class PDFEditor: NSViewController, DataSourceViewController {
     
     var databaseManager: DatabaseManager?
     var searchService: BRSearchService?
-    
-    var isFileEditor: Bool {
-        return true
-    }
-    
-    var delegate: SelectionDelegate?
+        
+    var selectionDelegate: SelectionDelegate?
     dynamic var selectedObjects: [DataSource]?
     
     dynamic var source: DataSource? {
@@ -62,7 +58,7 @@ class PDFEditor: NSViewController, DataSourceViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        editor.setBackgroundColor(UI.Color.Background.DataSourceViewController)
+        editor.setBackgroundColor(UI.Color.Background.SourceViewer)
         editor.setAutoScales(true)
         
         loadFile(source)

@@ -16,7 +16,7 @@
 		E3088A9B1CA0F34800CCA77C /* FileCardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3088A9A1CA0F34800CCA77C /* FileCardCollectionView.swift */; };
 		E3088AB71CA0FC7700CCA77C /* NSMutableCharacterSet+Chaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3088AB61CA0FC7700CCA77C /* NSMutableCharacterSet+Chaining.swift */; };
 		E310EFE71CA7066E00D66E1C /* NSSplitViewController+Replace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E310EFE61CA7066E00D66E1C /* NSSplitViewController+Replace.swift */; };
-		E3148F121C79353B006BCE53 /* DataSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3148F111C79353B006BCE53 /* DataSourceViewController.swift */; };
+		E3148F121C79353B006BCE53 /* SourceViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3148F111C79353B006BCE53 /* SourceViewer.swift */; };
 		E3274FBF1C75A088000B6A84 /* MarkdownEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3274FBE1C75A088000B6A84 /* MarkdownEditor.swift */; };
 		E3274FC11C75A0B7000B6A84 /* SourceListPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3274FC01C75A0B7000B6A84 /* SourceListPanel.swift */; };
 		E3274FC31C75A134000B6A84 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3274FC21C75A134000B6A84 /* DataSource.swift */; };
@@ -323,7 +323,7 @@
 		E3088A9A1CA0F34800CCA77C /* FileCardCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCardCollectionView.swift; sourceTree = "<group>"; };
 		E3088AB61CA0FC7700CCA77C /* NSMutableCharacterSet+Chaining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableCharacterSet+Chaining.swift"; sourceTree = "<group>"; };
 		E310EFE61CA7066E00D66E1C /* NSSplitViewController+Replace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSSplitViewController+Replace.swift"; sourceTree = "<group>"; };
-		E3148F111C79353B006BCE53 /* DataSourceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceViewController.swift; sourceTree = "<group>"; };
+		E3148F111C79353B006BCE53 /* SourceViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceViewer.swift; sourceTree = "<group>"; };
 		E3274FBE1C75A088000B6A84 /* MarkdownEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownEditor.swift; sourceTree = "<group>"; };
 		E3274FC01C75A0B7000B6A84 /* SourceListPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceListPanel.swift; sourceTree = "<group>"; };
 		E3274FC21C75A134000B6A84 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
@@ -2604,7 +2604,7 @@
 			children = (
 				E32AD2701C76843500648BFD /* Databasable.swift */,
 				E360727B1C74FEEC00914C2C /* DocumentTab.swift */,
-				E3148F111C79353B006BCE53 /* DataSourceViewController.swift */,
+				E3148F111C79353B006BCE53 /* SourceViewer.swift */,
 				E3AD256B1C7F9D08006D6536 /* FileImporter.swift */,
 				E37C7B451C8FF2F600A3AB43 /* Inspector.swift */,
 				E3824FC01CAA3D210073885C /* SelectionDelegate.swift */,
@@ -7852,7 +7852,7 @@
 				E3274FC11C75A0B7000B6A84 /* SourceListPanel.swift in Sources */,
 				E3C4362B1C7642BA00DD685D /* MacDownCopyFiles.m in Sources */,
 				E37AB7451C8E1C0500F44564 /* FileCardViewController.swift in Sources */,
-				E3148F121C79353B006BCE53 /* DataSourceViewController.swift in Sources */,
+				E3148F121C79353B006BCE53 /* SourceViewer.swift in Sources */,
 				E3274FC91C75A151000B6A84 /* SmartFolder.swift in Sources */,
 				E343AC601CA9A13C00BEF51D /* FileListCollectionView.swift in Sources */,
 				E3FD678F1C7BE37800D7EBB7 /* EditorPlugIns.swift in Sources */,

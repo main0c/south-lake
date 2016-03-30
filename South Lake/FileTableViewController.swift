@@ -25,12 +25,12 @@ class FileTableViewController: NSViewController, FileCollectionScene {
     var searchService: BRSearchService?
     
     var selectsOnDoubleClick: Bool = false
-    var delegate: SelectionDelegate?
+    var selectionDelegate: SelectionDelegate?
     
     dynamic var selectedObjects: [DataSource] = [] {
         didSet {
-            if let delegate = delegate {
-                delegate.object(self, didChangeSelection: selectedObjects)
+            if let selectionDelegate = selectionDelegate {
+                selectionDelegate.object(self, didChangeSelection: selectedObjects)
             }
         }
     }

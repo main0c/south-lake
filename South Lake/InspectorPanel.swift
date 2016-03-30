@@ -8,7 +8,7 @@
 
 import Cocoa
 
-/// Given a DataSourceViewController, knows how to display the Inspectors for it. That is its only job
+/// Given a SourceViewer, knows how to display the Inspectors for it. That is its only job
 /// It does not manage bindings for the inspectors, and it doesn't care what is displayed
 /// in the inspectors.
 

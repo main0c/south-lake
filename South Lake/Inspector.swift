@@ -18,7 +18,7 @@ import Foundation
 /// propety. A file inspector does not have access to the file's editor instance.
 ///
 /// An editor inspector works with the visual editor for a file and so needs access
-/// to that interface (DataSourceViewController protocol). An editor inspector doesn't have default
+/// to that interface (SourceViewer protocol). An editor inspector doesn't have default
 /// access to the file, although an editor can provide that. An example editor
 /// inspector is a PDF thumbnail view that requires access to the PDF viewer
 /// to display thumbnails and scroll the viewer when a thumbnail is selected.

@@ -17,7 +17,7 @@ class FileListViewController: NSViewController, FileCollectionScene {
     var databaseManager: DatabaseManager?
     var searchService: BRSearchService?
     
-    var delegate: SelectionDelegate?
+    var selectionDelegate: SelectionDelegate?
     var selectsOnDoubleClick: Bool = false {
         didSet {
             if selectsOnDoubleClick {
@@ -30,8 +30,8 @@ class FileListViewController: NSViewController, FileCollectionScene {
     
     dynamic var selectedObjects: [DataSource] = [] {
         didSet {
-            if let delegate = delegate {
-                delegate.object(self, didChangeSelection: selectedObjects)
+            if let selectionDelegate = selectionDelegate {
+                selectionDelegate.object(self, didChangeSelection: selectedObjects)
             }
         }
     }

@@ -19,7 +19,7 @@ private enum SortBy: Int {
     case Updated = 1003
 }
 
-class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
+class LibraryEditor: NSViewController, SelectableSourceViewer {
     static var storyboard: String = "LibraryEditor"
     static var filetypes: [String] = [
         "southlake.notebook.library",
@@ -44,10 +44,6 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
         didSet {
             sceneController?.searchService = searchService
         }
-    }
-    
-    var isFileEditor: Bool {
-        return false
     }
     
     dynamic var source: DataSource?
@@ -83,7 +79,7 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
         return nil
     }
     
-    var delegate: SelectionDelegate?
+    var selectionDelegate: SelectionDelegate?
     
     // What I want is to not use bindings at all for selection, which cause misfires,
     // but collection view delegate selection callbacks have inexplicably stopped working
@@ -95,11 +91,11 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
             guard !ignoreChangeInSelection else {
                 return
             }
-            guard let delegate = delegate, let selection = selectedObjects else {
+            guard let selectionDelegate = selectionDelegate, let selection = selectedObjects else {
                 return
             }
             
-            delegate.object(self, didChangeSelection: selection)
+            selectionDelegate.object(self, didChangeSelection: selection)
         }
     }
     
@@ -130,8 +126,8 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
         
         // Custom appearance
         
-        (view as! CustomizableView).backgroundColor = UI.Color.Background.DataSourceViewController
-        pathControl.backgroundColor = UI.Color.Background.DataSourceViewController
+        (view as! CustomizableView).backgroundColor = UI.Color.Background.SourceViewer
+        pathControl.backgroundColor = UI.Color.Background.SourceViewer
         searchField.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
         
         // Restore sort descriptors or provide defaults
@@ -324,7 +320,7 @@ class LibraryEditor: NSViewController, DataSourceViewController, Databasable {
         // Set up connections
         
         sceneController!.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
-        sceneController!.delegate = self
+        sceneController!.selectionDelegate = self
         
         if let selection = selection {
             whileIgnoringChangeInSelection {

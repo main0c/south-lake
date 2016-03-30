@@ -20,12 +20,12 @@ class TagsCollectionViewController: NSViewController, FileCollectionScene {
     var searchService: BRSearchService?
     
     var selectsOnDoubleClick: Bool = false
-    var delegate: SelectionDelegate?
+    var selectionDelegate: SelectionDelegate?
     
     dynamic var selectedObjects: [DataSource] = [] {
         didSet {
-            if let delegate = delegate {
-                delegate.object(self, didChangeSelection: selectedObjects)
+            if let selectionDelegate = selectionDelegate {
+                selectionDelegate.object(self, didChangeSelection: selectedObjects)
             }
         }
     }
@@ -36,7 +36,7 @@ class TagsCollectionViewController: NSViewController, FileCollectionScene {
         super.viewDidLoad()
         // Do view setup here.
         
-        collectionView.backgroundColors = [UI.Color.Background.DataSourceViewController]
+        collectionView.backgroundColors = [UI.Color.Background.SourceViewer]
         
         let prototype = storyboard!.instantiateControllerWithIdentifier("tagsListCollectionViewItem") as? TagsCollectionViewItem
         prototype?.doubleAction = #selector(TagsCollectionViewController.doubleClick(_:))

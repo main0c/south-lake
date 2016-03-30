@@ -78,7 +78,7 @@ class EditorPlugIns {
         ]
     }
     
-    func plugInForFiletype(filetype: String) -> DataSourceViewController? {
+    func plugInForFiletype(filetype: String) -> SourceViewer? {
         var storyboard: String?
         
         for plugin in plugins {
@@ -97,6 +97,6 @@ class EditorPlugIns {
             return nil
         }
         
-        return NSStoryboard(name: storyboard!, bundle: nil).instantiateInitialController() as? DataSourceViewController
+        return NSStoryboard(name: storyboard!, bundle: nil).instantiateInitialController() as? SourceViewer
     }
 }

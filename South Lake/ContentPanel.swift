@@ -24,7 +24,7 @@ class ContentPanel: NSViewController {
         }
     }
     
-    var editor: DataSourceViewController? {
+    var editor: SourceViewer? {
         willSet {
             removeEditorFromInterface()
         }
@@ -44,7 +44,7 @@ class ContentPanel: NSViewController {
         
         if let view = view as? CustomizableView {
             view.backgroundColor = UI.Color.Background.Neutral
-                // .DataSourceViewController
+                // .SourceViewer
         }
     }
     

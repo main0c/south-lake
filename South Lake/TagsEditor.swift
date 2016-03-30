@@ -13,7 +13,7 @@ private enum SortBy: Int {
     case Count = 1002
 }
 
-class TagsEditor: NSViewController, DataSourceViewController {
+class TagsEditor: NSViewController, SelectableSourceViewer {
     static var storyboard: String = "TagsEditor"
     static var filetypes: [String] = [
         "southlake.notebook.tags",
@@ -46,11 +46,7 @@ class TagsEditor: NSViewController, DataSourceViewController {
     
     // MARK: - File Editor
     
-    var isFileEditor: Bool {
-        return false
-    }
-    
-    var delegate: SelectionDelegate?
+    var selectionDelegate: SelectionDelegate?
     dynamic var selectedObjects: [DataSource]?
     
     dynamic var source: DataSource?
@@ -82,8 +78,8 @@ class TagsEditor: NSViewController, DataSourceViewController {
         
         // Appearance
         
-        (view as! CustomizableView).backgroundColor = UI.Color.Background.DataSourceViewController
-        pathControl.backgroundColor = UI.Color.Background.DataSourceViewController
+        (view as! CustomizableView).backgroundColor = UI.Color.Background.SourceViewer
+        pathControl.backgroundColor = UI.Color.Background.SourceViewer
         searchField.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
     
         // TODO: save and restore tags sort
