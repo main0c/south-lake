@@ -425,6 +425,13 @@ class DefaultTab: NSSplitViewController, DocumentTab {
 //            layoutController.splitViewItems[1].collapsed = false
 //            view.window!.makeFirstResponder(editor!.primaryResponder)
 //        }
+
+        // Establish connections
+        
+        if let editor = editor as? SelectableSourceViewer {
+            editor.selectionDelegate = self
+        }
+
     }
     
     func clearEditor() {
@@ -540,6 +547,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     // MARK: - Inspector
     
     func bindInspectors(selection: [DataSource]) {
+        return;
+        
         // For multiple selection, the tab manages a metadata inspector view and bindings
         // For single file selection, the file editor has the inspectors and we add metadata
         // For single folder selection, no inspector (or folder metadata?)
@@ -556,6 +565,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     }
     
     func unbindInspectors() {
+        return;
+        
         // For single selection, do nothing. The editor handles inspector bindings
         // For multiple selection or inspectors the tab has created, unbind the inspectors
         
@@ -575,11 +586,15 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     }
     
     func clearInspector() {
+        return
+        
 //        inspectorPanel.inspectors = nil
         inspectors = nil
     }
     
     func loadInspector(file: DataSource) {
+        return;
+        
         guard let editor = editor else {
             clearInspector()
             return
@@ -619,7 +634,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     }
     
     func loadInspectorForMultipleSelection(files: [DataSource]) {
-    
+        return;
     }
     
     // MARK: - Search

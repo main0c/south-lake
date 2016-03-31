@@ -24,7 +24,6 @@ class CalendarEditor: NSViewController, SelectableSourceViewer {
     var searchService: BRSearchService?
     
     var selectionDelegate: SelectionDelegate?
-    dynamic var selectedObjects: [DataSource]?
     dynamic var source: DataSource?
     var layout: Layout = .None
     var scene: Scene = .None

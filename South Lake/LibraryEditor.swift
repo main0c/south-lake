@@ -80,24 +80,7 @@ class LibraryEditor: NSViewController, SelectableSourceViewer {
     }
     
     var selectionDelegate: SelectionDelegate?
-    
-    // What I want is to not use bindings at all for selection, which cause misfires,
-    // but collection view delegate selection callbacks have inexplicably stopped working
-    
     private var ignoreChangeInSelection = false
-    
-    dynamic var selectedObjects: [DataSource]? {
-        didSet {
-            guard !ignoreChangeInSelection else {
-                return
-            }
-            guard let selectionDelegate = selectionDelegate, let selection = selectedObjects else {
-                return
-            }
-            
-            selectionDelegate.object(self, didChangeSelection: selection)
-        }
-    }
     
     // MARK: - Custom Properties
     
@@ -276,9 +259,9 @@ class LibraryEditor: NSViewController, SelectableSourceViewer {
             return
         }
         
-        // Preserve the selected objects
+        // Preserve the selection
         
-        let selection = selectedObjects
+        let selection = sceneController?.selectedObjects
         
         // Prepare the scene
         
@@ -321,6 +304,8 @@ class LibraryEditor: NSViewController, SelectableSourceViewer {
         
         sceneController!.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
         sceneController!.selectionDelegate = self
+        
+        // Restore the selection
         
         if let selection = selection {
             whileIgnoringChangeInSelection {
@@ -475,6 +460,9 @@ class LibraryEditor: NSViewController, SelectableSourceViewer {
 extension LibraryEditor: SelectionDelegate {
     
     func object(object: AnyObject, didChangeSelection selection: [AnyObject]) {
+        guard let selectionDelegate = selectionDelegate else {
+            return
+        }
         guard let selection = selection as? [DataSource] else {
             return
         }
@@ -482,7 +470,7 @@ extension LibraryEditor: SelectionDelegate {
             return
         }
         
-        selectedObjects = selection
+        selectionDelegate.object(self, didChangeSelection: selection)
     }
 }
 

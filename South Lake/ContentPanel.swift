@@ -56,17 +56,17 @@ class ContentPanel: NSViewController {
     // MARK: - Header and Editor Inteface
     
     func removeHeaderFromInterface() {
-        guard header != nil else {
+        guard let header = header else {
             return
         }
         
-        header!.removeFromParentViewController()
-        header!.view.removeFromSuperview()
+        header.removeFromParentViewController()
+        header.view.removeFromSuperview()
         headerHidden = true
     }
     
     func addHeaderToInterface() {
-        guard header != nil else {
+        guard let header = header else {
             return
         }
         
@@ -75,23 +75,23 @@ class ContentPanel: NSViewController {
         let height = kHeaderHeight // header!.view.frame.size.height
         let width = CGRectGetWidth(view.bounds)
         
-        header!.view.translatesAutoresizingMaskIntoConstraints = false
-        header!.view.frame = NSMakeRect(0, 0, width, height)
+        header.view.translatesAutoresizingMaskIntoConstraints = false
+        header.view.frame = NSMakeRect(0, 0, width, height)
         
-        view.addSubview(header!.view)
-        addChildViewController(header!)
+        view.addSubview(header.view)
+        addChildViewController(header)
         
         view.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|",
                 options: .DirectionLeadingToTrailing,
                 metrics: nil,
-                views: ["subview": header!.view])
+                views: ["subview": header.view])
         )
         view.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview(54)]",
                 options: .DirectionLeadingToTrailing,
                 metrics: nil,
-                views: ["subview": header!.view])
+                views: ["subview": header.view])
         )
         
         headerHidden = false

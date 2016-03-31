@@ -92,24 +92,7 @@ class FolderEditor: NSViewController, SelectableSourceViewer {
     }
     
     var selectionDelegate: SelectionDelegate?
-    
-    // What I want is to not use bindings at all for selection, which cause misfires,
-    // but collection view delegate selection callbacks have inexplicably stopped working
-    
     private var ignoreChangeInSelection = false
-    
-    dynamic var selectedObjects: [DataSource]? {
-        didSet {
-            guard !ignoreChangeInSelection else {
-                return
-            }
-            guard let selectionDelegate = selectionDelegate, let selection = selectedObjects else {
-                return
-            }
-            
-            selectionDelegate.object(self, didChangeSelection: selection)
-        }
-    }
     
     // MARK: - Custom Properties
     
@@ -298,7 +281,7 @@ class FolderEditor: NSViewController, SelectableSourceViewer {
         
         // Preserve the selected objects
         
-        let selection = selectedObjects
+        let selection = sceneController?.selectedObjects
         
         // Prepare the scene
         
@@ -341,6 +324,8 @@ class FolderEditor: NSViewController, SelectableSourceViewer {
         
         sceneController!.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
         sceneController!.selectionDelegate = self
+        
+        // Restore selection
         
         if let selection = selection {
             whileIgnoringChangeInSelection {
@@ -453,6 +438,9 @@ class FolderEditor: NSViewController, SelectableSourceViewer {
 extension FolderEditor: SelectionDelegate {
     
     func object(object: AnyObject, didChangeSelection selection: [AnyObject]) {
+        guard let selectionDelegate = selectionDelegate else {
+            return
+        }
         guard let selection = selection as? [DataSource] else {
             return
         }
@@ -460,6 +448,6 @@ extension FolderEditor: SelectionDelegate {
             return
         }
         
-        selectedObjects = selection
+        selectionDelegate.object(self, didChangeSelection: selection)
     }
 }

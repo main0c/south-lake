@@ -67,12 +67,8 @@ protocol SourceViewer: class, Databasable {
 protocol SelectableSourceViewer: class, SourceViewer {
     
     /// A data source communicates changes in selection to observers using
-    /// delegate methods. Bindings were in use but the binding firing when
-    /// established is undesirable
+    /// delegate methods. Bindings were in use but the binding fire when
+    /// established, which is undesirable
     
     var selectionDelegate: SelectionDelegate? { get set }
-
-    /// Some source viewers can themselves have selected objects. The property should be dynamic
-    
-    var selectedObjects: [DataSource]? { get set }
 }

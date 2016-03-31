@@ -21,12 +21,8 @@ class PDFEditor: NSViewController, SourceViewer {
     
     // MARK: - File Editor
 
-    
     var databaseManager: DatabaseManager?
     var searchService: BRSearchService?
-        
-    var selectionDelegate: SelectionDelegate?
-    dynamic var selectedObjects: [DataSource]?
     
     dynamic var source: DataSource? {
         didSet {
