@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="9No-O6-nOD">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="9No-O6-nOD">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="9532"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="10116"/>
     </dependencies>
     <scenes>
-        <!--Content View Controller-->
+        <!--Markdown View Controller-->
         <scene sceneID="DqW-Qj-1RR">
             <objects>
-                <viewController id="9No-O6-nOD" userLabel="Content View Controller" customClass="MarkdownEditor" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9No-O6-nOD" userLabel="Markdown View Controller" customClass="MarkdownEditor" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="7yw-mh-rxu">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="578"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -99,10 +99,10 @@
             </objects>
             <point key="canvasLocation" x="44" y="1371"/>
         </scene>
-        <!--Contents-->
+        <!--Table of Contents-->
         <scene sceneID="fgz-sI-JTi">
             <objects>
-                <viewController title="Contents" storyboardIdentifier="tableOfContents" id="UaG-EI-xfc" customClass="MarkdownTOCInspector" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Contents" storyboardIdentifier="tableOfContents" id="UaG-EI-xfc" userLabel="Table of Contents" customClass="MarkdownTOCInspector" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Guc-pc-d0M">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="462"/>
                         <autoresizingMask key="autoresizingMask"/>

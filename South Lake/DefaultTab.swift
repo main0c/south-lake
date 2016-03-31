@@ -132,12 +132,12 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     dynamic var selectedObjects: [DataSource] = [] {
         willSet {
-            unbindTitle(selectedObjects)
-            unbindIcon(selectedObjects)
+            unbindTitle()
+            unbindIcon()
             
-            unbindEditor(selectedObjects)
-            unbindHeader(selectedObjects)
-            unbindInspectors(selectedObjects)
+            unbindEditor()
+            unbindHeader()
+            unbindInspectors()
         }
         didSet {
             selectedObject = selectedObjects[safe:0]
@@ -224,20 +224,9 @@ class DefaultTab: NSSplitViewController, DocumentTab {
 //        inspectorPanel.willClose()
         contentPanel.willClose()
         
-        unbindTitle(selectedObjects)
-        unbindIcon(selectedObjects)
-        
-        if let inspectors = inspectors {
-            for inspector in inspectors {
-                inspector.willClose()
-                switch inspector {
-                case let i as RelatedInspector:
-                    i.unbind("selectedObjects")
-                case _:
-                    break
-                }
-            }
-        }
+        unbindTitle()
+        unbindIcon()
+        unbindInspectors()
     }
         
     // TOOD: save when changing selection
@@ -351,11 +340,11 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
     }
     
-    func unbindTitle(selection: [DataSource]) {
+    func unbindTitle() {
         unbind("title")
     }
     
-    func unbindIcon(selection: [DataSource]) {
+    func unbindIcon() {
         unbind("icon")
     }
     
@@ -382,7 +371,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
     }
       
-    func unbindEditor(selection: [DataSource]) {
+    func unbindEditor() {
         guard let editor = editor else {
             return
         }
@@ -486,7 +475,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
         
         // TODO: maybe would be nice if we didn't need to replace the split view item entirely, as with the editor
-        
         layoutController.replaceSplitViewItem(atIndex: 0, withViewController: sourceViewer as! NSViewController)
         
         // Establish connections
@@ -515,7 +503,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
     }
     
-    func unbindHeader(selection:[DataSource]) {
+    func unbindHeader() {
         guard let header = header else {
             return
         }
@@ -567,19 +555,21 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
     }
     
-    func unbindInspectors(selection: [DataSource]) {
+    func unbindInspectors() {
         // For single selection, do nothing. The editor handles inspector bindings
         // For multiple selection or inspectors the tab has created, unbind the inspectors
         
-        if let inspectors = inspectors {
-            for inspector in inspectors {
-                inspector.willClose()
-                switch inspector {
-                case let i as RelatedInspector:
-                    i.unbind("selectedObjects")
-                case _:
-                    break
-                }
+        guard let inspectors = inspectors else {
+            return
+        }
+
+        for inspector in inspectors {
+            inspector.willClose()
+            switch inspector {
+            case let i as RelatedInspector:
+                i.unbind("selectedObjects")
+            case _:
+                break
             }
         }
     }
