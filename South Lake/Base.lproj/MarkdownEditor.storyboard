@@ -93,6 +93,7 @@
                         <outlet property="editorContainer" destination="rez-in-j1l" id="7pp-Qe-DOD"/>
                         <outlet property="preview" destination="nyj-NZ-ZQ2" id="yXG-19-sIF"/>
                         <outlet property="splitView" destination="zSN-M5-giF" id="JZF-d5-7Cd"/>
+                        <outlet property="topLayoutConstraint" destination="sMR-QG-KOa" id="v8B-QN-uNi"/>
                     </connections>
                 </viewController>
                 <customObject id="Q7U-my-55i" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

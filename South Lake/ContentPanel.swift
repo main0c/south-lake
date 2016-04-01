@@ -13,16 +13,8 @@ private let kHeaderHeight = CGFloat(54)
 
 class ContentPanel: NSViewController {
     
-    // MARK: - Custom Properties
-    
-    var header: FileHeaderViewController? {
-        willSet {
-            removeHeaderFromInterface()
-        }
-        didSet {
-            addHeaderToInterface()
-        }
-    }
+    lazy var header: FileHeaderViewController = NSStoryboard(name: "FileHeader", bundle: nil).instantiateInitialController() as! FileHeaderViewController
+    var headerHidden: Bool = false
     
     var editor: SourceViewer? {
         willSet {
@@ -33,8 +25,6 @@ class ContentPanel: NSViewController {
         }
     }
     
-    var headerHidden: Bool = false
-    
     var verticalEditorConstraints: [NSLayoutConstraint] = []
     
     // MARK: - Initialization
@@ -42,23 +32,30 @@ class ContentPanel: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Customize appearance
+        
         if let view = view as? CustomizableView {
             view.backgroundColor = UI.Color.Background.Neutral
                 // .SourceViewer
         }
+        
+        // Load header
+        
+        addHeaderToInterface()
+        header.file = nil
     }
     
     func willClose() {
-        header?.willClose()
+        header.willClose()
         editor?.willClose()
     }
     
     // MARK: - Header and Editor Inteface
     
     func removeHeaderFromInterface() {
-        guard let header = header else {
-            return
-        }
+//        guard let header = header else {
+//            return
+//        }
         
         header.removeFromParentViewController()
         header.view.removeFromSuperview()
@@ -66,9 +63,9 @@ class ContentPanel: NSViewController {
     }
     
     func addHeaderToInterface() {
-        guard let header = header else {
-            return
-        }
+//        guard let header = header else {
+//            return
+//        }
         
         // Frame
         

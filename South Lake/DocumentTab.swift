@@ -23,9 +23,7 @@ protocol DocumentTab: class, Databasable {
     var searchService: BRSearchService? { get set }
  
     // Document Tab
- 
-    var selectedObjects: [DataSource] { get set }
-    
+
     var title: String? { get set }
     var icon: NSImage? { get set }
     

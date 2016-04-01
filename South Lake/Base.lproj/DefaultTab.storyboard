@@ -143,13 +143,13 @@
             <objects>
                 <viewController id="wJq-2C-uWc" userLabel="File Content" sceneMemberID="viewController">
                     <view key="view" id="kge-2E-4NC">
-                        <rect key="frame" x="0.0" y="0.0" width="412" height="399"/>
+                        <rect key="frame" x="0.0" y="0.0" width="620" height="399"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>
                 <customObject id="D5B-UX-P8c" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="650" y="718.5"/>
+            <point key="canvasLocation" x="752" y="718.5"/>
         </scene>
     </scenes>
 </document>

@@ -78,7 +78,7 @@ enum ViewTag: Int {
 
 class DefaultTab: NSSplitViewController, DocumentTab {
     var sourceListPanel: SourceListPanel!
-    var contentPanel: ContentPanel!
+    var contentPanel: ContentPanel?
     // var inspectorPanel: InspectorPanel!
     
     dynamic var icon: NSImage?
@@ -91,6 +91,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
                 var databasable = vc as! Databasable
                 databasable.databaseManager = databaseManager
             }
+            contentPanel?.header.databaseManager = databaseManager
         }
     }
     
@@ -100,37 +101,14 @@ class DefaultTab: NSSplitViewController, DocumentTab {
                 var databasable = vc as! Databasable
                 databasable.searchService = searchService
             }
+            contentPanel?.header.searchService = searchService
         }
     }
     
-    /// The selected source list objects originate in the source list and are
-    /// displayed in the second panel
+    /// The source list selection originates in the source list at the far left
+    /// and its contents are displayed in a source viewer in the second panel
     
-    dynamic var selectedSourceListObjects: [DataSource] = [] {
-        didSet {
-            selectedObjects = selectedSourceListObjects
-        }
-    }
-    
-    /// The selected file objects originate in the source viewer being shown for
-    /// the currently selected source list objects and are displayed in either
-    /// the second or third panel
-    
-    dynamic var selectedFileObjects: [DataSource] = [] {
-        didSet {
-            selectedObjects = selectedFileObjects
-        }
-    }
-    
-    /// ...
-    
-    dynamic var selectedURLObjects: [DataSource] = [] {
-        didSet {
-            selectedObjects = selectedURLObjects
-        }
-    }
-    
-    dynamic var selectedObjects: [DataSource] = [] {
+    var sourceListSelection: [DataSource] = [] {
         willSet {
             unbindTitle()
             unbindIcon()
@@ -140,23 +118,45 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             unbindInspectors()
         }
         didSet {
-            selectedObject = selectedObjects[safe:0]
+            bindTitle(sourceListSelection)
+            bindIcon(sourceListSelection)
             
-            bindTitle(selectedObjects)
-            bindIcon(selectedObjects)
-            
-            bindEditor(selectedObjects)
-            bindHeader(selectedObjects)
-            bindInspectors(selectedObjects)
+            bindEditor(sourceListSelection)
+            bindHeader(sourceListSelection)
+            bindInspectors(sourceListSelection)
         }
     }
     
-    dynamic var selectedObject: DataSource?
+    /// The source viewer selection originates in the source viewer and may be
+    /// a folder, tag, date, file, etc. Its contents are displayed in either the
+    /// second or third panel
+    
+    var sourceViewerSelection: [DataSource] = [] {
+        willSet {
+            unbindTitle()
+            unbindIcon()
+            
+            unbindEditor()
+            unbindHeader()
+            unbindInspectors()
+        }
+        didSet {
+            bindTitle(sourceViewerSelection)
+            bindIcon(sourceViewerSelection)
+            
+            bindEditor(sourceViewerSelection)
+            bindHeader(sourceViewerSelection)
+            bindInspectors(sourceViewerSelection)
+        }
+    }
+    
+    /// ...
+    // var URLSelection: [DataSource] = [] { ... }
     
     var layoutController: NSSplitViewController!
     var sourceViewer: SourceViewer?
    
-    var header: FileHeaderViewController?
+    // var header: FileHeaderViewController?
     var editor: SourceViewer?
     
     var inspectors: [Inspector]?
@@ -194,8 +194,11 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         // Create the content panel and move it into place
         
-        contentPanel = NSStoryboard(name: "ContentPanel", bundle: nil).instantiateInitialController() as! ContentPanel
-        layoutController.replaceSplitViewItem(atIndex: 1, withViewController: contentPanel)
+        contentPanel = NSStoryboard(name: "ContentPanel", bundle: nil).instantiateInitialController() as? ContentPanel
+        contentPanel!.header.databaseManager = databaseManager
+        contentPanel!.header.searchService = searchService
+        
+        layoutController.replaceSplitViewItem(atIndex: 1, withViewController: contentPanel!)
         
         // Restore user layout preferences
         
@@ -222,7 +225,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     func willClose() {
         sourceListPanel.willClose()
 //        inspectorPanel.willClose()
-        contentPanel.willClose()
+        contentPanel!.willClose()
         
         unbindTitle()
         unbindIcon()
@@ -310,7 +313,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
     }
 
-    // MARK: - Bindings
+    // MARK: - Title and Icon
     
     func bindTitle(selection: [DataSource]) {
         let count = selection.count
@@ -319,8 +322,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         case 0:
             title = NSLocalizedString("No Selection", comment: "")
         case 1:
-            let object = selection[0]
-            bind("title", toObject: object, withKeyPath: "title", options: [:])
+            bind("title", toObject: selection[0], withKeyPath: "title", options: [:])
         default:
             title = NSLocalizedString("Multiple Selection", comment: "")
         }
@@ -333,8 +335,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         case 0:
             icon = nil
         case 1:
-            let object = selection[0]
-            bind("icon", toObject: object, withKeyPath: "icon", options: [:])
+            bind("icon", toObject: selection[0], withKeyPath: "icon", options: [:])
         default:
             icon = nil
         }
@@ -351,7 +352,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     // MARK: - Editor
     
     func bindEditor(selection: [DataSource]) {
-        let item = selectedObject
+        let item = selection[safe: 0]
         
         // TODO: when loading a file from the source list we always need to display in expanded view
         // TODO: some sources won't support all views: calendar, tags...
@@ -415,7 +416,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         // Move the editor into place
     
-        contentPanel.editor = editor
+        contentPanel!.editor = editor
         
         // If we are expanded, collapse the source viewer in favor of the editor
         // Make the editor first responder
@@ -437,7 +438,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     func clearEditor() {
         editor?.willClose()
         editor?.source = nil
-        contentPanel.editor = nil
+        contentPanel!.editor = nil
         editor = nil
     }
     
@@ -500,7 +501,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     // MARK: - Header
     
     func bindHeader(selection: [DataSource]) {
-        let item = selectedObject
+        let item = selection[safe: 0]
         
         switch (selection.count, item) {
 //        case (0, _): clearHeader()
@@ -511,10 +512,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     }
     
     func unbindHeader() {
-        guard let header = header else {
-            return
-        }
-        header.file = nil
+        contentPanel!.header.file = nil
     }
     
     func loadHeader(file: DataSource) {
@@ -524,25 +522,25 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             return
         }
         
-        if ( header == nil ) {
-            header = NSStoryboard(name: "FileHeader", bundle: nil).instantiateInitialController() as? FileHeaderViewController
-            
-            header?.databaseManager = databaseManager
-            header?.searchService = searchService
-            
-            contentPanel.header = header
-            
-            // Next responder: tab from title to editor
-            header?.primaryResponder.nextKeyView = editor?.primaryResponder
-        }
+//        if ( header == nil ) {
+//            header = NSStoryboard(name: "FileHeader", bundle: nil).instantiateInitialController() as? FileHeaderViewController
+//            
+//            header?.databaseManager = databaseManager
+//            header?.searchService = searchService
+//            
+//            contentPanel!.header = header
+//            
+//            // Next responder: tab from title to editor
+//            header?.primaryResponder.nextKeyView = editor?.primaryResponder
+//        }
         
-        header!.file = file
+        // TODO: must be set up when the editor changes as well?
+        // Next responder: tab from title to editor
+        contentPanel?.header.primaryResponder.nextKeyView = editor?.primaryResponder
+        contentPanel?.header.file = file
+        
+        // header!.file = file
     }
-    
-//    func clearHeader() {
-//        contentPanel.header = nil
-//        header = nil
-//    }
     
     // MARK: - Inspector
     
@@ -554,7 +552,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         // For single folder selection, no inspector (or folder metadata?)
         // For no selector: no inspector
         
-        let item = selectedObject
+        let item = selection[safe: 0]
         
         switch (selection.count, item) {
         case (0, _): clearInspector()
@@ -623,6 +621,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         // TODO: we don't always need to be rebuilding and rebinding these things, file insepctors
         // that are permanently available should just stick around
+        
+        // TODO: selected objects is no longer maintained
         
         relatedInspector.bind("selectedObjects", toObject: self, withKeyPath: "selectedObjects", options: [:])
         
@@ -760,7 +760,7 @@ extension DefaultTab {
         var indexPath: NSIndexPath
         
         if  let selectedIndexPath = sourceListPanel.selectedIndexPath,
-            let item = selectedObject where item.uti == DataTypes.Folder.uti {
+            let item = sourceListSelection[safe: 0] where item.uti == DataTypes.Folder.uti {
             parent = item
             indexPath = selectedIndexPath.indexPathByAddingIndex(parent.children.count)
         } else {
@@ -838,12 +838,14 @@ extension DefaultTab {
     }
     
     @IBAction func toggleDocumentHeader(sender: AnyObject?) {
-        contentPanel.toggleHeader()
+        contentPanel!.toggleHeader()
     }
     
     // MARK: -
     
     func handleOpenURLNotification(notification: NSNotification) {
+        return
+        
         guard let userInfo = notification.userInfo,
               let dbm = userInfo["dbm"] as? DatabaseManager,
               //let source = userInfo["source"] as? DataSource,
@@ -873,7 +875,8 @@ extension DefaultTab {
             // Select library, pass open url to library editor?
             sourceListPanel.selectItem(library)
             if let source = userInfo["source"] as? DataSource { // guard
-                selectedURLObjects = [source]
+                // TODO: re-enable
+                // selectedURLObjects = [source]
             }
             editor?.openURL(url)
         case "tags":
@@ -898,14 +901,14 @@ extension DefaultTab {
              return true
         case #selector(DefaultTab.toggleDocumentHeader(_:)):
              menuItem.title = toggleHeaderTitle()
-             return selectedObject is File
+             return sourceViewerSelection[safe: 0] is File
         default:
              return false
         }
     }
     
     func toggleHeaderTitle() -> String {
-        return contentPanel.headerHidden
+        return contentPanel!.headerHidden
             ? NSLocalizedString("Show Document Header", comment: "")
             : NSLocalizedString("Hide Document Header", comment: "")
     }
@@ -924,9 +927,9 @@ extension DefaultTab: SelectionDelegate {
         
         switch object {
         case _ as SourceListPanel:
-            selectedSourceListObjects = selection
+            sourceListSelection = selection
         case _ as SelectableSourceViewer:
-            selectedFileObjects = selection
+            sourceViewerSelection = selection
         default:
             break
         }

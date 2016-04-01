@@ -9,7 +9,7 @@
             <objects>
                 <viewController id="32p-27-Ig2" customClass="ContentPanel" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="UaK-fA-mO0" customClass="CustomizableView" customModule="South_Lake" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="620" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>

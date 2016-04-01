@@ -58,6 +58,7 @@ class MarkdownEditor: NSViewController, SourceViewer {
         "text/markdown"
     ]
     
+    @IBOutlet var topLayoutConstraint: NSLayoutConstraint!
     @IBOutlet var splitView: MPDocumentSplitView!
     @IBOutlet var editorContainer: NSView!
     @IBOutlet var editor: MPEditorView!
@@ -176,6 +177,8 @@ class MarkdownEditor: NSViewController, SourceViewer {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        topLayoutConstraint.constant = 64
         
         // Default preferences
         
