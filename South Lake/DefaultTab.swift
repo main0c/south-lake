@@ -118,6 +118,9 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             unbindInspectors()
         }
         didSet {
+            
+            log("did change source list selection")
+            
             bindTitle(sourceListSelection)
             bindIcon(sourceListSelection)
             
@@ -141,6 +144,9 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             unbindInspectors()
         }
         didSet {
+            
+            log("did change source viewer selection")
+            
             bindTitle(sourceViewerSelection)
             bindIcon(sourceViewerSelection)
             
@@ -155,8 +161,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     var layoutController: NSSplitViewController!
     var sourceViewer: SourceViewer?
-   
-    // var header: FileHeaderViewController?
     var editor: SourceViewer?
     
     var inspectors: [Inspector]?
@@ -190,15 +194,16 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         sourceListPanel = NSStoryboard(name: "SourceListPanel", bundle: nil).instantiateInitialController() as! SourceListPanel
         replaceSplitViewItem(atIndex: 0, withViewController: sourceListPanel)
+        
         sourceListPanel.selectionDelegate = self
         
         // Create the content panel and move it into place
         
         contentPanel = NSStoryboard(name: "ContentPanel", bundle: nil).instantiateInitialController() as? ContentPanel
+        layoutController.replaceSplitViewItem(atIndex: 1, withViewController: contentPanel!)
+        
         contentPanel!.header.databaseManager = databaseManager
         contentPanel!.header.searchService = searchService
-        
-        layoutController.replaceSplitViewItem(atIndex: 1, withViewController: contentPanel!)
         
         // Restore user layout preferences
         
@@ -504,9 +509,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         let item = selection[safe: 0]
         
         switch (selection.count, item) {
-//        case (0, _): clearHeader()
         case (1, is File): loadHeader(item!)
-//        case (1, is Folder): clearHeader()
         case (_,_): break
         }
     }
@@ -518,28 +521,13 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     func loadHeader(file: DataSource) {
         // guard editor != nil && editor!.isFileEditor else {
         guard editor != nil && !(editor is SelectableSourceViewer) else {
-//            clearHeader()
             return
         }
-        
-//        if ( header == nil ) {
-//            header = NSStoryboard(name: "FileHeader", bundle: nil).instantiateInitialController() as? FileHeaderViewController
-//            
-//            header?.databaseManager = databaseManager
-//            header?.searchService = searchService
-//            
-//            contentPanel!.header = header
-//            
-//            // Next responder: tab from title to editor
-//            header?.primaryResponder.nextKeyView = editor?.primaryResponder
-//        }
         
         // TODO: must be set up when the editor changes as well?
         // Next responder: tab from title to editor
         contentPanel?.header.primaryResponder.nextKeyView = editor?.primaryResponder
         contentPanel?.header.file = file
-        
-        // header!.file = file
     }
     
     // MARK: - Inspector
