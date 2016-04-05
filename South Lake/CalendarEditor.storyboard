@@ -78,13 +78,13 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PwF-yQ-yIr">
-                                <rect key="frame" x="269" y="276" width="106" height="20"/>
+                                <rect key="frame" x="302" y="276" width="73" height="20"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="roundRect" trackingMode="momentary" id="5Gp-dV-TYL">
                                     <font key="font" metaFont="cellTitle"/>
                                     <segments>
-                                        <segment label="&lt;" width="22"/>
-                                        <segment label="Today" width="53" tag="1"/>
-                                        <segment label="&gt;" width="23"/>
+                                        <segment label="&lt;" width="11"/>
+                                        <segment label="Today" width="42" tag="1"/>
+                                        <segment label="&gt;" width="12"/>
                                     </segments>
                                 </segmentedCell>
                             </segmentedControl>

@@ -457,7 +457,7 @@ class Document: NSDocument {
             
                 let smart2 = SmartFolder(forNewDocumentInDatabase: databaseManager.database)
             
-                smart2.title = "Folders Knows Best"
+                smart2.title = "Folders Know Best"
                 smart2.icon = NSImage(named:"smart-folder-icon")
 
                 // We must have ids before we can store the children
