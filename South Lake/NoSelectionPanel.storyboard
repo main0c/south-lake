@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="7UP-hi-H2E">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="TSy-3b-dKV">
+            <objects>
+                <viewController id="7UP-hi-H2E" sceneMemberID="viewController">
+                    <view key="view" id="Jr8-Xs-6Wp">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <visualEffectView blendingMode="behindWindow" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="y1x-lL-6ss">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kgK-89-Hzn">
+                                        <rect key="frame" x="117" y="138" width="217" height="25"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No Document Selected" id="wfw-mG-cW6">
+                                            <font key="font" metaFont="systemLight" size="21"/>
+                                            <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="kgK-89-Hzn" firstAttribute="centerX" secondItem="y1x-lL-6ss" secondAttribute="centerX" id="6bY-rD-uH9"/>
+                                    <constraint firstItem="kgK-89-Hzn" firstAttribute="centerY" secondItem="y1x-lL-6ss" secondAttribute="centerY" id="vmb-K4-snm"/>
+                                </constraints>
+                            </visualEffectView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="y1x-lL-6ss" secondAttribute="trailing" id="Kq5-a0-Wxd"/>
+                            <constraint firstItem="y1x-lL-6ss" firstAttribute="top" secondItem="Jr8-Xs-6Wp" secondAttribute="top" id="UpC-AB-eIg"/>
+                            <constraint firstItem="y1x-lL-6ss" firstAttribute="leading" secondItem="Jr8-Xs-6Wp" secondAttribute="leading" id="YBh-E0-7kW"/>
+                            <constraint firstAttribute="bottom" secondItem="y1x-lL-6ss" secondAttribute="bottom" id="ddv-g9-ZcC"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="j8B-0n-r5R" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="525" y="415"/>
+        </scene>
+    </scenes>
+</document>

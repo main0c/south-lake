@@ -26,6 +26,7 @@ class Tag: DataSource {
     var shouldSave: Bool = false
     
     /// Prevent the Tag from saving if it's just being used temporarily at the interface level
+    /// Might want to end up doing this differently
     
     override func markNeedsSave() {
         guard shouldSave else {

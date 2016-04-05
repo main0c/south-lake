@@ -82,6 +82,10 @@ class FileHeaderViewController: NSViewController, Databasable {
     // MARK: - Metadata Bindings
     
     func unbindMetadata() {
+        guard viewLoaded else {
+            return
+        }
+        
         titleField.unbind("value")
         tagsField.unbind("value")
         createdField.unbind("value")
@@ -91,6 +95,10 @@ class FileHeaderViewController: NSViewController, Databasable {
     // TODO: could just update a selectedObject property and bind to that
     
     func bindMetadata(selection: DataSource?) {
+        guard viewLoaded else {
+            return
+        }
+        
         if let selection = selection {
             titleField.bind("value",
                 toObject: selection,

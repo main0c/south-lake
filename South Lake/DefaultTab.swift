@@ -76,14 +76,64 @@ enum ViewTag: Int {
     case HorizontalTable = 22
 }
 
+/// The default tab consists of a two panel split view. The left panel contains a source list
+/// and the initially selectable content, including files, folders and other shortcuts.
+
+/// The second panel contains an embedded split view that is also two panels. The first
+/// panel displays source list content when that content is selectble (e.g. a folder's files,
+/// the library, a list of tags, the calendar).
+
+/// The second panel displays one of three contents: an empty selection message, the content panel
+/// which manages the placement of the header, editor, and inspectors, or an editor by itself
+/// when it is also selectable.
+
 class DefaultTab: NSSplitViewController, DocumentTab {
+    
+    /// The source list panel is displayed on the far left and contains the primary selectable objects
+    
     var sourceListPanel: SourceListPanel!
+   
+    /// The layout controller manages a split view embedded in the second panel of the primary split view
+    /// It is also two panels: the first shows collection content for whatever is selected in the source 
+    /// list panel. The second shows either a no selection message, additional collection content, or an 
+    /// actual file.
+   
+    var layoutController: NSSplitViewController!
+    
+    /// The content panel appears in the second panel of the layout controller and 
+    /// manages the placement of the header, a file source viewer and inspectors.
+    /// It is used for file content and is moved in and out of its parent split view
+    
     var contentPanel: ContentPanel?
+    
+    /// The no selection panel appears in the second panel of the layout controller
+    /// when there is no right source viewer to display
+    
+    var noSelectionPanel: NSViewController?
+    
+    /// The left source viewer appears in the first panel of the layout controller
+    /// and is used for selectable content, e.g. a folder's file list, tag list, calendar, etc
+    
+    var leftSourceViewer: SourceViewer?
+    
+    /// The right source viewer appears in the second panel of the layout controller
+    /// and is used both for selectable content, for example when a tag is selected in the
+    /// tag list and files associated with that tag are shown, and for content that cannot be selected,
+    /// e.g. a file. When the right source viewer is a file, it is embedded in the content panel
+    
+    var rightSourceViewer: SourceViewer?
+    
+    /// Inspectors appear only with file contents but the variable is currently unused
+    
+    var inspectors: [Inspector]?
     // var inspectorPanel: InspectorPanel!
     
-    dynamic var icon: NSImage?
-    
     // MARK: - Document Tab
+    
+    /// A document tab must have an icon. It is used by the tab controller and displayed
+    /// in the tab bar.
+    
+    dynamic var icon: NSImage?
     
     var databaseManager: DatabaseManager? {
         didSet {
@@ -135,12 +185,6 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     /// ...
     // var URLSelection: [DataSource] = [] { ... }
     
-    var layoutController: NSSplitViewController!
-    var sourceViewer: SourceViewer?
-    var editor: SourceViewer?
-    
-    var inspectors: [Inspector]?
-    
     //
     
     var layout: Layout = .None {
@@ -148,14 +192,14 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             if layout != oldValue {
                 loadLayout(layout)
             }
-            sourceViewer?.layout = layout
-            editor?.layout = layout
+            leftSourceViewer?.layout = layout
+            rightSourceViewer?.layout = layout
         }
     }
     var scene: Scene = .None {
         didSet {
-            sourceViewer?.scene = scene
-            editor?.scene = scene
+            leftSourceViewer?.scene = scene
+            rightSourceViewer?.scene = scene
         }
     }
     
@@ -175,10 +219,15 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         sourceListPanel.selectionDelegate = self
         
+        // Create the no selection panel and move it into place
+        
+        noSelectionPanel = NSStoryboard(name: "NoSelectionPanel", bundle: nil).instantiateInitialController() as? NSViewController
+        layoutController.replaceSplitViewItem(atIndex: 1, withViewController: noSelectionPanel!)
+        
         // Create the content panel and move it into place
         
         contentPanel = NSStoryboard(name: "ContentPanel", bundle: nil).instantiateInitialController() as? ContentPanel
-        layoutController.replaceSplitViewItem(atIndex: 1, withViewController: contentPanel!)
+        // layoutController.replaceSplitViewItem(atIndex: 1, withViewController: contentPanel!)
         
         contentPanel!.header.databaseManager = databaseManager
         contentPanel!.header.searchService = searchService
@@ -396,22 +445,25 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         switch (selection.count, item) {
         case (0, _):
             clearEditor()
+            layoutController.replaceSplitViewItem(atIndex: 1, withViewController: noSelectionPanel!)
         case (1, is File),
              (1, is Tag):
             loadEditor(item!)
+            layoutController.replaceSplitViewItem(atIndex: 1, withViewController: contentPanel!)
         case (1, is Folder):
             clearEditor()
             loadSourceViewer(item!)
+            layoutController.replaceSplitViewItem(atIndex: 1, withViewController: noSelectionPanel!)
         case (_,_):
             break
         }
     }
       
     func unbindEditor() {
-        guard let editor = editor else {
+        guard let rightSourceViewer = rightSourceViewer else {
             return
         }
-        editor.source = nil
+        rightSourceViewer.source = nil
     }
     
     /// Loads a new file editor iff it has changed,
@@ -424,20 +476,20 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             // view.window!.makeFirstResponder(editor!.primaryResponder)
         }
         
-        guard editor?.source != file else {
+        guard rightSourceViewer?.source != file else {
             return
         }
-        guard editor == nil || !editor!.dynamicType.filetypes.contains(file.uti) else {
-            editor!.source = file
+        guard rightSourceViewer == nil || !rightSourceViewer!.dynamicType.filetypes.contains(file.uti) else {
+            rightSourceViewer!.source = file
             return
         }
         
         // Acquire a new editor
         
         clearEditor()
-        editor = EditorPlugIns.sharedInstance.plugInForFiletype(file.file_extension)
+        rightSourceViewer = EditorPlugIns.sharedInstance.plugInForFiletype(file.file_extension)
         
-        guard editor != nil else {
+        guard rightSourceViewer != nil else {
             log("unable to find editor for file with type \(file.file_extension)")
             clearEditor()
             return
@@ -445,16 +497,16 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         // Prepare the editor
         
-        editor!.databaseManager = databaseManager
-        editor!.searchService = searchService
-        editor!.source = file
+        rightSourceViewer!.databaseManager = databaseManager
+        rightSourceViewer!.searchService = searchService
+        rightSourceViewer!.source = file
         
-        editor!.scene = scene
-        editor!.layout = layout
+        rightSourceViewer!.scene = scene
+        rightSourceViewer!.layout = layout
         
         // Move the editor into place
     
-        contentPanel!.editor = editor
+        contentPanel!.editor = rightSourceViewer
         
         // If we are expanded, collapse the source viewer in favor of the editor
         // Make the editor first responder
@@ -467,17 +519,17 @@ class DefaultTab: NSSplitViewController, DocumentTab {
 
         // Establish connections
         
-        if let editor = editor as? SelectableSourceViewer {
-            editor.selectionDelegate = self
+        if let rightSourceViewer = rightSourceViewer as? SelectableSourceViewer {
+            rightSourceViewer.selectionDelegate = self
         }
 
     }
     
     func clearEditor() {
-        editor?.willClose()
-        editor?.source = nil
+        rightSourceViewer?.willClose()
+        rightSourceViewer?.source = nil
         contentPanel!.editor = nil
-        editor = nil
+        rightSourceViewer = nil
     }
     
     /// Loads a new source viewer iff it has changed,
@@ -489,17 +541,17 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             layoutController.splitViewItems[1].collapsed = true
         }
         
-        guard sourceViewer == nil || !sourceViewer!.dynamicType.filetypes.contains(source.uti) else {
-            sourceViewer!.source = source
+        guard leftSourceViewer == nil || !leftSourceViewer!.dynamicType.filetypes.contains(source.uti) else {
+            leftSourceViewer!.source = source
             return
         }
         
         // Acquire a new source viewer
         
-        sourceViewer?.willClose()
-        sourceViewer = EditorPlugIns.sharedInstance.plugInForFiletype(source.file_extension)
+        leftSourceViewer?.willClose()
+        leftSourceViewer = EditorPlugIns.sharedInstance.plugInForFiletype(source.file_extension)
         
-        guard sourceViewer != nil else {
+        guard leftSourceViewer != nil else {
             log("unable to find editor for file with type \(source.file_extension)")
             clearSource()
             return
@@ -507,12 +559,12 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         // Prepare the source viewer
         
-        sourceViewer!.databaseManager = databaseManager
-        sourceViewer!.searchService = searchService
-        sourceViewer!.source = source
+        leftSourceViewer!.databaseManager = databaseManager
+        leftSourceViewer!.searchService = searchService
+        leftSourceViewer!.source = source
         
-        sourceViewer!.scene = scene
-        sourceViewer!.layout = layout
+        leftSourceViewer!.scene = scene
+        leftSourceViewer!.layout = layout
         
         // Move the source viewer into place
         
@@ -522,19 +574,19 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
         
         // TODO: maybe would be nice if we didn't need to replace the split view item entirely, as with the editor
-        layoutController.replaceSplitViewItem(atIndex: 0, withViewController: sourceViewer as! NSViewController)
+        layoutController.replaceSplitViewItem(atIndex: 0, withViewController: leftSourceViewer as! NSViewController)
         
         // Establish connections
         
-        if let sourceViewer = sourceViewer as? SelectableSourceViewer {
-            sourceViewer.selectionDelegate = self
+        if let leftSourceViewer = leftSourceViewer as? SelectableSourceViewer {
+            leftSourceViewer.selectionDelegate = self
         }
     }
     
     func clearSource() {
         // unbind("selectedFileObjects")
-        sourceViewer?.willClose()
-        sourceViewer = nil
+        leftSourceViewer?.willClose()
+        leftSourceViewer = nil
     }
     
     // MARK: - Header
@@ -554,13 +606,13 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     func loadHeader(file: DataSource) {
         // guard editor != nil && editor!.isFileEditor else {
-        guard editor != nil && !(editor is SelectableSourceViewer) else {
+        guard rightSourceViewer != nil && !(rightSourceViewer is SelectableSourceViewer) else {
             return
         }
         
         // TODO: must be set up when the editor changes as well?
         // Next responder: tab from title to editor
-        contentPanel?.header.primaryResponder.nextKeyView = editor?.primaryResponder
+        contentPanel?.header.primaryResponder.nextKeyView = rightSourceViewer?.primaryResponder
         contentPanel?.header.file = file
     }
     
@@ -615,7 +667,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     func loadInspector(file: DataSource) {
         return;
         
-        guard let editor = editor else {
+        guard let rightSourceViewer = rightSourceViewer else {
             clearInspector()
             return
         }
@@ -623,7 +675,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         // TODO: only reload inspectors if they are different
         // Don't need to set up bindings or pass files because they are taken care of by the editor
         
-        inspectors = editor.inspectors
+        inspectors = rightSourceViewer.inspectors
         
         // Test
         
@@ -667,7 +719,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
         
         sourceListPanel.selectItem(library)
-        editor?.performSearch(text, results: results)
+        rightSourceViewer?.performSearch(text, results: results)
     }
     
 }
@@ -806,11 +858,11 @@ extension DefaultTab {
     }
     
     @IBAction func makeEditorFirstResponder(sender: AnyObject?) {
-        guard let editor = editor else {
+        guard let rightSourceViewer = rightSourceViewer else {
             NSBeep()
             return
         }
-        self.view.window?.makeFirstResponder(editor.primaryResponder)
+        self.view.window?.makeFirstResponder(rightSourceViewer.primaryResponder)
     }
     
     @IBAction func makeFileInfoFirstResponder(sender: AnyObject?) {
@@ -900,10 +952,10 @@ extension DefaultTab {
                 // TODO: re-enable
                 // selectedURLObjects = [source]
             }
-            editor?.openURL(url)
+            rightSourceViewer?.openURL(url)
         case "tags":
             sourceListPanel.selectItem(tags)
-            editor?.openURL(url)
+            rightSourceViewer?.openURL(url)
         case _:
             log(root)
         }

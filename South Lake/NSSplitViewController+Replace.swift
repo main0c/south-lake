@@ -12,6 +12,10 @@ extension NSSplitViewController {
     func replaceSplitViewItem(atIndex index: Int, withViewController viewController: NSViewController) {
         assert(index <= splitViewItems.count)
         
+        guard splitViewItems[index].viewController != viewController else {
+            return
+        }
+        
         // Note item settings
         
         let holdingPriority = splitViewItems[index].holdingPriority

@@ -39,6 +39,7 @@
 		E343AC601CA9A13C00BEF51D /* FileListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E343AC5F1CA9A13C00BEF51D /* FileListCollectionView.swift */; };
 		E35529171CAAFF9A00E8110E /* ContentPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E35529161CAAFF9A00E8110E /* ContentPanel.storyboard */; };
 		E35A80071CA1D5C300CBEB36 /* MoveToMenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35A80061CA1D5C300CBEB36 /* MoveToMenuBuilder.swift */; };
+		E35DE9D81CB433A800143DCD /* NoSelectionPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E35DE9D71CB433A800143DCD /* NoSelectionPanel.storyboard */; };
 		E360725C1C74E32E00914C2C /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E360725B1C74E32E00914C2C /* DocumentWindowController.swift */; };
 		E36072701C74E40500914C2C /* DocumentTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E360726E1C74E40500914C2C /* DocumentTabController.swift */; };
 		E36072731C74E64200914C2C /* NSTabViewItem+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36072721C74E64200914C2C /* NSTabViewItem+ViewController.swift */; };
@@ -348,6 +349,7 @@
 		E343AC5F1CA9A13C00BEF51D /* FileListCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileListCollectionView.swift; sourceTree = "<group>"; };
 		E35529161CAAFF9A00E8110E /* ContentPanel.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ContentPanel.storyboard; sourceTree = "<group>"; };
 		E35A80061CA1D5C300CBEB36 /* MoveToMenuBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveToMenuBuilder.swift; sourceTree = "<group>"; };
+		E35DE9D71CB433A800143DCD /* NoSelectionPanel.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NoSelectionPanel.storyboard; sourceTree = "<group>"; };
 		E360725B1C74E32E00914C2C /* DocumentWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
 		E360726E1C74E40500914C2C /* DocumentTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentTabController.swift; sourceTree = "<group>"; };
 		E36072721C74E64200914C2C /* NSTabViewItem+ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTabViewItem+ViewController.swift"; sourceTree = "<group>"; };
@@ -2655,6 +2657,7 @@
 		E35529131CAAFE9B00E8110E /* Tab Components */ = {
 			isa = PBXGroup;
 			children = (
+				E35DE9D61CB4339300143DCD /* No Selection Panel */,
 				E3824FB91CAA30640073885C /* Source List Panel */,
 				E35529141CAAFEA500E8110E /* Content Panel */,
 				E35529151CAAFF4D00E8110E /* Inspector Panel */,
@@ -2678,6 +2681,14 @@
 				E37AB79C1C8F713900F44564 /* InspectorPanel.swift */,
 			);
 			name = "Inspector Panel";
+			sourceTree = "<group>";
+		};
+		E35DE9D61CB4339300143DCD /* No Selection Panel */ = {
+			isa = PBXGroup;
+			children = (
+				E35DE9D71CB433A800143DCD /* NoSelectionPanel.storyboard */,
+			);
+			name = "No Selection Panel";
 			sourceTree = "<group>";
 		};
 		E360726D1C74E3C800914C2C /* Model */ = {
@@ -7730,6 +7741,7 @@
 				E37C7BE21C911F9600A3AB43 /* RelatedInspector.storyboard in Resources */,
 				E37C7BDC1C9108D600A3AB43 /* MetadataInspector.storyboard in Resources */,
 				E389C9081CA3711A00BD1AA9 /* FolderEditor.storyboard in Resources */,
+				E35DE9D81CB433A800143DCD /* NoSelectionPanel.storyboard in Resources */,
 				E3C436231C7640B000DD685D /* Welcome.md in Resources */,
 				E3DDBEED1C8D311700136BAE /* LibraryEditor.storyboard in Resources */,
 			);
