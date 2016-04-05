@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="fyO-Pa-Fcb">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="246"/>
+                                <rect key="frame" x="0.0" y="27" width="450" height="246"/>
                             </customView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Sa3-Kv-Cax">
                                 <rect key="frame" x="152" y="142" width="146" height="17"/>
@@ -35,30 +35,39 @@
                                 </pathCell>
                             </pathControl>
                             <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rNJ-Ff-CsX">
-                                <rect key="frame" x="10" y="254" width="318" height="19"/>
-                                <searchFieldCell key="cell" controlSize="small" selectable="YES" editable="YES" borderStyle="bezel" focusRingType="none" placeholderString="Last year, March 3, etc..." usesSingleLineMode="YES" bezelStyle="round" id="Huw-R1-4Uj">
-                                    <font key="font" metaFont="smallSystem"/>
+                                <rect key="frame" x="4" y="2" width="411" height="22"/>
+                                <searchFieldCell key="cell" selectable="YES" editable="YES" borderStyle="bezel" focusRingType="none" placeholderString="Last year, March 3, etc..." usesSingleLineMode="YES" bezelStyle="round" id="Huw-R1-4Uj">
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
                             </searchField>
                             <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="of7-Ai-SFB">
-                                <rect key="frame" x="0.0" y="244" width="450" height="5"/>
+                                <rect key="frame" x="0.0" y="271" width="450" height="5"/>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <font key="titleFont" metaFont="system"/>
+                            </box>
+                            <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Piu-b1-9GC">
+                                <rect key="frame" x="0.0" y="24" width="450" height="5"/>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <font key="titleFont" metaFont="system"/>
                             </box>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9pu-1f-QqS">
-                                <rect key="frame" x="336" y="276" width="103" height="19"/>
-                                <popUpButtonCell key="cell" type="recessed" title="Date Created" bezelStyle="recessed" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" tag="1001" imageScaling="proportionallyDown" inset="2" selectedItem="qaV-bD-oex" id="KXw-wd-HM0">
+                                <rect key="frame" x="382" y="276" width="57" height="19"/>
+                                <popUpButtonCell key="cell" type="recessed" title="Show" bezelStyle="recessed" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="G7a-us-m5X" id="KXw-wd-HM0">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                     <font key="font" metaFont="systemLight" size="12"/>
                                     <menu key="menu" id="cah-1e-1u0">
                                         <items>
-                                            <menuItem title="Date Created" tag="1001" id="qaV-bD-oex">
+                                            <menuItem title="Show" hidden="YES" id="G7a-us-m5X">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="Date Updated" state="on" tag="1002" id="15L-0L-wWT">
+                                            <menuItem title="Date Created" state="on" tag="1001" id="qaV-bD-oex">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Date Updated" tag="1002" id="15L-0L-wWT">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                             <menuItem title="Date Added" tag="1003" id="WmI-JL-jtO">
@@ -69,7 +78,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PwF-yQ-yIr">
-                                <rect key="frame" x="335" y="254" width="106" height="20"/>
+                                <rect key="frame" x="269" y="276" width="106" height="20"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="roundRect" trackingMode="momentary" id="5Gp-dV-TYL">
                                     <font key="font" metaFont="cellTitle"/>
                                     <segments>
@@ -79,25 +88,39 @@
                                     </segments>
                                 </segmentedCell>
                             </segmentedControl>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hrn-ZF-T01">
+                                <rect key="frame" x="421" y="6" width="23" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="120" id="iOa-gQ-k9x">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="SVe-0S-NZ1"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="of7-Ai-SFB" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="53" id="0Oj-z9-npC"/>
+                            <constraint firstItem="of7-Ai-SFB" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="26" id="0Oj-z9-npC"/>
+                            <constraint firstAttribute="trailing" secondItem="hrn-ZF-T01" secondAttribute="trailing" constant="8" id="2yu-n4-LBP"/>
                             <constraint firstItem="4F3-2s-Vik" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" constant="4" id="41A-FZ-f82"/>
                             <constraint firstItem="of7-Ai-SFB" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" id="8WW-8e-lFX"/>
                             <constraint firstAttribute="trailing" secondItem="of7-Ai-SFB" secondAttribute="trailing" id="8m5-W2-3nI"/>
-                            <constraint firstItem="fyO-Pa-Fcb" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="54" id="AQw-Ws-QQk"/>
-                            <constraint firstItem="rNJ-Ff-CsX" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="27" id="DvF-BQ-rjC"/>
+                            <constraint firstItem="fyO-Pa-Fcb" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="27" id="AQw-Ws-QQk"/>
                             <constraint firstItem="4F3-2s-Vik" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="4" id="G23-vs-XOd"/>
+                            <constraint firstItem="rNJ-Ff-CsX" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" constant="4" id="MQE-aq-dI8"/>
+                            <constraint firstItem="Piu-b1-9GC" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" id="Pyv-nt-Q0P"/>
+                            <constraint firstAttribute="bottom" secondItem="rNJ-Ff-CsX" secondAttribute="bottom" constant="2" id="Uht-Ta-ovt"/>
                             <constraint firstAttribute="trailing" secondItem="9pu-1f-QqS" secondAttribute="trailing" constant="11" id="ZWf-Mu-Mxs"/>
-                            <constraint firstItem="PwF-yQ-yIr" firstAttribute="leading" secondItem="rNJ-Ff-CsX" secondAttribute="trailing" constant="8" id="bAd-6o-NIg"/>
+                            <constraint firstItem="hrn-ZF-T01" firstAttribute="leading" secondItem="rNJ-Ff-CsX" secondAttribute="trailing" constant="8" id="Zsj-Tu-VHX"/>
                             <constraint firstItem="Sa3-Kv-Cax" firstAttribute="centerY" secondItem="yGH-dJ-Tg1" secondAttribute="centerY" id="eMf-T6-MJ1"/>
-                            <constraint firstAttribute="trailing" secondItem="PwF-yQ-yIr" secondAttribute="trailing" constant="10" id="eb7-6T-NW7"/>
-                            <constraint firstAttribute="bottom" secondItem="fyO-Pa-Fcb" secondAttribute="bottom" id="f6o-NU-qJx"/>
+                            <constraint firstAttribute="trailing" secondItem="PwF-yQ-yIr" secondAttribute="trailing" constant="76" id="eb7-6T-NW7"/>
+                            <constraint firstAttribute="bottom" secondItem="fyO-Pa-Fcb" secondAttribute="bottom" constant="27" id="f6o-NU-qJx"/>
                             <constraint firstItem="fyO-Pa-Fcb" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" id="fGJ-8z-obh"/>
+                            <constraint firstAttribute="bottom" secondItem="hrn-ZF-T01" secondAttribute="bottom" constant="6" id="gKN-gj-9tv"/>
+                            <constraint firstAttribute="bottom" secondItem="Piu-b1-9GC" secondAttribute="bottom" constant="26" id="gaX-SX-DNG"/>
+                            <constraint firstAttribute="trailing" secondItem="Piu-b1-9GC" secondAttribute="trailing" id="n42-mF-3ed"/>
                             <constraint firstItem="9pu-1f-QqS" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="5" id="pE4-tg-4Bd"/>
                             <constraint firstAttribute="trailing" secondItem="fyO-Pa-Fcb" secondAttribute="trailing" id="qpm-xF-ANI"/>
-                            <constraint firstItem="PwF-yQ-yIr" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="27" id="rb4-SD-Htq"/>
-                            <constraint firstItem="rNJ-Ff-CsX" firstAttribute="leading" secondItem="yGH-dJ-Tg1" secondAttribute="leading" constant="10" id="x61-cu-Rwf"/>
+                            <constraint firstItem="PwF-yQ-yIr" firstAttribute="top" secondItem="yGH-dJ-Tg1" secondAttribute="top" constant="5" id="rb4-SD-Htq"/>
                             <constraint firstItem="Sa3-Kv-Cax" firstAttribute="centerX" secondItem="yGH-dJ-Tg1" secondAttribute="centerX" id="yAX-f9-LC6"/>
                         </constraints>
                     </view>
