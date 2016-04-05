@@ -606,7 +606,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     }
     
     func clearInspector() {
-        return
+        return ;
         
 //        inspectorPanel.inspectors = nil
         inspectors = nil
@@ -866,7 +866,7 @@ extension DefaultTab {
     // MARK: -
     
     func handleOpenURLNotification(notification: NSNotification) {
-        return
+        return ;
         
         guard let userInfo = notification.userInfo,
               let dbm = userInfo["dbm"] as? DatabaseManager,
