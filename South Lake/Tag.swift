@@ -9,13 +9,9 @@
 import Foundation
 
 /// A Tag is a File (or a Folder? -- just a DataSource) with its own type. In general treated like a folder
-/// Tags are not saved but can be used with a SourceViewer at the interace level.
-
-/// Actually I may not need this at all. Move temporary to data source and then
-/// just use the tag type on a file.
-
-/// Don't like this tag business at all. I prefer to just emit the tags, having the model is annoying.
-/// But I do want to allow a user to add a tag to the shortcuts
+/// Tags are not usually saved but are instead used with a SourceViewer at the interface level
+/// A tag may be added to shortcuts and support other drag and interface operations,
+/// necessitating its own type.
 
 @objc(Tag)
 class Tag: DataSource {
@@ -37,6 +33,6 @@ class Tag: DataSource {
     
     override func willSave(changedPropertyNames: Set<NSObject>?) {
         super.willSave(changedPropertyNames)
-        log("shouldn't happen")
+        log("friends don't let friends normally save tags")
     }
 }

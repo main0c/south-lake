@@ -437,19 +437,16 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     func bindEditor(selection: [DataSource]) {
         let item = selection[safe: 0]
         
-        // TODO: when loading a file from the source list we always need to display in expanded view
-        // TODO: some sources won't support all views: calendar, tags...
-        
-        // Breaking on no selection in order to preserve the editor across changes to the scene
-        
         switch (selection.count, item) {
         case (0, _):
             clearEditor()
             layoutController.replaceSplitViewItem(atIndex: 1, withViewController: noSelectionPanel!)
-        case (1, is File),
-             (1, is Tag):
+        case (1, is File):
             loadEditor(item!)
             layoutController.replaceSplitViewItem(atIndex: 1, withViewController: contentPanel!)
+        case (1, is Tag): // or the editor more generally is selectable
+            loadEditor(item!)
+            layoutController.replaceSplitViewItem(atIndex: 1, withViewController: rightSourceViewer as! NSViewController)
         case (1, is Folder):
             clearEditor()
             loadSourceViewer(item!)
@@ -504,9 +501,12 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         rightSourceViewer!.scene = scene
         rightSourceViewer!.layout = layout
         
-        // Move the editor into place
-    
-        contentPanel!.editor = rightSourceViewer
+        // Move the editor into the content panel only if it is not selectable, aka
+        // only if it is a file editor
+        
+        if !(rightSourceViewer is SelectableSourceViewer) {
+            contentPanel!.editor = rightSourceViewer
+        }
         
         // If we are expanded, collapse the source viewer in favor of the editor
         // Make the editor first responder
