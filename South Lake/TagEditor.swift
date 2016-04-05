@@ -147,6 +147,9 @@ class TagEditor: NSViewController, SelectableSourceViewer {
     // MARK: - Library and Source Data
     
     func bindContent() {
+        guard viewLoaded else {
+            return
+        }
         guard let databaseManager = databaseManager else {
             return
         }
@@ -161,6 +164,9 @@ class TagEditor: NSViewController, SelectableSourceViewer {
         guard let file = file as? Tag else {
             return
         }
+        guard let source = source else {
+            return
+        }
         guard viewLoaded else {
             return
         }
@@ -170,6 +176,8 @@ class TagEditor: NSViewController, SelectableSourceViewer {
         titlePredicate = NSPredicate(format: "any tags like[cd] %@", file.title)
         
         // Update the path control
+        
+        updatePathControlWithTitle(source.title)
     }
 
     
