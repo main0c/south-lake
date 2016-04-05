@@ -81,29 +81,43 @@ class TagsCollectionViewController: NSViewController, FileCollectionScene {
         guard selectsOnDoubleClick else {
             return
         }
-        guard let databaseManager = databaseManager else {
+        guard arrayController.selectedObjects.count > 0 else {
             return
         }
-        guard let object = arrayController.selectedObjects[safe: 0] as? [String:AnyObject],
-              let tag = object["tag"] as? String,
-              let encodedTag = tag.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet()) else {
-            log("no selected object")
-            return
-        }
-        guard let url = NSURL(string: "southlake://localhost/tags/\(encodedTag)") else {
-            log("unable to construct url for object with id \(encodedTag)")
+        guard let selection = arrayController.selectedObjects as? [DataSource] else {
             return
         }
         
-        // TODO: Track history
-        
-        log(url)
-        
-        NSNotificationCenter.defaultCenter().postNotificationName(OpenURLNotification, object: self, userInfo: [
-            "dbm": databaseManager,
-            "url": url
-        ])
+        selectedObjects = selection
     }
+    
+//    @IBAction func doubleClick(sender: AnyObject?) {
+//        guard selectsOnDoubleClick else {
+//            return
+//        }
+//        guard let databaseManager = databaseManager else {
+//            return
+//        }
+//        guard let object = arrayController.selectedObjects[safe: 0] as? [String:AnyObject],
+//              let tag = object["tag"] as? String,
+//              let encodedTag = tag.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet()) else {
+//            log("no selected object")
+//            return
+//        }
+//        guard let url = NSURL(string: "southlake://localhost/tags/\(encodedTag)") else {
+//            log("unable to construct url for object with id \(encodedTag)")
+//            return
+//        }
+//        
+//        // TODO: Track history
+//        
+//        log(url)
+//        
+//        NSNotificationCenter.defaultCenter().postNotificationName(OpenURLNotification, object: self, userInfo: [
+//            "dbm": databaseManager,
+//            "url": url
+//        ])
+//    }
     
     // MARK: - View
     

@@ -55,16 +55,9 @@ class TagEditor: NSViewController, SelectableSourceViewer {
     
     var layout: Layout = .None {
         didSet {
-            if layout == .Compact {
-                sceneController?.minimize()
-            } else {
-                sceneController?.maximize()
-            }
-            if layout == .Expanded {
-                sceneController?.selectsOnDoubleClick = true
-            } else {
-                sceneController?.selectsOnDoubleClick = false
-            }
+            // For now file content for a tag only selects on double click and is always displayed in a large view
+            sceneController!.selectsOnDoubleClick = true
+            sceneController!.maximize()
         }
     }
     
@@ -314,18 +307,10 @@ class TagEditor: NSViewController, SelectableSourceViewer {
         )
         
         // Prepare interface
+        // For now file content for a tag only selects on double click and is always displayed in a large view
         
-        if layout == .Compact {
-            sceneController!.minimize()
-        } else {
-            sceneController!.maximize()
-        }
-        
-        if layout == .Expanded {
-            sceneController!.selectsOnDoubleClick = true
-        } else {
-            sceneController!.selectsOnDoubleClick = false
-        }
+        sceneController!.selectsOnDoubleClick = true
+        sceneController!.maximize()
         
         // Set up connections
         
