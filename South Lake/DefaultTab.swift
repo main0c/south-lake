@@ -110,23 +110,11 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     var sourceListSelection: [DataSource] = [] {
         willSet {
-            unbindTitle()
-            unbindIcon()
-            
-            unbindEditor()
-            unbindHeader()
-            unbindInspectors()
+            unloadSourceListSelection()
         }
         didSet {
-            
             log("did change source list selection")
-            
-            bindTitle(sourceListSelection)
-            bindIcon(sourceListSelection)
-            
-            bindEditor(sourceListSelection)
-            bindHeader(sourceListSelection)
-            bindInspectors(sourceListSelection)
+            loadSourceListSelection(sourceListSelection)
         }
     }
     
@@ -136,23 +124,11 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     var sourceViewerSelection: [DataSource] = [] {
         willSet {
-            unbindTitle()
-            unbindIcon()
-            
-            unbindEditor()
-            unbindHeader()
-            unbindInspectors()
+            unloadSourceViewerSelection()
         }
         didSet {
-            
             log("did change source viewer selection")
-            
-            bindTitle(sourceViewerSelection)
-            bindIcon(sourceViewerSelection)
-            
-            bindEditor(sourceViewerSelection)
-            bindHeader(sourceViewerSelection)
-            bindInspectors(sourceViewerSelection)
+            loadSourceViewerSelection(sourceViewerSelection)
         }
     }
     
@@ -173,11 +149,13 @@ class DefaultTab: NSSplitViewController, DocumentTab {
                 loadLayout(layout)
             }
             sourceViewer?.layout = layout
+            editor?.layout = layout
         }
     }
     var scene: Scene = .None {
         didSet {
             sourceViewer?.scene = scene
+            editor?.scene = scene
         }
     }
     
@@ -317,6 +295,57 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             layoutController!.splitViewItems[1].collapsed = false
         }
     }
+    
+    // MARK: - Source List Selection
+    
+    func unloadSourceListSelection() {
+        unbindTitle()
+        unbindIcon()
+            
+        unbindEditor()
+        unbindHeader()
+        unbindInspectors()
+    }
+    
+    func loadSourceListSelection(selection: [DataSource]) {
+        bindTitle(selection)
+        bindIcon(selection)
+        
+        // should save
+        
+        // There are files and folders (with selectable editors)
+        // Source list selection loads a folder into the first panel
+        // If it's a file, save the last non-file layout, load the selection into the second layout panel, and collapse the first
+        // That preference (layout/scene) is restored when a folder is selected again
+        
+        bindEditor(selection)
+        bindHeader(selection)
+        bindInspectors(selection)
+    }
+    
+    // MARK: - Source Viewer / Editor Selection
+
+    func unloadSourceViewerSelection() {
+        unbindTitle()
+        unbindIcon()
+            
+        unbindEditor()
+        unbindHeader()
+        unbindInspectors()
+    }
+    
+    func loadSourceViewerSelection(selection: [DataSource]) {
+        bindTitle(selection)
+        bindIcon(selection)
+        
+        // The source viewer selection always loads into the second panel
+        // But whether its embedded into the content panel with a header and inspectors 
+        // or loaded directly into the second panel depends on whether it is a file or a folder (with a selectable editor)
+        
+        bindEditor(selection)
+        bindHeader(selection)
+        bindInspectors(selection)
+    }
 
     // MARK: - Title and Icon
     
@@ -367,11 +396,12 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         switch (selection.count, item) {
         case (0, _):
             clearEditor()
-        case (1, is File):
+        case (1, is File),
+             (1, is Tag):
             loadEditor(item!)
         case (1, is Folder):
             clearEditor()
-            loadSource(item!)
+            loadSourceViewer(item!)
         case (_,_):
             break
         }
@@ -419,6 +449,9 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         editor!.searchService = searchService
         editor!.source = file
         
+        editor!.scene = scene
+        editor!.layout = layout
+        
         // Move the editor into place
     
         contentPanel!.editor = editor
@@ -448,9 +481,9 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     }
     
     /// Loads a new source viewer iff it has changed,
-    /// blways shows the source if in expanded view
+    /// always shows the source if in expanded view
     
-    func loadSource(source: DataSource) {
+    func loadSourceViewer(source: DataSource) {
         if layout == .Expanded {
             layoutController.splitViewItems[0].collapsed = false
             layoutController.splitViewItems[1].collapsed = true
@@ -477,6 +510,7 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         sourceViewer!.databaseManager = databaseManager
         sourceViewer!.searchService = searchService
         sourceViewer!.source = source
+        
         sourceViewer!.scene = scene
         sourceViewer!.layout = layout
         

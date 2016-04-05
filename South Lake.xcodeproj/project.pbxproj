@@ -17,6 +17,9 @@
 		E3088AB71CA0FC7700CCA77C /* NSMutableCharacterSet+Chaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3088AB61CA0FC7700CCA77C /* NSMutableCharacterSet+Chaining.swift */; };
 		E310EFE71CA7066E00D66E1C /* NSSplitViewController+Replace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E310EFE61CA7066E00D66E1C /* NSSplitViewController+Replace.swift */; };
 		E3148F121C79353B006BCE53 /* SourceViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3148F111C79353B006BCE53 /* SourceViewer.swift */; };
+		E323EAF41CB352C2005C50AE /* TagEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E323EAF31CB352C2005C50AE /* TagEditor.storyboard */; };
+		E323EAF61CB352EA005C50AE /* TagEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E323EAF51CB352EA005C50AE /* TagEditor.swift */; };
+		E323EAFA1CB35500005C50AE /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E323EAF91CB35500005C50AE /* Tag.swift */; };
 		E3274FBF1C75A088000B6A84 /* MarkdownEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3274FBE1C75A088000B6A84 /* MarkdownEditor.swift */; };
 		E3274FC11C75A0B7000B6A84 /* SourceListPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3274FC01C75A0B7000B6A84 /* SourceListPanel.swift */; };
 		E3274FC31C75A134000B6A84 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3274FC21C75A134000B6A84 /* DataSource.swift */; };
@@ -324,6 +327,9 @@
 		E3088AB61CA0FC7700CCA77C /* NSMutableCharacterSet+Chaining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableCharacterSet+Chaining.swift"; sourceTree = "<group>"; };
 		E310EFE61CA7066E00D66E1C /* NSSplitViewController+Replace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSSplitViewController+Replace.swift"; sourceTree = "<group>"; };
 		E3148F111C79353B006BCE53 /* SourceViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceViewer.swift; sourceTree = "<group>"; };
+		E323EAF31CB352C2005C50AE /* TagEditor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TagEditor.storyboard; sourceTree = "<group>"; };
+		E323EAF51CB352EA005C50AE /* TagEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagEditor.swift; sourceTree = "<group>"; };
+		E323EAF91CB35500005C50AE /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		E3274FBE1C75A088000B6A84 /* MarkdownEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownEditor.swift; sourceTree = "<group>"; };
 		E3274FC01C75A0B7000B6A84 /* SourceListPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceListPanel.swift; sourceTree = "<group>"; };
 		E3274FC21C75A134000B6A84 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
@@ -2574,6 +2580,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E323EAF21CB35258005C50AE /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				E323EAF31CB352C2005C50AE /* TagEditor.storyboard */,
+				E323EAF51CB352EA005C50AE /* TagEditor.swift */,
+			);
+			name = Tag;
+			sourceTree = "<group>";
+		};
 		E3274FAC1C75A04C000B6A84 /* Default Tab */ = {
 			isa = PBXGroup;
 			children = (
@@ -2595,6 +2610,7 @@
 				E37AB7591C8EA37500F44564 /* Trash */,
 				E3898F981C80162700CA71BE /* Markdown */,
 				E37AB76A1C8EA45B00F44564 /* PDF */,
+				E323EAF21CB35258005C50AE /* Tag */,
 			);
 			name = Editors;
 			sourceTree = "<group>";
@@ -2674,6 +2690,7 @@
 				E3274FC41C75A13D000B6A84 /* Folder.swift */,
 				E3274FC81C75A151000B6A84 /* SmartFolder.swift */,
 				E3274FCA1C75A1BF000B6A84 /* File.swift */,
+				E323EAF91CB35500005C50AE /* Tag.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -7697,6 +7714,7 @@
 				E38035901C728D780048AD46 /* MathJax in Resources */,
 				E38035911C728D780048AD46 /* Prism in Resources */,
 				E377CA361C98871800C90011 /* South Lake.style in Resources */,
+				E323EAF41CB352C2005C50AE /* TagEditor.storyboard in Resources */,
 				E389C9031CA3696200BD1AA9 /* FileCardView.storyboard in Resources */,
 				E389C9101CA3728A00BD1AA9 /* FileListView.storyboard in Resources */,
 				E385F7E21C924D550015A91B /* md-toc-index.html in Resources */,
@@ -7901,8 +7919,10 @@
 				E36072731C74E64200914C2C /* NSTabViewItem+ViewController.swift in Sources */,
 				E39B92711C99D31100A3FAF2 /* TagsCollectionViewController.swift in Sources */,
 				E378E80F1C801F54009539FD /* NSToolbar+Items.swift in Sources */,
+				E323EAFA1CB35500005C50AE /* Tag.swift in Sources */,
 				E37A727B1C95ECCD002C721D /* NSTokenFieldTokenTracker.swift in Sources */,
 				E37AB74B1C8E20A900F44564 /* FileCollectionScene.swift in Sources */,
+				E323EAF61CB352EA005C50AE /* TagEditor.swift in Sources */,
 				E3803F0F1C728E790048AD46 /* NSString+Lookup.m in Sources */,
 				E3803F071C728E600048AD46 /* MPAsset.m in Sources */,
 				E37C7B661C8FF85D00A3AB43 /* MarkdownTOCInspector.swift in Sources */,

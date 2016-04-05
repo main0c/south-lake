@@ -45,7 +45,7 @@ class FileListViewController: NSViewController, FileCollectionScene {
         
         collectionView.backgroundColors = [NSColor(white: 1.0, alpha: 1.0)]
         collectionView.minItemSize = NSMakeSize(100, 72)
-        collectionView.maxItemSize = NSMakeSize(400, 72)
+        collectionView.maxItemSize = NSMakeSize(CGFloat.max, 72) // 400
         collectionView.maxNumberOfColumns = 1
         
         let prototype = storyboard!.instantiateControllerWithIdentifier("FileListCollectionViewItem") as? FileListCollectionViewItem

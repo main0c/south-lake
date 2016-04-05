@@ -1,13 +1,10 @@
 //
-//  FolderEditor.swift
+//  TagEditor.swift
 //  South Lake
 //
-//  Created by Philip Dow on 3/23/16.
+//  Created by Philip Dow on 4/4/16.
 //  Copyright © 2016 Phil Dow. All rights reserved.
 //
-//  TODO: Definitely refactor FolderEditor, LibraryEditor, and TagEditor
-
-import Cocoa
 
 private enum SortBy: Int {
     case Title   = 1001
@@ -15,18 +12,12 @@ private enum SortBy: Int {
     case Updated = 1003
 }
 
-class FolderEditor: NSViewController, SelectableSourceViewer {
-    static var storyboard: String = "FolderEditor"
+class TagEditor: NSViewController, SelectableSourceViewer {
+    static var storyboard: String = "TagEditor"
     static var filetypes: [String] = [
-        "southlake.folder",
-        "southlake/x-folder",
-        "southlake-folder",
-        "southlake.smart-folder",
-        "southlake/x-smart-folder",
-        "southlake-smart-folder",
-        "southlake/x-notebook-inbox",
-        "southlake.notebook.inbox",
-        "southlake-notebook-inbox"
+        "southlake/x-tag",
+        "southlake-tag",
+        "southlake.tag"
     ]
     
     @IBOutlet var arrayController: NSArrayController!
@@ -35,11 +26,10 @@ class FolderEditor: NSViewController, SelectableSourceViewer {
     @IBOutlet var noSearchResultsLabel: NSTextField!
     @IBOutlet var searchField: NSSearchField!
     
-    // MARK: - File Editor
-    
     var databaseManager: DatabaseManager? {
         didSet {
             sceneController?.databaseManager = databaseManager
+            bindContent()
         }
     }
     
@@ -50,13 +40,8 @@ class FolderEditor: NSViewController, SelectableSourceViewer {
     }
     
     dynamic var source: DataSource? {
-        willSet {
-            if let _ = source {
-                unbind("content")
-            }
-        }
         didSet {
-            bindContent()
+            loadFile(source)
         }
     }
     
@@ -132,20 +117,21 @@ class FolderEditor: NSViewController, SelectableSourceViewer {
         // Path control
         
         // pathControl.cursor = NSCursor.pointingHandCursor()
-        pathControl.URL = NSURL(string: "southlake://localhost/library")
+        pathControl.URL = NSURL(string: "southlake://localhost/tag")
         updatePathControlAppearance()
         
         // Data
         
         loadScene(scene)
         bindContent()
+        loadFile(source)
     }
     
     func willClose() {
         unloadScene()
         unbind("content")
     }
-    
+
     func initialSortDescriptors() -> [NSSortDescriptor] {
         let keys = ["title", "created_at", "updated_at"]
         
@@ -158,25 +144,34 @@ class FolderEditor: NSViewController, SelectableSourceViewer {
         }
     }
 
-    // MARK: - Folder Data
+    // MARK: - Library and Source Data
     
     func bindContent() {
-        guard viewLoaded else {
-            return
-        }
-        guard let source = source else {
+        guard let databaseManager = databaseManager else {
             return
         }
         guard unbound("content") else {
             return
         }
         
-        bind("content", toObject: source, withKeyPath: "children", options: [:])
-        
-        // TODO: bind path control value somewhere
-        
-        updatePathControlWithTitle(source.title)
+        bind("content", toObject: databaseManager, withKeyPath: "files", options: [:])
     }
+    
+    func loadFile(file: DataSource?) {
+        guard let file = file as? Tag else {
+            return
+        }
+        guard viewLoaded else {
+            return
+        }
+       
+        // Filter on the tag's value
+        
+        titlePredicate = NSPredicate(format: "any tags like[cd] %@", file.title)
+        
+        // Update the path control
+    }
+
     
     // MARK: - User Actions
     
@@ -184,14 +179,18 @@ class FolderEditor: NSViewController, SelectableSourceViewer {
         guard let sender = sender as? NSSearchField else {
             return
         }
+        guard let source = source else {
+            return
+        }
         
         let text = sender.stringValue
-        titlePredicate = ( text == "" ) ? nil : NSPredicate(format: "title contains[cd] %@ || any tags like[cd] %@", text, String(format: "*%@*", text))
+        titlePredicate = ( text == "" )
+            ? NSPredicate(format: "any tags like[cd] %@", source.title)
+            : NSPredicate(format: "title contains[cd] %@ && any tags like[cd] %@", text, source.title)
     }
     
     @IBAction func sortByProperty(sender: AnyObject?) {
-        guard let sender = sender as? NSPopUpButton else {
-            log("sender mut be pop up button")
+        guard let sender = sender as? NSPopUpButton else { // NSMenuItem
             return
         }
         guard let property = SortBy(rawValue: sender.selectedTag()) else {
@@ -279,7 +278,7 @@ class FolderEditor: NSViewController, SelectableSourceViewer {
             return
         }
         
-        // Preserve the selected objects
+        // Preserve the selection
         
         let selection = sceneController?.selectedObjects
         
@@ -325,7 +324,7 @@ class FolderEditor: NSViewController, SelectableSourceViewer {
         sceneController!.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
         sceneController!.selectionDelegate = self
         
-        // Restore selection
+        // Restore the selection
         
         if let selection = selection {
             whileIgnoringChangeInSelection {
@@ -435,7 +434,7 @@ class FolderEditor: NSViewController, SelectableSourceViewer {
     }
 }
 
-extension FolderEditor: SelectionDelegate {
+extension TagEditor: SelectionDelegate {
     
     func object(object: AnyObject, didChangeSelection selection: [AnyObject]) {
         guard let selectionDelegate = selectionDelegate else {

@@ -19,8 +19,18 @@ class TagsCollectionViewController: NSViewController, FileCollectionScene {
     var databaseManager: DatabaseManager?
     var searchService: BRSearchService?
     
-    var selectsOnDoubleClick: Bool = false
     var selectionDelegate: SelectionDelegate?
+    var selectsOnDoubleClick: Bool = false {
+        didSet {
+            if selectsOnDoubleClick {
+                unbind("selectedObjects")
+            } else {
+                bind("selectedObjects", toObject: arrayController, withKeyPath: "selectedObjects", options: [:])
+            }
+        }
+    }
+    
+    // TODO: These aren't actually DataSource, they're [String: Object]
     
     dynamic var selectedObjects: [DataSource] = [] {
         didSet {
@@ -108,8 +118,23 @@ class TagsCollectionViewController: NSViewController, FileCollectionScene {
         collectionView.maxItemSize = NSMakeSize(0, 33)
         collectionView.maxNumberOfColumns = 1
     }
+
+}
+
+extension TagsCollectionViewController: NSCollectionViewDelegate {
     
+    // This method is inexplicably not called
+
     func collectionView(collectionView: NSCollectionView, didSelectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) {
-        log("")
+        log("call me baby")
+        
+        guard let selection = arrayController.selectedObjects as? [DataSource] else {
+            return
+        }
+        guard !selectsOnDoubleClick else {
+            return
+        }
+        
+        selectedObjects = selection
     }
 }

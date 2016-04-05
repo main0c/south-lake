@@ -47,11 +47,34 @@ class TagsEditor: NSViewController, SelectableSourceViewer {
     // MARK: - File Editor
     
     var selectionDelegate: SelectionDelegate?
-    dynamic var selectedObjects: [DataSource]?
+    private var ignoreChangeInSelection = false
+    
+    // dynamic var selectedObjects: [DataSource]?
     
     dynamic var source: DataSource?
-    var layout: Layout = .None
-    var scene: Scene = .None
+    
+    var scene: Scene = .None {
+        didSet {
+            if scene != oldValue {
+                loadScene(scene)
+            }
+        }
+    }
+    
+    var layout: Layout = .None {
+        didSet {
+            if layout == .Compact {
+                sceneController?.minimize()
+            } else {
+                sceneController?.maximize()
+            }
+            if layout == .Expanded {
+                sceneController?.selectsOnDoubleClick = true
+            } else {
+                sceneController?.selectsOnDoubleClick = false
+            }
+        }
+    }
     
     var primaryResponder: NSView {
         return view
@@ -94,8 +117,8 @@ class TagsEditor: NSViewController, SelectableSourceViewer {
         
         // Data
         
-        loadScene("tagsCollectionScene")
-        restoreView()
+        loadScene(scene)
+        // restoreView()
         
         bindLibrary()
         bindTags()
@@ -256,43 +279,70 @@ class TagsEditor: NSViewController, SelectableSourceViewer {
     
     // MARK: - Scene
     
-    func loadScene(identifier: String) {
-        sceneController = storyboard!.instantiateControllerWithIdentifier(identifier) as? FileCollectionScene
-        guard var sceneController = sceneController else {
-            log("unable to load scene with identifier \(identifier)")
+    func loadScene(scene: Scene) {
+        guard scene != .None else {
+            return
+        }
+        guard viewLoaded else {
+            return
+        }
+        guard let sc = storyboard!.instantiateControllerWithIdentifier("tagsCollectionScene") as? FileCollectionScene else {
+            log("no initial view controller for scene \(scene)")
             return
         }
         
-        // Save the scene
+        // Preserve the selection
         
-        // NSUserDefaults.standardUserDefaults().setObject(identifier, forKey: "")
+        let selection = sceneController?.selectedObjects
+        
+        // Prepare the scene
+        
+        unloadScene()
+        sceneController = sc
         
         // Databasable
         
-        sceneController.databaseManager = databaseManager
-        sceneController.searchService = searchService
+        sceneController!.databaseManager = databaseManager
+        sceneController!.searchService = searchService
         
-        // Set up frame and view constraints
+        // Place it into the container
         
-        sceneController.view.translatesAutoresizingMaskIntoConstraints = false
-        sceneController.view.frame = containerView.bounds
-        containerView.addSubview(sceneController.view)
+        sceneController!.view.translatesAutoresizingMaskIntoConstraints = false
+        sceneController!.view.frame = containerView.bounds
+        containerView.addSubview(sceneController!.view)
         
         containerView.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": sceneController.view])
+            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": sceneController!.view])
         )
         containerView.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": sceneController.view])
+            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": sceneController!.view])
         )
         
-        // Bind the array controller to ours
-        // Predicates and sorting are applied before it even sees the data
-        // Check here if we're the right scene
+        // Prepare interface
         
-        if identifier == "tagsCollectionScene" {
-            sceneController.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
+        if layout == .Compact {
+            sceneController!.minimize()
         } else {
-            sceneController.arrayController.bind("contentArray", toObject: libraryArrayController, withKeyPath: "arrangedObjects", options: [:])
+            sceneController!.maximize()
+        }
+        
+        if layout == .Expanded {
+            sceneController!.selectsOnDoubleClick = true
+        } else {
+            sceneController!.selectsOnDoubleClick = false
+        }
+    
+        // Set up connections
+        
+        sceneController!.arrayController.bind("contentArray", toObject: arrayController, withKeyPath: "arrangedObjects", options: [:])
+        sceneController!.selectionDelegate = self
+        
+        // Restore the selection
+        
+        if let selection = selection {
+            whileIgnoringChangeInSelection {
+                self.sceneController!.arrayController.setSelectedObjects(selection)
+            }
         }
     }
     
@@ -301,10 +351,18 @@ class TagsEditor: NSViewController, SelectableSourceViewer {
             return
         }
         
-        sceneController.arrayController.unbind("contentArray")
-        sceneController.arrayController.content = []
-        sceneController.view.removeFromSuperview()
-        sceneController.willClose()
+        whileIgnoringChangeInSelection {
+            sceneController.arrayController.unbind("contentArray")
+            sceneController.arrayController.content = []
+            sceneController.view.removeFromSuperview()
+            sceneController.willClose()
+        }
+    }
+    
+    func whileIgnoringChangeInSelection(whileIgnoring: Void -> Void) {
+        ignoreChangeInSelection = true
+        whileIgnoring()
+        ignoreChangeInSelection = false
     }
     
     // MARK: -
@@ -314,20 +372,22 @@ class TagsEditor: NSViewController, SelectableSourceViewer {
     }
     
     func openURL(url: NSURL) {
-        pathControl.URL = url
-        updatePathControlAppearance()
+    
         
-        // If the url contains a tag, load only those entries for the tag
-        // Otherwise just show all tags
-        
-        if  let encodedTag = url.pathComponents?[safe: 2],
-            let tag = encodedTag.stringByRemovingPercentEncoding {
-            libraryArrayController.filterPredicate = NSPredicate(format: "%@ in tags", tag)
-            loadScene("FileCardView")
-        } else {
-            loadScene("tagsCollectionScene")
-            restoreView()
-        }
+//        pathControl.URL = url
+//        updatePathControlAppearance()
+//        
+//        // If the url contains a tag, load only those entries for the tag
+//        // Otherwise just show all tags
+//        
+//        if  let encodedTag = url.pathComponents?[safe: 2],
+//            let tag = encodedTag.stringByRemovingPercentEncoding {
+//            libraryArrayController.filterPredicate = NSPredicate(format: "%@ in tags", tag)
+//            loadScene("FileCardView")
+//        } else {
+//            loadScene("tagsCollectionScene")
+//            restoreView()
+//        }
     }
     
     // MARK: - Utilities
@@ -346,6 +406,42 @@ class TagsEditor: NSViewController, SelectableSourceViewer {
         
         for cell in cells[1..<cells.count] {
             cell.textColor = NSColor.keyboardFocusIndicatorColor()
+        }
+    }
+}
+
+extension TagsEditor: SelectionDelegate {
+    
+    func object(object: AnyObject, didChangeSelection selection: [AnyObject]) {
+        guard let databaseManager = databaseManager else {
+            return
+        }
+        guard let selectionDelegate = selectionDelegate else {
+            return
+        }
+        guard !ignoreChangeInSelection else {
+            return
+        }
+        
+        // Tags are currently acquired as [ [String:AnyObject] ] but what I want to send to
+        // the selection delegate is [ DataSource ]
+        
+        if let selection = selection as? [[String: AnyObject]] {
+            
+            let tags = selection.map({ (dict) -> DataSource in
+                let tag = Tag(forNewDocumentInDatabase: databaseManager.database)
+                tag.title = dict["tag"] as! String
+                // tag = NSImage(named:"markdown-document-icon") // tag-document icon
+                tag.shouldSave = false
+                
+                return tag
+            })
+            
+            selectionDelegate.object(self, didChangeSelection: tags)
+        }
+        
+        if let selection = selection as? [DataSource] {
+            selectionDelegate.object(self, didChangeSelection: selection)
         }
     }
 }

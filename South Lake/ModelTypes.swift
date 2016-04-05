@@ -37,6 +37,11 @@ struct DataTypes {
         static let uti = "southlake.file"
         static let model = "file"
     }
+    struct Tag {
+        static let mime = "southlake/x-tag"
+        static let uti = "southlake.tag"
+        static let model = "tag"
+    }
     
     // Sections
     

@@ -22,46 +22,48 @@ class EditorPlugIns {
         
         plugins = [
             [
+                "storyboard": "MarkdownEditor",
                 "filetypes": [
                     "net.daringfireball.markdown",
                     "markdown",
                     "text/markdown"
-                ],
-                "storyboard": "MarkdownEditor"
+                ]
             ],
             [
+                "storyboard": "PDFEditor",
                 "filetypes": [
                     "com.adobe.pdf",
                     "pdf",
                     "application/pdf"
-                ],
-                "storyboard": "PDFEditor"
+                ]
             ],
             [
+                "storyboard": "LibraryEditor",
                 "filetypes": [
                     "southlake.notebook.library",
                     "southlake/x-notebook-library",
                     "southlake-notebook-library"
-                ],
-                "storyboard": "LibraryEditor"
+                ]
             ],
             [
+                "storyboard": "TagsEditor",
                 "filetypes": [
                     "southlake.notebook.tags",
                     "southlake/x-notebook-tags",
                     "southlake-notebook-tags"
                 ],
-                "storyboard": "TagsEditor"
+                
             ],
             [
+                "storyboard": "CalendarEditor",
                 "filetypes": [
                     "southlake.notebook.calendar",
                     "southlake/x-notebook-calendar",
                     "southlake-notebook-calendar"
-                ],
-                "storyboard": "CalendarEditor"
+                ]
             ],
             [
+                "storyboard": "FolderEditor",
                 "filetypes": [
                     "southlake.folder",
                     "southlake/x-folder",
@@ -72,8 +74,15 @@ class EditorPlugIns {
                     "southlake/x-notebook-inbox",
                     "southlake.notebook.inbox",
                     "southlake-notebook-inbox"
-                ],
-                "storyboard": "FolderEditor"
+                ]
+            ],
+            [
+                "storyboard": "TagEditor",
+                "filetypes": [
+                    "southlake/x-tag",
+                    "southlake-tag",
+                    "southlake.tag"
+                ]
             ]
         ]
     }

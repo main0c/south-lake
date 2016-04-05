@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="15r-Bj-4iD">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+    </dependencies>
+    <scenes>
+        <!--Tag Editor-->
+        <scene sceneID="4Xs-sA-Upl">
+            <objects>
+                <viewController id="15r-Bj-4iD" customClass="TagEditor" customModule="South_Lake" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="5Mw-gr-YE3" userLabel="View" customClass="CustomizableView" customModule="South_Lake" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="511" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="9Fa-QD-L4Q">
+                                <rect key="frame" x="0.0" y="0.0" width="511" height="246"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="162" id="Ho9-5O-aGB"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="162" id="RqS-wC-pln"/>
+                                </constraints>
+                            </customView>
+                            <pathControl focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ohq-LQ-rQw" customClass="NSPathControlWithCursor" customModule="South_Lake" customModuleProvider="target">
+                                <rect key="frame" x="4" y="276" width="249" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="Bzz-pd-Isl"/>
+                                </constraints>
+                                <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" focusRingType="none" alignment="left" id="LJG-5J-Gzj">
+                                    <font key="font" metaFont="systemMedium" size="13"/>
+                                    <url key="url" string="file:///Library/Search%20Term"/>
+                                    <color key="backgroundColor" white="0.91613833720000004" alpha="1" colorSpace="calibratedWhite"/>
+                                </pathCell>
+                                <connections>
+                                    <action selector="gotoPath:" target="15r-Bj-4iD" id="0Kq-1L-L6h"/>
+                                </connections>
+                            </pathControl>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kyl-Yh-qhM">
+                                <rect key="frame" x="453" y="276" width="50" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="laC-F3-cgA"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="recessed" title="Sort" bezelStyle="recessed" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="14s-Kv-7lX" id="GOw-w1-21z">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                    <font key="font" metaFont="systemLight" size="12"/>
+                                    <menu key="menu" id="bKa-Zy-dsH">
+                                        <items>
+                                            <menuItem title="Sort" state="on" hidden="YES" id="14s-Kv-7lX">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Sort by Title" state="on" tag="1001" id="Tj8-pT-ikb">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem isSeparatorItem="YES" id="2gn-mx-SHa"/>
+                                            <menuItem title="Sort by Date Created" tag="1002" id="o2i-uT-VeS"/>
+                                            <menuItem title="Sort by Date Updated" tag="1003" id="odg-N0-0lk"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="sortByProperty:" target="15r-Bj-4iD" id="yFR-RZ-eFl"/>
+                                </connections>
+                            </popUpButton>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FZq-J6-ujg">
+                                <rect key="frame" x="8" y="212" width="85" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No results" id="mqz-cS-79Z">
+                                    <font key="font" metaFont="systemLight" size="17"/>
+                                    <color key="textColor" red="0.92549019610000005" green="0.2193655303" blue="0.14798768940000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="GAv-s9-6kf">
+                                <rect key="frame" x="0.0" y="244" width="511" height="5"/>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <font key="titleFont" metaFont="system"/>
+                            </box>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IKB-LM-mWz">
+                                <rect key="frame" x="477" y="257" width="23" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="120" id="zge-rE-OXB">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="7I6-C2-rPE"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="pHN-Q2-qZd" name="value" keyPath="arrangedObjects.@count" id="1Hm-Zj-iSl"/>
+                                </connections>
+                            </textField>
+                            <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7XY-dU-aN6">
+                                <rect key="frame" x="10" y="254" width="462" height="19"/>
+                                <searchFieldCell key="cell" controlSize="small" selectable="YES" editable="YES" borderStyle="bezel" focusRingType="none" placeholderString="Filter title" usesSingleLineMode="YES" bezelStyle="round" id="a1K-LT-MFf">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </searchFieldCell>
+                                <connections>
+                                    <action selector="filterByTitle:" target="15r-Bj-4iD" id="mRZ-GO-Uk6"/>
+                                </connections>
+                            </searchField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="IKB-LM-mWz" firstAttribute="top" secondItem="5Mw-gr-YE3" secondAttribute="top" constant="29" id="2Px-sA-xoy"/>
+                            <constraint firstAttribute="trailing" secondItem="GAv-s9-6kf" secondAttribute="trailing" id="4RX-Fj-LJ6"/>
+                            <constraint firstAttribute="trailing" secondItem="kyl-Yh-qhM" secondAttribute="trailing" constant="8" id="6eA-sd-ltI"/>
+                            <constraint firstAttribute="bottom" secondItem="9Fa-QD-L4Q" secondAttribute="bottom" id="6o3-bY-Zp7"/>
+                            <constraint firstItem="Ohq-LQ-rQw" firstAttribute="leading" secondItem="5Mw-gr-YE3" secondAttribute="leading" constant="4" id="DEn-Lx-OQi"/>
+                            <constraint firstItem="GAv-s9-6kf" firstAttribute="top" secondItem="5Mw-gr-YE3" secondAttribute="top" constant="53" id="Kg8-0x-2fk"/>
+                            <constraint firstItem="9Fa-QD-L4Q" firstAttribute="top" secondItem="5Mw-gr-YE3" secondAttribute="top" constant="54" id="NxN-RI-h6F"/>
+                            <constraint firstItem="IKB-LM-mWz" firstAttribute="leading" secondItem="7XY-dU-aN6" secondAttribute="trailing" constant="7" id="WNw-nK-lK1"/>
+                            <constraint firstItem="Ohq-LQ-rQw" firstAttribute="top" secondItem="5Mw-gr-YE3" secondAttribute="top" constant="4" id="Yea-FY-d66"/>
+                            <constraint firstItem="GAv-s9-6kf" firstAttribute="leading" secondItem="5Mw-gr-YE3" secondAttribute="leading" id="bBC-AF-KhV"/>
+                            <constraint firstAttribute="trailing" secondItem="Ohq-LQ-rQw" secondAttribute="trailing" priority="1" constant="258" id="dZm-LG-A4r"/>
+                            <constraint firstItem="kyl-Yh-qhM" firstAttribute="top" secondItem="5Mw-gr-YE3" secondAttribute="top" constant="5" id="fe8-59-a7K"/>
+                            <constraint firstItem="9Fa-QD-L4Q" firstAttribute="leading" secondItem="5Mw-gr-YE3" secondAttribute="leading" id="pRc-2M-Va2"/>
+                            <constraint firstAttribute="trailing" secondItem="IKB-LM-mWz" secondAttribute="trailing" constant="13" id="rP8-4a-f2B"/>
+                            <constraint firstItem="7XY-dU-aN6" firstAttribute="leading" secondItem="5Mw-gr-YE3" secondAttribute="leading" constant="10" id="uq7-oa-GbE"/>
+                            <constraint firstItem="7XY-dU-aN6" firstAttribute="top" secondItem="5Mw-gr-YE3" secondAttribute="top" constant="27" id="xs9-Oh-OoT"/>
+                            <constraint firstAttribute="trailing" secondItem="9Fa-QD-L4Q" secondAttribute="trailing" id="zSH-C2-hXX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="arrayController" destination="pHN-Q2-qZd" id="Q3X-1a-awY"/>
+                        <outlet property="containerView" destination="9Fa-QD-L4Q" id="vNx-29-qzd"/>
+                        <outlet property="noSearchResultsLabel" destination="FZq-J6-ujg" id="BVq-OA-st8"/>
+                        <outlet property="pathControl" destination="Ohq-LQ-rQw" id="kEN-7G-tbE"/>
+                        <outlet property="searchField" destination="7XY-dU-aN6" id="jAg-iS-b7h"/>
+                    </connections>
+                </viewController>
+                <customObject id="qja-qC-HyM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <arrayController objectClassName="DataSource" avoidsEmptySelection="NO" id="pHN-Q2-qZd">
+                    <connections>
+                        <binding destination="15r-Bj-4iD" name="contentArray" keyPath="content" id="kzN-JT-j5i"/>
+                        <binding destination="15r-Bj-4iD" name="filterPredicate" keyPath="filterPredicate" id="ukV-pc-vZ2"/>
+                        <binding destination="15r-Bj-4iD" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="ukV-pc-vZ2" id="vy3-lZ-J0b"/>
+                    </connections>
+                </arrayController>
+            </objects>
+            <point key="canvasLocation" x="-366.5" y="36"/>
+        </scene>
+    </scenes>
+</document>
