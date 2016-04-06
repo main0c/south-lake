@@ -68,6 +68,8 @@ class FileListCollectionViewItem: NSCollectionViewItem {
     }
     
     override func viewWillDisappear() {
+        super.viewWillDisappear()
+        
         collectionView.removeObserver(self, forKeyPath: "fr")
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: NSWindowDidBecomeKeyNotification, object: nil)
