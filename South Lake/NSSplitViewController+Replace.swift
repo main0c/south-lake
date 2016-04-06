@@ -19,6 +19,7 @@ extension NSSplitViewController {
         // Note item settings
         
         let holdingPriority = splitViewItems[index].holdingPriority
+        let collapsed = splitViewItems[index].collapsed
         
         // Set up the frame
             
@@ -37,5 +38,6 @@ extension NSSplitViewController {
         // Restore settings
         
         newItem.holdingPriority = holdingPriority
+        newItem.collapsed = collapsed
     }
 }
