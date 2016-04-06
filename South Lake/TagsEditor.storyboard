@@ -123,7 +123,10 @@
                     </view>
                     <connections>
                         <outlet property="arrayController" destination="diC-KA-2Zj" id="kFg-sA-Z5Z"/>
+                        <outlet property="bottomContainerViewConstraint" destination="62r-kq-JfC" id="Jez-TQ-6DT"/>
+                        <outlet property="bottomDivider" destination="ehc-K3-EYq" id="5xk-BB-EsH"/>
                         <outlet property="containerView" destination="ObZ-VS-gFU" id="0Jr-dX-MGa"/>
+                        <outlet property="countField" destination="4dD-bX-xcN" id="UXR-pK-Kg3"/>
                         <outlet property="libraryArrayController" destination="W8b-4i-iGU" id="JJz-9c-JX7"/>
                         <outlet property="pathControl" destination="88x-s1-wFc" id="k9f-dk-7vW"/>
                         <outlet property="searchField" destination="meW-cX-HEq" id="Nnb-tq-ZsH"/>

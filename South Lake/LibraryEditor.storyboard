@@ -128,7 +128,10 @@
                     </view>
                     <connections>
                         <outlet property="arrayController" destination="p0W-cE-9Ld" id="o3a-Tv-K1w"/>
+                        <outlet property="bottomContainerViewConstraint" destination="RkD-n0-WFI" id="XEC-Pf-teB"/>
+                        <outlet property="bottomDivider" destination="IJw-g8-GwD" id="AJw-99-iZx"/>
                         <outlet property="containerView" destination="WzD-xV-wPP" id="21j-zI-zsg"/>
+                        <outlet property="countField" destination="f4p-sQ-iih" id="kOE-zr-pRh"/>
                         <outlet property="noSearchResultsLabel" destination="KTt-tF-vM6" id="yYP-BI-wzH"/>
                         <outlet property="pathControl" destination="x7s-jQ-cTj" id="cgO-yz-XQg"/>
                         <outlet property="searchField" destination="H5b-Nw-NKT" id="X7a-eD-WuI"/>

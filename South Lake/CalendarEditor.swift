@@ -17,16 +17,29 @@ class CalendarEditor: NSViewController, SelectableSourceViewer {
     ]
     
     @IBOutlet var containerView: NSView!
+    @IBOutlet var bottomContainerViewConstraint: NSLayoutConstraint!
     @IBOutlet var pathControl: NSPathControlWithCursor!
     @IBOutlet var searchField: NSSearchField!
+    @IBOutlet var countField: NSTextField!
+    @IBOutlet var bottomDivider: NSBox!
     
     var databaseManager: DatabaseManager?
     var searchService: BRSearchService?
     
     var selectionDelegate: SelectionDelegate?
     dynamic var source: DataSource?
-    var layout: Layout = .None
-    var scene: Scene = .None
+    
+    var scene: Scene = .None {
+        didSet { if scene != oldValue {
+            loadScene(scene)
+        }}
+    }
+    
+    var layout: Layout = .None {
+        didSet { if layout != oldValue {
+            loadLayout(layout)
+        }}
+    }
         
     var primaryResponder: NSView {
         return view
@@ -48,6 +61,31 @@ class CalendarEditor: NSViewController, SelectableSourceViewer {
         updatePathControlAppearance()
         
         searchField.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
+    }
+    
+    // MARK: - Layout and Scene
+    
+    func loadLayout(layout: Layout) {
+                
+        guard viewLoaded else {
+            return
+        }
+        
+        if layout == .Horizontal {
+            bottomContainerViewConstraint.constant = 0
+            bottomDivider.hidden = true
+            searchField.hidden = true
+            countField.hidden = true
+        } else {
+            bottomContainerViewConstraint.constant = 27
+            bottomDivider.hidden = false
+            searchField.hidden = false
+            countField.hidden = false
+        }
+    }
+    
+    func loadScene(scene: Scene) {
+    
     }
     
     // MARK: - 

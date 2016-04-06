@@ -125,7 +125,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomContainerViewConstraint" destination="f6o-NU-qJx" id="mlY-wH-Cen"/>
+                        <outlet property="bottomDivider" destination="Piu-b1-9GC" id="Yn1-Qa-xIz"/>
                         <outlet property="containerView" destination="fyO-Pa-Fcb" id="TDs-qa-Xpm"/>
+                        <outlet property="countField" destination="hrn-ZF-T01" id="4f3-Dr-6hs"/>
                         <outlet property="pathControl" destination="4F3-2s-Vik" id="N2j-Mn-0Xf"/>
                         <outlet property="searchField" destination="rNJ-Ff-CsX" id="6Ow-kd-zan"/>
                     </connections>

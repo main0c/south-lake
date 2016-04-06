@@ -24,9 +24,12 @@ class TagsEditor: NSViewController, SelectableSourceViewer {
     @IBOutlet var libraryArrayController: NSArrayController!
     @IBOutlet var arrayController: NSArrayController!
     @IBOutlet var containerView: NSView!
+    @IBOutlet var bottomContainerViewConstraint: NSLayoutConstraint!
     @IBOutlet var viewSelector: NSSegmentedControl!
     @IBOutlet var pathControl: NSPathControlWithCursor!
     @IBOutlet var searchField: NSSearchField!
+    @IBOutlet var countField: NSTextField!
+    @IBOutlet var bottomDivider: NSBox!
     
     // MARK: - Databasable
     
@@ -54,26 +57,15 @@ class TagsEditor: NSViewController, SelectableSourceViewer {
     dynamic var source: DataSource?
     
     var scene: Scene = .None {
-        didSet {
-            if scene != oldValue {
-                loadScene(scene)
-            }
-        }
+        didSet { if scene != oldValue {
+            loadScene(scene)
+        }}
     }
     
     var layout: Layout = .None {
-        didSet {
-            if layout == .Compact {
-                sceneController?.minimize()
-            } else {
-                sceneController?.maximize()
-            }
-            if layout == .Expanded {
-                sceneController?.selectsOnDoubleClick = true
-            } else {
-                sceneController?.selectsOnDoubleClick = false
-            }
-        }
+        didSet { if layout != oldValue {
+            loadLayout(layout)
+        }}
     }
     
     var primaryResponder: NSView {
@@ -275,6 +267,38 @@ class TagsEditor: NSViewController, SelectableSourceViewer {
     func useListView() {
         if let sceneController = sceneController as? TagsCollectionViewController {
             sceneController.useListView()
+        }
+    }
+    
+    // MARK: - Layout
+    
+    func loadLayout(layout: Layout) {
+        
+        if layout == .Compact {
+            sceneController?.minimize()
+        } else {
+            sceneController?.maximize()
+        }
+        if layout == .Expanded {
+            sceneController?.selectsOnDoubleClick = true
+        } else {
+            sceneController?.selectsOnDoubleClick = false
+        }
+        
+        guard viewLoaded else {
+            return
+        }
+        
+        if layout == .Horizontal {
+            bottomContainerViewConstraint.constant = 0
+            bottomDivider.hidden = true
+            searchField.hidden = true
+            countField.hidden = true
+        } else {
+            bottomContainerViewConstraint.constant = 27
+            bottomDivider.hidden = false
+            searchField.hidden = false
+            countField.hidden = false
         }
     }
     
