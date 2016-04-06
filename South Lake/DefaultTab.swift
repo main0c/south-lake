@@ -188,6 +188,11 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     //
     
     var layout: Layout = .None {
+        willSet {
+            if layout != newValue {
+                saveLayout(layout)
+            }
+        }
         didSet {
             if layout != oldValue {
                 loadLayout(layout)
@@ -196,12 +201,15 @@ class DefaultTab: NSSplitViewController, DocumentTab {
             rightSourceViewer?.layout = layout
         }
     }
+    
     var scene: Scene = .None {
         didSet {
             leftSourceViewer?.scene = scene
             rightSourceViewer?.scene = scene
         }
     }
+    
+    var layoutSetting: [Layout:CGFloat] = [:]
     
     // MARK: - Initialization
 
@@ -303,14 +311,19 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     
     // MARK: - Layout
     
+    func saveLayout(identifier: Layout) {
+        
+        let size = layoutController.splitViewItems[0].viewController.view.frame.size
+        let position = layoutController.splitView.vertical ? size.width : size.height
+        
+        layoutSetting[identifier] = position
+    }
+    
     func loadLayout(identifier: Layout) {
     
-        // Preserve the existing divider position
-        // TODO: save and restore vertical and horizontal sizes and ensure we have enough room for the change
-    
-        let position = layoutController.splitView.vertical
-            ? layoutController.splitViewItems[0].viewController.view.frame.size.width
-            : layoutController.splitViewItems[0].viewController.view.frame.size.height
+        let size = layoutController.splitViewItems[0].viewController.view.frame.size
+        let curr = layoutController.splitView.vertical ? size.width : size.height
+        let position = layoutSetting[identifier] ?? curr
     
         // Determine if the layout is vertical
     
@@ -331,6 +344,9 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         
         layoutController!.splitView.vertical = vertical
         layoutController!.splitView.adjustSubviews()
+        
+        // Restore position
+        
         layoutController!.splitView.setPosition(position, ofDividerAtIndex: 0)
         
         // Adjust collapsed views for expanded | not layout
@@ -878,6 +894,8 @@ extension DefaultTab {
             log("invalid tag")
             return
         }
+        
+        // TODO: save sizes for restoration
         
         // Extract options
 
