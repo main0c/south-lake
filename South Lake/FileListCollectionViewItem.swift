@@ -14,6 +14,12 @@ class FileListCollectionViewItem: NSCollectionViewItem {
     var target: AnyObject?
     var doubleAction: Selector?
     
+    /// It's possible that viewWillDisappear is called twice when both the layout
+    /// and the scene are changed in a tab. Make sure we don't remove the observer
+    /// twice.
+    
+    var observeringFirstResponder = false
+    
     // MARK: - Initialization
     
     override func viewDidLoad() {
@@ -52,6 +58,7 @@ class FileListCollectionViewItem: NSCollectionViewItem {
         }
         
         collectionView.addObserver(self, forKeyPath: "fr", options: [], context: nil)
+        observeringFirstResponder = true
         
         NSNotificationCenter.defaultCenter().addObserverForName(
             NSWindowDidBecomeKeyNotification,
@@ -70,7 +77,10 @@ class FileListCollectionViewItem: NSCollectionViewItem {
     override func viewWillDisappear() {
         super.viewWillDisappear()
         
-        collectionView.removeObserver(self, forKeyPath: "fr")
+        if observeringFirstResponder {
+            collectionView.removeObserver(self, forKeyPath: "fr")
+            observeringFirstResponder = false
+        }
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: NSWindowDidBecomeKeyNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: NSWindowDidResignKeyNotification, object: nil)
