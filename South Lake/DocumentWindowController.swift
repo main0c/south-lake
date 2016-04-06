@@ -32,7 +32,17 @@ class DocumentWindowController: NSWindowController, Databasable {
     
     override func windowDidLoad() {
         super.windowDidLoad()
-    
+
+        // Transparent Window
+        
+        // window!.styleMask = window!.styleMask | NSFullSizeContentViewWindowMask
+        // window!.titlebarAppearsTransparent = true
+        
+        // let view = window!.contentView!
+        // let constraint = NSLayoutConstraint(item: view, attribute: .Top, relatedBy: .Equal, toItem: window!.contentLayoutGuide, attribute: .Top, multiplier: 1, constant: 0)
+        
+        // constraint.active = true
+        
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: #selector(DocumentWindowController.handleOpenURLNotification(_:)),
             name: OpenURLNotification,
