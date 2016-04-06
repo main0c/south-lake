@@ -88,8 +88,9 @@ class TagsEditor: NSViewController, SelectableSourceViewer {
     
     dynamic var sortDescriptors: [NSSortDescriptor]?
     dynamic var filterPredicate: NSPredicate?
-    dynamic var content: [[String:AnyObject]]?
     
+    // dynamic var tagsContent: [[String:AnyObject]]?
+    dynamic var tagsContent: [Tag]?
     dynamic var libraryContent: [DataSource] = []
     
     var sceneController: FileCollectionScene?
@@ -127,7 +128,7 @@ class TagsEditor: NSViewController, SelectableSourceViewer {
     func willClose() {
         unloadScene()
         unbind("libraryContent")
-        unbind("content")
+        unbind("tagsContent")
     }
     
     func initialSortDescriptors() -> [NSSortDescriptor] {
@@ -148,11 +149,11 @@ class TagsEditor: NSViewController, SelectableSourceViewer {
         guard let databaseManager = databaseManager else {
             return
         }
-        guard unbound("content") else {
+        guard unbound("tagsContent") else {
             return
         }
         
-        bind("content", toObject: databaseManager, withKeyPath: "tags", options: [:])
+        bind("tagsContent", toObject: databaseManager, withKeyPath: "tags", options: [:])
     }
     
     func bindLibrary() {

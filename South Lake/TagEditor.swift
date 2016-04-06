@@ -56,8 +56,10 @@ class TagEditor: NSViewController, SelectableSourceViewer {
     var layout: Layout = .None {
         didSet {
             // For now file content for a tag only selects on double click and is always displayed in a large view
-            sceneController!.selectsOnDoubleClick = true
-            sceneController!.maximize()
+            // TODO: should work in min and max because it may be the first panel
+            
+            sceneController?.selectsOnDoubleClick = true
+            sceneController?.maximize()
         }
     }
     
@@ -308,6 +310,7 @@ class TagEditor: NSViewController, SelectableSourceViewer {
         
         // Prepare interface
         // For now file content for a tag only selects on double click and is always displayed in a large view
+        // TODO: might be the first panel
         
         sceneController!.selectsOnDoubleClick = true
         sceneController!.maximize()
@@ -401,7 +404,7 @@ class TagEditor: NSViewController, SelectableSourceViewer {
             return
         }
         
-        if let pathURL = NSURL(string: "southlake://localhost/\(encodedText)") {
+        if let pathURL = NSURL(string: "southlake://localhost/tags/\(encodedText)") {
             pathControl.URL = pathURL
             updatePathControlAppearance()
         } else {
