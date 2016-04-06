@@ -42,7 +42,7 @@ class DatabaseManager: NSObject {
         }
     }
     
-    dynamic var tags: [[String:AnyObject]]? {
+    dynamic var tags: [Tag]? {
         get {
             loadTags()
             return _tags
@@ -68,7 +68,7 @@ class DatabaseManager: NSObject {
     private var _liveSectionsQuery: CBLLiveQuery?
     private var _sectionsQuery: CBLQuery?
     
-    private var _tags: [[String:AnyObject]]?
+    private var _tags: [Tag]?
     private var _liveTagsQuery: CBLLiveQuery?
     private var _tagsQuery: CBLQuery?
     
@@ -188,16 +188,18 @@ class DatabaseManager: NSObject {
             return
         }
         
-        var tags: [[String:AnyObject]] = []
+        var tags: [Tag] = []
         
         while let row = results.nextRow() {
             let count = row.value as! Int
-            let tag = row.key as! String
+            let title = row.key as! String
             
-            tags.append([
-                "tag": tag,
-                "count": count
-            ])
+            let tag = Tag(forNewDocumentInDatabase: database)
+            tag.shouldSave = false
+            tag.title = title
+            tag.count = count
+            
+            tags.append(tag)
         }
         
         self.tags = tags

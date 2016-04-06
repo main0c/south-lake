@@ -44,7 +44,7 @@ class FileHeaderViewController: NSViewController, Databasable {
     }
     
     var tokenTracker: NSTokenFieldTokenTracker?
-    var tagsContent: [[String:AnyObject]]?
+    var tagsContent: [Tag]?
     
     // MARK: - Initialization
 
@@ -159,11 +159,11 @@ extension FileHeaderViewController: NSTokenFieldDelegate {
             return nil
         }
         
-        let predicate = NSPredicate(format: "tag BEGINSWITH[cd] %@", substring)
+        let predicate = NSPredicate(format: "title BEGINSWITH[cd] %@", substring)
         
         return tagsContent!
             .filter { predicate.evaluateWithObject($0) }
-            .map { $0["tag"]! }
+            .map { $0.title }
     }
     
     func control(control: NSControl, textShouldBeginEditing fieldEditor: NSText) -> Bool {
