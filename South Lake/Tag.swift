@@ -18,8 +18,19 @@ class Tag: DataSource {
     override class var model_mime_type: NSString { return DataTypes.Tag.mime }
     override class var model_uti: NSString { return DataTypes.Tag.uti }
     override class var model_type: NSString { return DataTypes.Tag.model }
- 
+    
+    /// Controls whether the tag should be saved or not, defaults to false
+    
     var shouldSave: Bool = false
+    
+    /// Count is a temporary variable used when emitted tags are collected and
+    /// represented by a Tag type
+    
+    dynamic var count: Int = 0
+    
+    // TODO: temporary for transition to Tag type from dictionary
+    
+    dynamic var tag: String { return title }
     
     /// Prevent the Tag from saving if it's just being used temporarily at the interface level
     /// Might want to end up doing this differently
