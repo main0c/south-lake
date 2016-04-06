@@ -185,7 +185,8 @@ class DefaultTab: NSSplitViewController, DocumentTab {
     /// ...
     // var URLSelection: [DataSource] = [] { ... }
     
-    //
+    /// The layout describes the organization of the panes in the split view.
+    /// Layouts from left to right, top to bottom and expanded are supported.
     
     var layout: Layout = .None {
         willSet {
@@ -202,12 +203,17 @@ class DefaultTab: NSSplitViewController, DocumentTab {
         }
     }
     
+    /// The scene describes how the data is shown in a layout. I could use a 
+    /// better word for this. Possible scenes are cards, tables, and lists
+    
     var scene: Scene = .None {
         didSet {
             leftSourceViewer?.scene = scene
             rightSourceViewer?.scene = scene
         }
     }
+    
+    /// The layout setting is used to save and restore the sizes of the various layouts
     
     var layoutSetting: [Layout:CGFloat] = [:]
     
